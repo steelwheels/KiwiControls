@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0512312C1993B72B007F8B45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0512312B1993B72B007F8B45 /* main.m */; };
+		0512312F1993B72B007F8B45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0512312E1993B72B007F8B45 /* AppDelegate.m */; };
+		051231321993B72B007F8B45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051231311993B72B007F8B45 /* ViewController.m */; };
+		051231371993B72C007F8B45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 051231361993B72C007F8B45 /* Images.xcassets */; };
+		0549CF57199A0F4600B75997 /* PzTenKeyDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549CF56199A0F4600B75997 /* PzTenKeyDataSource.m */; };
+		0549CF58199A0F5C00B75997 /* PzTenKeyDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549CF55199A0F4600B75997 /* PzTenKeyDataSource.h */; };
+		0549CF5E199A4A3B00B75997 /* PzTenKeyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0549CF5D199A4A3B00B75997 /* PzTenKeyCell.xib */; };
+		0554FC3A1998B02400B512F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 051231331993B72B007F8B45 /* Main.storyboard */; };
+		0588D79D19939F380047D68B /* PzTenKeyView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0588D79C19939F380047D68B /* PzTenKeyView.h */; };
+		0588D79F19939F380047D68B /* PzTenKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0588D79E19939F380047D68B /* PzTenKeyView.m */; };
+		059A07971998CDF500A8E517 /* PzTenKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059A07961998CDF500A8E517 /* PzTenKeyView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		051231501993B7E7007F8B45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0588D79119939F380047D68B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0588D79819939F380047D68B;
+			remoteInfo = PzTenKeyView;
+		};
+		051231521993B7FE007F8B45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0588D79119939F380047D68B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0512314C1993B7DA007F8B45;
+			remoteInfo = Install;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0588D79719939F380047D68B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				0549CF58199A0F5C00B75997 /* PzTenKeyDataSource.h in CopyFiles */,
+				0588D79D19939F380047D68B /* PzTenKeyView.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		051231271993B72B007F8B45 /* PzTenKeyViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PzTenKeyViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0512312A1993B72B007F8B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0512312B1993B72B007F8B45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0512312D1993B72B007F8B45 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0512312E1993B72B007F8B45 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		051231301993B72B007F8B45 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		051231311993B72B007F8B45 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		051231341993B72B007F8B45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		051231361993B72C007F8B45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0549CF55199A0F4600B75997 /* PzTenKeyDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzTenKeyDataSource.h; path = Source/PzTenKeyDataSource.h; sourceTree = SOURCE_ROOT; };
+		0549CF56199A0F4600B75997 /* PzTenKeyDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzTenKeyDataSource.m; path = Source/PzTenKeyDataSource.m; sourceTree = SOURCE_ROOT; };
+		0549CF5C199A490C00B75997 /* PzTenKeyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzTenKeyCell.xib; path = Resource/PzTenKeyCell.xib; sourceTree = SOURCE_ROOT; };
+		0549CF5D199A4A3B00B75997 /* PzTenKeyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PzTenKeyCell.xib; sourceTree = "<group>"; };
+		0588D79919939F380047D68B /* libPzTenKeyView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPzTenKeyView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0588D79C19939F380047D68B /* PzTenKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PzTenKeyView.h; path = Source/PzTenKeyView.h; sourceTree = SOURCE_ROOT; };
+		0588D79E19939F380047D68B /* PzTenKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PzTenKeyView.m; path = Source/PzTenKeyView.m; sourceTree = SOURCE_ROOT; };
+		0588D7B01993A4F40047D68B /* PzTenKeyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzTenKeyView.xib; path = Resource/PzTenKeyView.xib; sourceTree = SOURCE_ROOT; };
+		059A07951998B33400A8E517 /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = install.mk; path = ../script/install.mk; sourceTree = SOURCE_ROOT; };
+		059A07961998CDF500A8E517 /* PzTenKeyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzTenKeyView.xib; path = ../../../local/resource/PzTenKeyView.xib; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		051231241993B72B007F8B45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0588D79619939F380047D68B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		051231281993B72B007F8B45 /* PzTenKeyViewTest */ = {
+			isa = PBXGroup;
+			children = (
+				0512312D1993B72B007F8B45 /* AppDelegate.h */,
+				0512312E1993B72B007F8B45 /* AppDelegate.m */,
+				051231301993B72B007F8B45 /* ViewController.h */,
+				051231311993B72B007F8B45 /* ViewController.m */,
+				051231331993B72B007F8B45 /* Main.storyboard */,
+				059A07961998CDF500A8E517 /* PzTenKeyView.xib */,
+				0549CF5D199A4A3B00B75997 /* PzTenKeyCell.xib */,
+				051231361993B72C007F8B45 /* Images.xcassets */,
+				051231291993B72B007F8B45 /* Supporting Files */,
+			);
+			path = PzTenKeyViewTest;
+			sourceTree = "<group>";
+		};
+		051231291993B72B007F8B45 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0512312A1993B72B007F8B45 /* Info.plist */,
+				0512312B1993B72B007F8B45 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0588D79019939F380047D68B = {
+			isa = PBXGroup;
+			children = (
+				059A07941998B2F500A8E517 /* Common */,
+				0588D79B19939F380047D68B /* PzTenKeyView */,
+				051231281993B72B007F8B45 /* PzTenKeyViewTest */,
+				0588D79A19939F380047D68B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0588D79A19939F380047D68B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0588D79919939F380047D68B /* libPzTenKeyView.a */,
+				051231271993B72B007F8B45 /* PzTenKeyViewTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0588D79B19939F380047D68B /* PzTenKeyView */ = {
+			isa = PBXGroup;
+			children = (
+				0588D79C19939F380047D68B /* PzTenKeyView.h */,
+				0588D79E19939F380047D68B /* PzTenKeyView.m */,
+				0549CF55199A0F4600B75997 /* PzTenKeyDataSource.h */,
+				0549CF56199A0F4600B75997 /* PzTenKeyDataSource.m */,
+				0588D7B01993A4F40047D68B /* PzTenKeyView.xib */,
+				0549CF5C199A490C00B75997 /* PzTenKeyCell.xib */,
+			);
+			path = PzTenKeyView;
+			sourceTree = "<group>";
+		};
+		059A07941998B2F500A8E517 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				059A07951998B33400A8E517 /* install.mk */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		0512314C1993B7DA007F8B45 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../script/install.mk";
+			buildConfigurationList = 0512314D1993B7DA007F8B45 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				051231511993B7E7007F8B45 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		051231261993B72B007F8B45 /* PzTenKeyViewTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 051231441993B72C007F8B45 /* Build configuration list for PBXNativeTarget "PzTenKeyViewTest" */;
+			buildPhases = (
+				051231231993B72B007F8B45 /* Sources */,
+				051231241993B72B007F8B45 /* Frameworks */,
+				051231251993B72B007F8B45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				051231531993B7FE007F8B45 /* PBXTargetDependency */,
+			);
+			name = PzTenKeyViewTest;
+			productName = PzTenKeyViewTest;
+			productReference = 051231271993B72B007F8B45 /* PzTenKeyViewTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0588D79819939F380047D68B /* PzTenKeyView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0588D7AA19939F380047D68B /* Build configuration list for PBXNativeTarget "PzTenKeyView" */;
+			buildPhases = (
+				0588D79519939F380047D68B /* Sources */,
+				0588D79619939F380047D68B /* Frameworks */,
+				0588D79719939F380047D68B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PzTenKeyView;
+			productName = PzTenKeyView;
+			productReference = 0588D79919939F380047D68B /* libPzTenKeyView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0588D79119939F380047D68B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Steel Wheels Project";
+				TargetAttributes = {
+					051231261993B72B007F8B45 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					0512314C1993B7DA007F8B45 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					0588D79819939F380047D68B = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 0588D79419939F380047D68B /* Build configuration list for PBXProject "PzTenKeyView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0588D79019939F380047D68B;
+			productRefGroup = 0588D79A19939F380047D68B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0588D79819939F380047D68B /* PzTenKeyView */,
+				0512314C1993B7DA007F8B45 /* Install */,
+				051231261993B72B007F8B45 /* PzTenKeyViewTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		051231251993B72B007F8B45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				059A07971998CDF500A8E517 /* PzTenKeyView.xib in Resources */,
+				0554FC3A1998B02400B512F2 /* Main.storyboard in Resources */,
+				051231371993B72C007F8B45 /* Images.xcassets in Resources */,
+				0549CF5E199A4A3B00B75997 /* PzTenKeyCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		051231231993B72B007F8B45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				051231321993B72B007F8B45 /* ViewController.m in Sources */,
+				0512312F1993B72B007F8B45 /* AppDelegate.m in Sources */,
+				0512312C1993B72B007F8B45 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0588D79519939F380047D68B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0549CF57199A0F4600B75997 /* PzTenKeyDataSource.m in Sources */,
+				0588D79F19939F380047D68B /* PzTenKeyView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		051231511993B7E7007F8B45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0588D79819939F380047D68B /* PzTenKeyView */;
+			targetProxy = 051231501993B7E7007F8B45 /* PBXContainerItemProxy */;
+		};
+		051231531993B7FE007F8B45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0512314C1993B7DA007F8B45 /* Install */;
+			targetProxy = 051231521993B7FE007F8B45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		051231331993B72B007F8B45 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				051231341993B72B007F8B45 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		051231451993B72C007F8B45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PzTenKeyViewTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(HOME)/local/lib",
+					"$(PROJECT_DIR)/PzTenKeyViewTest",
+				);
+				OTHER_LDFLAGS = (
+					"-lPzTenKeyView",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(HOME)/local/include";
+			};
+			name = Debug;
+		};
+		051231461993B72C007F8B45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = PzTenKeyViewTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(HOME)/local/lib",
+					"$(PROJECT_DIR)/PzTenKeyViewTest",
+				);
+				OTHER_LDFLAGS = (
+					"-lPzTenKeyView",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(HOME)/local/include";
+			};
+			name = Release;
+		};
+		0512314E1993B7DA007F8B45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0512314F1993B7DA007F8B45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0588D7A819939F380047D68B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0588D7A919939F380047D68B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0588D7AB19939F380047D68B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0588D7AC19939F380047D68B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		051231441993B72C007F8B45 /* Build configuration list for PBXNativeTarget "PzTenKeyViewTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				051231451993B72C007F8B45 /* Debug */,
+				051231461993B72C007F8B45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0512314D1993B7DA007F8B45 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0512314E1993B7DA007F8B45 /* Debug */,
+				0512314F1993B7DA007F8B45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0588D79419939F380047D68B /* Build configuration list for PBXProject "PzTenKeyView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0588D7A819939F380047D68B /* Debug */,
+				0588D7A919939F380047D68B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0588D7AA19939F380047D68B /* Build configuration list for PBXNativeTarget "PzTenKeyView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0588D7AB19939F380047D68B /* Debug */,
+				0588D7AC19939F380047D68B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0588D79119939F380047D68B /* Project object */;
+}
