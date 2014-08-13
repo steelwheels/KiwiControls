@@ -7,13 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PzTenKeyDataSource.h"
-#import "PzTenKeyDelegate.h"
 
 @interface PzTenKeyView : UIView
 {
 	__weak UICollectionView *	collectionView ;
 	PzTenKeyDataSource *		tenKeyDataSource ;
-	PzTenKeyDelegate *		tenKeyDelegate ;
 }
 
 @end

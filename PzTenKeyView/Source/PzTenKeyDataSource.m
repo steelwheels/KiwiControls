@@ -12,6 +12,8 @@
 static const unsigned int		ROW_NUM		= 5 ;
 static const unsigned int		COLMUN_NUM	= 5 ;
 
+static UIButton * buttonInCell(UICollectionViewCell * cell) ;
+
 @implementation PzTenKeyDataSource
 
 - (instancetype) init
@@ -49,10 +51,41 @@ static const unsigned int		COLMUN_NUM	= 5 ;
 	/* Allocate new cell with button */
 	UICollectionViewCell * newcell = [view dequeueReusableCellWithReuseIdentifier: @"Key" forIndexPath: indexPath] ;
 	
-	// add interactivity
+	/* Setup button in cell */
+	UIButton *	button = buttonInCell(newcell) ;
+	if(button){
+		button.tag = [indexPath row] ;
+		[button addTarget: self action: @selector(clickEvent:event:) forControlEvents: UIControlEventTouchUpInside] ;
+	} else {
+		NSLog(@"Failed to get button") ;
+	}
 	
 	// return the cell
 	return newcell;
 }
 
+- (IBAction) clickEvent:(id) sender event:(id) event
+{
+	UIButton * button = (UIButton *) sender ;
+	int tag = (int) button.tag ;
+	NSLog(@"click event: %d\n", tag) ;
+}
+
 @end
+
+static UIButton *
+buttonInCell(UICollectionViewCell * cell)
+{
+	UIButton * result = nil ;
+	UIView * subview1 = [cell contentView] ;
+	if(subview1){
+		NSArray * subviews2 = [subview1 subviews] ;
+		if([subviews2 count] == 1){
+			UIView * subview2 = [subviews2 objectAtIndex: 0] ;
+			if([subview2 isKindOfClass: [UIButton class]]){
+				result = (UIButton *) subview2 ;
+			}
+		}
+	}
+	return result ;
+}

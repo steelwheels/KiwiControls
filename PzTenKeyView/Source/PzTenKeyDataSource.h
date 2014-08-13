@@ -10,5 +10,6 @@
 @interface PzTenKeyDataSource : NSObject <UICollectionViewDataSource>
 
 - (instancetype) init ;
+- (IBAction) clickEvent:(id) sender event:(id) event ;
 
 @end
