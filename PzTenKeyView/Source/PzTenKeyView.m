@@ -26,8 +26,8 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 		tenKeyDataSource = [[PzTenKeyDataSource alloc] init] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
-			collectionView = [self getCollectionView: subview] ;
-			[self setupCollectionView: collectionView] ;
+			tenKeyCollectionView = [self getCollectionView: subview] ;
+			[self setupCollectionView: tenKeyCollectionView] ;
 		}
 	}
 	return self;
@@ -40,8 +40,8 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 		tenKeyDataSource = [[PzTenKeyDataSource alloc] init] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
-			collectionView = [self getCollectionView: subview] ;
-			[self setupCollectionView: collectionView] ;
+			tenKeyCollectionView = [self getCollectionView: subview] ;
+			[self setupCollectionView: tenKeyCollectionView] ;
 		}
 	}
 	return self ;
