@@ -65,12 +65,11 @@
 		0549CF56199A0F4600B75997 /* PzTenKeyDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzTenKeyDataSource.m; path = Source/PzTenKeyDataSource.m; sourceTree = SOURCE_ROOT; };
 		0549CF5C199A490C00B75997 /* PzTenKeyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzTenKeyCell.xib; path = Resource/PzTenKeyCell.xib; sourceTree = SOURCE_ROOT; };
 		0549CF5D199A4A3B00B75997 /* PzTenKeyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PzTenKeyCell.xib; sourceTree = "<group>"; };
-		056570B3199B6E3E006804E2 /* PzTenKeyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzTenKeyCode.h; path = Source/PzTenKeyCode.h; sourceTree = SOURCE_ROOT; };
+		056570B3199B6E3E006804E2 /* PzTenKeyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzTenKeyType.h; path = Source/PzTenKeyType.h; sourceTree = SOURCE_ROOT; };
 		0588D79919939F380047D68B /* libPzTenKeyView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPzTenKeyView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0588D79C19939F380047D68B /* PzTenKeyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PzTenKeyView.h; path = Source/PzTenKeyView.h; sourceTree = SOURCE_ROOT; };
 		0588D79E19939F380047D68B /* PzTenKeyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PzTenKeyView.m; path = Source/PzTenKeyView.m; sourceTree = SOURCE_ROOT; };
 		0588D7B01993A4F40047D68B /* PzTenKeyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzTenKeyView.xib; path = Resource/PzTenKeyView.xib; sourceTree = SOURCE_ROOT; };
-		059A07951998B33400A8E517 /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = install.mk; path = ../script/install.mk; sourceTree = SOURCE_ROOT; };
 		059A07961998CDF500A8E517 /* PzTenKeyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzTenKeyView.xib; path = ../../../local/resource/PzTenKeyView.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -120,7 +119,6 @@
 		0588D79019939F380047D68B = {
 			isa = PBXGroup;
 			children = (
-				059A07941998B2F500A8E517 /* Common */,
 				0588D79B19939F380047D68B /* PzTenKeyView */,
 				051231281993B72B007F8B45 /* PzTenKeyViewTest */,
 				0588D79A19939F380047D68B /* Products */,
@@ -139,7 +137,7 @@
 		0588D79B19939F380047D68B /* PzTenKeyView */ = {
 			isa = PBXGroup;
 			children = (
-				056570B3199B6E3E006804E2 /* PzTenKeyCode.h */,
+				056570B3199B6E3E006804E2 /* PzTenKeyType.h */,
 				0588D79C19939F380047D68B /* PzTenKeyView.h */,
 				0588D79E19939F380047D68B /* PzTenKeyView.m */,
 				0549CF55199A0F4600B75997 /* PzTenKeyDataSource.h */,
@@ -148,14 +146,6 @@
 				0549CF5C199A490C00B75997 /* PzTenKeyCell.xib */,
 			);
 			path = PzTenKeyView;
-			sourceTree = "<group>";
-		};
-		059A07941998B2F500A8E517 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				059A07951998B33400A8E517 /* install.mk */,
-			);
-			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

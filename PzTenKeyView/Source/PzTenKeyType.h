@@ -1,6 +1,6 @@
 /**
- * @file	PzTenKeyCode.h
- * @brief	Define key code
+ * @file	PzTenKeyType.h
+ * @brief	Define data types
  * @par Copyright
  *   Copyright (C) 2014 Steel Wheels Project
  */
@@ -19,6 +19,7 @@ enum PzTenKeyState {
 #define PzTenKeyMask_Edit	0x00030000
 #define	PzTenKeyMask_Operator	0x00040000
 #define	PzTenKeyMask_Function	0x00050000
+#define PzTenKeyMask_Mask	0xffff0000
 
 enum PzTenKeyCode {
 	PzTenKeyCode_DecState		= PzTenKeyMask_State	| 0x0000,

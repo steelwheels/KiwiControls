@@ -53,8 +53,15 @@ s_tenkey_table[PzTenKeyMaxStateNum][PzTenKeyRowNum * PzTenKeyColmunNum] = {
  }
 } ;
 
-static UIButton * buttonInCell(UICollectionViewCell * cell) ;
-static void updateButtonLabel(enum PzTenKeyState state, UIButton * button) ;
+static BOOL buttonInCell(UIView ** button, UIView ** background, UICollectionViewCell * cell) ;
+static void updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * background) ;
+static UIColor * backgroundColor(const struct PzTenKeyInfo * info) ;
+
+static inline const struct PzTenKeyInfo *
+tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
+{
+	return &(s_tenkey_table[state][tag]) ;
+}
 
 @implementation PzTenKeyDataSource
 
@@ -95,15 +102,16 @@ static void updateButtonLabel(enum PzTenKeyState state, UIButton * button) ;
 	UICollectionViewCell * newcell = [view dequeueReusableCellWithReuseIdentifier: @"Key" forIndexPath: indexPath] ;
 	
 	/* Setup button in cell */
-	UIButton *	button = buttonInCell(newcell) ;
-	if(button){
+	UIButton *	button ;
+	UIView *	background ;
+	if(buttonInCell(&button, &background, newcell)){
 		button.tag = [indexPath row] ;
 		[button addTarget: self action: @selector(clickEvent:event:) forControlEvents: UIControlEventTouchUpInside] ;
-		updateButtonLabel(tenKeyState, button) ;
+		updateButtonLabel(tenKeyState, button, background) ;
 	} else {
 		NSLog(@"Failed to get button") ;
 	}
-	
+
 	// return the cell
 	return newcell;
 }
@@ -117,29 +125,49 @@ static void updateButtonLabel(enum PzTenKeyState state, UIButton * button) ;
 
 @end
 
-static UIButton *
-buttonInCell(UICollectionViewCell * cell)
+static BOOL
+buttonInCell(UIButton ** button, UIView ** background, UICollectionViewCell * cell)
 {
-	UIButton * result = nil ;
-	UIView * subview1 = [cell contentView] ;
-	if(subview1){
-		NSArray * subviews2 = [subview1 subviews] ;
-		if([subviews2 count] == 1){
-			UIView * subview2 = [subviews2 objectAtIndex: 0] ;
-			if([subview2 isKindOfClass: [UIButton class]]){
-				result = (UIButton *) subview2 ;
+	UIView * back ;
+	if((back = [cell contentView]) != nil){
+		NSArray * subviews = [back subviews] ;
+		if([subviews count] == 1){
+			UIView * subview = [subviews objectAtIndex: 0] ;
+			if([subview isKindOfClass: [UIButton class]]){
+				*button		= (UIButton *) subview ;
+				*background	= back ;
+				return true ;
 			}
 		}
 	}
-	return result ;
+	return false ;
 }
 
 static void
-updateButtonLabel(enum PzTenKeyState state, UIButton * button)
+updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * background)
 {
-	const struct PzTenKeyInfo * info = &(s_tenkey_table[state][button.tag]) ;
+	NSInteger tag = button.tag ;
+	const struct PzTenKeyInfo * info = tenKeyInfo(state, tag) ;
 	
 	/* Set label */
 	NSString * label = [[NSString alloc] initWithUTF8String: info->label] ;
 	[button setTitle: label forState: UIControlStateNormal] ;
+	
+	/* Set background */
+	background.backgroundColor = backgroundColor(info) ;
+}
+
+static UIColor *
+backgroundColor(const struct PzTenKeyInfo * info)
+{
+	UIColor * result ;
+	switch(info->code & PzTenKeyMask_Mask){
+		case PzTenKeyMask_State:	result = [UIColor darkGrayColor] ;	break ;
+		case PzTenKeyMask_Normal:	result = [UIColor lightGrayColor] ;	break ;
+		case PzTenKeyMask_Edit:		result = [UIColor orangeColor] ;	break ;
+		case PzTenKeyMask_Operator:	result = [UIColor orangeColor] ;	break ;
+		case PzTenKeyMask_Function:	result = [UIColor orangeColor] ;	break ;
+		default:			result = [UIColor lightGrayColor] ;	break ;
+	}
+	return result ;
 }

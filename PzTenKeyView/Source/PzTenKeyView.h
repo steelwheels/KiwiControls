@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PzTenKeyDataSource.h"
-#import "PzTenKeyCode.h"
+#import "PzTenKeyType.h"
 
 @interface PzTenKeyView : UIView
 {

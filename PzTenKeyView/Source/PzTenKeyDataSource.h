@@ -6,7 +6,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "PzTenKeyCode.h"
+#import "PzTenKeyType.h"
 
 #define PzTenKeyRowNum			5
 #define PzTenKeyColmunNum		5
