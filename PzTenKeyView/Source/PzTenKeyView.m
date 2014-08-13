@@ -7,7 +7,6 @@
 
 #import "PzTenKeyView.h"
 
-
 #define LOCAL_DEBUG 0
 
 static void printView(unsigned int depth, unsigned int index, UIView * view) ;
@@ -21,16 +20,15 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 
 @implementation PzTenKeyView
 
-@synthesize collectionView ;
-
 - (instancetype) initWithCoder:(NSCoder *) decoder
 {
 	if ((self = [super initWithCoder:decoder]) != nil){
-		dataSource = [[PzTenKeyDataSource alloc] init] ;
+		tenKeyDataSource = [[PzTenKeyDataSource alloc] init] ;
+		tenKeyDelegate = [[PzTenKeyDelegate alloc] init] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
-			self.collectionView = [self getCollectionView: subview] ;
-			[self setupCollectionView: self.collectionView] ;
+			collectionView = [self getCollectionView: subview] ;
+			[self setupCollectionView: collectionView] ;
 		}
 	}
 	return self;
@@ -40,11 +38,12 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		dataSource = [[PzTenKeyDataSource alloc] init] ;
+		tenKeyDataSource = [[PzTenKeyDataSource alloc] init] ;
+		tenKeyDelegate = [[PzTenKeyDelegate alloc] init] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
-			self.collectionView = [self getCollectionView: subview] ;
-			[self setupCollectionView: self.collectionView] ;
+			collectionView = [self getCollectionView: subview] ;
+			[self setupCollectionView: collectionView] ;
 		}
 	}
 	return self ;
@@ -96,12 +95,8 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 		NSArray * arr1 = [subview subviews] ;
 		if([arr1 count] == 1){
 			UIView * subview1 = [arr1 objectAtIndex: 0] ;
-			NSArray * arr2 = [subview1 subviews] ;
-			if([arr2 count] == 1){
-				UIView * subview2 = [arr2 objectAtIndex: 0] ;
-				if([subview2 isKindOfClass: [UICollectionView class]]){
-					return (UICollectionView *) subview2 ;
-				}
+			if([subview1 isKindOfClass: [UICollectionView class]]){
+				return (UICollectionView *) subview1 ;
 			}
 		}
 		NSLog(@"%s: Failed to get collection view", __FILE__) ;
@@ -111,7 +106,8 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 
 - (void) setupCollectionView: (UICollectionView *) view
 {
-	[view setDataSource: dataSource] ;
+	[view setDataSource: tenKeyDataSource] ;
+	[view setDelegate: tenKeyDelegate] ;
 }
 
 @end
