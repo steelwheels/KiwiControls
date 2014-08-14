@@ -6,7 +6,7 @@
  */
 
 #import "PzTenKeyDataSource.h"
-
+#import <KiwiControl/KiwiControl.h>
 
 #define DO_DEBUG			0
 
@@ -55,7 +55,6 @@ s_tenkey_table[PzTenKeyMaxStateNum][PzTenKeyRowNum * PzTenKeyColmunNum] = {
 
 static BOOL buttonInCell(UIView ** button, UIView ** background, UICollectionViewCell * cell) ;
 static void updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * background) ;
-static UIColor * backgroundColor(const struct PzTenKeyInfo * info) ;
 
 static inline const struct PzTenKeyInfo *
 tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
@@ -154,20 +153,21 @@ updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * backgrou
 	[button setTitle: label forState: UIControlStateNormal] ;
 	
 	/* Set background */
-	background.backgroundColor = backgroundColor(info) ;
+	KCColorTable * ctable = [KCColorTable defaultColorTable] ;
+	UIColor * backcol ;
+	switch(info->code & PzTenKeyMask_Mask){
+		case PzTenKeyMask_State:	backcol = ctable.lightGray ;		break ;
+		case PzTenKeyMask_Normal:	backcol = ctable.gainsboro ;		break ;
+		case PzTenKeyMask_Edit:		backcol = ctable.darkOrange1 ;	break ;
+		case PzTenKeyMask_Operator:	backcol = ctable.darkOrange1 ;	break ;
+		case PzTenKeyMask_Function:	backcol = ctable.darkOrange1 ;	break ;
+		default:			backcol = ctable.gainsboro ;		break ;
+	}
+	background.backgroundColor = backcol ;
+	
+	/* Set round */
+	[[button layer] setBorderColor: [ctable.darkGray CGColor]];
+	[[button layer] setBorderWidth: 0.5];
 }
 
-static UIColor *
-backgroundColor(const struct PzTenKeyInfo * info)
-{
-	UIColor * result ;
-	switch(info->code & PzTenKeyMask_Mask){
-		case PzTenKeyMask_State:	result = [UIColor darkGrayColor] ;	break ;
-		case PzTenKeyMask_Normal:	result = [UIColor lightGrayColor] ;	break ;
-		case PzTenKeyMask_Edit:		result = [UIColor orangeColor] ;	break ;
-		case PzTenKeyMask_Operator:	result = [UIColor orangeColor] ;	break ;
-		case PzTenKeyMask_Function:	result = [UIColor orangeColor] ;	break ;
-		default:			result = [UIColor lightGrayColor] ;	break ;
-	}
-	return result ;
-}
+

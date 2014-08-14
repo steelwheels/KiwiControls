@@ -13,3 +13,7 @@ Controllers in this package
 ---------------------------
 * PzTenKeyView: Ten Key View implementation based on UICollectionView
 
+References
+----------
+* [RGB Color Chart](http://lowlife.jp/yasusii/static/color_chart.html)
+
