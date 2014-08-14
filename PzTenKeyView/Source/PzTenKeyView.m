@@ -23,7 +23,7 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 - (instancetype) initWithCoder:(NSCoder *) decoder
 {
 	if ((self = [super initWithCoder:decoder]) != nil){
-		tenKeyDataSource = [[PzTenKeyDataSource alloc] init] ;
+		tenKeyDataSource = [[PzTenKeyDataSource alloc] initWithDelegate: self] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
 			tenKeyCollectionView = [self getCollectionView: subview] ;
@@ -37,7 +37,7 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		tenKeyDataSource = [[PzTenKeyDataSource alloc] init] ;
+		tenKeyDataSource = [[PzTenKeyDataSource alloc] initWithDelegate: self] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
 			tenKeyCollectionView = [self getCollectionView: subview] ;
@@ -45,6 +45,31 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 		}
 	}
 	return self ;
+}
+
+- (void) pressKey: (enum PzTenKeyCode) code
+{
+	switch(code){
+		case PzTenKeyCode_DecState: {
+			NSArray * cells = [tenKeyCollectionView visibleCells] ;
+			[tenKeyDataSource updateCells: cells withState: PzTenKeyDecState] ;
+		} break ;
+		case PzTenKeyCode_HexState: {
+			NSArray * cells = [tenKeyCollectionView visibleCells] ;
+			[tenKeyDataSource updateCells: cells withState: PzTenKeyHexState] ;
+		} break ;
+		case PzTenKeyCode_OpState: {
+			NSArray * cells = [tenKeyCollectionView visibleCells] ;
+			[tenKeyDataSource updateCells: cells withState: PzTenKeyOpState] ;
+		} break ;
+		case PzTenKeyCode_FuncState: {
+			NSArray * cells = [tenKeyCollectionView visibleCells] ;
+			[tenKeyDataSource updateCells: cells withState: PzTenKeyFuncState] ;
+		} break ;
+		default: {
+			
+		} break ;
+	}
 }
 
 @end

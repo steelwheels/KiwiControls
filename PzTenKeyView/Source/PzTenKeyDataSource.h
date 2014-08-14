@@ -11,12 +11,18 @@
 #define PzTenKeyRowNum			5
 #define PzTenKeyColmunNum		5
 
+@protocol PzTenKeyClicking
+- (void) pressKey: (enum PzTenKeyCode) code ;
+@end
+
 @interface PzTenKeyDataSource : NSObject <UICollectionViewDataSource>
 {
+	id <PzTenKeyClicking>	clickDelegate ;
 	enum PzTenKeyState	tenKeyState ;
 }
 
-- (instancetype) init ;
+- (instancetype) initWithDelegate: (id <PzTenKeyClicking>) delegate ;
 - (IBAction) clickEvent:(id) sender event:(id) event ;
+- (void) updateCells: (NSArray *) cells withState: (enum PzTenKeyState) newstate ;
 
 @end

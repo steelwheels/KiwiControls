@@ -9,7 +9,7 @@
 #import "PzTenKeyDataSource.h"
 #import "PzTenKeyType.h"
 
-@interface PzTenKeyView : UIView
+@interface PzTenKeyView : UIView <PzTenKeyClicking>
 {
 	__weak UICollectionView *	tenKeyCollectionView ;
 	PzTenKeyDataSource *		tenKeyDataSource ;

@@ -64,10 +64,11 @@ tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
 
 @implementation PzTenKeyDataSource
 
-- (instancetype) init
+- (instancetype) initWithDelegate: (id <PzTenKeyClicking>) delegate ;
 {
 	if((self = [super init]) != nil){
 		if(DO_DEBUG){ NSLog(@"init\n") ; }
+		clickDelegate = delegate ;
 		tenKeyState = PzTenKeyDecState ;
 	}
 	return self ;
@@ -118,8 +119,29 @@ tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
 - (IBAction) clickEvent:(id) sender event:(id) event
 {
 	UIButton * button = (UIButton *) sender ;
-	int tag = (int) button.tag ;
-	NSLog(@"click event: %d\n", tag) ;
+	if(clickDelegate){
+		const struct PzTenKeyInfo * info = tenKeyInfo(tenKeyState, button.tag) ;
+		[clickDelegate pressKey: info->code] ;
+	} else {
+		int tag = (int) button.tag ;
+		NSLog(@"click event: %d\n", tag) ;
+	}
+}
+
+- (void) updateCells: (NSArray *) cells withState: (enum PzTenKeyState) newstate
+{
+	tenKeyState = newstate ;
+	
+	UICollectionViewCell * cell ;
+	for(cell in cells){
+		UIButton *	button ;
+		UIView *	background ;
+		if(buttonInCell(&button, &background, cell)){
+			updateButtonLabel(newstate, button, background) ;
+		} else {
+			NSLog(@"Failed to get button") ;
+		}
+	}
 }
 
 @end
