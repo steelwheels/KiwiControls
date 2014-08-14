@@ -148,20 +148,45 @@ updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * backgrou
 	NSInteger tag = button.tag ;
 	const struct PzTenKeyInfo * info = tenKeyInfo(state, tag) ;
 	
-	/* Set label */
-	NSString * label = [[NSString alloc] initWithUTF8String: info->label] ;
-	[button setTitle: label forState: UIControlStateNormal] ;
+	/* Set label title */
+	NSString * title = [[NSString alloc] initWithUTF8String: info->label] ;
+	[button setTitle: title forState: UIControlStateNormal] ;
+	
+	/* Set label font */
+	BOOL isbold ;
+	switch(info->code){
+		case PzTenKeyCode_DecState: {
+			isbold = (state == PzTenKeyDecState) ;
+		} break ;
+		case PzTenKeyCode_HexState: {
+			isbold = (state == PzTenKeyHexState) ;
+		} break ;
+		case PzTenKeyCode_OpState: {
+			isbold = (state == PzTenKeyOpState) ;
+		} break ;
+		case PzTenKeyCode_FuncState: {
+			isbold = (state == PzTenKeyFuncState) ;
+		} break ;
+		default: {
+			isbold = false ;
+		} break ;
+	}
+	if(isbold){
+		button.titleLabel.font = [UIFont boldSystemFontOfSize: 20.0];
+	} else {
+		button.titleLabel.font = [UIFont systemFontOfSize: 18.0];
+	}
 	
 	/* Set background */
 	KCColorTable * ctable = [KCColorTable defaultColorTable] ;
 	UIColor * backcol ;
 	switch(info->code & PzTenKeyMask_Mask){
-		case PzTenKeyMask_State:	backcol = ctable.lightGray ;		break ;
-		case PzTenKeyMask_Normal:	backcol = ctable.gainsboro ;		break ;
+		case PzTenKeyMask_State:	backcol = ctable.darkGray ;	break ;
+		case PzTenKeyMask_Normal:	backcol = ctable.gainsboro ;	break ;
 		case PzTenKeyMask_Edit:		backcol = ctable.darkOrange1 ;	break ;
 		case PzTenKeyMask_Operator:	backcol = ctable.darkOrange1 ;	break ;
 		case PzTenKeyMask_Function:	backcol = ctable.darkOrange1 ;	break ;
-		default:			backcol = ctable.gainsboro ;		break ;
+		default:			backcol = ctable.gainsboro ;	break ;
 	}
 	background.backgroundColor = backcol ;
 	

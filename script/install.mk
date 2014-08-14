@@ -1,5 +1,5 @@
 #
-#
+# install.mk
 #
 
 INSTALL_PATH	= $(HOME)/local
