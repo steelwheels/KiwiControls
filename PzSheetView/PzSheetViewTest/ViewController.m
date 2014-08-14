@@ -1,24 +1,22 @@
 //
 //  ViewController.m
-//  PzTenKeyViewTest
+//  PzSheetViewTest
 //
-//  Created by Tomoo Hamada on 2014/08/07.
+//  Created by Tomoo Hamada on 2014/08/14.
 //  Copyright (c) 2014年 Steel Wheels Project. All rights reserved.
 //
 
 #import "ViewController.h"
 
-@interface ViewController (Private) <PzTenKeyClicking>
+@interface ViewController ()
 
 @end
 
 @implementation ViewController
-
-@synthesize tenKeyView ;
-
+            
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	tenKeyView.delegate = self ;
+	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,13 +25,3 @@
 }
 
 @end
-
-@implementation ViewController (Private)
-
-- (void) pressKey: (enum PzTenKeyCode) code
-{
-	NSLog(@"Delegate: 0x%x\n", (unsigned int) code) ;
-}
-
-@end
-

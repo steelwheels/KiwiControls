@@ -20,9 +20,12 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 
 @implementation PzTenKeyView
 
+@synthesize delegate ;
+
 - (instancetype) initWithCoder:(NSCoder *) decoder
 {
 	if ((self = [super initWithCoder:decoder]) != nil){
+		delegate = nil ;
 		tenKeyDataSource = [[PzTenKeyDataSource alloc] initWithDelegate: self] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
@@ -37,6 +40,7 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 {
 	self = [super initWithFrame:frame];
 	if (self) {
+		delegate = nil ;
 		tenKeyDataSource = [[PzTenKeyDataSource alloc] initWithDelegate: self] ;
 		UIView * subview = [self loadContentView] ;
 		if(subview){
@@ -67,7 +71,11 @@ static void printView(unsigned int depth, unsigned int index, UIView * view) ;
 			[tenKeyDataSource updateCells: cells withState: PzTenKeyFuncState] ;
 		} break ;
 		default: {
-			
+			if(delegate){
+				[delegate pressKey: code] ;
+			} else {
+				NSLog(@"PressKey: 0x%x\n", (unsigned int) code) ;
+			}
 		} break ;
 	}
 }

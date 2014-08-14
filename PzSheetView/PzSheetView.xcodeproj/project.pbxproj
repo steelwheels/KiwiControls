@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		054EF702199CDCFC0099CD92 /* PzSheetView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054EF701199CDCFC0099CD92 /* PzSheetView.h */; };
+		054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EF703199CDCFC0099CD92 /* PzSheetView.m */; };
+		0584528F199CE83700E1E656 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0584528E199CE83700E1E656 /* main.m */; };
+		05845292199CE83700E1E656 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05845291199CE83700E1E656 /* AppDelegate.m */; };
+		05845295199CE83700E1E656 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05845294199CE83700E1E656 /* ViewController.m */; };
+		05845298199CE83700E1E656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05845296199CE83700E1E656 /* Main.storyboard */; };
+		0584529A199CE83700E1E656 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05845299199CE83700E1E656 /* Images.xcassets */; };
+		058452B1199CE87100E1E656 /* PzSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452AF199CE87100E1E656 /* PzSheetCell.xib */; };
+		058452B2199CE87100E1E656 /* PzSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452B0199CE87100E1E656 /* PzSheetView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05845284199CE4AA00E1E656 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054EF6F6199CDCFC0099CD92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 054EF6FD199CDCFC0099CD92;
+			remoteInfo = PzSheetView;
+		};
+		058452AD199CE85700E1E656 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054EF6F6199CDCFC0099CD92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05845280199CE49400E1E656;
+			remoteInfo = Install;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		054EF6FC199CDCFC0099CD92 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				054EF702199CDCFC0099CD92 /* PzSheetView.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		054EF6FE199CDCFC0099CD92 /* libPzSheetView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPzSheetView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		054EF701199CDCFC0099CD92 /* PzSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PzSheetView.h; path = Source/PzSheetView.h; sourceTree = SOURCE_ROOT; };
+		054EF703199CDCFC0099CD92 /* PzSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PzSheetView.m; path = Source/PzSheetView.m; sourceTree = SOURCE_ROOT; };
+		0584527E199CDE4100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetView.xib; path = Resource/PzSheetView.xib; sourceTree = SOURCE_ROOT; };
+		0584527F199CDFD500E1E656 /* PzSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetCell.xib; path = Resource/PzSheetCell.xib; sourceTree = SOURCE_ROOT; };
+		0584528A199CE83700E1E656 /* PzSheetViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PzSheetViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0584528D199CE83700E1E656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0584528E199CE83700E1E656 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05845290199CE83700E1E656 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		05845291199CE83700E1E656 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		05845293199CE83700E1E656 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		05845294199CE83700E1E656 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		05845297199CE83700E1E656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05845299199CE83700E1E656 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		058452AF199CE87100E1E656 /* PzSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PzSheetCell.xib; sourceTree = "<group>"; };
+		058452B0199CE87100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PzSheetView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		054EF6FB199CDCFC0099CD92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05845287199CE83700E1E656 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		054EF6F5199CDCFC0099CD92 = {
+			isa = PBXGroup;
+			children = (
+				054EF700199CDCFC0099CD92 /* PzSheetView */,
+				0584528B199CE83700E1E656 /* PzSheetViewTest */,
+				054EF6FF199CDCFC0099CD92 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		054EF6FF199CDCFC0099CD92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				054EF6FE199CDCFC0099CD92 /* libPzSheetView.a */,
+				0584528A199CE83700E1E656 /* PzSheetViewTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		054EF700199CDCFC0099CD92 /* PzSheetView */ = {
+			isa = PBXGroup;
+			children = (
+				054EF701199CDCFC0099CD92 /* PzSheetView.h */,
+				054EF703199CDCFC0099CD92 /* PzSheetView.m */,
+				0584527E199CDE4100E1E656 /* PzSheetView.xib */,
+				0584527F199CDFD500E1E656 /* PzSheetCell.xib */,
+			);
+			path = PzSheetView;
+			sourceTree = "<group>";
+		};
+		0584528B199CE83700E1E656 /* PzSheetViewTest */ = {
+			isa = PBXGroup;
+			children = (
+				05845290199CE83700E1E656 /* AppDelegate.h */,
+				05845291199CE83700E1E656 /* AppDelegate.m */,
+				05845293199CE83700E1E656 /* ViewController.h */,
+				05845294199CE83700E1E656 /* ViewController.m */,
+				058452AF199CE87100E1E656 /* PzSheetCell.xib */,
+				058452B0199CE87100E1E656 /* PzSheetView.xib */,
+				05845296199CE83700E1E656 /* Main.storyboard */,
+				05845299199CE83700E1E656 /* Images.xcassets */,
+				0584528C199CE83700E1E656 /* Supporting Files */,
+			);
+			path = PzSheetViewTest;
+			sourceTree = "<group>";
+		};
+		0584528C199CE83700E1E656 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0584528D199CE83700E1E656 /* Info.plist */,
+				0584528E199CE83700E1E656 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		05845280199CE49400E1E656 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../script/install.mk";
+			buildConfigurationList = 05845281199CE49400E1E656 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05845285199CE4AA00E1E656 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		054EF6FD199CDCFC0099CD92 /* PzSheetView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 054EF70F199CDCFC0099CD92 /* Build configuration list for PBXNativeTarget "PzSheetView" */;
+			buildPhases = (
+				054EF6FA199CDCFC0099CD92 /* Sources */,
+				054EF6FB199CDCFC0099CD92 /* Frameworks */,
+				054EF6FC199CDCFC0099CD92 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PzSheetView;
+			productName = PzSheetView;
+			productReference = 054EF6FE199CDCFC0099CD92 /* libPzSheetView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		05845289199CE83700E1E656 /* PzSheetViewTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 058452A7199CE83700E1E656 /* Build configuration list for PBXNativeTarget "PzSheetViewTest" */;
+			buildPhases = (
+				05845286199CE83700E1E656 /* Sources */,
+				05845287199CE83700E1E656 /* Frameworks */,
+				05845288199CE83700E1E656 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				058452AE199CE85700E1E656 /* PBXTargetDependency */,
+			);
+			name = PzSheetViewTest;
+			productName = PzSheetViewTest;
+			productReference = 0584528A199CE83700E1E656 /* PzSheetViewTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		054EF6F6199CDCFC0099CD92 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Steel Wheels Project";
+				TargetAttributes = {
+					054EF6FD199CDCFC0099CD92 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					05845280199CE49400E1E656 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					05845289199CE83700E1E656 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 054EF6F9199CDCFC0099CD92 /* Build configuration list for PBXProject "PzSheetView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 054EF6F5199CDCFC0099CD92;
+			productRefGroup = 054EF6FF199CDCFC0099CD92 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				054EF6FD199CDCFC0099CD92 /* PzSheetView */,
+				05845280199CE49400E1E656 /* Install */,
+				05845289199CE83700E1E656 /* PzSheetViewTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05845288199CE83700E1E656 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058452B1199CE87100E1E656 /* PzSheetCell.xib in Resources */,
+				05845298199CE83700E1E656 /* Main.storyboard in Resources */,
+				058452B2199CE87100E1E656 /* PzSheetView.xib in Resources */,
+				0584529A199CE83700E1E656 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		054EF6FA199CDCFC0099CD92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05845286199CE83700E1E656 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05845295199CE83700E1E656 /* ViewController.m in Sources */,
+				05845292199CE83700E1E656 /* AppDelegate.m in Sources */,
+				0584528F199CE83700E1E656 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05845285199CE4AA00E1E656 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 054EF6FD199CDCFC0099CD92 /* PzSheetView */;
+			targetProxy = 05845284199CE4AA00E1E656 /* PBXContainerItemProxy */;
+		};
+		058452AE199CE85700E1E656 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05845280199CE49400E1E656 /* Install */;
+			targetProxy = 058452AD199CE85700E1E656 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		05845296199CE83700E1E656 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05845297199CE83700E1E656 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		054EF70D199CDCFC0099CD92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		054EF70E199CDCFC0099CD92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		054EF710199CDCFC0099CD92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(HOME)/local/include",
+				);
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-load_all",
+					"-lKiwiControl",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		054EF711199CDCFC0099CD92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(HOME)/local/include",
+				);
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-load_all",
+					"-lKiwiControl",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		05845282199CE49400E1E656 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		05845283199CE49400E1E656 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		058452A8199CE83700E1E656 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = PzSheetViewTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_LDFLAGS = (
+					"-lPzSheetView",
+					"-lKiwiControl",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		058452A9199CE83700E1E656 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = PzSheetViewTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_LDFLAGS = (
+					"-lPzSheetView",
+					"-lKiwiControl",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		054EF6F9199CDCFC0099CD92 /* Build configuration list for PBXProject "PzSheetView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				054EF70D199CDCFC0099CD92 /* Debug */,
+				054EF70E199CDCFC0099CD92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		054EF70F199CDCFC0099CD92 /* Build configuration list for PBXNativeTarget "PzSheetView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				054EF710199CDCFC0099CD92 /* Debug */,
+				054EF711199CDCFC0099CD92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05845281199CE49400E1E656 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05845282199CE49400E1E656 /* Debug */,
+				05845283199CE49400E1E656 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		058452A7199CE83700E1E656 /* Build configuration list for PBXNativeTarget "PzSheetViewTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058452A8199CE83700E1E656 /* Debug */,
+				058452A9199CE83700E1E656 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 054EF6F6199CDCFC0099CD92 /* Project object */;
+}

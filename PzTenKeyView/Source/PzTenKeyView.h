@@ -15,4 +15,6 @@
 	PzTenKeyDataSource *		tenKeyDataSource ;
 }
 
+@property (strong, nonatomic) id <PzTenKeyClicking> delegate ;
+
 @end
