@@ -6,4 +6,7 @@
  */
 
 #import "KCColorTable.h"
+#import "KCXIBUtil.h"
+#import "KCDebugUtil.h"
+
 

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1137C199BBA3A00E9AC62 /* KCColorTable.m */; };
 		05B1137E199BBC1700E9AC62 /* KCColorTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B1137B199BBA3A00E9AC62 /* KCColorTable.h */; };
+		05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0AC44199CFDEA00BD21C3 /* KCDebugUtil.m */; };
+		05C0AC46199CFE3E00BD21C3 /* KCDebugUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */; };
+		05C0AC49199CFF5D00BD21C3 /* KCXIBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */; };
+		05C0AC4A199D01C600BD21C3 /* KCXIBUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */; };
 		05DBE164199BB818009356CB /* KiwiControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DBE163199BB818009356CB /* KiwiControl.h */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +33,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05C0AC4A199D01C600BD21C3 /* KCXIBUtil.h in CopyFiles */,
+				05C0AC46199CFE3E00BD21C3 /* KCDebugUtil.h in CopyFiles */,
 				05B1137E199BBC1700E9AC62 /* KCColorTable.h in CopyFiles */,
 				05DBE164199BB818009356CB /* KiwiControl.h in CopyFiles */,
 			);
@@ -39,6 +45,10 @@
 /* Begin PBXFileReference section */
 		05B1137B199BBA3A00E9AC62 /* KCColorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCColorTable.h; path = Source/KCColorTable.h; sourceTree = SOURCE_ROOT; };
 		05B1137C199BBA3A00E9AC62 /* KCColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCColorTable.m; path = Source/KCColorTable.m; sourceTree = SOURCE_ROOT; };
+		05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCDebugUtil.h; path = Source/KCDebugUtil.h; sourceTree = SOURCE_ROOT; };
+		05C0AC44199CFDEA00BD21C3 /* KCDebugUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCDebugUtil.m; path = Source/KCDebugUtil.m; sourceTree = SOURCE_ROOT; };
+		05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCXIBUtil.h; path = Source/KCXIBUtil.h; sourceTree = SOURCE_ROOT; };
+		05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCXIBUtil.m; path = Source/KCXIBUtil.m; sourceTree = SOURCE_ROOT; };
 		05DBE160199BB818009356CB /* libKiwiControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwiControl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DBE163199BB818009356CB /* KiwiControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KiwiControl.h; path = Source/KiwiControl.h; sourceTree = SOURCE_ROOT; };
 		05DBE16B199BB818009356CB /* KiwiControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +97,10 @@
 				05DBE163199BB818009356CB /* KiwiControl.h */,
 				05B1137B199BBA3A00E9AC62 /* KCColorTable.h */,
 				05B1137C199BBA3A00E9AC62 /* KCColorTable.m */,
+				05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */,
+				05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */,
+				05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */,
+				05C0AC44199CFDEA00BD21C3 /* KCDebugUtil.m */,
 			);
 			path = KiwiControl;
 			sourceTree = "<group>";
@@ -217,6 +231,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */,
+				05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */,
+				05C0AC49199CFF5D00BD21C3 /* KCXIBUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

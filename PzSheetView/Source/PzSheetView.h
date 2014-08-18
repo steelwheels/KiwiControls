@@ -6,7 +6,12 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "PzSheetDataSource.h"
 
 @interface PzSheetView : UIView
+{
+	UITableView *		tableView ;
+	PzSheetDataSource *	dataSource ;
+}
 
 @end

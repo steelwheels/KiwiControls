@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05379926199DAE6B0072191A /* PzSheetDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 05379925199DAE6B0072191A /* PzSheetDataSource.m */; };
 		054EF702199CDCFC0099CD92 /* PzSheetView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054EF701199CDCFC0099CD92 /* PzSheetView.h */; };
 		054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EF703199CDCFC0099CD92 /* PzSheetView.m */; };
 		0584528F199CE83700E1E656 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0584528E199CE83700E1E656 /* main.m */; };
@@ -49,6 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05379924199DAE6B0072191A /* PzSheetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetDataSource.h; path = Source/PzSheetDataSource.h; sourceTree = SOURCE_ROOT; };
+		05379925199DAE6B0072191A /* PzSheetDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetDataSource.m; path = Source/PzSheetDataSource.m; sourceTree = SOURCE_ROOT; };
 		054EF6FE199CDCFC0099CD92 /* libPzSheetView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPzSheetView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		054EF701199CDCFC0099CD92 /* PzSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PzSheetView.h; path = Source/PzSheetView.h; sourceTree = SOURCE_ROOT; };
 		054EF703199CDCFC0099CD92 /* PzSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PzSheetView.m; path = Source/PzSheetView.m; sourceTree = SOURCE_ROOT; };
@@ -63,8 +66,8 @@
 		05845294199CE83700E1E656 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		05845297199CE83700E1E656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05845299199CE83700E1E656 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		058452AF199CE87100E1E656 /* PzSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PzSheetCell.xib; sourceTree = "<group>"; };
-		058452B0199CE87100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PzSheetView.xib; sourceTree = "<group>"; };
+		058452AF199CE87100E1E656 /* PzSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetCell.xib; path = ../../../local/resource/PzSheetCell.xib; sourceTree = SOURCE_ROOT; };
+		058452B0199CE87100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetView.xib; path = ../../../local/resource/PzSheetView.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,8 @@
 			children = (
 				054EF701199CDCFC0099CD92 /* PzSheetView.h */,
 				054EF703199CDCFC0099CD92 /* PzSheetView.m */,
+				05379924199DAE6B0072191A /* PzSheetDataSource.h */,
+				05379925199DAE6B0072191A /* PzSheetDataSource.m */,
 				0584527E199CDE4100E1E656 /* PzSheetView.xib */,
 				0584527F199CDFD500E1E656 /* PzSheetCell.xib */,
 			);
@@ -254,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05379926199DAE6B0072191A /* PzSheetDataSource.m in Sources */,
 				054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,11 +385,11 @@
 					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"$(HOME)/local/include",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-load_all",
 					"-lKiwiControl",
+					"-load_all",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -400,11 +406,11 @@
 					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"$(HOME)/local/include",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-load_all",
 					"-lKiwiControl",
+					"-load_all",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -523,6 +529,7 @@
 				05845283199CE49400E1E656 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		058452A7199CE83700E1E656 /* Build configuration list for PBXNativeTarget "PzSheetViewTest" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +538,7 @@
 				058452A9199CE83700E1E656 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

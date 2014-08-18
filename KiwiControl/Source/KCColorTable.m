@@ -571,7 +571,6 @@ static KCColorTable * s_color_table = nil ;
 
 + (void) initialize
 {
-	NSLog(@"Init KCColorTable\n") ;
 	s_color_table = [[KCColorTable alloc] init] ;
 }
 
