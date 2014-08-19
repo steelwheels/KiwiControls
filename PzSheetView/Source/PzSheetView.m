@@ -47,6 +47,11 @@
 	return self ;
 }
 
+- (void) setResultValue: (PzSheetValue *) value forIndex: (NSInteger) index
+{
+	[dataSource setResultValue: value forIndex: index] ;
+}
+
 @end
 
 @implementation PzSheetView (Private)

@@ -17,6 +17,8 @@
 		0584529A199CE83700E1E656 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05845299199CE83700E1E656 /* Images.xcassets */; };
 		058452B1199CE87100E1E656 /* PzSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452AF199CE87100E1E656 /* PzSheetCell.xib */; };
 		058452B2199CE87100E1E656 /* PzSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452B0199CE87100E1E656 /* PzSheetView.xib */; };
+		0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0593384319A24C2E006DCB20 /* PzSheetCell.m */; };
+		059649BA19A391C600D3007C /* PzSheetValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 059649B919A391C600D3007C /* PzSheetValue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,10 @@
 		05845299199CE83700E1E656 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		058452AF199CE87100E1E656 /* PzSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetCell.xib; path = ../../../local/resource/PzSheetCell.xib; sourceTree = SOURCE_ROOT; };
 		058452B0199CE87100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetView.xib; path = ../../../local/resource/PzSheetView.xib; sourceTree = SOURCE_ROOT; };
+		0593384219A24C2E006DCB20 /* PzSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetCell.h; path = Source/PzSheetCell.h; sourceTree = SOURCE_ROOT; };
+		0593384319A24C2E006DCB20 /* PzSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetCell.m; path = Source/PzSheetCell.m; sourceTree = SOURCE_ROOT; };
+		059649B819A391C600D3007C /* PzSheetValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetValue.h; path = Source/PzSheetValue.h; sourceTree = SOURCE_ROOT; };
+		059649B919A391C600D3007C /* PzSheetValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetValue.m; path = Source/PzSheetValue.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +120,11 @@
 				05379924199DAE6B0072191A /* PzSheetDataSource.h */,
 				05379925199DAE6B0072191A /* PzSheetDataSource.m */,
 				0584527E199CDE4100E1E656 /* PzSheetView.xib */,
+				0593384219A24C2E006DCB20 /* PzSheetCell.h */,
+				0593384319A24C2E006DCB20 /* PzSheetCell.m */,
 				0584527F199CDFD500E1E656 /* PzSheetCell.xib */,
+				059649B819A391C600D3007C /* PzSheetValue.h */,
+				059649B919A391C600D3007C /* PzSheetValue.m */,
 			);
 			path = PzSheetView;
 			sourceTree = "<group>";
@@ -260,7 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				05379926199DAE6B0072191A /* PzSheetDataSource.m in Sources */,
+				059649BA19A391C600D3007C /* PzSheetValue.m in Sources */,
 				054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */,
+				0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

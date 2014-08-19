@@ -6,16 +6,23 @@
  */
 
 #import "PzSheetDataSource.h"
+#import "PzSheetCell.h"
 
 #define MAX_ROW_NUM	16
 #define DO_DEBUG	0
+
+static inline NSString *
+resultKey(NSInteger keyid)
+{
+	return [[NSString alloc] initWithFormat: @"v%d", (int) keyid] ;
+}
 
 @implementation PzSheetDataSource
 
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
-		
+		resultTable = [[NSMutableDictionary alloc] initWithCapacity: MAX_ROW_NUM] ;
 	}
 	return self ;
 }
@@ -48,10 +55,15 @@
 	}
 	
 	/* Allocate new cell with button */
-	UITableViewCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
+	PzSheetCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
 	if(newcell == nil){
-		NSLog(@"NO CELL!!\n") ;
+		NSLog(@"No Cell found\n") ;
 	}
+	
+	/* Add observer */
+	NSString * resultkey = resultKey(indexPath.row) ;
+	[resultTable addObserver: newcell forKeyPath: resultkey options: NSKeyValueObservingOptionNew context: nil] ;
+	
 #if 0
 	/* Setup button in cell */
 	UIButton *	button ;
@@ -67,6 +79,12 @@
 	
 	// return the cell
 	return newcell;
+}
+
+- (void) setResultValue: (PzSheetValue *) value forIndex: (NSInteger) index
+{
+	NSString * resultkey = resultKey(index) ;
+	[resultTable setValue: value forKey: resultkey] ;
 }
 
 @end

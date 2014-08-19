@@ -14,4 +14,6 @@
 	PzSheetDataSource *	dataSource ;
 }
 
+- (void) setResultValue: (PzSheetValue *) value forIndex: (NSInteger) index ;
+
 @end
