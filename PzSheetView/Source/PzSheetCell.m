@@ -15,6 +15,7 @@
 
 - (void) observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change: (NSDictionary *)change context: (void *) context
 {
+	//NSLog(@"oVFKP") ;
 	PzSheetValue * value = [change objectForKey:NSKeyValueChangeNewKey] ;
 	resultLabel.text = [value toString] ;
 }

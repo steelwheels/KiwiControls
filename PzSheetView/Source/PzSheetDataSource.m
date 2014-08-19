@@ -64,19 +64,6 @@ resultKey(NSInteger keyid)
 	NSString * resultkey = resultKey(indexPath.row) ;
 	[resultTable addObserver: newcell forKeyPath: resultkey options: NSKeyValueObservingOptionNew context: nil] ;
 	
-#if 0
-	/* Setup button in cell */
-	UIButton *	button ;
-	UIView *	background ;
-	if(buttonInCell(&button, &background, newcell)){
-		button.tag = [indexPath row] ;
-		[button addTarget: self action: @selector(clickEvent:event:) forControlEvents: UIControlEventTouchUpInside] ;
-		updateButtonLabel(tenKeyState, button, background) ;
-	} else {
-		NSLog(@"Failed to get button") ;
-	}
-#endif
-	
 	// return the cell
 	return newcell;
 }

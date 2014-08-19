@@ -14,9 +14,19 @@
 
 @implementation ViewController
             
-- (void)viewDidLoad {
+- (void)viewDidLoad {	
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear: animated] ;
+	
+	/* Modify the sheet */
+	PzSheetValue * newval = [[PzSheetValue alloc] init] ;
+	[newval setBooleanValue: true] ;
+	[sheetView setResultValue: newval forIndex: 0] ;
 }
 
 - (void)didReceiveMemoryWarning {

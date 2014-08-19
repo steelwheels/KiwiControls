@@ -10,7 +10,9 @@
 #import "PzSheetView/PzSheetView.h"
 
 @interface ViewController : UIViewController
-
+{
+	__weak IBOutlet PzSheetView *sheetView;
+}
 
 @end
 
