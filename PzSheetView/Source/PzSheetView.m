@@ -47,9 +47,9 @@
 	return self ;
 }
 
-- (void) setResultValue: (PzSheetValue *) value forIndex: (NSInteger) index
+- (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
 {
-	[dataSource setResultValue: value forIndex: index] ;
+	[dataSource setResultValue: value forSlot: index] ;
 }
 
 @end

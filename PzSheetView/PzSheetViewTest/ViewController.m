@@ -26,7 +26,7 @@
 	/* Modify the sheet */
 	PzSheetValue * newval = [[PzSheetValue alloc] init] ;
 	[newval setBooleanValue: true] ;
-	[sheetView setResultValue: newval forIndex: 0] ;
+	[sheetView setResultValue: newval forSlot: 0] ;
 }
 
 - (void)didReceiveMemoryWarning {

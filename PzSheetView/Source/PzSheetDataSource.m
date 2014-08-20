@@ -22,7 +22,9 @@ resultKey(NSInteger keyid)
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
+		expressionTable = [[NSMutableArray alloc] initWithCapacity: MAX_ROW_NUM] ;
 		resultTable = [[NSMutableDictionary alloc] initWithCapacity: MAX_ROW_NUM] ;
+		currentSlot = 0 ;
 	}
 	return self ;
 }
@@ -60,7 +62,13 @@ resultKey(NSInteger keyid)
 		NSLog(@"No Cell found\n") ;
 	}
 	
-	/* Add observer */
+	/* Add text field */
+	[expressionTable addObject: newcell.expressionField] ;
+	if(indexPath.row == 0){
+		[newcell.expressionField becomeFirstResponder] ;
+	}
+	
+	/* Add observer for result value */
 	NSString * resultkey = resultKey(indexPath.row) ;
 	[resultTable addObserver: newcell forKeyPath: resultkey options: NSKeyValueObservingOptionNew context: nil] ;
 	
@@ -68,7 +76,18 @@ resultKey(NSInteger keyid)
 	return newcell;
 }
 
-- (void) setResultValue: (PzSheetValue *) value forIndex: (NSInteger) index
+- (void) selectNextExpressionField
+{
+	NSUInteger nextslot = currentSlot + 1 ;
+	if(nextslot >= MAX_ROW_NUM){
+		nextslot = 0 ;
+	}
+	UITextField * nextfield = [expressionTable objectAtIndex: nextslot] ;
+	[nextfield becomeFirstResponder] ;
+	currentSlot = nextslot ;
+}
+
+- (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
 {
 	NSString * resultkey = resultKey(index) ;
 	[resultTable setValue: value forKey: resultkey] ;

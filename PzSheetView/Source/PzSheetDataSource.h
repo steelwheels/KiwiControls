@@ -10,12 +10,17 @@
 
 @interface PzSheetDataSource : NSObject <UITableViewDataSource>
 {
+	/** Array of UITextField objects */
+	NSMutableArray *	expressionTable ;
 	NSMutableDictionary *	resultTable ;
+	
+	NSUInteger		currentSlot ;
 }
 
 - (instancetype) init ;
 
-- (void) setResultValue: (PzSheetValue *) value forIndex: (NSInteger) index ;
+- (void) selectNextExpressionField ;
+- (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index ;
 
 @end
 
