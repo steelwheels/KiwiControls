@@ -20,6 +20,7 @@
 - (instancetype) init ;
 
 - (void) selectNextExpressionField ;
+- (void) insertStringToExpressionField: (NSString *) str ;
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index ;
 
 @end

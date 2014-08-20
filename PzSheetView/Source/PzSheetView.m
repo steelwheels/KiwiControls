@@ -47,6 +47,16 @@
 	return self ;
 }
 
+- (void) selectNextExpressionField
+{
+	[dataSource selectNextExpressionField] ;
+}
+
+- (void) insertStringToExpressionField: (NSString *) str
+{
+	[dataSource insertStringToExpressionField: str] ;
+}
+
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
 {
 	[dataSource setResultValue: value forSlot: index] ;

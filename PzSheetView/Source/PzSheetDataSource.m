@@ -87,6 +87,12 @@ resultKey(NSInteger keyid)
 	currentSlot = nextslot ;
 }
 
+- (void) insertStringToExpressionField: (NSString *) str
+{
+	UITextField * textfield = [expressionTable objectAtIndex: currentSlot] ;
+	[textfield insertText: str] ;
+}
+
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
 {
 	NSString * resultkey = resultKey(index) ;
