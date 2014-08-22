@@ -1,15 +1,15 @@
-//
-//  ViewController.m
-//  PzSheetViewTest
-//
-//  Created by Tomoo Hamada on 2014/08/14.
-//  Copyright (c) 2014年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	ViewController.m
+ * @brief	Definen ViewController class
+ * @par Copyright
+ *   Copyright (C) 2014 Steel Wheels Project
+ */
 
 #import "ViewController.h"
 
 @interface ViewController (Private)
 - (void) unitTest ;
+- (void) pressInputButton: (UIButton *) button ;
 @end
 
 @implementation ViewController
@@ -17,6 +17,9 @@
 - (void)viewDidLoad {	
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	// Link input button event and pressInputButton method
+	[inputButton addTarget: self action: @selector(pressInputButton:) forControlEvents: UIControlEventTouchUpInside] ;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -42,6 +45,12 @@
 	[sheetView setResultValue: newval forSlot: 0] ;
 	
 	[sheetView insertStringToExpressionField: @"100"] ;
+}
+
+- (void) pressInputButton: (UIButton *) button
+{
+	((void) button) ;
+	NSLog(@"pIB") ;
 }
 
 @end

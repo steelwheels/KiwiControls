@@ -19,8 +19,13 @@
 
 - (instancetype) init ;
 
+- (void) moveCursorForwardInExpressionField ;
+- (void) moveCursorBackwardInExpressionField ;
 - (void) selectNextExpressionField ;
+
 - (void) insertStringToExpressionField: (NSString *) str ;
+- (void) deleteSelectedStringInExpressionField ;
+- (void) clearExpressionField ;
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index ;
 
 @end

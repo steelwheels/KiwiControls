@@ -62,6 +62,12 @@ resultKey(NSInteger keyid)
 		NSLog(@"No Cell found\n") ;
 	}
 	
+	/* To suppress display keyboard, give dummy view
+	 * See http://stackoverflow.com/questions/5615806/disable-uitextfield-keyboard
+	 */
+	UIView * dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+	newcell.expressionField.inputView = dummyView; // Hide keyboard, but show blinking cursor
+
 	/* Add text field */
 	[expressionTable addObject: newcell.expressionField] ;
 	if(indexPath.row == 0){
@@ -74,6 +80,69 @@ resultKey(NSInteger keyid)
 	
 	// return the cell
 	return newcell;
+}
+
+- (void) deleteSelectedStringInExpressionField
+{
+	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	UITextRange *	selrange = currentfield.selectedTextRange ;
+	if(selrange.empty){
+		/* delete previous character */
+		[currentfield deleteBackward] ;
+	} else {
+		/* change the ca */
+		UITextPosition * pos = selrange.start ;
+		UITextRange * newrange = [currentfield textRangeFromPosition: pos toPosition: pos] ;
+		[currentfield setSelectedTextRange: newrange] ;
+	}
+}
+
+- (void) clearExpressionField
+{
+	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	currentfield.text = @"" ;
+}
+
+- (void) moveCursorForwardInExpressionField
+{
+	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	UITextRange *	currentrange = currentfield.selectedTextRange;
+	if([currentrange.start isEqual: currentfield.endOfDocument]){
+		return;
+	}
+	
+	UITextPosition * newpos = [currentfield positionFromPosition: currentrange.start offset:+1];
+	
+	UITextRange *newrange;
+	if([currentrange isEmpty]){
+		newrange = [currentfield textRangeFromPosition: newpos
+						    toPosition: newpos];
+	} else {
+		newrange = [currentfield textRangeFromPosition: newpos
+						    toPosition: currentrange.end];
+	}
+	currentfield.selectedTextRange = newrange;
+}
+
+- (void) moveCursorBackwardInExpressionField
+{
+	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	UITextRange *	currentrange = currentfield.selectedTextRange;
+	if([currentrange.start isEqual: currentfield.beginningOfDocument]){
+		return;
+	}
+	
+	UITextPosition *newpos = [currentfield positionFromPosition: currentrange.start offset:-1];
+	
+	UITextRange * newrange;
+	if([currentrange isEmpty]){
+		newrange = [currentfield textRangeFromPosition: newpos
+						    toPosition: newpos];
+	} else {
+		newrange = [currentfield textRangeFromPosition: newpos
+						    toPosition: currentrange.end];
+	}
+	currentfield.selectedTextRange = newrange;
 }
 
 - (void) selectNextExpressionField

@@ -25,6 +25,17 @@
                                     <constraint firstAttribute="height" constant="212" id="Lg8-e2-LCY"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aGA-JW-gvj">
+                                <rect key="frame" x="16" y="318" width="200" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlF-Zc-yx3">
+                                <rect key="frame" x="224" y="317" width="80" height="30"/>
+                                <state key="normal" title="Enter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -38,6 +49,8 @@
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
+                        <outlet property="inputButton" destination="JlF-Zc-yx3" id="g0B-TL-pEl"/>
+                        <outlet property="inputField" destination="aGA-JW-gvj" id="nBa-4J-9La"/>
                         <outlet property="sheetView" destination="dM9-Za-Tc3" id="gao-P5-RwH"/>
                     </connections>
                 </viewController>

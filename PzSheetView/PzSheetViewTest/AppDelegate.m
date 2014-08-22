@@ -1,10 +1,9 @@
-//
-//  AppDelegate.m
-//  PzSheetViewTest
-//
-//  Created by Tomoo Hamada on 2014/08/14.
-//  Copyright (c) 2014年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	AppDelegate.m
+ * @brief	Definen AppDelegete class
+ * @par Copyright
+ *   Copyright (C) 2014 Steel Wheels Project
+ */
 
 #import "AppDelegate.h"
 
