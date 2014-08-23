@@ -13,6 +13,9 @@
 	__weak IBOutlet PzSheetView *sheetView;
 	__weak IBOutlet UITextField *inputField;
 	__weak IBOutlet UIButton *inputButton;
+	__weak IBOutlet UIButton *moveLeftButton;
+	__weak IBOutlet UIButton *moveRightButton;
+	__weak IBOutlet UIButton *enterReturnButton;
 }
 
 @end

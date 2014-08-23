@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "PzSheetValue.h"
 
-@interface PzSheetDataSource : NSObject <UITableViewDataSource>
+@interface PzSheetDataSource : NSObject <UITableViewDataSource, UITextFieldDelegate>
 {
 	/** Array of UITextField objects */
 	NSMutableArray *	expressionTable ;
@@ -18,6 +18,8 @@
 }
 
 - (instancetype) init ;
+
+- (void) activateFirstResponder ;
 
 - (void) moveCursorForwardInExpressionField ;
 - (void) moveCursorBackwardInExpressionField ;

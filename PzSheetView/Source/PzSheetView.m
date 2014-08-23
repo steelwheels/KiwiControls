@@ -47,6 +47,21 @@
 	return self ;
 }
 
+- (void) activateFirstResponder
+{
+	[dataSource activateFirstResponder] ;
+}
+
+- (void) moveCursorForwardInExpressionField
+{
+	[dataSource moveCursorForwardInExpressionField] ;
+}
+
+- (void) moveCursorBackwardInExpressionField
+{
+	[dataSource moveCursorBackwardInExpressionField] ;
+}
+
 - (void) selectNextExpressionField
 {
 	[dataSource selectNextExpressionField] ;

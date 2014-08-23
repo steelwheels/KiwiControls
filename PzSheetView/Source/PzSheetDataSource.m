@@ -17,6 +17,9 @@ resultKey(NSInteger keyid)
 	return [[NSString alloc] initWithFormat: @"v%d", (int) keyid] ;
 }
 
+@interface PzSheetDataSource (PzSheetExpressionFieldDelegate)
+@end
+
 @implementation PzSheetDataSource
 
 - (instancetype) init
@@ -39,6 +42,12 @@ resultKey(NSInteger keyid)
 {
 	((void) section) ;
 	return MAX_ROW_NUM ;
+}
+
+- (void) activateFirstResponder
+{
+	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	[currentfield becomeFirstResponder] ;
 }
 
 - (UITableViewCell *) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,6 +82,9 @@ resultKey(NSInteger keyid)
 	if(indexPath.row == 0){
 		[newcell.expressionField becomeFirstResponder] ;
 	}
+	
+	/* Add delegate */
+	[newcell.expressionField setDelegate: self] ;
 	
 	/* Add observer for result value */
 	NSString * resultkey = resultKey(indexPath.row) ;
@@ -158,6 +170,7 @@ resultKey(NSInteger keyid)
 
 - (void) insertStringToExpressionField: (NSString *) str
 {
+	//NSLog(@"%s : iSTEF %@ -> %u\n", __FILE__, str, (unsigned int) currentSlot) ;
 	UITextField * textfield = [expressionTable objectAtIndex: currentSlot] ;
 	[textfield insertText: str] ;
 }
@@ -169,3 +182,23 @@ resultKey(NSInteger keyid)
 }
 
 @end
+
+@implementation PzSheetDataSource (PzSheetExpressionFieldDelegate)
+
+- (BOOL) textFieldShouldBeginEditing: (UITextField *) textField
+{
+	NSUInteger i ;
+	NSUInteger maxnum = [expressionTable count] ;
+	for(i=0 ; i<maxnum ; i++){
+		UITextField * expfield = [expressionTable objectAtIndex: i] ;
+		if(expfield == textField){
+			currentSlot = i ;
+			return true ;
+		}
+	}
+	return false ;
+}
+
+@end
+
+

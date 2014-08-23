@@ -14,7 +14,12 @@
 	PzSheetDataSource *	dataSource ;
 }
 
+- (void) activateFirstResponder ;
+
+- (void) moveCursorForwardInExpressionField ;
+- (void) moveCursorBackwardInExpressionField ;
 - (void) selectNextExpressionField ;
+
 - (void) insertStringToExpressionField: (NSString *) str ;
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index ;
 

@@ -10,6 +10,10 @@
 @interface ViewController (Private)
 - (void) unitTest ;
 - (void) pressInputButton: (UIButton *) button ;
+- (void) pressEnterButton: (UIButton *) button ;
+- (void) moveLeftButton: (UIButton *) button ;
+- (void) moveRightButton: (UIButton *) button ;
+
 @end
 
 @implementation ViewController
@@ -20,6 +24,9 @@
 	
 	// Link input button event and pressInputButton method
 	[inputButton addTarget: self action: @selector(pressInputButton:) forControlEvents: UIControlEventTouchUpInside] ;
+	[enterReturnButton addTarget: self action: @selector(pressEnterButton:) forControlEvents: UIControlEventTouchUpInside] ;
+	[moveLeftButton addTarget: self action: @selector(moveLeftButton:) forControlEvents: UIControlEventTouchUpInside] ;
+	[moveRightButton addTarget: self action: @selector(moveRightButton:) forControlEvents: UIControlEventTouchUpInside] ;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -49,8 +56,30 @@
 
 - (void) pressInputButton: (UIButton *) button
 {
-	((void) button) ;
-	NSLog(@"pIB") ;
+	if(inputField == nil){
+		NSLog(@"no input field") ;
+		return ;
+	}
+	
+	NSString * inputtext = inputField.text ;
+	if([inputtext length] > 0){
+		[sheetView insertStringToExpressionField: inputtext] ;
+	}
+}
+
+- (void) pressEnterButton: (UIButton *) button
+{
+	[sheetView selectNextExpressionField] ;
+}
+
+- (void) moveLeftButton: (UIButton *) button
+{
+	[sheetView moveCursorBackwardInExpressionField] ;
+}
+
+- (void) moveRightButton: (UIButton *) button
+{
+	[sheetView moveCursorForwardInExpressionField] ;
 }
 
 @end
