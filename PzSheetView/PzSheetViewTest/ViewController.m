@@ -63,6 +63,7 @@
 	
 	NSString * inputtext = inputField.text ;
 	if([inputtext length] > 0){
+		[sheetView activateFirstResponder] ;
 		[sheetView insertStringToExpressionField: inputtext] ;
 	}
 }
