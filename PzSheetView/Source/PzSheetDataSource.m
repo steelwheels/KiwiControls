@@ -86,9 +86,6 @@ resultKey(NSInteger keyid)
 	/* Add delegate */
 	[newcell.expressionField setDelegate: self] ;
 	
-	/* No round */
-	//newcell.expressionField.borderStyle = UITextBorderStyleBezel ;
-	
 	/* Add observer for result value */
 	NSString * resultkey = resultKey(indexPath.row) ;
 	[resultTable addObserver: newcell forKeyPath: resultkey options: NSKeyValueObservingOptionNew context: nil] ;
