@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0555A30719B4D2E4005D87FE /* KCPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0555A30619B4D2E4005D87FE /* KCPreference.m */; };
+		0555A30819B4D4F9005D87FE /* KCPreference.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0555A30519B4D2E4005D87FE /* KCPreference.h */; };
 		05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1137C199BBA3A00E9AC62 /* KCColorTable.m */; };
 		05B1137E199BBC1700E9AC62 /* KCColorTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B1137B199BBA3A00E9AC62 /* KCColorTable.h */; };
 		05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0AC44199CFDEA00BD21C3 /* KCDebugUtil.m */; };
@@ -33,6 +35,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				0555A30819B4D4F9005D87FE /* KCPreference.h in CopyFiles */,
 				05C0AC4A199D01C600BD21C3 /* KCXIBUtil.h in CopyFiles */,
 				05C0AC46199CFE3E00BD21C3 /* KCDebugUtil.h in CopyFiles */,
 				05B1137E199BBC1700E9AC62 /* KCColorTable.h in CopyFiles */,
@@ -43,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0555A30519B4D2E4005D87FE /* KCPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCPreference.h; path = Source/KCPreference.h; sourceTree = SOURCE_ROOT; };
+		0555A30619B4D2E4005D87FE /* KCPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCPreference.m; path = Source/KCPreference.m; sourceTree = SOURCE_ROOT; };
 		05B1137B199BBA3A00E9AC62 /* KCColorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCColorTable.h; path = Source/KCColorTable.h; sourceTree = SOURCE_ROOT; };
 		05B1137C199BBA3A00E9AC62 /* KCColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCColorTable.m; path = Source/KCColorTable.m; sourceTree = SOURCE_ROOT; };
 		05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCDebugUtil.h; path = Source/KCDebugUtil.h; sourceTree = SOURCE_ROOT; };
@@ -95,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				05DBE163199BB818009356CB /* KiwiControl.h */,
+				0555A30519B4D2E4005D87FE /* KCPreference.h */,
+				0555A30619B4D2E4005D87FE /* KCPreference.m */,
 				05B1137B199BBA3A00E9AC62 /* KCColorTable.h */,
 				05B1137C199BBA3A00E9AC62 /* KCColorTable.m */,
 				05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */,
@@ -232,6 +239,7 @@
 			files = (
 				05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */,
 				05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */,
+				0555A30719B4D2E4005D87FE /* KCPreference.m in Sources */,
 				05C0AC49199CFF5D00BD21C3 /* KCXIBUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

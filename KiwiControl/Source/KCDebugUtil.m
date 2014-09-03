@@ -37,6 +37,27 @@ KCPrintView(UIView * view)
 	printView(0, 0, view) ;
 }
 
+void
+KCPrintPoint(const CGPoint * src)
+{
+	printf("(x=%lf, y=%lf)", src->x, src->y) ;
+}
+
+void
+KCPrintSize(const CGSize * src)
+{
+	printf("(w=%lf, h=%lf)", src->width, src->height) ;
+}
+
+void
+KCPrintRect(const CGRect * src)
+{
+	fputs("(", stdout) ;
+	KCPrintPoint(&(src->origin)) ;
+	KCPrintSize(&(src->size)) ;
+	fputs(")", stdout) ;
+}
+
 static const char *
 y_or_n(BOOL flag)
 {
