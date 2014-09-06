@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0523BC6B19B7724400C9275C /* KCButtonTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0523BC6919B7724400C9275C /* KCButtonTableCell.m */; };
+		054B9D3C19B77196004CE305 /* KCButtonTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054B9D3B19B77196004CE305 /* KCButtonTable.h */; };
+		054B9D3E19B77196004CE305 /* KCButtonTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 054B9D3D19B77196004CE305 /* KCButtonTable.m */; };
+		057DD22719BA907D007044A4 /* KCButtonTableSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 057DD22619BA907D007044A4 /* KCButtonTableSource.m */; };
+		057F324919B773A0006CE1B2 /* KCButtonTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 057F324819B773A0006CE1B2 /* KCButtonTableView.m */; };
+		0583762219B8A5D4005320FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0583762119B8A5D4005320FF /* main.m */; };
+		0583762519B8A5D4005320FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0583762419B8A5D4005320FF /* AppDelegate.m */; };
+		0583762819B8A5D4005320FF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0583762719B8A5D4005320FF /* ViewController.m */; };
+		0583762B19B8A5D4005320FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0583762919B8A5D4005320FF /* Main.storyboard */; };
+		0583762D19B8A5D4005320FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0583762C19B8A5D4005320FF /* Images.xcassets */; };
+		05DFA89719B8BDE1009832CA /* KCButtonTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DFA89619B8BDE1009832CA /* KCButtonTableCell.xib */; };
+		05DFA89919B8BDF3009832CA /* KCButtonTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DFA89819B8BDF3009832CA /* KCButtonTableView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		057DB19319B8A97600CC1D50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054B9D3019B77196004CE305 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0583761319B8A584005320FF;
+			remoteInfo = Install;
+		};
+		0583761719B8A58C005320FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054B9D3019B77196004CE305 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 054B9D3719B77196004CE305;
+			remoteInfo = KCButtonTable;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		054B9D3619B77196004CE305 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				054B9D3C19B77196004CE305 /* KCButtonTable.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0523BC6819B7724400C9275C /* KCButtonTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCButtonTableCell.h; path = Source/KCButtonTableCell.h; sourceTree = SOURCE_ROOT; };
+		0523BC6919B7724400C9275C /* KCButtonTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableCell.m; path = Source/KCButtonTableCell.m; sourceTree = SOURCE_ROOT; };
+		0523BC6A19B7724400C9275C /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = Resource/KCButtonTableCell.xib; sourceTree = SOURCE_ROOT; };
+		054B9D3819B77196004CE305 /* libKCButtonTable.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCButtonTable.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		054B9D3B19B77196004CE305 /* KCButtonTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCButtonTable.h; path = Source/KCButtonTable.h; sourceTree = SOURCE_ROOT; };
+		054B9D3D19B77196004CE305 /* KCButtonTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCButtonTable.m; path = Source/KCButtonTable.m; sourceTree = SOURCE_ROOT; };
+		057DD22519BA907D007044A4 /* KCButtonTableSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCButtonTableSource.h; path = Source/KCButtonTableSource.h; sourceTree = SOURCE_ROOT; };
+		057DD22619BA907D007044A4 /* KCButtonTableSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableSource.m; path = Source/KCButtonTableSource.m; sourceTree = SOURCE_ROOT; };
+		057F324719B773A0006CE1B2 /* KCButtonTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCButtonTableView.h; path = Source/KCButtonTableView.h; sourceTree = SOURCE_ROOT; };
+		057F324819B773A0006CE1B2 /* KCButtonTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableView.m; path = Source/KCButtonTableView.m; sourceTree = SOURCE_ROOT; };
+		057F324A19B773BB006CE1B2 /* KCButtonTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableView.xib; path = Resource/KCButtonTableView.xib; sourceTree = SOURCE_ROOT; };
+		0583761D19B8A5D4005320FF /* KCButtonTableTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KCButtonTableTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0583762019B8A5D4005320FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0583762119B8A5D4005320FF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0583762319B8A5D4005320FF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0583762419B8A5D4005320FF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0583762619B8A5D4005320FF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0583762719B8A5D4005320FF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0583762A19B8A5D4005320FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0583762C19B8A5D4005320FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		05DFA89619B8BDE1009832CA /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonTableCell.xib; sourceTree = "<group>"; };
+		05DFA89819B8BDF3009832CA /* KCButtonTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonTableView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		054B9D3519B77196004CE305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0583761A19B8A5D4005320FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		054B9D2F19B77196004CE305 = {
+			isa = PBXGroup;
+			children = (
+				054B9D3A19B77196004CE305 /* KCButtonTable */,
+				0583761E19B8A5D4005320FF /* KCButtonTableTest */,
+				054B9D3919B77196004CE305 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		054B9D3919B77196004CE305 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				054B9D3819B77196004CE305 /* libKCButtonTable.a */,
+				0583761D19B8A5D4005320FF /* KCButtonTableTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		054B9D3A19B77196004CE305 /* KCButtonTable */ = {
+			isa = PBXGroup;
+			children = (
+				054B9D3B19B77196004CE305 /* KCButtonTable.h */,
+				054B9D3D19B77196004CE305 /* KCButtonTable.m */,
+				057F324719B773A0006CE1B2 /* KCButtonTableView.h */,
+				057F324819B773A0006CE1B2 /* KCButtonTableView.m */,
+				057F324A19B773BB006CE1B2 /* KCButtonTableView.xib */,
+				0523BC6819B7724400C9275C /* KCButtonTableCell.h */,
+				0523BC6919B7724400C9275C /* KCButtonTableCell.m */,
+				0523BC6A19B7724400C9275C /* KCButtonTableCell.xib */,
+				057DD22519BA907D007044A4 /* KCButtonTableSource.h */,
+				057DD22619BA907D007044A4 /* KCButtonTableSource.m */,
+			);
+			path = KCButtonTable;
+			sourceTree = "<group>";
+		};
+		0583761E19B8A5D4005320FF /* KCButtonTableTest */ = {
+			isa = PBXGroup;
+			children = (
+				05DFA89819B8BDF3009832CA /* KCButtonTableView.xib */,
+				05DFA89619B8BDE1009832CA /* KCButtonTableCell.xib */,
+				0583762319B8A5D4005320FF /* AppDelegate.h */,
+				0583762419B8A5D4005320FF /* AppDelegate.m */,
+				0583762619B8A5D4005320FF /* ViewController.h */,
+				0583762719B8A5D4005320FF /* ViewController.m */,
+				0583762919B8A5D4005320FF /* Main.storyboard */,
+				0583762C19B8A5D4005320FF /* Images.xcassets */,
+				0583761F19B8A5D4005320FF /* Supporting Files */,
+			);
+			path = KCButtonTableTest;
+			sourceTree = "<group>";
+		};
+		0583761F19B8A5D4005320FF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0583762019B8A5D4005320FF /* Info.plist */,
+				0583762119B8A5D4005320FF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		0583761319B8A584005320FF /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../script/install.mk";
+			buildConfigurationList = 0583761619B8A584005320FF /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0583761819B8A58C005320FF /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		054B9D3719B77196004CE305 /* KCButtonTable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 054B9D4919B77196004CE305 /* Build configuration list for PBXNativeTarget "KCButtonTable" */;
+			buildPhases = (
+				054B9D3419B77196004CE305 /* Sources */,
+				054B9D3519B77196004CE305 /* Frameworks */,
+				054B9D3619B77196004CE305 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KCButtonTable;
+			productName = KCButtonTable;
+			productReference = 054B9D3819B77196004CE305 /* libKCButtonTable.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		0583761C19B8A5D4005320FF /* KCButtonTableTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0583763A19B8A5D4005320FF /* Build configuration list for PBXNativeTarget "KCButtonTableTest" */;
+			buildPhases = (
+				0583761919B8A5D4005320FF /* Sources */,
+				0583761A19B8A5D4005320FF /* Frameworks */,
+				0583761B19B8A5D4005320FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				057DB19419B8A97600CC1D50 /* PBXTargetDependency */,
+			);
+			name = KCButtonTableTest;
+			productName = KCButtonTableTest;
+			productReference = 0583761D19B8A5D4005320FF /* KCButtonTableTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		054B9D3019B77196004CE305 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Steel Wheels Project";
+				TargetAttributes = {
+					054B9D3719B77196004CE305 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					0583761319B8A584005320FF = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					0583761C19B8A5D4005320FF = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 054B9D3319B77196004CE305 /* Build configuration list for PBXProject "KCButtonTable" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 054B9D2F19B77196004CE305;
+			productRefGroup = 054B9D3919B77196004CE305 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				054B9D3719B77196004CE305 /* KCButtonTable */,
+				0583761319B8A584005320FF /* Install */,
+				0583761C19B8A5D4005320FF /* KCButtonTableTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0583761B19B8A5D4005320FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0583762B19B8A5D4005320FF /* Main.storyboard in Resources */,
+				0583762D19B8A5D4005320FF /* Images.xcassets in Resources */,
+				05DFA89719B8BDE1009832CA /* KCButtonTableCell.xib in Resources */,
+				05DFA89919B8BDF3009832CA /* KCButtonTableView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		054B9D3419B77196004CE305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				057F324919B773A0006CE1B2 /* KCButtonTableView.m in Sources */,
+				0523BC6B19B7724400C9275C /* KCButtonTableCell.m in Sources */,
+				054B9D3E19B77196004CE305 /* KCButtonTable.m in Sources */,
+				057DD22719BA907D007044A4 /* KCButtonTableSource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0583761919B8A5D4005320FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0583762819B8A5D4005320FF /* ViewController.m in Sources */,
+				0583762519B8A5D4005320FF /* AppDelegate.m in Sources */,
+				0583762219B8A5D4005320FF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		057DB19419B8A97600CC1D50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0583761319B8A584005320FF /* Install */;
+			targetProxy = 057DB19319B8A97600CC1D50 /* PBXContainerItemProxy */;
+		};
+		0583761819B8A58C005320FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 054B9D3719B77196004CE305 /* KCButtonTable */;
+			targetProxy = 0583761719B8A58C005320FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0583762919B8A5D4005320FF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0583762A19B8A5D4005320FF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		054B9D4719B77196004CE305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(HOME)/local/include",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lKCButtonTable",
+					"-lKiwiControls",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		054B9D4819B77196004CE305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"$(HOME)/local/include",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-lKCButtonTable",
+					"-lKiwiControls",
+				);
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		054B9D4A19B77196004CE305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		054B9D4B19B77196004CE305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		0583761419B8A584005320FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0583761519B8A584005320FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0583763B19B8A5D4005320FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KCButtonTableTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-lKCButtonTable",
+					"-lKiwiControl",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0583763C19B8A5D4005320FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				INFOPLIST_FILE = KCButtonTableTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-lKCButtonTable",
+					"-lKiwiControl",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		054B9D3319B77196004CE305 /* Build configuration list for PBXProject "KCButtonTable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				054B9D4719B77196004CE305 /* Debug */,
+				054B9D4819B77196004CE305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		054B9D4919B77196004CE305 /* Build configuration list for PBXNativeTarget "KCButtonTable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				054B9D4A19B77196004CE305 /* Debug */,
+				054B9D4B19B77196004CE305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0583761619B8A584005320FF /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0583761419B8A584005320FF /* Debug */,
+				0583761519B8A584005320FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0583763A19B8A5D4005320FF /* Build configuration list for PBXNativeTarget "KCButtonTableTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0583763B19B8A5D4005320FF /* Debug */,
+				0583763C19B8A5D4005320FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 054B9D3019B77196004CE305 /* Project object */;
+}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051771E619BB423E00215F46 /* KCViewVisitor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DD637919BB250E00F500F7 /* KCViewVisitor.h */; };
 		0555A30719B4D2E4005D87FE /* KCPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0555A30619B4D2E4005D87FE /* KCPreference.m */; };
 		0555A30819B4D4F9005D87FE /* KCPreference.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0555A30519B4D2E4005D87FE /* KCPreference.h */; };
 		05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1137C199BBA3A00E9AC62 /* KCColorTable.m */; };
@@ -16,6 +17,7 @@
 		05C0AC49199CFF5D00BD21C3 /* KCXIBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */; };
 		05C0AC4A199D01C600BD21C3 /* KCXIBUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */; };
 		05DBE164199BB818009356CB /* KiwiControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DBE163199BB818009356CB /* KiwiControl.h */; };
+		05DD637B19BB250E00F500F7 /* KCViewVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD637A19BB250E00F500F7 /* KCViewVisitor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				051771E619BB423E00215F46 /* KCViewVisitor.h in CopyFiles */,
 				0555A30819B4D4F9005D87FE /* KCPreference.h in CopyFiles */,
 				05C0AC4A199D01C600BD21C3 /* KCXIBUtil.h in CopyFiles */,
 				05C0AC46199CFE3E00BD21C3 /* KCDebugUtil.h in CopyFiles */,
@@ -58,6 +61,8 @@
 		05DBE163199BB818009356CB /* KiwiControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KiwiControl.h; path = Source/KiwiControl.h; sourceTree = SOURCE_ROOT; };
 		05DBE16B199BB818009356CB /* KiwiControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DBE16E199BB818009356CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DD637919BB250E00F500F7 /* KCViewVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCViewVisitor.h; path = Source/KCViewVisitor.h; sourceTree = SOURCE_ROOT; };
+		05DD637A19BB250E00F500F7 /* KCViewVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCViewVisitor.m; path = Source/KCViewVisitor.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +111,8 @@
 				05B1137C199BBA3A00E9AC62 /* KCColorTable.m */,
 				05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */,
 				05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */,
+				05DD637919BB250E00F500F7 /* KCViewVisitor.h */,
+				05DD637A19BB250E00F500F7 /* KCViewVisitor.m */,
 				05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */,
 				05C0AC44199CFDEA00BD21C3 /* KCDebugUtil.m */,
 			);
@@ -237,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DD637B19BB250E00F500F7 /* KCViewVisitor.m in Sources */,
 				05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */,
 				05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */,
 				0555A30719B4D2E4005D87FE /* KCPreference.m in Sources */,

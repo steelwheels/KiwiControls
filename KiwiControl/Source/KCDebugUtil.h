@@ -11,10 +11,10 @@ void
 KCPrintView(UIView * view) ;
 
 void
-KCPrintPoint(const CGPoint * src) ;
+KCPrintPoint(CGPoint src) ;
 
 void
-KCPrintSize(const CGSize * src) ;
+KCPrintSize(CGSize src) ;
 
 void
-KCPrintRect(const CGRect * src) ;
+KCPrintRect(CGRect src) ;
