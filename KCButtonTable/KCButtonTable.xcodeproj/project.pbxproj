@@ -17,8 +17,7 @@
 		0583762819B8A5D4005320FF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0583762719B8A5D4005320FF /* ViewController.m */; };
 		0583762B19B8A5D4005320FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0583762919B8A5D4005320FF /* Main.storyboard */; };
 		0583762D19B8A5D4005320FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0583762C19B8A5D4005320FF /* Images.xcassets */; };
-		05DFA89719B8BDE1009832CA /* KCButtonTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DFA89619B8BDE1009832CA /* KCButtonTableCell.xib */; };
-		05DFA89919B8BDF3009832CA /* KCButtonTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DFA89819B8BDF3009832CA /* KCButtonTableView.xib */; };
+		05A1C8C619BC559F00E44DA2 /* KCButtonTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A1C8C519BC559F00E44DA2 /* KCButtonTableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		0523BC6819B7724400C9275C /* KCButtonTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCButtonTableCell.h; path = Source/KCButtonTableCell.h; sourceTree = SOURCE_ROOT; };
 		0523BC6919B7724400C9275C /* KCButtonTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableCell.m; path = Source/KCButtonTableCell.m; sourceTree = SOURCE_ROOT; };
-		0523BC6A19B7724400C9275C /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = Resource/KCButtonTableCell.xib; sourceTree = SOURCE_ROOT; };
 		054B9D3819B77196004CE305 /* libKCButtonTable.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCButtonTable.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		054B9D3B19B77196004CE305 /* KCButtonTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCButtonTable.h; path = Source/KCButtonTable.h; sourceTree = SOURCE_ROOT; };
 		054B9D3D19B77196004CE305 /* KCButtonTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCButtonTable.m; path = Source/KCButtonTable.m; sourceTree = SOURCE_ROOT; };
@@ -62,7 +60,6 @@
 		057DD22619BA907D007044A4 /* KCButtonTableSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableSource.m; path = Source/KCButtonTableSource.m; sourceTree = SOURCE_ROOT; };
 		057F324719B773A0006CE1B2 /* KCButtonTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCButtonTableView.h; path = Source/KCButtonTableView.h; sourceTree = SOURCE_ROOT; };
 		057F324819B773A0006CE1B2 /* KCButtonTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableView.m; path = Source/KCButtonTableView.m; sourceTree = SOURCE_ROOT; };
-		057F324A19B773BB006CE1B2 /* KCButtonTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableView.xib; path = Resource/KCButtonTableView.xib; sourceTree = SOURCE_ROOT; };
 		0583761D19B8A5D4005320FF /* KCButtonTableTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KCButtonTableTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0583762019B8A5D4005320FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0583762119B8A5D4005320FF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -72,8 +69,8 @@
 		0583762719B8A5D4005320FF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0583762A19B8A5D4005320FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0583762C19B8A5D4005320FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		05DFA89619B8BDE1009832CA /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonTableCell.xib; sourceTree = "<group>"; };
-		05DFA89819B8BDF3009832CA /* KCButtonTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonTableView.xib; sourceTree = "<group>"; };
+		05A1C8C419BC54BC00E44DA2 /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = Resource/KCButtonTableCell.xib; sourceTree = SOURCE_ROOT; };
+		05A1C8C519BC559F00E44DA2 /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = ../../../../local/resource/KCButtonTableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +116,11 @@
 				054B9D3D19B77196004CE305 /* KCButtonTable.m */,
 				057F324719B773A0006CE1B2 /* KCButtonTableView.h */,
 				057F324819B773A0006CE1B2 /* KCButtonTableView.m */,
-				057F324A19B773BB006CE1B2 /* KCButtonTableView.xib */,
-				0523BC6819B7724400C9275C /* KCButtonTableCell.h */,
-				0523BC6919B7724400C9275C /* KCButtonTableCell.m */,
-				0523BC6A19B7724400C9275C /* KCButtonTableCell.xib */,
 				057DD22519BA907D007044A4 /* KCButtonTableSource.h */,
 				057DD22619BA907D007044A4 /* KCButtonTableSource.m */,
+				0523BC6819B7724400C9275C /* KCButtonTableCell.h */,
+				0523BC6919B7724400C9275C /* KCButtonTableCell.m */,
+				05A1C8C419BC54BC00E44DA2 /* KCButtonTableCell.xib */,
 			);
 			path = KCButtonTable;
 			sourceTree = "<group>";
@@ -132,8 +128,7 @@
 		0583761E19B8A5D4005320FF /* KCButtonTableTest */ = {
 			isa = PBXGroup;
 			children = (
-				05DFA89819B8BDF3009832CA /* KCButtonTableView.xib */,
-				05DFA89619B8BDE1009832CA /* KCButtonTableCell.xib */,
+				05A1C8C519BC559F00E44DA2 /* KCButtonTableCell.xib */,
 				0583762319B8A5D4005320FF /* AppDelegate.h */,
 				0583762419B8A5D4005320FF /* AppDelegate.m */,
 				0583762619B8A5D4005320FF /* ViewController.h */,
@@ -257,8 +252,7 @@
 			files = (
 				0583762B19B8A5D4005320FF /* Main.storyboard in Resources */,
 				0583762D19B8A5D4005320FF /* Images.xcassets in Resources */,
-				05DFA89719B8BDE1009832CA /* KCButtonTableCell.xib in Resources */,
-				05DFA89919B8BDF3009832CA /* KCButtonTableView.xib in Resources */,
+				05A1C8C619BC559F00E44DA2 /* KCButtonTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

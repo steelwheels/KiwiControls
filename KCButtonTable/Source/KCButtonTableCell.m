@@ -9,6 +9,8 @@
 
 @implementation KCButtonTableCell
 
+@synthesize tableButton ;
+
 - (void) awakeFromNib
 {
 	[super awakeFromNib] ;
@@ -18,6 +20,11 @@
 {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
+}
+
+- (void) setValue: (id)value forUndefinedKey:(NSString *)key
+{
+	NSLog(@"Undef key %@", key) ;
 }
 
 @end

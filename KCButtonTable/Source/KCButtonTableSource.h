@@ -12,8 +12,6 @@
 	NSArray *		labelNames ;
 }
 
-+ (void) registerNib: (UITableView *) view ;
-
 - (instancetype) init ;
 - (void) setLabelNames: (NSArray *) names ;
 

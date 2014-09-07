@@ -10,12 +10,6 @@
 
 @implementation KCButtonTableSource
 
-+ (void) registerNib: (UITableView *) view
-{
-	UINib *nib = [UINib nibWithNibName: @"KCButtonTableCell" bundle:nil];
-	[view registerNib:nib forCellReuseIdentifier: @"Cell"];
-}
-
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
@@ -43,10 +37,21 @@
 
 - (UITableViewCell *) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	KCButtonTableCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"Cell"];
+	static BOOL s_is1st = YES ;
+	if(s_is1st){
+		UINib *nib = [UINib nibWithNibName: @"KCButtonTableCell" bundle:nil];
+		[tableView registerNib:nib forCellReuseIdentifier: @"CustomCell"];
+		s_is1st = NO ;
+	}
+	
+	KCButtonTableCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"CustomCell"];
 	
 	NSInteger	index = [indexPath row] ;
-	newcell.button.titleLabel.text = [labelNames objectAtIndex: index] ;
+	NSString *	labelname = [labelNames objectAtIndex: index] ;
+	
+	newcell.tableButton.titleLabel.text = labelname ;
+	
+	NSLog(@"name = %@", newcell.tableButton.titleLabel.text) ;
 	
 	return newcell ;
 }

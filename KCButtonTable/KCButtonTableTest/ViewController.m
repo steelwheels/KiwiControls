@@ -34,7 +34,7 @@
 #else
 	KCButtonTable *	table = [[KCButtonTable alloc] init] ;
 	NSArray * labels = @[@"item0", @"item1"] ;
-	KCButtonTableView * uiAdd = [table buttonTableWithLabelNames: labels withFrame: CGRectMake(0, 0, 150, 250)] ;
+	KCButtonTableView * uiAdd = [table buttonTableWithLabelNames: labels withFrame: CGRectMake(0, 0, 200, 250)] ;
 #endif
 	KCPrintView(uiAdd) ;
 	uiAdd.tag = 255;

@@ -9,6 +9,6 @@
 
 @interface KCButtonTableCell : UITableViewCell
 
-@property (unsafe_unretained, nonatomic) IBOutlet UIButton * button;
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *tableButton;
 
 @end

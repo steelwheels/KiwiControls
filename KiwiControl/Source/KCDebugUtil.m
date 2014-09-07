@@ -70,7 +70,7 @@ printIndent(NSUInteger depth)
 
 @interface KCViewPrinter : KCViewVisitor
 - (instancetype) init ;
-- (void) printView: (UIView *) view withParameter: (KCPrintParameter *) parameter ;
+- (void) printMainView: (UIView *) view withParameter: (KCPrintParameter *) parameter ;
 @end
 
 @implementation KCViewPrinter
@@ -84,20 +84,53 @@ printIndent(NSUInteger depth)
 
 - (void) visitView: (UIView *) view withParameter: (id) parameter
 {
-	[self printView: view withParameter: parameter] ;
+	[self printMainView: view withParameter: parameter] ;
+	
+	KCPrintParameter * mainparam = parameter ;
+	KCPrintParameter * subparam = [[KCPrintParameter alloc] init] ;
+	subparam.index = 0 ;
+	subparam.depth = mainparam.depth + 1 ;
+	NSArray * subviews = [view subviews] ;
+	UIView * subview ;
+	for(subview in subviews){
+		[subview acceptViewVisitor: self withParameter: subparam] ;
+		subparam.index += 1 ;
+	}
 }
 
 - (void) visitTableView: (UITableView *) view withParameter: (id) parameter
 {
-	[self printView: view withParameter: parameter] ;
+	[self printMainView: view withParameter: parameter] ;
+	
+	KCPrintParameter * mainparam = parameter ;
+	KCPrintParameter * subparam = [[KCPrintParameter alloc] init] ;
+	subparam.index = 0 ;
+	subparam.depth = mainparam.depth + 1 ;
+	NSArray * cells = [view visibleCells] ;
+	for(UITableViewCell * cell in cells){
+		UIView * content = cell.contentView ;
+		[content acceptViewVisitor: self withParameter: subparam] ;
+		subparam.index += 1 ;
+	}
 }
 
 - (void) visitCollectionView: (UICollectionView *) view withParameter: (id) parameter
 {
-	[self printView: view withParameter: parameter] ;
+	[self printMainView: view withParameter: parameter] ;
+	
+	KCPrintParameter * mainparam = parameter ;
+	KCPrintParameter * subparam = [[KCPrintParameter alloc] init] ;
+	subparam.index = 0 ;
+	subparam.depth = mainparam.depth + 1 ;
+	NSArray * cells = [view visibleCells] ;
+	for(UICollectionViewCell * cell in cells){
+		UIView * content = cell.contentView ;
+		[content acceptViewVisitor: self withParameter: subparam] ;
+		subparam.index += 1 ;
+	}
 }
 
-- (void) printView: (UIView *) view withParameter: (KCPrintParameter *) parameter
+- (void) printMainView: (UIView *) view withParameter: (KCPrintParameter *) parameter
 {
 	NSString * name = NSStringFromClass([view class]) ;
 	
@@ -109,16 +142,6 @@ printIndent(NSUInteger depth)
 	
 	printf("*1:%s ", y_or_n([view translatesAutoresizingMaskIntoConstraints])) ;
 	putc('\n', stdout) ;
-	
-	KCPrintParameter * subparam = [[KCPrintParameter alloc] init] ;
-	subparam.index = 0 ;
-	subparam.depth = parameter.depth + 1 ;
-	NSArray * subviews = [view subviews] ;
-	UIView * subview ;
-	for(subview in subviews){
-		[subview acceptViewVisitor: self withParameter: subparam] ;
-		subparam.index += 1 ;
-	}
 }
 
 @end
