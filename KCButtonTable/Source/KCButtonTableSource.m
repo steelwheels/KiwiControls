@@ -44,14 +44,14 @@
 		s_is1st = NO ;
 	}
 	
+	/* Set index */
+	NSUInteger index = [indexPath row] ;
 	KCButtonTableCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"CustomCell"];
+	newcell.tableButton.tag = index ;
 	
-	NSInteger	index = [indexPath row] ;
-	NSString *	labelname = [labelNames objectAtIndex: index] ;
-	
-	newcell.tableButton.titleLabel.text = labelname ;
-	
-	NSLog(@"name = %@", newcell.tableButton.titleLabel.text) ;
+	/* Set title */
+	NSString * label = [labelNames objectAtIndex: index] ;
+	[newcell.tableButton setTitle: label forState: UIControlStateNormal] ;
 	
 	return newcell ;
 }

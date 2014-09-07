@@ -6,6 +6,7 @@
  */
 
 #import "KCButtonTableView.h"
+#import "KCButtonTableCell.h"
 #import <KiwiControl/KiwiControl.h>
 
 @implementation KCButtonTableView
@@ -25,6 +26,7 @@
 {
 	[dataSource setLabelNames: names] ;
 	[buttonTableView reloadData] ;
+	//[buttonTableView setNeedsDisplay] ;
 }
 
 @end
