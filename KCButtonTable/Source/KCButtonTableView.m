@@ -22,11 +22,15 @@
 	return self ;
 }
 
+- (void) setDelegate: (id <KCButtonTableDelegate>) delegate
+{
+	dataSource.buttonTableDelegate = delegate ;
+}
+
 - (void) setLabelNames: (NSArray *) names
 {
-	[dataSource setLabelNames: names] ;
+	dataSource.labelNames = names ;
 	[buttonTableView reloadData] ;
-	//[buttonTableView setNeedsDisplay] ;
 }
 
 @end

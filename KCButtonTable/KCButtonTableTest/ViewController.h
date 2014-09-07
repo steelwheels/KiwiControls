@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <KCButtonTable/KCButtonTable.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <KCButtonTableDelegate>
 
 
 @end

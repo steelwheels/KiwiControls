@@ -7,12 +7,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol KCButtonTableDelegate
+- (void) buttonPressed: (NSUInteger) index ;
+@end
+
 @interface KCButtonTableSource : NSObject <UITableViewDataSource>
-{
-	NSArray *		labelNames ;
-}
+
+@property (strong, nonatomic) NSArray *				labelNames ;
+@property (strong, nonatomic) id <KCButtonTableDelegate>	buttonTableDelegate ;
 
 - (instancetype) init ;
-- (void) setLabelNames: (NSArray *) names ;
 
 @end

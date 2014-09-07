@@ -8,19 +8,22 @@
 #import "KCButtonTableSource.h"
 #import "KCButtonTableCell.h"
 
+@interface KCButtonTableSource (Private)
+- (void) touchUpInsideEvent: (id) sender ;
+@end
+
 @implementation KCButtonTableSource
+
+@synthesize buttonTableDelegate ;
+@synthesize labelNames ;
 
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
+		buttonTableDelegate = nil ;
 		labelNames = @[@"item0"] ;
 	}
 	return self ;
-}
-
-- (void) setLabelNames: (NSArray *) names
-{
-	labelNames = names ;
 }
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView *) tableView
@@ -53,8 +56,24 @@
 	NSString * label = [labelNames objectAtIndex: index] ;
 	[newcell.tableButton setTitle: label forState: UIControlStateNormal] ;
 	
+	/* Bind with the event handler */
+	[newcell.tableButton addTarget:self action:@selector(touchUpInsideEvent:)
+		forControlEvents:UIControlEventTouchUpInside];
+	
 	return newcell ;
 }
 
+@end
+
+@implementation KCButtonTableSource (Private)
+- (void) touchUpInsideEvent: (id) sender
+{
+	UIButton * button = (UIButton *) sender ;
+	if(buttonTableDelegate){
+		[buttonTableDelegate buttonPressed: button.tag] ;
+	} else {
+		NSLog(@"touchUpInsideEvent: %u", (unsigned int) button.tag) ;
+	}
+}
 
 @end

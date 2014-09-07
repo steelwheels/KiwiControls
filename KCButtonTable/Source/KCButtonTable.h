@@ -14,6 +14,6 @@
 
 - (instancetype) init ;
 
-- (KCButtonTableView *) buttonTableWithLabelNames: (NSArray *) names withFrame: (CGRect) frame ;
+- (KCButtonTableView *) buttonTableWithLabelNames: (NSArray *) names withDelegate: (id <KCButtonTableDelegate>) delegate withFrame: (CGRect) frame ;
 
 @end

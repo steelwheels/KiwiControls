@@ -17,11 +17,12 @@
 	return self ;
 }
 
-- (KCButtonTableView *) buttonTableWithLabelNames: (NSArray *) names withFrame: (CGRect) frame
+- (KCButtonTableView *) buttonTableWithLabelNames: (NSArray *) names withDelegate: (id <KCButtonTableDelegate>) delegate withFrame: (CGRect) frame
 {
 	if(buttonTableView == nil){
 		buttonTableView = [[KCButtonTableView alloc] initWithFrame: frame] ;
 	}
+	[buttonTableView setDelegate: delegate] ;
 	[buttonTableView setLabelNames: names] ;
 	return buttonTableView ;
 }
