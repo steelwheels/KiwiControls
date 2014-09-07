@@ -28,13 +28,11 @@
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView *) tableView
 {
-	NSLog(@"sumberOfSectionsInTableView: 1") ;
 	return 1 ;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSLog(@"tableView:numberOfRowsInSection : %u", (unsigned int) [labelNames count]) ;
 	return [labelNames count] ;
 }
 
