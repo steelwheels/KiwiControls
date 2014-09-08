@@ -11,6 +11,8 @@
 
 + (KCPreference *) sharedPreference ;
 
+- (CGRect) applicationFrame ;
+
 - (UIFont *) menuFont ;
 - (CGFloat) margin ;
 

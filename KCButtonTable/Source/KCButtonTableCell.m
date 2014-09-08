@@ -22,4 +22,8 @@
     // Configure the view for the selected state
 }
 
+- (CGSize) maxSize
+{
+}
+
 @end

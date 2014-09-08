@@ -33,5 +33,9 @@
 	[buttonTableView reloadData] ;
 }
 
+- (void) adjustSize
+{
+}
+
 @end
 

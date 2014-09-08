@@ -19,6 +19,11 @@
 	return sharedPreference ;
 }
 
+- (CGRect) applicationFrame
+{
+	return [[UIScreen mainScreen] applicationFrame] ;
+}
+
 - (UIFont *) menuFont
 {
 	return [UIFont systemFontOfSize: 14.0] ;

@@ -11,4 +11,6 @@
 
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *tableButton;
 
+- (CGSize) maxSize ;
+
 @end
