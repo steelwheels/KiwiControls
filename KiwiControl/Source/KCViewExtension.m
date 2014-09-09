@@ -1,17 +1,17 @@
 /**
- * @file	KCViewAdjuster.m
- * @brief	Define KCViewAdjuster class
+ * @file	KCViewExtension.m
+ * @brief	Define KCViewExtension class
  * @par Copyright
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import "KCViewAdjuster.h"
+#import "KCViewExtension.h"
 #import "KCViewUtil.h"
 #import "KCPreference.h"
 
 @implementation UILabel (KCViewSizeAdjuster)
 
-- (CGRect) boundingRectOfTitle
+- (CGRect) calcBoundRect
 {
 	KCPreference * preference = [KCPreference sharedPreference] ;
 	
@@ -21,7 +21,7 @@
 						options: (NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
 					     attributes: @{NSFontAttributeName: self.font}
 						context: nil] ;
-	CGRect		totalrect = KSExpandRectByInsets(textbounds, [self alignmentRectInsets]) ;
+	CGRect		totalrect = KCExpandRectByInsets(textbounds, [self alignmentRectInsets]) ;
 	return totalrect ;
 }
 
@@ -29,11 +29,11 @@
 
 @implementation UIButton (KCViewSizeAdjuster)
 
-- (CGRect) boundingRectOfTitle
+- (CGRect) calcBoundRect
 {
-	CGRect labelrect = [self.titleLabel boundingRectOfTitle] ;
-	CGRect titlerect = KSExpandRectByInsets(labelrect, self.titleEdgeInsets) ;
-	return KSExpandRectByInsets(titlerect, self.contentEdgeInsets) ;
+	CGRect labelrect = [self.titleLabel calcBoundRect] ;
+	CGRect titlerect = KCExpandRectByInsets(labelrect, self.titleEdgeInsets) ;
+	return KCExpandRectByInsets(titlerect, self.contentEdgeInsets) ;
 }
 
 @end

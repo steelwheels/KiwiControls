@@ -8,6 +8,7 @@
 #import "KCColorTable.h"
 #import "KCPreference.h"
 #import "KCViewVisitor.h"
+#import "KCViewExtension.h"
 #import "KCViewUtil.h"
 #import "KCXIBUtil.h"
 #import "KCDebugUtil.h"

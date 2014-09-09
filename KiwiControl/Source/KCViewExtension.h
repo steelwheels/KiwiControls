@@ -1,6 +1,6 @@
 /**
- * @file	KCViewAdjuster.h
- * @brief	Define KCViewAdjuster class
+ * @file	KCViewExtension.h
+ * @brief	Define KCViewExtension class
  * @par Copyright
  *   Copyright (C) 2014 Steel Wheels Project
  */
@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol KCViewSizeAdjusting
-- (CGRect) boundingRectOfTitle ;
+- (CGRect) calcBoundRect ;
 @end
 
 @interface UILabel (KCViewSizeAdjuster) <KCViewSizeAdjusting>

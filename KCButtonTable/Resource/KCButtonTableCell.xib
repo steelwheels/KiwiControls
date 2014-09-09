@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,13 +13,22 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gbK-P4-V0S" id="r9i-8A-b0S">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCR-RN-0Qo">
-                        <rect key="frame" x="8" y="7" width="140" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCR-RN-0Qo">
+                        <rect key="frame" x="8" y="8" width="140" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="lrg-at-FCp"/>
+                        </constraints>
                         <state key="normal" title="Button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="cCR-RN-0Qo" firstAttribute="bottom" secondItem="r9i-8A-b0S" secondAttribute="bottomMargin" id="7yF-Lp-ULG"/>
+                    <constraint firstItem="cCR-RN-0Qo" firstAttribute="trailing" secondItem="r9i-8A-b0S" secondAttribute="trailingMargin" id="HO7-Y5-GsD"/>
+                    <constraint firstItem="cCR-RN-0Qo" firstAttribute="top" secondItem="r9i-8A-b0S" secondAttribute="topMargin" id="JDW-0W-jl8"/>
+                    <constraint firstItem="cCR-RN-0Qo" firstAttribute="leading" secondItem="r9i-8A-b0S" secondAttribute="leadingMargin" id="XpL-9i-bFJ"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="tableButton" destination="cCR-RN-0Qo" id="HNr-XC-zJg"/>

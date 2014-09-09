@@ -6,11 +6,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <KiwiControl/KiwiControl.h>
 
-@interface KCButtonTableCell : UITableViewCell
+@interface KCButtonTableCell : UITableViewCell <KCViewSizeAdjusting>
 
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *tableButton;
-
-- (CGSize) maxSize ;
 
 @end

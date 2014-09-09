@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05129C9819BF526D00105CE6 /* KCButtonTableCell.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A1C8C419BC54BC00E44DA2 /* KCButtonTableCell.xib */; };
+		05129C9919BF527300105CE6 /* KCButtonTableView.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058DAEDF19BF4F710030D8AA /* KCButtonTableView.xib */; };
+		05129C9B19BF52B400105CE6 /* KCButtonTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05129C9A19BF52B400105CE6 /* KCButtonTableView.xib */; };
 		0523BC6B19B7724400C9275C /* KCButtonTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0523BC6919B7724400C9275C /* KCButtonTableCell.m */; };
 		054B9D3C19B77196004CE305 /* KCButtonTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054B9D3B19B77196004CE305 /* KCButtonTable.h */; };
 		054B9D3E19B77196004CE305 /* KCButtonTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 054B9D3D19B77196004CE305 /* KCButtonTable.m */; };
@@ -44,6 +47,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05129C9919BF527300105CE6 /* KCButtonTableView.xib in CopyFiles */,
+				05129C9819BF526D00105CE6 /* KCButtonTableCell.xib in CopyFiles */,
 				054B9D3C19B77196004CE305 /* KCButtonTable.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05129C9A19BF52B400105CE6 /* KCButtonTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableView.xib; path = ../../../../local/resource/KCButtonTableView.xib; sourceTree = "<group>"; };
 		0523BC6819B7724400C9275C /* KCButtonTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCButtonTableCell.h; path = Source/KCButtonTableCell.h; sourceTree = SOURCE_ROOT; };
 		0523BC6919B7724400C9275C /* KCButtonTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableCell.m; path = Source/KCButtonTableCell.m; sourceTree = SOURCE_ROOT; };
 		054B9D3819B77196004CE305 /* libKCButtonTable.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCButtonTable.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +75,7 @@
 		0583762719B8A5D4005320FF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0583762A19B8A5D4005320FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0583762C19B8A5D4005320FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		058DAEDF19BF4F710030D8AA /* KCButtonTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableView.xib; path = Resource/KCButtonTableView.xib; sourceTree = SOURCE_ROOT; };
 		05A1C8C419BC54BC00E44DA2 /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = Resource/KCButtonTableCell.xib; sourceTree = SOURCE_ROOT; };
 		05A1C8C519BC559F00E44DA2 /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = ../../../../local/resource/KCButtonTableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +123,7 @@
 				054B9D3D19B77196004CE305 /* KCButtonTable.m */,
 				057F324719B773A0006CE1B2 /* KCButtonTableView.h */,
 				057F324819B773A0006CE1B2 /* KCButtonTableView.m */,
+				058DAEDF19BF4F710030D8AA /* KCButtonTableView.xib */,
 				057DD22519BA907D007044A4 /* KCButtonTableSource.h */,
 				057DD22619BA907D007044A4 /* KCButtonTableSource.m */,
 				0523BC6819B7724400C9275C /* KCButtonTableCell.h */,
@@ -128,6 +136,7 @@
 		0583761E19B8A5D4005320FF /* KCButtonTableTest */ = {
 			isa = PBXGroup;
 			children = (
+				05129C9A19BF52B400105CE6 /* KCButtonTableView.xib */,
 				05A1C8C519BC559F00E44DA2 /* KCButtonTableCell.xib */,
 				0583762319B8A5D4005320FF /* AppDelegate.h */,
 				0583762419B8A5D4005320FF /* AppDelegate.m */,
@@ -253,6 +262,7 @@
 				0583762B19B8A5D4005320FF /* Main.storyboard in Resources */,
 				0583762D19B8A5D4005320FF /* Images.xcassets in Resources */,
 				05A1C8C619BC559F00E44DA2 /* KCButtonTableCell.xib in Resources */,
+				05129C9B19BF52B400105CE6 /* KCButtonTableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

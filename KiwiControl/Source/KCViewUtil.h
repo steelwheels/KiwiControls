@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 static inline CGRect
-KSExpandRectByInsets(CGRect rect, UIEdgeInsets insets )
+KCExpandRectByInsets(CGRect rect, UIEdgeInsets insets )
 {
 	CGFloat	x = rect.origin.x - insets.left ;
 	CGFloat y = rect.origin.y - insets.top ;

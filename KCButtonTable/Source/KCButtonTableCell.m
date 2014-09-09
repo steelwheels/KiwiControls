@@ -22,8 +22,9 @@
     // Configure the view for the selected state
 }
 
-- (CGSize) maxSize
+- (CGRect) calcBoundRect
 {
+	return [self.tableButton calcBoundRect] ;
 }
 
 @end
