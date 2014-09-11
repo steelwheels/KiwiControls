@@ -10,7 +10,9 @@
 #import <KCButtonTable/KCButtonTable.h>
 
 @interface ViewController : UIViewController <KCButtonTableDelegate>
-
+{
+	KCButtonTableView *	buttonTableView ;
+}
 
 @end
 

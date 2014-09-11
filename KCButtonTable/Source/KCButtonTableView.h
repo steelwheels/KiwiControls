@@ -18,5 +18,6 @@
 - (void) setDelegate: (id <KCButtonTableDelegate>) delegate ;
   /** The class of this element : NSString */
 - (void) setLabelNames: (NSArray *) names ;
+- (void) setBorder ;
 - (void) adjustSize ;
 @end

@@ -24,6 +24,7 @@
 	}
 	[buttonTableView setDelegate: delegate] ;
 	[buttonTableView setLabelNames: names] ;
+	[buttonTableView setBorder] ;
 	[buttonTableView adjustSize] ;
 	
 	return buttonTableView ;

@@ -11,20 +11,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jkH-uL-kTC">
-                    <rect key="frame" x="0.0" y="0.0" width="156" height="176"/>
+                    <rect key="frame" x="8" y="8" width="140" height="160"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="jkH-uL-kTC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4st-na-663"/>
-                <constraint firstAttribute="trailing" secondItem="jkH-uL-kTC" secondAttribute="trailing" id="BoA-VM-bw2"/>
-                <constraint firstItem="jkH-uL-kTC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HbY-33-RQb"/>
-                <constraint firstAttribute="bottom" secondItem="jkH-uL-kTC" secondAttribute="bottom" id="NTD-yz-rQ7"/>
-                <constraint firstAttribute="bottom" secondItem="jkH-uL-kTC" secondAttribute="bottom" id="R9l-bd-pR8"/>
-                <constraint firstItem="jkH-uL-kTC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dMb-AV-J7r"/>
-                <constraint firstAttribute="trailing" secondItem="jkH-uL-kTC" secondAttribute="trailing" id="iBk-dU-n06"/>
-                <constraint firstItem="jkH-uL-kTC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oaX-MP-XCL"/>
+                <constraint firstItem="jkH-uL-kTC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="3SQ-eg-Pu4"/>
+                <constraint firstAttribute="bottom" secondItem="jkH-uL-kTC" secondAttribute="bottom" constant="8" id="5cT-rF-ehg"/>
+                <constraint firstItem="jkH-uL-kTC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="DpZ-tu-hQX"/>
+                <constraint firstAttribute="trailing" secondItem="jkH-uL-kTC" secondAttribute="trailing" constant="8" id="IGs-pV-mex"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

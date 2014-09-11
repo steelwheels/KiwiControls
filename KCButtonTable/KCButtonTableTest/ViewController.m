@@ -21,27 +21,18 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
-#if 0
-	UIView *uiAdd = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 150, 250)];
-	uiAdd.backgroundColor = [UIColor redColor];
-#elif 0
-	NSArray * labels = @[@"item0", @"item1"] ;
-	UINib *nib = [UINib nibWithNibName:@"KCButtonTableView" bundle:nil];
-	KCButtonTableView * uiAdd = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-	[uiAdd setLabelNames: labels] ;
-	//uiAdd.backgroundColor = [UIColor redColor];
-#else
 	KCButtonTable *	table = [[KCButtonTable alloc] init] ;
 	NSArray * labels = @[@"item0", @"item1"] ;
-	KCButtonTableView * uiAdd = [table buttonTableWithLabelNames: labels withDelegate: self withFrame: CGRectMake(40, 40, 200, 250)] ;
-#endif
-	KCPrintView(uiAdd) ;
-	uiAdd.tag = 255;
-	uiAdd.userInteractionEnabled = YES;
-	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAddView:)];
-	[uiAdd addGestureRecognizer:tapGesture];
-	[self.view addSubview:uiAdd] ;
-	//[self.view bringSubviewToFront: uiAdd] ;
+	buttonTableView = [table buttonTableWithLabelNames: labels withDelegate: self withFrame: CGRectMake(40, 40, 200, 250)] ;
+
+	KCPrintView(buttonTableView) ;
+	buttonTableView.tag = 255;
+	buttonTableView.userInteractionEnabled = YES;
+	UITapGestureRecognizer * tapGesture ;
+	tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+							     action:@selector(closeAddView:)];
+	[buttonTableView addGestureRecognizer:tapGesture];
+	[self.view addSubview: buttonTableView] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,7 +51,8 @@
 
 - (void) closeAddView: (id) sender
 {
-	
+	NSLog(@"closeAddView:") ;
+	[buttonTableView removeFromSuperview] ;
 }
 
 @end

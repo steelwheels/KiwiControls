@@ -57,6 +57,13 @@
 	[tableView reloadData] ;
 }
 
+- (void) setBorder
+{
+	self.layer.borderWidth  = 2.0f;
+	self.layer.borderColor  = [[UIColor grayColor] CGColor];
+	self.layer.cornerRadius = 10.0f;
+}
+
 - (void) adjustSize
 {
 	CGFloat	maxwidth  = 0.0 ;
@@ -67,7 +74,7 @@
 		maxheight += cellbounds.size.height ;
 	}
 	NSLog(@"table maxx: %lf, maxy: %lf\n", maxwidth, maxheight) ;
-	CGSize maxsize = CGSizeMake(maxwidth, maxheight) ;
+	CGSize maxsize = CGSizeMake(maxwidth+14.0, maxheight+14.0) ;
 	KCUpdateViewSize(self, maxsize) ;
 }
 
