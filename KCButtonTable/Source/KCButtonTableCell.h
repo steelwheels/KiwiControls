@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <KiwiControl/KiwiControl.h>
 
-@interface KCButtonTableCell : UITableViewCell <KCViewSizeAdjusting>
+@interface KCButtonTableCell : UITableViewCell
 
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *tableButton;
 

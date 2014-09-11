@@ -22,9 +22,4 @@
     // Configure the view for the selected state
 }
 
-- (CGRect) calcBoundRect
-{
-	return [self.tableButton calcBoundRect] ;
-}
-
 @end

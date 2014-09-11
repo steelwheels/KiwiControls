@@ -18,7 +18,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="jkH-uL-kTC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4st-na-663"/>
+                <constraint firstAttribute="trailing" secondItem="jkH-uL-kTC" secondAttribute="trailing" id="BoA-VM-bw2"/>
+                <constraint firstItem="jkH-uL-kTC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HbY-33-RQb"/>
                 <constraint firstAttribute="bottom" secondItem="jkH-uL-kTC" secondAttribute="bottom" id="NTD-yz-rQ7"/>
+                <constraint firstAttribute="bottom" secondItem="jkH-uL-kTC" secondAttribute="bottom" id="R9l-bd-pR8"/>
+                <constraint firstItem="jkH-uL-kTC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dMb-AV-J7r"/>
                 <constraint firstAttribute="trailing" secondItem="jkH-uL-kTC" secondAttribute="trailing" id="iBk-dU-n06"/>
                 <constraint firstItem="jkH-uL-kTC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oaX-MP-XCL"/>
             </constraints>

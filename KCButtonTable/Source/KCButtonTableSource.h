@@ -11,7 +11,7 @@
 - (void) buttonPressed: (NSUInteger) index ;
 @end
 
-@interface KCButtonTableSource : NSObject <UITableViewDataSource>
+@interface KCButtonTableSource : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *				labelNames ;
 @property (strong, nonatomic) id <KCButtonTableDelegate>	buttonTableDelegate ;

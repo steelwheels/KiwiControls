@@ -10,11 +10,9 @@
 		051771E619BB423E00215F46 /* KCViewVisitor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DD637919BB250E00F500F7 /* KCViewVisitor.h */; };
 		0555A30719B4D2E4005D87FE /* KCPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0555A30619B4D2E4005D87FE /* KCPreference.m */; };
 		0555A30819B4D4F9005D87FE /* KCPreference.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0555A30519B4D2E4005D87FE /* KCPreference.h */; };
-		058D5E9319BDFF06002AC953 /* KCViewExtension.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B3933519BCA973002C4CF7 /* KCViewExtension.h */; };
 		058D5E9419BDFF0C002AC953 /* KCViewUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058D5E9219BDF52A002AC953 /* KCViewUtil.h */; };
 		05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1137C199BBA3A00E9AC62 /* KCColorTable.m */; };
 		05B1137E199BBC1700E9AC62 /* KCColorTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B1137B199BBA3A00E9AC62 /* KCColorTable.h */; };
-		05B3933719BCA973002C4CF7 /* KCViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3933619BCA973002C4CF7 /* KCViewExtension.m */; };
 		05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0AC44199CFDEA00BD21C3 /* KCDebugUtil.m */; };
 		05C0AC46199CFE3E00BD21C3 /* KCDebugUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */; };
 		05C0AC49199CFF5D00BD21C3 /* KCXIBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */; };
@@ -41,7 +39,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				058D5E9419BDFF0C002AC953 /* KCViewUtil.h in CopyFiles */,
-				058D5E9319BDFF06002AC953 /* KCViewExtension.h in CopyFiles */,
 				051771E619BB423E00215F46 /* KCViewVisitor.h in CopyFiles */,
 				0555A30819B4D4F9005D87FE /* KCPreference.h in CopyFiles */,
 				05C0AC4A199D01C600BD21C3 /* KCXIBUtil.h in CopyFiles */,
@@ -59,8 +56,6 @@
 		058D5E9219BDF52A002AC953 /* KCViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCViewUtil.h; path = Source/KCViewUtil.h; sourceTree = SOURCE_ROOT; };
 		05B1137B199BBA3A00E9AC62 /* KCColorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCColorTable.h; path = Source/KCColorTable.h; sourceTree = SOURCE_ROOT; };
 		05B1137C199BBA3A00E9AC62 /* KCColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCColorTable.m; path = Source/KCColorTable.m; sourceTree = SOURCE_ROOT; };
-		05B3933519BCA973002C4CF7 /* KCViewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCViewExtension.h; path = Source/KCViewExtension.h; sourceTree = SOURCE_ROOT; };
-		05B3933619BCA973002C4CF7 /* KCViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCViewExtension.m; path = Source/KCViewExtension.m; sourceTree = SOURCE_ROOT; };
 		05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCDebugUtil.h; path = Source/KCDebugUtil.h; sourceTree = SOURCE_ROOT; };
 		05C0AC44199CFDEA00BD21C3 /* KCDebugUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCDebugUtil.m; path = Source/KCDebugUtil.m; sourceTree = SOURCE_ROOT; };
 		05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCXIBUtil.h; path = Source/KCXIBUtil.h; sourceTree = SOURCE_ROOT; };
@@ -119,8 +114,6 @@
 				05B1137C199BBA3A00E9AC62 /* KCColorTable.m */,
 				05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */,
 				05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */,
-				05B3933519BCA973002C4CF7 /* KCViewExtension.h */,
-				05B3933619BCA973002C4CF7 /* KCViewExtension.m */,
 				058D5E9219BDF52A002AC953 /* KCViewUtil.h */,
 				05DD637919BB250E00F500F7 /* KCViewVisitor.h */,
 				05DD637A19BB250E00F500F7 /* KCViewVisitor.m */,
@@ -259,7 +252,6 @@
 				05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */,
 				05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */,
 				0555A30719B4D2E4005D87FE /* KCPreference.m in Sources */,
-				05B3933719BCA973002C4CF7 /* KCViewExtension.m in Sources */,
 				05C0AC49199CFF5D00BD21C3 /* KCXIBUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

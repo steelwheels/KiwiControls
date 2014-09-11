@@ -9,7 +9,7 @@
 #import "KCButtonTableSource.h"
 #import <KiwiControl/KiwiControl.h>
 
-@interface KCButtonTableView : UIView <KCViewSizeAdjusting>
+@interface KCButtonTableView : UIView
 {
 	KCButtonTableSource *		dataSource ;
 	__unsafe_unretained IBOutlet UITableView *tableView;
@@ -18,5 +18,5 @@
 - (void) setDelegate: (id <KCButtonTableDelegate>) delegate ;
   /** The class of this element : NSString */
 - (void) setLabelNames: (NSArray *) names ;
-
+- (void) adjustSize ;
 @end

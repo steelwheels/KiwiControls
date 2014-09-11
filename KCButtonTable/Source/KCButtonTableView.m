@@ -24,6 +24,7 @@
 			dataSource = [[KCButtonTableSource alloc] init] ;
 			[tableView setDataSource: dataSource] ;
 			tableView.dataSource = dataSource ;
+			tableView.delegate = dataSource ;
 		}
 	}
 	return self;
@@ -39,6 +40,7 @@
 			dataSource = [[KCButtonTableSource alloc] init] ;
 			[tableView setDataSource: dataSource] ;
 			tableView.dataSource = dataSource ;
+			tableView.delegate = dataSource ;
 		}
 	}
 	return self ;
@@ -55,21 +57,18 @@
 	[tableView reloadData] ;
 }
 
-- (CGRect) calcBoundRect
+- (void) adjustSize
 {
 	CGFloat	maxwidth  = 0.0 ;
 	CGFloat maxheight = 0.0 ;
-	unsigned int cellnum = 0 ;
 	for(KCButtonTableCell * cell in [tableView visibleCells]){
-		CGRect cellbounds = [cell calcBoundRect] ;
-		maxwidth  = MAX(maxwidth, cellbounds.size.width) ;
-		maxheight = MAX(maxheight, cellbounds.size.height) ;
-		cellnum++ ;
+		CGRect cellbounds = cell.tableButton.bounds ;
+		maxwidth  =  MAX(maxwidth, cellbounds.size.width) ;
+		maxheight += cellbounds.size.height ;
 	}
-	CGRect bounds = tableView.bounds ;
-	bounds.size.width  = maxwidth ;
-	bounds.size.height = maxheight * cellnum ;
-	return KCExpandRectByInsets(bounds, tableView.alignmentRectInsets) ;
+	NSLog(@"table maxx: %lf, maxy: %lf\n", maxwidth, maxheight) ;
+	CGSize maxsize = CGSizeMake(maxwidth, maxheight) ;
+	KCUpdateViewSize(self, maxsize) ;
 }
 
 @end
