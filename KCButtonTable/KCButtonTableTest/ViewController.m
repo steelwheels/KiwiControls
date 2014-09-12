@@ -9,12 +9,6 @@
 #import "ViewController.h"
 #import <KiwiControl/KiwiControl.h>
 
-@interface ViewController (Private)
-
-- (void) closeAddView: (id) sender ;
-
-@end
-
 @implementation ViewController
             
 - (void)viewDidLoad {
@@ -23,6 +17,12 @@
 	
 	KCButtonTable *	table = [[KCButtonTable alloc] init] ;
 	NSArray * labels = @[@"item0", @"item1"] ;
+	[table displayButtonTableWithLabelNames: labels
+				   withDelegate: self
+				     withOrigin: CGPointMake(20, 20)
+			       atViewController: self] ;
+	
+#if 0
 	buttonTableView = [table buttonTableWithLabelNames: labels withDelegate: self withFrame: CGRectMake(40, 40, 200, 250)] ;
 
 	KCPrintView(buttonTableView) ;
@@ -33,6 +33,7 @@
 							     action:@selector(closeAddView:)];
 	[buttonTableView addGestureRecognizer:tapGesture];
 	[self.view addSubview: buttonTableView] ;
+#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,12 +48,3 @@
 
 @end
 
-@implementation ViewController (Private)
-
-- (void) closeAddView: (id) sender
-{
-	NSLog(@"closeAddView:") ;
-	[buttonTableView removeFromSuperview] ;
-}
-
-@end

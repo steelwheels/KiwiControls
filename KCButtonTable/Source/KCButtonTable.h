@@ -6,14 +6,20 @@
  */
 
 #import "KCButtonTableView.h"
+#import "KCButtonTableBackground.h"
 
-@interface KCButtonTable : NSObject
+@interface KCButtonTable : NSObject <KCButtonTableDelegate, KCButtonTableBackgroundDelegate>
 {
+	id <KCButtonTableDelegate>	buttonTableDelegate ;
 	KCButtonTableView *		buttonTableView ;
+	KCButtonTableBackground *	backgroundView ;
 }
 
 - (instancetype) init ;
 
-- (KCButtonTableView *) buttonTableWithLabelNames: (NSArray *) names withDelegate: (id <KCButtonTableDelegate>) delegate withFrame: (CGRect) frame ;
+- (void) displayButtonTableWithLabelNames: (NSArray *) names
+			     withDelegate: (id <KCButtonTableDelegate>) delegate
+			       withOrigin: (CGPoint) origin
+			 atViewController: (UIViewController *) controller ;
 
 @end

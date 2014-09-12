@@ -24,6 +24,14 @@ KCExpandRectByInsets(CGRect rect, UIEdgeInsets insets )
 }
 
 static inline void
+KCUpdateViewOrigin(UIView * view, CGPoint origin)
+{
+	CGRect frame = view.frame ;
+	frame.origin = origin ;
+	view.frame = frame ;
+}
+
+static inline void
 KCUpdateViewSize(UIView * view, CGSize newsize)
 {
 	view.frame  = KCUpdateRectSize(view.frame, newsize) ;

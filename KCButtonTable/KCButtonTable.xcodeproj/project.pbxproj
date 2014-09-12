@@ -21,6 +21,7 @@
 		0583762B19B8A5D4005320FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0583762919B8A5D4005320FF /* Main.storyboard */; };
 		0583762D19B8A5D4005320FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0583762C19B8A5D4005320FF /* Images.xcassets */; };
 		05A1C8C619BC559F00E44DA2 /* KCButtonTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A1C8C519BC559F00E44DA2 /* KCButtonTableCell.xib */; };
+		05AD16A919C32C5500466AAD /* KCButtonTableBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD16A819C32C5500466AAD /* KCButtonTableBackground.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		058DAEDF19BF4F710030D8AA /* KCButtonTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableView.xib; path = Resource/KCButtonTableView.xib; sourceTree = SOURCE_ROOT; };
 		05A1C8C419BC54BC00E44DA2 /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = Resource/KCButtonTableCell.xib; sourceTree = SOURCE_ROOT; };
 		05A1C8C519BC559F00E44DA2 /* KCButtonTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCButtonTableCell.xib; path = ../../../../local/resource/KCButtonTableCell.xib; sourceTree = "<group>"; };
+		05AD16A719C32C5500466AAD /* KCButtonTableBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCButtonTableBackground.h; path = Source/KCButtonTableBackground.h; sourceTree = SOURCE_ROOT; };
+		05AD16A819C32C5500466AAD /* KCButtonTableBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCButtonTableBackground.m; path = Source/KCButtonTableBackground.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				0523BC6819B7724400C9275C /* KCButtonTableCell.h */,
 				0523BC6919B7724400C9275C /* KCButtonTableCell.m */,
 				05A1C8C419BC54BC00E44DA2 /* KCButtonTableCell.xib */,
+				05AD16A719C32C5500466AAD /* KCButtonTableBackground.h */,
+				05AD16A819C32C5500466AAD /* KCButtonTableBackground.m */,
 			);
 			path = KCButtonTable;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05AD16A919C32C5500466AAD /* KCButtonTableBackground.m in Sources */,
 				057F324919B773A0006CE1B2 /* KCButtonTableView.m in Sources */,
 				0523BC6B19B7724400C9275C /* KCButtonTableCell.m in Sources */,
 				054B9D3E19B77196004CE305 /* KCButtonTable.m in Sources */,
