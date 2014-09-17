@@ -9,23 +9,28 @@
 #import "KCPreferenceTableCell.h"
 #import <KiwiControl/KiwiControl.h>
 
-/*
- +- Application version
- |  +- Build id
- |
- +- Copyright
- |  +- Producer
- |  |
- |  +- Copyright
- |
- 
- */
-
 enum KCPreferenceTableSection {
-	KCApplicationVersionSection,
-	KCCopyrightSection,
-	KCManualSection,
-	KCSourceCodeSection
+	KCApplicationVersionSection	= 0,
+	KCCopyrightSection		= 1,
+	KCManualSection			= 2,
+	KCSourceCodeSection		= 3
+} ;
+
+enum KCApplicationVersions {
+	KCApplicationName		= 0,
+	KCApplicationVersion		= 1
+} ;
+
+enum KCCopyrights {
+	KCCopyright			= 0
+} ;
+
+enum KCManuals {
+	KCManual			= 0
+} ;
+
+enum KCSourceCodes {
+	KCSourceCode			= 0
 } ;
 
 #define KCNumberOfTableSections		4
@@ -47,16 +52,16 @@ enum KCPreferenceTableSection {
 	NSInteger rownum = 0 ;
 	switch(section){
 		case KCApplicationVersionSection: {
-			rownum = 2 ;
+			rownum = KCApplicationVersion + 1 ;
 		} break ;
 		case KCCopyrightSection: {
-			rownum = 2 ;
+			rownum = KCCopyright + 1 ;
 		} break ;
 		case KCManualSection: {
-			rownum = 1 ;
+			rownum = KCManual + 1 ;
 		} break ;
 		case KCSourceCodeSection: {
-			rownum = 1 ;
+			rownum = KCSourceCode + 1 ;
 		} break ;
 	}
 	return rownum ;
@@ -92,17 +97,18 @@ enum KCPreferenceTableSection {
 		s_is1st = NO ;
 	}
 	
-	/* Set index */
-	NSUInteger index = [indexPath row] ;
+	/* Allocate cell */
 	KCPreferenceTableCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"CustomCell"];
-	newcell.contentLabel.tag = index ;
 	
 	/* Set title */
-	newcell.contentLabel.text = [self selectContextByIndexPath: indexPath] ;
+	NSString * title = [self selectContextByIndexPath: indexPath] ;
+	newcell.textView.text = title ;
+	newcell.textView.editable = false ;
+	newcell.textView.dataDetectorTypes = UIDataDetectorTypeAll;
 	
 	/* Resize */
-	CGSize newsize = [self adjustSize: newcell.contentLabel.text] ;
-	KCUpdateViewSize(newcell.contentLabel, newsize) ;
+	CGSize newsize = [self adjustSize: title] ;
+	KCUpdateViewSize(newcell.textView, newsize) ;
 	[newcell.contentView sizeToFit] ;
 	
 	return newcell ;
@@ -129,18 +135,38 @@ enum KCPreferenceTableSection {
 	NSString * result = @"?" ;
 	switch((enum KCPreferenceTableSection) indexpath.section){
 		case KCApplicationVersionSection: {
-			NSString * ver = [preferennce version] ;
-			NSString * bid = [preferennce buildId] ;
-			result = [[NSString alloc] initWithFormat: @"%@ (%@)", ver, bid] ;
+			switch((enum KCApplicationVersions) indexpath.row){
+				case KCApplicationName: {
+					result = [preferennce applicationName] ;
+				} break ;
+				case KCApplicationVersion: {
+					NSString * ver = [preferennce version] ;
+					NSString * bid = [preferennce buildId] ;
+					result = [[NSString alloc] initWithFormat: @"Version %@ (Build %@)", ver, bid] ;
+				} break ;
+			}
 		} break ;
 		case KCCopyrightSection: {
-			result = @"GPL" ;
+			switch((enum KCCopyrights) indexpath.row){
+				case KCCopyright: {
+					result = @"GNU General Public License 2.0\nhttp://www.gnu.org/licenses/gpl-2.0.html" ;
+				} break ;
+			}
 		} break ;
 		case KCManualSection: {
-			result = @"Manual" ;
+			switch((enum KCManuals) indexpath.row){
+				case KCManual: {
+					NSString * appname = [preferennce applicationName] ;
+					result = [[NSString alloc] initWithFormat: @"%@ Online Manual", appname] ;
+				} break ;
+			}
 		} break ;
 		case KCSourceCodeSection: {
-			result = @"Code" ;
+			switch((enum KCSourceCodes) indexpath.row){
+				case KCSourceCode: {
+					result = @"Code" ;
+				} break ;
+			}
 		} break ;
 	}
 	return result ;
@@ -154,8 +180,8 @@ enum KCPreferenceTableSection {
 					       options:NSStringDrawingUsesLineFragmentOrigin
 					    attributes:attr
 					       context:nil] ;
-	CGSize result = CGSizeMake(ceilf(newbounds.size.width) + 8.0,
-				   ceilf(newbounds.size.height) + 8.0) ;
+	CGSize result = CGSizeMake(ceilf(newbounds.size.width)  + 16.0,
+				   ceilf(newbounds.size.height) + 16.0) ;
 	return result  ;
 }
 

@@ -9,6 +9,6 @@
 
 @interface KCPreferenceTableCell : UITableViewCell
 
-@property (unsafe_unretained, nonatomic) IBOutlet UILabel *contentLabel;
+@property (unsafe_unretained, nonatomic) IBOutlet UITextView *textView;
 
 @end

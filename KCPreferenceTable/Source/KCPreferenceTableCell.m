@@ -9,7 +9,7 @@
 
 @implementation KCPreferenceTableCell
 
-@synthesize contentLabel ;
+@synthesize textView ;
 
 - (void)awakeFromNib {
     // Initialization code
