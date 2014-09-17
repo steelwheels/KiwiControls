@@ -11,6 +11,10 @@
 
 + (KCPreference *) sharedPreference ;
 
+- (NSString *) applicationName ;
+- (NSString *) version ;
+- (NSString *) buildId ;
+
 - (CGRect) applicationFrame ;
 
 - (UIFont *) menuFont ;

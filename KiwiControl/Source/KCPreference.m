@@ -19,6 +19,21 @@
 	return sharedPreference ;
 }
 
+- (NSString *) applicationName
+{
+	return [[NSBundle mainBundle] bundlePath] ;
+}
+
+- (NSString *) version
+{
+	return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+}
+
+- (NSString *) buildId
+{
+	return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
 - (CGRect) applicationFrame
 {
 	return [[UIScreen mainScreen] applicationFrame] ;
