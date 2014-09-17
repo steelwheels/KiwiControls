@@ -21,7 +21,9 @@
 
 - (NSString *) applicationName
 {
-	return [[NSBundle mainBundle] bundlePath] ;
+	NSString * apppath = [[NSBundle mainBundle] bundlePath] ;
+	NSString * filename = [apppath lastPathComponent] ;
+	return [filename stringByDeletingPathExtension] ;
 }
 
 - (NSString *) version
