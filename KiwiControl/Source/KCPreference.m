@@ -8,6 +8,8 @@
 #import "KCPreference.h"
 #import "KCColorTable.h"
 
+static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
+
 @implementation KCPreference
 
 + (KCPreference *) sharedPreference
@@ -34,6 +36,36 @@
 - (NSString *) buildId
 {
 	return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
+- (NSString *) developerName
+{
+	return getStringValueInStandardUserDefaults(@"DeveloperName") ;
+}
+
+- (NSString *) developerURL
+{
+	return getStringValueInStandardUserDefaults(@"DeveloperURL") ;
+}
+
+- (NSString *) copyrightName
+{
+	return getStringValueInStandardUserDefaults(@"CopyrightName") ;
+}
+
+- (NSString *) copyrightURL
+{
+	return getStringValueInStandardUserDefaults(@"CopyrightURL") ;
+}
+
+- (NSString *) sourceCodeURL
+{
+	return getStringValueInStandardUserDefaults(@"SourceCodeURL") ;
+}
+
+- (NSString *) manualURL
+{
+	return getStringValueInStandardUserDefaults(@"ManualURL") ;
 }
 
 - (CGRect) applicationFrame
@@ -64,3 +96,23 @@
 }
 
 @end
+
+static NSString * getStringValueInStandardUserDefaults(NSString * key)
+{
+	static BOOL	s_is_initialized = NO ;
+	if(!s_is_initialized){
+		NSBundle * mainbundle = [NSBundle mainBundle];
+		NSString* filepath  = [mainbundle pathForResource:@"AppDefaults" ofType:@"plist"];
+		NSDictionary * userdict = [NSDictionary dictionaryWithContentsOfFile: filepath];
+		if(userdict){
+			NSUserDefaults * userdef = [NSUserDefaults standardUserDefaults] ;
+			[userdef registerDefaults: userdict];
+			[userdef synchronize];
+		}
+		s_is_initialized = YES ;
+	}
+	NSUserDefaults * userdef = [NSUserDefaults standardUserDefaults] ;
+	NSString * value = [userdef stringForKey: key] ;
+	return value ? value : @"" ;
+}
+

@@ -15,6 +15,13 @@
 - (NSString *) version ;
 - (NSString *) buildId ;
 
+- (NSString *) developerName ;
+- (NSString *) developerURL ;
+- (NSString *) copyrightName ;
+- (NSString *) copyrightURL ;
+- (NSString *) sourceCodeURL ;
+- (NSString *) manualURL ;
+
 - (CGRect) applicationFrame ;
 
 - (UIFont *) menuFont ;

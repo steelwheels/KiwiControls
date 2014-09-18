@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0535C78E19C743B8006BB1A5 /* KCPreferenceTableSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0535C78D19C743B8006BB1A5 /* KCPreferenceTableSource.m */; };
 		058C643219C8762F00024190 /* KCPreferenceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 058C643019C8762F00024190 /* KCPreferenceTableCell.m */; };
+		05ADA8E419CB142200A7EBE8 /* AppDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05ADA8E319CB142200A7EBE8 /* AppDefaults.plist */; };
 		05E8AFBA19C73CA4005AB0E9 /* KCPreferenceTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E8AFB919C73CA4005AB0E9 /* KCPreferenceTable.h */; };
 		05E8AFBC19C73CA4005AB0E9 /* KCPreferenceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8AFBB19C73CA4005AB0E9 /* KCPreferenceTable.m */; };
 		05F738F619C87BF300817D33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F738F519C87BF300817D33 /* main.m */; };
@@ -62,6 +63,7 @@
 		058C642F19C8762F00024190 /* KCPreferenceTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCPreferenceTableCell.h; path = Source/KCPreferenceTableCell.h; sourceTree = SOURCE_ROOT; };
 		058C643019C8762F00024190 /* KCPreferenceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCPreferenceTableCell.m; path = Source/KCPreferenceTableCell.m; sourceTree = SOURCE_ROOT; };
 		058C643119C8762F00024190 /* KCPreferenceTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCPreferenceTableCell.xib; path = Resource/KCPreferenceTableCell.xib; sourceTree = SOURCE_ROOT; };
+		05ADA8E319CB142200A7EBE8 /* AppDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppDefaults.plist; sourceTree = "<group>"; };
 		05E8AFB619C73CA4005AB0E9 /* libKCPreferenceTable.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCPreferenceTable.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E8AFB919C73CA4005AB0E9 /* KCPreferenceTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCPreferenceTable.h; path = Source/KCPreferenceTable.h; sourceTree = SOURCE_ROOT; };
 		05E8AFBB19C73CA4005AB0E9 /* KCPreferenceTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCPreferenceTable.m; path = Source/KCPreferenceTable.m; sourceTree = SOURCE_ROOT; };
@@ -150,6 +152,7 @@
 		05F738F319C87BF300817D33 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05ADA8E319CB142200A7EBE8 /* AppDefaults.plist */,
 				05F738F419C87BF300817D33 /* Info.plist */,
 				05F738F519C87BF300817D33 /* main.m */,
 			);
@@ -259,6 +262,7 @@
 			files = (
 				05F738FF19C87BF300817D33 /* Main.storyboard in Resources */,
 				05F7390419C87BF300817D33 /* LaunchScreen.xib in Resources */,
+				05ADA8E419CB142200A7EBE8 /* AppDefaults.plist in Resources */,
 				05F7390119C87BF300817D33 /* Images.xcassets in Resources */,
 				05F7391B19C883CD00817D33 /* KCPreferenceTable.xib in Resources */,
 				05F7391C19C883CD00817D33 /* KCPreferenceTableCell.xib in Resources */,
@@ -537,6 +541,7 @@
 				05F7391319C87BF300817D33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

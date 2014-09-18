@@ -11,29 +11,13 @@
 
 enum KCPreferenceTableSection {
 	KCApplicationVersionSection	= 0,
-	KCCopyrightSection		= 1,
-	KCManualSection			= 2,
-	KCSourceCodeSection		= 3
+	KCDeveloperSection		= 1,
+	KCCopyrightSection		= 2,
+	KCManualSection			= 3,
+	KCSourceCodeSection		= 4
 } ;
 
-enum KCApplicationVersions {
-	KCApplicationName		= 0,
-	KCApplicationVersion		= 1
-} ;
-
-enum KCCopyrights {
-	KCCopyright			= 0
-} ;
-
-enum KCManuals {
-	KCManual			= 0
-} ;
-
-enum KCSourceCodes {
-	KCSourceCode			= 0
-} ;
-
-#define KCNumberOfTableSections		4
+#define KCNumberOfTableSections		5
 
 @interface KCPreferenceTableSource (Private)
 - (NSString *) selectContextByIndexPath: (NSIndexPath *) indexpath ;
@@ -49,22 +33,7 @@ enum KCSourceCodes {
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSInteger rownum = 0 ;
-	switch(section){
-		case KCApplicationVersionSection: {
-			rownum = KCApplicationVersion + 1 ;
-		} break ;
-		case KCCopyrightSection: {
-			rownum = KCCopyright + 1 ;
-		} break ;
-		case KCManualSection: {
-			rownum = KCManual + 1 ;
-		} break ;
-		case KCSourceCodeSection: {
-			rownum = KCSourceCode + 1 ;
-		} break ;
-	}
-	return rownum ;
+	return 1 ;
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -74,6 +43,9 @@ enum KCSourceCodes {
 	switch(section){
 		case KCApplicationVersionSection: {
 			title = @"Application"; // [preferennce applicationName] ;
+		} break ;
+		case KCDeveloperSection: {
+			title = @"Developer" ;
 		} break ;
 		case KCCopyrightSection: {
 			title = @"Copyright" ;
@@ -135,38 +107,25 @@ enum KCSourceCodes {
 	NSString * result = @"?" ;
 	switch((enum KCPreferenceTableSection) indexpath.section){
 		case KCApplicationVersionSection: {
-			switch((enum KCApplicationVersions) indexpath.row){
-				case KCApplicationName: {
-					result = [preferennce applicationName] ;
-				} break ;
-				case KCApplicationVersion: {
-					NSString * ver = [preferennce version] ;
-					NSString * bid = [preferennce buildId] ;
-					result = [[NSString alloc] initWithFormat: @"Version %@ (Build %@)", ver, bid] ;
-				} break ;
-			}
+			NSString * ver = [preferennce version] ;
+			NSString * bid = [preferennce buildId] ;
+			result = [[NSString alloc] initWithFormat: @"Version %@ (Build %@)", ver, bid] ;
+		} break ;
+		case KCDeveloperSection: {
+			NSString * name = [preferennce developerName] ;
+			NSString * url  = [preferennce developerURL] ;
+			result = [[NSString alloc] initWithFormat: @"%@\n%@", name, url] ;
 		} break ;
 		case KCCopyrightSection: {
-			switch((enum KCCopyrights) indexpath.row){
-				case KCCopyright: {
-					result = @"GNU General Public License 2.0\nhttp://www.gnu.org/licenses/gpl-2.0.html" ;
-				} break ;
-			}
+			NSString * name = [preferennce copyrightName] ;
+			NSString * url  = [preferennce copyrightURL] ;
+			result = [[NSString alloc] initWithFormat: @"%@\n%@", name, url] ;
 		} break ;
 		case KCManualSection: {
-			switch((enum KCManuals) indexpath.row){
-				case KCManual: {
-					NSString * appname = [preferennce applicationName] ;
-					result = [[NSString alloc] initWithFormat: @"%@ Online Manual", appname] ;
-				} break ;
-			}
+			result = [preferennce manualURL] ;
 		} break ;
 		case KCSourceCodeSection: {
-			switch((enum KCSourceCodes) indexpath.row){
-				case KCSourceCode: {
-					result = @"Code" ;
-				} break ;
-			}
+			result = [preferennce sourceCodeURL] ;
 		} break ;
 	}
 	return result ;
@@ -175,13 +134,13 @@ enum KCSourceCodes {
 - (CGSize) adjustSize: (NSString *) title
 {
 	CGSize		maxSize = CGSizeMake(200, CGFLOAT_MAX);
-	NSDictionary *	attr = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 15.0]};
+	NSDictionary *	attr = @{NSFontAttributeName: [UIFont systemFontOfSize: 14.0]};
 	CGRect newbounds = [title boundingRectWithSize:maxSize
 					       options:NSStringDrawingUsesLineFragmentOrigin
 					    attributes:attr
 					       context:nil] ;
-	CGSize result = CGSizeMake(ceilf(newbounds.size.width)  + 16.0,
-				   ceilf(newbounds.size.height) + 16.0) ;
+	CGSize result = CGSizeMake(ceilf(newbounds.size.width  + 16.0),
+				   ceilf(newbounds.size.height + 12.0)) ;
 	return result  ;
 }
 
