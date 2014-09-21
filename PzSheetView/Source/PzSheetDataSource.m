@@ -8,7 +8,7 @@
 #import "PzSheetDataSource.h"
 #import "PzSheetCell.h"
 
-#define MAX_ROW_NUM	16
+#define MAX_ROW_NUM	128
 #define DO_DEBUG	0
 
 static inline NSString *
@@ -160,7 +160,7 @@ resultKey(NSInteger keyid)
 - (void) selectNextExpressionField
 {
 	NSUInteger nextslot = currentSlot + 1 ;
-	if(nextslot >= MAX_ROW_NUM){
+	if(nextslot >= [expressionTable count]){
 		nextslot = 0 ;
 	}
 	UITextField * nextfield = [expressionTable objectAtIndex: nextslot] ;
