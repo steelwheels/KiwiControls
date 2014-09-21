@@ -1,9 +1,10 @@
-/**
- * @file	AppDelegate.m
- * @brief	Definen AppDelegete class
- * @par Copyright
- *   Copyright (C) 2014 Steel Wheels Project
- */
+//
+//  AppDelegate.m
+//  PzSheetTest
+//
+//  Created by Tomoo Hamada on 2014/09/21.
+//  Copyright (c) 2014年 Steel Wheels Project. All rights reserved.
+//
 
 #import "AppDelegate.h"
 
@@ -12,7 +13,7 @@
 @end
 
 @implementation AppDelegate
-            
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.

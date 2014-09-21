@@ -102,7 +102,7 @@ resultKey(NSInteger keyid)
 		/* delete previous character */
 		[currentfield deleteBackward] ;
 	} else {
-		/* change the ca */
+		/* change the  */
 		UITextPosition * pos = selrange.start ;
 		UITextRange * newrange = [currentfield textRangeFromPosition: pos toPosition: pos] ;
 		[currentfield setSelectedTextRange: newrange] ;

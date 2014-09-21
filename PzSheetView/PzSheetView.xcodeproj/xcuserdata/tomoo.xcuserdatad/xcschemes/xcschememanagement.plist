@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>PzSheetTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>PzSheetView.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -48,6 +53,16 @@
 			<true/>
 		</dict>
 		<key>0584529E199CE83700E1E656</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>05C8853D19CEC00E000A9B61</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>05C8855519CEC00E000A9B61</key>
 		<dict>
 			<key>primary</key>
 			<true/>

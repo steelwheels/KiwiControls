@@ -7,34 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0500E5E419CEC7800099D1D6 /* PzSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452AF199CE87100E1E656 /* PzSheetCell.xib */; };
+		0500E5E519CEC7830099D1D6 /* PzSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452B0199CE87100E1E656 /* PzSheetView.xib */; };
 		05379926199DAE6B0072191A /* PzSheetDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 05379925199DAE6B0072191A /* PzSheetDataSource.m */; };
 		054EF702199CDCFC0099CD92 /* PzSheetView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054EF701199CDCFC0099CD92 /* PzSheetView.h */; };
 		054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054EF703199CDCFC0099CD92 /* PzSheetView.m */; };
-		0584528F199CE83700E1E656 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0584528E199CE83700E1E656 /* main.m */; };
-		05845292199CE83700E1E656 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05845291199CE83700E1E656 /* AppDelegate.m */; };
-		05845295199CE83700E1E656 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05845294199CE83700E1E656 /* ViewController.m */; };
-		05845298199CE83700E1E656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05845296199CE83700E1E656 /* Main.storyboard */; };
-		0584529A199CE83700E1E656 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05845299199CE83700E1E656 /* Images.xcassets */; };
-		058452B1199CE87100E1E656 /* PzSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452AF199CE87100E1E656 /* PzSheetCell.xib */; };
-		058452B2199CE87100E1E656 /* PzSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058452B0199CE87100E1E656 /* PzSheetView.xib */; };
 		0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0593384319A24C2E006DCB20 /* PzSheetCell.m */; };
 		059649BA19A391C600D3007C /* PzSheetValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 059649B919A391C600D3007C /* PzSheetValue.m */; };
+		05C8854319CEC00E000A9B61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854219CEC00E000A9B61 /* main.m */; };
+		05C8854619CEC00E000A9B61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854519CEC00E000A9B61 /* AppDelegate.m */; };
+		05C8854919CEC00E000A9B61 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854819CEC00E000A9B61 /* ViewController.m */; };
+		05C8854C19CEC00E000A9B61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C8854A19CEC00E000A9B61 /* Main.storyboard */; };
+		05C8854E19CEC00E000A9B61 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C8854D19CEC00E000A9B61 /* Images.xcassets */; };
+		05C8855119CEC00E000A9B61 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C8854F19CEC00E000A9B61 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0500E5E619CECB120099D1D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 054EF6F6199CDCFC0099CD92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05845280199CE49400E1E656;
+			remoteInfo = Install;
+		};
 		05845284199CE4AA00E1E656 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 054EF6F6199CDCFC0099CD92 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 054EF6FD199CDCFC0099CD92;
 			remoteInfo = PzSheetView;
-		};
-		058452AD199CE85700E1E656 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 054EF6F6199CDCFC0099CD92 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05845280199CE49400E1E656;
-			remoteInfo = Install;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -59,21 +60,22 @@
 		054EF703199CDCFC0099CD92 /* PzSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PzSheetView.m; path = Source/PzSheetView.m; sourceTree = SOURCE_ROOT; };
 		0584527E199CDE4100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetView.xib; path = Resource/PzSheetView.xib; sourceTree = SOURCE_ROOT; };
 		0584527F199CDFD500E1E656 /* PzSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetCell.xib; path = Resource/PzSheetCell.xib; sourceTree = SOURCE_ROOT; };
-		0584528A199CE83700E1E656 /* PzSheetViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PzSheetViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0584528D199CE83700E1E656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0584528E199CE83700E1E656 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		05845290199CE83700E1E656 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		05845291199CE83700E1E656 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		05845293199CE83700E1E656 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		05845294199CE83700E1E656 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		05845297199CE83700E1E656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		05845299199CE83700E1E656 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		058452AF199CE87100E1E656 /* PzSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetCell.xib; path = ../../../local/resource/PzSheetCell.xib; sourceTree = SOURCE_ROOT; };
 		058452B0199CE87100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetView.xib; path = ../../../local/resource/PzSheetView.xib; sourceTree = SOURCE_ROOT; };
 		0593384219A24C2E006DCB20 /* PzSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetCell.h; path = Source/PzSheetCell.h; sourceTree = SOURCE_ROOT; };
 		0593384319A24C2E006DCB20 /* PzSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetCell.m; path = Source/PzSheetCell.m; sourceTree = SOURCE_ROOT; };
 		059649B819A391C600D3007C /* PzSheetValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetValue.h; path = Source/PzSheetValue.h; sourceTree = SOURCE_ROOT; };
 		059649B919A391C600D3007C /* PzSheetValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetValue.m; path = Source/PzSheetValue.m; sourceTree = SOURCE_ROOT; };
+		05C8853E19CEC00E000A9B61 /* PzSheetTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PzSheetTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C8854119CEC00E000A9B61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C8854219CEC00E000A9B61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05C8854419CEC00E000A9B61 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		05C8854519CEC00E000A9B61 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		05C8854719CEC00E000A9B61 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		05C8854819CEC00E000A9B61 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		05C8854B19CEC00E000A9B61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05C8854D19CEC00E000A9B61 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		05C8855019CEC00E000A9B61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		05845287199CE83700E1E656 /* Frameworks */ = {
+		05C8853B19CEC00E000A9B61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -94,11 +96,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0500E5E319CEC7540099D1D6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				058452AF199CE87100E1E656 /* PzSheetCell.xib */,
+				058452B0199CE87100E1E656 /* PzSheetView.xib */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		054EF6F5199CDCFC0099CD92 = {
 			isa = PBXGroup;
 			children = (
 				054EF700199CDCFC0099CD92 /* PzSheetView */,
-				0584528B199CE83700E1E656 /* PzSheetViewTest */,
+				05C8853F19CEC00E000A9B61 /* PzSheetTest */,
 				054EF6FF199CDCFC0099CD92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				054EF6FE199CDCFC0099CD92 /* libPzSheetView.a */,
-				0584528A199CE83700E1E656 /* PzSheetViewTest.app */,
+				05C8853E19CEC00E000A9B61 /* PzSheetTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,27 +140,27 @@
 			path = PzSheetView;
 			sourceTree = "<group>";
 		};
-		0584528B199CE83700E1E656 /* PzSheetViewTest */ = {
+		05C8853F19CEC00E000A9B61 /* PzSheetTest */ = {
 			isa = PBXGroup;
 			children = (
-				05845290199CE83700E1E656 /* AppDelegate.h */,
-				05845291199CE83700E1E656 /* AppDelegate.m */,
-				05845293199CE83700E1E656 /* ViewController.h */,
-				05845294199CE83700E1E656 /* ViewController.m */,
-				058452AF199CE87100E1E656 /* PzSheetCell.xib */,
-				058452B0199CE87100E1E656 /* PzSheetView.xib */,
-				05845296199CE83700E1E656 /* Main.storyboard */,
-				05845299199CE83700E1E656 /* Images.xcassets */,
-				0584528C199CE83700E1E656 /* Supporting Files */,
+				05C8854419CEC00E000A9B61 /* AppDelegate.h */,
+				05C8854519CEC00E000A9B61 /* AppDelegate.m */,
+				05C8854719CEC00E000A9B61 /* ViewController.h */,
+				05C8854819CEC00E000A9B61 /* ViewController.m */,
+				05C8854A19CEC00E000A9B61 /* Main.storyboard */,
+				05C8854D19CEC00E000A9B61 /* Images.xcassets */,
+				05C8854F19CEC00E000A9B61 /* LaunchScreen.xib */,
+				0500E5E319CEC7540099D1D6 /* Resource */,
+				05C8854019CEC00E000A9B61 /* Supporting Files */,
 			);
-			path = PzSheetViewTest;
+			path = PzSheetTest;
 			sourceTree = "<group>";
 		};
-		0584528C199CE83700E1E656 /* Supporting Files */ = {
+		05C8854019CEC00E000A9B61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0584528D199CE83700E1E656 /* Info.plist */,
-				0584528E199CE83700E1E656 /* main.m */,
+				05C8854119CEC00E000A9B61 /* Info.plist */,
+				05C8854219CEC00E000A9B61 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -192,22 +203,22 @@
 			productReference = 054EF6FE199CDCFC0099CD92 /* libPzSheetView.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		05845289199CE83700E1E656 /* PzSheetViewTest */ = {
+		05C8853D19CEC00E000A9B61 /* PzSheetTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 058452A7199CE83700E1E656 /* Build configuration list for PBXNativeTarget "PzSheetViewTest" */;
+			buildConfigurationList = 05C8855E19CEC00E000A9B61 /* Build configuration list for PBXNativeTarget "PzSheetTest" */;
 			buildPhases = (
-				05845286199CE83700E1E656 /* Sources */,
-				05845287199CE83700E1E656 /* Frameworks */,
-				05845288199CE83700E1E656 /* Resources */,
+				05C8853A19CEC00E000A9B61 /* Sources */,
+				05C8853B19CEC00E000A9B61 /* Frameworks */,
+				05C8853C19CEC00E000A9B61 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				058452AE199CE85700E1E656 /* PBXTargetDependency */,
+				0500E5E719CECB120099D1D6 /* PBXTargetDependency */,
 			);
-			name = PzSheetViewTest;
-			productName = PzSheetViewTest;
-			productReference = 0584528A199CE83700E1E656 /* PzSheetViewTest.app */;
+			name = PzSheetTest;
+			productName = PzSheetTest;
+			productReference = 05C8853E19CEC00E000A9B61 /* PzSheetTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -225,8 +236,8 @@
 					05845280199CE49400E1E656 = {
 						CreatedOnToolsVersion = 6.0;
 					};
-					05845289199CE83700E1E656 = {
-						CreatedOnToolsVersion = 6.0;
+					05C8853D19CEC00E000A9B61 = {
+						CreatedOnToolsVersion = 6.0.1;
 					};
 				};
 			};
@@ -245,20 +256,21 @@
 			targets = (
 				054EF6FD199CDCFC0099CD92 /* PzSheetView */,
 				05845280199CE49400E1E656 /* Install */,
-				05845289199CE83700E1E656 /* PzSheetViewTest */,
+				05C8853D19CEC00E000A9B61 /* PzSheetTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		05845288199CE83700E1E656 /* Resources */ = {
+		05C8853C19CEC00E000A9B61 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				058452B1199CE87100E1E656 /* PzSheetCell.xib in Resources */,
-				05845298199CE83700E1E656 /* Main.storyboard in Resources */,
-				058452B2199CE87100E1E656 /* PzSheetView.xib in Resources */,
-				0584529A199CE83700E1E656 /* Images.xcassets in Resources */,
+				05C8854C19CEC00E000A9B61 /* Main.storyboard in Resources */,
+				0500E5E519CEC7830099D1D6 /* PzSheetView.xib in Resources */,
+				05C8855119CEC00E000A9B61 /* LaunchScreen.xib in Resources */,
+				05C8854E19CEC00E000A9B61 /* Images.xcassets in Resources */,
+				0500E5E419CEC7800099D1D6 /* PzSheetCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,38 +288,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		05845286199CE83700E1E656 /* Sources */ = {
+		05C8853A19CEC00E000A9B61 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05845295199CE83700E1E656 /* ViewController.m in Sources */,
-				05845292199CE83700E1E656 /* AppDelegate.m in Sources */,
-				0584528F199CE83700E1E656 /* main.m in Sources */,
+				05C8854919CEC00E000A9B61 /* ViewController.m in Sources */,
+				05C8854619CEC00E000A9B61 /* AppDelegate.m in Sources */,
+				05C8854319CEC00E000A9B61 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0500E5E719CECB120099D1D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05845280199CE49400E1E656 /* Install */;
+			targetProxy = 0500E5E619CECB120099D1D6 /* PBXContainerItemProxy */;
+		};
 		05845285199CE4AA00E1E656 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 054EF6FD199CDCFC0099CD92 /* PzSheetView */;
 			targetProxy = 05845284199CE4AA00E1E656 /* PBXContainerItemProxy */;
 		};
-		058452AE199CE85700E1E656 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05845280199CE49400E1E656 /* Install */;
-			targetProxy = 058452AD199CE85700E1E656 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		05845296199CE83700E1E656 /* Main.storyboard */ = {
+		05C8854A19CEC00E000A9B61 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				05845297199CE83700E1E656 /* Base */,
+				05C8854B19CEC00E000A9B61 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05C8854F19CEC00E000A9B61 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05C8855019CEC00E000A9B61 /* Base */,
+			);
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -334,7 +354,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -374,6 +394,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -459,23 +480,22 @@
 			};
 			name = Release;
 		};
-		058452A8199CE83700E1E656 /* Debug */ = {
+		05C8855F19CEC00E000A9B61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(HOME)/local/include",
 				);
-				INFOPLIST_FILE = PzSheetViewTest/Info.plist;
+				INFOPLIST_FILE = PzSheetTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
@@ -488,19 +508,18 @@
 			};
 			name = Debug;
 		};
-		058452A9199CE83700E1E656 /* Release */ = {
+		05C8856019CEC00E000A9B61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(HOME)/local/include",
 				);
-				INFOPLIST_FILE = PzSheetViewTest/Info.plist;
+				INFOPLIST_FILE = PzSheetTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
@@ -543,11 +562,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		058452A7199CE83700E1E656 /* Build configuration list for PBXNativeTarget "PzSheetViewTest" */ = {
+		05C8855E19CEC00E000A9B61 /* Build configuration list for PBXNativeTarget "PzSheetTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				058452A8199CE83700E1E656 /* Debug */,
-				058452A9199CE83700E1E656 /* Release */,
+				05C8855F19CEC00E000A9B61 /* Debug */,
+				05C8856019CEC00E000A9B61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
