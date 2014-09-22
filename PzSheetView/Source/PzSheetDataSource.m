@@ -25,11 +25,17 @@ resultKey(NSInteger keyid)
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
+		sheetViewDelegate = nil ;
 		expressionTable = [[NSMutableArray alloc] initWithCapacity: MAX_ROW_NUM] ;
 		resultTable = [[NSMutableDictionary alloc] initWithCapacity: MAX_ROW_NUM] ;
 		currentSlot = 0 ;
 	}
 	return self ;
+}
+
+- (void) setDelegate: (id <PzSheetViewDelegate>) delegate
+{
+	sheetViewDelegate = delegate ;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *) tableView
@@ -94,27 +100,6 @@ resultKey(NSInteger keyid)
 	return newcell;
 }
 
-- (void) deleteSelectedStringInExpressionField
-{
-	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
-	UITextRange *	selrange = currentfield.selectedTextRange ;
-	if(selrange.empty){
-		/* delete previous character */
-		[currentfield deleteBackward] ;
-	} else {
-		/* change the  */
-		UITextPosition * pos = selrange.start ;
-		UITextRange * newrange = [currentfield textRangeFromPosition: pos toPosition: pos] ;
-		[currentfield setSelectedTextRange: newrange] ;
-	}
-}
-
-- (void) clearExpressionField
-{
-	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
-	currentfield.text = @"" ;
-}
-
 - (void) moveCursorForwardInExpressionField
 {
 	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
@@ -171,8 +156,32 @@ resultKey(NSInteger keyid)
 - (void) insertStringToExpressionField: (NSString *) str
 {
 	//NSLog(@"%s : iSTEF %@ -> %u\n", __FILE__, str, (unsigned int) currentSlot) ;
-	UITextField * textfield = [expressionTable objectAtIndex: currentSlot] ;
-	[textfield insertText: str] ;
+	UITextField * currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	[currentfield insertText: str] ;
+	[sheetViewDelegate enterText: currentfield.text atIndex: currentSlot] ;
+}
+
+- (void) deleteSelectedStringInExpressionField
+{
+	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	UITextRange *	selrange = currentfield.selectedTextRange ;
+	if(selrange.empty){
+		/* delete previous character */
+		[currentfield deleteBackward] ;
+	} else {
+		/* change the  */
+		UITextPosition * pos = selrange.start ;
+		UITextRange * newrange = [currentfield textRangeFromPosition: pos toPosition: pos] ;
+		[currentfield setSelectedTextRange: newrange] ;
+	}
+	[sheetViewDelegate enterText: currentfield.text atIndex: currentSlot] ;
+}
+
+- (void) clearExpressionField
+{
+	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	currentfield.text = @"" ;
+	[sheetViewDelegate enterText: currentfield.text atIndex: currentSlot] ;
 }
 
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
@@ -197,6 +206,20 @@ resultKey(NSInteger keyid)
 		}
 	}
 	return false ;
+}
+
+- (BOOL)textField: (UITextField *) textfield shouldChangeCharactersInRange: (NSRange)range replacementString: (NSString *)string
+{
+	/* Get modified string */
+	NSMutableString *newstr = [textfield.text mutableCopy];
+	[newstr replaceCharactersInRange:range withString:string];
+	if(sheetViewDelegate){
+		[sheetViewDelegate enterText: newstr atIndex: currentSlot] ;
+	} else {
+		NSLog(@"Current string : %@ at %u\n", newstr, (unsigned int) currentSlot) ;
+	}
+	
+	return YES ;
 }
 
 @end

@@ -47,6 +47,11 @@
 	return self ;
 }
 
+- (void) setDelegate: (id <PzSheetViewDelegate>) delegate
+{
+	[dataSource setDelegate: delegate] ;
+}
+
 - (void) activateFirstResponder
 {
 	[dataSource activateFirstResponder] ;

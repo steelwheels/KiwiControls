@@ -10,9 +10,11 @@
 
 @interface PzSheetView : UIView
 {
-	UITableView *		tableView ;
-	PzSheetDataSource *	dataSource ;
+	UITableView *			tableView ;
+	PzSheetDataSource *		dataSource ;
 }
+
+- (void) setDelegate: (id <PzSheetViewDelegate>) delegate ;
 
 - (void) activateFirstResponder ;
 

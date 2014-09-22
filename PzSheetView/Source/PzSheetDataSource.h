@@ -8,16 +8,23 @@
 #import <UIKit/UIKit.h>
 #import "PzSheetValue.h"
 
+@protocol PzSheetViewDelegate
+- (void) enterText: (NSString *) text atIndex: (NSUInteger) index ;
+@end
+
 @interface PzSheetDataSource : NSObject <UITableViewDataSource, UITextFieldDelegate>
 {
+	id <PzSheetViewDelegate>	sheetViewDelegate ;
 	/** Array of UITextField objects */
-	NSMutableArray *	expressionTable ;
-	NSMutableDictionary *	resultTable ;
+	NSMutableArray *		expressionTable ;
+	NSMutableDictionary *		resultTable ;
 	
-	NSUInteger		currentSlot ;
+	NSUInteger			currentSlot ;
 }
 
 - (instancetype) init ;
+
+- (void) setDelegate: (id <PzSheetViewDelegate>) delegate ;
 
 - (void) activateFirstResponder ;
 
@@ -28,6 +35,7 @@
 - (void) insertStringToExpressionField: (NSString *) str ;
 - (void) deleteSelectedStringInExpressionField ;
 - (void) clearExpressionField ;
+
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index ;
 
 @end

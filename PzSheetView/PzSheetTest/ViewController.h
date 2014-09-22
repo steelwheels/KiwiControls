@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PzSheetView/PzSheetView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <PzSheetViewDelegate>
 {	
 	__weak IBOutlet PzSheetView *sheetView;
 	__weak IBOutlet UITextField *textField;

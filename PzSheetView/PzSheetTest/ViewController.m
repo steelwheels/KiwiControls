@@ -29,11 +29,18 @@
 	[rightButton  addTarget: self action: @selector(pressRightButton:)  forControlEvents: UIControlEventTouchUpInside] ;
 	[enterButton  addTarget: self action: @selector(pressEnterButton:)  forControlEvents: UIControlEventTouchUpInside] ;
 	[returnButton addTarget: self action: @selector(pressReturnButton:) forControlEvents: UIControlEventTouchUpInside] ;
+
+	[sheetView setDelegate: self] ;
 }
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+- (void) enterText: (NSString *) text atIndex: (NSUInteger) index
+{
+	NSLog(@"ViewController: Enter \"%@\" at Index %u\n", text, (unsigned int) index) ;
 }
 
 @end
@@ -43,7 +50,6 @@
 - (void) pressLeftButton: (UIButton *) button
 {
 	//NSLog(@"pressLeftButton") ;
-	printf("sheetView : %p\n", sheetView) ;
 	[sheetView moveCursorBackwardInExpressionField] ;
 }
 
