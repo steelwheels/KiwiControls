@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="64" height="48"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkX-9C-eGn">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkX-9C-eGn">
                         <rect key="frame" x="0.0" y="0.0" width="64" height="48"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <size key="titleShadowOffset" width="1" height="1"/>
@@ -25,6 +25,12 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="IkX-9C-eGn" secondAttribute="trailing" id="6Rv-ac-W2a"/>
+                <constraint firstAttribute="bottom" secondItem="IkX-9C-eGn" secondAttribute="bottom" id="ZOH-YM-Rpe"/>
+                <constraint firstItem="IkX-9C-eGn" firstAttribute="top" secondItem="EUA-kw-Za1" secondAttribute="top" id="bJt-ox-Sj0"/>
+                <constraint firstItem="IkX-9C-eGn" firstAttribute="leading" secondItem="EUA-kw-Za1" secondAttribute="leading" id="yU0-zo-46O"/>
+            </constraints>
             <point key="canvasLocation" x="206" y="387"/>
         </collectionViewCell>
     </objects>

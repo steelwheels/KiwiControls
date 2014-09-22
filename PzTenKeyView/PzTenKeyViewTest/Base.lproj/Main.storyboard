@@ -20,15 +20,15 @@
                                 <rect key="frame" x="0.0" y="240" width="320" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="U0Q-mt-6EA"/>
-                                    <constraint firstAttribute="height" constant="240" id="yDm-fN-Zet"/>
+                                    <constraint firstAttribute="width" constant="320" id="GRe-Dj-oHc"/>
+                                    <constraint firstAttribute="height" constant="240" id="bpG-pB-SYC"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Mu6-6S-4ew" secondAttribute="trailing" id="QfV-w5-lTu"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Mu6-6S-4ew" secondAttribute="bottom" id="g93-rH-Oyp"/>
+                            <constraint firstAttribute="centerX" secondItem="Mu6-6S-4ew" secondAttribute="centerX" id="DpH-OE-6JL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Mu6-6S-4ew" secondAttribute="bottom" id="gFm-Mb-a6p"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
