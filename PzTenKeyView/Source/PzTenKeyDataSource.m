@@ -210,6 +210,7 @@ updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * backgrou
 		case PzTenKeyMask_Function:	backcol = ctable.darkOrange1 ;	break ;
 		default:			backcol = ctable.gainsboro ;	break ;
 	}
+	background.opaque = NO ;
 	background.backgroundColor = backcol ;
 	
 	/* Set round */

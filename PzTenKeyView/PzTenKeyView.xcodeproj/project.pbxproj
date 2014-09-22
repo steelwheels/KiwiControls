@@ -19,6 +19,7 @@
 		0588D79D19939F380047D68B /* PzTenKeyView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0588D79C19939F380047D68B /* PzTenKeyView.h */; };
 		0588D79F19939F380047D68B /* PzTenKeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0588D79E19939F380047D68B /* PzTenKeyView.m */; };
 		059A07971998CDF500A8E517 /* PzTenKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059A07961998CDF500A8E517 /* PzTenKeyView.xib */; };
+		05FE61D219D047450075BD52 /* PzTenKeyType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056570B3199B6E3E006804E2 /* PzTenKeyType.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05FE61D219D047450075BD52 /* PzTenKeyType.h in CopyFiles */,
 				0549CF58199A0F5C00B75997 /* PzTenKeyDataSource.h in CopyFiles */,
 				0588D79D19939F380047D68B /* PzTenKeyView.h in CopyFiles */,
 			);
