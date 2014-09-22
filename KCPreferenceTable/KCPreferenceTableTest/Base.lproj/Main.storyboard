@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstScene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,28 +17,88 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VrY-KZ-9Oa" customClass="KCPreferenceTable">
-                                <rect key="frame" x="16" y="28" width="343" height="619"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPz-J0-7xx">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="vBe-XC-1tn"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="First View" id="dgD-iv-RV4">
+                                        <barButtonItem key="rightBarButtonItem" title="About" id="FBI-Xd-RBg">
+                                            <connections>
+                                                <action selector="moveToSecondScene:" destination="BYZ-38-t0r" id="l64-a7-jXD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VrY-KZ-9Oa" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="U6s-1H-xk6"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VrY-KZ-9Oa" secondAttribute="bottom" constant="20" id="pdL-qZ-E92"/>
-                            <constraint firstItem="VrY-KZ-9Oa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="qgY-IC-F7H"/>
-                            <constraint firstItem="VrY-KZ-9Oa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rOO-An-ryc"/>
+                            <constraint firstItem="uPz-J0-7xx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="2bw-wF-L7x"/>
+                            <constraint firstItem="uPz-J0-7xx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="C7a-RJ-Ytp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uPz-J0-7xx" secondAttribute="trailing" constant="-16" id="XUZ-eO-UIh"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <connections>
-                        <outlet property="preferenceTable" destination="VrY-KZ-9Oa" id="BGz-Im-6Yy"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="94.5" y="54.5"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="QcC-b8-Fnp">
+            <objects>
+                <viewController storyboardIdentifier="SecondScene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PEh-o6-zIp" customClass="SecondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rdi-hl-cCq"/>
+                        <viewControllerLayoutGuide type="bottom" id="tBg-W5-Bry"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="98E-cQ-aAX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-JO-yDX" customClass="KCPreferenceTable">
+                                <rect key="frame" x="16" y="64" width="288" height="484"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pla-nl-Ooa">
+                                <rect key="frame" x="16" y="20" width="288" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="y4C-NW-oem"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Second View" id="Sfs-K4-gdz">
+                                        <barButtonItem key="leftBarButtonItem" title="Main" id="29f-Qz-hVH">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="PEh-o6-zIp" id="14l-jE-Sy2"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="trailing" secondItem="98E-cQ-aAX" secondAttribute="trailingMargin" id="G75-mi-Szg"/>
+                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="top" secondItem="pla-nl-Ooa" secondAttribute="bottom" id="Xif-7n-4Lu"/>
+                            <constraint firstItem="pla-nl-Ooa" firstAttribute="trailing" secondItem="98E-cQ-aAX" secondAttribute="trailingMargin" id="Xx8-dN-l8C"/>
+                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="leading" secondItem="98E-cQ-aAX" secondAttribute="leadingMargin" id="eZF-9X-oqw"/>
+                            <constraint firstItem="pla-nl-Ooa" firstAttribute="top" secondItem="Rdi-hl-cCq" secondAttribute="bottom" id="icx-wF-cde"/>
+                            <constraint firstItem="tBg-W5-Bry" firstAttribute="top" secondItem="KPZ-JO-yDX" secondAttribute="bottom" constant="20" id="knk-Xk-YDW"/>
+                            <constraint firstItem="pla-nl-Ooa" firstAttribute="leading" secondItem="98E-cQ-aAX" secondAttribute="leadingMargin" id="tkQ-Ym-Izd"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="preferenceTable" destination="KPZ-JO-yDX" id="9zk-1H-1qc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zbv-bH-zL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="475" y="110"/>
         </scene>
     </scenes>
 </document>

@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0535C78E19C743B8006BB1A5 /* KCPreferenceTableSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0535C78D19C743B8006BB1A5 /* KCPreferenceTableSource.m */; };
+		056C521119CFE24700ADCCA3 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C521019CFE24700ADCCA3 /* SecondViewController.m */; };
 		058C643219C8762F00024190 /* KCPreferenceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 058C643019C8762F00024190 /* KCPreferenceTableCell.m */; };
 		05ADA8E419CB142200A7EBE8 /* AppDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05ADA8E319CB142200A7EBE8 /* AppDefaults.plist */; };
 		05E8AFBA19C73CA4005AB0E9 /* KCPreferenceTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E8AFB919C73CA4005AB0E9 /* KCPreferenceTable.h */; };
 		05E8AFBC19C73CA4005AB0E9 /* KCPreferenceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8AFBB19C73CA4005AB0E9 /* KCPreferenceTable.m */; };
 		05F738F619C87BF300817D33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F738F519C87BF300817D33 /* main.m */; };
 		05F738F919C87BF300817D33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F738F819C87BF300817D33 /* AppDelegate.m */; };
-		05F738FC19C87BF300817D33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F738FB19C87BF300817D33 /* ViewController.m */; };
+		05F738FC19C87BF300817D33 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F738FB19C87BF300817D33 /* FirstViewController.m */; };
 		05F738FF19C87BF300817D33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05F738FD19C87BF300817D33 /* Main.storyboard */; };
 		05F7390119C87BF300817D33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05F7390019C87BF300817D33 /* Images.xcassets */; };
 		05F7390419C87BF300817D33 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F7390219C87BF300817D33 /* LaunchScreen.xib */; };
@@ -60,6 +61,8 @@
 		0535C78219C73DF9006BB1A5 /* KCPreferenceTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCPreferenceTable.xib; path = Resource/KCPreferenceTable.xib; sourceTree = SOURCE_ROOT; };
 		0535C78C19C743B8006BB1A5 /* KCPreferenceTableSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCPreferenceTableSource.h; path = Source/KCPreferenceTableSource.h; sourceTree = SOURCE_ROOT; };
 		0535C78D19C743B8006BB1A5 /* KCPreferenceTableSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCPreferenceTableSource.m; path = Source/KCPreferenceTableSource.m; sourceTree = SOURCE_ROOT; };
+		056C520F19CFE24700ADCCA3 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		056C521019CFE24700ADCCA3 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		058C642F19C8762F00024190 /* KCPreferenceTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCPreferenceTableCell.h; path = Source/KCPreferenceTableCell.h; sourceTree = SOURCE_ROOT; };
 		058C643019C8762F00024190 /* KCPreferenceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCPreferenceTableCell.m; path = Source/KCPreferenceTableCell.m; sourceTree = SOURCE_ROOT; };
 		058C643119C8762F00024190 /* KCPreferenceTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCPreferenceTableCell.xib; path = Resource/KCPreferenceTableCell.xib; sourceTree = SOURCE_ROOT; };
@@ -72,8 +75,8 @@
 		05F738F519C87BF300817D33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05F738F719C87BF300817D33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		05F738F819C87BF300817D33 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		05F738FA19C87BF300817D33 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		05F738FB19C87BF300817D33 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		05F738FA19C87BF300817D33 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		05F738FB19C87BF300817D33 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		05F738FE19C87BF300817D33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05F7390019C87BF300817D33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		05F7390319C87BF300817D33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -137,8 +140,10 @@
 			children = (
 				05F738F719C87BF300817D33 /* AppDelegate.h */,
 				05F738F819C87BF300817D33 /* AppDelegate.m */,
-				05F738FA19C87BF300817D33 /* ViewController.h */,
-				05F738FB19C87BF300817D33 /* ViewController.m */,
+				05F738FA19C87BF300817D33 /* FirstViewController.h */,
+				05F738FB19C87BF300817D33 /* FirstViewController.m */,
+				056C520F19CFE24700ADCCA3 /* SecondViewController.h */,
+				056C521019CFE24700ADCCA3 /* SecondViewController.m */,
 				05F738FD19C87BF300817D33 /* Main.storyboard */,
 				05F7390019C87BF300817D33 /* Images.xcassets */,
 				05F7390219C87BF300817D33 /* LaunchScreen.xib */,
@@ -286,7 +291,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05F738FC19C87BF300817D33 /* ViewController.m in Sources */,
+				056C521119CFE24700ADCCA3 /* SecondViewController.m in Sources */,
+				05F738FC19C87BF300817D33 /* FirstViewController.m in Sources */,
 				05F738F919C87BF300817D33 /* AppDelegate.m in Sources */,
 				05F738F619C87BF300817D33 /* main.m in Sources */,
 			);
