@@ -25,7 +25,7 @@ resultKey(NSInteger keyid)
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
-		sheetViewDelegate = nil ;
+		sheetViewTextFieldDelegate = nil ;
 		expressionTable = [[NSMutableArray alloc] initWithCapacity: MAX_ROW_NUM] ;
 		resultTable = [[NSMutableDictionary alloc] initWithCapacity: MAX_ROW_NUM] ;
 		currentSlot = 0 ;
@@ -33,9 +33,9 @@ resultKey(NSInteger keyid)
 	return self ;
 }
 
-- (void) setDelegate: (id <PzSheetViewDelegate>) delegate
+- (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate
 {
-	sheetViewDelegate = delegate ;
+	sheetViewTextFieldDelegate = delegate ;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *) tableView
@@ -158,7 +158,7 @@ resultKey(NSInteger keyid)
 	//NSLog(@"%s : iSTEF %@ -> %u\n", __FILE__, str, (unsigned int) currentSlot) ;
 	UITextField * currentfield = [expressionTable objectAtIndex: currentSlot] ;
 	[currentfield insertText: str] ;
-	[sheetViewDelegate enterText: currentfield.text atIndex: currentSlot] ;
+	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
 }
 
 - (void) deleteSelectedStringInExpressionField
@@ -174,14 +174,14 @@ resultKey(NSInteger keyid)
 		UITextRange * newrange = [currentfield textRangeFromPosition: pos toPosition: pos] ;
 		[currentfield setSelectedTextRange: newrange] ;
 	}
-	[sheetViewDelegate enterText: currentfield.text atIndex: currentSlot] ;
+	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
 }
 
 - (void) clearExpressionField
 {
 	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
 	currentfield.text = @"" ;
-	[sheetViewDelegate enterText: currentfield.text atIndex: currentSlot] ;
+	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
 }
 
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
@@ -213,8 +213,8 @@ resultKey(NSInteger keyid)
 	/* Get modified string */
 	NSMutableString *newstr = [textfield.text mutableCopy];
 	[newstr replaceCharactersInRange:range withString:string];
-	if(sheetViewDelegate){
-		[sheetViewDelegate enterText: newstr atIndex: currentSlot] ;
+	if(sheetViewTextFieldDelegate){
+		[sheetViewTextFieldDelegate enterText: newstr atIndex: currentSlot] ;
 	} else {
 		NSLog(@"Current string : %@ at %u\n", newstr, (unsigned int) currentSlot) ;
 	}

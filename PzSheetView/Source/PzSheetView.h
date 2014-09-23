@@ -14,7 +14,7 @@
 	PzSheetDataSource *		dataSource ;
 }
 
-- (void) setDelegate: (id <PzSheetViewDelegate>) delegate ;
+- (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
 
 - (void) activateFirstResponder ;
 

@@ -47,9 +47,9 @@
 	return self ;
 }
 
-- (void) setDelegate: (id <PzSheetViewDelegate>) delegate
+- (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate
 {
-	[dataSource setDelegate: delegate] ;
+	[dataSource setTextFieldDelegate: delegate] ;
 }
 
 - (void) activateFirstResponder

@@ -427,6 +427,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
+					"-lKCTouchableLabel",
 					"-lKiwiControl",
 					"-load_all",
 				);
@@ -448,6 +449,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
+					"-lKCTouchableLabel",
 					"-lKiwiControl",
 					"-load_all",
 				);
@@ -506,6 +508,7 @@
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
+					"-lKCTouchableLabel",
 					"-lKiwiControl",
 					"-all_load",
 				);
@@ -530,6 +533,7 @@
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
+					"-lKCTouchableLabel",
 					"-lKiwiControl",
 					"-all_load",
 				);

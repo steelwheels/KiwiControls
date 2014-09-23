@@ -10,14 +10,14 @@
 
 @implementation PzSheetCell
 
-@synthesize resultLabel ;
+@synthesize touchableLabel ;
 @synthesize expressionField ;
 
 - (void) observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change: (NSDictionary *)change context: (void *) context
 {
 	//NSLog(@"oVFKP") ;
 	PzSheetValue * value = [change objectForKey:NSKeyValueChangeNewKey] ;
-	resultLabel.text = [value toString] ;
+	touchableLabel.text = [value toString] ;
 }
 
 @end

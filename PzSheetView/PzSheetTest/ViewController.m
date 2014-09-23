@@ -30,7 +30,7 @@
 	[enterButton  addTarget: self action: @selector(pressEnterButton:)  forControlEvents: UIControlEventTouchUpInside] ;
 	[returnButton addTarget: self action: @selector(pressReturnButton:) forControlEvents: UIControlEventTouchUpInside] ;
 
-	[sheetView setDelegate: self] ;
+	[sheetView setTextFieldDelegate: self] ;
 }
 
 - (void)didReceiveMemoryWarning {
