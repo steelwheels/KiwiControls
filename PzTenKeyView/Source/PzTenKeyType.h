@@ -5,6 +5,8 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
+#import <Foundation/Foundation.h>
+
 enum PzTenKeyState {
 	PzTenKeyDecState,
 	PzTenKeyHexState,
@@ -15,8 +17,8 @@ enum PzTenKeyState {
 #define PzTenKeyMaxStateNum		4
 
 #define PzTenKeyMask_State	0x00010000
-#define	PzTenKeyMask_Normal	0x00020000
-#define PzTenKeyMask_Edit	0x00030000
+#define PzTenKeyMask_Edit	0x00020000
+#define	PzTenKeyMask_Normal	0x00030000
 #define	PzTenKeyMask_Operator	0x00040000
 #define	PzTenKeyMask_Function	0x00050000
 #define PzTenKeyMask_Mask	0xffff0000
@@ -26,6 +28,11 @@ enum PzTenKeyCode {
 	PzTenKeyCode_HexState		= PzTenKeyMask_State	| 0x0001,
 	PzTenKeyCode_OpState		= PzTenKeyMask_State	| 0x0002,
 	PzTenKeyCode_FuncState		= PzTenKeyMask_State	| 0x0003,
+	
+	PzTenKeyCode_Ret		= PzTenKeyMask_Edit	| 0x0000,
+	PzTenKeyCode_Del		= PzTenKeyMask_Edit	| 0x0001,
+	PzTenKeyCode_MoveLeft		= PzTenKeyMask_Edit	| 0x0002,
+	PzTenKeyCode_MoveRight		= PzTenKeyMask_Edit	| 0x0003,
 	
 	PzTenKeyCode_0			= PzTenKeyMask_Normal	| 0x0000,
 	PzTenKeyCode_1			= PzTenKeyMask_Normal	| 0x0001,
@@ -53,10 +60,9 @@ enum PzTenKeyCode {
 	PzTenKeyCode_Mod		= PzTenKeyMask_Operator	| 0x0004,
 	PzTenKeyCode_LeftPar		= PzTenKeyMask_Operator	| 0x0005,
 	PzTenKeyCode_RightPar		= PzTenKeyMask_Operator	| 0x0006,
-	
-	PzTenKeyCode_Ret		= PzTenKeyMask_Edit	| 0x0000,
-	PzTenKeyCode_Del		= PzTenKeyMask_Edit	| 0x0001,
-	PzTenKeyCode_MoveLeft		= PzTenKeyMask_Edit	| 0x0002,
-	PzTenKeyCode_MoveRight		= PzTenKeyMask_Edit	| 0x0003,
 } ;
+
+NSString *
+PzTenKeyTypeToString(enum PzTenKeyCode code) ;
+
 

@@ -32,7 +32,8 @@
 
 - (void) pressKey: (enum PzTenKeyCode) code
 {
-	NSLog(@"Delegate: 0x%x\n", (unsigned int) code) ;
+	NSString * msg = PzTenKeyTypeToString(code) ;
+	NSLog(@"Delegate: 0x%x %@\n", (unsigned int) code, msg) ;
 }
 
 @end
