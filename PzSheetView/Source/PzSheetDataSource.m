@@ -38,6 +38,11 @@ resultKey(NSInteger keyid)
 	sheetViewTextFieldDelegate = delegate ;
 }
 
+- (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate
+{
+	sheetViewTouchableLabelDelegate = delegate ;
+}
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView *) tableView
 {
 	((void) tableView) ;
@@ -88,9 +93,11 @@ resultKey(NSInteger keyid)
 	if(indexPath.row == 0){
 		[newcell.expressionField becomeFirstResponder] ;
 	}
-	
-	/* Add delegate */
 	[newcell.expressionField setDelegate: self] ;
+	
+	/* Set delegate of the label */
+	newcell.touchableLabel.tag = indexPath.row ;
+	newcell.touchableLabel.touchableLabelDelegate = self ;
 	
 	/* Add observer for result value */
 	NSString * resultkey = resultKey(indexPath.row) ;
@@ -182,6 +189,25 @@ resultKey(NSInteger keyid)
 	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
 	currentfield.text = @"" ;
 	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
+}
+
+- (void)label: (KCTouchableLabel *) label touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
+{
+	if(sheetViewTouchableLabelDelegate){
+		[sheetViewTouchableLabelDelegate touchLabelAtIndex: label.tag] ;
+	} else {
+		NSLog(@"Label touched") ;
+	}
+}
+
+- (void)label: (KCTouchableLabel *) label touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event
+{
+	/* Do nothing */
+}
+
+- (void)label: (KCTouchableLabel *) label touchesCancelled: (NSSet *) touches withEvent: (UIEvent *) event
+{
+	/* Do nothing */
 }
 
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index

@@ -11,7 +11,7 @@
 @interface PzSheetCell : UITableViewCell
 
 @property (unsafe_unretained, nonatomic) IBOutlet KCTouchableLabel *	touchableLabel;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *expressionField;
+@property (unsafe_unretained, nonatomic) IBOutlet UITextField *		expressionField;
 
 - (void) observeValueForKeyPath:(NSString *) keyPath ofObject:(id)object change:(NSDictionary *)change context: (void *)context ;
 

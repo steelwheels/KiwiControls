@@ -31,6 +31,7 @@
 	[returnButton addTarget: self action: @selector(pressReturnButton:) forControlEvents: UIControlEventTouchUpInside] ;
 
 	[sheetView setTextFieldDelegate: self] ;
+	[sheetView setTouchableLabelDelegate: self] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +42,11 @@
 - (void) enterText: (NSString *) text atIndex: (NSUInteger) index
 {
 	NSLog(@"ViewController: Enter \"%@\" at Index %u\n", text, (unsigned int) index) ;
+}
+
+- (void) touchLabelAtIndex:(NSUInteger)index
+{
+	NSLog(@"TouchLabel at %u", (unsigned int) index) ;
 }
 
 @end

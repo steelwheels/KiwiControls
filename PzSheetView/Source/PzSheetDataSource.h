@@ -6,15 +6,21 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <KCTouchableLabel/KCTouchableLabel.h>
 #import "PzSheetValue.h"
 
 @protocol PzSheetViewTextFieldDelegate
 - (void) enterText: (NSString *) text atIndex: (NSUInteger) index ;
 @end
 
-@interface PzSheetDataSource : NSObject <UITableViewDataSource, UITextFieldDelegate>
+@protocol PzSheetViewTouchLabelDelegate <NSObject>
+- (void) touchLabelAtIndex: (NSUInteger) index ;
+@end
+
+@interface PzSheetDataSource : NSObject <UITableViewDataSource, UITextFieldDelegate, KCTouchableLabelDelegate>
 {
 	id <PzSheetViewTextFieldDelegate>	sheetViewTextFieldDelegate ;
+	id <PzSheetViewTouchLabelDelegate>	sheetViewTouchableLabelDelegate ;
 	
 	/** Array of UITextField objects */
 	NSMutableArray *			expressionTable ;
@@ -26,6 +32,7 @@
 - (instancetype) init ;
 
 - (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
+- (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate ;
 
 - (void) activateFirstResponder ;
 

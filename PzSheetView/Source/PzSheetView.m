@@ -52,6 +52,11 @@
 	[dataSource setTextFieldDelegate: delegate] ;
 }
 
+- (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate
+{
+	[dataSource setTouchableLabelDelegate: delegate] ;
+}
+
 - (void) activateFirstResponder
 {
 	[dataSource activateFirstResponder] ;
