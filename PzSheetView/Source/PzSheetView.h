@@ -23,6 +23,7 @@
 - (void) selectNextExpressionField ;
 
 - (void) insertStringToExpressionField: (NSString *) str ;
+- (void) deleteSelectedStringInExpressionField ;
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index ;
 
 @end

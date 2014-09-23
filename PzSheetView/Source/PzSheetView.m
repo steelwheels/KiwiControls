@@ -77,6 +77,11 @@
 	[dataSource insertStringToExpressionField: str] ;
 }
 
+- (void) deleteSelectedStringInExpressionField
+{
+	[dataSource deleteSelectedStringInExpressionField] ;
+}
+
 - (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
 {
 	[dataSource setResultValue: value forSlot: index] ;
