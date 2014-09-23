@@ -12,10 +12,12 @@ This software is produced by [Steel Wheels Project](https://sites.google.com/sit
 
 Controllers in this package 
 ---------------------------
-* KiwiControl:   Common function library for the other controls
-* PzTenKeyView:  Ten Key View implementation based on UICollectionView
-* PzSheetView:   Table view to display expression and it's result value
-* KCButtonTable: Popup menu which has some buttons
+* KiwiControl:		Common function library for the other controls
+* PzTenKeyView:		Ten Key View implementation based on UICollectionView
+* PzSheetView:		Table view to display expression and it's result value
+* KCButtonTable:	Popup menu which has some buttons
+* KCPreferenceTable:	Template of the reference page of the application
+* KCTouchableLabel:	The sub class of UILabel to catch the touch event
 
 References
 ----------
