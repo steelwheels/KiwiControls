@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <KCTouchableLabel/KCTouchableLabel.h>
 
-@interface TouchDelegate : NSObject <KCTouchLabelDelegate>
+@interface TouchableDelegate : NSObject <KCTouchableLabelDelegate>
 @end
 
 @interface ViewController : UIViewController
 {
-	TouchDelegate *				touchDelegate ;
+	TouchableDelegate *			touchDelegate ;
 	__weak IBOutlet KCTouchableLabel *	touchableLabel;
 }
 

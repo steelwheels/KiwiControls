@@ -8,9 +8,7 @@
 
 #import "ViewController.h"
 
-
-
-@implementation TouchDelegate
+@implementation TouchableDelegate
 
 - (void)label:(KCTouchableLabel *)label touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
@@ -38,7 +36,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	touchDelegate = [[TouchDelegate alloc] init] ;
+	touchDelegate = [[TouchableDelegate alloc] init] ;
 	touchableLabel.touchableLabelDelegate = touchDelegate ;
 	
 }

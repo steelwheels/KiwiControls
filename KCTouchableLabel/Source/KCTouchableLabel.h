@@ -13,7 +13,7 @@
 
 @class KCTouchableLabel ;
 
-@protocol KCTouchLabelDelegate
+@protocol KCTouchableLabelDelegate
 - (void)label:(KCTouchableLabel *)label touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 - (void)label:(KCTouchableLabel *)label touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)label:(KCTouchableLabel *)label touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
@@ -21,6 +21,6 @@
 
 @interface KCTouchableLabel : UILabel
 
-@property (strong, nonatomic) id <KCTouchLabelDelegate>	touchableLabelDelegate ;
+@property (strong, nonatomic) id <KCTouchableLabelDelegate>	touchableLabelDelegate ;
 
 @end
