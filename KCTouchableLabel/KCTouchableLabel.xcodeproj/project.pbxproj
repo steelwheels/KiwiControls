@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0513827919D16421006F3B72 /* KCTouchableLabel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0513827819D16421006F3B72 /* KCTouchableLabel.h */; };
+		0513827B19D16421006F3B72 /* KCTouchableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0513827A19D16421006F3B72 /* KCTouchableLabel.m */; };
+		05629B5C19D169A9001CE7D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05629B5B19D169A9001CE7D2 /* main.m */; };
+		05629B5F19D169A9001CE7D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05629B5E19D169A9001CE7D2 /* AppDelegate.m */; };
+		05629B6219D169A9001CE7D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05629B6119D169A9001CE7D2 /* ViewController.m */; };
+		05629B6519D169A9001CE7D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05629B6319D169A9001CE7D2 /* Main.storyboard */; };
+		05629B6719D169A9001CE7D2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05629B6619D169A9001CE7D2 /* Images.xcassets */; };
+		05629B6A19D169A9001CE7D2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05629B6819D169A9001CE7D2 /* LaunchScreen.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05629B5119D16953001CE7D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0513826D19D16421006F3B72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0513827419D16421006F3B72;
+			remoteInfo = KCTouchableLabel;
+		};
+		05629B7D19D169C0001CE7D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0513826D19D16421006F3B72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05629B4D19D1693D001CE7D2;
+			remoteInfo = Install;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0513827319D16421006F3B72 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				0513827919D16421006F3B72 /* KCTouchableLabel.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0513827519D16421006F3B72 /* libKCTouchableLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCTouchableLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0513827819D16421006F3B72 /* KCTouchableLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCTouchableLabel.h; path = Source/KCTouchableLabel.h; sourceTree = SOURCE_ROOT; };
+		0513827A19D16421006F3B72 /* KCTouchableLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCTouchableLabel.m; path = Source/KCTouchableLabel.m; sourceTree = SOURCE_ROOT; };
+		05629B5719D169A9001CE7D2 /* KCTouchableLabelTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KCTouchableLabelTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05629B5A19D169A9001CE7D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05629B5B19D169A9001CE7D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05629B5D19D169A9001CE7D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		05629B5E19D169A9001CE7D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		05629B6019D169A9001CE7D2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		05629B6119D169A9001CE7D2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		05629B6419D169A9001CE7D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05629B6619D169A9001CE7D2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		05629B6919D169A9001CE7D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0513827219D16421006F3B72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05629B5419D169A9001CE7D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0513826C19D16421006F3B72 = {
+			isa = PBXGroup;
+			children = (
+				0513827719D16421006F3B72 /* KCTouchableLabel */,
+				05629B5819D169A9001CE7D2 /* KCTouchableLabelTest */,
+				0513827619D16421006F3B72 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0513827619D16421006F3B72 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0513827519D16421006F3B72 /* libKCTouchableLabel.a */,
+				05629B5719D169A9001CE7D2 /* KCTouchableLabelTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0513827719D16421006F3B72 /* KCTouchableLabel */ = {
+			isa = PBXGroup;
+			children = (
+				0513827819D16421006F3B72 /* KCTouchableLabel.h */,
+				0513827A19D16421006F3B72 /* KCTouchableLabel.m */,
+			);
+			path = KCTouchableLabel;
+			sourceTree = "<group>";
+		};
+		05629B5819D169A9001CE7D2 /* KCTouchableLabelTest */ = {
+			isa = PBXGroup;
+			children = (
+				05629B5D19D169A9001CE7D2 /* AppDelegate.h */,
+				05629B5E19D169A9001CE7D2 /* AppDelegate.m */,
+				05629B6019D169A9001CE7D2 /* ViewController.h */,
+				05629B6119D169A9001CE7D2 /* ViewController.m */,
+				05629B6319D169A9001CE7D2 /* Main.storyboard */,
+				05629B6619D169A9001CE7D2 /* Images.xcassets */,
+				05629B6819D169A9001CE7D2 /* LaunchScreen.xib */,
+				05629B5919D169A9001CE7D2 /* Supporting Files */,
+			);
+			path = KCTouchableLabelTest;
+			sourceTree = "<group>";
+		};
+		05629B5919D169A9001CE7D2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05629B5A19D169A9001CE7D2 /* Info.plist */,
+				05629B5B19D169A9001CE7D2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		05629B4D19D1693D001CE7D2 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../script/install.mk";
+			buildConfigurationList = 05629B4E19D1693D001CE7D2 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05629B5219D16953001CE7D2 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		0513827419D16421006F3B72 /* KCTouchableLabel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0513828619D16421006F3B72 /* Build configuration list for PBXNativeTarget "KCTouchableLabel" */;
+			buildPhases = (
+				0513827119D16421006F3B72 /* Sources */,
+				0513827219D16421006F3B72 /* Frameworks */,
+				0513827319D16421006F3B72 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KCTouchableLabel;
+			productName = KCTouchableLabel;
+			productReference = 0513827519D16421006F3B72 /* libKCTouchableLabel.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		05629B5619D169A9001CE7D2 /* KCTouchableLabelTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05629B7719D169A9001CE7D2 /* Build configuration list for PBXNativeTarget "KCTouchableLabelTest" */;
+			buildPhases = (
+				05629B5319D169A9001CE7D2 /* Sources */,
+				05629B5419D169A9001CE7D2 /* Frameworks */,
+				05629B5519D169A9001CE7D2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05629B7E19D169C0001CE7D2 /* PBXTargetDependency */,
+			);
+			name = KCTouchableLabelTest;
+			productName = KCTouchableLabelTest;
+			productReference = 05629B5719D169A9001CE7D2 /* KCTouchableLabelTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0513826D19D16421006F3B72 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Steel Wheels Project";
+				TargetAttributes = {
+					0513827419D16421006F3B72 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					05629B4D19D1693D001CE7D2 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					05629B5619D169A9001CE7D2 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 0513827019D16421006F3B72 /* Build configuration list for PBXProject "KCTouchableLabel" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0513826C19D16421006F3B72;
+			productRefGroup = 0513827619D16421006F3B72 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0513827419D16421006F3B72 /* KCTouchableLabel */,
+				05629B4D19D1693D001CE7D2 /* Install */,
+				05629B5619D169A9001CE7D2 /* KCTouchableLabelTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05629B5519D169A9001CE7D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05629B6519D169A9001CE7D2 /* Main.storyboard in Resources */,
+				05629B6A19D169A9001CE7D2 /* LaunchScreen.xib in Resources */,
+				05629B6719D169A9001CE7D2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0513827119D16421006F3B72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0513827B19D16421006F3B72 /* KCTouchableLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05629B5319D169A9001CE7D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05629B6219D169A9001CE7D2 /* ViewController.m in Sources */,
+				05629B5F19D169A9001CE7D2 /* AppDelegate.m in Sources */,
+				05629B5C19D169A9001CE7D2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05629B5219D16953001CE7D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0513827419D16421006F3B72 /* KCTouchableLabel */;
+			targetProxy = 05629B5119D16953001CE7D2 /* PBXContainerItemProxy */;
+		};
+		05629B7E19D169C0001CE7D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05629B4D19D1693D001CE7D2 /* Install */;
+			targetProxy = 05629B7D19D169C0001CE7D2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		05629B6319D169A9001CE7D2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05629B6419D169A9001CE7D2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05629B6819D169A9001CE7D2 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05629B6919D169A9001CE7D2 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0513828419D16421006F3B72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0513828519D16421006F3B72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0513828719D16421006F3B72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0513828819D16421006F3B72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		05629B4F19D1693D001CE7D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		05629B5019D1693D001CE7D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		05629B7819D169A9001CE7D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = KCTouchableLabelTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_LDFLAGS = (
+					"-lKCTouchableLabel",
+					"-lKiwiControl",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		05629B7919D169A9001CE7D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = KCTouchableLabelTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_LDFLAGS = (
+					"-lKCTouchableLabel",
+					"-lKiwiControl",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0513827019D16421006F3B72 /* Build configuration list for PBXProject "KCTouchableLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0513828419D16421006F3B72 /* Debug */,
+				0513828519D16421006F3B72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0513828619D16421006F3B72 /* Build configuration list for PBXNativeTarget "KCTouchableLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0513828719D16421006F3B72 /* Debug */,
+				0513828819D16421006F3B72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05629B4E19D1693D001CE7D2 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05629B4F19D1693D001CE7D2 /* Debug */,
+				05629B5019D1693D001CE7D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		05629B7719D169A9001CE7D2 /* Build configuration list for PBXNativeTarget "KCTouchableLabelTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05629B7819D169A9001CE7D2 /* Debug */,
+				05629B7919D169A9001CE7D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0513826D19D16421006F3B72 /* Project object */;
+}
