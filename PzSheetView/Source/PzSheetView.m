@@ -16,6 +16,11 @@
 
 @implementation PzSheetView
 
++ (NSUInteger) maxRowNum
+{
+	return [PzSheetDataSource maxRowNum] ;
+}
+
 - (instancetype) initWithCoder:(NSCoder *) decoder
 {
 	if ((self = [super initWithCoder:decoder]) != nil){
@@ -87,9 +92,9 @@
 	[dataSource deleteSelectedStringInExpressionField] ;
 }
 
-- (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
+- (void) setLabelText:(NSString *) text forSlot:(NSInteger)index
 {
-	[dataSource setResultValue: value forSlot: index] ;
+	[dataSource setLabelText: text forSlot: index] ;
 }
 
 @end

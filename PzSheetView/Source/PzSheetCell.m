@@ -6,18 +6,10 @@
  */
 
 #import "PzSheetCell.h"
-#import "PzSheetValue.h"
 
 @implementation PzSheetCell
 
 @synthesize touchableLabel ;
 @synthesize expressionField ;
-
-- (void) observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change: (NSDictionary *)change context: (void *) context
-{
-	//NSLog(@"oVFKP") ;
-	PzSheetValue * value = [change objectForKey:NSKeyValueChangeNewKey] ;
-	touchableLabel.text = [value toString] ;
-}
 
 @end

@@ -14,6 +14,8 @@
 	PzSheetDataSource *		dataSource ;
 }
 
++ (NSUInteger) maxRowNum ;
+
 - (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
 - (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate ;
 
@@ -25,6 +27,6 @@
 
 - (void) insertStringToExpressionField: (NSString *) str ;
 - (void) deleteSelectedStringInExpressionField ;
-- (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index ;
+- (void) setLabelText: (NSString *) text forSlot: (NSInteger) index ;
 
 @end

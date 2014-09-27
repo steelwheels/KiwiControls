@@ -11,10 +11,31 @@
 #define MAX_ROW_NUM	128
 #define DO_DEBUG	0
 
-static inline NSString *
-resultKey(NSInteger keyid)
+@interface PzSheetElement : NSObject
+@property (strong, nonatomic) PzSheetCell *	cell ;
+- (instancetype) init ;
+@end
+
+@implementation PzSheetElement
+@synthesize cell ;
+- (instancetype) init
 {
-	return [[NSString alloc] initWithFormat: @"v%d", (int) keyid] ;
+	if((self = [super init]) != nil){
+		self.cell = nil ;
+	}
+	return self ;
+}
+@end
+
+static inline PzSheetCell *
+getSheetCell(NSArray * array, NSUInteger index)
+{
+	PzSheetElement * elm = [array objectAtIndex: index] ;
+	if(elm){
+		return elm.cell ;
+	} else {
+		return nil ;
+	}
 }
 
 @interface PzSheetDataSource (PzSheetExpressionFieldDelegate)
@@ -22,12 +43,22 @@ resultKey(NSInteger keyid)
 
 @implementation PzSheetDataSource
 
++ (NSUInteger) maxRowNum
+{
+	return MAX_ROW_NUM ;
+}
+
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
 		sheetViewTextFieldDelegate = nil ;
-		expressionTable = [[NSMutableArray alloc] initWithCapacity: MAX_ROW_NUM] ;
-		resultTable = [[NSMutableDictionary alloc] initWithCapacity: MAX_ROW_NUM] ;
+		cellArray = [[NSMutableArray alloc] initWithCapacity: 32] ;
+		
+		NSUInteger i ;
+		for(i=0 ; i<MAX_ROW_NUM ; i++){
+			PzSheetElement * newelm = [[PzSheetElement alloc] init] ;
+			[cellArray addObject: newelm] ;
+		}
 		currentSlot = 0 ;
 	}
 	return self ;
@@ -57,8 +88,11 @@ resultKey(NSInteger keyid)
 
 - (void) activateFirstResponder
 {
-	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
-	[currentfield becomeFirstResponder] ;
+	PzSheetCell * cell = getSheetCell(cellArray, currentSlot) ;
+	if(cell){
+		UITextField * currentfield = cell.expressionField ;
+		[currentfield becomeFirstResponder] ;
+	}
 }
 
 - (UITableViewCell *) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,9 +111,12 @@ resultKey(NSInteger keyid)
 	}
 	
 	/* Allocate new cell with button */
-	PzSheetCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
-	if(newcell == nil){
-		NSLog(@"No Cell found\n") ;
+	NSInteger row = indexPath.row ;
+	PzSheetElement * element = [cellArray objectAtIndex: row] ;
+	PzSheetCell * newcell = element.cell ;
+	if((newcell = getSheetCell(cellArray, row)) == nil){
+		newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
+		element.cell = newcell ;
 	}
 	
 	/* To suppress display keyboard, give dummy view
@@ -88,20 +125,16 @@ resultKey(NSInteger keyid)
 	UIView * dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
 	newcell.expressionField.inputView = dummyView; // Hide keyboard, but show blinking cursor
 
-	/* Add text field */
-	[expressionTable addObject: newcell.expressionField] ;
-	if(indexPath.row == 0){
+	/* Setup text field */
+	if(row == 0){
 		[newcell.expressionField becomeFirstResponder] ;
 	}
+	newcell.expressionField.tag = row ;
 	[newcell.expressionField setDelegate: self] ;
 	
-	/* Set delegate of the label */
-	newcell.touchableLabel.tag = indexPath.row ;
+	/* Setup label */
+	newcell.touchableLabel.tag = row ;
 	newcell.touchableLabel.touchableLabelDelegate = self ;
-	
-	/* Add observer for result value */
-	NSString * resultkey = resultKey(indexPath.row) ;
-	[resultTable addObserver: newcell forKeyPath: resultkey options: NSKeyValueObservingOptionNew context: nil] ;
 	
 	// return the cell
 	return newcell;
@@ -109,7 +142,8 @@ resultKey(NSInteger keyid)
 
 - (void) moveCursorForwardInExpressionField
 {
-	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	currentrange = currentfield.selectedTextRange;
 	if([currentrange.start isEqual: currentfield.endOfDocument]){
 		return;
@@ -130,7 +164,8 @@ resultKey(NSInteger keyid)
 
 - (void) moveCursorBackwardInExpressionField
 {
-	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	currentrange = currentfield.selectedTextRange;
 	if([currentrange.start isEqual: currentfield.beginningOfDocument]){
 		return;
@@ -152,25 +187,27 @@ resultKey(NSInteger keyid)
 - (void) selectNextExpressionField
 {
 	NSUInteger nextslot = currentSlot + 1 ;
-	if(nextslot >= [expressionTable count]){
+	if(nextslot >= [cellArray count]){
 		nextslot = 0 ;
 	}
-	UITextField * nextfield = [expressionTable objectAtIndex: nextslot] ;
+	PzSheetCell * nextcell = getSheetCell(cellArray, nextslot) ;
+	UITextField * nextfield = nextcell.expressionField ;
 	[nextfield becomeFirstResponder] ;
 	currentSlot = nextslot ;
 }
 
 - (void) insertStringToExpressionField: (NSString *) str
 {
-	//NSLog(@"%s : iSTEF %@ -> %u\n", __FILE__, str, (unsigned int) currentSlot) ;
-	UITextField * currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	PzSheetCell * currentcell = getSheetCell(cellArray, currentSlot) ;
+	UITextField * currentfield = currentcell.expressionField ;
 	[currentfield insertText: str] ;
 	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
 }
 
 - (void) deleteSelectedStringInExpressionField
 {
-	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	selrange = currentfield.selectedTextRange ;
 	if(selrange.empty){
 		/* delete previous character */
@@ -186,7 +223,8 @@ resultKey(NSInteger keyid)
 
 - (void) clearExpressionField
 {
-	UITextField *	currentfield = [expressionTable objectAtIndex: currentSlot] ;
+	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	UITextField *	currentfield = currentcell.expressionField ;
 	currentfield.text = @"" ;
 	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
 }
@@ -210,10 +248,15 @@ resultKey(NSInteger keyid)
 	/* Do nothing */
 }
 
-- (void) setResultValue: (PzSheetValue *) value forSlot: (NSInteger) index
+- (void) setLabelText: (NSString *) text forSlot: (NSInteger) index
 {
-	NSString * resultkey = resultKey(index) ;
-	[resultTable setValue: value forKey: resultkey] ;
+	PzSheetCell *	currentcell = getSheetCell(cellArray, index) ;
+	if(currentcell){
+		UILabel * label = currentcell.touchableLabel ;
+		[label performSelectorOnMainThread:@selector(setText:)
+					withObject:text
+					waitUntilDone:NO];
+	}
 }
 
 @end
@@ -222,16 +265,8 @@ resultKey(NSInteger keyid)
 
 - (BOOL) textFieldShouldBeginEditing: (UITextField *) textField
 {
-	NSUInteger i ;
-	NSUInteger maxnum = [expressionTable count] ;
-	for(i=0 ; i<maxnum ; i++){
-		UITextField * expfield = [expressionTable objectAtIndex: i] ;
-		if(expfield == textField){
-			currentSlot = i ;
-			return true ;
-		}
-	}
-	return false ;
+	currentSlot = textField.tag ;
+	return YES ;
 }
 
 - (BOOL)textField: (UITextField *) textfield shouldChangeCharactersInRange: (NSRange)range replacementString: (NSString *)string
