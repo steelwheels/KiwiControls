@@ -233,9 +233,9 @@ getSheetCell(NSArray * array, NSUInteger index)
 - (void)label: (KCTouchableLabel *) label touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
 {
 	if(sheetViewTouchableLabelDelegate){
-		CGPoint labelcenter = KSCenterPointInViewBounds(label) ;
-		CGPoint abspoint = KSAbsolutePointAtView(label, labelcenter) ;
-		[sheetViewTouchableLabelDelegate touchLabelAtIndex: label.tag atAbsolutePoint: abspoint] ;
+		CGSize labsize = label.bounds.size ;
+		CGPoint labelcenter = CGPointMake(labsize.width/2, labsize.height/2) ;
+		[sheetViewTouchableLabelDelegate touchLabelAtIndex: label.tag atAbsolutePoint: labelcenter] ;
 	} else {
 		NSLog(@"Label touched") ;
 	}
