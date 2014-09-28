@@ -41,3 +41,9 @@ KCUpdateViewSize(UIView * view, CGSize newsize)
 	view.center = CGPointMake(x, y) ;
 }
 
+CGPoint
+KSCenterPointInViewBounds(UIView * view) ;
+
+CGPoint
+KSAbsolutePointAtView(UIView * view, CGPoint centerpoint) ;
+

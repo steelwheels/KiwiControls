@@ -19,6 +19,7 @@
 		05C0AC4A199D01C600BD21C3 /* KCXIBUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */; };
 		05DBE164199BB818009356CB /* KiwiControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DBE163199BB818009356CB /* KiwiControl.h */; };
 		05DD637B19BB250E00F500F7 /* KCViewVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD637A19BB250E00F500F7 /* KCViewVisitor.m */; };
+		05E2997019D8224500D68F63 /* KCViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E2996F19D8224500D68F63 /* KCViewUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		05DBE16E199BB818009356CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05DD637919BB250E00F500F7 /* KCViewVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCViewVisitor.h; path = Source/KCViewVisitor.h; sourceTree = SOURCE_ROOT; };
 		05DD637A19BB250E00F500F7 /* KCViewVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCViewVisitor.m; path = Source/KCViewVisitor.m; sourceTree = SOURCE_ROOT; };
+		05E2996F19D8224500D68F63 /* KCViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCViewUtil.m; path = Source/KCViewUtil.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				05C0AC47199CFF5D00BD21C3 /* KCXIBUtil.h */,
 				05C0AC48199CFF5D00BD21C3 /* KCXIBUtil.m */,
 				058D5E9219BDF52A002AC953 /* KCViewUtil.h */,
+				05E2996F19D8224500D68F63 /* KCViewUtil.m */,
 				05DD637919BB250E00F500F7 /* KCViewVisitor.h */,
 				05DD637A19BB250E00F500F7 /* KCViewVisitor.m */,
 				05C0AC43199CFDEA00BD21C3 /* KCDebugUtil.h */,
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E2997019D8224500D68F63 /* KCViewUtil.m in Sources */,
 				05DD637B19BB250E00F500F7 /* KCViewVisitor.m in Sources */,
 				05B1137D199BBA3A00E9AC62 /* KCColorTable.m in Sources */,
 				05C0AC45199CFDEA00BD21C3 /* KCDebugUtil.m in Sources */,
