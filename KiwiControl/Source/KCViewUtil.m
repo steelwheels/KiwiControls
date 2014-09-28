@@ -22,9 +22,12 @@ KSAbsolutePointAtView(UIView * view, CGPoint centerpoint)
 {
 	CGPoint	result = centerpoint ;
 	for( ; view ; view = view.superview){
-		CGRect frame = view.frame ;
-		result.x += frame.origin.x ;
-		result.y += frame.origin.y ;
+		CGPoint bounds = view.bounds.origin ;
+		result.x += bounds.x ;
+		result.y += bounds.y ;
+		CGPoint frame = view.frame.origin ;
+		result.x += frame.x ;
+		result.y += frame.y ;
 	}
 	return result ;
 }
