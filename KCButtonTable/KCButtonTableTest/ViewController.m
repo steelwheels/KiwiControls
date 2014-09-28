@@ -19,21 +19,10 @@
 	NSArray * labels = @[@"item0", @"item1"] ;
 	[table displayButtonTableWithLabelNames: labels
 				   withDelegate: self
-				     withOrigin: CGPointMake(20, 20)
+				     //withOrigin: CGPointMake(20, 20)
+				     withOrigin: CGPointMake(240, 400)
+				     //withOrigin: CGPointMake(320, 480)
 			       atViewController: self] ;
-	
-#if 0
-	buttonTableView = [table buttonTableWithLabelNames: labels withDelegate: self withFrame: CGRectMake(40, 40, 200, 250)] ;
-
-	KCPrintView(buttonTableView) ;
-	buttonTableView.tag = 255;
-	buttonTableView.userInteractionEnabled = YES;
-	UITapGestureRecognizer * tapGesture ;
-	tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-							     action:@selector(closeAddView:)];
-	[buttonTableView addGestureRecognizer:tapGesture];
-	[self.view addSubview: buttonTableView] ;
-#endif
 }
 
 - (void)didReceiveMemoryWarning {

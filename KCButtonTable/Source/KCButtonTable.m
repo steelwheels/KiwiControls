@@ -44,7 +44,23 @@
 	[buttonTableView adjustSize] ;
 	
 	/* Adjust origin */
-	KCUpdateViewOrigin(buttonTableView, origin) ;
+	CGSize entiresize = controller.view.frame.size ;
+	CGSize tablesize  = buttonTableView.frame.size ;
+	CGFloat adjx, adjy ;
+	if(origin.x + tablesize.width > entiresize.width){
+		adjx = origin.x - (origin.x + tablesize.width - entiresize.width) ;
+	} else {
+		adjx = origin.x ;
+	}
+	if(origin.y + tablesize.height > entiresize.height){
+		adjy = origin.y - (origin.y + tablesize.height - entiresize.height) ;
+	} else {
+		adjy = origin.y ;
+	}
+	CGPoint adjorigin = {.x=adjx, .y=adjy} ;
+	
+	/* Adjust origin */
+	KCUpdateViewOrigin(buttonTableView, adjorigin) ;
 	
 	/* Add background into main window */
 	[controller.view addSubview: backgroundView] ;

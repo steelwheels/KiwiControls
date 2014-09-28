@@ -73,7 +73,6 @@
 		maxwidth  =  MAX(maxwidth, cellbounds.size.width) ;
 		maxheight += cellbounds.size.height ;
 	}
-	NSLog(@"table maxx: %lf, maxy: %lf\n", maxwidth, maxheight) ;
 	CGSize maxsize = CGSizeMake(maxwidth+14.0, maxheight+14.0) ;
 	KCUpdateViewSize(self, maxsize) ;
 }
