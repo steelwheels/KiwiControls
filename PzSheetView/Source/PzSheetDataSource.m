@@ -7,6 +7,7 @@
 
 #import "PzSheetDataSource.h"
 #import "PzSheetCell.h"
+#import <KiwiControl/KiwiControl.h>
 
 #define MAX_ROW_NUM	128
 #define DO_DEBUG	0
@@ -232,7 +233,9 @@ getSheetCell(NSArray * array, NSUInteger index)
 - (void)label: (KCTouchableLabel *) label touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
 {
 	if(sheetViewTouchableLabelDelegate){
-		[sheetViewTouchableLabelDelegate touchLabelAtIndex: label.tag] ;
+		CGPoint labelcenter = KSCenterPointInViewBounds(label) ;
+		CGPoint abspoint = KSAbsolutePointAtView(label, labelcenter) ;
+		[sheetViewTouchableLabelDelegate touchLabelAtIndex: label.tag atAbsolutePoint: abspoint] ;
 	} else {
 		NSLog(@"Label touched") ;
 	}

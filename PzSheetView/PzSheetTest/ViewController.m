@@ -44,9 +44,9 @@
 	NSLog(@"ViewController: Enter \"%@\" at Index %u\n", text, (unsigned int) index) ;
 }
 
-- (void) touchLabelAtIndex:(NSUInteger)index
+- (void) touchLabelAtIndex:(NSUInteger) index atAbsolutePoint: (CGPoint) point
 {
-	NSLog(@"TouchLabel at %u", (unsigned int) index) ;
+	NSLog(@"TouchLabel at %u (x:%lf, y:%lf)", (unsigned int) index, point.x, point.y) ;
 }
 
 @end

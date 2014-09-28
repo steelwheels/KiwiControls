@@ -13,7 +13,7 @@
 @end
 
 @protocol PzSheetViewTouchLabelDelegate <NSObject>
-- (void) touchLabelAtIndex: (NSUInteger) index ;
+- (void) touchLabelAtIndex: (NSUInteger) index atAbsolutePoint: (CGPoint) point ;
 @end
 
 @interface PzSheetDataSource : NSObject <UITableViewDataSource, UITextFieldDelegate, KCTouchableLabelDelegate>
