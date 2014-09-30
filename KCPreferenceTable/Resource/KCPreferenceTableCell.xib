@@ -15,17 +15,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Label" translatesAutoresizingMaskIntoConstraints="NO" id="gxw-JT-jHX">
-                        <rect key="frame" x="8" y="8" width="304" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gxw-JT-jHX" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ErO-F7-bNv"/>
-                    <constraint firstItem="gxw-JT-jHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Evr-S2-va2"/>
-                    <constraint firstItem="gxw-JT-jHX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Hor-L8-B1Y"/>
-                    <constraint firstItem="gxw-JT-jHX" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="rjk-VR-zB2"/>
+                    <constraint firstItem="gxw-JT-jHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="7HM-0Z-xJu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gxw-JT-jHX" secondAttribute="trailing" constant="-8" id="IVp-9s-cOs"/>
+                    <constraint firstItem="gxw-JT-jHX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="YCP-lh-swg"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gxw-JT-jHX" secondAttribute="bottom" constant="-8" id="jaM-ms-HNb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

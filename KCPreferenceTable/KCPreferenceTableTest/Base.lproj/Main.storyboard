@@ -59,14 +59,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-JO-yDX" customClass="KCPreferenceTable">
-                                <rect key="frame" x="16" y="64" width="288" height="484"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pla-nl-Ooa">
-                                <rect key="frame" x="16" y="20" width="288" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="y4C-NW-oem"/>
+                                    <constraint firstAttribute="height" constant="44" id="t57-ZD-GCk"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Second View" id="Sfs-K4-gdz">
@@ -78,16 +74,20 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPZ-JO-yDX" customClass="KCPreferenceTable">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="trailing" secondItem="98E-cQ-aAX" secondAttribute="trailingMargin" id="G75-mi-Szg"/>
-                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="top" secondItem="pla-nl-Ooa" secondAttribute="bottom" id="Xif-7n-4Lu"/>
-                            <constraint firstItem="pla-nl-Ooa" firstAttribute="trailing" secondItem="98E-cQ-aAX" secondAttribute="trailingMargin" id="Xx8-dN-l8C"/>
-                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="leading" secondItem="98E-cQ-aAX" secondAttribute="leadingMargin" id="eZF-9X-oqw"/>
-                            <constraint firstItem="pla-nl-Ooa" firstAttribute="top" secondItem="Rdi-hl-cCq" secondAttribute="bottom" id="icx-wF-cde"/>
-                            <constraint firstItem="tBg-W5-Bry" firstAttribute="top" secondItem="KPZ-JO-yDX" secondAttribute="bottom" constant="20" id="knk-Xk-YDW"/>
-                            <constraint firstItem="pla-nl-Ooa" firstAttribute="leading" secondItem="98E-cQ-aAX" secondAttribute="leadingMargin" id="tkQ-Ym-Izd"/>
+                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="leading" secondItem="98E-cQ-aAX" secondAttribute="leadingMargin" constant="-16" id="0hq-fy-XB4"/>
+                            <constraint firstItem="pla-nl-Ooa" firstAttribute="top" secondItem="Rdi-hl-cCq" secondAttribute="bottom" id="2rc-js-DZe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KPZ-JO-yDX" secondAttribute="trailing" constant="-16" id="IZx-Wa-JnB"/>
+                            <constraint firstItem="tBg-W5-Bry" firstAttribute="top" secondItem="KPZ-JO-yDX" secondAttribute="bottom" id="NTW-af-i5C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pla-nl-Ooa" secondAttribute="trailing" constant="-16" id="PPX-Kw-6rE"/>
+                            <constraint firstItem="pla-nl-Ooa" firstAttribute="leading" secondItem="98E-cQ-aAX" secondAttribute="leadingMargin" constant="-16" id="TF2-BI-Qdz"/>
+                            <constraint firstItem="KPZ-JO-yDX" firstAttribute="top" secondItem="pla-nl-Ooa" secondAttribute="bottom" id="rqo-gZ-MUO"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

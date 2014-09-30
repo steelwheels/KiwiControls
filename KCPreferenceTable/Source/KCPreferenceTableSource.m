@@ -93,7 +93,7 @@ enum KCPreferenceTableSection {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-	return 0.0 ;
+	return 0.1 ;
 }
 
 @end
@@ -133,14 +133,14 @@ enum KCPreferenceTableSection {
 
 - (CGSize) adjustSize: (NSString *) title
 {
-	CGSize		maxSize = CGSizeMake(200, CGFLOAT_MAX);
+	CGSize		maxSize = CGSizeMake(600, CGFLOAT_MAX);
 	NSDictionary *	attr = @{NSFontAttributeName: [UIFont systemFontOfSize: 14.0]};
 	CGRect newbounds = [title boundingRectWithSize:maxSize
 					       options:NSStringDrawingUsesLineFragmentOrigin
 					    attributes:attr
 					       context:nil] ;
 	CGSize result = CGSizeMake(ceilf(newbounds.size.width  + 16.0),
-				   ceilf(newbounds.size.height + 12.0)) ;
+				   ceilf(newbounds.size.height + 16.0)) ;
 	return result  ;
 }
 
