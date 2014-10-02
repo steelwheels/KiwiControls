@@ -63,10 +63,6 @@
 			NSArray * cells = [tenKeyCollectionView visibleCells] ;
 			[tenKeyDataSource updateCells: cells withState: PzTenKeyOpState] ;
 		} break ;
-		case PzTenKeyCode_FuncState: {
-			NSArray * cells = [tenKeyCollectionView visibleCells] ;
-			[tenKeyDataSource updateCells: cells withState: PzTenKeyFuncState] ;
-		} break ;
 		default: {
 			if(delegate){
 				[delegate pressKey: code] ;

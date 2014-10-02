@@ -21,7 +21,7 @@ static const struct PzTenKeyInfo
 s_tenkey_table[PzTenKeyMaxStateNum][PzTenKeyRowNum * PzTenKeyColmunNum] = {
  /* PzTenKeyDecState */
  {
-  S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncState, "Func"),	S(Del, "⌫"),
+  S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncSel, "Func"),	S(Del, "⌫"),
   S(7, "7"),		S(8, "8"),		S(9, "9"),		S(LeftPar, "("),	S(RightPar, ")"),
   S(4, "4"),		S(5, "5"),		S(6, "6"),		S(Mul, "*"),		S(Div, "/"),
   S(1, "1"),		S(2, "2"),		S(3, "3"),		S(Add, "+"),		S(Sub, "-"),
@@ -29,7 +29,7 @@ s_tenkey_table[PzTenKeyMaxStateNum][PzTenKeyRowNum * PzTenKeyColmunNum] = {
  },
  /* PzTenKeyHexState */
  {
-  S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncState, "Func"),	S(Del, "⌫"),
+  S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncSel, "Func"),	S(Del, "⌫"),
   S(7, "7"),		S(8, "8"),		S(9, "9"),		S(E, "E"),		S(F, "F"),
   S(4, "4"),		S(5, "5"),		S(6, "6"),		S(C, "C"),		S(D, "D"),
   S(1, "1"),		S(2, "2"),		S(3, "3"),		S(A, "A"),		S(B, "B"),
@@ -37,19 +37,11 @@ s_tenkey_table[PzTenKeyMaxStateNum][PzTenKeyRowNum * PzTenKeyColmunNum] = {
  },
  /* PzTenKeyOpState */
  {
-  S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncState, "Func"),	S(Del, "⌫"),
+  S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncSel, "Func"),	S(Del, "⌫"),
   S(7, "7"),		S(8, "8"),		S(9, "9"),		S(LessThan, "<"),	S(GreaterThan, ">"),
-  S(4, "4"),		S(5, "5"),		S(6, "6"),		S(Xor, "^"),		S(BitNot, "~"),
+  S(4, "4"),		S(5, "5"),		S(6, "6"),		S(LogNot, "!"),		S(BitNot, "~"),
   S(1, "1"),		S(2, "2"),		S(3, "3"),		S(And, "&"),		S(Or, "|"),
   S(0, "0"),		S(Equal, "="),		S(Ret, "⏎"),		S(MoveLeft, "◀︎"),	S(MoveRight, "▶︎")
- },
- /* PzTenKeyFuncState */
- {
-  S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncState, "Func"),	S(Del, "⌫"),
-  S(7, "7"),		S(8, "8"),		S(9, "9"),		S(LeftPar, "("),	S(RightPar, ")"),
-  S(4, "4"),		S(5, "5"),		S(6, "6"),		S(Mul, "*"),		S(Div, "/"),
-  S(1, "1"),		S(2, "2"),		S(3, "3"),		S(Add, "+"),		S(Sub, "-"),
-  S(0, "0"),		S(Dot, "."),		S(Ret, "⏎"),		S(MoveLeft, "◀︎"),	S(MoveRight, "▶︎")
  }
 } ;
 
@@ -186,9 +178,6 @@ updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * backgrou
 		case PzTenKeyCode_OpState: {
 			isbold = (state == PzTenKeyOpState) ;
 		} break ;
-		case PzTenKeyCode_FuncState: {
-			isbold = (state == PzTenKeyFuncState) ;
-		} break ;
 		default: {
 			isbold = false ;
 		} break ;
@@ -207,7 +196,6 @@ updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * backgrou
 		case PzTenKeyMask_Normal:	backcol = ctable.gainsboro ;	break ;
 		case PzTenKeyMask_Edit:		backcol = ctable.darkOrange1 ;	break ;
 		case PzTenKeyMask_Operator:	backcol = ctable.darkOrange1 ;	break ;
-		case PzTenKeyMask_Function:	backcol = ctable.darkOrange1 ;	break ;
 		default:			backcol = ctable.gainsboro ;	break ;
 	}
 	background.opaque = NO ;

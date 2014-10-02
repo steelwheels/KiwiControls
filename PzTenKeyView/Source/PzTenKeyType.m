@@ -18,11 +18,11 @@ PzTenKeyTypeToString(enum PzTenKeyCode code)
 		case PzTenKeyCode_DecState:
 		case PzTenKeyCode_HexState:
 		case PzTenKeyCode_OpState:
-		case PzTenKeyCode_FuncState:
 		case PzTenKeyCode_Ret:
 		case PzTenKeyCode_Del:
 		case PzTenKeyCode_MoveLeft:
-		case PzTenKeyCode_MoveRight: {
+		case PzTenKeyCode_MoveRight:
+		case PzTenKeyCode_FuncSel: {
 			/* Do nothing */
 		} break ;
 		case PzTenKeyCode_0: {
