@@ -58,8 +58,19 @@ enum PzTenKeyCode {
 	PzTenKeyCode_Mul		= PzTenKeyMask_Operator	| 0x0002,
 	PzTenKeyCode_Div		= PzTenKeyMask_Operator	| 0x0003,
 	PzTenKeyCode_Mod		= PzTenKeyMask_Operator	| 0x0004,
-	PzTenKeyCode_LeftPar		= PzTenKeyMask_Operator	| 0x0005,
-	PzTenKeyCode_RightPar		= PzTenKeyMask_Operator	| 0x0006,
+	
+	PzTenKeyCode_And		= PzTenKeyMask_Operator	| 0x0010,
+	PzTenKeyCode_Or			= PzTenKeyMask_Operator	| 0x0011,
+	PzTenKeyCode_Xor		= PzTenKeyMask_Operator	| 0x0012,
+	PzTenKeyCode_BitNot		= PzTenKeyMask_Operator	| 0x0013,
+	PzTenKeyCode_LogNot		= PzTenKeyMask_Operator	| 0x0014,
+	
+	PzTenKeyCode_Equal		= PzTenKeyMask_Operator	| 0x0020,
+	PzTenKeyCode_LessThan		= PzTenKeyMask_Operator	| 0x0021,
+	PzTenKeyCode_GreaterThan	= PzTenKeyMask_Operator	| 0x0022,
+	
+	PzTenKeyCode_LeftPar		= PzTenKeyMask_Operator	| 0x0030,
+	PzTenKeyCode_RightPar		= PzTenKeyMask_Operator	| 0x0031,
 } ;
 
 NSString *

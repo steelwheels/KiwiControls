@@ -10,6 +10,9 @@
 NSString *
 PzTenKeyTypeToString(enum PzTenKeyCode code)
 {
+#	define CASE(OP, STR) \
+	case OP: result = STR ;	break ;
+	
 	NSString *	result = nil ;
 	switch(code){
 		case PzTenKeyCode_DecState:
@@ -91,12 +94,20 @@ PzTenKeyTypeToString(enum PzTenKeyCode code)
 		case PzTenKeyCode_Mod: {
 			result = @"%" ;
 		} break ;
-		case PzTenKeyCode_LeftPar: {
-			result = @"(" ;
-		} break ;
-		case PzTenKeyCode_RightPar: {
-			result = @")" ;
-		} break ;
+			
+		CASE(PzTenKeyCode_And,		@"&")
+		CASE(PzTenKeyCode_Or,		@"|")
+		CASE(PzTenKeyCode_Xor,		@"^")
+		CASE(PzTenKeyCode_BitNot,	@"~")
+		CASE(PzTenKeyCode_LogNot,	@"!")
+			
+		CASE(PzTenKeyCode_Equal,	@"=")
+		CASE(PzTenKeyCode_LessThan,	@"<")
+		CASE(PzTenKeyCode_GreaterThan,	@">")
+			
+		CASE(PzTenKeyCode_LeftPar,	@"(")
+		CASE(PzTenKeyCode_RightPar,	@")")
 	}
+#	undef CASE
 	return result ;
 }
