@@ -571,7 +571,10 @@ static KCColorTable * s_color_table = nil ;
 
 + (void) initialize
 {
-	s_color_table = [[KCColorTable alloc] init] ;
+	static dispatch_once_t once;
+	dispatch_once( &once, ^{
+		s_color_table = [[KCColorTable alloc] init] ;
+	});
 }
 
 + (KCColorTable *) defaultColorTable

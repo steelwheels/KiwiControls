@@ -15,9 +15,10 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 + (KCPreference *) sharedPreference
 {
 	static KCPreference * sharedPreference = nil ;
-	if(sharedPreference == nil){
+	static dispatch_once_t once;
+	dispatch_once( &once, ^{
 		sharedPreference = [[KCPreference alloc] init] ;
-	}
+	});
 	return sharedPreference ;
 }
 
