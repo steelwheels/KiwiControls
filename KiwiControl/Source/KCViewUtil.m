@@ -8,7 +8,7 @@
 #import "KCViewUtil.h"
 
 CGPoint
-KSCenterPointInViewBounds(UIView * view)
+KCCenterPointInViewBounds(UIView * view)
 {
 	CGRect	bounds = view.bounds ;
 	CGPoint	result = bounds.origin ;
@@ -18,7 +18,7 @@ KSCenterPointInViewBounds(UIView * view)
 }
 
 CGPoint
-KSAbsolutePointAtView(UIView * view, CGPoint centerpoint)
+KCAbsolutePointAtView(UIView * view, CGPoint centerpoint)
 {
 	CGPoint	result = centerpoint ;
 	for( ; view ; view = view.superview){
