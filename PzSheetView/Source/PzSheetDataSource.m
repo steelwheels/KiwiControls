@@ -52,6 +52,7 @@ getSheetCell(NSArray * array, NSUInteger index)
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
+		didNibPrepared = NO ;
 		sheetViewTextFieldDelegate = nil ;
 		cellArray = [[NSMutableArray alloc] initWithCapacity: 32] ;
 		
@@ -100,15 +101,14 @@ getSheetCell(NSArray * array, NSUInteger index)
 {
 	if(DO_DEBUG){ NSLog(@"collectionView:cellForItemAtIndexPath\n") ; }
 	
-	static BOOL is1stcalling = true ;
-	if(is1stcalling){
+	if(didNibPrepared == NO){
 		UINib * nib = [UINib nibWithNibName: @"PzSheetCell" bundle:nil];
 		if(nib){
 			[tableView registerNib: nib forCellReuseIdentifier: @"Key"];
 		} else {
 			NSLog(@"Failed to load nib\n") ;
 		}
-		is1stcalling = false ;
+		didNibPrepared = YES ;
 	}
 	
 	/* Allocate new cell with button */

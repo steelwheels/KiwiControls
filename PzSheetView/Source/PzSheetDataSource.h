@@ -18,6 +18,8 @@
 
 @interface PzSheetDataSource : NSObject <UITableViewDataSource, UITextFieldDelegate, KCTouchableLabelDelegate>
 {
+	BOOL					didNibPrepared ;
+	
 	id <PzSheetViewTextFieldDelegate>	sheetViewTextFieldDelegate ;
 	id <PzSheetViewTouchLabelDelegate>	sheetViewTouchableLabelDelegate ;
 	
