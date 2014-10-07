@@ -8,5 +8,10 @@
 #import <UIKit/UIKit.h>
 
 @interface KCPreferenceTableSource : NSObject <UITableViewDataSource, UITableViewDelegate>
+{
+	BOOL	didNibPrepared ;
+}
+
+- (instancetype) init ;
 
 @end

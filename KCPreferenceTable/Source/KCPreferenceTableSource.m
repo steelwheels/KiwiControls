@@ -26,6 +26,14 @@ enum KCPreferenceTableSection {
 
 @implementation KCPreferenceTableSource
 
+- (instancetype) init
+{
+	if((self = [super init]) != nil){
+		didNibPrepared = NO ;
+	}
+	return self ;
+}
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return KCNumberOfTableSections ;
@@ -62,11 +70,10 @@ enum KCPreferenceTableSection {
 
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath
 {
-	static BOOL s_is1st = YES ;
-	if(s_is1st){
+	if(didNibPrepared == NO){
 		UINib *nib = [UINib nibWithNibName: @"KCPreferenceTableCell" bundle:nil];
 		[tableView registerNib:nib forCellReuseIdentifier: @"CustomCell"];
-		s_is1st = NO ;
+		didNibPrepared = YES ;
 	}
 	
 	/* Allocate cell */
