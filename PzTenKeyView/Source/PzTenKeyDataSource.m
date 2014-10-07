@@ -59,6 +59,7 @@ tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
 - (instancetype) initWithDelegate: (id <PzTenKeyClicking>) delegate ;
 {
 	if((self = [super init]) != nil){
+		didNibPrepared = NO ;
 		if(DO_DEBUG){ NSLog(@"init\n") ; }
 		clickDelegate = delegate ;
 		tenKeyState = PzTenKeyDecState ;
@@ -83,11 +84,10 @@ tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
 {
 	if(DO_DEBUG){ NSLog(@"collectionView:cellForItemAtIndexPath\n") ; }
 	
-	static BOOL is1stcalling = true ;
-	if(is1stcalling){
+	if(didNibPrepared == NO){
 		UINib * nib = [UINib nibWithNibName: @"PzTenKeyCell" bundle:nil];
 		[view registerNib: nib forCellWithReuseIdentifier: @"Key"] ;
-		is1stcalling = false ;
+		didNibPrepared = YES ;
 	}
 	
 	/* Allocate new cell with button */

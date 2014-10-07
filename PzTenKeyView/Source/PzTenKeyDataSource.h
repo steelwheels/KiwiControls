@@ -17,6 +17,7 @@
 
 @interface PzTenKeyDataSource : NSObject <UICollectionViewDataSource>
 {
+	BOOL			didNibPrepared ;
 	id <PzTenKeyClicking>	clickDelegate ;
 	enum PzTenKeyState	tenKeyState ;
 }
