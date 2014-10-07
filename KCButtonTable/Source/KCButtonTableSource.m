@@ -23,6 +23,7 @@
 	if((self = [super init]) != nil){
 		buttonTableDelegate = nil ;
 		labelNames = @[@"item0"] ;
+		didNibLoaded = NO ;
 	}
 	return self ;
 }
@@ -45,11 +46,10 @@
 
 - (UITableViewCell *) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static BOOL s_is1st = YES ;
-	if(s_is1st){
+	if(didNibLoaded == NO){
 		UINib *nib = [UINib nibWithNibName: @"KCButtonTableCell" bundle:nil];
 		[tableView registerNib:nib forCellReuseIdentifier: @"CustomCell"];
-		s_is1st = NO ;
+		didNibLoaded = YES ;
 	}
 	
 	/* Set index */

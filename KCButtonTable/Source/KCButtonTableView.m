@@ -61,7 +61,7 @@
 {
 	self.layer.borderWidth  = 2.0f;
 	self.layer.borderColor  = [[UIColor grayColor] CGColor];
-	self.layer.cornerRadius = 10.0f;
+	self.layer.cornerRadius = 0.1f;
 }
 
 - (void) adjustSize
