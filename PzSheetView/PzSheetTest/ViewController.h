@@ -17,6 +17,8 @@
 	__weak IBOutlet UIButton *rightButton;
 	__weak IBOutlet UIButton *enterButton;
 	__weak IBOutlet UIButton *returnButton;
+	__weak IBOutlet UIButton *clearButton;
+	__weak IBOutlet UIButton *allClearButton;
 }
 
 @end

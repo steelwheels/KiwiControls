@@ -115,7 +115,7 @@ getSheetCell(NSArray * array, NSUInteger index)
 	NSInteger row = indexPath.row ;
 	PzSheetElement * element = [cellArray objectAtIndex: row] ;
 	PzSheetCell * newcell = element.cell ;
-	if((newcell = getSheetCell(cellArray, row)) == nil){
+	if(newcell == nil){
 		newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
 		element.cell = newcell ;
 	}
@@ -185,6 +185,28 @@ getSheetCell(NSArray * array, NSUInteger index)
 	currentfield.selectedTextRange = newrange;
 }
 
+- (void) clearCurrentField
+{
+	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	UITextField *	currentfield = currentcell.expressionField ;
+	currentfield.text = @"" ;
+	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
+}
+
+- (void) clearAllFields
+{
+	NSUInteger i, count = [cellArray count] ;
+	for(i=0 ; i<count ; i++){
+		PzSheetElement * element = [cellArray objectAtIndex: i] ;
+		PzSheetCell * cell = element.cell ;
+		if(cell){
+			UITextField * field = cell.expressionField ;
+			field.text = @"" ;
+			[sheetViewTextFieldDelegate enterText: field.text atIndex: i] ;
+		}
+	}
+}
+	
 - (void) selectNextExpressionField
 {
 	NSUInteger nextslot = currentSlot + 1 ;
@@ -219,14 +241,6 @@ getSheetCell(NSArray * array, NSUInteger index)
 		UITextRange * newrange = [currentfield textRangeFromPosition: pos toPosition: pos] ;
 		[currentfield setSelectedTextRange: newrange] ;
 	}
-	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
-}
-
-- (void) clearExpressionField
-{
-	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
-	UITextField *	currentfield = currentcell.expressionField ;
-	currentfield.text = @"" ;
 	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
 }
 

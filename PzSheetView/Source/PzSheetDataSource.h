@@ -40,11 +40,12 @@
 
 - (void) moveCursorForwardInExpressionField ;
 - (void) moveCursorBackwardInExpressionField ;
+- (void) clearCurrentField ;
+- (void) clearAllFields ;
 - (void) selectNextExpressionField ;
 
 - (void) insertStringToExpressionField: (NSString *) str ;
 - (void) deleteSelectedStringInExpressionField ;
-- (void) clearExpressionField ;
 
 - (void) setLabelText: (NSString *) text forSlot: (NSInteger) index ;
 

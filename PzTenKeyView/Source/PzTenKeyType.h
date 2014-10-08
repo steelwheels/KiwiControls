@@ -30,6 +30,8 @@ enum PzTenKeyCode {
 	PzTenKeyCode_Del		= PzTenKeyMask_Edit	| 0x0001,
 	PzTenKeyCode_MoveLeft		= PzTenKeyMask_Edit	| 0x0002,
 	PzTenKeyCode_MoveRight		= PzTenKeyMask_Edit	| 0x0003,
+	PzTenKeyCode_Clear		= PzTenKeyMask_Edit	| 0x0004,
+	PzTenKeyCode_AllClear		= PzTenKeyMask_Edit	| 0x0005,
 	
 	PzTenKeyCode_0			= PzTenKeyMask_Normal	| 0x0000,
 	PzTenKeyCode_1			= PzTenKeyMask_Normal	| 0x0001,
@@ -56,20 +58,26 @@ enum PzTenKeyCode {
 	PzTenKeyCode_Div		= PzTenKeyMask_Operator	| 0x0003,
 	PzTenKeyCode_Mod		= PzTenKeyMask_Operator	| 0x0004,
 	
-	PzTenKeyCode_And		= PzTenKeyMask_Operator	| 0x0010,
-	PzTenKeyCode_Or			= PzTenKeyMask_Operator	| 0x0011,
-	PzTenKeyCode_Xor		= PzTenKeyMask_Operator	| 0x0012,
+	PzTenKeyCode_BitAnd		= PzTenKeyMask_Operator	| 0x0010,
+	PzTenKeyCode_BitOr		= PzTenKeyMask_Operator	| 0x0011,
+	PzTenKeyCode_BitXor		= PzTenKeyMask_Operator	| 0x0012,
 	PzTenKeyCode_BitNot		= PzTenKeyMask_Operator	| 0x0013,
-	PzTenKeyCode_LogNot		= PzTenKeyMask_Operator	| 0x0014,
+	PzTenKeyCode_LogAnd		= PzTenKeyMask_Operator	| 0x0014,
+	PzTenKeyCode_LogOr		= PzTenKeyMask_Operator	| 0x0015,
+	PzTenKeyCode_LogNot		= PzTenKeyMask_Operator	| 0x0016,
 	
 	PzTenKeyCode_Equal		= PzTenKeyMask_Operator	| 0x0020,
-	PzTenKeyCode_LessThan		= PzTenKeyMask_Operator	| 0x0021,
-	PzTenKeyCode_GreaterThan	= PzTenKeyMask_Operator	| 0x0022,
+	PzTenKeyCode_NotEqu		= PzTenKeyMask_Operator	| 0x0021,
+	PzTenKeyCode_LessThan		= PzTenKeyMask_Operator	| 0x0022,
+	PzTenKeyCode_GreaterThan	= PzTenKeyMask_Operator	| 0x0023,
+	PzTenKeyCode_LessEqu		= PzTenKeyMask_Operator	| 0x0024,
+	PzTenKeyCode_GreateEqu		= PzTenKeyMask_Operator	| 0x0025,
 	
 	PzTenKeyCode_LeftPar		= PzTenKeyMask_Operator	| 0x0030,
 	PzTenKeyCode_RightPar		= PzTenKeyMask_Operator	| 0x0031,
+	PzTenKeyCode_Comma		= PzTenKeyMask_Operator	| 0x0032,
 	
-	PzTenKeyCode_FuncSel		= PzTenKeyMask_Operator	| 0x0032
+	PzTenKeyCode_FuncSel		= PzTenKeyMask_Operator	| 0x0033
 } ;
 
 NSString *

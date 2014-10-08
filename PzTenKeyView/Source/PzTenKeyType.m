@@ -22,7 +22,9 @@ PzTenKeyTypeToString(enum PzTenKeyCode code)
 		case PzTenKeyCode_Del:
 		case PzTenKeyCode_MoveLeft:
 		case PzTenKeyCode_MoveRight:
-		case PzTenKeyCode_FuncSel: {
+		case PzTenKeyCode_FuncSel:
+		case PzTenKeyCode_Clear:
+		case PzTenKeyCode_AllClear: {
 			/* Do nothing */
 		} break ;
 		case PzTenKeyCode_0: {
@@ -79,34 +81,31 @@ PzTenKeyTypeToString(enum PzTenKeyCode code)
 		case PzTenKeyCode_Dot: {
 			result = @"." ;
 		} break ;
-		case PzTenKeyCode_Add: {
-			result = @"+" ;
-		} break ;
-		case PzTenKeyCode_Sub: {
-			result = @"-" ;
-		} break ;
-		case PzTenKeyCode_Mul: {
-			result = @"*" ;
-		} break ;
-		case PzTenKeyCode_Div: {
-			result = @"/" ;
-		} break ;
-		case PzTenKeyCode_Mod: {
-			result = @"%" ;
-		} break ;
+
+		CASE(PzTenKeyCode_Add,		@"+")
+		CASE(PzTenKeyCode_Sub,		@"-")
+		CASE(PzTenKeyCode_Mul,		@"*")
+		CASE(PzTenKeyCode_Div,		@"/")
+		CASE(PzTenKeyCode_Mod,		@"%")
 			
-		CASE(PzTenKeyCode_And,		@"&")
-		CASE(PzTenKeyCode_Or,		@"|")
-		CASE(PzTenKeyCode_Xor,		@"^")
+		CASE(PzTenKeyCode_BitAnd,	@"&")
+		CASE(PzTenKeyCode_BitOr,	@"|")
+		CASE(PzTenKeyCode_BitXor,	@"^")
 		CASE(PzTenKeyCode_BitNot,	@"~")
+		CASE(PzTenKeyCode_LogAnd,	@"&&")
+		CASE(PzTenKeyCode_LogOr,	@"||")
 		CASE(PzTenKeyCode_LogNot,	@"!")
 			
-		CASE(PzTenKeyCode_Equal,	@"=")
+		CASE(PzTenKeyCode_Equal,	@"==")
+		CASE(PzTenKeyCode_NotEqu,	@"!=")
 		CASE(PzTenKeyCode_LessThan,	@"<")
 		CASE(PzTenKeyCode_GreaterThan,	@">")
+		CASE(PzTenKeyCode_LessEqu,	@"<=")
+		CASE(PzTenKeyCode_GreateEqu,	@">=")
 			
 		CASE(PzTenKeyCode_LeftPar,	@"(")
 		CASE(PzTenKeyCode_RightPar,	@")")
+		CASE(PzTenKeyCode_Comma,	@",")
 	}
 #	undef CASE
 	return result ;

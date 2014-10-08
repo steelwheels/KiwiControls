@@ -17,6 +17,8 @@
 - (void) pressRightButton: (UIButton *) button ;
 - (void) pressEnterButton: (UIButton *) button ;
 - (void) pressReturnButton: (UIButton *) button ;
+- (void) pressClearButton: (UIButton *) button ;
+- (void) pressAllClearButton: (UIButton *) button ;
 @end
 
 @implementation ViewController
@@ -29,7 +31,9 @@
 	[rightButton  addTarget: self action: @selector(pressRightButton:)  forControlEvents: UIControlEventTouchUpInside] ;
 	[enterButton  addTarget: self action: @selector(pressEnterButton:)  forControlEvents: UIControlEventTouchUpInside] ;
 	[returnButton addTarget: self action: @selector(pressReturnButton:) forControlEvents: UIControlEventTouchUpInside] ;
-
+	[clearButton addTarget: self action: @selector(pressClearButton:) forControlEvents: UIControlEventTouchUpInside] ;
+	[allClearButton addTarget: self action: @selector(pressAllClearButton:) forControlEvents: UIControlEventTouchUpInside] ;
+	
 	[sheetView setTextFieldDelegate: self] ;
 	[sheetView setTouchableLabelDelegate: self] ;
 }
@@ -84,6 +88,16 @@
 {
 	//NSLog(@"pressReturnButton") ;
 	[sheetView selectNextExpressionField] ;
+}
+
+- (void) pressClearButton: (UIButton *) button
+{
+	[sheetView clearCurrentField] ;
+}
+
+- (void) pressAllClearButton: (UIButton *) button
+{
+	[sheetView clearAllFields] ;
 }
 
 @end

@@ -77,6 +77,16 @@
 	[dataSource moveCursorBackwardInExpressionField] ;
 }
 
+- (void) clearCurrentField
+{
+	[dataSource clearCurrentField] ;
+}
+
+- (void) clearAllFields
+{
+	[dataSource clearAllFields] ;
+}
+
 - (void) selectNextExpressionField
 {
 	[dataSource selectNextExpressionField] ;

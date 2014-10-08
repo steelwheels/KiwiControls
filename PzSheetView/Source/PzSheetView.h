@@ -24,6 +24,8 @@
 - (void) moveCursorForwardInExpressionField ;
 - (void) moveCursorBackwardInExpressionField ;
 - (void) selectNextExpressionField ;
+- (void) clearCurrentField ;
+- (void) clearAllFields ;
 
 - (void) insertStringToExpressionField: (NSString *) str ;
 - (void) deleteSelectedStringInExpressionField ;
