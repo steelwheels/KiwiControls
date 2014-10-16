@@ -24,7 +24,8 @@ PzTenKeyTypeToString(enum PzTenKeyCode code)
 		case PzTenKeyCode_MoveRight:
 		case PzTenKeyCode_FuncSel:
 		case PzTenKeyCode_Clear:
-		case PzTenKeyCode_AllClear: {
+		case PzTenKeyCode_AllClear:
+		case PzTenKeyCode_Nop: {
 			/* Do nothing */
 		} break ;
 		case PzTenKeyCode_0: {

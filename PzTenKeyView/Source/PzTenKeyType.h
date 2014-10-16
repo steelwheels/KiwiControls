@@ -51,6 +51,7 @@ enum PzTenKeyCode {
 	PzTenKeyCode_F			= PzTenKeyMask_Normal	| 0x000F,
 	PzTenKeyCode_0X			= PzTenKeyMask_Normal	| 0x0010,
 	PzTenKeyCode_Dot		= PzTenKeyMask_Normal	| 0x0011,
+	PzTenKeyCode_Nop		= PzTenKeyMask_Normal	| 0x0012,
 	
 	PzTenKeyCode_Add		= PzTenKeyMask_Operator	| 0x0000,
 	PzTenKeyCode_Sub		= PzTenKeyMask_Operator	| 0x0001,

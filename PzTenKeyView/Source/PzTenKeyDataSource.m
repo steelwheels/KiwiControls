@@ -39,9 +39,9 @@ s_tenkey_table[PzTenKeyMaxStateNum][PzTenKeyRowNum * PzTenKeyColmunNum] = {
  {
   S(DecState, "Dec"),	S(HexState, "Hex"),	S(OpState, "Op"),	S(FuncSel, "Func"),	S(Del, "⌫"),
   S(LogNot, "!"),	S(BitNot, "~"),		S(BitXor, "^"),		S(AllClear, "AC"),	S(Clear, "C"),
-  S(LogAnd, "&&"),	S(LogOr, "||"),		S(BitXor, "^"),		S(BitAnd, "&"),		S(BitOr, "|"),
-  S(LessThan, "<"),	S(LessEqu, "<="),	S(Equal, "=="),		S(GreateEqu, "<="),	S(GreaterThan, "<"),
-  S(NotEqu, "!="),	S(Comma, ","),		S(Ret, "⏎"),		S(MoveLeft, "◀︎"),	S(MoveRight, "▶︎")
+  S(LogAnd, "&&"),	S(LogOr, "||"),		S(NotEqu, "!="),	S(BitAnd, "&"),		S(BitOr, "|"),
+  S(LessThan, "<"),	S(LessEqu, "<="),	S(Equal, "=="),		S(GreateEqu, ">="),	S(GreaterThan, ">"),
+  S(Nop, ""),		S(Comma, ","),		S(Ret, "⏎"),		S(MoveLeft, "◀︎"),	S(MoveRight, "▶︎")
  }
 } ;
 
