@@ -22,4 +22,6 @@
 			       withOrigin: (CGPoint) origin
 			 atViewController: (UIViewController *) controller ;
 
+- (CGSize) frameSize ;
+
 @end
