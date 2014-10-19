@@ -22,6 +22,15 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 	return sharedPreference ;
 }
 
+- (instancetype) init
+{
+	if((self = [super init]) != nil){
+		defaultFont = [UIFont systemFontOfSize: 22.0] ;
+		defaultBoldFont = [UIFont boldSystemFontOfSize: 22.0];
+	}
+	return self ;
+}
+
 - (NSString *) applicationName
 {
 	NSString * apppath = [[NSBundle mainBundle] bundlePath] ;
@@ -74,9 +83,14 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 	return [[UIScreen mainScreen] applicationFrame] ;
 }
 
-- (UIFont *) menuFont
+- (UIFont *) defaultFont
 {
-	return [UIFont systemFontOfSize: 14.0] ;
+	return defaultFont ;
+}
+
+- (UIFont *) defaultBoldFont
+{
+	return defaultBoldFont ;
 }
 
 - (CGFloat) margin

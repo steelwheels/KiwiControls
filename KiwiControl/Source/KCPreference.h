@@ -8,8 +8,14 @@
 #import <UIKit/UIKit.h>
 
 @interface KCPreference : NSObject
+{
+	UIFont *	defaultFont ;
+	UIFont *	defaultBoldFont ;
+}
 
 + (KCPreference *) sharedPreference ;
+
+- (instancetype) init ;
 
 - (NSString *) applicationName ;
 - (NSString *) version ;
@@ -24,7 +30,9 @@
 
 - (CGRect) applicationFrame ;
 
-- (UIFont *) menuFont ;
+- (UIFont *) defaultFont ;
+- (UIFont *) defaultBoldFont ;
+
 - (CGFloat) margin ;
 
 - (UIColor *) foregroundColor ;
