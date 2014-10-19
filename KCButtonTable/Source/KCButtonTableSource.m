@@ -57,6 +57,10 @@
 	KCButtonTableCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"CustomCell"];
 	newcell.tableButton.tag = index ;
 	
+	/* Set font */
+	KCPreference * pref = [KCPreference sharedPreference] ;
+	newcell.tableButton.titleLabel.font = [pref defaultFont] ;
+	
 	/* Set title */
 	NSString * label = [labelNames objectAtIndex: index] ;
 	[newcell.tableButton setTitle: label forState: UIControlStateNormal] ;
@@ -81,7 +85,8 @@
 {
 	NSString *	title = [labelNames objectAtIndex: index] ;
 	CGSize		maxSize = CGSizeMake(200, CGFLOAT_MAX);
-	NSDictionary *	attr = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 15.0]};
+	KCPreference *	pref = [KCPreference sharedPreference] ;
+	NSDictionary *	attr = @{NSFontAttributeName: [pref defaultFont]};
 	CGRect newbounds = [title boundingRectWithSize:maxSize
 					       options:NSStringDrawingUsesLineFragmentOrigin
 					    attributes:attr
