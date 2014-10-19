@@ -182,24 +182,26 @@ updateButtonLabel(enum PzTenKeyState state, UIButton * button, UIView * backgrou
 			isbold = false ;
 		} break ;
 	}
+	KCPreference * pref = [KCPreference sharedPreference] ;
 	if(isbold){
-		button.titleLabel.font = [UIFont boldSystemFontOfSize: 20.0];
+		button.titleLabel.font = [pref defaultBoldFont] ;
 	} else {
-		button.titleLabel.font = [UIFont systemFontOfSize: 18.0];
+		button.titleLabel.font = [pref defaultFont] ;
 	}
 	
 	/* Set background */
 	KCColorTable * ctable = [KCColorTable defaultColorTable] ;
-	UIColor * backcol ;
+	UIColor *forecol, *backcol ;
 	switch(info->code & PzTenKeyMask_Mask){
-		case PzTenKeyMask_State:	backcol = ctable.darkGray ;	break ;
-		case PzTenKeyMask_Normal:	backcol = ctable.gainsboro ;	break ;
-		case PzTenKeyMask_Edit:		backcol = ctable.darkOrange1 ;	break ;
-		case PzTenKeyMask_Operator:	backcol = ctable.darkOrange1 ;	break ;
-		default:			backcol = ctable.gainsboro ;	break ;
+		case PzTenKeyMask_State:	forecol = ctable.black ;	backcol = ctable.darkGray ;	break ;
+		case PzTenKeyMask_Normal:	forecol = ctable.black ;	backcol = ctable.gainsboro ;	break ;
+		case PzTenKeyMask_Edit:		forecol = ctable.white ;	backcol = ctable.darkOrange1 ;	break ;
+		case PzTenKeyMask_Operator:	forecol = ctable.white ;	backcol = ctable.darkOrange1 ;	break ;
+		default:			forecol = ctable.black ;	backcol = ctable.gainsboro ;	break ;
 	}
 	background.opaque = NO ;
 	background.backgroundColor = backcol ;
+	[button setTitleColor: forecol forState: UIControlStateNormal] ;
 	
 	/* Set round */
 	[[button layer] setBorderColor: [ctable.darkGray CGColor]];
