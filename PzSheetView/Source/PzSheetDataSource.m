@@ -111,14 +111,17 @@ getSheetCell(NSArray * array, NSUInteger index)
 		didNibPrepared = YES ;
 	}
 	
-	/* Allocate new cell with button */
+	/* get current cell */
 	NSInteger row = indexPath.row ;
 	PzSheetElement * element = [cellArray objectAtIndex: row] ;
 	PzSheetCell * newcell = element.cell ;
-	if(newcell == nil){
-		newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
-		element.cell = newcell ;
+	if(newcell != nil){
+		return newcell ;
 	}
+	
+	/* allocate new cell */
+	newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
+	element.cell = newcell ;
 	
 	/* To suppress display keyboard, give dummy view
 	 * See http://stackoverflow.com/questions/5615806/disable-uitextfield-keyboard
