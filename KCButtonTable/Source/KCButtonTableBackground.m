@@ -23,6 +23,7 @@
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	((void) touches) ; ((void) event) ;
 	[touchDelegate touchBackground] ;
 }
 

@@ -20,7 +20,7 @@
 	[table displayButtonTableWithLabelNames: labels
 				   withDelegate: self
 				     //withOrigin: CGPointMake(20, 20)
-				     withOrigin: CGPointMake(240, 400)
+				     withOrigin: CGPointMake(120, 200)
 				     //withOrigin: CGPointMake(320, 480)
 			       atViewController: self] ;
 }

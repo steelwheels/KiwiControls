@@ -81,7 +81,7 @@
 
 @implementation KCButtonTableView (Private)
 
-- (UITableView *) getTableView: (UIView *) subview ;
+- (UITableView *) getTableView: (UIView *) subview 
 {
 	if(subview){
 		NSArray * arr1 = [subview subviews] ;

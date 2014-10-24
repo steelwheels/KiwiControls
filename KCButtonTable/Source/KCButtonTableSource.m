@@ -30,16 +30,19 @@
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView *) tableView
 {
+	((void) tableView) ;
 	return 1 ;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	((void) tableView) ; ((void) section) ;
 	return [labelNames count] ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	((void) tableView) ; ((void) indexPath) ;
 	CGSize adjsize = [self adjustSize: [indexPath row]] ;
 	return adjsize.height ;
 }
