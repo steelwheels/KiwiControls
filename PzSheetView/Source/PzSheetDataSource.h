@@ -5,6 +5,7 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
+#import "PzSheetDatabase.h"
 #import <UIKit/UIKit.h>
 #import <KCTouchableLabel/KCTouchableLabel.h>
 
@@ -23,8 +24,7 @@
 	id <PzSheetViewTextFieldDelegate>	sheetViewTextFieldDelegate ;
 	id <PzSheetViewTouchLabelDelegate>	sheetViewTouchableLabelDelegate ;
 	
-	/** Array of PzSheetElement */
-	NSMutableArray *			cellArray ;
+	PzSheetDatabase *			sheetDatabase ;
 	
 	NSUInteger				currentSlot ;
 }
@@ -35,19 +35,19 @@
 
 - (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
 - (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate ;
+- (void) activateResponderAtSlot: (NSUInteger) newslot inTableView: (UITableView *) tableview ;
+- (void) activateResponderAtCurrentSlotInTableView: (UITableView *) tableview ;
 
-- (void) activateFirstResponder ;
+- (void) moveCursorForwardInExpressionFieldInTableView: (UITableView *) tableview ;
+- (void) moveCursorBackwardInExpressionFieldInTableView: (UITableView *) tableview ;
+- (void) clearCurrentFieldInTableView: (UITableView *) tableview ;
+- (void) clearAllFieldsInTableView: (UITableView *) tableview ;
+- (void) selectNextExpressionFieldInTableView: (UITableView *) tableview ;
 
-- (void) moveCursorForwardInExpressionField ;
-- (void) moveCursorBackwardInExpressionField ;
-- (void) clearCurrentField ;
-- (void) clearAllFields ;
-- (void) selectNextExpressionField ;
+- (void) insertStringToExpressionField: (NSString *) str inTableView: (UITableView *) tableview ;
+- (void) deleteSelectedStringInExpressionFieldInTableView: (UITableView *) tableview ;
 
-- (void) insertStringToExpressionField: (NSString *) str ;
-- (void) deleteSelectedStringInExpressionField ;
-
-- (void) setLabelText: (NSString *) text forSlot: (NSInteger) index ;
+- (void) setLabelText: (NSString *) text forSlot: (NSInteger) index inTableView: (UITableView *) tableview ;
 
 @end
 

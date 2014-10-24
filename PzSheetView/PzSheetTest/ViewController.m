@@ -59,18 +59,24 @@
 
 - (void) pressLeftButton: (UIButton *) button
 {
+	((void) button) ;
+	
 	//NSLog(@"pressLeftButton") ;
 	[sheetView moveCursorBackwardInExpressionField] ;
 }
 
 - (void) pressRightButton: (UIButton *) button
 {
+	((void) button) ;
+	
 	//NSLog(@"pressRightButton") ;
 	[sheetView moveCursorForwardInExpressionField] ;
 }
 
 - (void) pressEnterButton: (UIButton *) button
 {
+	((void) button) ;
+	
 	//NSLog(@"pressEnterButton") ;
 	if(textField == nil){
 		NSLog(@"no text field") ;
@@ -79,24 +85,28 @@
 	
 	NSString * inputtext = textField.text ;
 	if([inputtext length] > 0){
-		[sheetView activateFirstResponder] ;
+		[sheetView activateResponderAtCurrentSlot] ;
 		[sheetView insertStringToExpressionField: inputtext] ;
 	}
 }
 
 - (void) pressReturnButton: (UIButton *) button
 {
+	((void) button) ;
+	
 	//NSLog(@"pressReturnButton") ;
 	[sheetView selectNextExpressionField] ;
 }
 
 - (void) pressClearButton: (UIButton *) button
 {
+	((void) button) ;
 	[sheetView clearCurrentField] ;
 }
 
 - (void) pressAllClearButton: (UIButton *) button
 {
+	((void) button) ;
 	[sheetView clearAllFields] ;
 }
 

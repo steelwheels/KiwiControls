@@ -15,6 +15,7 @@
 		054F1E9919D082AC0052A0DD /* PzSheetDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05379924199DAE6B0072191A /* PzSheetDataSource.h */; };
 		054F1E9A19D082B10052A0DD /* PzSheetCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0593384219A24C2E006DCB20 /* PzSheetCell.h */; };
 		0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0593384319A24C2E006DCB20 /* PzSheetCell.m */; };
+		05BECFC719F9542600D86F79 /* PzSheetDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BECFC619F9542600D86F79 /* PzSheetDatabase.m */; };
 		05C8854319CEC00E000A9B61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854219CEC00E000A9B61 /* main.m */; };
 		05C8854619CEC00E000A9B61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854519CEC00E000A9B61 /* AppDelegate.m */; };
 		05C8854919CEC00E000A9B61 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854819CEC00E000A9B61 /* ViewController.m */; };
@@ -67,6 +68,8 @@
 		058452B0199CE87100E1E656 /* PzSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PzSheetView.xib; path = ../../../local/resource/PzSheetView.xib; sourceTree = SOURCE_ROOT; };
 		0593384219A24C2E006DCB20 /* PzSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetCell.h; path = Source/PzSheetCell.h; sourceTree = SOURCE_ROOT; };
 		0593384319A24C2E006DCB20 /* PzSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetCell.m; path = Source/PzSheetCell.m; sourceTree = SOURCE_ROOT; };
+		05BECFC519F9542600D86F79 /* PzSheetDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetDatabase.h; path = Source/PzSheetDatabase.h; sourceTree = SOURCE_ROOT; };
+		05BECFC619F9542600D86F79 /* PzSheetDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetDatabase.m; path = Source/PzSheetDatabase.m; sourceTree = SOURCE_ROOT; };
 		05C8853E19CEC00E000A9B61 /* PzSheetTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PzSheetTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C8854119CEC00E000A9B61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C8854219CEC00E000A9B61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				054EF703199CDCFC0099CD92 /* PzSheetView.m */,
 				05379924199DAE6B0072191A /* PzSheetDataSource.h */,
 				05379925199DAE6B0072191A /* PzSheetDataSource.m */,
+				05BECFC519F9542600D86F79 /* PzSheetDatabase.h */,
+				05BECFC619F9542600D86F79 /* PzSheetDatabase.m */,
 				0584527E199CDE4100E1E656 /* PzSheetView.xib */,
 				0593384219A24C2E006DCB20 /* PzSheetCell.h */,
 				0593384319A24C2E006DCB20 /* PzSheetCell.m */,
@@ -280,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BECFC719F9542600D86F79 /* PzSheetDatabase.m in Sources */,
 				05379926199DAE6B0072191A /* PzSheetDataSource.m in Sources */,
 				054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */,
 				0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */,
@@ -411,6 +417,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
@@ -418,6 +425,10 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
 					"-lKiwiControl",
@@ -433,6 +444,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Applications/Xcode6-Beta5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
@@ -440,6 +452,10 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
 					"-lKiwiControl",
@@ -490,6 +506,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -498,6 +515,10 @@
 				INFOPLIST_FILE = PzSheetTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
 					"-lKCTouchableLabel",
@@ -515,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -523,6 +545,10 @@
 				INFOPLIST_FILE = PzSheetTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
 					"-lKCTouchableLabel",

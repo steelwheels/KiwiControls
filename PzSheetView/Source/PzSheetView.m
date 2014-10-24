@@ -62,56 +62,56 @@
 	[dataSource setTouchableLabelDelegate: delegate] ;
 }
 
-- (void) activateFirstResponder
+- (void) activateResponderAtCurrentSlot
 {
-	[dataSource activateFirstResponder] ;
+	[dataSource activateResponderAtCurrentSlotInTableView: tableView] ;
 }
 
 - (void) moveCursorForwardInExpressionField
 {
-	[dataSource moveCursorForwardInExpressionField] ;
+	[dataSource moveCursorForwardInExpressionFieldInTableView: tableView] ;
 }
 
 - (void) moveCursorBackwardInExpressionField
 {
-	[dataSource moveCursorBackwardInExpressionField] ;
+	[dataSource moveCursorBackwardInExpressionFieldInTableView: tableView] ;
 }
 
 - (void) clearCurrentField
 {
-	[dataSource clearCurrentField] ;
+	[dataSource clearCurrentFieldInTableView: tableView] ;
 }
 
 - (void) clearAllFields
 {
-	[dataSource clearAllFields] ;
+	[dataSource clearAllFieldsInTableView: tableView] ;
 }
 
 - (void) selectNextExpressionField
 {
-	[dataSource selectNextExpressionField] ;
+	[dataSource selectNextExpressionFieldInTableView: tableView] ;
 }
 
 - (void) insertStringToExpressionField: (NSString *) str
 {
-	[dataSource insertStringToExpressionField: str] ;
+	[dataSource insertStringToExpressionField: str inTableView: tableView] ;
 }
 
 - (void) deleteSelectedStringInExpressionField
 {
-	[dataSource deleteSelectedStringInExpressionField] ;
+	[dataSource deleteSelectedStringInExpressionFieldInTableView: tableView] ;
 }
 
 - (void) setLabelText:(NSString *) text forSlot:(NSInteger)index
 {
-	[dataSource setLabelText: text forSlot: index] ;
+	[dataSource setLabelText: text forSlot: index inTableView: tableView] ;
 }
 
 @end
 
 @implementation PzSheetView (Private)
 
-- (UITableView *) getTableView: (UIView *) subview ;
+- (UITableView *) getTableView: (UIView *) subview 
 {
 	if(subview){
 		NSArray * arr1 = [subview subviews] ;

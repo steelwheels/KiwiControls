@@ -12,31 +12,23 @@
 #define MAX_ROW_NUM	128
 #define DO_DEBUG	0
 
-@interface PzSheetElement : NSObject
-@property (strong, nonatomic) PzSheetCell *	cell ;
-- (instancetype) init ;
-@end
-
-@implementation PzSheetElement
-@synthesize cell ;
-- (instancetype) init
+static inline NSInteger
+indexToTag(NSInteger index)
 {
-	if((self = [super init]) != nil){
-		self.cell = nil ;
-	}
-	return self ;
+	return index + 1 ;
 }
-@end
+
+static inline NSInteger
+tagToIndex(NSInteger tag)
+{
+	return tag - 1 ;
+}
 
 static inline PzSheetCell *
-getSheetCell(NSArray * array, NSUInteger index)
+searchSheetCellInTableView(UITableView * table, NSInteger index)
 {
-	PzSheetElement * elm = [array objectAtIndex: index] ;
-	if(elm){
-		return elm.cell ;
-	} else {
-		return nil ;
-	}
+	NSIndexPath * path = [NSIndexPath indexPathForRow: index inSection: 0] ;
+	return (PzSheetCell *) [table cellForRowAtIndexPath: path] ;
 }
 
 @interface PzSheetDataSource (PzSheetExpressionFieldDelegate)
@@ -54,13 +46,7 @@ getSheetCell(NSArray * array, NSUInteger index)
 	if((self = [super init]) != nil){
 		didNibPrepared = NO ;
 		sheetViewTextFieldDelegate = nil ;
-		cellArray = [[NSMutableArray alloc] initWithCapacity: 32] ;
-		
-		NSUInteger i ;
-		for(i=0 ; i<MAX_ROW_NUM ; i++){
-			PzSheetElement * newelm = [[PzSheetElement alloc] init] ;
-			[cellArray addObject: newelm] ;
-		}
+		sheetDatabase = [[PzSheetDatabase alloc] initWithCountOfSheetData: MAX_ROW_NUM] ;
 		currentSlot = 0 ;
 	}
 	return self ;
@@ -84,17 +70,47 @@ getSheetCell(NSArray * array, NSUInteger index)
 
 - (NSInteger) tableView: (UITableView *) tableView numberOfRowsInSection: (NSInteger) section
 {
-	((void) section) ;
+	((void) tableView) ; ((void) section) ;
 	return MAX_ROW_NUM ;
 }
 
-- (void) activateFirstResponder
+- (void) scrollToRow: (NSInteger) slot inTableView: (UITableView *) tableview
 {
-	PzSheetCell * cell = getSheetCell(cellArray, currentSlot) ;
-	if(cell){
-		UITextField * currentfield = cell.expressionField ;
-		[currentfield becomeFirstResponder] ;
+	NSIndexPath * targetpath = [NSIndexPath indexPathForRow: slot inSection: 0] ;
+	[tableview scrollToRowAtIndexPath: targetpath
+			 atScrollPosition: UITableViewScrollPositionNone
+				 animated: YES] ;
+}
+
+- (void) activateResponderAtSlot: (NSUInteger) newslot inTableView: (UITableView *) tableview
+{
+	if(currentSlot == newslot){
+		return ;
 	}
+	/* Get current slot */
+	PzSheetCell * nextcell = searchSheetCellInTableView(tableview, newslot) ;
+	if(nextcell == nil){
+		return ;
+	}
+	/* Check current responder can be switched to new */
+	PzSheetCell * curcell  = searchSheetCellInTableView(tableview, currentSlot) ;
+	if(curcell){
+		if(![curcell.expressionField resignFirstResponder]){
+			return ;
+		}
+	}
+	/* scroll to current slot */
+	[self scrollToRow: newslot inTableView: tableview] ;
+	/* activate responder */	
+	[nextcell.expressionField becomeFirstResponder] ;
+	currentSlot = newslot ;
+}
+
+- (void) activateResponderAtCurrentSlotInTableView: (UITableView *) tableview
+{
+	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
+	UITextField *	currentfield = currentcell.expressionField ;
+	[currentfield becomeFirstResponder] ;
 }
 
 - (UITableViewCell *) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,18 +126,12 @@ getSheetCell(NSArray * array, NSUInteger index)
 		}
 		didNibPrepared = YES ;
 	}
-	
-	/* get current cell */
-	NSInteger row = indexPath.row ;
-	PzSheetElement * element = [cellArray objectAtIndex: row] ;
-	PzSheetCell * newcell = element.cell ;
-	if(newcell != nil){
-		return newcell ;
+
+	PzSheetCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
+	if(newcell == nil){
+		newcell = [[PzSheetCell alloc] initWithStyle: UITableViewCellStyleDefault
+					     reuseIdentifier: @"Key"];
 	}
-	
-	/* allocate new cell */
-	newcell = [tableView dequeueReusableCellWithIdentifier: @"Key"];
-	element.cell = newcell ;
 	
 	/* To suppress display keyboard, give dummy view
 	 * See http://stackoverflow.com/questions/5615806/disable-uitextfield-keyboard
@@ -130,31 +140,34 @@ getSheetCell(NSArray * array, NSUInteger index)
 	newcell.expressionField.inputView = dummyView; // Hide keyboard, but show blinking cursor
 
 	/* Setup text field */
+	NSInteger row = indexPath.row ;
 	if(row == 0){
 		[newcell.expressionField becomeFirstResponder] ;
 	}
-	newcell.expressionField.tag = row ;
+	newcell.expressionField.tag = indexToTag(row) ;
+	newcell.expressionField.text = [sheetDatabase expressionStringAtIndex: row] ;
 	[newcell.expressionField setDelegate: self] ;
 	
 	/* Setup label */
-	newcell.touchableLabel.tag = row ;
+	newcell.touchableLabel.tag = indexToTag(row) ;
+	newcell.touchableLabel.text = [sheetDatabase labelStringAtIndex: row] ;
 	newcell.touchableLabel.touchableLabelDelegate = self ;
 	
 	// return the cell
 	return newcell;
 }
 
-- (void) moveCursorForwardInExpressionField
+- (void) moveCursorForwardInExpressionFieldInTableView: (UITableView *) tableview
 {
-	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	currentrange = currentfield.selectedTextRange;
 	if([currentrange.start isEqual: currentfield.endOfDocument]){
 		return;
 	}
 	
+	/* Update text field view */
 	UITextPosition * newpos = [currentfield positionFromPosition: currentrange.start offset:+1];
-	
 	UITextRange *newrange;
 	if([currentrange isEmpty]){
 		newrange = [currentfield textRangeFromPosition: newpos
@@ -166,17 +179,17 @@ getSheetCell(NSArray * array, NSUInteger index)
 	currentfield.selectedTextRange = newrange;
 }
 
-- (void) moveCursorBackwardInExpressionField
+- (void) moveCursorBackwardInExpressionFieldInTableView: (UITableView *) tableview
 {
-	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	currentrange = currentfield.selectedTextRange;
 	if([currentrange.start isEqual: currentfield.beginningOfDocument]){
 		return;
 	}
 	
+	/* Update text field view */
 	UITextPosition *newpos = [currentfield positionFromPosition: currentrange.start offset:-1];
-	
 	UITextRange * newrange;
 	if([currentrange isEmpty]){
 		newrange = [currentfield textRangeFromPosition: newpos
@@ -188,51 +201,56 @@ getSheetCell(NSArray * array, NSUInteger index)
 	currentfield.selectedTextRange = newrange;
 }
 
-- (void) clearCurrentField
+- (void) clearCurrentFieldInTableView: (UITableView *) tableview
 {
-	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	[self scrollToRow: currentSlot inTableView: tableview] ;
+	
+	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
 	currentfield.text = @"" ;
 	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
+	[sheetDatabase clearStringsAtIndex: currentSlot] ;
 }
 
-- (void) clearAllFields
+- (void) clearAllFieldsInTableView: (UITableView *) tableview
 {
-	NSUInteger i, count = [cellArray count] ;
-	for(i=0 ; i<count ; i++){
-		PzSheetElement * element = [cellArray objectAtIndex: i] ;
-		PzSheetCell * cell = element.cell ;
+	NSUInteger i ;
+	for(i=0 ; i<MAX_ROW_NUM ; i++){
+		PzSheetCell * cell = searchSheetCellInTableView(tableview, i) ;
 		if(cell){
-			UITextField * field = cell.expressionField ;
-			field.text = @"" ;
-			[sheetViewTextFieldDelegate enterText: field.text atIndex: i] ;
+			cell.expressionField.text = @"" ;
+			[sheetViewTextFieldDelegate enterText: cell.expressionField.text atIndex: i] ;
 		}
+		[sheetDatabase clearStringsAtIndex: i] ;
 	}
 }
-	
-- (void) selectNextExpressionField
+
+- (void) selectNextExpressionFieldInTableView: (UITableView *) tableview
 {
+	[self scrollToRow: currentSlot inTableView: tableview] ;
 	NSUInteger nextslot = currentSlot + 1 ;
-	if(nextslot >= [cellArray count]){
+	if(nextslot == MAX_ROW_NUM){
 		nextslot = 0 ;
 	}
-	PzSheetCell * nextcell = getSheetCell(cellArray, nextslot) ;
-	UITextField * nextfield = nextcell.expressionField ;
-	[nextfield becomeFirstResponder] ;
-	currentSlot = nextslot ;
+	[self activateResponderAtSlot: nextslot inTableView: tableview] ;
 }
 
-- (void) insertStringToExpressionField: (NSString *) str
+- (void) insertStringToExpressionField: (NSString *) str inTableView: (UITableView *) tableview
 {
-	PzSheetCell * currentcell = getSheetCell(cellArray, currentSlot) ;
+	[self scrollToRow: currentSlot inTableView: tableview] ;
+	
+	PzSheetCell * currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField * currentfield = currentcell.expressionField ;
 	[currentfield insertText: str] ;
 	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
+	[sheetDatabase setExpressionString: currentfield.text atIndex: currentSlot] ;
 }
 
-- (void) deleteSelectedStringInExpressionField
+- (void) deleteSelectedStringInExpressionFieldInTableView: (UITableView *) tableview
 {
-	PzSheetCell *	currentcell = getSheetCell(cellArray, currentSlot) ;
+	[self scrollToRow: currentSlot inTableView: tableview] ;
+	
+	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	selrange = currentfield.selectedTextRange ;
 	if(selrange.empty){
@@ -245,37 +263,43 @@ getSheetCell(NSArray * array, NSUInteger index)
 		[currentfield setSelectedTextRange: newrange] ;
 	}
 	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
+	[sheetDatabase setExpressionString: currentfield.text atIndex: currentSlot] ;
 }
 
 - (void)label: (KCTouchableLabel *) label touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
 {
+	((void) touches) ; ((void) event) ;
 	if(sheetViewTouchableLabelDelegate){
 		CGSize labsize = label.bounds.size ;
 		CGPoint labelcenter = CGPointMake(labsize.width/2, labsize.height/2) ;
-		[sheetViewTouchableLabelDelegate touchLabelAtIndex: label.tag atAbsolutePoint: labelcenter] ;
+		[sheetViewTouchableLabelDelegate touchLabelAtIndex: tagToIndex(label.tag) atAbsolutePoint: labelcenter] ;
 	} else {
 		NSLog(@"Label touched") ;
 	}
 }
 
-- (void)label: (KCTouchableLabel *) label touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event
+- (void) label: (KCTouchableLabel *) label touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event
 {
 	/* Do nothing */
+	((void) label) ; ((void) touches) ; ((void) event) ;
 }
 
-- (void)label: (KCTouchableLabel *) label touchesCancelled: (NSSet *) touches withEvent: (UIEvent *) event
+- (void) label: (KCTouchableLabel *) label touchesCancelled: (NSSet *) touches withEvent: (UIEvent *) event
 {
 	/* Do nothing */
+	((void) label) ; ((void) touches) ; ((void) event) ;
 }
 
-- (void) setLabelText: (NSString *) text forSlot: (NSInteger) index
-{
-	PzSheetCell *	currentcell = getSheetCell(cellArray, index) ;
+- (void) setLabelText: (NSString *) text forSlot: (NSInteger) index inTableView: (UITableView *) tableview
+{	
+	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, index) ;
 	if(currentcell){
+		[sheetDatabase setLabelString: text atIndex: index] ;
 		UILabel * label = currentcell.touchableLabel ;
 		[label performSelectorOnMainThread:@selector(setText:)
 					withObject:text
 					waitUntilDone:NO];
+		
 	}
 }
 
@@ -285,7 +309,7 @@ getSheetCell(NSArray * array, NSUInteger index)
 
 - (BOOL) textFieldShouldBeginEditing: (UITextField *) textField
 {
-	currentSlot = textField.tag ;
+	currentSlot = tagToIndex(textField.tag) ;
 	return YES ;
 }
 
