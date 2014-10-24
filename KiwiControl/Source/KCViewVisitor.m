@@ -8,21 +8,22 @@
 #import "KCViewVisitor.h"
 
 @implementation UIView (KCVisitorInterface)
-- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter ;
+
+- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter
 {
 	[visitor visitView: self withParameter: parameter] ;
 }
 @end
 
 @implementation UITableView (KCVisitorInterface)
-- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter ;
+- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter
 {
 	[visitor visitTableView: self withParameter: parameter] ;
 }
 @end
 
 @implementation UICollectionView (KCVisitorInterface)
-- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter ;
+- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter
 {
 	[visitor visitCollectionView: self withParameter: parameter] ;
 }
@@ -30,16 +31,19 @@
 
 @implementation KCViewVisitor : NSObject
 
-- (void) visitView: (UIView *) view withParameter: (id) parameter ;
+- (void) visitView: (UIView *) view withParameter: (id) parameter
 {
+	((void) view) ; ((void) parameter) ;
 }
 
-- (void) visitTableView: (UITableView *) view withParameter: (id) parameter ;
+- (void) visitTableView: (UITableView *) view withParameter: (id) parameter
 {
+	((void) view) ; ((void) parameter) ;
 }
 
-- (void) visitCollectionView: (UICollectionView *) view withParameter: (id) parameter ;
+- (void) visitCollectionView: (UICollectionView *) view withParameter: (id) parameter
 {
+	((void) view) ; ((void) parameter) ;
 }
 
 @end

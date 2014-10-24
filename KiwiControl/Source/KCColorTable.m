@@ -582,7 +582,7 @@ static KCColorTable * s_color_table = nil ;
 	return s_color_table ;
 }
 
-- init
+- (instancetype) init
 {
 	if((self = [super init]) != nil){
 		snow			= allocateColor(1.00, 0.98, 0.98) ;

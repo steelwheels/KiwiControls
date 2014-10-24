@@ -563,6 +563,6 @@
 
 + (KCColorTable *) defaultColorTable ;
 
-- init ;
+- (instancetype) init ;
 
 @end
