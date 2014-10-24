@@ -12,16 +12,19 @@
 
 - (void)label:(KCTouchableLabel *)label touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
+	((void) label) ; ((void) touches) ; ((void) event) ;
 	NSLog(@"touchedBegan") ;
 }
 
 - (void)label:(KCTouchableLabel *)label touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	((void) label) ; ((void) touches) ; ((void) event) ;
 	NSLog(@"touchesEnded") ;
 }
 
-- (void)label:(KCTouchableLabel *)label touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)even
+- (void)label:(KCTouchableLabel *)label touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	((void) label) ; ((void) touches) ; ((void) event) ;
 	NSLog(@"TouchesCancelled") ;
 }
 
