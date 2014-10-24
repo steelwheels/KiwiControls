@@ -56,7 +56,7 @@ tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
 
 @implementation PzTenKeyDataSource
 
-- (instancetype) initWithDelegate: (id <PzTenKeyClicking>) delegate ;
+- (instancetype) initWithDelegate: (id <PzTenKeyClicking>) delegate
 {
 	if((self = [super init]) != nil){
 		didNibPrepared = NO ;
@@ -69,6 +69,8 @@ tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
 
 - (NSInteger) numberOfSectionsInCollectionView: (UICollectionView *) collectionView
 {
+	((void) collectionView) ;
+	
 	if(DO_DEBUG){ NSLog(@"numberOfSections") ; }
 	return 1 ;
 }
@@ -110,6 +112,8 @@ tenKeyInfo(enum PzTenKeyState state, NSInteger tag)
 
 - (IBAction) clickEvent:(id) sender event:(id) event
 {
+	((void) event) ;
+	
 	UIButton * button = (UIButton *) sender ;
 	if(clickDelegate){
 		const struct PzTenKeyInfo * info = tenKeyInfo(tenKeyState, button.tag) ;
