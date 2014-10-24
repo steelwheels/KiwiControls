@@ -36,16 +36,20 @@ enum KCPreferenceTableSection {
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
+	((void) tableView) ;
 	return KCNumberOfTableSections ;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	((void) tableView) ; ((void) section) ;
 	return 1 ;
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+	((void) tableView) ;
+	
 	//KCPreference * preferennce = [KCPreference sharedPreference] ;
 	NSString * title ;
 	switch(section){
@@ -95,11 +99,13 @@ enum KCPreferenceTableSection {
 
 - (CGFloat)tableView: (UITableView *) tableView heightForHeaderInSection: (NSInteger)section
 {
+	((void) tableView) ; ((void) section) ;
 	return 28.0 ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+	((void) tableView) ; ((void) section) ;
 	return 0.1 ;
 }
 

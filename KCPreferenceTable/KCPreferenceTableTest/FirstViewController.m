@@ -27,6 +27,7 @@
 
 - (IBAction) moveToSecondScene:(UIBarButtonItem *)sender
 {
+	((void) sender) ;
 	[self presentViewController:secondViewController animated:YES completion:nil];
 }
 
