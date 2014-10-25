@@ -19,7 +19,6 @@
 - (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
 - (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate ;
 
-- (void) activateResponderAtCurrentSlot ;
 - (void) moveCursorForwardInExpressionField ;
 - (void) moveCursorBackwardInExpressionField ;
 - (void) selectNextExpressionField ;

@@ -35,8 +35,6 @@
 
 - (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
 - (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate ;
-- (void) activateResponderAtSlot: (NSUInteger) newslot inTableView: (UITableView *) tableview ;
-- (void) activateResponderAtCurrentSlotInTableView: (UITableView *) tableview ;
 
 - (void) moveCursorForwardInExpressionFieldInTableView: (UITableView *) tableview ;
 - (void) moveCursorBackwardInExpressionFieldInTableView: (UITableView *) tableview ;

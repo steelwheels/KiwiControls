@@ -12,16 +12,30 @@
 #define MAX_ROW_NUM	128
 #define DO_DEBUG	0
 
-static inline NSInteger
-indexToTag(NSInteger index)
+static inline void
+setSlotNumToLabel(UILabel * label, NSUInteger tag)
 {
-	return index + 1 ;
+	label.tag = 0x10000000 | tag ;
 }
 
-static inline NSInteger
-tagToIndex(NSInteger tag)
+static inline NSUInteger
+slotNumOfLabel(UILabel * label)
 {
-	return tag - 1 ;
+	NSUInteger tag = label.tag ;
+	return tag & 0x0fffffff ;
+}
+
+static inline void
+setSlotNumToTextField(UITextField * field, NSUInteger tag)
+{
+	field.tag = 0x20000000 | tag ;
+}
+
+static inline NSUInteger
+slotNumOfTextField(UITextField * field)
+{
+	NSUInteger tag = field.tag ;
+	return tag & 0x0fffffff ;
 }
 
 static inline PzSheetCell *
@@ -29,6 +43,29 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 {
 	NSIndexPath * path = [NSIndexPath indexPathForRow: index inSection: 0] ;
 	return (PzSheetCell *) [table cellForRowAtIndexPath: path] ;
+}
+
+static inline void
+scrollToCurrentSlot(UITableView * tableview, NSInteger slot)
+{
+	NSIndexPath * targetpath = [NSIndexPath indexPathForRow: slot inSection: 0] ;
+	[tableview scrollToRowAtIndexPath: targetpath
+			 atScrollPosition: UITableViewScrollPositionNone
+				 animated: YES] ;
+}
+
+static void
+changeActiveResponder(UITableView * tableview, NSInteger oldslot, NSInteger newslot)
+{
+	if(oldslot == newslot){
+		return ;
+	}
+	PzSheetCell * oldcell = searchSheetCellInTableView(tableview, oldslot) ;
+	if(![oldcell.expressionField canResignFirstResponder]){
+		NSLog(@"[Error] %s : Can not resign responder", __func__) ;
+	}
+	PzSheetCell * newcell  = searchSheetCellInTableView(tableview, newslot) ;
+	[newcell.expressionField becomeFirstResponder] ;
 }
 
 @interface PzSheetDataSource (PzSheetExpressionFieldDelegate)
@@ -74,49 +111,8 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 	return MAX_ROW_NUM ;
 }
 
-- (void) scrollToRow: (NSInteger) slot inTableView: (UITableView *) tableview
-{
-	NSIndexPath * targetpath = [NSIndexPath indexPathForRow: slot inSection: 0] ;
-	[tableview scrollToRowAtIndexPath: targetpath
-			 atScrollPosition: UITableViewScrollPositionNone
-				 animated: YES] ;
-}
-
-- (void) activateResponderAtSlot: (NSUInteger) newslot inTableView: (UITableView *) tableview
-{
-	if(currentSlot == newslot){
-		return ;
-	}
-	/* Get current slot */
-	PzSheetCell * nextcell = searchSheetCellInTableView(tableview, newslot) ;
-	if(nextcell == nil){
-		return ;
-	}
-	/* Check current responder can be switched to new */
-	PzSheetCell * curcell  = searchSheetCellInTableView(tableview, currentSlot) ;
-	if(curcell){
-		if(![curcell.expressionField resignFirstResponder]){
-			return ;
-		}
-	}
-	/* scroll to current slot */
-	[self scrollToRow: newslot inTableView: tableview] ;
-	/* activate responder */	
-	[nextcell.expressionField becomeFirstResponder] ;
-	currentSlot = newslot ;
-}
-
-- (void) activateResponderAtCurrentSlotInTableView: (UITableView *) tableview
-{
-	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
-	UITextField *	currentfield = currentcell.expressionField ;
-	[currentfield becomeFirstResponder] ;
-}
-
 - (UITableViewCell *) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if(DO_DEBUG){ NSLog(@"collectionView:cellForItemAtIndexPath\n") ; }
-	
 	if(didNibPrepared == NO){
 		UINib * nib = [UINib nibWithNibName: @"PzSheetCell" bundle:nil];
 		if(nib){
@@ -144,12 +140,12 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 	if(row == 0){
 		[newcell.expressionField becomeFirstResponder] ;
 	}
-	newcell.expressionField.tag = indexToTag(row) ;
+	setSlotNumToTextField(newcell.expressionField, currentSlot) ;
 	newcell.expressionField.text = [sheetDatabase expressionStringAtIndex: row] ;
 	[newcell.expressionField setDelegate: self] ;
 	
 	/* Setup label */
-	newcell.touchableLabel.tag = indexToTag(row) ;
+	setSlotNumToLabel(newcell.touchableLabel, currentSlot) ;
 	newcell.touchableLabel.text = [sheetDatabase labelStringAtIndex: row] ;
 	newcell.touchableLabel.touchableLabelDelegate = self ;
 	
@@ -159,6 +155,8 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 
 - (void) moveCursorForwardInExpressionFieldInTableView: (UITableView *) tableview
 {
+	scrollToCurrentSlot(tableview, currentSlot) ;
+	
 	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	currentrange = currentfield.selectedTextRange;
@@ -181,6 +179,8 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 
 - (void) moveCursorBackwardInExpressionFieldInTableView: (UITableView *) tableview
 {
+	scrollToCurrentSlot(tableview, currentSlot) ;
+	
 	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
 	UITextRange *	currentrange = currentfield.selectedTextRange;
@@ -203,7 +203,7 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 
 - (void) clearCurrentFieldInTableView: (UITableView *) tableview
 {
-	[self scrollToRow: currentSlot inTableView: tableview] ;
+	scrollToCurrentSlot(tableview, currentSlot) ;
 	
 	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
@@ -227,28 +227,31 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 
 - (void) selectNextExpressionFieldInTableView: (UITableView *) tableview
 {
-	[self scrollToRow: currentSlot inTableView: tableview] ;
 	NSUInteger nextslot = currentSlot + 1 ;
 	if(nextslot == MAX_ROW_NUM){
 		nextslot = 0 ;
 	}
-	[self activateResponderAtSlot: nextslot inTableView: tableview] ;
+	scrollToCurrentSlot(tableview, nextslot) ;
+	changeActiveResponder(tableview, currentSlot, nextslot) ;
+	currentSlot = nextslot ;
 }
 
 - (void) insertStringToExpressionField: (NSString *) str inTableView: (UITableView *) tableview
 {
-	[self scrollToRow: currentSlot inTableView: tableview] ;
+	scrollToCurrentSlot(tableview, currentSlot) ;
 	
 	PzSheetCell * currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField * currentfield = currentcell.expressionField ;
 	[currentfield insertText: str] ;
-	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
-	[sheetDatabase setExpressionString: currentfield.text atIndex: currentSlot] ;
+	
+	NSString * currenttext = currentfield.text ;
+	[sheetViewTextFieldDelegate enterText: currenttext atIndex: currentSlot] ;
+	[sheetDatabase setExpressionString: currenttext atIndex: currentSlot] ;
 }
 
 - (void) deleteSelectedStringInExpressionFieldInTableView: (UITableView *) tableview
 {
-	[self scrollToRow: currentSlot inTableView: tableview] ;
+	scrollToCurrentSlot(tableview, currentSlot) ;
 	
 	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
@@ -262,8 +265,9 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 		UITextRange * newrange = [currentfield textRangeFromPosition: pos toPosition: pos] ;
 		[currentfield setSelectedTextRange: newrange] ;
 	}
-	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
-	[sheetDatabase setExpressionString: currentfield.text atIndex: currentSlot] ;
+	NSString * currenttext = currentfield.text ;
+	[sheetViewTextFieldDelegate enterText: currenttext atIndex: currentSlot] ;
+	[sheetDatabase setExpressionString: currenttext atIndex: currentSlot] ;
 }
 
 - (void)label: (KCTouchableLabel *) label touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
@@ -272,7 +276,8 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 	if(sheetViewTouchableLabelDelegate){
 		CGSize labsize = label.bounds.size ;
 		CGPoint labelcenter = CGPointMake(labsize.width/2, labsize.height/2) ;
-		[sheetViewTouchableLabelDelegate touchLabelAtIndex: tagToIndex(label.tag) atAbsolutePoint: labelcenter] ;
+		NSUInteger labeltag = slotNumOfLabel(label) ;
+		[sheetViewTouchableLabelDelegate touchLabelAtIndex: labeltag atAbsolutePoint: labelcenter] ;
 	} else {
 		NSLog(@"Label touched") ;
 	}
@@ -309,17 +314,18 @@ searchSheetCellInTableView(UITableView * table, NSInteger index)
 
 - (BOOL) textFieldShouldBeginEditing: (UITextField *) textField
 {
-	currentSlot = tagToIndex(textField.tag) ;
+	currentSlot = slotNumOfTextField(textField) ;
 	return YES ;
 }
 
-- (BOOL)textField: (UITextField *) textfield shouldChangeCharactersInRange: (NSRange)range replacementString: (NSString *)string
+- (BOOL) textField: (UITextField *) textfield shouldChangeCharactersInRange: (NSRange)range replacementString: (NSString *)string
 {
 	/* Get modified string */
 	NSMutableString *newstr = [textfield.text mutableCopy];
 	[newstr replaceCharactersInRange:range withString:string];
 	if(sheetViewTextFieldDelegate){
 		[sheetViewTextFieldDelegate enterText: newstr atIndex: currentSlot] ;
+		[sheetDatabase setExpressionString: newstr atIndex: currentSlot] ;
 	} else {
 		NSLog(@"Current string : %@ at %u\n", newstr, (unsigned int) currentSlot) ;
 	}

@@ -85,7 +85,6 @@
 	
 	NSString * inputtext = textField.text ;
 	if([inputtext length] > 0){
-		[sheetView activateResponderAtCurrentSlot] ;
 		[sheetView insertStringToExpressionField: inputtext] ;
 	}
 }

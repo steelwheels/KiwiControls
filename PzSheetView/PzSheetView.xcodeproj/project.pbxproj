@@ -15,6 +15,7 @@
 		054F1E9919D082AC0052A0DD /* PzSheetDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05379924199DAE6B0072191A /* PzSheetDataSource.h */; };
 		054F1E9A19D082B10052A0DD /* PzSheetCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0593384219A24C2E006DCB20 /* PzSheetCell.h */; };
 		0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0593384319A24C2E006DCB20 /* PzSheetCell.m */; };
+		05A8D2D619FBD20C00A2C6F4 /* PzSheetDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BECFC519F9542600D86F79 /* PzSheetDatabase.h */; };
 		05BECFC719F9542600D86F79 /* PzSheetDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BECFC619F9542600D86F79 /* PzSheetDatabase.m */; };
 		05C8854319CEC00E000A9B61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854219CEC00E000A9B61 /* main.m */; };
 		05C8854619CEC00E000A9B61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854519CEC00E000A9B61 /* AppDelegate.m */; };
@@ -48,6 +49,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05A8D2D619FBD20C00A2C6F4 /* PzSheetDatabase.h in CopyFiles */,
 				054F1E9A19D082B10052A0DD /* PzSheetCell.h in CopyFiles */,
 				054F1E9919D082AC0052A0DD /* PzSheetDataSource.h in CopyFiles */,
 				054EF702199CDCFC0099CD92 /* PzSheetView.h in CopyFiles */,

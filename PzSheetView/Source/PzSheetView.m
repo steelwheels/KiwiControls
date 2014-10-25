@@ -62,11 +62,6 @@
 	[dataSource setTouchableLabelDelegate: delegate] ;
 }
 
-- (void) activateResponderAtCurrentSlot
-{
-	[dataSource activateResponderAtCurrentSlotInTableView: tableView] ;
-}
-
 - (void) moveCursorForwardInExpressionField
 {
 	[dataSource moveCursorForwardInExpressionFieldInTableView: tableView] ;
