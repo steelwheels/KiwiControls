@@ -39,33 +39,21 @@ slotNumOfTextField(UITextField * field)
 }
 
 static inline PzSheetCell *
-searchSheetCellInTableView(UITableView * table, NSInteger index)
+searchSheetCellInTableView(UITableView * tableview, NSInteger index)
 {
 	NSIndexPath * path = [NSIndexPath indexPathForRow: index inSection: 0] ;
-	return (PzSheetCell *) [table cellForRowAtIndexPath: path] ;
+	PzSheetCell * cell = (PzSheetCell *) [tableview cellForRowAtIndexPath: path] ;
+	return cell ;
 }
 
 static inline void
 scrollToCurrentSlot(UITableView * tableview, NSInteger slot)
 {
+	/* Scroll to the destination slot */
 	NSIndexPath * targetpath = [NSIndexPath indexPathForRow: slot inSection: 0] ;
 	[tableview scrollToRowAtIndexPath: targetpath
 			 atScrollPosition: UITableViewScrollPositionNone
 				 animated: YES] ;
-}
-
-static void
-changeActiveResponder(UITableView * tableview, NSInteger oldslot, NSInteger newslot)
-{
-	if(oldslot == newslot){
-		return ;
-	}
-	PzSheetCell * oldcell = searchSheetCellInTableView(tableview, oldslot) ;
-	if(![oldcell.expressionField canResignFirstResponder]){
-		NSLog(@"[Error] %s : Can not resign responder", __func__) ;
-	}
-	PzSheetCell * newcell  = searchSheetCellInTableView(tableview, newslot) ;
-	[newcell.expressionField becomeFirstResponder] ;
 }
 
 @interface PzSheetDataSource (PzSheetExpressionFieldDelegate)
@@ -140,12 +128,12 @@ changeActiveResponder(UITableView * tableview, NSInteger oldslot, NSInteger news
 	if(row == 0){
 		[newcell.expressionField becomeFirstResponder] ;
 	}
-	setSlotNumToTextField(newcell.expressionField, currentSlot) ;
+	setSlotNumToTextField(newcell.expressionField, row) ;
 	newcell.expressionField.text = [sheetDatabase expressionStringAtIndex: row] ;
 	[newcell.expressionField setDelegate: self] ;
 	
 	/* Setup label */
-	setSlotNumToLabel(newcell.touchableLabel, currentSlot) ;
+	setSlotNumToLabel(newcell.touchableLabel, row) ;
 	newcell.touchableLabel.text = [sheetDatabase labelStringAtIndex: row] ;
 	newcell.touchableLabel.touchableLabelDelegate = self ;
 	
@@ -227,12 +215,29 @@ changeActiveResponder(UITableView * tableview, NSInteger oldslot, NSInteger news
 
 - (void) selectNextExpressionFieldInTableView: (UITableView *) tableview
 {
+	/* Make the slot as the 1st responder */
+	NSIndexPath * orgpath = [NSIndexPath indexPathForRow: currentSlot inSection: 0] ;
+	PzSheetCell * orgcell = (PzSheetCell *) [tableview cellForRowAtIndexPath: orgpath] ;
+	if(orgcell == nil){
+		NSLog(@"%s [Error] No org cell", __func__) ;
+	}
+	if(orgcell){
+		[orgcell.expressionField resignFirstResponder] ;
+	}
+
 	NSUInteger nextslot = currentSlot + 1 ;
 	if(nextslot == MAX_ROW_NUM){
 		nextslot = 0 ;
 	}
 	scrollToCurrentSlot(tableview, nextslot) ;
-	changeActiveResponder(tableview, currentSlot, nextslot) ;
+	
+	NSIndexPath * nextpath = [NSIndexPath indexPathForRow: nextslot inSection: 0] ;
+	PzSheetCell * nextcell = (PzSheetCell *) [tableview cellForRowAtIndexPath: nextpath] ;
+	if(nextcell == nil){
+		NSLog(@"%s [Error] No next cell", __func__) ;
+	}
+	[nextcell.expressionField becomeFirstResponder] ;
+	
 	currentSlot = nextslot ;
 }
 
@@ -315,6 +320,7 @@ changeActiveResponder(UITableView * tableview, NSInteger oldslot, NSInteger news
 - (BOOL) textFieldShouldBeginEditing: (UITextField *) textField
 {
 	currentSlot = slotNumOfTextField(textField) ;
+	NSLog(@"text edit : %u", (unsigned int) currentSlot) ;
 	return YES ;
 }
 
