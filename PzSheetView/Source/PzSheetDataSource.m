@@ -53,7 +53,7 @@ scrollToCurrentSlot(UITableView * tableview, NSInteger slot)
 	NSIndexPath * targetpath = [NSIndexPath indexPathForRow: slot inSection: 0] ;
 	[tableview scrollToRowAtIndexPath: targetpath
 			 atScrollPosition: UITableViewScrollPositionNone
-				 animated: YES] ;
+				 animated: NO] ;
 }
 
 @interface PzSheetDataSource (PzSheetExpressionFieldDelegate)
@@ -320,7 +320,6 @@ scrollToCurrentSlot(UITableView * tableview, NSInteger slot)
 - (BOOL) textFieldShouldBeginEditing: (UITextField *) textField
 {
 	currentSlot = slotNumOfTextField(textField) ;
-	NSLog(@"text edit : %u", (unsigned int) currentSlot) ;
 	return YES ;
 }
 
