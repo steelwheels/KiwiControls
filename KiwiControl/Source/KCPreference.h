@@ -23,8 +23,8 @@
 
 - (NSString *) developerName ;
 - (NSString *) developerURL ;
-- (NSString *) copyrightName ;
-- (NSString *) copyrightURL ;
+- (NSString *) licenseName ;
+- (NSString *) licenseURL ;
 - (NSString *) sourceCodeURL ;
 - (NSString *) manualURL ;
 

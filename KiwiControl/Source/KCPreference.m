@@ -58,14 +58,14 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 	return getStringValueInStandardUserDefaults(@"DeveloperURL") ;
 }
 
-- (NSString *) copyrightName
+- (NSString *) licenseName
 {
-	return getStringValueInStandardUserDefaults(@"CopyrightName") ;
+	return getStringValueInStandardUserDefaults(@"LicenseName") ;
 }
 
-- (NSString *) copyrightURL
+- (NSString *) licenseURL
 {
-	return getStringValueInStandardUserDefaults(@"CopyrightURL") ;
+	return getStringValueInStandardUserDefaults(@"LicenseURL") ;
 }
 
 - (NSString *) sourceCodeURL

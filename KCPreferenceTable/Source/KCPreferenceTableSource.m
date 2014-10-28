@@ -12,7 +12,7 @@
 enum KCPreferenceTableSection {
 	KCApplicationVersionSection	= 0,
 	KCDeveloperSection		= 1,
-	KCCopyrightSection		= 2,
+	KCLicenseSection		= 2,
 	KCManualSection			= 3,
 	KCSourceCodeSection		= 4
 } ;
@@ -59,8 +59,8 @@ enum KCPreferenceTableSection {
 		case KCDeveloperSection: {
 			title = @"Developer" ;
 		} break ;
-		case KCCopyrightSection: {
-			title = @"Copyright" ;
+		case KCLicenseSection: {
+			title = @"License" ;
 		} break ;
 		case KCManualSection: {
 			title = @"Manual" ;
@@ -129,9 +129,9 @@ enum KCPreferenceTableSection {
 			NSString * url  = [preferennce developerURL] ;
 			result = [[NSString alloc] initWithFormat: @"%@\n%@", name, url] ;
 		} break ;
-		case KCCopyrightSection: {
-			NSString * name = [preferennce copyrightName] ;
-			NSString * url  = [preferennce copyrightURL] ;
+		case KCLicenseSection: {
+			NSString * name = [preferennce licenseName] ;
+			NSString * url  = [preferennce licenseURL] ;
 			result = [[NSString alloc] initWithFormat: @"%@\n%@", name, url] ;
 		} break ;
 		case KCManualSection: {
