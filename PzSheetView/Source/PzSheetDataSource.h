@@ -11,6 +11,7 @@
 
 @protocol PzSheetViewTextFieldDelegate
 - (void) enterText: (NSString *) text atIndex: (NSUInteger) index ;
+- (void) clearTextAtIndex: (NSUInteger) index ;
 @end
 
 @protocol PzSheetViewTouchLabelDelegate <NSObject>

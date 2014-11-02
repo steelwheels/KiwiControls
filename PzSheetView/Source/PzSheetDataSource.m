@@ -196,7 +196,7 @@ scrollToCurrentSlot(UITableView * tableview, NSInteger slot)
 	PzSheetCell *	currentcell = searchSheetCellInTableView(tableview, currentSlot) ;
 	UITextField *	currentfield = currentcell.expressionField ;
 	currentfield.text = @"" ;
-	[sheetViewTextFieldDelegate enterText: currentfield.text atIndex: currentSlot] ;
+	[sheetViewTextFieldDelegate clearTextAtIndex: currentSlot] ;
 	[sheetDatabase clearStringsAtIndex: currentSlot] ;
 }
 
@@ -207,7 +207,7 @@ scrollToCurrentSlot(UITableView * tableview, NSInteger slot)
 		PzSheetCell * cell = searchSheetCellInTableView(tableview, i) ;
 		if(cell){
 			cell.expressionField.text = @"" ;
-			[sheetViewTextFieldDelegate enterText: cell.expressionField.text atIndex: i] ;
+			[sheetViewTextFieldDelegate clearTextAtIndex: i] ;
 		}
 		[sheetDatabase clearStringsAtIndex: i] ;
 	}
