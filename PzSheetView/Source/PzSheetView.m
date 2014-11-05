@@ -12,6 +12,7 @@
 
 @interface PzSheetView (Private)
 - (UITableView *) getTableView: (UIView *) subview ;
+- (void) setupTableView: (UITableView *) view withDataSource: (PzSheetDataSource *) datasource ;
 @end
 
 @implementation PzSheetView
@@ -29,10 +30,7 @@
 			if(DO_DEBUG){ NSLog(@"allocate sub view") ; }
 			tableView = [self getTableView: subview] ;
 			dataSource = [[PzSheetDataSource alloc] init] ;
-			[tableView setDataSource: dataSource] ;
-			if(DO_DEBUG){
-				KCPrintView(tableView) ;
-			}
+			[self setupTableView: tableView withDataSource: dataSource] ;
 		}
 	}
 	return self;
@@ -46,7 +44,7 @@
 		if(subview){
 			tableView = [self getTableView: subview] ;
 			dataSource = [[PzSheetDataSource alloc] init] ;
-			[tableView setDataSource: dataSource] ;
+			[self setupTableView: tableView withDataSource: dataSource] ;
 		}
 	}
 	return self ;
@@ -119,6 +117,12 @@
 		NSLog(@"%s: Failed to get collection view", __FILE__) ;
 	}
 	return nil ;
+}
+
+- (void) setupTableView: (UITableView *) tableview withDataSource: (PzSheetDataSource *) source
+{
+	[tableview setDataSource: source] ;
+	tableView.allowsSelection = false ;
 }
 
 @end
