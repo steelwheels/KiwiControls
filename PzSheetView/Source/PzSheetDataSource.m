@@ -211,6 +211,13 @@ scrollToCurrentSlot(UITableView * tableview, NSInteger slot)
 		}
 		[sheetDatabase clearStringsAtIndex: i] ;
 	}
+	
+	/* Return to top slot */
+	currentSlot = 0 ;
+	scrollToCurrentSlot(tableview, currentSlot) ;
+	NSIndexPath * curpath = [NSIndexPath indexPathForRow: currentSlot inSection: 0] ;
+	PzSheetCell * curcell = (PzSheetCell *) [tableview cellForRowAtIndexPath: curpath] ;
+	[curcell.expressionField becomeFirstResponder] ;
 }
 
 - (void) selectNextExpressionFieldInTableView: (UITableView *) tableview
