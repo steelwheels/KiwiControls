@@ -6,18 +6,22 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "PzSheetDataSource.h"
+#import "PzSheetDelegate.h"
+#import "PzSheetForwarders.h"
 
 @interface PzSheetView : UIView
 {
 	UITableView *			tableView ;
+	PzSheetState *			sheetState ;
+	PzSheetDatabase *		sheetDatabase ;
 	PzSheetDataSource *		dataSource ;
+	PzSheetDelegate *		sheetDelegate ;
 }
 
 + (NSUInteger) maxRowNum ;
 
-- (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
-- (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate ;
+- (void) setTextFieldDelegate: (id <PzSheetTextFieldDelegate>) delegate ;
+- (void) setTouchableLabelDelegate: (id <PzSheetTouchLabelDelegate>) delegate ;
 
 - (void) moveCursorForwardInExpressionField ;
 - (void) moveCursorBackwardInExpressionField ;

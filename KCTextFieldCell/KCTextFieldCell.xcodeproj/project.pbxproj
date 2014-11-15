@@ -1,0 +1,338 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		057369A71A0E2F990009FCA6 /* KCTextFieldCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 057369A61A0E2F990009FCA6 /* KCTextFieldCell.h */; };
+		057369A91A0E2F990009FCA6 /* KCTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 057369A81A0E2F990009FCA6 /* KCTextFieldCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		057369C11A0E36900009FCA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0573699B1A0E2F990009FCA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 057369A21A0E2F990009FCA6;
+			remoteInfo = KCTextFieldCell;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		057369A11A0E2F990009FCA6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				057369A71A0E2F990009FCA6 /* KCTextFieldCell.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		057369A31A0E2F990009FCA6 /* libKCTextFieldCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCTextFieldCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		057369A61A0E2F990009FCA6 /* KCTextFieldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCTextFieldCell.h; path = Source/KCTextFieldCell.h; sourceTree = SOURCE_ROOT; };
+		057369A81A0E2F990009FCA6 /* KCTextFieldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCTextFieldCell.m; path = Source/KCTextFieldCell.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		057369A01A0E2F990009FCA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0573699A1A0E2F990009FCA6 = {
+			isa = PBXGroup;
+			children = (
+				057369A51A0E2F990009FCA6 /* Source */,
+				057369A41A0E2F990009FCA6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		057369A41A0E2F990009FCA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				057369A31A0E2F990009FCA6 /* libKCTextFieldCell.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		057369A51A0E2F990009FCA6 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				057369A61A0E2F990009FCA6 /* KCTextFieldCell.h */,
+				057369A81A0E2F990009FCA6 /* KCTextFieldCell.m */,
+			);
+			name = Source;
+			path = KCTextFieldCell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		057369BD1A0E36860009FCA6 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../script/install.mk";
+			buildConfigurationList = 057369BE1A0E36860009FCA6 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				057369C21A0E36900009FCA6 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		057369A21A0E2F990009FCA6 /* KCTextFieldCell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 057369B71A0E2F990009FCA6 /* Build configuration list for PBXNativeTarget "KCTextFieldCell" */;
+			buildPhases = (
+				0573699F1A0E2F990009FCA6 /* Sources */,
+				057369A01A0E2F990009FCA6 /* Frameworks */,
+				057369A11A0E2F990009FCA6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KCTextFieldCell;
+			productName = KCTextFieldCell;
+			productReference = 057369A31A0E2F990009FCA6 /* libKCTextFieldCell.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0573699B1A0E2F990009FCA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Steel Wheels Project";
+				TargetAttributes = {
+					057369A21A0E2F990009FCA6 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					057369BD1A0E36860009FCA6 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 0573699E1A0E2F990009FCA6 /* Build configuration list for PBXProject "KCTextFieldCell" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0573699A1A0E2F990009FCA6;
+			productRefGroup = 057369A41A0E2F990009FCA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				057369A21A0E2F990009FCA6 /* KCTextFieldCell */,
+				057369BD1A0E36860009FCA6 /* Install */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0573699F1A0E2F990009FCA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				057369A91A0E2F990009FCA6 /* KCTextFieldCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		057369C21A0E36900009FCA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 057369A21A0E2F990009FCA6 /* KCTextFieldCell */;
+			targetProxy = 057369C11A0E36900009FCA6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		057369B51A0E2F990009FCA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		057369B61A0E2F990009FCA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		057369B81A0E2F990009FCA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		057369B91A0E2F990009FCA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		057369BF1A0E36860009FCA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		057369C01A0E36860009FCA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0573699E1A0E2F990009FCA6 /* Build configuration list for PBXProject "KCTextFieldCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				057369B51A0E2F990009FCA6 /* Debug */,
+				057369B61A0E2F990009FCA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		057369B71A0E2F990009FCA6 /* Build configuration list for PBXNativeTarget "KCTextFieldCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				057369B81A0E2F990009FCA6 /* Debug */,
+				057369B91A0E2F990009FCA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		057369BE1A0E36860009FCA6 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				057369BF1A0E36860009FCA6 /* Debug */,
+				057369C01A0E36860009FCA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0573699B1A0E2F990009FCA6 /* Project object */;
+}

@@ -15,6 +15,8 @@
 		054F1E9919D082AC0052A0DD /* PzSheetDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05379924199DAE6B0072191A /* PzSheetDataSource.h */; };
 		054F1E9A19D082B10052A0DD /* PzSheetCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0593384219A24C2E006DCB20 /* PzSheetCell.h */; };
 		0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0593384319A24C2E006DCB20 /* PzSheetCell.m */; };
+		05996D221A126666005C828D /* PzSheetForwarders.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C431051A11266C004FCAB5 /* PzSheetForwarders.h */; };
+		05996D231A12666C005C828D /* PzSheetDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D8E5361A0F8EEC002014D2 /* PzSheetDelegate.h */; };
 		05A8D2D619FBD20C00A2C6F4 /* PzSheetDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BECFC519F9542600D86F79 /* PzSheetDatabase.h */; };
 		05BECFC719F9542600D86F79 /* PzSheetDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BECFC619F9542600D86F79 /* PzSheetDatabase.m */; };
 		05C8854319CEC00E000A9B61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8854219CEC00E000A9B61 /* main.m */; };
@@ -23,6 +25,9 @@
 		05C8854C19CEC00E000A9B61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C8854A19CEC00E000A9B61 /* Main.storyboard */; };
 		05C8854E19CEC00E000A9B61 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C8854D19CEC00E000A9B61 /* Images.xcassets */; };
 		05C8855119CEC00E000A9B61 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C8854F19CEC00E000A9B61 /* LaunchScreen.xib */; };
+		05D8E5341A0F8BF4002014D2 /* PzSheetState.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8E5331A0F8BF4002014D2 /* PzSheetState.m */; };
+		05D8E5351A0F8C04002014D2 /* PzSheetState.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D8E5321A0F8BF4002014D2 /* PzSheetState.h */; };
+		05D8E5381A0F8EEC002014D2 /* PzSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8E5371A0F8EEC002014D2 /* PzSheetDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,9 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05996D231A12666C005C828D /* PzSheetDelegate.h in CopyFiles */,
+				05996D221A126666005C828D /* PzSheetForwarders.h in CopyFiles */,
+				05D8E5351A0F8C04002014D2 /* PzSheetState.h in CopyFiles */,
 				05A8D2D619FBD20C00A2C6F4 /* PzSheetDatabase.h in CopyFiles */,
 				054F1E9A19D082B10052A0DD /* PzSheetCell.h in CopyFiles */,
 				054F1E9919D082AC0052A0DD /* PzSheetDataSource.h in CopyFiles */,
@@ -72,6 +80,7 @@
 		0593384319A24C2E006DCB20 /* PzSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetCell.m; path = Source/PzSheetCell.m; sourceTree = SOURCE_ROOT; };
 		05BECFC519F9542600D86F79 /* PzSheetDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetDatabase.h; path = Source/PzSheetDatabase.h; sourceTree = SOURCE_ROOT; };
 		05BECFC619F9542600D86F79 /* PzSheetDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetDatabase.m; path = Source/PzSheetDatabase.m; sourceTree = SOURCE_ROOT; };
+		05C431051A11266C004FCAB5 /* PzSheetForwarders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetForwarders.h; path = Source/PzSheetForwarders.h; sourceTree = SOURCE_ROOT; };
 		05C8853E19CEC00E000A9B61 /* PzSheetTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PzSheetTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C8854119CEC00E000A9B61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C8854219CEC00E000A9B61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -82,6 +91,10 @@
 		05C8854B19CEC00E000A9B61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05C8854D19CEC00E000A9B61 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		05C8855019CEC00E000A9B61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		05D8E5321A0F8BF4002014D2 /* PzSheetState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetState.h; path = Source/PzSheetState.h; sourceTree = SOURCE_ROOT; };
+		05D8E5331A0F8BF4002014D2 /* PzSheetState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetState.m; path = Source/PzSheetState.m; sourceTree = SOURCE_ROOT; };
+		05D8E5361A0F8EEC002014D2 /* PzSheetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PzSheetDelegate.h; path = Source/PzSheetDelegate.h; sourceTree = SOURCE_ROOT; };
+		05D8E5371A0F8EEC002014D2 /* PzSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PzSheetDelegate.m; path = Source/PzSheetDelegate.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,12 +145,17 @@
 		054EF700199CDCFC0099CD92 /* PzSheetView */ = {
 			isa = PBXGroup;
 			children = (
+				05C431051A11266C004FCAB5 /* PzSheetForwarders.h */,
 				054EF701199CDCFC0099CD92 /* PzSheetView.h */,
 				054EF703199CDCFC0099CD92 /* PzSheetView.m */,
+				05D8E5321A0F8BF4002014D2 /* PzSheetState.h */,
+				05D8E5331A0F8BF4002014D2 /* PzSheetState.m */,
 				05379924199DAE6B0072191A /* PzSheetDataSource.h */,
 				05379925199DAE6B0072191A /* PzSheetDataSource.m */,
 				05BECFC519F9542600D86F79 /* PzSheetDatabase.h */,
 				05BECFC619F9542600D86F79 /* PzSheetDatabase.m */,
+				05D8E5361A0F8EEC002014D2 /* PzSheetDelegate.h */,
+				05D8E5371A0F8EEC002014D2 /* PzSheetDelegate.m */,
 				0584527E199CDE4100E1E656 /* PzSheetView.xib */,
 				0593384219A24C2E006DCB20 /* PzSheetCell.h */,
 				0593384319A24C2E006DCB20 /* PzSheetCell.m */,
@@ -289,6 +307,8 @@
 			files = (
 				05BECFC719F9542600D86F79 /* PzSheetDatabase.m in Sources */,
 				05379926199DAE6B0072191A /* PzSheetDataSource.m in Sources */,
+				05D8E5381A0F8EEC002014D2 /* PzSheetDelegate.m in Sources */,
+				05D8E5341A0F8BF4002014D2 /* PzSheetState.m in Sources */,
 				054EF704199CDCFC0099CD92 /* PzSheetView.m in Sources */,
 				0593384419A24C2E006DCB20 /* PzSheetCell.m in Sources */,
 			);
@@ -433,6 +453,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
+					"-lKCTextFieldCell",
 					"-lKiwiControl",
 					"-load_all",
 				);
@@ -460,6 +481,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
+					"-lKCTextFieldCell",
 					"-lKiwiControl",
 					"-load_all",
 				);
@@ -524,6 +546,7 @@
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
 					"-lKCTouchableLabel",
+					"-lKCTextFieldCell",
 					"-lKiwiControl",
 					"-all_load",
 				);
@@ -554,6 +577,7 @@
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
 					"-lKCTouchableLabel",
+					"-lKCTextFieldCell",
 					"-lKiwiControl",
 					"-all_load",
 				);

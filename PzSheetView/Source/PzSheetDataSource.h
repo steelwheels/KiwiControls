@@ -5,37 +5,24 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import "PzSheetDatabase.h"
+#import "PzSheetForwarders.h"
 #import <UIKit/UIKit.h>
 #import <KCTouchableLabel/KCTouchableLabel.h>
 
-@protocol PzSheetViewTextFieldDelegate
-- (void) enterText: (NSString *) text atIndex: (NSUInteger) index ;
-- (void) clearTextAtIndex: (NSUInteger) index ;
-@end
-
-@protocol PzSheetViewTouchLabelDelegate <NSObject>
-- (void) touchLabelAtIndex: (NSUInteger) index atAbsolutePoint: (CGPoint) point ;
-@end
-
-@interface PzSheetDataSource : NSObject <UITableViewDataSource, UITextFieldDelegate, KCTouchableLabelDelegate>
+@interface PzSheetDataSource : NSObject <UITableViewDataSource>
 {
 	BOOL					didNibPrepared ;
-	
-	id <PzSheetViewTextFieldDelegate>	sheetViewTextFieldDelegate ;
-	id <PzSheetViewTouchLabelDelegate>	sheetViewTouchableLabelDelegate ;
-	
+	PzSheetState *				sheetState ;
 	PzSheetDatabase *			sheetDatabase ;
-	
-	NSUInteger				currentSlot ;
 }
+
+@property (weak, nonatomic)	PzSheetDelegate *	sheetDelegate ;
 
 + (NSUInteger) maxRowNum ;
 
-- (instancetype) init ;
+- (instancetype) initWithSheetState: (PzSheetState *) state withDatabase: (PzSheetDatabase *) database ;
 
-- (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate ;
-- (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate ;
+- (PzSheetCell *) searchSheetCellInTableView: (UITableView *) tableview atIndex: (NSUInteger) index ;
 
 - (void) moveCursorForwardInExpressionFieldInTableView: (UITableView *) tableview ;
 - (void) moveCursorBackwardInExpressionFieldInTableView: (UITableView *) tableview ;

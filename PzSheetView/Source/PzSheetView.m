@@ -6,13 +6,17 @@
  */
 
 #import "PzSheetView.h"
+#import "PzSheetDatabase.h"
+#import "PzSheetDataSource.h"
+#import "PzSheetDelegate.h"
+#import "PzSheetState.h"
 #import <KiwiControl/KiwiControl.h>
 
 #define DO_DEBUG	0
 
 @interface PzSheetView (Private)
 - (UITableView *) getTableView: (UIView *) subview ;
-- (void) setupTableView: (UITableView *) view withDataSource: (PzSheetDataSource *) datasource ;
+- (void) setupTableView: (UITableView *) view withDataSource: (PzSheetDataSource *) datasource withDelegate: (PzSheetDelegate *) delegate ;
 @end
 
 @implementation PzSheetView
@@ -29,8 +33,11 @@
 		if(subview){
 			if(DO_DEBUG){ NSLog(@"allocate sub view") ; }
 			tableView = [self getTableView: subview] ;
-			dataSource = [[PzSheetDataSource alloc] init] ;
-			[self setupTableView: tableView withDataSource: dataSource] ;
+			sheetDatabase = [[PzSheetDatabase alloc] initWithCountOfSheetData: [PzSheetDataSource maxRowNum]] ;
+			sheetState = [[PzSheetState alloc] init] ;
+			dataSource = [[PzSheetDataSource alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
+			sheetDelegate = [[PzSheetDelegate alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
+			[self setupTableView: tableView withDataSource: dataSource withDelegate: sheetDelegate] ;
 		}
 	}
 	return self;
@@ -43,21 +50,23 @@
 		UIView * subview = KCLoadXib(self, NSStringFromClass(self.class)) ;
 		if(subview){
 			tableView = [self getTableView: subview] ;
-			dataSource = [[PzSheetDataSource alloc] init] ;
-			[self setupTableView: tableView withDataSource: dataSource] ;
+			sheetDatabase = [[PzSheetDatabase alloc] initWithCountOfSheetData: [PzSheetDataSource maxRowNum]] ;
+			dataSource = [[PzSheetDataSource alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
+			sheetDelegate = [[PzSheetDelegate alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
+			[self setupTableView: tableView withDataSource: dataSource withDelegate: sheetDelegate] ;
 		}
 	}
 	return self ;
 }
 
-- (void) setTextFieldDelegate: (id <PzSheetViewTextFieldDelegate>) delegate
+- (void) setTextFieldDelegate: (id <PzSheetTextFieldDelegate>) delegate
 {
-	[dataSource setTextFieldDelegate: delegate] ;
+	sheetDelegate.textFieldDelegate = delegate ;
 }
 
-- (void) setTouchableLabelDelegate: (id <PzSheetViewTouchLabelDelegate>) delegate
+- (void) setTouchableLabelDelegate: (id <PzSheetTouchLabelDelegate>) delegate
 {
-	[dataSource setTouchableLabelDelegate: delegate] ;
+	sheetDelegate.touchLabelDelegate = delegate ;
 }
 
 - (void) moveCursorForwardInExpressionField
@@ -119,10 +128,13 @@
 	return nil ;
 }
 
-- (void) setupTableView: (UITableView *) tableview withDataSource: (PzSheetDataSource *) source
+- (void) setupTableView: (UITableView *) tableview withDataSource: (PzSheetDataSource *) source withDelegate: (PzSheetDelegate *) delegate
 {
 	[tableview setDataSource: source] ;
+	[tableview setDelegate: delegate] ;
 	tableView.allowsSelection = false ;
+	source.sheetDelegate = delegate ;
+	delegate.dataSource = source ;
 }
 
 @end
