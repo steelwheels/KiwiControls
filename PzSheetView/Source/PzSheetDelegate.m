@@ -79,9 +79,13 @@
 
 - (BOOL) textFieldShouldBeginEditing: (UITextField *) textfield
 {
-	sheetState.currentSlot = [PzSheetState slotNumOfTextField: textfield] ;
-	NSLog(@"%s: %u", __func__, (unsigned int) sheetState.currentSlot) ;
-	return sheetState.isScrolling ? NO : YES ;
+	if(sheetState.isScrolling){
+		return NO ;
+	} else {
+		sheetState.currentSlot = [PzSheetState slotNumOfTextField: textfield] ;
+		//NSLog(@"%s: %u", __func__, (unsigned int) sheetState.currentSlot) ;
+		return YES ;
+	}
 }
 
 - (BOOL) textField: (UITextField *) textfield shouldChangeCharactersInRange: (NSRange)range replacementString: (NSString *)string
@@ -90,7 +94,7 @@
 	NSMutableString *newstr = [textfield.text mutableCopy];
 	[newstr replaceCharactersInRange:range withString:string];
 	NSUInteger currentslot = sheetState.currentSlot = [PzSheetState slotNumOfTextField: textfield] ;
-	NSLog(@"%s: %u", __func__, (unsigned int) currentslot) ;
+	//NSLog(@"%s: %u", __func__, (unsigned int) currentslot) ;
 	if(self.textFieldDelegate){
 		[self.textFieldDelegate enterText: newstr atIndex: currentslot] ;
 		[sheetDatabase setExpressionString: newstr atIndex: currentslot] ;
