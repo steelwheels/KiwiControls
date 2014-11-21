@@ -14,7 +14,9 @@
 	NSMutableArray *	sheetDataArray ;
 }
 
-- (instancetype) initWithCountOfSheetData: (NSUInteger) count ;
++ (NSUInteger) maxRowNum ;
+
+- (instancetype) init ;
 
 - (NSString *) expressionStringAtIndex: (NSUInteger) index ;
 - (void) setExpressionString: (NSString *) str atIndex: (NSUInteger) index ;

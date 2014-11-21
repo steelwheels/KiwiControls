@@ -34,10 +34,16 @@
 
 @implementation PzSheetDatabase
 
-- (instancetype) initWithCountOfSheetData: (NSUInteger) count
++ (NSUInteger) maxRowNum
+{
+	return 128 ;
+}
+
+- (instancetype) init
 {
 	if((self = [super init]) != nil){
 		sheetDataArray = [[NSMutableArray alloc] initWithCapacity: 16] ;
+		NSUInteger count = [PzSheetDatabase maxRowNum] ;
 		for(NSUInteger i=0 ; i<count ; i++){
 			PzSheetData * newdata = [[PzSheetData alloc] init] ;
 			[sheetDataArray addObject: newdata] ;

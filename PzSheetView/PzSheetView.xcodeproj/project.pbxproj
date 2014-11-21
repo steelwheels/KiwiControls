@@ -453,7 +453,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
-					"-lKCTextFieldCell",
+					"-lKCTextFieldExtension",
 					"-lKiwiControl",
 					"-load_all",
 				);
@@ -481,7 +481,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
-					"-lKCTextFieldCell",
+					"-lKCTextFieldExtension",
 					"-lKiwiControl",
 					"-load_all",
 				);
@@ -546,7 +546,7 @@
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
 					"-lKCTouchableLabel",
-					"-lKCTextFieldCell",
+					"-lKCTextFieldExtension",
 					"-lKiwiControl",
 					"-all_load",
 				);
@@ -577,7 +577,7 @@
 				OTHER_LDFLAGS = (
 					"-lPzSheetView",
 					"-lKCTouchableLabel",
-					"-lKCTextFieldCell",
+					"-lKCTextFieldExtension",
 					"-lKiwiControl",
 					"-all_load",
 				);

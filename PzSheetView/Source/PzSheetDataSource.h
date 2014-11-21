@@ -18,8 +18,6 @@
 
 @property (weak, nonatomic)	PzSheetDelegate *	sheetDelegate ;
 
-+ (NSUInteger) maxRowNum ;
-
 - (instancetype) initWithSheetState: (PzSheetState *) state withDatabase: (PzSheetDatabase *) database ;
 
 - (PzSheetCell *) searchSheetCellInTableView: (UITableView *) tableview atIndex: (NSUInteger) index ;

@@ -23,7 +23,7 @@
 
 + (NSUInteger) maxRowNum
 {
-	return [PzSheetDataSource maxRowNum] ;
+	return [PzSheetDatabase maxRowNum] ;
 }
 
 - (instancetype) initWithCoder:(NSCoder *) decoder
@@ -33,7 +33,7 @@
 		if(subview){
 			if(DO_DEBUG){ NSLog(@"allocate sub view") ; }
 			tableView = [self getTableView: subview] ;
-			sheetDatabase = [[PzSheetDatabase alloc] initWithCountOfSheetData: [PzSheetDataSource maxRowNum]] ;
+			sheetDatabase = [[PzSheetDatabase alloc] init] ;
 			sheetState = [[PzSheetState alloc] init] ;
 			dataSource = [[PzSheetDataSource alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
 			sheetDelegate = [[PzSheetDelegate alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
@@ -50,7 +50,7 @@
 		UIView * subview = KCLoadXib(self, NSStringFromClass(self.class)) ;
 		if(subview){
 			tableView = [self getTableView: subview] ;
-			sheetDatabase = [[PzSheetDatabase alloc] initWithCountOfSheetData: [PzSheetDataSource maxRowNum]] ;
+			sheetDatabase = [[PzSheetDatabase alloc] init] ;
 			dataSource = [[PzSheetDataSource alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
 			sheetDelegate = [[PzSheetDelegate alloc] initWithSheetState: sheetState withDatabase: sheetDatabase] ;
 			[self setupTableView: tableView withDataSource: dataSource withDelegate: sheetDelegate] ;

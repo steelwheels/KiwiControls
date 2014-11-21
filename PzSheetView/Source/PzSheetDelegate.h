@@ -6,7 +6,7 @@
  */
 
 #import <KCTouchableLabel/KCTouchableLabel.h>
-#import <KCTextFieldCell/KCTextFieldCell.h>
+#import <KCTextFieldExtension/KCTextFieldExtension.h>
 #import "PzSheetForwarders.h"
 
 @protocol PzSheetTouchLabelDelegate <NSObject>
@@ -18,15 +18,15 @@
 - (void) clearTextAtIndex: (NSUInteger) index ;
 @end
 
-@interface PzSheetDelegate : NSObject <UITableViewDelegate, KCTouchableLabelDelegate, KCTextFieldCellDelegate>
+@interface PzSheetDelegate : NSObject <UITableViewDelegate, KCTouchableLabelDelegate, KCTextFieldDelegate>
 {
-	PzSheetState *				sheetState ;
-	PzSheetDatabase *			sheetDatabase ;
+	PzSheetState *		sheetState ;
+	PzSheetDatabase *	sheetDatabase ;
 }
 
-@property (weak, nonatomic)   PzSheetDataSource *			dataSource ;
+@property (weak, nonatomic)   PzSheetDataSource *		dataSource ;
 @property (strong, nonatomic) id <PzSheetTouchLabelDelegate>	touchLabelDelegate ;
-@property (strong, nonatomic) id <PzSheetTextFieldDelegate>		textFieldDelegate ;
+@property (strong, nonatomic) id <PzSheetTextFieldDelegate>	textFieldDelegate ;
 
 - (instancetype) initWithSheetState: (PzSheetState *) state withDatabase:(PzSheetDatabase *)database ;
 

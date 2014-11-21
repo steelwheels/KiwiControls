@@ -7,11 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import <KCTouchableLabel/KCTouchableLabel.h>
-#import <KCTextFieldCell/KCTextFieldCell.h>
+#import <KCTextFieldExtension/KCTextFieldExtension.h>
 
 @interface PzSheetCell : UITableViewCell
 
 @property (unsafe_unretained, nonatomic) IBOutlet KCTouchableLabel *	touchableLabel;
-@property (unsafe_unretained, nonatomic) IBOutlet KCTextFieldCell *	expressionField;
+@property (unsafe_unretained, nonatomic) IBOutlet KCTextField *		expressionField;
 
 @end

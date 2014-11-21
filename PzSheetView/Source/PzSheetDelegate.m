@@ -19,7 +19,7 @@
 {
 	if((self = [super init]) != nil){
 		sheetState = state ;
-		sheetDatabase = database ;
+		sheetDatabase = database ;		
 		self.dataSource = nil ;
 		self.touchLabelDelegate = nil ;
 		self.textFieldDelegate = nil ;
