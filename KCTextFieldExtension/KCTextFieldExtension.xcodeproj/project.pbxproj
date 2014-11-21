@@ -7,41 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		057369A71A0E2F990009FCA6 /* KCTextFieldCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 057369A61A0E2F990009FCA6 /* KCTextFieldCell.h */; };
-		057369A91A0E2F990009FCA6 /* KCTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 057369A81A0E2F990009FCA6 /* KCTextFieldCell.m */; };
+		055109641A1A30B20079A40C /* KCTextFieldExtension.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 055109631A1A30B20079A40C /* KCTextFieldExtension.h */; };
+		055E8FE61A1A3538003C06BD /* KCTextFieldForwarders.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 055E8FE51A1A34F4003C06BD /* KCTextFieldForwarders.h */; };
+		055E8FE71A1A353D003C06BD /* KCTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B4DB9D1A1A318E00333FCB /* KCTextField.h */; };
+		055E8FE81A1A3541003C06BD /* KCTextFieldCommand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B4DB9F1A1A318E00333FCB /* KCTextFieldCommand.h */; };
+		05B4DBA11A1A318E00333FCB /* KCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B4DB9E1A1A318E00333FCB /* KCTextField.m */; };
+		05B4DBA21A1A318E00333FCB /* KCTextFieldCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B4DBA01A1A318E00333FCB /* KCTextFieldCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		057369C11A0E36900009FCA6 /* PBXContainerItemProxy */ = {
+		05B4DBA71A1A31B100333FCB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0573699B1A0E2F990009FCA6 /* Project object */;
+			containerPortal = 055109581A1A30B20079A40C /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 057369A21A0E2F990009FCA6;
-			remoteInfo = KCTextFieldCell;
+			remoteGlobalIDString = 0551095F1A1A30B20079A40C;
+			remoteInfo = KCTextFieldExtension;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		057369A11A0E2F990009FCA6 /* CopyFiles */ = {
+		0551095E1A1A30B20079A40C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				057369A71A0E2F990009FCA6 /* KCTextFieldCell.h in CopyFiles */,
+				055E8FE81A1A3541003C06BD /* KCTextFieldCommand.h in CopyFiles */,
+				055E8FE71A1A353D003C06BD /* KCTextField.h in CopyFiles */,
+				055E8FE61A1A3538003C06BD /* KCTextFieldForwarders.h in CopyFiles */,
+				055109641A1A30B20079A40C /* KCTextFieldExtension.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		057369A31A0E2F990009FCA6 /* libKCTextFieldCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCTextFieldCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		057369A61A0E2F990009FCA6 /* KCTextFieldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCTextFieldCell.h; path = Source/KCTextFieldCell.h; sourceTree = SOURCE_ROOT; };
-		057369A81A0E2F990009FCA6 /* KCTextFieldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCTextFieldCell.m; path = Source/KCTextFieldCell.m; sourceTree = SOURCE_ROOT; };
+		055109601A1A30B20079A40C /* libKCTextFieldExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCTextFieldExtension.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		055109631A1A30B20079A40C /* KCTextFieldExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCTextFieldExtension.h; path = Source/KCTextFieldExtension.h; sourceTree = SOURCE_ROOT; };
+		055E8FE51A1A34F4003C06BD /* KCTextFieldForwarders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCTextFieldForwarders.h; path = Source/KCTextFieldForwarders.h; sourceTree = SOURCE_ROOT; };
+		05B4DB9D1A1A318E00333FCB /* KCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCTextField.h; path = Source/KCTextField.h; sourceTree = SOURCE_ROOT; };
+		05B4DB9E1A1A318E00333FCB /* KCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCTextField.m; path = Source/KCTextField.m; sourceTree = SOURCE_ROOT; };
+		05B4DB9F1A1A318E00333FCB /* KCTextFieldCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCTextFieldCommand.h; path = Source/KCTextFieldCommand.h; sourceTree = SOURCE_ROOT; };
+		05B4DBA01A1A318E00333FCB /* KCTextFieldCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCTextFieldCommand.m; path = Source/KCTextFieldCommand.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		057369A01A0E2F990009FCA6 /* Frameworks */ = {
+		0551095D1A1A30B20079A40C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,45 +62,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0573699A1A0E2F990009FCA6 = {
+		055109571A1A30B20079A40C = {
 			isa = PBXGroup;
 			children = (
-				057369A51A0E2F990009FCA6 /* Source */,
-				057369A41A0E2F990009FCA6 /* Products */,
+				055109621A1A30B20079A40C /* Source */,
+				055109611A1A30B20079A40C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		057369A41A0E2F990009FCA6 /* Products */ = {
+		055109611A1A30B20079A40C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				057369A31A0E2F990009FCA6 /* libKCTextFieldCell.a */,
+				055109601A1A30B20079A40C /* libKCTextFieldExtension.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		057369A51A0E2F990009FCA6 /* Source */ = {
+		055109621A1A30B20079A40C /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				057369A61A0E2F990009FCA6 /* KCTextFieldCell.h */,
-				057369A81A0E2F990009FCA6 /* KCTextFieldCell.m */,
+				055109631A1A30B20079A40C /* KCTextFieldExtension.h */,
+				055E8FE51A1A34F4003C06BD /* KCTextFieldForwarders.h */,
+				05B4DB9D1A1A318E00333FCB /* KCTextField.h */,
+				05B4DB9E1A1A318E00333FCB /* KCTextField.m */,
+				05B4DB9F1A1A318E00333FCB /* KCTextFieldCommand.h */,
+				05B4DBA01A1A318E00333FCB /* KCTextFieldCommand.m */,
 			);
 			name = Source;
-			path = KCTextFieldCell;
+			path = KCTextFieldExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		057369BD1A0E36860009FCA6 /* Install */ = {
+		05B4DBA31A1A31A800333FCB /* Install */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../script/install.mk";
-			buildConfigurationList = 057369BE1A0E36860009FCA6 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildConfigurationList = 05B4DBA41A1A31A800333FCB /* Build configuration list for PBXLegacyTarget "Install" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
-				057369C21A0E36900009FCA6 /* PBXTargetDependency */,
+				05B4DBA81A1A31B100333FCB /* PBXTargetDependency */,
 			);
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
@@ -98,79 +113,80 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		057369A21A0E2F990009FCA6 /* KCTextFieldCell */ = {
+		0551095F1A1A30B20079A40C /* KCTextFieldExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 057369B71A0E2F990009FCA6 /* Build configuration list for PBXNativeTarget "KCTextFieldCell" */;
+			buildConfigurationList = 055109741A1A30B20079A40C /* Build configuration list for PBXNativeTarget "KCTextFieldExtension" */;
 			buildPhases = (
-				0573699F1A0E2F990009FCA6 /* Sources */,
-				057369A01A0E2F990009FCA6 /* Frameworks */,
-				057369A11A0E2F990009FCA6 /* CopyFiles */,
+				0551095C1A1A30B20079A40C /* Sources */,
+				0551095D1A1A30B20079A40C /* Frameworks */,
+				0551095E1A1A30B20079A40C /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = KCTextFieldCell;
-			productName = KCTextFieldCell;
-			productReference = 057369A31A0E2F990009FCA6 /* libKCTextFieldCell.a */;
+			name = KCTextFieldExtension;
+			productName = KCTextFieldExtension;
+			productReference = 055109601A1A30B20079A40C /* libKCTextFieldExtension.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0573699B1A0E2F990009FCA6 /* Project object */ = {
+		055109581A1A30B20079A40C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
-					057369A21A0E2F990009FCA6 = {
+					0551095F1A1A30B20079A40C = {
 						CreatedOnToolsVersion = 6.1;
 					};
-					057369BD1A0E36860009FCA6 = {
+					05B4DBA31A1A31A800333FCB = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
 			};
-			buildConfigurationList = 0573699E1A0E2F990009FCA6 /* Build configuration list for PBXProject "KCTextFieldCell" */;
+			buildConfigurationList = 0551095B1A1A30B20079A40C /* Build configuration list for PBXProject "KCTextFieldExtension" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 0573699A1A0E2F990009FCA6;
-			productRefGroup = 057369A41A0E2F990009FCA6 /* Products */;
+			mainGroup = 055109571A1A30B20079A40C;
+			productRefGroup = 055109611A1A30B20079A40C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				057369A21A0E2F990009FCA6 /* KCTextFieldCell */,
-				057369BD1A0E36860009FCA6 /* Install */,
+				0551095F1A1A30B20079A40C /* KCTextFieldExtension */,
+				05B4DBA31A1A31A800333FCB /* Install */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0573699F1A0E2F990009FCA6 /* Sources */ = {
+		0551095C1A1A30B20079A40C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				057369A91A0E2F990009FCA6 /* KCTextFieldCell.m in Sources */,
+				05B4DBA21A1A318E00333FCB /* KCTextFieldCommand.m in Sources */,
+				05B4DBA11A1A318E00333FCB /* KCTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		057369C21A0E36900009FCA6 /* PBXTargetDependency */ = {
+		05B4DBA81A1A31B100333FCB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 057369A21A0E2F990009FCA6 /* KCTextFieldCell */;
-			targetProxy = 057369C11A0E36900009FCA6 /* PBXContainerItemProxy */;
+			target = 0551095F1A1A30B20079A40C /* KCTextFieldExtension */;
+			targetProxy = 05B4DBA71A1A31B100333FCB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		057369B51A0E2F990009FCA6 /* Debug */ = {
+		055109721A1A30B20079A40C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -191,12 +207,13 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -209,13 +226,18 @@
 					"$(HOME)/local/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				WARNING_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 			};
 			name = Debug;
 		};
-		057369B61A0E2F990009FCA6 /* Release */ = {
+		055109731A1A30B20079A40C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -236,6 +258,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -248,13 +272,18 @@
 					"$(HOME)/local/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 			};
 			name = Release;
 		};
-		057369B81A0E2F990009FCA6 /* Debug */ = {
+		055109751A1A30B20079A40C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
@@ -263,7 +292,7 @@
 			};
 			name = Debug;
 		};
-		057369B91A0E2F990009FCA6 /* Release */ = {
+		055109761A1A30B20079A40C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
@@ -272,7 +301,7 @@
 			};
 			name = Release;
 		};
-		057369BF1A0E36860009FCA6 /* Debug */ = {
+		05B4DBA51A1A31A800333FCB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUGGING_SYMBOLS = YES;
@@ -290,7 +319,7 @@
 			};
 			name = Debug;
 		};
-		057369C01A0E36860009FCA6 /* Release */ = {
+		05B4DBA61A1A31A800333FCB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -305,34 +334,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0573699E1A0E2F990009FCA6 /* Build configuration list for PBXProject "KCTextFieldCell" */ = {
+		0551095B1A1A30B20079A40C /* Build configuration list for PBXProject "KCTextFieldExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				057369B51A0E2F990009FCA6 /* Debug */,
-				057369B61A0E2F990009FCA6 /* Release */,
+				055109721A1A30B20079A40C /* Debug */,
+				055109731A1A30B20079A40C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		057369B71A0E2F990009FCA6 /* Build configuration list for PBXNativeTarget "KCTextFieldCell" */ = {
+		055109741A1A30B20079A40C /* Build configuration list for PBXNativeTarget "KCTextFieldExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				057369B81A0E2F990009FCA6 /* Debug */,
-				057369B91A0E2F990009FCA6 /* Release */,
+				055109751A1A30B20079A40C /* Debug */,
+				055109761A1A30B20079A40C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		057369BE1A0E36860009FCA6 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+		05B4DBA41A1A31A800333FCB /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				057369BF1A0E36860009FCA6 /* Debug */,
-				057369C01A0E36860009FCA6 /* Release */,
+				05B4DBA51A1A31A800333FCB /* Debug */,
+				05B4DBA61A1A31A800333FCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0573699B1A0E2F990009FCA6 /* Project object */;
+	rootObject = 055109581A1A30B20079A40C /* Project object */;
 }
