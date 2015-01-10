@@ -17,7 +17,6 @@
 	FOUNDATION_EXPORT const unsigned char KiwiControlVersionString[];
 #endif /* TARGET_OS_IPHONE */
 
-#import "KCColorTable.h"
 #import "KCPreference.h"
 #import "KCViewVisitor.h"
 #import "KCViewUtil.h"

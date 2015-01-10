@@ -20,4 +20,8 @@ FOUNDATION_EXPORT const unsigned char KCGraphicsViewVersionString[];
 #	import "KCXGraphicsView.h"
 #endif
 
+#import "KCGraphicsDrawer.h"
+#import "KCBitmapDrawer.h"
+
+
 

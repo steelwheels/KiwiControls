@@ -6,7 +6,7 @@
  */
 
 #import "KCPreference.h"
-#import "KCColorTable.h"
+#import <CoconutGraphics/CoconutGraphics.h>
 
 #if TARGET_OS_IPHONE
 #	define KCColor		UIColor
@@ -110,13 +110,13 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 
 - (KCColor *) foregroundColor
 {
-	KCColorTable * ctable = [KCColorTable defaultColorTable] ;
+	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
 	return ctable.black ;
 }
 
 - (KCColor *) backgroundColor
 {
-	KCColorTable * ctable = [KCColorTable defaultColorTable] ;
+	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
 	return ctable.white ;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UTCheckerBitmap.h"
 
 @implementation ViewController
 
@@ -14,6 +15,11 @@
 	[super viewDidLoad];
 
 	// Do any additional setup after loading the view.
+	CNBitmap * bitmap = UTAllocateCheckerBitmap(10, 10) ;
+	CNColorIndexTable * colortable = UTAllocateCheckerColorIndexTable() ;
+	KCBitmapDrawer * bitmapdrawer = [[KCBitmapDrawer alloc] initWithBitmap: bitmap
+							   withColorIndexTable: colortable] ;
+	[graphicsView setDrawer: bitmapdrawer] ;
 }
 
 - (void)setRepresentedObject:(id)representedObject {

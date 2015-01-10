@@ -9,10 +9,10 @@
 
 @implementation KCGraphicsDrawer
 
-- (void) drawWithContext: (CGContextRef) context inFrameRect: (NSRect) framerect
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (NSRect) boundsrect
 {
 	CGContextSetRGBFillColor(context, 1, 1, 1, 1);//塗りつぶし色
-	CGContextFillRect(context, NSRectToCGRect(framerect));// 四角形を塗りつぶす
+	CGContextFillRect(context, NSRectToCGRect(boundsrect));// 四角形を塗りつぶす
 	CGContextSaveGState(context);// グラフィック状態の保存
 	CGContextSetRGBStrokeColor(context,0,0,1,1);// 線色
 	CGContextSetLineWidth(context, 10.5); // 線の太さを変更

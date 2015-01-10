@@ -8,9 +8,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@interface KCGraphicsDrawer : NSObject
+@protocol  KCGraphicsDrawing <NSObject>
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (NSRect) boundsrect ;
+@end
 
-- (void) drawWithContext: (CGContextRef) context inFrameRect: (NSRect) framerect ;
+@interface KCGraphicsDrawer : NSObject <KCGraphicsDrawing>
 
 @end
 

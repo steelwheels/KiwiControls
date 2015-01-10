@@ -7,6 +7,11 @@
 
 #import "KCXGraphicsView.h"
 
+#define DO_DEBUG 0
+#if DO_DEBUG
+#	import <CoconutGraphics/CoconutGraphics.h>
+#endif
+
 @implementation KCGraphicsView
 
 - (void) setDrawer: (KCGraphicsDrawer *) drawer
@@ -17,9 +22,14 @@
 - (void) drawRect:(NSRect) dirtyRect
 {
 	[super drawRect:dirtyRect];
+	
 	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort] ;
-	//NSRect framerect = [self frame] ;
-	[graphicsDrawer drawWithContext: context inFrameRect: dirtyRect] ;
+	NSRect bounds = [self bounds] ;
+	[graphicsDrawer drawWithContext: context inBoundsRect: bounds] ;
+	
+#	if DO_DEBUG
+	CNPrintRect(bounds) ;
+#	endif
 }
 
 @end
