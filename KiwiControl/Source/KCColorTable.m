@@ -9,11 +9,19 @@
 
 #import "KCColorTable.h"
 
+#if TARGET_OS_IPHONE
 static inline UIColor *
 allocateColor(CGFloat red, CGFloat green, CGFloat blue)
 {
 	return [[UIColor alloc] initWithRed: red green: green blue: blue alpha: 1.0] ;
 }
+#else /* TARGET_OS_IPHONE */
+static inline NSColor *
+allocateColor(CGFloat red, CGFloat green, CGFloat blue)
+{
+	return [NSColor colorWithRed: red green: green blue: blue alpha: 1.0] ;
+}
+#endif /* TARGET_OS_IPHONE */
 
 static KCColorTable * s_color_table = nil ;
 

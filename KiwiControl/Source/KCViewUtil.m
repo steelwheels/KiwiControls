@@ -7,8 +7,14 @@
 
 #import "KCViewUtil.h"
 
+#if TARGET_OS_IPHONE
+#	define	KCView			UIView
+#else
+#	define	KCView			NSView
+#endif
+
 CGPoint
-KCCenterPointInViewBounds(UIView * view)
+KCCenterPointInViewBounds(KCView * view)
 {
 	CGRect	bounds = view.bounds ;
 	CGPoint	result = bounds.origin ;
@@ -18,7 +24,7 @@ KCCenterPointInViewBounds(UIView * view)
 }
 
 CGPoint
-KCAbsolutePointAtView(UIView * view, CGPoint centerpoint)
+KCAbsolutePointAtView(KCView * view, CGPoint centerpoint)
 {
 	CGPoint	result = centerpoint ;
 	for( ; view ; view = view.superview){

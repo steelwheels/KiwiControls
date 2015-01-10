@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		051B81C61A2B3A2400595267 /* KCXGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 051B81C41A2B3A2400595267 /* KCXGraphicsView.h */; };
+		051B81C61A2B3A2400595267 /* KCXGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 051B81C41A2B3A2400595267 /* KCXGraphicsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		051B81C71A2B3A2400595267 /* KCXGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051B81C51A2B3A2400595267 /* KCXGraphicsView.m */; };
 		052A81781A24E0A100224717 /* KCGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 052A81771A24E0A100224717 /* KCGraphicsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0565372F1A24E1980025E2C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565372E1A24E1980025E2C6 /* AppDelegate.m */; };
@@ -15,7 +15,10 @@
 		056537341A24E1980025E2C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056537331A24E1980025E2C6 /* ViewController.m */; };
 		056537361A24E1980025E2C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056537351A24E1980025E2C6 /* Images.xcassets */; };
 		056537391A24E1980025E2C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056537371A24E1980025E2C6 /* Main.storyboard */; };
+		0587F2E51A600F48009CE6F5 /* KCGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */; };
 		059B94ED1A5ADC4E006A2596 /* KCGraphicsView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A81721A24E0A100224717 /* KCGraphicsView.framework */; };
+		05ED4D231A5FFD0D00EC660B /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05ED4D221A5FFD0D00EC660B /* CoconutGraphics.framework */; };
+		05ED4D251A5FFE1E00EC660B /* KCGraphicsDrawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 05ED4D241A5FFE1E00EC660B /* KCGraphicsDrawer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		056537331A24E1980025E2C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../UnitTest/OSX/ViewController.m; sourceTree = SOURCE_ROOT; };
 		056537351A24E1980025E2C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../UnitTest/OSX/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		056537381A24E1980025E2C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCGraphicsDrawer.m; path = ../Source/Common/KCGraphicsDrawer.m; sourceTree = "<group>"; };
+		05ED4D221A5FFD0D00EC660B /* CoconutGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutGraphics.framework; path = /Users/tomoo/Library/Frameworks/CoconutGraphics.framework; sourceTree = "<absolute>"; };
+		05ED4D241A5FFE1E00EC660B /* KCGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsDrawer.h; path = ../Source/Common/KCGraphicsDrawer.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05ED4D231A5FFD0D00EC660B /* CoconutGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,9 +83,11 @@
 			isa = PBXGroup;
 			children = (
 				052A81771A24E0A100224717 /* KCGraphicsView.h */,
+				05ED4D241A5FFE1E00EC660B /* KCGraphicsDrawer.h */,
+				0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */,
 			);
 			name = Common;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		051B81C31A2B3A0B00595267 /* OSX */ = {
 			isa = PBXGroup;
@@ -110,8 +119,8 @@
 		052A81741A24E0A100224717 /* KCGraphicsView */ = {
 			isa = PBXGroup;
 			children = (
-				051B81C21A2B39DE00595267 /* Common */,
 				051B81C31A2B3A0B00595267 /* OSX */,
+				051B81C21A2B39DE00595267 /* Common */,
 				052A81751A24E0A100224717 /* Supporting Files */,
 			);
 			path = KCGraphicsView;
@@ -120,6 +129,7 @@
 		052A81751A24E0A100224717 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05ED4D221A5FFD0D00EC660B /* CoconutGraphics.framework */,
 				051B81CE1A2B3C9300595267 /* install.mk */,
 				052A81761A24E0A100224717 /* Info.plist */,
 			);
@@ -164,8 +174,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				052A81781A24E0A100224717 /* KCGraphicsView.h in Headers */,
 				051B81C61A2B3A2400595267 /* KCXGraphicsView.h in Headers */,
+				05ED4D251A5FFE1E00EC660B /* KCGraphicsDrawer.h in Headers */,
+				052A81781A24E0A100224717 /* KCGraphicsView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				051B81C71A2B3A2400595267 /* KCXGraphicsView.m in Sources */,
+				0587F2E51A600F48009CE6F5 /* KCGraphicsDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,10 +459,20 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 			};
@@ -466,10 +488,20 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 			};

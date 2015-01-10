@@ -6,7 +6,13 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "KCGraphicsDrawer.h"
 
 @interface KCGraphicsView : NSView
+{
+	KCGraphicsDrawer *	graphicsDrawer ;
+}
+
+- (void) setDrawer: (KCGraphicsDrawer *) drawer ;
 
 @end

@@ -61,11 +61,27 @@
 		054836A51A24E62800C9BF18 /* KCGraphicsView */ = {
 			isa = PBXGroup;
 			children = (
+				05B0F1131A5AE16D00DD607D /* Common */,
+				05B0F1141A5AE17800DD607D /* iOS */,
+			);
+			path = KCGraphicsView;
+			sourceTree = "<group>";
+		};
+		05B0F1131A5AE16D00DD607D /* Common */ = {
+			isa = PBXGroup;
+			children = (
 				0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		05B0F1141A5AE17800DD607D /* iOS */ = {
+			isa = PBXGroup;
+			children = (
 				054836A61A24E62800C9BF18 /* KCIGraphicsView.h */,
 				054836A81A24E62800C9BF18 /* KCIGraphicsView.m */,
 			);
-			path = KCGraphicsView;
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

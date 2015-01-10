@@ -8,6 +8,14 @@
 #import "KCPreference.h"
 #import "KCColorTable.h"
 
+#if TARGET_OS_IPHONE
+#	define KCColor		UIColor
+#	define KCFont		UIFont
+#else /* TARGET_OS_IPHONE */
+#	define KCColor		NSColor
+#	define KCFont		NSFont
+#endif /* TARGET_OS_IPHONE */
+
 static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 
 @implementation KCPreference
@@ -25,8 +33,8 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
-		defaultFont = [UIFont systemFontOfSize: 22.0] ;
-		defaultBoldFont = [UIFont boldSystemFontOfSize: 22.0];
+		defaultFont = [KCFont systemFontOfSize: 22.0] ;
+		defaultBoldFont = [KCFont boldSystemFontOfSize: 22.0];
 	}
 	return self ;
 }
@@ -78,33 +86,35 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 	return getStringValueInStandardUserDefaults(@"ManualURL") ;
 }
 
+#if TARGET_OS_IPHONE
 - (CGRect) applicationFrame
 {
 	return [[UIScreen mainScreen] applicationFrame] ;
 }
-
-- (UIFont *) defaultFont
-{
-	return defaultFont ;
-}
-
-- (UIFont *) defaultBoldFont
-{
-	return defaultBoldFont ;
-}
+#endif /* TARGET_OS_IPHONE */
 
 - (CGFloat) margin
 {
 	return 4.0 ;
 }
 
-- (UIColor *) foregroundColor
+- (KCFont *) defaultFont
+{
+	return defaultFont ;
+}
+
+- (KCFont *) defaultBoldFont
+{
+	return defaultBoldFont ;
+}
+
+- (KCColor *) foregroundColor
 {
 	KCColorTable * ctable = [KCColorTable defaultColorTable] ;
 	return ctable.black ;
 }
 
-- (UIColor *) backgroundColor
+- (KCColor *) backgroundColor
 {
 	KCColorTable * ctable = [KCColorTable defaultColorTable] ;
 	return ctable.white ;

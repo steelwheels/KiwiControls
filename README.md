@@ -10,6 +10,11 @@ Copyright
 This software is produced by [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/) and distributed under 
 [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
+Required software
+-----------------
+Following frameworks/libraries are required to build this framework.
+*  [CoconutGraphics](https://github.com/steelwheels/CoconutGraphics), require by KCGraphicsView
+
 Controllers in this package 
 ---------------------------
 * KiwiControl:		Common function library for the other controls
@@ -18,6 +23,7 @@ Controllers in this package
 * KCButtonTable:	Popup menu which has some buttons
 * KCPreferenceTable:	Template of the reference page of the application
 * KCTouchableLabel:	The sub class of UILabel to catch the touch event
+* KCGraphics:		View classes for bitmap graphics
 
 References
 ----------

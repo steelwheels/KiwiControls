@@ -7,6 +7,8 @@
 
 #import "KCXIBUtil.h"
 
+#if TARGET_OS_IPHONE
+
 static inline NSLayoutConstraint *
 allocateLayout(UIView * parentview, UIView * subview, NSLayoutAttribute attribute)
 {
@@ -40,5 +42,7 @@ KCLoadXib(UIView * parentview, NSString * nibname)
 		return nil ;
 	}
 }
+
+#endif /* TARGET_OS_IPHONE */
 
 

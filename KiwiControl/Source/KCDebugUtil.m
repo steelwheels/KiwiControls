@@ -7,40 +7,19 @@
 
 #import "KCDebugUtil.h"
 #import "KCViewVisitor.h"
+#import <CoconutGraphics/CoconutGraphics.h>
 
-static const char *
-y_or_n(BOOL flag) ;
-
-void
-KCPrintPoint(CGPoint src)
-{
-	printf("(x=%.2lf, y=%.2lf)", src.x, src.y) ;
-}
-
-void
-KCPrintSize(CGSize src)
-{
-	printf("(w=%.2lf, h=%.2lf)", src.width, src.height) ;
-}
-
-void
-KCPrintRect(CGRect src)
-{
-	fputs("(", stdout) ;
-	KCPrintPoint(src.origin) ;
-	KCPrintSize(src.size) ;
-	fputs(")", stdout) ;
-}
+#if TARGET_OS_IPHONE
+#	define	KCView			UIView
+#else
+#	define	KCView			NSView
+#endif
 
 static const char *
 y_or_n(BOOL flag)
 {
 	return flag ? "yes" : "no" ;
 }
-
-/************************************************************************
- * View printer								*
- ************************************************************************/
 
 @interface KCPrintParameter : NSObject
 @property (assign, nonatomic)	NSUInteger	depth ;
@@ -70,7 +49,7 @@ printIndent(NSUInteger depth)
 
 @interface KCViewPrinter : KCViewVisitor
 - (instancetype) init ;
-- (void) printMainView: (UIView *) view withParameter: (KCPrintParameter *) parameter ;
+- (void) printMainView: (KCView *) view withParameter: (KCPrintParameter *) parameter ;
 @end
 
 @implementation KCViewPrinter
@@ -82,7 +61,7 @@ printIndent(NSUInteger depth)
 	return self ;
 }
 
-- (void) visitView: (UIView *) view withParameter: (id) parameter
+- (void) visitView: (KCView *) view withParameter: (id) parameter
 {
 	[self printMainView: view withParameter: parameter] ;
 	
@@ -91,12 +70,14 @@ printIndent(NSUInteger depth)
 	subparam.index = 0 ;
 	subparam.depth = mainparam.depth + 1 ;
 	NSArray * subviews = [view subviews] ;
-	UIView * subview ;
+	KCView * subview ;
 	for(subview in subviews){
 		[subview acceptViewVisitor: self withParameter: subparam] ;
 		subparam.index += 1 ;
 	}
 }
+
+#if TARGET_OS_IPHONE
 
 - (void) visitTableView: (UITableView *) view withParameter: (id) parameter
 {
@@ -130,15 +111,17 @@ printIndent(NSUInteger depth)
 	}
 }
 
-- (void) printMainView: (UIView *) view withParameter: (KCPrintParameter *) parameter
+#endif
+
+- (void) printMainView: (KCView *) view withParameter: (KCPrintParameter *) parameter
 {
 	NSString * name = NSStringFromClass([view class]) ;
 	
 	printIndent(parameter.depth) ;
 	printf("%lu: %s ", (unsigned long int) parameter.index, [name UTF8String]) ;
 	
-	fputs(" f", stdout) ; KCPrintRect(view.frame) ;
-	fputs(" b", stdout) ; KCPrintRect(view.frame) ;
+	fputs(" f", stdout) ; CNPrintRect(view.frame) ;
+	fputs(" b", stdout) ; CNPrintRect(view.frame) ;
 	
 	printf("*1:%s ", y_or_n([view translatesAutoresizingMaskIntoConstraints])) ;
 	putc('\n', stdout) ;
@@ -147,7 +130,7 @@ printIndent(NSUInteger depth)
 @end
 
 void
-KCPrintView(UIView * view)
+KCPrintView(KCView * view)
 {
 	KCViewPrinter * printer = [[KCViewPrinter alloc] init] ;
 	KCPrintParameter * parameter = [[KCPrintParameter alloc] init] ;

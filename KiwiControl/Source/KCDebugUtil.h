@@ -5,16 +5,17 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import <UIKit/UIKit.h>
+#import "KCType.h"
+
+#if TARGET_OS_IPHONE
+#	define	KCView			UIView
+#else
+#	define	KCView			NSView
+#endif
 
 void
-KCPrintView(UIView * view) ;
+KCPrintView(KCView * view) ;
 
-void
-KCPrintPoint(CGPoint src) ;
+#undef KCView
 
-void
-KCPrintSize(CGSize src) ;
 
-void
-KCPrintRect(CGRect src) ;

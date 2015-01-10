@@ -5,7 +5,15 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import <UIKit/UIKit.h>
+#import "KCType.h"
+
+#if TARGET_OS_IPHONE
+#	define	KCEdgeInsets		UIEdgeInsets
+#	define	KCView			UIView
+#else
+#	define	KCEdgeInsets		NSEdgeInsets
+#	define	KCView			NSView
+#endif
 
 static inline CGRect
 KCUpdateRectSize(CGRect src, CGSize size)
@@ -14,7 +22,7 @@ KCUpdateRectSize(CGRect src, CGSize size)
 }
 
 static inline CGRect
-KCExpandRectByInsets(CGRect rect, UIEdgeInsets insets )
+KCExpandRectByInsets(CGRect rect, KCEdgeInsets insets)
 {
 	CGFloat	x = rect.origin.x - insets.left ;
 	CGFloat y = rect.origin.y - insets.top ;
@@ -24,7 +32,7 @@ KCExpandRectByInsets(CGRect rect, UIEdgeInsets insets )
 }
 
 static inline void
-KCUpdateViewOrigin(UIView * view, CGPoint origin)
+KCUpdateViewOrigin(KCView * view, CGPoint origin)		   
 {
 	CGRect frame = view.frame ;
 	frame.origin = origin ;
@@ -32,18 +40,24 @@ KCUpdateViewOrigin(UIView * view, CGPoint origin)
 }
 
 static inline void
-KCUpdateViewSize(UIView * view, CGSize newsize)
+KCUpdateViewSize(KCView * view, CGSize newsize)
 {
 	view.frame  = KCUpdateRectSize(view.frame, newsize) ;
 	view.bounds = KCUpdateRectSize(view.bounds, newsize) ;
+#	if TARGET_OS_IPHONE
 	CGFloat x = view.frame.origin.x + (newsize.width / 2) ;
 	CGFloat y = view.frame.origin.y + (newsize.height / 2) ;
 	view.center = CGPointMake(x, y) ;
+#	endif
 }
 
 CGPoint
-KCCenterPointInViewBounds(UIView * view) ;
+KCCenterPointInViewBounds(KCView * view) ;
 
 CGPoint
-KCAbsolutePointAtView(UIView * view, CGPoint centerpoint) ;
+KCAbsolutePointAtView(KCView * view, CGPoint centerpoint) ;
+
+#undef KCEdgeInsets
+#undef KCView
+
 

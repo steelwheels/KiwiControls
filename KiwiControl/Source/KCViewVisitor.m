@@ -7,8 +7,10 @@
 
 #import "KCViewVisitor.h"
 
-@implementation UIView (KCVisitorInterface)
 
+#if TARGET_OS_IPHONE
+
+@implementation UIView (KCVisitorInterface)
 - (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter
 {
 	[visitor visitView: self withParameter: parameter] ;
@@ -47,3 +49,32 @@
 }
 
 @end
+
+#else /* TARGET_OS_IPHONE */
+
+@implementation NSView (KCVisitorInterface)
+- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter
+{
+	[visitor visitView: self withParameter: parameter] ;
+}
+@end
+
+@implementation NSTextView (KCVisitorInterface)
+- (void) acceptViewVisitor: (KCViewVisitor *) visitor withParameter: (id) parameter
+{
+	[visitor visitTextView: self withParameter: parameter] ;
+}
+@end
+
+@implementation KCViewVisitor : NSObject
+- (void) visitView: (NSView *) view withParameter: (id) parameter
+{
+	((void) view) ; ((void) parameter) ;
+}
+- (void) visitTextView: (NSTextView *) view withParameter: (id) parameter
+{
+	((void) view) ; ((void) parameter) ;
+}
+@end
+
+#endif /* TARGET_OS_IPHONE */

@@ -5,6 +5,18 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
+#import <TargetConditionals.h>
+#if TARGET_OS_IPHONE
+#else /* TARGET_OS_IPHONE */
+#	import <Cocoa/Cocoa.h>
+
+	//! Project version number for KiwiControl.
+	FOUNDATION_EXPORT double KiwiControlVersionNumber;
+
+	//! Project version string for KiwiControl.
+	FOUNDATION_EXPORT const unsigned char KiwiControlVersionString[];
+#endif /* TARGET_OS_IPHONE */
+
 #import "KCColorTable.h"
 #import "KCPreference.h"
 #import "KCViewVisitor.h"
