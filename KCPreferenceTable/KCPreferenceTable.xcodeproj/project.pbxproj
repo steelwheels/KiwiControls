@@ -500,7 +500,7 @@
 				OTHER_LDFLAGS = (
 					"-lKCPreferenceTable",
 					"-lKiwiControl",
-					"-all_load",
+					"-lCoconutGraphics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -523,7 +523,7 @@
 				OTHER_LDFLAGS = (
 					"-lKCPreferenceTable",
 					"-lKiwiControl",
-					"-all_load",
+					"-lCoconutGraphics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
