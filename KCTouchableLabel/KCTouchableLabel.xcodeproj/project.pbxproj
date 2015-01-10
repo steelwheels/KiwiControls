@@ -453,6 +453,7 @@
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
 					"-lKiwiControl",
+					"-lCoconutGraphics",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -482,6 +483,7 @@
 				OTHER_LDFLAGS = (
 					"-lKCTouchableLabel",
 					"-lKiwiControl",
+					"-lCoconutGraphics",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
