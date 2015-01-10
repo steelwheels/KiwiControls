@@ -5,9 +5,9 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#if TARGET_OS_IPHONE
+#import "KCType.h"
 
-#import <UIKit/UIKit.h>
+#if TARGET_OS_IPHONE
 
 UIView *
 KCLoadXib(UIView * parentview, NSString * nibname) ;

@@ -428,6 +428,7 @@
 		054B9D4A19B77196004CE305 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				OTHER_CFLAGS = (
 					"-W",
@@ -442,6 +443,7 @@
 		054B9D4B19B77196004CE305 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				OTHER_CFLAGS = (
 					"-W",
@@ -504,6 +506,7 @@
 				OTHER_LDFLAGS = (
 					"-lKCButtonTable",
 					"-lKiwiControl",
+					"-lCoconutGraphics",
 					"-ObjC",
 					"-all_load",
 				);
@@ -529,6 +532,7 @@
 				OTHER_LDFLAGS = (
 					"-lKCButtonTable",
 					"-lKiwiControl",
+					"-lCoconutGraphics",
 					"-ObjC",
 					"-all_load",
 				);
