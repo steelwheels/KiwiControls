@@ -6,7 +6,7 @@
  */
 
 #import "KCGraphicsDrawer.h"
-#import <CoconutGraphics/CoconutGraphics.h>
+#import "KCGraphicsType.h"
 
 @interface KCBitmapDrawer : KCGraphicsDrawer <KCGraphicsDrawing>
 @property (strong, readonly) CNBitmap *			bitmap ;

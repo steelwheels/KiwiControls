@@ -5,14 +5,21 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
+#import "KCGraphicsType.h"
+
+#if TARGET_OS_IPHONE
+#	define KCRect		CGRect
+#else
+#	define KCRect		NSRect
+#endif
 
 @protocol  KCGraphicsDrawing <NSObject>
-- (void) drawWithContext: (CGContextRef) context inBoundsRect: (NSRect) boundsrect ;
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect ;
 @end
 
 @interface KCGraphicsDrawer : NSObject <KCGraphicsDrawing>
 
 @end
+
+#undef KCRect
 

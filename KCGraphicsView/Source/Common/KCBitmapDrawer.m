@@ -7,6 +7,12 @@
 
 #import "KCBitmapDrawer.h"
 
+#if TARGET_OS_IPHONE
+#	define KCRect		CGRect
+#else
+#	define KCRect		NSRect
+#endif
+
 @interface KCBitmapDrawer ()
 @property (strong, readwrite) CNBitmap *			bitmap ;
 @property (strong, readwrite) CNColorIndexTable *	colorIndexTable ;
@@ -25,7 +31,7 @@
 	return self ;
 }
 
-- (void) drawWithContext: (CGContextRef) context inBoundsRect: (NSRect) boundsrect
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect
 {
 	NSUInteger	bitmapwidth  = self.bitmap.width ;
 	NSUInteger	bitmapheight = self.bitmap.height ;
