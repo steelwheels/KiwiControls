@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import <KCGraphicsView/KCGraphicsView.h>
+#import <CoconutGraphics/CoconutGraphics.h>
+#import "UTCheckerBitmap.h"
 
 @interface ViewController ()
 
@@ -16,7 +19,13 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+	// Do any additional setup after loading the view.
+	CNBitmap * bitmap = UTAllocateCheckerBitmap(10, 10) ;
+	CNColorIndexTable * colortable = UTAllocateCheckerColorIndexTable() ;
+	KCBitmapDrawer * bitmapdrawer = [[KCBitmapDrawer alloc] initWithBitmap: bitmap
+							   withColorIndexTable: colortable] ;
+	[self.graphicsView setDrawer: bitmapdrawer] ;
 }
 
 - (void)didReceiveMemoryWarning {

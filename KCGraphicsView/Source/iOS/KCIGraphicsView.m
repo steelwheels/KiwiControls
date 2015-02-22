@@ -1,5 +1,5 @@
 /**
- * @file	KCXGraphicsView.m
+ * @file	KCIGraphicsView.m
  * @brief	Define KCGraphicsView class for Mac OS X
  * @par Copyright
  *   Copyright (C) 2014 Steel Wheels Project

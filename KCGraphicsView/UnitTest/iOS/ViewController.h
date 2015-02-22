@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <KCGraphicsView/KCGraphicsView.h>
 
 @interface ViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet KCGraphicsView *graphicsView;
 
 @end
 
