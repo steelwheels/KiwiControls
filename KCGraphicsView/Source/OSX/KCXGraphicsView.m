@@ -25,6 +25,12 @@
 	
 	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort] ;
 	NSRect bounds = [self bounds] ;
+	
+	/* Setup as left-lower-origin */
+	CGFloat height = self.bounds.size.height;
+	CGContextTranslateCTM(context, 0.0, height);
+	CGContextScaleCTM(context, 1.0, - 1.0);
+	
 	[graphicsDrawer drawWithContext: context inBoundsRect: bounds] ;
 	
 #	if DO_DEBUG

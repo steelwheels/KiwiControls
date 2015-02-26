@@ -11,6 +11,8 @@
 		051B81C71A2B3A2400595267 /* KCXGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051B81C51A2B3A2400595267 /* KCXGraphicsView.m */; };
 		05235E821A612430009F24D6 /* UTCheckerBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 05235E811A612430009F24D6 /* UTCheckerBitmap.m */; };
 		052A81781A24E0A100224717 /* KCGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 052A81771A24E0A100224717 /* KCGraphicsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05305EAA1A9E23DC005EB2DF /* KCGraphicsFunc.h in Headers */ = {isa = PBXBuildFile; fileRef = 05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05305EAB1A9E23DC005EB2DF /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */; };
 		0551919C1A6157EC007807CE /* KCGraphicsType.h in Headers */ = {isa = PBXBuildFile; fileRef = 0551919B1A6157EC007807CE /* KCGraphicsType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0565372F1A24E1980025E2C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565372E1A24E1980025E2C6 /* AppDelegate.m */; };
 		056537311A24E1980025E2C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 056537301A24E1980025E2C6 /* main.m */; };
@@ -52,6 +54,8 @@
 		052A81721A24E0A100224717 /* KCGraphicsView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphicsView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		052A81761A24E0A100224717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		052A81771A24E0A100224717 /* KCGraphicsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCGraphicsView.h; path = ../Source/Common/KCGraphicsView.h; sourceTree = SOURCE_ROOT; };
+		05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsFunc.h; path = ../Source/Common/KCGraphicsFunc.h; sourceTree = "<group>"; };
+		05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCGraphicsFunc.m; path = ../Source/Common/KCGraphicsFunc.m; sourceTree = "<group>"; };
 		0551919B1A6157EC007807CE /* KCGraphicsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsType.h; path = ../Source/Common/KCGraphicsType.h; sourceTree = "<group>"; };
 		056537291A24E1980025E2C6 /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0565372C1A24E1980025E2C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/OSX/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -94,8 +98,10 @@
 		051B81C21A2B39DE00595267 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				052A81771A24E0A100224717 /* KCGraphicsView.h */,
 				0551919B1A6157EC007807CE /* KCGraphicsType.h */,
+				05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */,
+				05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */,
+				052A81771A24E0A100224717 /* KCGraphicsView.h */,
 				05ED4D241A5FFE1E00EC660B /* KCGraphicsDrawer.h */,
 				0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */,
 				0567D0881A610DD10057E17B /* KCBitmapDrawer.h */,
@@ -201,6 +207,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05305EAA1A9E23DC005EB2DF /* KCGraphicsFunc.h in Headers */,
 				0551919C1A6157EC007807CE /* KCGraphicsType.h in Headers */,
 				0567D08A1A610DD10057E17B /* KCBitmapDrawer.h in Headers */,
 				051B81C61A2B3A2400595267 /* KCXGraphicsView.h in Headers */,
@@ -332,6 +339,7 @@
 			files = (
 				051B81C71A2B3A2400595267 /* KCXGraphicsView.m in Sources */,
 				0587F2E51A600F48009CE6F5 /* KCGraphicsDrawer.m in Sources */,
+				05305EAB1A9E23DC005EB2DF /* KCGraphicsFunc.m in Sources */,
 				0567D08B1A610DD10057E17B /* KCBitmapDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

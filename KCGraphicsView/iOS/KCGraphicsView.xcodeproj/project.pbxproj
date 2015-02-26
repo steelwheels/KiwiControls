@@ -14,6 +14,8 @@
 		053E47F01A99E46D00E364A1 /* UTCheckerBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 053E47EF1A99E46D00E364A1 /* UTCheckerBitmap.m */; };
 		054836A71A24E62800C9BF18 /* KCIGraphicsView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054836A61A24E62800C9BF18 /* KCIGraphicsView.h */; };
 		054836A91A24E62800C9BF18 /* KCIGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054836A81A24E62800C9BF18 /* KCIGraphicsView.m */; };
+		054F16A31A9E21B4000A413C /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */; };
+		054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */; };
 		05C6E9AD1A615257006969CD /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */; };
 		05C6E9AE1A615257006969CD /* KCGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9AC1A615257006969CD /* KCGraphicsDrawer.m */; };
 		05C6E9B91A61556E006969CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9B81A61556E006969CD /* main.m */; };
@@ -48,6 +50,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */,
 				053E47ED1A99DBB800E364A1 /* KCGraphicsType.h in CopyFiles */,
 				053E47EC1A99DBB300E364A1 /* KCGraphicsDrawer.h in CopyFiles */,
 				053E47EB1A99DBAE00E364A1 /* KCBitmapDrawer.h in CopyFiles */,
@@ -64,6 +67,8 @@
 		054836A31A24E62800C9BF18 /* libKCGraphicsView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCGraphicsView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		054836A61A24E62800C9BF18 /* KCIGraphicsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCIGraphicsView.h; path = ../Source/iOS/KCIGraphicsView.h; sourceTree = SOURCE_ROOT; };
 		054836A81A24E62800C9BF18 /* KCIGraphicsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCIGraphicsView.m; path = ../Source/iOS/KCIGraphicsView.m; sourceTree = SOURCE_ROOT; };
+		054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsFunc.m; sourceTree = "<group>"; };
+		054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsFunc.h; sourceTree = "<group>"; };
 		0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsView.h; path = ../Source/Common/KCGraphicsView.h; sourceTree = SOURCE_ROOT; };
 		05C6E9A91A615257006969CD /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCBitmapDrawer.h; sourceTree = "<group>"; };
 		05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCBitmapDrawer.m; sourceTree = "<group>"; };
@@ -137,6 +142,8 @@
 				05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */,
 				05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */,
 				05C6E9AC1A615257006969CD /* KCGraphicsDrawer.m */,
+				054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */,
+				054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */,
 			);
 			name = Common;
 			path = ../Source/Common;
@@ -294,6 +301,7 @@
 			files = (
 				05C6E9AE1A615257006969CD /* KCGraphicsDrawer.m in Sources */,
 				054836A91A24E62800C9BF18 /* KCIGraphicsView.m in Sources */,
+				054F16A31A9E21B4000A413C /* KCGraphicsFunc.m in Sources */,
 				05C6E9AD1A615257006969CD /* KCBitmapDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,7 +440,10 @@
 					"-W",
 					"-Wall",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-lCoconutGraphics",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 			};
@@ -452,7 +463,10 @@
 					"-W",
 					"-Wall",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-lCoconutGraphics",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 			};
