@@ -18,10 +18,10 @@
 		056537311A24E1980025E2C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 056537301A24E1980025E2C6 /* main.m */; };
 		056537341A24E1980025E2C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056537331A24E1980025E2C6 /* ViewController.m */; };
 		056537361A24E1980025E2C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056537351A24E1980025E2C6 /* Images.xcassets */; };
-		056537391A24E1980025E2C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056537371A24E1980025E2C6 /* Main.storyboard */; };
 		0567D08A1A610DD10057E17B /* KCBitmapDrawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0567D0881A610DD10057E17B /* KCBitmapDrawer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0567D08B1A610DD10057E17B /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0567D0891A610DD10057E17B /* KCBitmapDrawer.m */; };
 		0567D08D1A61156E0057E17B /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0567D08C1A61156E0057E17B /* CoconutGraphics.framework */; };
+		05731B961AA1C94900A6B5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05731B931AA1C94200A6B5BC /* Main.storyboard */; };
 		0587F2E51A600F48009CE6F5 /* KCGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */; };
 		059B94ED1A5ADC4E006A2596 /* KCGraphicsView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A81721A24E0A100224717 /* KCGraphicsView.framework */; };
 		05ED4D231A5FFD0D00EC660B /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05ED4D221A5FFD0D00EC660B /* CoconutGraphics.framework */; };
@@ -58,17 +58,17 @@
 		05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCGraphicsFunc.m; path = ../Source/Common/KCGraphicsFunc.m; sourceTree = "<group>"; };
 		0551919B1A6157EC007807CE /* KCGraphicsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsType.h; path = ../Source/Common/KCGraphicsType.h; sourceTree = "<group>"; };
 		056537291A24E1980025E2C6 /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0565372C1A24E1980025E2C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/OSX/Info.plist; sourceTree = SOURCE_ROOT; };
-		0565372D1A24E1980025E2C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../UnitTest/OSX/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		0565372E1A24E1980025E2C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../UnitTest/OSX/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		056537301A24E1980025E2C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../UnitTest/OSX/main.m; sourceTree = SOURCE_ROOT; };
-		056537321A24E1980025E2C6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../UnitTest/OSX/ViewController.h; sourceTree = SOURCE_ROOT; };
-		056537331A24E1980025E2C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../UnitTest/OSX/ViewController.m; sourceTree = SOURCE_ROOT; };
-		056537351A24E1980025E2C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../UnitTest/OSX/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		056537381A24E1980025E2C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0565372C1A24E1980025E2C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Bitmap/OSX/Info.plist; sourceTree = SOURCE_ROOT; };
+		0565372D1A24E1980025E2C6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../UnitTest/Bitmap/OSX/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		0565372E1A24E1980025E2C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../UnitTest/Bitmap/OSX/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		056537301A24E1980025E2C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../UnitTest/Bitmap/OSX/main.m; sourceTree = SOURCE_ROOT; };
+		056537321A24E1980025E2C6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../UnitTest/Bitmap/OSX/ViewController.h; sourceTree = SOURCE_ROOT; };
+		056537331A24E1980025E2C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../UnitTest/Bitmap/OSX/ViewController.m; sourceTree = SOURCE_ROOT; };
+		056537351A24E1980025E2C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../UnitTest/Bitmap/OSX/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		0567D0881A610DD10057E17B /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCBitmapDrawer.h; path = ../Source/Common/KCBitmapDrawer.h; sourceTree = "<group>"; };
 		0567D0891A610DD10057E17B /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCBitmapDrawer.m; path = ../Source/Common/KCBitmapDrawer.m; sourceTree = "<group>"; };
 		0567D08C1A61156E0057E17B /* CoconutGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutGraphics.framework; path = ../../../../../Library/Frameworks/CoconutGraphics.framework; sourceTree = "<group>"; };
+		05731B941AA1C94200A6B5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCGraphicsDrawer.m; path = ../Source/Common/KCGraphicsDrawer.m; sourceTree = "<group>"; };
 		05ED4D221A5FFD0D00EC660B /* CoconutGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutGraphics.framework; path = /Users/tomoo/Library/Frameworks/CoconutGraphics.framework; sourceTree = "<absolute>"; };
 		05ED4D241A5FFE1E00EC660B /* KCGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsDrawer.h; path = ../Source/Common/KCGraphicsDrawer.h; sourceTree = SOURCE_ROOT; };
@@ -126,7 +126,7 @@
 				05235E811A612430009F24D6 /* UTCheckerBitmap.m */,
 			);
 			name = Common;
-			path = ../UnitTest/Common;
+			path = ../UnitTest/Bitmap/Common;
 			sourceTree = SOURCE_ROOT;
 		};
 		052A81681A24E0A100224717 = {
@@ -170,9 +170,7 @@
 		0565372A1A24E1980025E2C6 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				059B94EE1A5ADCB9006A2596 /* OSX */,
-				05235E7F1A6123FA009F24D6 /* Common */,
-				0565372B1A24E1980025E2C6 /* Supporting Files */,
+				05731B911AA1C81700A6B5BC /* Bitmap */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -185,20 +183,33 @@
 				056537301A24E1980025E2C6 /* main.m */,
 			);
 			name = "Supporting Files";
+			path = ../../OSX/UnitTest;
 			sourceTree = "<group>";
+		};
+		05731B911AA1C81700A6B5BC /* Bitmap */ = {
+			isa = PBXGroup;
+			children = (
+				05235E7F1A6123FA009F24D6 /* Common */,
+				059B94EE1A5ADCB9006A2596 /* OSX */,
+				0565372B1A24E1980025E2C6 /* Supporting Files */,
+			);
+			name = Bitmap;
+			path = ../UnitTest/Bitmap;
+			sourceTree = SOURCE_ROOT;
 		};
 		059B94EE1A5ADCB9006A2596 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				05731B931AA1C94200A6B5BC /* Main.storyboard */,
 				0565372D1A24E1980025E2C6 /* AppDelegate.h */,
 				0565372E1A24E1980025E2C6 /* AppDelegate.m */,
 				056537321A24E1980025E2C6 /* ViewController.h */,
 				056537331A24E1980025E2C6 /* ViewController.m */,
 				056537351A24E1980025E2C6 /* Images.xcassets */,
-				056537371A24E1980025E2C6 /* Main.storyboard */,
 			);
 			name = OSX;
-			sourceTree = "<group>";
+			path = ../UnitTest/Bitmap/OSX;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -326,7 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				056537361A24E1980025E2C6 /* Images.xcassets in Resources */,
-				056537391A24E1980025E2C6 /* Main.storyboard in Resources */,
+				05731B961AA1C94900A6B5BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,14 +382,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		056537371A24E1980025E2C6 /* Main.storyboard */ = {
+		05731B931AA1C94200A6B5BC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				056537381A24E1980025E2C6 /* Base */,
+				05731B941AA1C94200A6B5BC /* Base */,
 			);
 			name = Main.storyboard;
-			path = ../UnitTest/OSX;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
@@ -561,7 +571,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ../UnitTest/OSX/Info.plist;
+				INFOPLIST_FILE = ../UnitTest/Bitmap/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -578,7 +588,7 @@
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 2;
-				INFOPLIST_FILE = ../UnitTest/OSX/Info.plist;
+				INFOPLIST_FILE = ../UnitTest/Bitmap/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
