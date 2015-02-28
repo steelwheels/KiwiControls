@@ -31,12 +31,19 @@
 
 - (void) drawCircleWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect
 {
+#if 1
+	CGFloat radius = MIN(boundsrect.size.width / 2.0, boundsrect.size.height / 2.0) ;
+	struct CNCircle circle = CNMakeCircle(radius, radius, radius) ;
+	CGRect cbounds = KCBoundsOfCircle(&circle) ;
+	CGContextFillEllipseInRect(context, cbounds);
+#else
 	CGFloat width = MIN(boundsrect.size.width, boundsrect.size.height) ;
 	CGRect circlebounds = {
 		.origin = {.x = 0.0, .y=0.0} ,
 		.size   = {.width = width, .height=width}
 	} ;
 	CGContextFillEllipseInRect(context, circlebounds);
+#endif
 }
 
 @end
