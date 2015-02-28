@@ -24,6 +24,7 @@
 		054836A91A24E62800C9BF18 /* KCIGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054836A81A24E62800C9BF18 /* KCIGraphicsView.m */; };
 		054F16A31A9E21B4000A413C /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */; };
 		054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */; };
+		0556AF831AA1F4990078B1DA /* UTGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0556AF821AA1F4990078B1DA /* UTGraphicsDrawer.m */; };
 		05C6E9AD1A615257006969CD /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */; };
 		05C6E9AE1A615257006969CD /* KCGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9AC1A615257006969CD /* KCGraphicsDrawer.m */; };
 		05C6E9B91A61556E006969CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9B81A61556E006969CD /* main.m */; };
@@ -94,6 +95,8 @@
 		054836A81A24E62800C9BF18 /* KCIGraphicsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCIGraphicsView.m; path = ../Source/iOS/KCIGraphicsView.m; sourceTree = SOURCE_ROOT; };
 		054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsFunc.m; sourceTree = "<group>"; };
 		054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsFunc.h; sourceTree = "<group>"; };
+		0556AF811AA1F4990078B1DA /* UTGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTGraphicsDrawer.h; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.h; sourceTree = "<group>"; };
+		0556AF821AA1F4990078B1DA /* UTGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTGraphicsDrawer.m; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.m; sourceTree = "<group>"; };
 		0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsView.h; path = ../Source/Common/KCGraphicsView.h; sourceTree = SOURCE_ROOT; };
 		05C6E9A91A615257006969CD /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCBitmapDrawer.h; sourceTree = "<group>"; };
 		05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCBitmapDrawer.m; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				052B67751AA1E1E60072A369 /* iOS */,
+				0556AF801AA1F4740078B1DA /* Common */,
 				052B67511AA1E1520072A369 /* Supporting Files */,
 			);
 			name = Graphics;
@@ -206,6 +210,15 @@
 			);
 			name = Source;
 			path = KCGraphicsView;
+			sourceTree = "<group>";
+		};
+		0556AF801AA1F4740078B1DA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0556AF811AA1F4990078B1DA /* UTGraphicsDrawer.h */,
+				0556AF821AA1F4990078B1DA /* UTGraphicsDrawer.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		055CC2B71AA1D20600722037 /* Common */ = {
@@ -361,6 +374,7 @@
 				TargetAttributes = {
 					052B674E1AA1E1520072A369 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = TR2DNF3P93;
 					};
 					054836A21A24E62800C9BF18 = {
 						CreatedOnToolsVersion = 6.1;
@@ -423,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0556AF831AA1F4990078B1DA /* UTGraphicsDrawer.m in Sources */,
 				052B675A1AA1E1530072A369 /* ViewController.m in Sources */,
 				052B67571AA1E1530072A369 /* AppDelegate.m in Sources */,
 				052B67541AA1E1520072A369 /* main.m in Sources */,
@@ -511,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -543,6 +559,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				HEADER_SEARCH_PATHS = (
@@ -783,6 +800,7 @@
 				052B67701AA1E1530072A369 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0548369E1A24E62800C9BF18 /* Build configuration list for PBXProject "KCGraphicsView" */ = {
 			isa = XCConfigurationList;
