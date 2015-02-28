@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0502B3F51AA1DBCB003BB47C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */; };
+		0502B3F81AA1DBDE003BB47C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F61AA1DBDE003BB47C /* Main.storyboard */; };
 		053E47EA1A99DBA800E364A1 /* KCGraphicsView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */; };
 		053E47EB1A99DBAE00E364A1 /* KCBitmapDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C6E9A91A615257006969CD /* KCBitmapDrawer.h */; };
 		053E47EC1A99DBB300E364A1 /* KCGraphicsDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */; };
@@ -21,9 +23,7 @@
 		05C6E9B91A61556E006969CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9B81A61556E006969CD /* main.m */; };
 		05C6E9BC1A61556E006969CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9BB1A61556E006969CD /* AppDelegate.m */; };
 		05C6E9BF1A61556E006969CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9BE1A61556E006969CD /* ViewController.m */; };
-		05C6E9C21A61556E006969CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C6E9C01A61556E006969CD /* Main.storyboard */; };
 		05C6E9C41A61556E006969CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C6E9C31A61556E006969CD /* Images.xcassets */; };
-		05C6E9C71A61556E006969CD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C6E9C51A61556E006969CD /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +62,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0502B3F41AA1DBCB003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0502B3F71AA1DBDE003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		053E47EE1A99E46D00E364A1 /* UTCheckerBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCheckerBitmap.h; sourceTree = "<group>"; };
 		053E47EF1A99E46D00E364A1 /* UTCheckerBitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCheckerBitmap.m; sourceTree = "<group>"; };
 		054836A31A24E62800C9BF18 /* libKCGraphicsView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCGraphicsView.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,9 +84,7 @@
 		05C6E9BB1A61556E006969CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../UnitTest/Bitmap/iOS/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		05C6E9BD1A61556E006969CD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../UnitTest/Bitmap/iOS/ViewController.h; sourceTree = SOURCE_ROOT; };
 		05C6E9BE1A61556E006969CD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../UnitTest/Bitmap/iOS/ViewController.m; sourceTree = SOURCE_ROOT; };
-		05C6E9C11A61556E006969CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		05C6E9C31A61556E006969CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../iOS/UnitTest/Images.xcassets; sourceTree = "<group>"; };
-		05C6E9C61A61556E006969CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		05C6E9C31A61556E006969CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../UnitTest/Bitmap/iOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 		0518B2B51AA1C72600E91197 /* Bitmap */ = {
 			isa = PBXGroup;
 			children = (
-				055CC2B81AA1D22800722037 /* OSX */,
+				055CC2B81AA1D22800722037 /* iOS */,
 				055CC2B71AA1D20600722037 /* Common */,
 				05C6E9B61A61556E006969CD /* Supporting Files */,
 			);
@@ -154,19 +154,19 @@
 			path = ../UnitTest/Bitmap/Common;
 			sourceTree = SOURCE_ROOT;
 		};
-		055CC2B81AA1D22800722037 /* OSX */ = {
+		055CC2B81AA1D22800722037 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0502B3F61AA1DBDE003BB47C /* Main.storyboard */,
 				05C6E9B81A61556E006969CD /* main.m */,
 				05C6E9BA1A61556E006969CD /* AppDelegate.h */,
 				05C6E9BB1A61556E006969CD /* AppDelegate.m */,
 				05C6E9BD1A61556E006969CD /* ViewController.h */,
 				05C6E9BE1A61556E006969CD /* ViewController.m */,
-				05C6E9C01A61556E006969CD /* Main.storyboard */,
+				0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */,
 				05C6E9C31A61556E006969CD /* Images.xcassets */,
-				05C6E9C51A61556E006969CD /* LaunchScreen.xib */,
 			);
-			name = OSX;
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		05B0F1131A5AE16D00DD607D /* Common */ = {
@@ -313,8 +313,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C6E9C21A61556E006969CD /* Main.storyboard in Resources */,
-				05C6E9C71A61556E006969CD /* LaunchScreen.xib in Resources */,
+				0502B3F81AA1DBDE003BB47C /* Main.storyboard in Resources */,
+				0502B3F51AA1DBCB003BB47C /* LaunchScreen.xib in Resources */,
 				05C6E9C41A61556E006969CD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,22 +360,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		05C6E9C01A61556E006969CD /* Main.storyboard */ = {
+		0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				05C6E9C11A61556E006969CD /* Base */,
-			);
-			name = Main.storyboard;
-			path = ../../iOS/UnitTest;
-			sourceTree = "<group>";
-		};
-		05C6E9C51A61556E006969CD /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05C6E9C61A61556E006969CD /* Base */,
+				0502B3F41AA1DBCB003BB47C /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = ../../iOS/UnitTest;
+			sourceTree = "<group>";
+		};
+		0502B3F61AA1DBDE003BB47C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0502B3F71AA1DBDE003BB47C /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
