@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		0502B3F51AA1DBCB003BB47C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */; };
 		0502B3F81AA1DBDE003BB47C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F61AA1DBDE003BB47C /* Main.storyboard */; };
+		052B67541AA1E1520072A369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67531AA1E1520072A369 /* main.m */; };
+		052B67571AA1E1530072A369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67561AA1E1530072A369 /* AppDelegate.m */; };
+		052B675A1AA1E1530072A369 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67591AA1E1530072A369 /* ViewController.m */; };
+		052B675F1AA1E1530072A369 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 052B675E1AA1E1530072A369 /* Images.xcassets */; };
+		052B677A1AA1E28D0072A369 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052B67781AA1E2870072A369 /* LaunchScreen.xib */; };
+		052B677B1AA1E2920072A369 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052B67761AA1E2670072A369 /* Main.storyboard */; };
 		053E47EA1A99DBA800E364A1 /* KCGraphicsView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */; };
 		053E47EB1A99DBAE00E364A1 /* KCBitmapDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C6E9A91A615257006969CD /* KCBitmapDrawer.h */; };
 		053E47EC1A99DBB300E364A1 /* KCGraphicsDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */; };
@@ -27,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		052B677C1AA1E3C40072A369 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0548369B1A24E62800C9BF18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C6E99D1A6151ED006969CD;
+			remoteInfo = Install;
+		};
 		05C6E9A11A6151F7006969CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0548369B1A24E62800C9BF18 /* Project object */;
@@ -64,6 +77,16 @@
 /* Begin PBXFileReference section */
 		0502B3F41AA1DBCB003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0502B3F71AA1DBDE003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		052B674F1AA1E1520072A369 /* Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		052B67521AA1E1520072A369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Graphics/iOS/Info.plist; sourceTree = SOURCE_ROOT; };
+		052B67531AA1E1520072A369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../UnitTest/Graphics/iOS/main.m; sourceTree = SOURCE_ROOT; };
+		052B67551AA1E1520072A369 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../UnitTest/Graphics/iOS/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		052B67561AA1E1530072A369 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../UnitTest/Graphics/iOS/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		052B67581AA1E1530072A369 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../UnitTest/Graphics/iOS/ViewController.h; sourceTree = SOURCE_ROOT; };
+		052B67591AA1E1530072A369 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../UnitTest/Graphics/iOS/ViewController.m; sourceTree = SOURCE_ROOT; };
+		052B675E1AA1E1530072A369 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../UnitTest/Graphics/iOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		052B67771AA1E2670072A369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../UnitTest/Graphics/iOS/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		052B67791AA1E2870072A369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ../UnitTest/Graphics/iOS/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		053E47EE1A99E46D00E364A1 /* UTCheckerBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCheckerBitmap.h; sourceTree = "<group>"; };
 		053E47EF1A99E46D00E364A1 /* UTCheckerBitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCheckerBitmap.m; sourceTree = "<group>"; };
 		054836A31A24E62800C9BF18 /* libKCGraphicsView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCGraphicsView.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +111,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		052B674C1AA1E1520072A369 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		054836A01A24E62800C9BF18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -116,6 +146,39 @@
 			path = ../UnitTest/Bitmap;
 			sourceTree = SOURCE_ROOT;
 		};
+		052B67501AA1E1520072A369 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				052B67751AA1E1E60072A369 /* iOS */,
+				052B67511AA1E1520072A369 /* Supporting Files */,
+			);
+			name = Graphics;
+			path = ../Graphics;
+			sourceTree = SOURCE_ROOT;
+		};
+		052B67511AA1E1520072A369 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				052B67521AA1E1520072A369 /* Info.plist */,
+				052B67531AA1E1520072A369 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		052B67751AA1E1E60072A369 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				052B67551AA1E1520072A369 /* AppDelegate.h */,
+				052B67561AA1E1530072A369 /* AppDelegate.m */,
+				052B67581AA1E1530072A369 /* ViewController.h */,
+				052B67591AA1E1530072A369 /* ViewController.m */,
+				052B675E1AA1E1530072A369 /* Images.xcassets */,
+				052B67781AA1E2870072A369 /* LaunchScreen.xib */,
+				052B67761AA1E2670072A369 /* Main.storyboard */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		0548369A1A24E62800C9BF18 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +193,7 @@
 			children = (
 				054836A31A24E62800C9BF18 /* libKCGraphicsView.a */,
 				05C6E9B41A61556E006969CD /* UnitTest.app */,
+				052B674F1AA1E1520072A369 /* Graphics.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				0518B2B51AA1C72600E91197 /* Bitmap */,
+				052B67501AA1E1520072A369 /* Graphics */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -232,6 +297,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		052B674E1AA1E1520072A369 /* Graphics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 052B67731AA1E1530072A369 /* Build configuration list for PBXNativeTarget "Graphics" */;
+			buildPhases = (
+				052B674B1AA1E1520072A369 /* Sources */,
+				052B674C1AA1E1520072A369 /* Frameworks */,
+				052B674D1AA1E1520072A369 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				052B677D1AA1E3C40072A369 /* PBXTargetDependency */,
+			);
+			name = Graphics;
+			productName = Graphics;
+			productReference = 052B674F1AA1E1520072A369 /* Graphics.app */;
+			productType = "com.apple.product-type.application";
+		};
 		054836A21A24E62800C9BF18 /* KCGraphicsView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 054836B71A24E62800C9BF18 /* Build configuration list for PBXNativeTarget "KCGraphicsView" */;
@@ -276,6 +359,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					052B674E1AA1E1520072A369 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					054836A21A24E62800C9BF18 = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -304,11 +390,22 @@
 				054836A21A24E62800C9BF18 /* KCGraphicsView */,
 				05C6E99D1A6151ED006969CD /* Install */,
 				05C6E9B31A61556E006969CD /* UnitTest */,
+				052B674E1AA1E1520072A369 /* Graphics */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		052B674D1AA1E1520072A369 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				052B677B1AA1E2920072A369 /* Main.storyboard in Resources */,
+				052B677A1AA1E28D0072A369 /* LaunchScreen.xib in Resources */,
+				052B675F1AA1E1530072A369 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05C6E9B21A61556E006969CD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +419,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		052B674B1AA1E1520072A369 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				052B675A1AA1E1530072A369 /* ViewController.m in Sources */,
+				052B67571AA1E1530072A369 /* AppDelegate.m in Sources */,
+				052B67541AA1E1520072A369 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0548369F1A24E62800C9BF18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,6 +454,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		052B677D1AA1E3C40072A369 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C6E99D1A6151ED006969CD /* Install */;
+			targetProxy = 052B677C1AA1E3C40072A369 /* PBXContainerItemProxy */;
+		};
 		05C6E9A21A6151F7006969CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 054836A21A24E62800C9BF18 /* KCGraphicsView */;
@@ -376,9 +488,85 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		052B67761AA1E2670072A369 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				052B67771AA1E2670072A369 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		052B67781AA1E2870072A369 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				052B67791AA1E2870072A369 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		052B676F1AA1E1530072A369 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = ../UnitTest/Graphics/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = (
+					"-lKCGraphicsView",
+					"-lCoconutGraphics",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		052B67701AA1E1530072A369 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = ../UnitTest/Graphics/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = (
+					"-lKCGraphicsView",
+					"-lCoconutGraphics",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		054836B51A24E62800C9BF18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -588,6 +776,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		052B67731AA1E1530072A369 /* Build configuration list for PBXNativeTarget "Graphics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				052B676F1AA1E1530072A369 /* Debug */,
+				052B67701AA1E1530072A369 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		0548369E1A24E62800C9BF18 /* Build configuration list for PBXProject "KCGraphicsView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
