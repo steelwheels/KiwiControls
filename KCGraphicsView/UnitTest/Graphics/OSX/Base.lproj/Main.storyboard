@@ -677,6 +677,9 @@
                             </customView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="graphicsView" destination="LUl-gx-bLZ" id="SfJ-vI-VnY"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

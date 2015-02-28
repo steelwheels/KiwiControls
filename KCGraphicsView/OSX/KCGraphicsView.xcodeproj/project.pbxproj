@@ -13,6 +13,7 @@
 		052A81781A24E0A100224717 /* KCGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 052A81771A24E0A100224717 /* KCGraphicsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05305EAA1A9E23DC005EB2DF /* KCGraphicsFunc.h in Headers */ = {isa = PBXBuildFile; fileRef = 05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05305EAB1A9E23DC005EB2DF /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */; };
+		05469C2A1AA21C440016A303 /* UTGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05469C291AA21C440016A303 /* UTGraphicsDrawer.m */; };
 		0551919C1A6157EC007807CE /* KCGraphicsType.h in Headers */ = {isa = PBXBuildFile; fileRef = 0551919B1A6157EC007807CE /* KCGraphicsType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0565372F1A24E1980025E2C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565372E1A24E1980025E2C6 /* AppDelegate.m */; };
 		056537311A24E1980025E2C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 056537301A24E1980025E2C6 /* main.m */; };
@@ -69,6 +70,8 @@
 		052A81771A24E0A100224717 /* KCGraphicsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCGraphicsView.h; path = ../Source/Common/KCGraphicsView.h; sourceTree = SOURCE_ROOT; };
 		05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsFunc.h; path = ../Source/Common/KCGraphicsFunc.h; sourceTree = "<group>"; };
 		05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCGraphicsFunc.m; path = ../Source/Common/KCGraphicsFunc.m; sourceTree = "<group>"; };
+		05469C281AA21C440016A303 /* UTGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTGraphicsDrawer.h; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.h; sourceTree = SOURCE_ROOT; };
+		05469C291AA21C440016A303 /* UTGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTGraphicsDrawer.m; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.m; sourceTree = SOURCE_ROOT; };
 		0551919B1A6157EC007807CE /* KCGraphicsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsType.h; path = ../Source/Common/KCGraphicsType.h; sourceTree = "<group>"; };
 		056537291A24E1980025E2C6 /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0565372C1A24E1980025E2C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Bitmap/OSX/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -199,6 +202,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		05469C271AA21C2F0016A303 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				05469C281AA21C440016A303 /* UTGraphicsDrawer.h */,
+				05469C291AA21C440016A303 /* UTGraphicsDrawer.m */,
+			);
+			name = Common;
+			path = ../UnitTest/Graphics/Common;
+			sourceTree = SOURCE_ROOT;
+		};
 		0565372A1A24E1980025E2C6 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				05DF18011AA1EF7200BFBDB8 /* OSX */,
+				05469C271AA21C2F0016A303 /* Common */,
 				05DF17DE1AA1EF2300BFBDB8 /* Supporting Files */,
 			);
 			name = Graphics;
@@ -468,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05469C2A1AA21C440016A303 /* UTGraphicsDrawer.m in Sources */,
 				05DF17E71AA1EF2300BFBDB8 /* ViewController.m in Sources */,
 				05DF17E41AA1EF2300BFBDB8 /* main.m in Sources */,
 				05DF17E21AA1EF2300BFBDB8 /* AppDelegate.m in Sources */,
@@ -797,6 +812,7 @@
 				05DF17FA1AA1EF2300BFBDB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

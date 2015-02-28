@@ -7,13 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "UTGraphicsDrawer.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	// Do any additional setup after loading the view.
+	UTGraphicsDrawer * drawer = [[UTGraphicsDrawer alloc] init]  ;
+	[self.graphicsView setDrawer: drawer] ;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
