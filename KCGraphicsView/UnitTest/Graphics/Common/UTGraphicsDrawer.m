@@ -57,7 +57,6 @@
 			CGContextSaveGState(context);
    
 			CGContextAddEllipseInRect(context, boundsrect);
-			
 			KCSetFillColor(context, &black) ;
 			CGContextFillRect(context, boundsrect) ;
 			
