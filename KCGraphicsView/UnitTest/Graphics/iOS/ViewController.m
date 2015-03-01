@@ -19,6 +19,8 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
+	self.graphicsView.backgroundColor = [UIColor blackColor] ;
+	
 	UTGraphicsDrawer * drawer = [[UTGraphicsDrawer alloc] init]  ;
 	[self.graphicsView setDrawer: drawer] ;
 }

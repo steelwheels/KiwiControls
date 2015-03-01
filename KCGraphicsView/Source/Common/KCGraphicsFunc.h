@@ -9,7 +9,13 @@
 #import <CoconutGraphics/CoconutGraphics.h>
 
 static inline void
-KGSetStrokeColor(CGContextRef context, const struct CNRGB * color)
+KCSetFillColor(CGContextRef context, const struct CNRGB * color)
+{
+	CGContextSetRGBFillColor(context, color->red, color->green, color->blue, color->alpha) ;
+}
+
+static inline void
+KCSetStrokeColor(CGContextRef context, const struct CNRGB * color)
 {
 	CGContextSetRGBStrokeColor(context, color->red, color->green, color->blue, color->alpha) ;
 }

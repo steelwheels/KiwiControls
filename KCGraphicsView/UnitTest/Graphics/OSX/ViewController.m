@@ -13,7 +13,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
 	UTGraphicsDrawer * drawer = [[UTGraphicsDrawer alloc] init]  ;
 	[self.graphicsView setDrawer: drawer] ;
 }
