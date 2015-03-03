@@ -111,13 +111,13 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 - (KCColor *) foregroundColor
 {
 	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-	return ctable.black ;
+	return CNRGBtoColor(ctable.black) ;
 }
 
 - (KCColor *) backgroundColor
 {
 	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-	return ctable.white ;
+	return CNRGBtoColor(ctable.white) ;
 }
 
 @end

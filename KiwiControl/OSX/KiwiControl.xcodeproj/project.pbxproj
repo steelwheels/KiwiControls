@@ -7,24 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05DD39421A60D36F00353646 /* KCType.h in Headers */ = {isa = PBXBuildFile; fileRef = 05DD39411A60D36F00353646 /* KCType.h */; };
+		05DD39421A60D36F00353646 /* KCType.h in Headers */ = {isa = PBXBuildFile; fileRef = 05DD39411A60D36F00353646 /* KCType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05DD39441A60F9E100353646 /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DD39431A60F9E100353646 /* CoconutGraphics.framework */; };
-		05E415081A5C40A600709094 /* KCApplicationDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414F91A5C40A600709094 /* KCApplicationDefaults.h */; };
+		05E415081A5C40A600709094 /* KCApplicationDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414F91A5C40A600709094 /* KCApplicationDefaults.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E415091A5C40A600709094 /* KCApplicationDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E414FA1A5C40A600709094 /* KCApplicationDefaults.m */; };
-		05E4150C1A5C40A600709094 /* KCDebugUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414FD1A5C40A600709094 /* KCDebugUtil.h */; };
+		05E4150C1A5C40A600709094 /* KCDebugUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414FD1A5C40A600709094 /* KCDebugUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E4150D1A5C40A600709094 /* KCDebugUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E414FE1A5C40A600709094 /* KCDebugUtil.m */; };
-		05E4150E1A5C40A600709094 /* KCPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414FF1A5C40A600709094 /* KCPreference.h */; };
+		05E4150E1A5C40A600709094 /* KCPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414FF1A5C40A600709094 /* KCPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E4150F1A5C40A600709094 /* KCPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E415001A5C40A600709094 /* KCPreference.m */; };
-		05E415101A5C40A600709094 /* KCViewUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415011A5C40A600709094 /* KCViewUtil.h */; };
+		05E415101A5C40A600709094 /* KCViewUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415011A5C40A600709094 /* KCViewUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E415111A5C40A600709094 /* KCViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E415021A5C40A600709094 /* KCViewUtil.m */; };
-		05E415121A5C40A600709094 /* KCViewVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415031A5C40A600709094 /* KCViewVisitor.h */; };
+		05E415121A5C40A600709094 /* KCViewVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415031A5C40A600709094 /* KCViewVisitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E415131A5C40A600709094 /* KCViewVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E415041A5C40A600709094 /* KCViewVisitor.m */; };
-		05E415141A5C40A600709094 /* KCXIBUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415051A5C40A600709094 /* KCXIBUtil.h */; };
+		05E415141A5C40A600709094 /* KCXIBUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415051A5C40A600709094 /* KCXIBUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E415151A5C40A600709094 /* KCXIBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E415061A5C40A600709094 /* KCXIBUtil.m */; };
-		05E415161A5C40A600709094 /* KiwiControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415071A5C40A600709094 /* KiwiControl.h */; };
+		05E415161A5C40A600709094 /* KiwiControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E415071A5C40A600709094 /* KiwiControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0570256D1AA5FF0000B26B71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0596FE4F1A5C3F3800792ACB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0596FE571A5C3F3800792ACB;
+			remoteInfo = KiwiControl;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0570256F1AA5FF3900B26B71 /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = install.mk; sourceTree = "<group>"; };
 		0596FE581A5C3F3800792ACB /* KiwiControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0596FE5C1A5C3F3800792ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05DD39411A60D36F00353646 /* KCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCType.h; sourceTree = "<group>"; };
@@ -84,6 +95,7 @@
 		0596FE5B1A5C3F3800792ACB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0570256F1AA5FF3900B26B71 /* install.mk */,
 				05DD39431A60F9E100353646 /* CoconutGraphics.framework */,
 				0596FE5C1A5C3F3800792ACB /* Info.plist */,
 			);
@@ -132,6 +144,24 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		057025691AA5FEF400B26B71 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f install.mk";
+			buildConfigurationList = 0570256C1AA5FEF400B26B71 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0570256E1AA5FF0000B26B71 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		0596FE571A5C3F3800792ACB /* KiwiControl */ = {
 			isa = PBXNativeTarget;
@@ -160,6 +190,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					057025691AA5FEF400B26B71 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					0596FE571A5C3F3800792ACB = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -178,6 +211,7 @@
 			projectRoot = "";
 			targets = (
 				0596FE571A5C3F3800792ACB /* KiwiControl */,
+				057025691AA5FEF400B26B71 /* Install */,
 			);
 		};
 /* End PBXProject section */
@@ -208,7 +242,40 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0570256E1AA5FF0000B26B71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0596FE571A5C3F3800792ACB /* KiwiControl */;
+			targetProxy = 0570256D1AA5FF0000B26B71 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0570256A1AA5FEF400B26B71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0570256B1AA5FEF400B26B71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		0596FE6C1A5C3F3800792ACB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -303,10 +370,10 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -324,16 +391,25 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0570256C1AA5FEF400B26B71 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0570256A1AA5FEF400B26B71 /* Debug */,
+				0570256B1AA5FEF400B26B71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0596FE521A5C3F3800792ACB /* Build configuration list for PBXProject "KiwiControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

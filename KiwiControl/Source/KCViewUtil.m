@@ -37,3 +37,48 @@ KCAbsolutePointAtView(KCView * view, CGPoint centerpoint)
 	}
 	return result ;
 }
+
+void
+KCLayoutSubviewWithMargines(KCView * parentview, KCView * subview,
+			    CGFloat topmargin, CGFloat bottommargin,
+			    CGFloat leftmargin, CGFloat rightmargin)
+{
+	NSMutableArray * constraints = [[NSMutableArray alloc] initWithCapacity: 4];
+	
+	/* Top */
+	[constraints addObject:[NSLayoutConstraint constraintWithItem: subview
+							    attribute: NSLayoutAttributeTop
+							    relatedBy: NSLayoutRelationEqual
+							       toItem: parentview
+							    attribute: NSLayoutAttributeTop
+							   multiplier: 1.0
+							     constant: topmargin]];
+	/* Bottom */
+	[constraints addObject:[NSLayoutConstraint constraintWithItem: subview
+							    attribute: NSLayoutAttributeBottom
+							    relatedBy: NSLayoutRelationEqual
+							       toItem: parentview
+							    attribute: NSLayoutAttributeBottom
+							   multiplier: 1.0
+							     constant: bottommargin]];
+	
+	/* Left */
+	[constraints addObject:[NSLayoutConstraint constraintWithItem: subview
+							    attribute: NSLayoutAttributeLeft
+							    relatedBy: NSLayoutRelationEqual
+							       toItem: parentview
+							    attribute: NSLayoutAttributeLeft
+							   multiplier: 1.0
+							     constant: leftmargin]];
+	
+	/* Right */
+	[constraints addObject:[NSLayoutConstraint constraintWithItem: subview
+							    attribute: NSLayoutAttributeRight
+							    relatedBy: NSLayoutRelationEqual
+							       toItem: parentview
+							    attribute: NSLayoutAttributeRight
+							   multiplier: 1.0
+							     constant: rightmargin]];
+	
+	[parentview addConstraints: constraints];
+}

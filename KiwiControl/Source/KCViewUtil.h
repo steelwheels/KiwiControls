@@ -57,6 +57,11 @@ KCCenterPointInViewBounds(KCView * view) ;
 CGPoint
 KCAbsolutePointAtView(KCView * view, CGPoint centerpoint) ;
 
+void
+KCLayoutSubviewWithMargines(KCView * parentview, KCView * subview,
+			    CGFloat topmargin, CGFloat bottommargin,
+			    CGFloat leftmargin, CGFloat rightmargin) ;
+
 #undef KCEdgeInsets
 #undef KCView
 
