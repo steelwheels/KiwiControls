@@ -15,9 +15,9 @@
 
 @implementation KCGraphicsDrawer
 
-- (void) drawWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect
+- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect
 {
-	(void) context ; (void) boundsrect ;
+	(void) context ; (void) level ; (void) boundsrect ;
 	assert(false) ;
 }
 

@@ -554,6 +554,7 @@
 					"-Wall",
 				);
 				OTHER_LDFLAGS = (
+					"-lKiwiControl",
 					"-lKCGraphicsView",
 					"-lCoconutGraphics",
 					"-all_load",
@@ -583,6 +584,7 @@
 					"-Wall",
 				);
 				OTHER_LDFLAGS = (
+					"-lKiwiControl",
 					"-lKCGraphicsView",
 					"-lCoconutGraphics",
 					"-all_load",
@@ -670,6 +672,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -681,6 +684,7 @@
 					"-Wall",
 				);
 				OTHER_LDFLAGS = (
+					"-lKiwiControl",
 					"-lCoconutGraphics",
 					"-ObjC",
 				);
@@ -693,6 +697,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -704,6 +709,7 @@
 					"-Wall",
 				);
 				OTHER_LDFLAGS = (
+					"-lKiwiControl",
 					"-lCoconutGraphics",
 					"-ObjC",
 				);

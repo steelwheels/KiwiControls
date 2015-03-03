@@ -14,7 +14,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	UTGraphicsDrawer * drawer = [[UTGraphicsDrawer alloc] init]  ;
-	[self.graphicsView setDrawer: drawer] ;
+	[self.graphicsView setGraphicsDrawer: drawer] ;
 }
 
 - (void)setRepresentedObject:(id)representedObject {

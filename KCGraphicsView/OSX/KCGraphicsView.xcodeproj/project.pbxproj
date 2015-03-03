@@ -24,6 +24,7 @@
 		0567D08A1A610DD10057E17B /* KCBitmapDrawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0567D0881A610DD10057E17B /* KCBitmapDrawer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0567D08B1A610DD10057E17B /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0567D0891A610DD10057E17B /* KCBitmapDrawer.m */; };
 		0567D08D1A61156E0057E17B /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0567D08C1A61156E0057E17B /* CoconutGraphics.framework */; };
+		057025731AA5FFE700B26B71 /* KiwiControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057025721AA5FFE700B26B71 /* KiwiControl.framework */; };
 		05731B961AA1C94900A6B5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05731B931AA1C94200A6B5BC /* Main.storyboard */; };
 		0587F2E51A600F48009CE6F5 /* KCGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */; };
 		059B94ED1A5ADC4E006A2596 /* KCGraphicsView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A81721A24E0A100224717 /* KCGraphicsView.framework */; };
@@ -88,6 +89,7 @@
 		0567D0881A610DD10057E17B /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCBitmapDrawer.h; path = ../Source/Common/KCBitmapDrawer.h; sourceTree = "<group>"; };
 		0567D0891A610DD10057E17B /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCBitmapDrawer.m; path = ../Source/Common/KCBitmapDrawer.m; sourceTree = "<group>"; };
 		0567D08C1A61156E0057E17B /* CoconutGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutGraphics.framework; path = ../../../../../Library/Frameworks/CoconutGraphics.framework; sourceTree = "<group>"; };
+		057025721AA5FFE700B26B71 /* KiwiControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControl.framework; path = ../../../../../Library/Frameworks/KiwiControl.framework; sourceTree = "<group>"; };
 		05731B941AA1C94200A6B5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCGraphicsDrawer.m; path = ../Source/Common/KCGraphicsDrawer.m; sourceTree = "<group>"; };
 		05DF17DC1AA1EF2300BFBDB8 /* Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057025731AA5FFE700B26B71 /* KiwiControl.framework in Frameworks */,
 				05ED4D231A5FFD0D00EC660B /* CoconutGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +204,7 @@
 		052A81751A24E0A100224717 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				057025721AA5FFE700B26B71 /* KiwiControl.framework */,
 				05ED4D221A5FFD0D00EC660B /* CoconutGraphics.framework */,
 				051B81CE1A2B3C9300595267 /* install.mk */,
 				052A81761A24E0A100224717 /* Info.plist */,

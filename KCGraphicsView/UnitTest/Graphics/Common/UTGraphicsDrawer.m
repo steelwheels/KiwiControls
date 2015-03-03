@@ -15,22 +15,25 @@
 #endif
 
 @interface UTGraphicsDrawer (Private)
-- (void) drawCircleWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect ;
+- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect ;
 @end
 
 @implementation UTGraphicsDrawer
 
-- (void) drawWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect
+- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect
 {
-	[self drawCircleWithContext: context inBoundsRect: boundsrect] ;
+	[self drawCircleWithContext: context atLevel: level inBoundsRect: boundsrect] ;
 }
 
 @end
 
 @implementation UTGraphicsDrawer (Private)
 
-- (void) drawCircleWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect
+- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect
 {
+	//printf("[%s] draw for layer %u\n", __func__, (unsigned int) level) ;
+	//CNPrintRect(boundsrect) ;
+	
 	CNColorTable * coltable = [CNColorTable defaultColorTable] ;
 	struct CNRGB black = coltable.black ;
 	struct CNRGB red = coltable.red ;

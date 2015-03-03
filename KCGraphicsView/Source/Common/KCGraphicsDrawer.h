@@ -14,7 +14,7 @@
 #endif
 
 @protocol  KCGraphicsDrawing <NSObject>
-- (void) drawWithContext: (CGContextRef) context inBoundsRect: (KCRect) boundsrect ;
+- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect ;
 @end
 
 @interface KCGraphicsDrawer : NSObject <KCGraphicsDrawing>

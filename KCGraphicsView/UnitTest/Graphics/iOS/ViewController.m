@@ -15,14 +15,15 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 	
 	self.graphicsView.backgroundColor = [UIColor blackColor] ;
 	
 	UTGraphicsDrawer * drawer = [[UTGraphicsDrawer alloc] init]  ;
-	[self.graphicsView setDrawer: drawer] ;
+	[self.graphicsView setGraphicsDrawer: drawer] ;
+	[self.graphicsView allocateTransparentViews: 1] ;
 }
 
 - (void)didReceiveMemoryWarning {
