@@ -8,19 +8,13 @@
 
 #import "UTGraphicsDrawer.h"
 
-#if TARGET_OS_IPHONE
-#	define KCRect		CGRect
-#else
-#	define KCRect		NSRect
-#endif
-
 @interface UTGraphicsDrawer (Private)
-- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect ;
+- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect ;
 @end
 
 @implementation UTGraphicsDrawer
 
-- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect
+- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
 {
 	[self drawCircleWithContext: context atLevel: level inBoundsRect: boundsrect] ;
 }
@@ -29,8 +23,9 @@
 
 @implementation UTGraphicsDrawer (Private)
 
-- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (KCRect) boundsrect
+- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
 {
+	(void) level ;
 	//printf("[%s] draw for layer %u\n", __func__, (unsigned int) level) ;
 	//CNPrintRect(boundsrect) ;
 	
@@ -52,7 +47,7 @@
 			KCSetFillColor(context, &red) ;
 			CGFloat radius = MIN(boundsrect.size.width / 2.0, boundsrect.size.height / 2.0) ;
 			struct CNCircle circle = CNMakeCircle(radius, radius, radius) ;
-			CGRect cbounds = KCBoundsOfCircle(&circle) ;
+			CGRect cbounds = CNBoundsOfCircle(&circle) ;
 			CGContextFillEllipseInRect(context, cbounds);
 		} break ;
 		case 2: {

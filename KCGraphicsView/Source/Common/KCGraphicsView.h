@@ -6,6 +6,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <TargetConditionals.h>
 
 //! Project version number for KCGraphicsView.
 FOUNDATION_EXPORT double KCGraphicsViewVersionNumber;
@@ -14,6 +15,7 @@ FOUNDATION_EXPORT double KCGraphicsViewVersionNumber;
 FOUNDATION_EXPORT const unsigned char KCGraphicsViewVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KCGraphicsView/PublicHeader.h>
+
 #if TARGET_OS_IPHONE
 #	import "KCIGraphicsView.h"
 #else
@@ -22,8 +24,8 @@ FOUNDATION_EXPORT const unsigned char KCGraphicsViewVersionString[];
 
 #import "KCGraphicsFunc.h"
 #import "KCGraphicsDrawer.h"
+#import "KCGraphicsEditor.h"
 #import "KCBitmapDrawer.h"
-#import "KCCircleGraphics.h"
 #import "KCGraphicsFunc.h"
 
 

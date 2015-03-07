@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0502094E1AA8BC7D00FA9F17 /* KCGraphicsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0502094D1AA8BC7D00FA9F17 /* KCGraphicsEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		051B81C61A2B3A2400595267 /* KCXGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 051B81C41A2B3A2400595267 /* KCXGraphicsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		051B81C71A2B3A2400595267 /* KCXGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051B81C51A2B3A2400595267 /* KCXGraphicsView.m */; };
-		0521F4D81AA2861500C961B7 /* KCCircleGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0521F4D61AA2861500C961B7 /* KCCircleGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0521F4D91AA2861500C961B7 /* KCCircleGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 0521F4D71AA2861500C961B7 /* KCCircleGraphics.m */; };
 		05235E821A612430009F24D6 /* UTCheckerBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 05235E811A612430009F24D6 /* UTCheckerBitmap.m */; };
 		052A81781A24E0A100224717 /* KCGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 052A81771A24E0A100224717 /* KCGraphicsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05305EAA1A9E23DC005EB2DF /* KCGraphicsFunc.h in Headers */ = {isa = PBXBuildFile; fileRef = 05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,7 +25,17 @@
 		0567D08D1A61156E0057E17B /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0567D08C1A61156E0057E17B /* CoconutGraphics.framework */; };
 		057025731AA5FFE700B26B71 /* KiwiControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057025721AA5FFE700B26B71 /* KiwiControl.framework */; };
 		05731B961AA1C94900A6B5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05731B931AA1C94200A6B5BC /* Main.storyboard */; };
-		0587F2E51A600F48009CE6F5 /* KCGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */; };
+		0580D1CE1AA9EC3000486598 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0580D1CD1AA9EC3000486598 /* AppDelegate.m */; };
+		0580D1D01AA9EC3000486598 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0580D1CF1AA9EC3000486598 /* main.m */; };
+		0580D1D31AA9EC3000486598 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0580D1D21AA9EC3000486598 /* ViewController.m */; };
+		0580D1D51AA9EC3000486598 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0580D1D41AA9EC3000486598 /* Images.xcassets */; };
+		0580D1D81AA9EC3000486598 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0580D1D61AA9EC3000486598 /* Main.storyboard */; };
+		0580D1EE1AA9EFBF00486598 /* KCGraphicsView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A81721A24E0A100224717 /* KCGraphicsView.framework */; };
+		0580D1EF1AA9EFC000486598 /* KCGraphicsView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A81721A24E0A100224717 /* KCGraphicsView.framework */; };
+		0580D1F11AA9F08F00486598 /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0580D1F01AA9F08F00486598 /* CoconutGraphics.framework */; };
+		0580D1F21AA9F08F00486598 /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0580D1F01AA9F08F00486598 /* CoconutGraphics.framework */; };
+		0580D1F31AA9F08F00486598 /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0580D1F01AA9F08F00486598 /* CoconutGraphics.framework */; };
+		0580D1F71AA9F1AC00486598 /* UTLineEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0580D1F61AA9F1AC00486598 /* UTLineEditor.m */; };
 		059B94ED1A5ADC4E006A2596 /* KCGraphicsView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A81721A24E0A100224717 /* KCGraphicsView.framework */; };
 		05DF17E21AA1EF2300BFBDB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DF17E11AA1EF2300BFBDB8 /* AppDelegate.m */; };
 		05DF17E41AA1EF2300BFBDB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DF17E31AA1EF2300BFBDB8 /* main.m */; };
@@ -53,6 +62,13 @@
 			remoteGlobalIDString = 052A81711A24E0A100224717;
 			remoteInfo = KCGraphicsView;
 		};
+		0580D1EB1AA9ECAF00486598 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 052A81691A24E0A100224717 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 051B81C81A2B3B9500595267;
+			remoteInfo = Install;
+		};
 		05DF17FF1AA1EF3F00BFBDB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 052A81691A24E0A100224717 /* Project object */;
@@ -63,11 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0502094D1AA8BC7D00FA9F17 /* KCGraphicsEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsEditor.h; path = ../Source/Common/KCGraphicsEditor.h; sourceTree = "<group>"; };
 		051B81C41A2B3A2400595267 /* KCXGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCXGraphicsView.h; path = ../Source/OSX/KCXGraphicsView.h; sourceTree = SOURCE_ROOT; };
 		051B81C51A2B3A2400595267 /* KCXGraphicsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCXGraphicsView.m; path = ../Source/OSX/KCXGraphicsView.m; sourceTree = SOURCE_ROOT; };
 		051B81CE1A2B3C9300595267 /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = install.mk; sourceTree = SOURCE_ROOT; };
-		0521F4D61AA2861500C961B7 /* KCCircleGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCCircleGraphics.h; path = ../Source/Common/KCCircleGraphics.h; sourceTree = "<group>"; };
-		0521F4D71AA2861500C961B7 /* KCCircleGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCCircleGraphics.m; path = ../Source/Common/KCCircleGraphics.m; sourceTree = "<group>"; };
 		05235E801A612430009F24D6 /* UTCheckerBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCheckerBitmap.h; sourceTree = "<group>"; };
 		05235E811A612430009F24D6 /* UTCheckerBitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCheckerBitmap.m; sourceTree = "<group>"; };
 		052A81721A24E0A100224717 /* KCGraphicsView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphicsView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +106,18 @@
 		0567D08C1A61156E0057E17B /* CoconutGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutGraphics.framework; path = ../../../../../Library/Frameworks/CoconutGraphics.framework; sourceTree = "<group>"; };
 		057025721AA5FFE700B26B71 /* KiwiControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControl.framework; path = ../../../../../Library/Frameworks/KiwiControl.framework; sourceTree = "<group>"; };
 		05731B941AA1C94200A6B5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCGraphicsDrawer.m; path = ../Source/Common/KCGraphicsDrawer.m; sourceTree = "<group>"; };
+		0580D1C81AA9EC3000486598 /* Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Touch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0580D1CB1AA9EC3000486598 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0580D1CC1AA9EC3000486598 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0580D1CD1AA9EC3000486598 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0580D1CF1AA9EC3000486598 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0580D1D11AA9EC3000486598 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0580D1D21AA9EC3000486598 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0580D1D41AA9EC3000486598 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0580D1D71AA9EC3000486598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0580D1F01AA9F08F00486598 /* CoconutGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutGraphics.framework; path = ../../../../../../Library/Frameworks/CoconutGraphics.framework; sourceTree = "<group>"; };
+		0580D1F51AA9F1AC00486598 /* UTLineEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTLineEditor.h; path = Common/UTLineEditor.h; sourceTree = "<group>"; };
+		0580D1F61AA9F1AC00486598 /* UTLineEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTLineEditor.m; path = Common/UTLineEditor.m; sourceTree = "<group>"; };
 		05DF17DC1AA1EF2300BFBDB8 /* Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DF17DF1AA1EF2300BFBDB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Graphics/OSX/Info.plist; sourceTree = SOURCE_ROOT; };
 		05DF17E01AA1EF2300BFBDB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,8 +146,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0580D1F11AA9F08F00486598 /* CoconutGraphics.framework in Frameworks */,
 				059B94ED1A5ADC4E006A2596 /* KCGraphicsView.framework in Frameworks */,
 				0567D08D1A61156E0057E17B /* CoconutGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0580D1C51AA9EC3000486598 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0580D1EE1AA9EFBF00486598 /* KCGraphicsView.framework in Frameworks */,
+				0580D1F31AA9F08F00486598 /* CoconutGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +165,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0580D1F21AA9F08F00486598 /* CoconutGraphics.framework in Frameworks */,
+				0580D1EF1AA9EFC000486598 /* KCGraphicsView.framework in Frameworks */,
 				05DF18031AA1F08400BFBDB8 /* KCGraphicsView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,12 +179,10 @@
 			children = (
 				052A81771A24E0A100224717 /* KCGraphicsView.h */,
 				05ED4D241A5FFE1E00EC660B /* KCGraphicsDrawer.h */,
-				0587F2E41A600F48009CE6F5 /* KCGraphicsDrawer.m */,
+				0502094D1AA8BC7D00FA9F17 /* KCGraphicsEditor.h */,
 				0551919B1A6157EC007807CE /* KCGraphicsType.h */,
 				05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */,
 				05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */,
-				0521F4D61AA2861500C961B7 /* KCCircleGraphics.h */,
-				0521F4D71AA2861500C961B7 /* KCCircleGraphics.m */,
 				0567D0881A610DD10057E17B /* KCBitmapDrawer.h */,
 				0567D0891A610DD10057E17B /* KCBitmapDrawer.m */,
 			);
@@ -187,6 +223,7 @@
 				052A81721A24E0A100224717 /* KCGraphicsView.framework */,
 				056537291A24E1980025E2C6 /* UnitTest.app */,
 				05DF17DC1AA1EF2300BFBDB8 /* Graphics.app */,
+				0580D1C81AA9EC3000486598 /* Touch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,11 +262,13 @@
 		0565372A1A24E1980025E2C6 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				0580D1C91AA9EC3000486598 /* Touch */,
 				05DF17DD1AA1EF2300BFBDB8 /* Graphics */,
 				05731B911AA1C81700A6B5BC /* Bitmap */,
 			);
-			path = UnitTest;
-			sourceTree = "<group>";
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
 		};
 		0565372B1A24E1980025E2C6 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -252,6 +291,50 @@
 			name = Bitmap;
 			path = ../UnitTest/Bitmap;
 			sourceTree = SOURCE_ROOT;
+		};
+		0580D1C91AA9EC3000486598 /* Touch */ = {
+			isa = PBXGroup;
+			children = (
+				0580D1ED1AA9EF1500486598 /* OSX */,
+				0580D1F41AA9F14C00486598 /* Common */,
+			);
+			name = Touch;
+			path = ../UnitTest/Touch;
+			sourceTree = SOURCE_ROOT;
+		};
+		0580D1CA1AA9EC3000486598 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0580D1F01AA9F08F00486598 /* CoconutGraphics.framework */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0580D1ED1AA9EF1500486598 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				0580D1CC1AA9EC3000486598 /* AppDelegate.h */,
+				0580D1CD1AA9EC3000486598 /* AppDelegate.m */,
+				0580D1D11AA9EC3000486598 /* ViewController.h */,
+				0580D1D21AA9EC3000486598 /* ViewController.m */,
+				0580D1D41AA9EC3000486598 /* Images.xcassets */,
+				0580D1D61AA9EC3000486598 /* Main.storyboard */,
+				0580D1CA1AA9EC3000486598 /* Supporting Files */,
+				0580D1CB1AA9EC3000486598 /* Info.plist */,
+				0580D1CF1AA9EC3000486598 /* main.m */,
+			);
+			name = OSX;
+			path = ../UnitTest/Touch/OSX;
+			sourceTree = SOURCE_ROOT;
+		};
+		0580D1F41AA9F14C00486598 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0580D1F51AA9F1AC00486598 /* UTLineEditor.h */,
+				0580D1F61AA9F1AC00486598 /* UTLineEditor.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
 		};
 		059B94EE1A5ADCB9006A2596 /* OSX */ = {
 			isa = PBXGroup;
@@ -309,7 +392,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0521F4D81AA2861500C961B7 /* KCCircleGraphics.h in Headers */,
+				0502094E1AA8BC7D00FA9F17 /* KCGraphicsEditor.h in Headers */,
 				05305EAA1A9E23DC005EB2DF /* KCGraphicsFunc.h in Headers */,
 				0551919C1A6157EC007807CE /* KCGraphicsType.h in Headers */,
 				0567D08A1A610DD10057E17B /* KCBitmapDrawer.h in Headers */,
@@ -376,6 +459,24 @@
 			productReference = 056537291A24E1980025E2C6 /* UnitTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0580D1C71AA9EC3000486598 /* Touch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0580D1E91AA9EC3000486598 /* Build configuration list for PBXNativeTarget "Touch" */;
+			buildPhases = (
+				0580D1C41AA9EC3000486598 /* Sources */,
+				0580D1C51AA9EC3000486598 /* Frameworks */,
+				0580D1C61AA9EC3000486598 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0580D1EC1AA9ECAF00486598 /* PBXTargetDependency */,
+			);
+			name = Touch;
+			productName = Touch;
+			productReference = 0580D1C81AA9EC3000486598 /* Touch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05DF17DB1AA1EF2300BFBDB8 /* Graphics */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05DF17FD1AA1EF2300BFBDB8 /* Build configuration list for PBXNativeTarget "Graphics" */;
@@ -412,6 +513,9 @@
 					056537281A24E1980025E2C6 = {
 						CreatedOnToolsVersion = 6.1;
 					};
+					0580D1C71AA9EC3000486598 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					05DF17DB1AA1EF2300BFBDB8 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -434,6 +538,7 @@
 				051B81C81A2B3B9500595267 /* Install */,
 				056537281A24E1980025E2C6 /* UnitTest */,
 				05DF17DB1AA1EF2300BFBDB8 /* Graphics */,
+				0580D1C71AA9EC3000486598 /* Touch */,
 			);
 		};
 /* End PBXProject section */
@@ -455,6 +560,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0580D1C61AA9EC3000486598 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0580D1D51AA9EC3000486598 /* Images.xcassets in Resources */,
+				0580D1D81AA9EC3000486598 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05DF17DA1AA1EF2300BFBDB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -471,9 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0521F4D91AA2861500C961B7 /* KCCircleGraphics.m in Sources */,
 				051B81C71A2B3A2400595267 /* KCXGraphicsView.m in Sources */,
-				0587F2E51A600F48009CE6F5 /* KCGraphicsDrawer.m in Sources */,
 				05305EAB1A9E23DC005EB2DF /* KCGraphicsFunc.m in Sources */,
 				0567D08B1A610DD10057E17B /* KCBitmapDrawer.m in Sources */,
 			);
@@ -487,6 +599,17 @@
 				056537311A24E1980025E2C6 /* main.m in Sources */,
 				0565372F1A24E1980025E2C6 /* AppDelegate.m in Sources */,
 				05235E821A612430009F24D6 /* UTCheckerBitmap.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0580D1C41AA9EC3000486598 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0580D1D31AA9EC3000486598 /* ViewController.m in Sources */,
+				0580D1F71AA9F1AC00486598 /* UTLineEditor.m in Sources */,
+				0580D1D01AA9EC3000486598 /* main.m in Sources */,
+				0580D1CE1AA9EC3000486598 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +637,11 @@
 			target = 052A81711A24E0A100224717 /* KCGraphicsView */;
 			targetProxy = 0565374C1A24E1C00025E2C6 /* PBXContainerItemProxy */;
 		};
+		0580D1EC1AA9ECAF00486598 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 051B81C81A2B3B9500595267 /* Install */;
+			targetProxy = 0580D1EB1AA9ECAF00486598 /* PBXContainerItemProxy */;
+		};
 		05DF18001AA1EF3F00BFBDB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 051B81C81A2B3B9500595267 /* Install */;
@@ -526,6 +654,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				05731B941AA1C94200A6B5BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0580D1D61AA9EC3000486598 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0580D1D71AA9EC3000486598 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -742,6 +878,60 @@
 			};
 			name = Release;
 		};
+		0580D1E51AA9EC3000486598 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				INFOPLIST_FILE = ../UnitTest/Touch/OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0580D1E61AA9EC3000486598 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				INFOPLIST_FILE = ../UnitTest/Touch/OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05DF17F91AA1EF2300BFBDB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -816,6 +1006,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		0580D1E91AA9EC3000486598 /* Build configuration list for PBXNativeTarget "Touch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0580D1E51AA9EC3000486598 /* Debug */,
+				0580D1E61AA9EC3000486598 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		05DF17FD1AA1EF2300BFBDB8 /* Build configuration list for PBXNativeTarget "Graphics" */ = {
 			isa = XCConfigurationList;

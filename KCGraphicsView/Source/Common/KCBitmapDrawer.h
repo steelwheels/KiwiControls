@@ -8,7 +8,7 @@
 #import "KCGraphicsDrawer.h"
 #import "KCGraphicsType.h"
 
-@interface KCBitmapDrawer : KCGraphicsDrawer <KCGraphicsDrawing>
+@interface KCBitmapDrawer : NSObject <KCGraphicsDrawing>
 @property (strong, readonly) CNBitmap *			bitmap ;
 @property (strong, readonly) CNColorIndexTable *	colorIndexTable ;
 

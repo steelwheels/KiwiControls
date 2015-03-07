@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0502B3F51AA1DBCB003BB47C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */; };
 		0502B3F81AA1DBDE003BB47C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F61AA1DBDE003BB47C /* Main.storyboard */; };
+		0515F4A21AA8A1DD00466FF9 /* KCGraphicsEditor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */; };
 		052B67541AA1E1520072A369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67531AA1E1520072A369 /* main.m */; };
 		052B67571AA1E1530072A369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67561AA1E1530072A369 /* AppDelegate.m */; };
 		052B675A1AA1E1530072A369 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67591AA1E1530072A369 /* ViewController.m */; };
@@ -25,10 +26,14 @@
 		054F16A31A9E21B4000A413C /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */; };
 		054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */; };
 		0556AF831AA1F4990078B1DA /* UTGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0556AF821AA1F4990078B1DA /* UTGraphicsDrawer.m */; };
-		05757AE41AA27FC20017884B /* KCCircleGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 05757AE31AA27FC20017884B /* KCCircleGraphics.m */; };
-		05757AE51AA27FEF0017884B /* KCCircleGraphics.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05757AE21AA27FC20017884B /* KCCircleGraphics.h */; };
+		057AA2921AAAF86A008E1C55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 057AA2911AAAF86A008E1C55 /* main.m */; };
+		057AA2951AAAF86A008E1C55 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 057AA2941AAAF86A008E1C55 /* AppDelegate.m */; };
+		057AA2981AAAF86A008E1C55 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 057AA2971AAAF86A008E1C55 /* ViewController.m */; };
+		057AA29D1AAAF86A008E1C55 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057AA29C1AAAF86A008E1C55 /* Images.xcassets */; };
+		057AA2BA1AAAF9A2008E1C55 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057AA2B61AAAF9A2008E1C55 /* LaunchScreen.xib */; };
+		057AA2BB1AAAF9A2008E1C55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057AA2B81AAAF9A2008E1C55 /* Main.storyboard */; };
+		057AA2BF1AAAFD37008E1C55 /* UTLineEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 057AA2BE1AAAFD37008E1C55 /* UTLineEditor.m */; };
 		05C6E9AD1A615257006969CD /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */; };
-		05C6E9AE1A615257006969CD /* KCGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9AC1A615257006969CD /* KCGraphicsDrawer.m */; };
 		05C6E9B91A61556E006969CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9B81A61556E006969CD /* main.m */; };
 		05C6E9BC1A61556E006969CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9BB1A61556E006969CD /* AppDelegate.m */; };
 		05C6E9BF1A61556E006969CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9BE1A61556E006969CD /* ViewController.m */; };
@@ -37,6 +42,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		052B677C1AA1E3C40072A369 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0548369B1A24E62800C9BF18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C6E99D1A6151ED006969CD;
+			remoteInfo = Install;
+		};
+		057AA2B31AAAF88B008E1C55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0548369B1A24E62800C9BF18 /* Project object */;
 			proxyType = 1;
@@ -66,7 +78,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				05757AE51AA27FEF0017884B /* KCCircleGraphics.h in CopyFiles */,
+				0515F4A21AA8A1DD00466FF9 /* KCGraphicsEditor.h in CopyFiles */,
 				054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */,
 				053E47ED1A99DBB800E364A1 /* KCGraphicsType.h in CopyFiles */,
 				053E47EC1A99DBB300E364A1 /* KCGraphicsDrawer.h in CopyFiles */,
@@ -81,6 +93,7 @@
 /* Begin PBXFileReference section */
 		0502B3F41AA1DBCB003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0502B3F71AA1DBDE003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphicsEditor.h; sourceTree = "<group>"; };
 		052B674F1AA1E1520072A369 /* Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		052B67521AA1E1520072A369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Graphics/iOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		052B67531AA1E1520072A369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../UnitTest/Graphics/iOS/main.m; sourceTree = SOURCE_ROOT; };
@@ -100,13 +113,22 @@
 		054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsFunc.h; sourceTree = "<group>"; };
 		0556AF811AA1F4990078B1DA /* UTGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTGraphicsDrawer.h; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.h; sourceTree = "<group>"; };
 		0556AF821AA1F4990078B1DA /* UTGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTGraphicsDrawer.m; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.m; sourceTree = "<group>"; };
-		05757AE21AA27FC20017884B /* KCCircleGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCCircleGraphics.h; sourceTree = "<group>"; };
-		05757AE31AA27FC20017884B /* KCCircleGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCCircleGraphics.m; sourceTree = "<group>"; };
+		057AA28D1AAAF86A008E1C55 /* Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Touch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		057AA2901AAAF86A008E1C55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Touch/iOS/Info.plist; sourceTree = SOURCE_ROOT; };
+		057AA2911AAAF86A008E1C55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../UnitTest/Touch/iOS/main.m; sourceTree = SOURCE_ROOT; };
+		057AA2931AAAF86A008E1C55 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../UnitTest/Touch/iOS/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		057AA2941AAAF86A008E1C55 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../UnitTest/Touch/iOS/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		057AA2961AAAF86A008E1C55 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../UnitTest/Touch/iOS/ViewController.h; sourceTree = SOURCE_ROOT; };
+		057AA2971AAAF86A008E1C55 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../UnitTest/Touch/iOS/ViewController.m; sourceTree = SOURCE_ROOT; };
+		057AA29C1AAAF86A008E1C55 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../UnitTest/Touch/iOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		057AA2B71AAAF9A2008E1C55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		057AA2B91AAAF9A2008E1C55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		057AA2BD1AAAFD37008E1C55 /* UTLineEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTLineEditor.h; path = Common/UTLineEditor.h; sourceTree = "<group>"; };
+		057AA2BE1AAAFD37008E1C55 /* UTLineEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTLineEditor.m; path = Common/UTLineEditor.m; sourceTree = "<group>"; };
 		0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsView.h; path = ../Source/Common/KCGraphicsView.h; sourceTree = SOURCE_ROOT; };
 		05C6E9A91A615257006969CD /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCBitmapDrawer.h; sourceTree = "<group>"; };
 		05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCBitmapDrawer.m; sourceTree = "<group>"; };
 		05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDrawer.h; sourceTree = "<group>"; };
-		05C6E9AC1A615257006969CD /* KCGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsDrawer.m; sourceTree = "<group>"; };
 		05C6E9AF1A615311006969CD /* KCGraphicsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsType.h; sourceTree = "<group>"; };
 		05C6E9B41A61556E006969CD /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C6E9B71A61556E006969CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
@@ -127,6 +149,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		054836A01A24E62800C9BF18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		057AA28A1AAAF86A008E1C55 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -203,6 +232,7 @@
 				054836A31A24E62800C9BF18 /* libKCGraphicsView.a */,
 				05C6E9B41A61556E006969CD /* UnitTest.app */,
 				052B674F1AA1E1520072A369 /* Graphics.app */,
+				057AA28D1AAAF86A008E1C55 /* Touch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,17 +281,60 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
+		057AA28E1AAAF86A008E1C55 /* Touch */ = {
+			isa = PBXGroup;
+			children = (
+				057AA2B51AAAF8BF008E1C55 /* iOS */,
+				057AA2BC1AAAFD27008E1C55 /* Common */,
+			);
+			name = Touch;
+			path = ../UnitTest/Touch;
+			sourceTree = SOURCE_ROOT;
+		};
+		057AA28F1AAAF86A008E1C55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				057AA2901AAAF86A008E1C55 /* Info.plist */,
+				057AA2911AAAF86A008E1C55 /* main.m */,
+			);
+			name = "Supporting Files";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		057AA2B51AAAF8BF008E1C55 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				057AA2B61AAAF9A2008E1C55 /* LaunchScreen.xib */,
+				057AA2B81AAAF9A2008E1C55 /* Main.storyboard */,
+				057AA2931AAAF86A008E1C55 /* AppDelegate.h */,
+				057AA2941AAAF86A008E1C55 /* AppDelegate.m */,
+				057AA2961AAAF86A008E1C55 /* ViewController.h */,
+				057AA2971AAAF86A008E1C55 /* ViewController.m */,
+				057AA29C1AAAF86A008E1C55 /* Images.xcassets */,
+				057AA28F1AAAF86A008E1C55 /* Supporting Files */,
+			);
+			name = iOS;
+			path = ../UnitTest/Touch/iOS;
+			sourceTree = SOURCE_ROOT;
+		};
+		057AA2BC1AAAFD27008E1C55 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				057AA2BD1AAAFD37008E1C55 /* UTLineEditor.h */,
+				057AA2BE1AAAFD37008E1C55 /* UTLineEditor.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		05B0F1131A5AE16D00DD607D /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */,
 				05C6E9AF1A615311006969CD /* KCGraphicsType.h */,
 				05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */,
-				05C6E9AC1A615257006969CD /* KCGraphicsDrawer.m */,
+				0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */,
 				05C6E9A91A615257006969CD /* KCBitmapDrawer.h */,
 				05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */,
-				05757AE21AA27FC20017884B /* KCCircleGraphics.h */,
-				05757AE31AA27FC20017884B /* KCCircleGraphics.m */,
 				054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */,
 				054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */,
 			);
@@ -281,11 +354,13 @@
 		05C6E9B51A61556E006969CD /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				057AA28E1AAAF86A008E1C55 /* Touch */,
 				0518B2B51AA1C72600E91197 /* Bitmap */,
 				052B67501AA1E1520072A369 /* Graphics */,
 			);
-			path = UnitTest;
-			sourceTree = "<group>";
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
 		};
 		05C6E9B61A61556E006969CD /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -352,6 +427,24 @@
 			productReference = 054836A31A24E62800C9BF18 /* libKCGraphicsView.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		057AA28C1AAAF86A008E1C55 /* Touch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 057AA2AD1AAAF86A008E1C55 /* Build configuration list for PBXNativeTarget "Touch" */;
+			buildPhases = (
+				057AA2891AAAF86A008E1C55 /* Sources */,
+				057AA28A1AAAF86A008E1C55 /* Frameworks */,
+				057AA28B1AAAF86A008E1C55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				057AA2B41AAAF88B008E1C55 /* PBXTargetDependency */,
+			);
+			name = Touch;
+			productName = Touch;
+			productReference = 057AA28D1AAAF86A008E1C55 /* Touch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05C6E9B31A61556E006969CD /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05C6E9D41A61556E006969CD /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -386,6 +479,9 @@
 					054836A21A24E62800C9BF18 = {
 						CreatedOnToolsVersion = 6.1;
 					};
+					057AA28C1AAAF86A008E1C55 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					05C6E99D1A6151ED006969CD = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -412,6 +508,7 @@
 				05C6E99D1A6151ED006969CD /* Install */,
 				05C6E9B31A61556E006969CD /* UnitTest */,
 				052B674E1AA1E1520072A369 /* Graphics */,
+				057AA28C1AAAF86A008E1C55 /* Touch */,
 			);
 		};
 /* End PBXProject section */
@@ -424,6 +521,16 @@
 				052B677B1AA1E2920072A369 /* Main.storyboard in Resources */,
 				052B677A1AA1E28D0072A369 /* LaunchScreen.xib in Resources */,
 				052B675F1AA1E1530072A369 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		057AA28B1AAAF86A008E1C55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				057AA2BB1AAAF9A2008E1C55 /* Main.storyboard in Resources */,
+				057AA2BA1AAAF9A2008E1C55 /* LaunchScreen.xib in Resources */,
+				057AA29D1AAAF86A008E1C55 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,11 +562,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C6E9AE1A615257006969CD /* KCGraphicsDrawer.m in Sources */,
 				054836A91A24E62800C9BF18 /* KCIGraphicsView.m in Sources */,
 				054F16A31A9E21B4000A413C /* KCGraphicsFunc.m in Sources */,
-				05757AE41AA27FC20017884B /* KCCircleGraphics.m in Sources */,
 				05C6E9AD1A615257006969CD /* KCBitmapDrawer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		057AA2891AAAF86A008E1C55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				057AA2981AAAF86A008E1C55 /* ViewController.m in Sources */,
+				057AA2BF1AAAFD37008E1C55 /* UTLineEditor.m in Sources */,
+				057AA2951AAAF86A008E1C55 /* AppDelegate.m in Sources */,
+				057AA2921AAAF86A008E1C55 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +597,11 @@
 			isa = PBXTargetDependency;
 			target = 05C6E99D1A6151ED006969CD /* Install */;
 			targetProxy = 052B677C1AA1E3C40072A369 /* PBXContainerItemProxy */;
+		};
+		057AA2B41AAAF88B008E1C55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C6E99D1A6151ED006969CD /* Install */;
+			targetProxy = 057AA2B31AAAF88B008E1C55 /* PBXContainerItemProxy */;
 		};
 		05C6E9A21A6151F7006969CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -527,6 +648,22 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
+		057AA2B61AAAF9A2008E1C55 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				057AA2B71AAAF9A2008E1C55 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		057AA2B81AAAF9A2008E1C55 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				057AA2B91AAAF9A2008E1C55 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -541,6 +678,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -571,6 +709,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -718,6 +857,68 @@
 			};
 			name = Release;
 		};
+		057AA2AE1AAAF86A008E1C55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = ../UnitTest/Touch/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = (
+					"-lKCGraphicsView",
+					"-lKiwiControl",
+					"-lCoconutGraphics",
+					"-all_load",
+				);
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		057AA2AF1AAAF86A008E1C55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = ../UnitTest/Touch/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = (
+					"-lKCGraphicsView",
+					"-lKiwiControl",
+					"-lCoconutGraphics",
+					"-all_load",
+				);
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		05C6E99E1A6151EE006969CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -757,6 +958,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -767,6 +969,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(HOME)/local/lib",
 					/Users/tomoo/local/lib,
+				);
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
 				);
 				OTHER_LDFLAGS = (
 					"-lKCGraphicsView",
@@ -783,6 +989,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -793,6 +1000,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(HOME)/local/lib",
 					/Users/tomoo/local/lib,
+				);
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
 				);
 				OTHER_LDFLAGS = (
 					"-lKCGraphicsView",
@@ -833,6 +1044,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		057AA2AD1AAAF86A008E1C55 /* Build configuration list for PBXNativeTarget "Touch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				057AA2AE1AAAF86A008E1C55 /* Debug */,
+				057AA2AF1AAAF86A008E1C55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		05C6E9A01A6151EE006969CD /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;

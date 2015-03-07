@@ -13,6 +13,21 @@
 #	import <CoconutGraphics/CoconutGraphics.h>
 #endif
 
+static inline CGPoint
+flipPoint(CGPoint srcpoint, CGRect boundsrect)
+{
+	CGFloat x    = srcpoint.x - boundsrect.origin.x ;
+	CGFloat y    = srcpoint.y - boundsrect.origin.y ;
+	CGFloat revy = boundsrect.size.height - y ;
+	return CGPointMake(x, revy) ;
+}
+
+static inline CGRect
+flipBounds(CGRect bounds)
+{
+	return CGRectMake(0.0, 0.0, bounds.size.width, bounds.size.height) ;
+}
+
 @interface KCGraphicsLayerView ()
 - (void) setLayerAttribute ;
 @end
@@ -39,6 +54,7 @@
 {
 	layerLevel = 0 ;
 	graphicsDrawer = nil ;
+	graphicsEditor = nil ;
 	//self.opaque = NO ;
 	//self.backgroundColor = [NSColor colorWithWhite: 1.0 alpha: 0.0] ;
 	[self setTranslatesAutoresizingMaskIntoConstraints: NO] ;
@@ -54,14 +70,24 @@
 	return layerLevel ;
 }
 
-- (void) setGraphicsDrawer: (KCGraphicsDrawer *) drawer
+- (void) setGraphicsDrawer: (id <KCGraphicsDrawing>) drawer
 {
 	graphicsDrawer = drawer ;
 }
 
-- (KCGraphicsDrawer *) graphicsDrawer
+- (id <KCGraphicsDrawing>) graphicsDrawer
 {
 	return graphicsDrawer ;
+}
+
+- (void) setGraphicsEditor: (id <KCGraphicsEditing>) editor
+{
+	graphicsEditor = editor ;
+}
+
+- (id <KCGraphicsEditing>) graphicsEditor
+{
+	return graphicsEditor ;
 }
 
 - (void) drawRect:(CGRect) dirtyRect
@@ -88,6 +114,42 @@
 	CGContextRestoreGState(context);
 }
 
+- (void) mouseDown: (NSEvent *) event
+{
+	if(graphicsEditor){
+		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort] ;
+		NSPoint abspoint  = [event locationInWindow] ;
+		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
+		NSRect  bounds    = self.bounds ;
+		NSPoint flppoint  = flipPoint(locpoint, bounds) ;
+		NSRect  flpbounds = flipBounds(bounds) ;
+		[graphicsEditor touchesBegan: flppoint inContext: context atLevel: layerLevel inBoundsRect: flpbounds] ;
+	}
+}
+
+- (void) mouseDragged: (NSEvent *) event
+{
+	if(graphicsEditor){
+		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort] ;
+		NSPoint abspoint  = [event locationInWindow] ;
+		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
+		NSRect  bounds    = self.bounds ;
+		NSPoint flppoint  = flipPoint(locpoint, bounds) ;
+		NSRect  flpbounds = flipBounds(bounds) ;
+		if([graphicsEditor touchesMoved: flppoint inContext: context atLevel: layerLevel inBoundsRect: flpbounds]){
+			[self setNeedsDisplay: YES] ;
+		}
+	}
+}
+
+- (void) mouseUp: (NSEvent *) event
+{
+	(void) event ;
+	if(graphicsEditor){
+		[graphicsEditor touchesEnded] ;
+	}
+}
+
 @end
 
 @implementation KCGraphicsView
@@ -108,11 +170,19 @@
 	return self ;
 }
 
-- (void) setGraphicsDrawer: (KCGraphicsDrawer *) drawer
+- (void) setGraphicsDrawer: (id <KCGraphicsDrawing>) drawer
 {
 	[super setGraphicsDrawer: drawer] ;
 	for(KCGraphicsLayerView * layer in transparentViews){
 		[layer setGraphicsDrawer: drawer] ;
+	}
+}
+
+- (void) setGraphicsEditor: (id <KCGraphicsEditing>) editor
+{
+	[super setGraphicsEditor: editor] ;
+	for(KCGraphicsLayerView * layer in transparentViews){
+		[layer setGraphicsEditor: editor] ;
 	}
 }
 

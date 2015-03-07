@@ -7,6 +7,6 @@
 
 #import <KCGraphicsView/KCGraphicsView.h>
 
-@interface UTGraphicsDrawer : KCGraphicsDrawer <KCGraphicsDrawing>
+@interface UTGraphicsDrawer : NSObject <KCGraphicsDrawing>
 
 @end

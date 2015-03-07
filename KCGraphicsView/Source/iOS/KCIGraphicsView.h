@@ -7,11 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import "KCGraphicsDrawer.h"
+#import "KCGraphicsEditor.h"
 
 @interface KCGraphicsLayerView: UIView
 {
 	NSUInteger		layerLevel ;
-	KCGraphicsDrawer *	graphicsDrawer ;
+	id <KCGraphicsDrawing>	graphicsDrawer ;
+	id <KCGraphicsEditing>	graphicsEditor ;
 }
 
 - (instancetype) initWithCoder:(NSCoder *) decoder ;
@@ -20,8 +22,11 @@
 - (void) setLayerLevel: (NSUInteger) level ;
 - (NSUInteger) layerLevel ;
 
-- (void) setGraphicsDrawer: (KCGraphicsDrawer *) drawer ;
-- (KCGraphicsDrawer *) graphicsDrawer ;
+- (void) setGraphicsDrawer: (id <KCGraphicsDrawing>) drawer ;
+- (id <KCGraphicsDrawing>) graphicsDrawer ;
+
+- (void) setGraphicsEditor: (id <KCGraphicsEditing>) editor ;
+- (id <KCGraphicsEditing>) graphicsEditor ;
 
 - (void) drawRect:(CGRect) dirtyRect ;
 @end
@@ -34,7 +39,8 @@
 - (instancetype) initWithCoder:(NSCoder *) decoder ;
 - (instancetype) initWithFrame:(CGRect)frame ;
 
-- (void) setGraphicsDrawer: (KCGraphicsDrawer *) drawer ;
+- (void) setGraphicsDrawer: (id <KCGraphicsDrawing>) drawer ;
+- (void) setGraphicsEditor: (id <KCGraphicsEditing>) editor ;
 - (void) allocateTransparentViews: (unsigned int) viewnum ;
 
 @end
