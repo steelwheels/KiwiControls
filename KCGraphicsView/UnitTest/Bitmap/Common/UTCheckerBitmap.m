@@ -37,7 +37,7 @@ UTAllocateCheckerColorIndexTable(void)
 	struct CNRGB * rgbptr = newtable.rgbArray ;
 	
 	CNColorTable * colortable = [CNColorTable defaultColorTable] ;
-	rgbptr[UTBlackIndex] = CNColorToRGB([colortable black]) ;
-	rgbptr[UTWhiteIndex] = CNColorToRGB([colortable white]) ;
+	rgbptr[UTBlackIndex] = [colortable black] ;
+	rgbptr[UTWhiteIndex] = [colortable white] ;
 	return newtable ;
 }

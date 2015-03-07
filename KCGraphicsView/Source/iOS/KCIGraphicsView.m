@@ -120,12 +120,11 @@ flipBounds(CGRect bounds)
 {
 	(void) event ;
 	if(graphicsEditor){
-		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGPoint touchedpoint = [[touches anyObject] locationInView:self];
 		CGRect  bounds       = self.bounds ;
 		CGPoint flppoint     = flipPoint(touchedpoint, bounds) ;
 		CGRect  flprect      = flipBounds(bounds) ;
-		[graphicsEditor touchesBegan: flppoint inContext: context atLevel: layerLevel inBoundsRect: flprect] ;
+		[graphicsEditor touchesBegan: flppoint atLevel: layerLevel inBoundsRect: flprect] ;
 	}
 }
 
@@ -133,12 +132,11 @@ flipBounds(CGRect bounds)
 {
 	(void) event ;
 	if(graphicsEditor){
-		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGPoint touchedpoint = [[touches anyObject] locationInView:self];
 		CGRect  bounds       = self.bounds ;
 		CGPoint flppoint     = flipPoint(touchedpoint, bounds) ;
 		CGRect  flprect      = flipBounds(bounds) ;
-		if([graphicsEditor touchesMoved: flppoint inContext: context atLevel: layerLevel inBoundsRect: flprect]){
+		if([graphicsEditor touchesMoved: flppoint atLevel: layerLevel inBoundsRect: flprect]){
 			[self setNeedsDisplay] ;
 		}
 	}

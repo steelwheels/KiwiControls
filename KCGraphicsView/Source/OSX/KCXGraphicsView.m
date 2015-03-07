@@ -117,26 +117,24 @@ flipBounds(CGRect bounds)
 - (void) mouseDown: (NSEvent *) event
 {
 	if(graphicsEditor){
-		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort] ;
 		NSPoint abspoint  = [event locationInWindow] ;
 		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
 		NSRect  bounds    = self.bounds ;
 		NSPoint flppoint  = flipPoint(locpoint, bounds) ;
 		NSRect  flpbounds = flipBounds(bounds) ;
-		[graphicsEditor touchesBegan: flppoint inContext: context atLevel: layerLevel inBoundsRect: flpbounds] ;
+		[graphicsEditor touchesBegan: flppoint atLevel: layerLevel inBoundsRect: flpbounds] ;
 	}
 }
 
 - (void) mouseDragged: (NSEvent *) event
 {
 	if(graphicsEditor){
-		CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort] ;
 		NSPoint abspoint  = [event locationInWindow] ;
 		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
 		NSRect  bounds    = self.bounds ;
 		NSPoint flppoint  = flipPoint(locpoint, bounds) ;
 		NSRect  flpbounds = flipBounds(bounds) ;
-		if([graphicsEditor touchesMoved: flppoint inContext: context atLevel: layerLevel inBoundsRect: flpbounds]){
+		if([graphicsEditor touchesMoved: flppoint atLevel: layerLevel inBoundsRect: flpbounds]){
 			[self setNeedsDisplay: YES] ;
 		}
 	}

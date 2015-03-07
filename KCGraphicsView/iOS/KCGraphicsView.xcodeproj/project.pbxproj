@@ -862,10 +862,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -895,6 +897,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -964,7 +968,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(HOME)/local/include",
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = ../UnitTest/Graphics/iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(HOME)/local/lib",
@@ -976,6 +980,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lKCGraphicsView",
+					"-lKiwiControl",
 					"-lCoconutGraphics",
 					"-all_load",
 				);
@@ -995,7 +1000,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(HOME)/local/include",
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = ../UnitTest/Graphics/iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(HOME)/local/lib",
@@ -1007,6 +1012,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lKCGraphicsView",
+					"-lKiwiControl",
 					"-lCoconutGraphics",
 					"-all_load",
 				);
@@ -1052,6 +1058,7 @@
 				057AA2AF1AAAF86A008E1C55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05C6E9A01A6151EE006969CD /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;

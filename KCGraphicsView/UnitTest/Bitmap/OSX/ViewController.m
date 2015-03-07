@@ -19,7 +19,7 @@
 	CNColorIndexTable * colortable = UTAllocateCheckerColorIndexTable() ;
 	KCBitmapDrawer * bitmapdrawer = [[KCBitmapDrawer alloc] initWithBitmap: bitmap
 							   withColorIndexTable: colortable] ;
-	[graphicsView setDrawer: bitmapdrawer] ;
+	[graphicsView setGraphicsDrawer: bitmapdrawer] ;
 }
 
 - (void)setRepresentedObject:(id)representedObject {

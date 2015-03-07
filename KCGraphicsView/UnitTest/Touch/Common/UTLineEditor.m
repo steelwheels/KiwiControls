@@ -26,11 +26,11 @@
 	}
 }
 
-- (void) touchesBegan: (CGPoint) point inContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (void) touchesBegan: (CGPoint) point atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
 {
 	//printf("touchesBegin: ") ; CNPrintRect(boundsrect) ; putc('\n', stdout) ;
 	//printf(" * ") ; CNPrintPoint(point) ; putc('\n', stdout) ;
-	(void) context ; (void) level ;
+	(void) level ;
 	if(CGRectContainsPoint(boundsrect, point)){
 		pointArray[0] = point ;
 		pointNum = 1 ;
@@ -39,10 +39,10 @@
 	}
 }
 
-- (BOOL) touchesMoved: (CGPoint) newpoint inContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (BOOL) touchesMoved: (CGPoint) newpoint atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
 {
 	//printf("touchesMoved: ") ; CNPrintPoint(newpoint) ; putc('\n', stdout) ;
-	(void) context ; (void) level ;
+	(void) level ;
 	if(pointNum >= MAX_POINT_NUM){
 		return NO ;
 	}
