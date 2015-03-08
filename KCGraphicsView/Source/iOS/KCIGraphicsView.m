@@ -146,7 +146,9 @@ flipBounds(CGRect bounds)
 {
 	(void) touches ; (void) event ;
 	if(graphicsEditor){
-		[graphicsEditor touchesEnded] ;
+		if([graphicsEditor touchesEnded]){
+			[self setNeedsDisplay] ;
+		}
 	}
 }
 
@@ -154,7 +156,9 @@ flipBounds(CGRect bounds)
 {
 	(void) touches ; (void) event ;
 	if(graphicsEditor){
-		[graphicsEditor touchesCancelled] ;
+		if([graphicsEditor touchesCancelled]){
+			[self setNeedsDisplay] ;
+		}
 	}
 }
 
@@ -205,9 +209,11 @@ flipBounds(CGRect bounds)
 	for( ; i<endi ; i++){
 		KCGraphicsLayerView * transview = [[KCGraphicsLayerView alloc] initWithFrame: self.bounds] ;
 		
-		
 		[transview setLayerLevel: i+1] ;
 		[transview setGraphicsDrawer: self.graphicsDrawer] ;
+		if(self.graphicsEditor){
+			[transview setGraphicsEditor: self.graphicsEditor] ;
+		}
 		[self addSubview: transview] ;
 
 		KCLayoutSubviewWithMargines(self, transview, 0.0, 0.0, 0.0, 0.0) ;

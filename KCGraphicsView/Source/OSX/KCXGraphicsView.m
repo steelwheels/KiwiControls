@@ -144,7 +144,9 @@ flipBounds(CGRect bounds)
 {
 	(void) event ;
 	if(graphicsEditor){
-		[graphicsEditor touchesEnded] ;
+		if([graphicsEditor touchesEnded]){
+			[self setNeedsDisplay: YES] ;
+		}
 	}
 }
 

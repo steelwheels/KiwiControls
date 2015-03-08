@@ -7,8 +7,8 @@
 
 @protocol  KCGraphicsEditing <NSObject>
 - (void) touchesBegan: (CGPoint) point atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect ;
-- (BOOL) touchesMoved: (CGPoint) newpoint atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect ;
-- (void) touchesEnded ;
-- (void) touchesCancelled ;
+- (bool) touchesMoved: (CGPoint) newpoint atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect ;
+- (bool) touchesEnded ;
+- (bool) touchesCancelled ;
 @end
 

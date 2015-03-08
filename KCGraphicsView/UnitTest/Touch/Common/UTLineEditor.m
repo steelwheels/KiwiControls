@@ -39,30 +39,32 @@
 	}
 }
 
-- (BOOL) touchesMoved: (CGPoint) newpoint atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (bool) touchesMoved: (CGPoint) newpoint atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
 {
 	//printf("touchesMoved: ") ; CNPrintPoint(newpoint) ; putc('\n', stdout) ;
 	(void) level ;
 	if(pointNum >= MAX_POINT_NUM){
-		return NO ;
+		return false ;
 	}
 	
 	BOOL result ;
 	if(CGRectContainsPoint(boundsrect, newpoint)){
 		pointArray[pointNum++] = newpoint ;
-		result = YES ;
+		result = true ;
 	} else {
-		result = NO ;
+		result = false ;
 	}
 	return result ;
 }
 
-- (void) touchesEnded
+- (bool) touchesEnded
 {
+	return false ;
 }
 
-- (void) touchesCancelled
+- (bool) touchesCancelled
 {
+	return false ;
 }
 
 @end
