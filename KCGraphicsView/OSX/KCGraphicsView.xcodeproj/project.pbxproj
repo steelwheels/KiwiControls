@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0502094E1AA8BC7D00FA9F17 /* KCGraphicsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0502094D1AA8BC7D00FA9F17 /* KCGraphicsEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		050858BE1AACAEA300991D09 /* KCGraphicsDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 050858BD1AACAEA300991D09 /* KCGraphicsDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		051B81C61A2B3A2400595267 /* KCXGraphicsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 051B81C41A2B3A2400595267 /* KCXGraphicsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		051B81C71A2B3A2400595267 /* KCXGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051B81C51A2B3A2400595267 /* KCXGraphicsView.m */; };
 		05235E821A612430009F24D6 /* UTCheckerBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 05235E811A612430009F24D6 /* UTCheckerBitmap.m */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		0502094D1AA8BC7D00FA9F17 /* KCGraphicsEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsEditor.h; path = ../Source/Common/KCGraphicsEditor.h; sourceTree = "<group>"; };
+		050858BD1AACAEA300991D09 /* KCGraphicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsDelegate.h; path = ../Source/Common/KCGraphicsDelegate.h; sourceTree = "<group>"; };
 		051B81C41A2B3A2400595267 /* KCXGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCXGraphicsView.h; path = ../Source/OSX/KCXGraphicsView.h; sourceTree = SOURCE_ROOT; };
 		051B81C51A2B3A2400595267 /* KCXGraphicsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCXGraphicsView.m; path = ../Source/OSX/KCXGraphicsView.m; sourceTree = SOURCE_ROOT; };
 		051B81CE1A2B3C9300595267 /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = install.mk; sourceTree = SOURCE_ROOT; };
@@ -180,6 +182,7 @@
 				052A81771A24E0A100224717 /* KCGraphicsView.h */,
 				05ED4D241A5FFE1E00EC660B /* KCGraphicsDrawer.h */,
 				0502094D1AA8BC7D00FA9F17 /* KCGraphicsEditor.h */,
+				050858BD1AACAEA300991D09 /* KCGraphicsDelegate.h */,
 				0551919B1A6157EC007807CE /* KCGraphicsType.h */,
 				05305EA81A9E23DC005EB2DF /* KCGraphicsFunc.h */,
 				05305EA91A9E23DC005EB2DF /* KCGraphicsFunc.m */,
@@ -392,6 +395,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050858BE1AACAEA300991D09 /* KCGraphicsDelegate.h in Headers */,
 				0502094E1AA8BC7D00FA9F17 /* KCGraphicsEditor.h in Headers */,
 				05305EAA1A9E23DC005EB2DF /* KCGraphicsFunc.h in Headers */,
 				0551919C1A6157EC007807CE /* KCGraphicsType.h in Headers */,

@@ -53,8 +53,9 @@ flipBounds(CGRect bounds)
 - (void) setLayerAttribute
 {
 	layerLevel = 0 ;
-	graphicsDrawer = nil ;
-	graphicsEditor = nil ;
+	graphicsDrawer   = nil ;
+	graphicsEditor   = nil ;
+	graphicsDelegate = nil ;
 	//self.opaque = NO ;
 	//self.backgroundColor = [NSColor colorWithWhite: 1.0 alpha: 0.0] ;
 	[self setTranslatesAutoresizingMaskIntoConstraints: NO] ;
@@ -88,6 +89,16 @@ flipBounds(CGRect bounds)
 - (id <KCGraphicsEditing>) graphicsEditor
 {
 	return graphicsEditor ;
+}
+
+- (void) setGraphicsDelegate: (id <KCGraphicsDelegate>) delegate
+{
+	graphicsDelegate = delegate ;
+}
+
+- (id <KCGraphicsDelegate>) graphicsDelegate
+{
+	return graphicsDelegate ;
 }
 
 - (void) drawRect:(CGRect) dirtyRect
@@ -147,6 +158,9 @@ flipBounds(CGRect bounds)
 		if([graphicsEditor touchesEnded]){
 			[self setNeedsDisplay: YES] ;
 		}
+		if(graphicsDelegate){
+			[graphicsDelegate editingGraphicsEnded] ;
+		}
 	}
 }
 
@@ -183,6 +197,14 @@ flipBounds(CGRect bounds)
 	[super setGraphicsEditor: editor] ;
 	for(KCGraphicsLayerView * layer in transparentViews){
 		[layer setGraphicsEditor: editor] ;
+	}
+}
+
+- (void) setGraphicsDelegate: (id <KCGraphicsDelegate>) delegate
+{
+	[super setGraphicsDelegate: delegate] ;
+	for(KCGraphicsLayerView * layer in transparentViews){
+		[layer setGraphicsDelegate: delegate] ;
 	}
 }
 

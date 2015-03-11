@@ -6,5 +6,6 @@
  */
 
 @protocol KCGraphicsDelegate <NSObject>
-- (void) editingGraphicsDone ;
+- (void) editingGraphicsEnded ;
+- (void) editingGraphicsCancelled ;
 @end

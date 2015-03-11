@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0502B3F51AA1DBCB003BB47C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */; };
 		0502B3F81AA1DBDE003BB47C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F61AA1DBDE003BB47C /* Main.storyboard */; };
+		05060D911AACAD840009718C /* KCGraphicsDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05060D901AACACE30009718C /* KCGraphicsDelegate.h */; };
 		0515F4A21AA8A1DD00466FF9 /* KCGraphicsEditor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */; };
 		052B67541AA1E1520072A369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67531AA1E1520072A369 /* main.m */; };
 		052B67571AA1E1530072A369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67561AA1E1530072A369 /* AppDelegate.m */; };
@@ -78,6 +79,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05060D911AACAD840009718C /* KCGraphicsDelegate.h in CopyFiles */,
 				0515F4A21AA8A1DD00466FF9 /* KCGraphicsEditor.h in CopyFiles */,
 				054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */,
 				053E47ED1A99DBB800E364A1 /* KCGraphicsType.h in CopyFiles */,
@@ -93,6 +95,7 @@
 /* Begin PBXFileReference section */
 		0502B3F41AA1DBCB003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0502B3F71AA1DBDE003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05060D901AACACE30009718C /* KCGraphicsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDelegate.h; sourceTree = "<group>"; };
 		0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphicsEditor.h; sourceTree = "<group>"; };
 		052B674F1AA1E1520072A369 /* Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		052B67521AA1E1520072A369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Graphics/iOS/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -333,6 +336,7 @@
 				05C6E9AF1A615311006969CD /* KCGraphicsType.h */,
 				05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */,
 				0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */,
+				05060D901AACACE30009718C /* KCGraphicsDelegate.h */,
 				05C6E9A91A615257006969CD /* KCBitmapDrawer.h */,
 				05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */,
 				054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */,

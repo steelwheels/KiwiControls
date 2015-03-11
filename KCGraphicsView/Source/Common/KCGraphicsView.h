@@ -25,6 +25,7 @@ FOUNDATION_EXPORT const unsigned char KCGraphicsViewVersionString[];
 #import "KCGraphicsFunc.h"
 #import "KCGraphicsDrawer.h"
 #import "KCGraphicsEditor.h"
+#import "KCGraphicsDelegate.h"
 #import "KCBitmapDrawer.h"
 #import "KCGraphicsFunc.h"
 

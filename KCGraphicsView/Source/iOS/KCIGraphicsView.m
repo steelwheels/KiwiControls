@@ -92,6 +92,16 @@ flipBounds(CGRect bounds)
 	return graphicsEditor ;
 }
 
+- (void) setGraphicsDelegate: (id <KCGraphicsDelegate>) delegate
+{
+	graphicsDelegate = delegate ;
+}
+
+- (id <KCGraphicsDelegate>) graphicsDelegate
+{
+	return graphicsDelegate ;
+}
+
 - (void) drawRect:(CGRect) dirtyRect
 {
 	[super drawRect:dirtyRect];
@@ -149,6 +159,9 @@ flipBounds(CGRect bounds)
 		if([graphicsEditor touchesEnded]){
 			[self setNeedsDisplay] ;
 		}
+		if(graphicsDelegate){
+			[graphicsDelegate editingGraphicsEnded] ;
+		}
 	}
 }
 
@@ -158,6 +171,9 @@ flipBounds(CGRect bounds)
 	if(graphicsEditor){
 		if([graphicsEditor touchesCancelled]){
 			[self setNeedsDisplay] ;
+		}
+		if(graphicsDelegate){
+			[graphicsDelegate editingGraphicsCancelled] ;
 		}
 	}
 }
@@ -195,6 +211,14 @@ flipBounds(CGRect bounds)
 	[super setGraphicsEditor: editor] ;
 	for(KCGraphicsLayerView * layer in transparentViews){
 		[layer setGraphicsEditor: editor] ;
+	}
+}
+
+- (void) setGraphicsDelegate: (id <KCGraphicsDelegate>) delegate
+{
+	[super setGraphicsDelegate: delegate] ;
+	for(KCGraphicsLayerView * layer in transparentViews){
+		[layer setGraphicsDelegate: delegate] ;
 	}
 }
 
