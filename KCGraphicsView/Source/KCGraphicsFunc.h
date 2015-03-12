@@ -19,3 +19,7 @@ KCSetStrokeColor(CGContextRef context, const struct CNRGB * color)
 {
 	CGContextSetRGBStrokeColor(context, color->red, color->green, color->blue, color->alpha) ;
 }
+
+void
+KCDrawHexagon(CGContextRef context, const struct CNHexagon * hexagon) ;
+

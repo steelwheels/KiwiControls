@@ -16,12 +16,7 @@ FOUNDATION_EXPORT const unsigned char KCGraphicsViewVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KCGraphicsView/PublicHeader.h>
 
-#if TARGET_OS_IPHONE
-#	import "KCIGraphicsView.h"
-#else
-#	import "KCXGraphicsView.h"
-#endif
-
+#import "KCGraphicsViewClass.h"
 #import "KCGraphicsFunc.h"
 #import "KCGraphicsDrawer.h"
 #import "KCGraphicsEditor.h"

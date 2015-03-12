@@ -1,13 +1,11 @@
 /**
- * @file	KCIGraphicsView.m
+ * @file	KCGraphicsViewClass.m
  * @brief	Define KCGraphicsView class for Mac OS X
  * @par Copyright
  *   Copyright (C) 2014 Steel Wheels Project
- * @par Reference
- *   http://realisapp.com/iphone/coregraphics-paint/
  */
 
-#import "KCIGraphicsView.h"
+#import "KCGraphicsViewClass.h"
 #import <KiwiControl/KiwiControl.h>
 
 #define DO_DEBUG 0
@@ -44,7 +42,11 @@ flipBounds(CGRect bounds)
 	return self ;
 }
 
+#if TARGET_OS_IPHONE
 - (instancetype) initWithFrame:(CGRect)frame
+#else
+- (instancetype) initWithFrame:(NSRect)frame
+#endif
 {
 	if((self = [super initWithFrame: frame]) != nil){
 		[self setLayerAttribute] ;
@@ -55,10 +57,13 @@ flipBounds(CGRect bounds)
 - (void) setLayerAttribute
 {
 	layerLevel = 0 ;
-	graphicsDrawer = nil ;
-	graphicsEditor = nil ;
+	graphicsDrawer   = nil ;
+	graphicsEditor   = nil ;
+	graphicsDelegate = nil ;
+#	if TARGET_OS_IPHONE
 	self.opaque = NO ;
 	self.backgroundColor = [UIColor colorWithWhite: 1.0 alpha: 0.0] ;
+#	endif
 	[self setTranslatesAutoresizingMaskIntoConstraints: NO] ;
 }
 
@@ -106,7 +111,12 @@ flipBounds(CGRect bounds)
 {
 	[super drawRect:dirtyRect];
 	
+#	if TARGET_OS_IPHONE
 	CGContextRef context = UIGraphicsGetCurrentContext();
+#	else
+	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort] ;
+#	endif
+	
 	CGContextSaveGState(context);
 	{
 		CGRect bounds = [self bounds] ;
@@ -126,6 +136,7 @@ flipBounds(CGRect bounds)
 	CGContextRestoreGState(context);
 }
 
+#if TARGET_OS_IPHONE
 - (void) touchesBegan: (NSSet *) touches withEvent:(UIEvent *)event
 {
 	(void) event ;
@@ -137,7 +148,21 @@ flipBounds(CGRect bounds)
 		[graphicsEditor touchesBegan: flppoint atLevel: layerLevel inBoundsRect: flprect] ;
 	}
 }
+#else
+- (void) mouseDown: (NSEvent *) event
+{
+	if(graphicsEditor){
+		NSPoint abspoint  = [event locationInWindow] ;
+		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
+		NSRect  bounds    = self.bounds ;
+		NSPoint flppoint  = flipPoint(locpoint, bounds) ;
+		NSRect  flpbounds = flipBounds(bounds) ;
+		[graphicsEditor touchesBegan: flppoint atLevel: layerLevel inBoundsRect: flpbounds] ;
+	}
+}
+#endif
 
+#if TARGET_OS_IPHONE
 - (void) touchesMoved: (NSSet *) touches withEvent:(UIEvent *)event
 {
 	(void) event ;
@@ -151,7 +176,23 @@ flipBounds(CGRect bounds)
 		}
 	}
 }
+#else
+- (void) mouseDragged: (NSEvent *) event
+{
+	if(graphicsEditor){
+		NSPoint abspoint  = [event locationInWindow] ;
+		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
+		NSRect  bounds    = self.bounds ;
+		NSPoint flppoint  = flipPoint(locpoint, bounds) ;
+		NSRect  flpbounds = flipBounds(bounds) ;
+		if([graphicsEditor touchesMoved: flppoint atLevel: layerLevel inBoundsRect: flpbounds]){
+			[self setNeedsDisplay: YES] ;
+		}
+	}
+}
+#endif
 
+#if TARGET_OS_IPHONE
 - (void) touchesEnded: (NSSet *) touches withEvent:(UIEvent *)event
 {
 	(void) touches ; (void) event ;
@@ -177,6 +218,20 @@ flipBounds(CGRect bounds)
 		}
 	}
 }
+#else
+- (void) mouseUp: (NSEvent *) event
+{
+	(void) event ;
+	if(graphicsEditor){
+		if([graphicsEditor touchesEnded]){
+			[self setNeedsDisplay: YES] ;
+		}
+		if(graphicsDelegate){
+			[graphicsDelegate editingGraphicsEnded] ;
+		}
+	}
+}
+#endif
 
 @end
 
@@ -239,9 +294,10 @@ flipBounds(CGRect bounds)
 			[transview setGraphicsEditor: self.graphicsEditor] ;
 		}
 		[self addSubview: transview] ;
-
+		
 		KCLayoutSubviewWithMargines(self, transview, 0.0, 0.0, 0.0, 0.0) ;
 	}
 }
 
 @end
+

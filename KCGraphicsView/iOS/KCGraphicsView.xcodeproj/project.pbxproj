@@ -9,23 +9,16 @@
 /* Begin PBXBuildFile section */
 		0502B3F51AA1DBCB003BB47C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */; };
 		0502B3F81AA1DBDE003BB47C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F61AA1DBDE003BB47C /* Main.storyboard */; };
-		05060D911AACAD840009718C /* KCGraphicsDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05060D901AACACE30009718C /* KCGraphicsDelegate.h */; };
-		0515F4A21AA8A1DD00466FF9 /* KCGraphicsEditor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */; };
 		052B67541AA1E1520072A369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67531AA1E1520072A369 /* main.m */; };
 		052B67571AA1E1530072A369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67561AA1E1530072A369 /* AppDelegate.m */; };
 		052B675A1AA1E1530072A369 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67591AA1E1530072A369 /* ViewController.m */; };
 		052B675F1AA1E1530072A369 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 052B675E1AA1E1530072A369 /* Images.xcassets */; };
 		052B677A1AA1E28D0072A369 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052B67781AA1E2870072A369 /* LaunchScreen.xib */; };
 		052B677B1AA1E2920072A369 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052B67761AA1E2670072A369 /* Main.storyboard */; };
-		053E47EA1A99DBA800E364A1 /* KCGraphicsView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */; };
-		053E47EB1A99DBAE00E364A1 /* KCBitmapDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C6E9A91A615257006969CD /* KCBitmapDrawer.h */; };
-		053E47EC1A99DBB300E364A1 /* KCGraphicsDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */; };
-		053E47ED1A99DBB800E364A1 /* KCGraphicsType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05C6E9AF1A615311006969CD /* KCGraphicsType.h */; };
+		053621271AB1F2DE00009EFA /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536211D1AB1F2DE00009EFA /* KCBitmapDrawer.m */; };
+		053621281AB1F2DE00009EFA /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 053621221AB1F2DE00009EFA /* KCGraphicsFunc.m */; };
+		053621291AB1F2DE00009EFA /* KCGraphicsViewClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 053621261AB1F2DE00009EFA /* KCGraphicsViewClass.m */; };
 		053E47F01A99E46D00E364A1 /* UTCheckerBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 053E47EF1A99E46D00E364A1 /* UTCheckerBitmap.m */; };
-		054836A71A24E62800C9BF18 /* KCIGraphicsView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054836A61A24E62800C9BF18 /* KCIGraphicsView.h */; };
-		054836A91A24E62800C9BF18 /* KCIGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054836A81A24E62800C9BF18 /* KCIGraphicsView.m */; };
-		054F16A31A9E21B4000A413C /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */; };
-		054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */; };
 		0556AF831AA1F4990078B1DA /* UTGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0556AF821AA1F4990078B1DA /* UTGraphicsDrawer.m */; };
 		057AA2921AAAF86A008E1C55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 057AA2911AAAF86A008E1C55 /* main.m */; };
 		057AA2951AAAF86A008E1C55 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 057AA2941AAAF86A008E1C55 /* AppDelegate.m */; };
@@ -34,7 +27,6 @@
 		057AA2BA1AAAF9A2008E1C55 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057AA2B61AAAF9A2008E1C55 /* LaunchScreen.xib */; };
 		057AA2BB1AAAF9A2008E1C55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057AA2B81AAAF9A2008E1C55 /* Main.storyboard */; };
 		057AA2BF1AAAFD37008E1C55 /* UTLineEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 057AA2BE1AAAFD37008E1C55 /* UTLineEditor.m */; };
-		05C6E9AD1A615257006969CD /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */; };
 		05C6E9B91A61556E006969CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9B81A61556E006969CD /* main.m */; };
 		05C6E9BC1A61556E006969CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9BB1A61556E006969CD /* AppDelegate.m */; };
 		05C6E9BF1A61556E006969CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C6E9BE1A61556E006969CD /* ViewController.m */; };
@@ -79,14 +71,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				05060D911AACAD840009718C /* KCGraphicsDelegate.h in CopyFiles */,
-				0515F4A21AA8A1DD00466FF9 /* KCGraphicsEditor.h in CopyFiles */,
-				054F16A51A9E223F000A413C /* KCGraphicsFunc.h in CopyFiles */,
-				053E47ED1A99DBB800E364A1 /* KCGraphicsType.h in CopyFiles */,
-				053E47EC1A99DBB300E364A1 /* KCGraphicsDrawer.h in CopyFiles */,
-				053E47EB1A99DBAE00E364A1 /* KCBitmapDrawer.h in CopyFiles */,
-				053E47EA1A99DBA800E364A1 /* KCGraphicsView.h in CopyFiles */,
-				054836A71A24E62800C9BF18 /* KCIGraphicsView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +79,6 @@
 /* Begin PBXFileReference section */
 		0502B3F41AA1DBCB003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0502B3F71AA1DBDE003BB47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		05060D901AACACE30009718C /* KCGraphicsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDelegate.h; sourceTree = "<group>"; };
-		0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphicsEditor.h; sourceTree = "<group>"; };
 		052B674F1AA1E1520072A369 /* Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		052B67521AA1E1520072A369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTest/Graphics/iOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		052B67531AA1E1520072A369 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../UnitTest/Graphics/iOS/main.m; sourceTree = SOURCE_ROOT; };
@@ -107,13 +89,20 @@
 		052B675E1AA1E1530072A369 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../UnitTest/Graphics/iOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		052B67771AA1E2670072A369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../UnitTest/Graphics/iOS/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		052B67791AA1E2870072A369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ../UnitTest/Graphics/iOS/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0536211C1AB1F2DE00009EFA /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCBitmapDrawer.h; sourceTree = "<group>"; };
+		0536211D1AB1F2DE00009EFA /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCBitmapDrawer.m; sourceTree = "<group>"; };
+		0536211E1AB1F2DE00009EFA /* KCGraphicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDelegate.h; sourceTree = "<group>"; };
+		0536211F1AB1F2DE00009EFA /* KCGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDrawer.h; sourceTree = "<group>"; };
+		053621201AB1F2DE00009EFA /* KCGraphicsEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsEditor.h; sourceTree = "<group>"; };
+		053621211AB1F2DE00009EFA /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsFunc.h; sourceTree = "<group>"; };
+		053621221AB1F2DE00009EFA /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsFunc.m; sourceTree = "<group>"; };
+		053621231AB1F2DE00009EFA /* KCGraphicsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsType.h; sourceTree = "<group>"; };
+		053621241AB1F2DE00009EFA /* KCGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsView.h; sourceTree = "<group>"; };
+		053621251AB1F2DE00009EFA /* KCGraphicsViewClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsViewClass.h; sourceTree = "<group>"; };
+		053621261AB1F2DE00009EFA /* KCGraphicsViewClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsViewClass.m; sourceTree = "<group>"; };
 		053E47EE1A99E46D00E364A1 /* UTCheckerBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCheckerBitmap.h; sourceTree = "<group>"; };
 		053E47EF1A99E46D00E364A1 /* UTCheckerBitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCheckerBitmap.m; sourceTree = "<group>"; };
 		054836A31A24E62800C9BF18 /* libKCGraphicsView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCGraphicsView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		054836A61A24E62800C9BF18 /* KCIGraphicsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KCIGraphicsView.h; path = ../Source/iOS/KCIGraphicsView.h; sourceTree = SOURCE_ROOT; };
-		054836A81A24E62800C9BF18 /* KCIGraphicsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KCIGraphicsView.m; path = ../Source/iOS/KCIGraphicsView.m; sourceTree = SOURCE_ROOT; };
-		054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsFunc.m; sourceTree = "<group>"; };
-		054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsFunc.h; sourceTree = "<group>"; };
 		0556AF811AA1F4990078B1DA /* UTGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTGraphicsDrawer.h; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.h; sourceTree = "<group>"; };
 		0556AF821AA1F4990078B1DA /* UTGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTGraphicsDrawer.m; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.m; sourceTree = "<group>"; };
 		057AA28D1AAAF86A008E1C55 /* Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Touch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,11 +117,6 @@
 		057AA2B91AAAF9A2008E1C55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		057AA2BD1AAAFD37008E1C55 /* UTLineEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTLineEditor.h; path = Common/UTLineEditor.h; sourceTree = "<group>"; };
 		057AA2BE1AAAFD37008E1C55 /* UTLineEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTLineEditor.m; path = Common/UTLineEditor.m; sourceTree = "<group>"; };
-		0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCGraphicsView.h; path = ../Source/Common/KCGraphicsView.h; sourceTree = SOURCE_ROOT; };
-		05C6E9A91A615257006969CD /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCBitmapDrawer.h; sourceTree = "<group>"; };
-		05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCBitmapDrawer.m; sourceTree = "<group>"; };
-		05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDrawer.h; sourceTree = "<group>"; };
-		05C6E9AF1A615311006969CD /* KCGraphicsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsType.h; sourceTree = "<group>"; };
 		05C6E9B41A61556E006969CD /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C6E9B71A61556E006969CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		05C6E9B81A61556E006969CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../UnitTest/Bitmap/iOS/main.m; sourceTree = SOURCE_ROOT; };
@@ -243,12 +227,21 @@
 		054836A51A24E62800C9BF18 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				05B0F1131A5AE16D00DD607D /* Common */,
-				05B0F1141A5AE17800DD607D /* iOS */,
+				053621241AB1F2DE00009EFA /* KCGraphicsView.h */,
+				053621231AB1F2DE00009EFA /* KCGraphicsType.h */,
+				053621251AB1F2DE00009EFA /* KCGraphicsViewClass.h */,
+				053621261AB1F2DE00009EFA /* KCGraphicsViewClass.m */,
+				0536211C1AB1F2DE00009EFA /* KCBitmapDrawer.h */,
+				0536211D1AB1F2DE00009EFA /* KCBitmapDrawer.m */,
+				0536211E1AB1F2DE00009EFA /* KCGraphicsDelegate.h */,
+				0536211F1AB1F2DE00009EFA /* KCGraphicsDrawer.h */,
+				053621201AB1F2DE00009EFA /* KCGraphicsEditor.h */,
+				053621211AB1F2DE00009EFA /* KCGraphicsFunc.h */,
+				053621221AB1F2DE00009EFA /* KCGraphicsFunc.m */,
 			);
 			name = Source;
-			path = KCGraphicsView;
-			sourceTree = "<group>";
+			path = ../Source;
+			sourceTree = SOURCE_ROOT;
 		};
 		0556AF801AA1F4740078B1DA /* Common */ = {
 			isa = PBXGroup;
@@ -327,32 +320,6 @@
 				057AA2BE1AAAFD37008E1C55 /* UTLineEditor.m */,
 			);
 			name = Common;
-			sourceTree = "<group>";
-		};
-		05B0F1131A5AE16D00DD607D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				0589B1C71A24E6CA0052B3D8 /* KCGraphicsView.h */,
-				05C6E9AF1A615311006969CD /* KCGraphicsType.h */,
-				05C6E9AB1A615257006969CD /* KCGraphicsDrawer.h */,
-				0515F4A11AA8A0FD00466FF9 /* KCGraphicsEditor.h */,
-				05060D901AACACE30009718C /* KCGraphicsDelegate.h */,
-				05C6E9A91A615257006969CD /* KCBitmapDrawer.h */,
-				05C6E9AA1A615257006969CD /* KCBitmapDrawer.m */,
-				054F16A41A9E21D4000A413C /* KCGraphicsFunc.h */,
-				054F16A21A9E21B4000A413C /* KCGraphicsFunc.m */,
-			);
-			name = Common;
-			path = ../Source/Common;
-			sourceTree = SOURCE_ROOT;
-		};
-		05B0F1141A5AE17800DD607D /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				054836A61A24E62800C9BF18 /* KCIGraphicsView.h */,
-				054836A81A24E62800C9BF18 /* KCIGraphicsView.m */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		05C6E9B51A61556E006969CD /* UnitTest */ = {
@@ -566,9 +533,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054836A91A24E62800C9BF18 /* KCIGraphicsView.m in Sources */,
-				054F16A31A9E21B4000A413C /* KCGraphicsFunc.m in Sources */,
-				05C6E9AD1A615257006969CD /* KCBitmapDrawer.m in Sources */,
+				053621291AB1F2DE00009EFA /* KCGraphicsViewClass.m in Sources */,
+				053621281AB1F2DE00009EFA /* KCGraphicsFunc.m in Sources */,
+				053621271AB1F2DE00009EFA /* KCBitmapDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
