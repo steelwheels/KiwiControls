@@ -7,7 +7,7 @@
 
 #import "KCDebugUtil.h"
 #import "KCViewVisitor.h"
-#import <CoconutGraphics/CoconutGraphics.h>
+#import "KCType.h"
 
 #if TARGET_OS_IPHONE
 #	define	KCView			UIView

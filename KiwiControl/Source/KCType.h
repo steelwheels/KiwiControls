@@ -12,3 +12,4 @@
 #	import <AppKit/AppKit.h>
 #endif
 #import <CoreGraphics/CoreGraphics.h>
+#import <CoconutGraphics/CoconutGraphics.h>

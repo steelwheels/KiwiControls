@@ -6,7 +6,7 @@
  */
 
 #import "KCPreference.h"
-#import <CoconutGraphics/CoconutGraphics.h>
+#import "KCType.h"
 
 #if TARGET_OS_IPHONE
 #	define KCColor		UIColor
