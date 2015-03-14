@@ -23,3 +23,8 @@ KCSetStrokeColor(CGContextRef context, const struct CNRGB * color)
 void
 KCDrawHexagon(CGContextRef context, const struct CNHexagon * hexagon) ;
 
+void
+KCFillHexagon(CGContextRef context, const struct CNHexagon * hexagon) ;
+
+void
+KCFillHexagon(CGContextRef context, const struct CNHexagon * hexagon) ;

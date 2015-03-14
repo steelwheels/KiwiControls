@@ -6,7 +6,7 @@
  */
 
 #import "KCGraphicsViewClass.h"
-#import <KiwiControl/KiwiControl.h>
+
 
 #define DO_DEBUG 0
 #if DO_DEBUG

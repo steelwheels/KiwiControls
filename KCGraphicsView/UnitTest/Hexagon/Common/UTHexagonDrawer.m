@@ -7,17 +7,58 @@
 
 #import "UTHexagonDrawer.h"
 
+static void divideBounds(CGRect dst[4], CGRect src) ;
+
 @implementation UTHexagonDrawer
 
 - (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
 {
 	(void) level ;
 	
-	CGPoint center = CNRectGetCenter(boundsrect) ;
-	CGFloat radius = MIN(boundsrect.size.width, boundsrect.size.height) / 2.0 ;
-	struct CNHexagon hexagon = CNMakeHexagon(center, radius) ;
-	KCDrawHexagon(context, &hexagon) ;
+	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
+	struct CNRGB goldcol  = [ctable goldenrod1] ;
+	struct CNRGB blackcol = [ctable black] ;
+	struct CNLineGradient gradient = CNAllocateLineGradient(goldcol, blackcol) ;
+	
+	CGRect hexbounds[4] ;
+	divideBounds(hexbounds, boundsrect) ;
+	
+	KCSetFillColor(context, &blackcol) ;
+	CGContextFillRect(context, boundsrect) ;
+	
+	KCSetFillColor(context, &goldcol) ;
+	KCSetStrokeColor(context, &goldcol) ;
+	
+	for(unsigned int i=0 ; i<4 ; i++){
+		CGPoint center = CNRectGetCenter(hexbounds[i]) ;
+		CGFloat radius = MIN(hexbounds[i].size.width, hexbounds[i].size.height) / 2.0 ;
+		struct CNHexagon hexagon = CNMakeHexagon(center, radius) ;
+		switch(i){
+			case 0: {
+				KCDrawHexagon(context, &hexagon) ;
+			} break ;
+			case 1:
+			default: {
+				KCFillHexagon(context, &hexagon) ;
+			} break ;
+		}
+		
+	}
+
+	CNReleaseLineGradient(&gradient) ;
 }
 
 @end
 
+static void
+divideBounds(CGRect dst[4], CGRect src)
+{
+	CGFloat	dx = src.size.width / 4.0 ;
+	for(unsigned int i=0 ; i<4 ; i++){
+		CGFloat x = src.origin.x + dx * i ;
+		CGFloat y = src.origin.y ;
+		CGFloat w = dx ;
+		CGFloat h = src.size.height ;
+		dst[i] = CGRectMake(x, y, w, h) ;
+	}
+}
