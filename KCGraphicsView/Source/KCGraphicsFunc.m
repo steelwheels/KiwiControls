@@ -29,3 +29,28 @@ KCFillHexagon(CGContextRef context, const struct CNHexagon * hexagon)
 	addLinesOfHexagon(context, hexagon) ;
 	CGContextFillPath(context) ;
 }
+
+static inline int
+normalizeIndex(int index)
+{
+	while(index < 0){
+		index += 6 ;
+	}
+	return index % 6 ;
+}
+
+void
+KCFillHexagonWithLineGradiation(CGContextRef context, struct CNLineGradient * gradient, const struct CNHexagon * hexagon, int fromidx, int toidx)
+{
+	CGContextSaveGState(context) ;
+	
+	CGContextBeginPath(context) ;
+	addLinesOfHexagon(context, hexagon) ;
+	CGContextClip(context) ;
+	
+	CGPoint frompoint = hexagon->vertexes[normalizeIndex(fromidx)] ;
+	CGPoint topoint   = hexagon->vertexes[normalizeIndex(toidx)] ;
+	CGContextDrawLinearGradient(context, gradient->gradientRef, frompoint, topoint, 0) ;
+	
+	CGContextRestoreGState(context) ;
+}

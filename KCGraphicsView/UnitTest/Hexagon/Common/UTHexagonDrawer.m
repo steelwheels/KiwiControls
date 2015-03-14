@@ -37,12 +37,17 @@ static void divideBounds(CGRect dst[4], CGRect src) ;
 			case 0: {
 				KCDrawHexagon(context, &hexagon) ;
 			} break ;
-			case 1:
-			default: {
+			case 1: {
 				KCFillHexagon(context, &hexagon) ;
 			} break ;
+			case 2: {
+				KCFillHexagonWithLineGradiation(context, &gradient, &hexagon, 0, 3) ;
+			} break ;
+			default: {
+				KCFillHexagonWithLineGradiation(context, &gradient, &hexagon, 2, -1) ;
+				//KCFillHexagon(context, &hexagon) ;
+			} break ;
 		}
-		
 	}
 
 	CNReleaseLineGradient(&gradient) ;
