@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		0502B3F51AA1DBCB003BB47C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F31AA1DBCB003BB47C /* LaunchScreen.xib */; };
 		0502B3F81AA1DBDE003BB47C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0502B3F61AA1DBDE003BB47C /* Main.storyboard */; };
+		051979AC1AB5F12000EC4253 /* KCGraphicsView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 053621241AB1F2DE00009EFA /* KCGraphicsView.h */; };
+		051979AD1AB5F12500EC4253 /* KCGraphicsType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 053621231AB1F2DE00009EFA /* KCGraphicsType.h */; };
+		051979AE1AB5F12900EC4253 /* KCGraphicsViewClass.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 053621251AB1F2DE00009EFA /* KCGraphicsViewClass.h */; };
+		051979AF1AB5F12E00EC4253 /* KCBitmapDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0536211C1AB1F2DE00009EFA /* KCBitmapDrawer.h */; };
+		051979B01AB5F13300EC4253 /* KCGraphicsDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0536211E1AB1F2DE00009EFA /* KCGraphicsDelegate.h */; };
+		051979B11AB5F13800EC4253 /* KCGraphicsDrawer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0536211F1AB1F2DE00009EFA /* KCGraphicsDrawer.h */; };
+		051979B21AB5F13E00EC4253 /* KCGraphicsEditor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 053621201AB1F2DE00009EFA /* KCGraphicsEditor.h */; };
+		051979B31AB5F14300EC4253 /* KCGraphicsFunc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 053621211AB1F2DE00009EFA /* KCGraphicsFunc.h */; };
 		052B67541AA1E1520072A369 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67531AA1E1520072A369 /* main.m */; };
 		052B67571AA1E1530072A369 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67561AA1E1530072A369 /* AppDelegate.m */; };
 		052B675A1AA1E1530072A369 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052B67591AA1E1530072A369 /* ViewController.m */; };
@@ -71,6 +79,14 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				051979B31AB5F14300EC4253 /* KCGraphicsFunc.h in CopyFiles */,
+				051979B21AB5F13E00EC4253 /* KCGraphicsEditor.h in CopyFiles */,
+				051979B11AB5F13800EC4253 /* KCGraphicsDrawer.h in CopyFiles */,
+				051979B01AB5F13300EC4253 /* KCGraphicsDelegate.h in CopyFiles */,
+				051979AF1AB5F12E00EC4253 /* KCBitmapDrawer.h in CopyFiles */,
+				051979AE1AB5F12900EC4253 /* KCGraphicsViewClass.h in CopyFiles */,
+				051979AD1AB5F12500EC4253 /* KCGraphicsType.h in CopyFiles */,
+				051979AC1AB5F12000EC4253 /* KCGraphicsView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		05DD39421A60D36F00353646 /* KCType.h in Headers */ = {isa = PBXBuildFile; fileRef = 05DD39411A60D36F00353646 /* KCType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05DD39441A60F9E100353646 /* CoconutGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DD39431A60F9E100353646 /* CoconutGraphics.framework */; };
-		05E415081A5C40A600709094 /* KCApplicationDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414F91A5C40A600709094 /* KCApplicationDefaults.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05E415091A5C40A600709094 /* KCApplicationDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E414FA1A5C40A600709094 /* KCApplicationDefaults.m */; };
 		05E4150C1A5C40A600709094 /* KCDebugUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414FD1A5C40A600709094 /* KCDebugUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E4150D1A5C40A600709094 /* KCDebugUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E414FE1A5C40A600709094 /* KCDebugUtil.m */; };
 		05E4150E1A5C40A600709094 /* KCPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E414FF1A5C40A600709094 /* KCPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,8 +38,6 @@
 		0596FE5C1A5C3F3800792ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05DD39411A60D36F00353646 /* KCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCType.h; sourceTree = "<group>"; };
 		05DD39431A60F9E100353646 /* CoconutGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutGraphics.framework; path = ../../../../Library/Frameworks/CoconutGraphics.framework; sourceTree = "<group>"; };
-		05E414F91A5C40A600709094 /* KCApplicationDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCApplicationDefaults.h; sourceTree = "<group>"; };
-		05E414FA1A5C40A600709094 /* KCApplicationDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCApplicationDefaults.m; sourceTree = "<group>"; };
 		05E414FD1A5C40A600709094 /* KCDebugUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDebugUtil.h; sourceTree = "<group>"; };
 		05E414FE1A5C40A600709094 /* KCDebugUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDebugUtil.m; sourceTree = "<group>"; };
 		05E414FF1A5C40A600709094 /* KCPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCPreference.h; sourceTree = "<group>"; };
@@ -107,8 +103,6 @@
 			children = (
 				05E415071A5C40A600709094 /* KiwiControl.h */,
 				05DD39411A60D36F00353646 /* KCType.h */,
-				05E414F91A5C40A600709094 /* KCApplicationDefaults.h */,
-				05E414FA1A5C40A600709094 /* KCApplicationDefaults.m */,
 				05E414FD1A5C40A600709094 /* KCDebugUtil.h */,
 				05E414FE1A5C40A600709094 /* KCDebugUtil.m */,
 				05E414FF1A5C40A600709094 /* KCPreference.h */,
@@ -132,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05E415161A5C40A600709094 /* KiwiControl.h in Headers */,
-				05E415081A5C40A600709094 /* KCApplicationDefaults.h in Headers */,
 				05E4150E1A5C40A600709094 /* KCPreference.h in Headers */,
 				05DD39421A60D36F00353646 /* KCType.h in Headers */,
 				05E415121A5C40A600709094 /* KCViewVisitor.h in Headers */,
@@ -232,7 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05E415151A5C40A600709094 /* KCXIBUtil.m in Sources */,
-				05E415091A5C40A600709094 /* KCApplicationDefaults.m in Sources */,
 				05E415111A5C40A600709094 /* KCViewUtil.m in Sources */,
 				05E4150F1A5C40A600709094 /* KCPreference.m in Sources */,
 				05E4150D1A5C40A600709094 /* KCDebugUtil.m in Sources */,

@@ -17,6 +17,7 @@
 #endif /* TARGET_OS_IPHONE */
 
 static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
+static KCColor *  getColorInStandardUserDefaults(NSString * key, struct CNRGB defaultcol) ;
 
 @implementation KCPreference
 
@@ -35,6 +36,8 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 	if((self = [super init]) != nil){
 		defaultFont = [KCFont systemFontOfSize: 22.0] ;
 		defaultBoldFont = [KCFont boldSystemFontOfSize: 22.0];
+		foregroundColor = nil ;
+		backgroundColor = nil ;
 	}
 	return self ;
 }
@@ -110,19 +113,40 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
 
 - (KCColor *) foregroundColor
 {
-	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-	return CNRGBtoColor(ctable.black) ;
+	if(foregroundColor == nil){
+		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
+		foregroundColor = getColorInStandardUserDefaults(@"ForegroundColor", ctable.black) ;
+	}
+	return foregroundColor ;
 }
 
 - (KCColor *) backgroundColor
 {
-	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-	return CNRGBtoColor(ctable.white) ;
+	if(backgroundColor == nil){
+		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
+		backgroundColor = getColorInStandardUserDefaults(@"BackgroundColor", ctable.white) ;
+	}
+	return backgroundColor ;
+}
+
+- (KCColor *) borderColor
+{
+	if(borderColor == nil){
+		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
+		borderColor = getColorInStandardUserDefaults(@"BorderColor", ctable.white) ;
+	}
+	return borderColor ;
+}
+
+- (CGFloat) borderWidth
+{
+	return 1.0 ;
 }
 
 @end
 
-static NSString * getStringValueInStandardUserDefaults(NSString * key)
+static NSString *
+getStringValueInStandardUserDefaults(NSString * key)
 {
 	static BOOL	s_is_initialized = NO ;
 	if(!s_is_initialized){
@@ -140,4 +164,23 @@ static NSString * getStringValueInStandardUserDefaults(NSString * key)
 	NSString * value = [userdef stringForKey: key] ;
 	return value ? value : @"" ;
 }
+
+static KCColor *
+getColorInStandardUserDefaults(NSString * key, struct CNRGB defaultcol)
+{
+	KCColor * result = nil ;
+	NSString * colname = getStringValueInStandardUserDefaults(key) ;
+	if(colname.length > 0){
+		struct CNRGB rgb ;
+		CNColorNameTable * ntable = [CNColorNameTable sharedColorNameTable] ;
+		if([ntable getColor: &rgb byName: colname]){
+			result = CNRGBtoColor(rgb) ;
+		}
+	}
+	if(result == nil){
+		result = CNRGBtoColor(defaultcol) ;
+	}
+	return result ;
+}
+
 

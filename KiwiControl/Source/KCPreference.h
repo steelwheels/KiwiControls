@@ -5,22 +5,23 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import <TargetConditionals.h>
+#import "KCType.h"
+
 #if TARGET_OS_IPHONE
-#	import <UIKit/UIKit.h>
+#	define	KCColor		UIColor
+#	define	KCFont		UIFont
 #else
-#	import <AppKit/AppKit.h>
+#	define	KCColor		NSColor
+#	define	KCFont		NSFont
 #endif
 
 @interface KCPreference : NSObject
 {
-#if TARGET_OS_IPHONE
-	UIFont *	defaultFont ;
-	UIFont *	defaultBoldFont ;
-#else
-	NSFont *	defaultFont ;
-	NSFont *	defaultBoldFont ;
-#endif
+	KCFont *	defaultFont ;
+	KCFont *	defaultBoldFont ;
+	KCColor *	foregroundColor ;
+	KCColor *	backgroundColor ;
+	KCColor *	borderColor ;
 }
 
 + (KCPreference *) sharedPreference ;
@@ -44,19 +45,16 @@
 
 - (CGFloat) margin ;
 
-#if TARGET_OS_IPHONE
-- (UIFont *) defaultFont ;
-- (UIFont *) defaultBoldFont ;
-#else /* TARGET_OS_IPHONE */
-- (NSFont *) defaultFont ;
-- (NSFont *) defaultBoldFont ;
-#endif /* TARGET_OS_IPHONE */
+- (KCFont *) defaultFont ;
+- (KCFont *) defaultBoldFont ;
 
-#if TARGET_OS_IPHONE
-- (UIColor *) foregroundColor ;
-- (UIColor *) backgroundColor ;
-#else /* TARGET_OS_IPHONE */
-- (NSColor *) foregroundColor ;
-- (NSColor *) backgroundColor ;
-#endif /* TARGET_OS_IPHONE */
+- (KCColor *) foregroundColor ;
+- (KCColor *) backgroundColor ;
+- (KCColor *) borderColor ;
+- (CGFloat) borderWidth ;
+
 @end
+
+#undef KCColor
+#undef KCFont
+

@@ -18,7 +18,6 @@
 #endif /* TARGET_OS_IPHONE */
 
 #import "KCPreference.h"
-#import "KCApplicationDefaults.h"
 #import "KCViewVisitor.h"
 #import "KCViewUtil.h"
 #import "KCXIBUtil.h"

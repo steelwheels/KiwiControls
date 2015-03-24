@@ -61,6 +61,18 @@ KCSetBackgroundColorOfView(KCView * view, struct CNRGB rgb)
 #endif
 }
 
+static inline void
+KCSetBorderColorOfView(KCView * view, struct CNRGB rgb)
+{
+	view.layer.borderColor = [CNRGBtoColor(rgb) CGColor] ;
+}
+
+static inline void
+KCSetBorderWidthOfView(KCView * view, CGFloat width)
+{
+	view.layer.borderWidth = width ;
+}
+
 CGPoint
 KCCenterPointInViewBounds(KCView * view) ;
 
