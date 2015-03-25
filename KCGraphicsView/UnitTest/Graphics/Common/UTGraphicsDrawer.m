@@ -35,7 +35,7 @@
 	
 	switch(2){
 		case 0: {
-			KCSetFillColor(context, &red) ;
+			KCSetFillColor(context, red) ;
 			CGFloat width = MIN(boundsrect.size.width, boundsrect.size.height) ;
 			CGRect circlebounds = {
 				.origin = {.x = 0.0, .y=0.0} ,
@@ -44,7 +44,7 @@
 			CGContextFillEllipseInRect(context, circlebounds);
 		} break ;
 		case 1: {
-			KCSetFillColor(context, &red) ;
+			KCSetFillColor(context, red) ;
 			CGFloat radius = MIN(boundsrect.size.width / 2.0, boundsrect.size.height / 2.0) ;
 			struct CNCircle circle = CNMakeCircle(radius, radius, radius) ;
 			CGRect cbounds = CNBoundsOfCircle(&circle) ;
@@ -55,7 +55,7 @@
 			CGContextSaveGState(context);
    
 			CGContextAddEllipseInRect(context, boundsrect);
-			KCSetFillColor(context, &black) ;
+			KCSetFillColor(context, black) ;
 			CGContextFillRect(context, boundsrect) ;
 			
 			CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();

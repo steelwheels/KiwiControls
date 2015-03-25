@@ -23,11 +23,11 @@ static void divideBounds(CGRect dst[4], CGRect src) ;
 	CGRect hexbounds[4] ;
 	divideBounds(hexbounds, boundsrect) ;
 	
-	KCSetFillColor(context, &blackcol) ;
+	KCSetFillColor(context, blackcol) ;
 	CGContextFillRect(context, boundsrect) ;
 	
-	KCSetFillColor(context, &goldcol) ;
-	KCSetStrokeColor(context, &goldcol) ;
+	KCSetFillColor(context, goldcol) ;
+	KCSetStrokeColor(context, goldcol) ;
 	
 	for(unsigned int i=0 ; i<4 ; i++){
 		CGPoint center = CNRectGetCenter(hexbounds[i]) ;

@@ -51,28 +51,6 @@ KCUpdateViewSize(KCView * view, CGSize newsize)
 #	endif
 }
 
-static inline void
-KCSetBackgroundColorOfView(KCView * view, struct CNRGB rgb)
-{
-#if TARGET_OS_IPHONE
-	view.backgroundColor = CNRGBtoColor(rgb) ;
-#else
-	view.layer.backgroundColor = CGColorCreateGenericRGB(rgb.red, rgb.blue, rgb.green, rgb.alpha) ;
-#endif
-}
-
-static inline void
-KCSetBorderColorOfView(KCView * view, struct CNRGB rgb)
-{
-	view.layer.borderColor = [CNRGBtoColor(rgb) CGColor] ;
-}
-
-static inline void
-KCSetBorderWidthOfView(KCView * view, CGFloat width)
-{
-	view.layer.borderWidth = width ;
-}
-
 CGPoint
 KCCenterPointInViewBounds(KCView * view) ;
 

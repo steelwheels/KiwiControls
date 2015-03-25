@@ -14,9 +14,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-	KCSetBackgroundColorOfView(self.graphicsView, [ctable black]) ;
-	
+	self.graphicsView.layer.backgroundColor = CGColorCreateGenericRGB(0.0, 0.0, 0.0, 1.0) ;
+							     	
 	UTHexagonDrawer * drawer = [[UTHexagonDrawer alloc] init] ;
 	[self.graphicsView setGraphicsDrawer: drawer] ;
 }
