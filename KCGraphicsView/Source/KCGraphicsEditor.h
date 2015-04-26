@@ -6,6 +6,9 @@
  */
 
 @protocol  KCGraphicsEditing <NSObject>
+- (BOOL) isEditable ;
+- (void) setEditable: (BOOL) flag ;
+
 - (void) touchesBegan: (CGPoint) point atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect ;
 - (bool) touchesMoved: (CGPoint) newpoint atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect ;
 - (bool) touchesEnded ;

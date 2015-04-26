@@ -7,11 +7,16 @@
 
 #import "KCGraphicsViewClass.h"
 
-
 #define DO_DEBUG 0
 #if DO_DEBUG
 #	import <CoconutGraphics/CoconutGraphics.h>
 #endif
+
+static inline BOOL
+isEditable(id <KCGraphicsEditing> editor)
+{
+	return (editor != nil) && [editor isEditable] ;
+}
 
 static inline CGPoint
 flipPoint(CGPoint srcpoint, CGRect boundsrect)
@@ -92,6 +97,11 @@ flipBounds(CGRect bounds)
 	graphicsEditor = editor ;
 }
 
+- (void) removeGraphicsEditor
+{
+	graphicsEditor = nil ;
+}
+
 - (id <KCGraphicsEditing>) graphicsEditor
 {
 	return graphicsEditor ;
@@ -140,7 +150,7 @@ flipBounds(CGRect bounds)
 - (void) touchesBegan: (NSSet *) touches withEvent:(UIEvent *)event
 {
 	(void) event ;
-	if(graphicsEditor){
+	if(isEditable(graphicsEditor)){
 		CGPoint touchedpoint = [[touches anyObject] locationInView:self];
 		CGRect  bounds       = self.bounds ;
 		CGPoint flppoint     = flipPoint(touchedpoint, bounds) ;
@@ -151,7 +161,7 @@ flipBounds(CGRect bounds)
 #else
 - (void) mouseDown: (NSEvent *) event
 {
-	if(graphicsEditor){
+	if(isEditable(graphicsEditor)){
 		NSPoint abspoint  = [event locationInWindow] ;
 		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
 		NSRect  bounds    = self.bounds ;
@@ -166,7 +176,7 @@ flipBounds(CGRect bounds)
 - (void) touchesMoved: (NSSet *) touches withEvent:(UIEvent *)event
 {
 	(void) event ;
-	if(graphicsEditor){
+	if(isEditable(graphicsEditor)){
 		CGPoint touchedpoint = [[touches anyObject] locationInView:self];
 		CGRect  bounds       = self.bounds ;
 		CGPoint flppoint     = flipPoint(touchedpoint, bounds) ;
@@ -179,7 +189,7 @@ flipBounds(CGRect bounds)
 #else
 - (void) mouseDragged: (NSEvent *) event
 {
-	if(graphicsEditor){
+	if(isEditable(graphicsEditor)){
 		NSPoint abspoint  = [event locationInWindow] ;
 		NSPoint locpoint  = [self convertPoint: abspoint fromView: nil] ;
 		NSRect  bounds    = self.bounds ;
@@ -196,7 +206,7 @@ flipBounds(CGRect bounds)
 - (void) touchesEnded: (NSSet *) touches withEvent:(UIEvent *)event
 {
 	(void) touches ; (void) event ;
-	if(graphicsEditor){
+	if(isEditable(graphicsEditor)){
 		if([graphicsEditor touchesEnded]){
 			[self setNeedsDisplay] ;
 		}
@@ -209,7 +219,7 @@ flipBounds(CGRect bounds)
 - (void) touchesCancelled: (NSSet *) touches withEvent:(UIEvent *)event
 {
 	(void) touches ; (void) event ;
-	if(graphicsEditor){
+	if(isEditable(graphicsEditor)){
 		if([graphicsEditor touchesCancelled]){
 			[self setNeedsDisplay] ;
 		}
@@ -222,7 +232,7 @@ flipBounds(CGRect bounds)
 - (void) mouseUp: (NSEvent *) event
 {
 	(void) event ;
-	if(graphicsEditor){
+	if(isEditable(graphicsEditor)){
 		if([graphicsEditor touchesEnded]){
 			[self setNeedsDisplay: YES] ;
 		}

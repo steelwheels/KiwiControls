@@ -19,6 +19,7 @@
 {
 	KCFont *	defaultFont ;
 	KCFont *	defaultBoldFont ;
+	KCColor *	fontColor ;
 	KCColor *	foregroundColor ;
 	KCColor *	backgroundColor ;
 	KCColor *	borderColor ;
@@ -47,6 +48,7 @@
 
 - (KCFont *) defaultFont ;
 - (KCFont *) defaultBoldFont ;
+- (KCColor *) fontColor ;
 
 - (KCColor *) foregroundColor ;
 - (KCColor *) backgroundColor ;

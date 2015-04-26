@@ -39,6 +39,7 @@
 - (id <KCGraphicsDrawing>) graphicsDrawer ;
 
 - (void) setGraphicsEditor: (id <KCGraphicsEditing>) editor ;
+- (void) removeGraphicsEditor ;
 - (id <KCGraphicsEditing>) graphicsEditor ;
 
 - (void) setGraphicsDelegate: (id <KCGraphicsDelegate>) delegate ;

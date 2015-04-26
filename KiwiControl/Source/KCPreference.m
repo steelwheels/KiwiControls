@@ -36,6 +36,7 @@ static KCColor *  getColorInStandardUserDefaults(NSString * key, struct CNRGB de
 	if((self = [super init]) != nil){
 		defaultFont = [KCFont systemFontOfSize: 22.0] ;
 		defaultBoldFont = [KCFont boldSystemFontOfSize: 22.0];
+		fontColor	= nil ;
 		foregroundColor = nil ;
 		backgroundColor = nil ;
 	}
@@ -109,6 +110,15 @@ static KCColor *  getColorInStandardUserDefaults(NSString * key, struct CNRGB de
 - (KCFont *) defaultBoldFont
 {
 	return defaultBoldFont ;
+}
+
+- (KCColor *) fontColor
+{
+	if(foregroundColor == nil){
+		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
+		foregroundColor = getColorInStandardUserDefaults(@"FontColor", ctable.black) ;
+	}
+	return foregroundColor ;
 }
 
 - (KCColor *) foregroundColor

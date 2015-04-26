@@ -247,11 +247,11 @@
 				0501ED241AB1F14C00B77735 /* KCGraphicsView.h */,
 				0501ED251AB1F14C00B77735 /* KCGraphicsViewClass.h */,
 				0501ED261AB1F14C00B77735 /* KCGraphicsViewClass.m */,
-				0501ED1C1AB1F14C00B77735 /* KCBitmapDrawer.h */,
-				0501ED1D1AB1F14C00B77735 /* KCBitmapDrawer.m */,
-				0501ED1E1AB1F14C00B77735 /* KCGraphicsDelegate.h */,
 				0501ED1F1AB1F14C00B77735 /* KCGraphicsDrawer.h */,
 				0501ED201AB1F14C00B77735 /* KCGraphicsEditor.h */,
+				0501ED1E1AB1F14C00B77735 /* KCGraphicsDelegate.h */,
+				0501ED1C1AB1F14C00B77735 /* KCBitmapDrawer.h */,
+				0501ED1D1AB1F14C00B77735 /* KCBitmapDrawer.m */,
 				0501ED211AB1F14C00B77735 /* KCGraphicsFunc.h */,
 				0501ED221AB1F14C00B77735 /* KCGraphicsFunc.m */,
 				0501ED231AB1F14C00B77735 /* KCGraphicsType.h */,
@@ -1206,6 +1206,7 @@
 				05D81D4F1AB1FC5500BA41EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05DF17FD1AA1EF2300BFBDB8 /* Build configuration list for PBXNativeTarget "Graphics" */ = {
 			isa = XCConfigurationList;

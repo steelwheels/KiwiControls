@@ -17,6 +17,16 @@
 	return self ;
 }
 
+- (BOOL) isEditable
+{
+	return YES ;
+}
+
+- (void) setEditable: (BOOL) flag
+{
+	(void) flag ;
+}
+
 - (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
 {
 	(void) level ; (void) boundsrect ;
