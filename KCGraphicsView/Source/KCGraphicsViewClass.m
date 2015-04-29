@@ -303,8 +303,10 @@ flipBounds(CGRect bounds)
 		if(self.graphicsEditor){
 			[transview setGraphicsEditor: self.graphicsEditor] ;
 		}
+		if(self.graphicsDelegate){
+			[transview setGraphicsDelegate: self.graphicsDelegate] ;
+		}
 		[self addSubview: transview] ;
-		
 		KCLayoutSubviewWithMargines(self, transview, 0.0, 0.0, 0.0, 0.0) ;
 	}
 }
