@@ -9,26 +9,50 @@
 #import "UTGraphicsDrawer.h"
 
 @interface UTGraphicsDrawer (Private)
-- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect ;
+- (void) drawCircleWithContext: (CGContextRef) context inBoundsRect: (CGRect) boundsrect ;
 @end
 
 @implementation UTGraphicsDrawer
 
-- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (CGRect) boundsrect
 {
-	[self drawCircleWithContext: context atLevel: level inBoundsRect: boundsrect] ;
+	[self drawCircleWithContext: context inBoundsRect: boundsrect] ;
+}
+
+- (BOOL) isEditable
+{
+	return NO ;
+}
+
+- (void) setEditable: (BOOL) flag
+{
+	(void) flag ;
+}
+
+- (void) touchesBegan: (CGPoint) point inBoundsRect: (CGRect) boundsrect
+{
+	(void) point ; (void) boundsrect ;
+}
+
+- (void) touchesMoved: (CGPoint) point inBoundsRect: (CGRect) boundsrect
+{
+	(void) point ; (void) boundsrect ;
+}
+
+- (void) touchesEnded
+{
+}
+
+- (void) touchesCancelled
+{
 }
 
 @end
 
 @implementation UTGraphicsDrawer (Private)
 
-- (void) drawCircleWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (void) drawCircleWithContext: (CGContextRef) context inBoundsRect: (CGRect) boundsrect
 {
-	(void) level ;
-	//printf("[%s] draw for layer %u\n", __func__, (unsigned int) level) ;
-	//CNPrintRect(boundsrect) ;
-	
 	CNColorTable * coltable = [CNColorTable defaultColorTable] ;
 	struct CNRGB black = coltable.black ;
 	struct CNRGB red = coltable.red ;

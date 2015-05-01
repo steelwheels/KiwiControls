@@ -16,13 +16,13 @@ FOUNDATION_EXPORT const unsigned char KCGraphicsViewVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KCGraphicsView/PublicHeader.h>
 
-#import "KCGraphicsViewClass.h"
-#import "KCGraphicsFunc.h"
-#import "KCGraphicsDrawer.h"
-#import "KCGraphicsEditor.h"
-#import "KCGraphicsDelegate.h"
-#import "KCBitmapDrawer.h"
-#import "KCGraphicsFunc.h"
+#import <KCGraphicsView/KCGraphicsLayerView.h>
+#import <KCGraphicsView/KCGraphicsViewClass.h>
+#import <KCGraphicsView/KCGraphicsFunc.h>
+#import <KCGraphicsView/KCGraphicsDrawing.h>
+#import <KCGraphicsView/KCGraphicsDelegate.h>
+#import <KCGraphicsView/KCBitmapDrawer.h>
+#import <KCGraphicsView/KCGraphicsFunc.h>
 
 
 

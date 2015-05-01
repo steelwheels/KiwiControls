@@ -17,7 +17,7 @@
 	self.graphicsView.layer.backgroundColor = CGColorCreateGenericRGB(0.0, 0.0, 0.0, 1.0) ;
 							     	
 	UTHexagonDrawer * drawer = [[UTHexagonDrawer alloc] init] ;
-	[self.graphicsView setGraphicsDrawer: drawer] ;
+	[self.graphicsView addGraphicsDrawer: drawer withDelegate: nil] ;
 }
 
 - (void)setRepresentedObject:(id)representedObject {

@@ -9,7 +9,7 @@
 
 #define MAX_POINT_NUM		1024
 
-@interface UTLineEditor : NSObject <KCGraphicsDrawing, KCGraphicsEditing>
+@interface UTLineEditor : NSObject <KCGraphicsDrawing>
 {
 	unsigned int	pointNum ;
 	CGPoint		pointArray[MAX_POINT_NUM] ;

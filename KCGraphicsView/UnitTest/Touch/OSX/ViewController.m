@@ -16,8 +16,7 @@
 
 	
 	UTLineEditor * leditor = [[UTLineEditor alloc] init] ;
-	[self.graphicsView setGraphicsDrawer: leditor] ;
-	[self.graphicsView setGraphicsEditor: leditor] ;
+	[self.graphicsView addGraphicsDrawer: leditor withDelegate: nil] ;
 }
 
 - (void)setRepresentedObject:(id)representedObject {

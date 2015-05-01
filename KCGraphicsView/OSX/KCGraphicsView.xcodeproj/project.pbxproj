@@ -10,8 +10,6 @@
 		0501ED271AB1F14C00B77735 /* KCBitmapDrawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501ED1C1AB1F14C00B77735 /* KCBitmapDrawer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0501ED281AB1F14C00B77735 /* KCBitmapDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0501ED1D1AB1F14C00B77735 /* KCBitmapDrawer.m */; };
 		0501ED291AB1F14C00B77735 /* KCGraphicsDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501ED1E1AB1F14C00B77735 /* KCGraphicsDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0501ED2A1AB1F14C00B77735 /* KCGraphicsDrawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501ED1F1AB1F14C00B77735 /* KCGraphicsDrawer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0501ED2B1AB1F14C00B77735 /* KCGraphicsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501ED201AB1F14C00B77735 /* KCGraphicsEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0501ED2C1AB1F14C00B77735 /* KCGraphicsFunc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501ED211AB1F14C00B77735 /* KCGraphicsFunc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0501ED2D1AB1F14C00B77735 /* KCGraphicsFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0501ED221AB1F14C00B77735 /* KCGraphicsFunc.m */; };
 		0501ED2E1AB1F14C00B77735 /* KCGraphicsType.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501ED231AB1F14C00B77735 /* KCGraphicsType.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -19,6 +17,9 @@
 		0501ED301AB1F14C00B77735 /* KCGraphicsViewClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501ED251AB1F14C00B77735 /* KCGraphicsViewClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0501ED311AB1F14C00B77735 /* KCGraphicsViewClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0501ED261AB1F14C00B77735 /* KCGraphicsViewClass.m */; };
 		05235E821A612430009F24D6 /* UTCheckerBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 05235E811A612430009F24D6 /* UTCheckerBitmap.m */; };
+		0537AC3E1AF24DAD00BD5D1F /* KCGraphicsDrawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 0537AC3D1AF24DAD00BD5D1F /* KCGraphicsDrawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0537AC411AF24DBC00BD5D1F /* KCGraphicsLayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0537AC3F1AF24DBC00BD5D1F /* KCGraphicsLayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0537AC421AF24DBC00BD5D1F /* KCGraphicsLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0537AC401AF24DBC00BD5D1F /* KCGraphicsLayerView.m */; };
 		05469C2A1AA21C440016A303 /* UTGraphicsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05469C291AA21C440016A303 /* UTGraphicsDrawer.m */; };
 		0565372F1A24E1980025E2C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565372E1A24E1980025E2C6 /* AppDelegate.m */; };
 		056537311A24E1980025E2C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 056537301A24E1980025E2C6 /* main.m */; };
@@ -97,8 +98,6 @@
 		0501ED1C1AB1F14C00B77735 /* KCBitmapDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCBitmapDrawer.h; sourceTree = "<group>"; };
 		0501ED1D1AB1F14C00B77735 /* KCBitmapDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCBitmapDrawer.m; sourceTree = "<group>"; };
 		0501ED1E1AB1F14C00B77735 /* KCGraphicsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDelegate.h; sourceTree = "<group>"; };
-		0501ED1F1AB1F14C00B77735 /* KCGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDrawer.h; sourceTree = "<group>"; };
-		0501ED201AB1F14C00B77735 /* KCGraphicsEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsEditor.h; sourceTree = "<group>"; };
 		0501ED211AB1F14C00B77735 /* KCGraphicsFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsFunc.h; sourceTree = "<group>"; };
 		0501ED221AB1F14C00B77735 /* KCGraphicsFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsFunc.m; sourceTree = "<group>"; };
 		0501ED231AB1F14C00B77735 /* KCGraphicsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsType.h; sourceTree = "<group>"; };
@@ -110,6 +109,9 @@
 		05235E811A612430009F24D6 /* UTCheckerBitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCheckerBitmap.m; sourceTree = "<group>"; };
 		052A81721A24E0A100224717 /* KCGraphicsView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphicsView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		052A81761A24E0A100224717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		0537AC3D1AF24DAD00BD5D1F /* KCGraphicsDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsDrawing.h; sourceTree = "<group>"; };
+		0537AC3F1AF24DBC00BD5D1F /* KCGraphicsLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCGraphicsLayerView.h; sourceTree = "<group>"; };
+		0537AC401AF24DBC00BD5D1F /* KCGraphicsLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCGraphicsLayerView.m; sourceTree = "<group>"; };
 		05469C281AA21C440016A303 /* UTGraphicsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTGraphicsDrawer.h; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.h; sourceTree = SOURCE_ROOT; };
 		05469C291AA21C440016A303 /* UTGraphicsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTGraphicsDrawer.m; path = ../UnitTest/Graphics/Common/UTGraphicsDrawer.m; sourceTree = SOURCE_ROOT; };
 		056537291A24E1980025E2C6 /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,10 +247,11 @@
 			isa = PBXGroup;
 			children = (
 				0501ED241AB1F14C00B77735 /* KCGraphicsView.h */,
+				0537AC3F1AF24DBC00BD5D1F /* KCGraphicsLayerView.h */,
+				0537AC401AF24DBC00BD5D1F /* KCGraphicsLayerView.m */,
 				0501ED251AB1F14C00B77735 /* KCGraphicsViewClass.h */,
 				0501ED261AB1F14C00B77735 /* KCGraphicsViewClass.m */,
-				0501ED1F1AB1F14C00B77735 /* KCGraphicsDrawer.h */,
-				0501ED201AB1F14C00B77735 /* KCGraphicsEditor.h */,
+				0537AC3D1AF24DAD00BD5D1F /* KCGraphicsDrawing.h */,
 				0501ED1E1AB1F14C00B77735 /* KCGraphicsDelegate.h */,
 				0501ED1C1AB1F14C00B77735 /* KCBitmapDrawer.h */,
 				0501ED1D1AB1F14C00B77735 /* KCBitmapDrawer.m */,
@@ -460,14 +463,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0537AC411AF24DBC00BD5D1F /* KCGraphicsLayerView.h in Headers */,
+				0537AC3E1AF24DAD00BD5D1F /* KCGraphicsDrawing.h in Headers */,
 				0501ED2C1AB1F14C00B77735 /* KCGraphicsFunc.h in Headers */,
 				0501ED301AB1F14C00B77735 /* KCGraphicsViewClass.h in Headers */,
 				0501ED2F1AB1F14C00B77735 /* KCGraphicsView.h in Headers */,
 				0501ED291AB1F14C00B77735 /* KCGraphicsDelegate.h in Headers */,
 				0501ED271AB1F14C00B77735 /* KCBitmapDrawer.h in Headers */,
 				0501ED2E1AB1F14C00B77735 /* KCGraphicsType.h in Headers */,
-				0501ED2B1AB1F14C00B77735 /* KCGraphicsEditor.h in Headers */,
-				0501ED2A1AB1F14C00B77735 /* KCGraphicsDrawer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +691,7 @@
 				0501ED311AB1F14C00B77735 /* KCGraphicsViewClass.m in Sources */,
 				0501ED2D1AB1F14C00B77735 /* KCGraphicsFunc.m in Sources */,
 				0501ED281AB1F14C00B77735 /* KCBitmapDrawer.m in Sources */,
+				0537AC421AF24DBC00BD5D1F /* KCGraphicsLayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,8 +1133,13 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ../UnitTest/Graphics/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1145,8 +1154,13 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ../UnitTest/Graphics/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

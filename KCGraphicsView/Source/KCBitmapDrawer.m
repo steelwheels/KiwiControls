@@ -25,14 +25,12 @@
 	return self ;
 }
 
-- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (CGRect) boundsrect
 {
 	NSUInteger	bitmapwidth  = self.bitmap.width ;
 	NSUInteger	bitmapheight = self.bitmap.height ;
 	CGFloat		boundswidth  = boundsrect.size.width ;
 	CGFloat		boundsheight = boundsrect.size.height ;
-	
-	(void) level ;
 	
 	const CNColorIndex *	indexarray = self.bitmap.indexTable ;
 	const struct CNRGB *	rgbarray   = self.colorIndexTable.rgbArray ;
@@ -68,6 +66,34 @@
 			colindex++ ;
 		}
 	}
+}
+
+- (BOOL) isEditable
+{
+	return NO ;
+}
+
+- (void) setEditable: (BOOL) flag
+{
+	(void) flag ;
+}
+
+- (void) touchesBegan: (CGPoint) point inBoundsRect: (CGRect) boundsrect
+{
+	(void) point ; (void) boundsrect ;
+}
+
+- (void) touchesMoved: (CGPoint) newpoint inBoundsRect: (CGRect) boundsrect
+{
+	(void) newpoint ; (void) boundsrect ;
+}
+
+- (void) touchesEnded
+{
+}
+
+- (void) touchesCancelled
+{
 }
 
 @end

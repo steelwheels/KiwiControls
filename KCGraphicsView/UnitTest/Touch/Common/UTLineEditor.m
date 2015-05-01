@@ -27,20 +27,19 @@
 	(void) flag ;
 }
 
-- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (CGRect) boundsrect
 {
-	(void) level ; (void) boundsrect ;
+	(void) boundsrect ;
 	if(pointNum >= 2){
 		CGContextAddLines(context, pointArray, pointNum) ;
 		CGContextStrokePath(context) ;
 	}
 }
 
-- (void) touchesBegan: (CGPoint) point atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (void) touchesBegan: (CGPoint) point inBoundsRect: (CGRect) boundsrect
 {
 	//printf("touchesBegin: ") ; CNPrintRect(boundsrect) ; putc('\n', stdout) ;
 	//printf(" * ") ; CNPrintPoint(point) ; putc('\n', stdout) ;
-	(void) level ;
 	if(CGRectContainsPoint(boundsrect, point)){
 		pointArray[0] = point ;
 		pointNum = 1 ;
@@ -49,12 +48,11 @@
 	}
 }
 
-- (bool) touchesMoved: (CGPoint) newpoint atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
+- (void) touchesMoved: (CGPoint) newpoint inBoundsRect: (CGRect) boundsrect
 {
 	//printf("touchesMoved: ") ; CNPrintPoint(newpoint) ; putc('\n', stdout) ;
-	(void) level ;
 	if(pointNum >= MAX_POINT_NUM){
-		return false ;
+		return ;
 	}
 	
 	BOOL result ;
@@ -64,17 +62,14 @@
 	} else {
 		result = false ;
 	}
-	return result ;
 }
 
-- (bool) touchesEnded
+- (void) touchesEnded
 {
-	return false ;
 }
 
-- (bool) touchesCancelled
+- (void) touchesCancelled
 {
-	return false ;
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "UTLineEditor.h"
 
-@interface ViewController ()
+@interface ViewController () <KCGraphicsDelegate>
 
 @end
 
@@ -19,13 +19,22 @@
 	[super viewDidLoad];
 	
 	UTLineEditor * leditor = [[UTLineEditor alloc] init] ;
-	[self.graphicsView setGraphicsDrawer: leditor] ;
-	[self.graphicsView setGraphicsEditor: leditor] ;
+	[self.graphicsView addGraphicsDrawer: leditor withDelegate: self] ;
 }
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+- (void) editingGraphicsEnded
+{
+	
+}
+
+- (void) editingGraphicsCancelled
+{
+	
 }
 
 @end

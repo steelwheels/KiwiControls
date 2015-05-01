@@ -11,10 +11,8 @@ static void divideBounds(CGRect dst[4], CGRect src) ;
 
 @implementation UTHexagonDrawer
 
-- (void) drawWithContext: (CGContextRef) context atLevel: (NSUInteger) level inBoundsRect: (CGRect) boundsrect
-{
-	(void) level ;
-	
+- (void) drawWithContext: (CGContextRef) context inBoundsRect: (CGRect) boundsrect
+{	
 	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
 	struct CNRGB goldcol  = [ctable goldenrod1] ;
 	struct CNRGB blackcol = [ctable black] ;
@@ -51,6 +49,34 @@ static void divideBounds(CGRect dst[4], CGRect src) ;
 	}
 
 	CNReleaseLineGradient(&gradient) ;
+}
+
+- (BOOL) isEditable
+{
+	return NO ;
+}
+
+- (void) setEditable: (BOOL) flag
+{
+	(void) flag ;
+}
+
+- (void) touchesBegan: (CGPoint) point inBoundsRect: (CGRect) boundsrect
+{
+	(void) point ; (void) boundsrect ;
+}
+
+- (void) touchesMoved: (CGPoint) newpoint inBoundsRect: (CGRect) boundsrect
+{
+	(void) newpoint ; (void) boundsrect ;
+}
+
+- (void) touchesEnded
+{
+}
+
+- (void) touchesCancelled
+{
 }
 
 @end

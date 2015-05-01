@@ -5,7 +5,7 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import "KCGraphicsDrawer.h"
+#import "KCGraphicsDrawing.h"
 #import "KCGraphicsType.h"
 
 @interface KCBitmapDrawer : NSObject <KCGraphicsDrawing>

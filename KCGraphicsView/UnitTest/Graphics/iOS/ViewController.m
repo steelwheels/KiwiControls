@@ -22,8 +22,7 @@
 	self.graphicsView.backgroundColor = [UIColor blackColor] ;
 	
 	UTGraphicsDrawer * drawer = [[UTGraphicsDrawer alloc] init]  ;
-	[self.graphicsView setGraphicsDrawer: drawer] ;
-	[self.graphicsView allocateTransparentViews: 1] ;
+	[self.graphicsView addGraphicsDrawer: drawer withDelegate: nil] ;
 }
 
 - (void)didReceiveMemoryWarning {
