@@ -501,6 +501,8 @@
 					"-lKCPreferenceTable",
 					"-lKiwiControl",
 					"-lCoconutGraphics",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -524,6 +526,8 @@
 					"-lKCPreferenceTable",
 					"-lKiwiControl",
 					"-lCoconutGraphics",
+					"-ObjC",
+					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
