@@ -27,6 +27,7 @@
 #endif
 
 - (void) addGraphicsDrawer: (id <KCGraphicsDrawing>) drawer withDelegate: (id <KCGraphicsDelegate>) delegate ;
+- (void) setAllNeedsDisplay ;
 
 @end
 
