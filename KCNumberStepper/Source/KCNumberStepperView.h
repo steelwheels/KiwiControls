@@ -1,13 +1,33 @@
-//
-//  KCNumberStepperView.h
-//  KCNumberStepper
-//
-//  Created by Tomoo Hamada on 2015/05/19.
-//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KCNumberStepperView.h
+ * @brief	Define KCNumberStepperView class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
-#import <Foundation/Foundation.h>
+#import "KCNumberStepperType.h"
 
-@interface KCNumberStepperView : NSObject
+@protocol  KCNumberStepperOperating <NSObject>
+- (NSInteger) minStepperValue ;
+- (NSInteger) maxStepperValue ;
+- (void) updateStepperValue: (NSInteger) value ;
+@end
+
+@interface KCNumberStepperView : UIView
+{
+	UILabel *		labelView ;
+	UIStepper *		stepperView ;
+	
+	id			eventTarget ;
+	SEL			eventSelector ;
+}
+
+@property (strong, nonatomic) id <KCNumberStepperOperating>	delegate ;
+
+- (void) setMaxIntValue: (NSInteger) maxval withMinIntValue: (NSInteger) minval withStepIntValue: (NSInteger) step ;
+- (void) setValue: (NSInteger) val ;
+- (NSInteger) value ;
+
+- (void) setTarget: (id) target withSelector: (SEL) selector ;
 
 @end

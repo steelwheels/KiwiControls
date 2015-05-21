@@ -40,7 +40,7 @@ normalizeIndex(int index)
 }
 
 void
-KCFillHexagonWithLineGradiation(CGContextRef context, struct CNLineGradient * gradient, const struct CNHexagon * hexagon, int fromidx, int toidx)
+KCFillHexagonWithLineGradiation(CGContextRef context, struct CN3PointsLineGradient * gradient, const struct CNHexagon * hexagon, int fromidx, int toidx)
 {
 	CGContextSaveGState(context) ;
 	

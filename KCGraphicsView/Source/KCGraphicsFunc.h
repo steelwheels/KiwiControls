@@ -27,4 +27,4 @@ void
 KCFillHexagon(CGContextRef context, const struct CNHexagon * hexagon) ;
 
 void
-KCFillHexagonWithLineGradiation(CGContextRef context, struct CNLineGradient * gradient, const struct CNHexagon * hexagon, int frompt, int topt) ;
+KCFillHexagonWithLineGradiation(CGContextRef context, struct CN3PointsLineGradient * gradient, const struct CNHexagon * hexagon, int frompt, int topt) ;

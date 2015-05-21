@@ -1,6 +1,6 @@
 /**
- * @file	KCSwitchType.h
- * @brief	Header file to import OS dependent headers
+ * @file	KCNumberStepperType.h
+ * @brief	Data type definition for KCNumberStepper view
  * @par Copyright
  *   Copyright (C) 2015 Steel Wheels Project
  */

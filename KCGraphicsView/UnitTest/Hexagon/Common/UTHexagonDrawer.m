@@ -16,7 +16,7 @@ static void divideBounds(CGRect dst[4], CGRect src) ;
 	CNColorTable * ctable = [CNColorTable defaultColorTable] ;
 	struct CNRGB goldcol  = [ctable goldenrod1] ;
 	struct CNRGB blackcol = [ctable black] ;
-	struct CNLineGradient gradient = CNAllocateLineGradient(goldcol, blackcol) ;
+	struct CN3PointsLineGradient gradient = CNAllocate3PointsLineGradient(goldcol, blackcol, goldcol) ;
 	
 	CGRect hexbounds[4] ;
 	divideBounds(hexbounds, boundsrect) ;
@@ -48,7 +48,7 @@ static void divideBounds(CGRect dst[4], CGRect src) ;
 		}
 	}
 
-	CNReleaseLineGradient(&gradient) ;
+	CNRelease3PointsLineGradient(&gradient) ;
 }
 
 - (BOOL) isEditable
