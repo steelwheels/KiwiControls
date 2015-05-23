@@ -25,6 +25,7 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 @interface KCNumberStepperView ()
 - (void) setupNumberStepper ;
 - (void) setLabelTitle: (NSInteger) value ;
+- (void) setLabelTitleOnMainThread: (NSString *) title ;
 - (void) valueChanged: (KCNumberStepperView *) view ;
 @end
 
@@ -72,6 +73,17 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 		}
 		[stepperView addTarget: self action: @selector(valueChanged:) forControlEvents: UIControlEventValueChanged] ;
 		stepperView.value = 0 ;
+
+		KCPreference * preference = [KCPreference sharedPreference] ;
+
+		/* Set background color */
+		UIColor * backcol = preference.backgroundColor ;
+		xibview.backgroundColor	    = backcol ;
+		labelView.backgroundColor   = backcol ;
+		stepperView.backgroundColor = backcol ;
+
+		/* Set font color */
+		labelView.textColor = [preference fontColor] ;
 	}
 }
 
@@ -82,7 +94,7 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 	 * Because the value will be updated by setting min/max value
 	 */
 	NSInteger curval = stepperView.value ;
-	
+
 	stepperView.minimumValue = minval ;
 	stepperView.maximumValue = maxval ;
 	stepperView.stepValue	 = step ;
@@ -109,14 +121,17 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 - (void) setLabelTitle: (NSInteger) value
 {
 	NSString * title = [[NSString alloc] initWithFormat: @"%zd", value] ;
+	[self performSelectorOnMainThread: @selector(setLabelTitleOnMainThread:)
+			       withObject: title
+			    waitUntilDone: YES] ;
+}
+
+- (void) setLabelTitleOnMainThread: (NSString *) title
+{
 #	if TARGET_OS_IPHONE
-	[labelView performSelectorOnMainThread: @selector(setText:)
-				    withObject: title
-				 waitUntilDone: YES] ;
+	[labelView setText: title] ;
 #	else
-	[labelView performSelectorOnMainThread: @selector(setStringValue:)
-			            withObject: title
-			         waitUntilDone: YES] ;
+	[labelView setStringValue: title] ;
 #	endif
 }
 
@@ -130,7 +145,6 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 	} else {
 		NSLog(@"Error Nil view") ;
 	}
-	
 }
 
 @end
