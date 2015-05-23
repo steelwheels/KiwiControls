@@ -11,6 +11,5 @@
 #else
 #	import <Cocoa/Cocoa.h>
 #endif
-//#import <CoconutGraphics/CoconutGraphics.h>
-//#import <KiwiControl/KiwiControl.h>
+
 
