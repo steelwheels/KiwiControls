@@ -18,18 +18,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gs-lI-Nbh" customClass="KCNumberStepperView">
-                                <rect key="frame" x="16" y="28" width="288" height="82"/>
+                                <rect key="frame" x="42" y="28" width="262" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="uB7-pI-BJZ"/>
+                                    <constraint firstAttribute="width" constant="262" id="DA7-oI-OZ9"/>
+                                    <constraint firstAttribute="height" constant="64" id="KPH-JP-bba"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3gs-lI-Nbh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="GnE-NV-zQk"/>
-                            <constraint firstItem="3gs-lI-Nbh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="cWq-QN-hdN"/>
-                            <constraint firstItem="3gs-lI-Nbh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="pCw-6Z-sY7"/>
+                            <constraint firstItem="3gs-lI-Nbh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="9P4-eJ-HZd"/>
+                            <constraint firstItem="3gs-lI-Nbh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aZh-nf-cMS"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

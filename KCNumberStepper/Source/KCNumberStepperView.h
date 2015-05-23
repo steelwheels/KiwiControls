@@ -7,19 +7,16 @@
 
 #import "KCNumberStepperType.h"
 
+@class KCNumberStepperView ;
+
 @protocol  KCNumberStepperOperating <NSObject>
-- (NSInteger) minStepperValue ;
-- (NSInteger) maxStepperValue ;
-- (void) updateStepperValue: (NSInteger) value ;
+- (void) updateNumberStepper: (KCNumberStepperView *) view ;
 @end
 
 @interface KCNumberStepperView : UIView
 {
-	UILabel *		labelView ;
-	UIStepper *		stepperView ;
-	
-	id			eventTarget ;
-	SEL			eventSelector ;
+	UILabel *			labelView ;
+	UIStepper *			stepperView ;
 }
 
 @property (strong, nonatomic) id <KCNumberStepperOperating>	delegate ;
@@ -27,7 +24,5 @@
 - (void) setMaxIntValue: (NSInteger) maxval withMinIntValue: (NSInteger) minval withStepIntValue: (NSInteger) step ;
 - (void) setValue: (NSInteger) val ;
 - (NSInteger) value ;
-
-- (void) setTarget: (id) target withSelector: (SEL) selector ;
 
 @end

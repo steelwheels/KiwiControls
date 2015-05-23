@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <KCNumberStepper/KCNumberStepper.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <KCNumberStepperOperating>
 
 @property (weak, nonatomic) IBOutlet KCNumberStepperView *numberStepperView ;
 

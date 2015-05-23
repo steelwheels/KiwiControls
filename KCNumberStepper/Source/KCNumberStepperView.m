@@ -25,7 +25,7 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 @interface KCNumberStepperView ()
 - (void) setupNumberStepper ;
 - (void) setLabelTitle: (NSInteger) value ;
-- (void) buttonPressed: (KCNumberStepperView *) view ;
+- (void) valueChanged: (KCNumberStepperView *) view ;
 @end
 
 @implementation KCNumberStepperView
@@ -52,30 +52,27 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 	self.delegate		= nil ;
 	labelView		= nil ;
 	stepperView		= nil ;
-	eventTarget		= nil ;
-	eventSelector		= nil ;
 
 	UIView * xibview = KCLoadXib(self, NSStringFromClass(self.class)) ;
-	if(xibview == nil){
-		return ;
-	}
-	NSArray * subviews = [xibview subviews] ;
-	for(UIView * subview in subviews){
-		if([subview isKindOfClass: [UILabel class]]){
-			//NSLog(@"*** subview : label") ;
-			labelView   = (UILabel *) subview ;
-		} else if([subview isKindOfClass: [UIStepper class]]){
-			//NSLog(@"*** subview : stepper") ;
-			stepperView = (UIStepper *) subview ;
-		} else {
-			NSLog(@"Unknown subview class") ;
+	if(xibview != nil){
+		NSArray * subviews = [xibview subviews] ;
+		for(UIView * subview in subviews){
+			if([subview isKindOfClass: [UILabel class]]){
+				//NSLog(@"*** subview : label") ;
+				labelView   = (UILabel *) subview ;
+			} else if([subview isKindOfClass: [UIStepper class]]){
+				//NSLog(@"*** subview : stepper") ;
+				stepperView = (UIStepper *) subview ;
+			} else {
+				NSLog(@"Unknown subview class") ;
+			}
 		}
+		if(labelView == nil || stepperView == nil){
+			NSLog(@"Nil sub view") ;
+		}
+		[stepperView addTarget: self action: @selector(valueChanged:) forControlEvents: UIControlEventValueChanged] ;
+		stepperView.value = 0 ;
 	}
-	if(labelView == nil || stepperView == nil){
-		NSLog(@"Nil view") ;
-	}
-	[self setLabelTitle: stepperView.value] ;
-	[stepperView addTarget: self action: @selector(buttonPressed:) forControlEvents: UIControlEventValueChanged] ;
 }
 
 - (void) setMaxIntValue: (NSInteger) maxval withMinIntValue: (NSInteger) minval withStepIntValue: (NSInteger) step
@@ -93,7 +90,6 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 	NSInteger newval = clipValue(maxval, minval, curval) ;
 	if(newval != curval){
 		stepperView.value = newval ;
-		[self setLabelTitle: newval] ;
 	}
 }
 
@@ -102,7 +98,6 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 	NSInteger newval = clipValue(stepperView.maximumValue, stepperView.minimumValue, val) ;
 	if(stepperView.value != newval){
 		stepperView.value = newval ;
-		[self setLabelTitle: newval] ;
 	}
 }
 
@@ -120,26 +115,22 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 				 waitUntilDone: YES] ;
 #	else
 	[labelView performSelectorOnMainThread: @selector(setStringValue:)
-			       withObject: title
-			    waitUntilDone: YES] ;
+			            withObject: title
+			         waitUntilDone: YES] ;
 #	endif
 }
 
-- (void) setTarget: (id) target withSelector: (SEL) selector
+- (void) valueChanged: (UIView *) view
 {
-	eventTarget	= target ;
-	eventSelector	= selector ;
-}
-
-- (void) buttonPressed: (KCNumberStepperView *) view
-{
-	[self setLabelTitle: stepperView.value] ;
-	if(eventTarget){
-#		pragma clang diagnostic push
-#		pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-		[eventTarget performSelector: eventSelector withObject: view] ;
-#		pragma clang diagnostic pop
+	if([view isKindOfClass: [UIStepper class]]){
+		[self setLabelTitle: stepperView.value] ;
+		if(self.delegate){
+			[self.delegate updateNumberStepper: self] ;
+		}
+	} else {
+		NSLog(@"Error Nil view") ;
 	}
+	
 }
 
 @end
