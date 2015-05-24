@@ -106,6 +106,9 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 	NSInteger newval = clipValue(stepperView.maximumValue, stepperView.minimumValue, val) ;
 	if(stepperView.value != newval){
 		stepperView.value = newval ;
+		
+		NSString * title = [[NSString alloc] initWithFormat: @"%zd", (NSInteger) newval] ;
+		[self setLabelTitleOnMainThread: title] ;
 	}
 }
 
