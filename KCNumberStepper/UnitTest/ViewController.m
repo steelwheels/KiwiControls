@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	[self.numberStepperView setMaxIntValue: 5 withMinIntValue: 1 withStepIntValue: 1] ;
+	[self.numberStepperView setMaxIntValue: 5 withMinIntValue: 1 withStepIntValue: 1 withInitialValue: 2] ;
 	self.numberStepperView.delegate = self ;
 }
 

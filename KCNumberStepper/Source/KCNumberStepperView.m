@@ -87,22 +87,18 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 	}
 }
 
-- (void) setMaxIntValue: (NSInteger) maxval withMinIntValue: (NSInteger) minval withStepIntValue: (NSInteger) step
+- (void) setMaxIntValue: (NSInteger) maxval withMinIntValue: (NSInteger) minval withStepIntValue: (NSInteger) step withInitialValue: (NSInteger) initval
 {
-	/**
-	 * The current value must be kept before setting min/max value
-	 * Because the value will be updated by setting min/max value
-	 */
-	NSInteger curval = stepperView.value ;
-
-	stepperView.minimumValue = minval ;
-	stepperView.maximumValue = maxval ;
-	stepperView.stepValue	 = step ;
-
-	NSInteger newval = clipValue(maxval, minval, curval) ;
-	if(newval != curval){
-		stepperView.value = newval ;
-	}
+	dispatch_queue_t mainqueue = dispatch_get_main_queue();
+	dispatch_async(mainqueue, ^{
+		stepperView.minimumValue = minval ;
+		stepperView.maximumValue = maxval ;
+		stepperView.stepValue	 = step ;
+		stepperView.value	 = clipValue(maxval, minval, initval) ;
+		
+		NSString * title = [[NSString alloc] initWithFormat: @"%zd", (NSInteger) stepperView.value] ;
+		[self setLabelTitleOnMainThread: title] ;
+	});
 }
 
 - (void) setValue: (NSInteger) val
@@ -127,7 +123,7 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 }
 
 - (void) setLabelTitleOnMainThread: (NSString *) title
-{
+{	
 #	if TARGET_OS_IPHONE
 	[labelView setText: title] ;
 #	else

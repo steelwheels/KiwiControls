@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) id <KCNumberStepperOperating>	delegate ;
 
-- (void) setMaxIntValue: (NSInteger) maxval withMinIntValue: (NSInteger) minval withStepIntValue: (NSInteger) step ;
+- (void) setMaxIntValue: (NSInteger) maxval withMinIntValue: (NSInteger) minval withStepIntValue: (NSInteger) step withInitialValue: (NSInteger) initval ;
 - (void) setValue: (NSInteger) val ;
 - (NSInteger) value ;
 
