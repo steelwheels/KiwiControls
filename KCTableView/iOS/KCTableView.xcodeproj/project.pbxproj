@@ -112,14 +112,7 @@
 		055F70E11B18BA530067F798 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				055F70E61B18BA530067F798 /* AppDelegate.h */,
-				055F70E71B18BA530067F798 /* AppDelegate.m */,
-				055F70E91B18BA530067F798 /* ViewController.h */,
-				055F70EA1B18BA530067F798 /* ViewController.m */,
-				055F70EC1B18BA530067F798 /* Main.storyboard */,
-				055F70EF1B18BA530067F798 /* Images.xcassets */,
-				055F70F11B18BA530067F798 /* LaunchScreen.xib */,
-				055F70E21B18BA530067F798 /* Supporting Files */,
+				05B67D5A1B18CFE1003E236B /* iOS */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -133,6 +126,22 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		05B67D5A1B18CFE1003E236B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				055F70E61B18BA530067F798 /* AppDelegate.h */,
+				055F70E71B18BA530067F798 /* AppDelegate.m */,
+				055F70E91B18BA530067F798 /* ViewController.h */,
+				055F70EA1B18BA530067F798 /* ViewController.m */,
+				055F70EC1B18BA530067F798 /* Main.storyboard */,
+				055F70EF1B18BA530067F798 /* Images.xcassets */,
+				055F70F11B18BA530067F798 /* LaunchScreen.xib */,
+				055F70E21B18BA530067F798 /* Supporting Files */,
+			);
+			name = iOS;
+			path = ../UnitTest/iOS;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
