@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05214A9B1B160BC100BEEAF7 /* KCPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 05214A9A1B160BC100BEEAF7 /* KCPreference.m */; };
 		058796B71A5D858D00341D07 /* KCDebugUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 058796AB1A5D858D00341D07 /* KCDebugUtil.m */; };
-		058796B81A5D858D00341D07 /* KCPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 058796AD1A5D858D00341D07 /* KCPreference.m */; };
 		058796B91A5D858D00341D07 /* KCViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 058796AF1A5D858D00341D07 /* KCViewUtil.m */; };
 		058796BA1A5D858D00341D07 /* KCViewVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 058796B11A5D858D00341D07 /* KCViewVisitor.m */; };
 		058796BB1A5D858D00341D07 /* KCXIBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 058796B31A5D858D00341D07 /* KCXIBUtil.m */; };
+		058F51B51B160C7800432102 /* KCPreference.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05214A991B160BC100BEEAF7 /* KCPreference.h */; };
 		05BBC5111A60FA5B000080EC /* KiwiControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058796B41A5D858D00341D07 /* KiwiControl.h */; };
 		05BBC5141A60FA6A000080EC /* KCDebugUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058796AA1A5D858D00341D07 /* KCDebugUtil.h */; };
-		05BBC5151A60FA6E000080EC /* KCPreference.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058796AC1A5D858D00341D07 /* KCPreference.h */; };
 		05BBC5161A60FA72000080EC /* KCViewVisitor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058796B01A5D858D00341D07 /* KCViewVisitor.h */; };
 		05BBC5171A60FA78000080EC /* KCViewUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058796AE1A5D858D00341D07 /* KCViewUtil.h */; };
 		05BBC5181A60FA7D000080EC /* KCXIBUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 058796B21A5D858D00341D07 /* KCXIBUtil.h */; };
@@ -38,11 +38,11 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				058F51B51B160C7800432102 /* KCPreference.h in CopyFiles */,
 				05BBC5191A60FA84000080EC /* KCType.h in CopyFiles */,
 				05BBC5181A60FA7D000080EC /* KCXIBUtil.h in CopyFiles */,
 				05BBC5171A60FA78000080EC /* KCViewUtil.h in CopyFiles */,
 				05BBC5161A60FA72000080EC /* KCViewVisitor.h in CopyFiles */,
-				05BBC5151A60FA6E000080EC /* KCPreference.h in CopyFiles */,
 				05BBC5141A60FA6A000080EC /* KCDebugUtil.h in CopyFiles */,
 				05BBC5111A60FA5B000080EC /* KiwiControl.h in CopyFiles */,
 			);
@@ -51,11 +51,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05214A991B160BC100BEEAF7 /* KCPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCPreference.h; sourceTree = "<group>"; };
+		05214A9A1B160BC100BEEAF7 /* KCPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCPreference.m; sourceTree = "<group>"; };
 		054106971A5D852200B139D0 /* libKiwiControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwiControl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		058796AA1A5D858D00341D07 /* KCDebugUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCDebugUtil.h; sourceTree = "<group>"; };
 		058796AB1A5D858D00341D07 /* KCDebugUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCDebugUtil.m; sourceTree = "<group>"; };
-		058796AC1A5D858D00341D07 /* KCPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCPreference.h; sourceTree = "<group>"; };
-		058796AD1A5D858D00341D07 /* KCPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCPreference.m; sourceTree = "<group>"; };
 		058796AE1A5D858D00341D07 /* KCViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCViewUtil.h; sourceTree = "<group>"; };
 		058796AF1A5D858D00341D07 /* KCViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCViewUtil.m; sourceTree = "<group>"; };
 		058796B01A5D858D00341D07 /* KCViewVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCViewVisitor.h; sourceTree = "<group>"; };
@@ -98,10 +98,10 @@
 			children = (
 				058796B41A5D858D00341D07 /* KiwiControl.h */,
 				05BBC5101A60FA46000080EC /* KCType.h */,
+				05214A991B160BC100BEEAF7 /* KCPreference.h */,
+				05214A9A1B160BC100BEEAF7 /* KCPreference.m */,
 				058796AA1A5D858D00341D07 /* KCDebugUtil.h */,
 				058796AB1A5D858D00341D07 /* KCDebugUtil.m */,
-				058796AC1A5D858D00341D07 /* KCPreference.h */,
-				058796AD1A5D858D00341D07 /* KCPreference.m */,
 				058796AE1A5D858D00341D07 /* KCViewUtil.h */,
 				058796AF1A5D858D00341D07 /* KCViewUtil.m */,
 				058796B01A5D858D00341D07 /* KCViewVisitor.h */,
@@ -191,9 +191,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05214A9B1B160BC100BEEAF7 /* KCPreference.m in Sources */,
 				058796BB1A5D858D00341D07 /* KCXIBUtil.m in Sources */,
 				058796B91A5D858D00341D07 /* KCViewUtil.m in Sources */,
-				058796B81A5D858D00341D07 /* KCPreference.m in Sources */,
 				058796B71A5D858D00341D07 /* KCDebugUtil.m in Sources */,
 				058796BA1A5D858D00341D07 /* KCViewVisitor.m in Sources */,
 			);

@@ -16,8 +16,11 @@
 #	define KCFont		NSFont
 #endif /* TARGET_OS_IPHONE */
 
-static NSString * getStringValueInStandardUserDefaults(NSString * key) ;
-static KCColor *  getColorInStandardUserDefaults(NSString * key, struct CNRGB defaultcol) ;
+static NSUserDefaults * readApplicationDefaults(void) ;
+static NSString *	getStringValueInStandardUserDefaults(NSUserDefaults * defaults, NSString * key) ;
+static KCColor *	getColorInStandardUserDefaults(NSUserDefaults * defaults, NSString * key) ;
+static void		dumpStringToFile(FILE * outfp, const char * name, NSString * data) ;
+static void		dumpColorToFile(FILE * outfp, const char * name, KCColor * data) ;
 
 @implementation KCPreference
 
@@ -34,11 +37,23 @@ static KCColor *  getColorInStandardUserDefaults(NSString * key, struct CNRGB de
 - (instancetype) init
 {
 	if((self = [super init]) != nil){
-		defaultFont = [KCFont systemFontOfSize: 22.0] ;
-		defaultBoldFont = [KCFont boldSystemFontOfSize: 22.0];
-		fontColor	= nil ;
-		foregroundColor = nil ;
-		backgroundColor = nil ;
+		applicationDefaults = readApplicationDefaults() ;
+		
+		defaultFont	= [KCFont systemFontOfSize: 22.0] ;
+		boldFont	= [KCFont boldSystemFontOfSize: 22.0] ;
+		
+		fontColor	= getColorInStandardUserDefaults(applicationDefaults, @"FontColor") ;
+		if(fontColor == nil){
+			fontColor = [KCColor blackColor] ;
+		}
+		foregroundColor	= getColorInStandardUserDefaults(applicationDefaults, @"ForegroundColor") ;
+		if(foregroundColor == nil){
+			foregroundColor = [KCColor blackColor] ;
+		}
+		backgroundColor	= getColorInStandardUserDefaults(applicationDefaults, @"BackgroundColor") ;
+		if(backgroundColor == nil){
+			backgroundColor = [KCColor whiteColor] ;
+		}
 	}
 	return self ;
 }
@@ -62,32 +77,32 @@ static KCColor *  getColorInStandardUserDefaults(NSString * key, struct CNRGB de
 
 - (NSString *) developerName
 {
-	return getStringValueInStandardUserDefaults(@"DeveloperName") ;
+	return getStringValueInStandardUserDefaults(applicationDefaults, @"DeveloperName") ;
 }
 
 - (NSString *) developerURL
 {
-	return getStringValueInStandardUserDefaults(@"DeveloperURL") ;
+	return getStringValueInStandardUserDefaults(applicationDefaults, @"DeveloperURL") ;
 }
 
 - (NSString *) licenseName
 {
-	return getStringValueInStandardUserDefaults(@"LicenseName") ;
+	return getStringValueInStandardUserDefaults(applicationDefaults, @"LicenseName") ;
 }
 
 - (NSString *) licenseURL
 {
-	return getStringValueInStandardUserDefaults(@"LicenseURL") ;
+	return getStringValueInStandardUserDefaults(applicationDefaults, @"LicenseURL") ;
 }
 
 - (NSString *) sourceCodeURL
 {
-	return getStringValueInStandardUserDefaults(@"SourceCodeURL") ;
+	return getStringValueInStandardUserDefaults(applicationDefaults, @"SourceCodeURL") ;
 }
 
 - (NSString *) manualURL
 {
-	return getStringValueInStandardUserDefaults(@"ManualURL") ;
+	return getStringValueInStandardUserDefaults(applicationDefaults, @"ManualURL") ;
 }
 
 #if TARGET_OS_IPHONE
@@ -97,89 +112,72 @@ static KCColor *  getColorInStandardUserDefaults(NSString * key, struct CNRGB de
 }
 #endif /* TARGET_OS_IPHONE */
 
-- (CGFloat) margin
-{
-	return 4.0 ;
-}
-
 - (KCFont *) defaultFont
 {
 	return defaultFont ;
 }
 
-- (KCFont *) defaultBoldFont
+- (KCFont *) boldFont
 {
-	return defaultBoldFont ;
+	return boldFont ;
 }
 
 - (KCColor *) fontColor
 {
-	if(foregroundColor == nil){
-		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-		foregroundColor = getColorInStandardUserDefaults(@"FontColor", ctable.black) ;
-	}
-	return foregroundColor ;
+	return fontColor ;
 }
 
 - (KCColor *) foregroundColor
 {
-	if(foregroundColor == nil){
-		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-		foregroundColor = getColorInStandardUserDefaults(@"ForegroundColor", ctable.black) ;
-	}
 	return foregroundColor ;
 }
 
 - (KCColor *) backgroundColor
 {
-	if(backgroundColor == nil){
-		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-		backgroundColor = getColorInStandardUserDefaults(@"BackgroundColor", ctable.white) ;
-	}
 	return backgroundColor ;
 }
 
-- (KCColor *) borderColor
+- (void) dumpToFile: (FILE *) outfp
 {
-	if(borderColor == nil){
-		CNColorTable * ctable = [CNColorTable defaultColorTable] ;
-		borderColor = getColorInStandardUserDefaults(@"BorderColor", ctable.white) ;
-	}
-	return borderColor ;
-}
-
-- (CGFloat) borderWidth
-{
-	return 1.0 ;
+	dumpStringToFile(outfp, "application", [self applicationName]) ;
+	dumpStringToFile(outfp, "version", [self version]) ;
+	dumpStringToFile(outfp, "buildId", [self buildId]) ;
+	dumpStringToFile(outfp, "developerName", [self developerName]) ;
+	dumpStringToFile(outfp, "developerURL", [self developerURL]) ;
+	
+	dumpColorToFile(outfp, "fontColor", [self fontColor]) ;
+	dumpColorToFile(outfp, "foregroundColor", [self foregroundColor]) ;
+	dumpColorToFile(outfp, "backgroundColor", [self backgroundColor]) ;
 }
 
 @end
 
-static NSString *
-getStringValueInStandardUserDefaults(NSString * key)
+static NSUserDefaults *
+readApplicationDefaults(void)
 {
-	static BOOL	s_is_initialized = NO ;
-	if(!s_is_initialized){
-		NSBundle * mainbundle = [NSBundle mainBundle];
-		NSString* filepath  = [mainbundle pathForResource:@"AppDefaults" ofType:@"plist"];
-		NSDictionary * userdict = [NSDictionary dictionaryWithContentsOfFile: filepath];
-		if(userdict){
-			NSUserDefaults * userdef = [NSUserDefaults standardUserDefaults] ;
-			[userdef registerDefaults: userdict];
-			[userdef synchronize];
-		}
-		s_is_initialized = YES ;
+	NSBundle * mainbundle = [NSBundle mainBundle];
+	NSString* filepath  = [mainbundle pathForResource:@"AppDefaults" ofType:@"plist"];
+	NSDictionary * userdict = [NSDictionary dictionaryWithContentsOfFile: filepath];
+	if(userdict){
+		NSUserDefaults * userdef = [NSUserDefaults standardUserDefaults] ;
+		[userdef registerDefaults: userdict];
+		[userdef synchronize];
 	}
-	NSUserDefaults * userdef = [NSUserDefaults standardUserDefaults] ;
-	NSString * value = [userdef stringForKey: key] ;
+	return [NSUserDefaults standardUserDefaults] ;
+}
+
+static NSString *
+getStringValueInStandardUserDefaults(NSUserDefaults * defaults, NSString * key)
+{
+	NSString * value = [defaults stringForKey: key] ;
 	return value ? value : @"" ;
 }
 
 static KCColor *
-getColorInStandardUserDefaults(NSString * key, struct CNRGB defaultcol)
+getColorInStandardUserDefaults(NSUserDefaults * defaults, NSString * key)
 {
 	KCColor * result = nil ;
-	NSString * colname = getStringValueInStandardUserDefaults(key) ;
+	NSString * colname = getStringValueInStandardUserDefaults(defaults, key) ;
 	if(colname.length > 0){
 		struct CNRGB rgb ;
 		CNColorNameTable * ntable = [CNColorNameTable sharedColorNameTable] ;
@@ -187,10 +185,19 @@ getColorInStandardUserDefaults(NSString * key, struct CNRGB defaultcol)
 			result = CNRGBtoColor(rgb) ;
 		}
 	}
-	if(result == nil){
-		result = CNRGBtoColor(defaultcol) ;
-	}
 	return result ;
 }
 
+static void
+dumpStringToFile(FILE * outfp, const char * name, NSString * data)
+{
+	const char * cdata = data ? [data UTF8String] : "<nil>" ;
+	fprintf(outfp, "%s : \"%s\"\n", name, cdata) ;
+}
+
+static void
+dumpColorToFile(FILE * outfp, const char * name, KCColor * data)
+{
+	dumpStringToFile(outfp, name, [data description]) ;
+}
 

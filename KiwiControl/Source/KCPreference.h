@@ -17,12 +17,12 @@
 
 @interface KCPreference : NSObject
 {
-	KCFont *	defaultFont ;
-	KCFont *	defaultBoldFont ;
-	KCColor *	fontColor ;
-	KCColor *	foregroundColor ;
-	KCColor *	backgroundColor ;
-	KCColor *	borderColor ;
+	NSUserDefaults *	applicationDefaults ;
+	KCFont *		defaultFont ;
+	KCFont *		boldFont ;
+	KCColor *		fontColor ;
+	KCColor *		foregroundColor ;
+	KCColor *		backgroundColor ;
 }
 
 + (KCPreference *) sharedPreference ;
@@ -44,16 +44,14 @@
 - (CGRect) applicationFrame ;
 #endif /* TARGET_OS_IPHONE */
 
-- (CGFloat) margin ;
-
 - (KCFont *) defaultFont ;
-- (KCFont *) defaultBoldFont ;
-- (KCColor *) fontColor ;
+- (KCFont *) boldFont ;
 
+- (KCColor *) fontColor ;
 - (KCColor *) foregroundColor ;
 - (KCColor *) backgroundColor ;
-- (KCColor *) borderColor ;
-- (CGFloat) borderWidth ;
+
+- (void) dumpToFile: (FILE *) outfp ;
 
 @end
 

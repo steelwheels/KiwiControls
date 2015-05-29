@@ -13,3 +13,5 @@
 #endif
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoconutGraphics/CoconutGraphics.h>
+
+@class KCPreference ;
