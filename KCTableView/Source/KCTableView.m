@@ -1,10 +1,9 @@
-//
-//  KCTableView.m
-//  KCTableView
-//
-//  Created by Tomoo Hamada on 2015/05/30.
-//  Copyright (c) 2015年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KCTableView.m
+ * @brief	Define KCTableView class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 #import "KCTableView.h"
 
