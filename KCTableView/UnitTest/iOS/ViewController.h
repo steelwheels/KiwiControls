@@ -7,9 +7,14 @@
 //
 
 #import <KCTableView/KCTableView.h>
+#import "UTDataSource.h"
 
 @interface ViewController : UIViewController
+{
+	UTDataSource *	dataSource ;
+}
 
+@property (weak, nonatomic) IBOutlet KCTableView *tableView ;
 
 @end
 
