@@ -7,6 +7,6 @@
 
 #import <KCTableView/KCTableView.h>
 
-@interface UTDataSource : NSObject <UITableViewDataSource>
+@interface UTDataSource : KCTableDataSource
 
 @end

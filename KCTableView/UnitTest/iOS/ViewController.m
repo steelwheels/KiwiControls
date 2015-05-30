@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	dataSource = [[UTDataSource alloc] init] ;
+	dataSource = [[UTDataSource alloc] initWithNibName: @"UTTableCell"] ;
 	self.tableView.dataSource = dataSource ;
 	
 	tableDelegate = [[UTDelegate alloc] init] ;

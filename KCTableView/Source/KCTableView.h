@@ -6,6 +6,8 @@
  */
 
 #import <KiwiControl/KiwiControl.h>
+#import "KCTableViewType.h"
+#import "KCTableDataSource.h"
 
 @interface KCTableView : UITableView
 
