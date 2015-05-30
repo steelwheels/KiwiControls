@@ -19,6 +19,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	dataSource = [[UTDataSource alloc] init] ;
 	self.tableView.dataSource = dataSource ;
+	
+	tableDelegate = [[UTDelegate alloc] init] ;
+	self.tableView.delegate = tableDelegate ;
 }
 
 - (void)didReceiveMemoryWarning {

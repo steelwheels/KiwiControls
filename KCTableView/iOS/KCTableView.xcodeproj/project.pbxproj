@@ -15,6 +15,7 @@
 		055F70EE1B18BA530067F798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055F70EC1B18BA530067F798 /* Main.storyboard */; };
 		055F70F01B18BA530067F798 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055F70EF1B18BA530067F798 /* Images.xcassets */; };
 		055F70F31B18BA530067F798 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055F70F11B18BA530067F798 /* LaunchScreen.xib */; };
+		055FA6061B19321900D252AB /* UTDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 055FA6051B19321900D252AB /* UTDelegate.m */; };
 		05FDE20E1B191FC700F6E26F /* UTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FDE20D1B191FC700F6E26F /* UTDataSource.m */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		055F70ED1B18BA530067F798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		055F70EF1B18BA530067F798 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		055F70F21B18BA530067F798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		055FA6041B19321900D252AB /* UTDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTDelegate.h; sourceTree = "<group>"; };
+		055FA6051B19321900D252AB /* UTDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTDelegate.m; sourceTree = "<group>"; };
 		05FDE20C1B191FC700F6E26F /* UTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTDataSource.h; sourceTree = "<group>"; };
 		05FDE20D1B191FC700F6E26F /* UTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,11 +140,13 @@
 				055F70E71B18BA530067F798 /* AppDelegate.m */,
 				055F70E91B18BA530067F798 /* ViewController.h */,
 				055F70EA1B18BA530067F798 /* ViewController.m */,
+				05FDE20C1B191FC700F6E26F /* UTDataSource.h */,
+				05FDE20D1B191FC700F6E26F /* UTDataSource.m */,
+				055FA6041B19321900D252AB /* UTDelegate.h */,
+				055FA6051B19321900D252AB /* UTDelegate.m */,
 				055F70EC1B18BA530067F798 /* Main.storyboard */,
 				055F70EF1B18BA530067F798 /* Images.xcassets */,
 				055F70F11B18BA530067F798 /* LaunchScreen.xib */,
-				05FDE20C1B191FC700F6E26F /* UTDataSource.h */,
-				05FDE20D1B191FC700F6E26F /* UTDataSource.m */,
 				055F70E21B18BA530067F798 /* Supporting Files */,
 			);
 			name = iOS;
@@ -271,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				055F70EB1B18BA530067F798 /* ViewController.m in Sources */,
+				055FA6061B19321900D252AB /* UTDelegate.m in Sources */,
 				05FDE20E1B191FC700F6E26F /* UTDataSource.m in Sources */,
 				055F70E81B18BA530067F798 /* AppDelegate.m in Sources */,
 				055F70E51B18BA530067F798 /* main.m in Sources */,

@@ -8,10 +8,12 @@
 
 #import <KCTableView/KCTableView.h>
 #import "UTDataSource.h"
+#import "UTDelegate.h"
 
 @interface ViewController : UIViewController
 {
 	UTDataSource *	dataSource ;
+	UTDelegate *	tableDelegate ;
 }
 
 @property (weak, nonatomic) IBOutlet KCTableView *tableView ;
