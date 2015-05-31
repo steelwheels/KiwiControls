@@ -29,18 +29,11 @@
 {
 	(void) indexPath ;
 	static NSString *	sCellIdentidier = @"KCTableViewCellIdentifier" ;
-	
-	UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier: sCellIdentidier];
-	if(cell == nil) {
-		NSArray* nibArray = [[NSBundle mainBundle] loadNibNamed: self.nibName owner:nil options:nil];
-		for(id obj in nibArray) {
-			if( [obj isMemberOfClass:[UITableViewCell class]] ) {
-				cell = (UITableViewCell *) obj;
-				break;
-			}
-		}
+	if(!didNibPrepared){
+		[tableView registerNib:[UINib nibWithNibName: self.nibName bundle:nil] forCellReuseIdentifier: sCellIdentidier];
+		didNibPrepared = YES ;
 	}
-	return cell ;
+	return [tableView dequeueReusableCellWithIdentifier: sCellIdentidier];
 }
 
 @end
