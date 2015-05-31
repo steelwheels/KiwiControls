@@ -111,7 +111,7 @@ static void		dumpColorToFile(FILE * outfp, NSString * name, KCColor * data) ;
 	return boldFont ;
 }
 
-- (KCColor *) applicationColor: (NSString *) name
+- (KCColor *) color: (NSString *) name
 {
 	KCColor * color = [colorDictionary valueForKey: name] ;
 	if(color == nil){

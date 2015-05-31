@@ -15,7 +15,11 @@
 	KCPreference * pref = [KCPreference sharedPreference] ;
 	
 	/* Background color */
-	self.backgroundColor = self.backgroundView.backgroundColor = [pref applicationColor: @"BackgroundColor"] ;
+	UIColor * backcol = [pref color: @"BackgroundColor"] ;
+	if(backcol != nil){
+		self.backgroundColor = backcol ;
+		self.backgroundView.backgroundColor = backcol ;
+	}
 }
 
 @end

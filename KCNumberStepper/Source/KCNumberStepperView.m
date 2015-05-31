@@ -77,13 +77,18 @@ clipValue(NSInteger maxval, NSInteger minval, NSInteger curval)
 		KCPreference * preference = [KCPreference sharedPreference] ;
 
 		/* Set background color */
-		UIColor * backcol = [preference applicationColor: @"BackgroundColor"] ;
-		xibview.backgroundColor	    = backcol ;
-		labelView.backgroundColor   = backcol ;
-		stepperView.backgroundColor = backcol ;
-
+		UIColor * backcol = [preference color: @"BackgroundColor"] ;
+		if(backcol != nil){
+			xibview.backgroundColor	    = backcol ;
+			labelView.backgroundColor   = backcol ;
+			stepperView.backgroundColor = backcol ;
+		}
+		
 		/* Set font color */
-		labelView.textColor = [preference applicationColor: @"FontColor"] ;
+		UIColor * fontcol = [preference color: @"FontColor"] ;
+		if(fontcol){
+			labelView.textColor = fontcol ;
+		}
 	}
 }
 

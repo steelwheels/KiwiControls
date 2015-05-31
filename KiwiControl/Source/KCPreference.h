@@ -50,7 +50,7 @@
 - (KCFont *) defaultFont ;
 - (KCFont *) boldFont ;
 
-- (KCColor *) applicationColor: (NSString *) name ;
+- (KCColor *) color: (NSString *) name ;
 
 - (void) dumpToFile: (FILE *) outfp ;
 

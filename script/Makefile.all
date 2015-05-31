@@ -6,7 +6,7 @@ IOS_TMP	= tmpi
 
 all: KiwiControl KCGraphicsView KCNumberStepper KCPreferenceTable \
      KCSwitch KCTableView KCTextFieldExtension \
-     KCTextFieldExtension KCTouchableLabel1
+     KCTextFieldExtension KCTouchableLabel
 
 dummy:
 
