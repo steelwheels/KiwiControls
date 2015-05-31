@@ -19,6 +19,8 @@
 		055FA6091B193B0800D252AB /* KCTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 055FA6081B193B0800D252AB /* KCTableDataSource.m */; };
 		055FA60B1B193C1600D252AB /* KCTableViewType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 055FA60A1B193B6100D252AB /* KCTableViewType.h */; };
 		055FA60C1B193C1B00D252AB /* KCTableDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 055FA6071B193B0800D252AB /* KCTableDataSource.h */; };
+		056A96121B1B71F000779799 /* KCTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 056A96111B1B71F000779799 /* KCTableDelegate.m */; };
+		056A96131B1B724A00779799 /* KCTableDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056A96101B1B71F000779799 /* KCTableDelegate.h */; };
 		05A2FFE51B1AECC400E2A623 /* AppDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A2FFE41B1AECC400E2A623 /* AppDefaults.plist */; };
 		05A455BE1B1ACECE0033827C /* UTTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A455BC1B1ACDFB0033827C /* UTTableCell.xib */; };
 		05FDE20E1B191FC700F6E26F /* UTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FDE20D1B191FC700F6E26F /* UTDataSource.m */; };
@@ -48,6 +50,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				056A96131B1B724A00779799 /* KCTableDelegate.h in CopyFiles */,
 				055FA60C1B193C1B00D252AB /* KCTableDataSource.h in CopyFiles */,
 				055FA60B1B193C1600D252AB /* KCTableViewType.h in CopyFiles */,
 				0536E5671B18B6B60045878E /* KCTableView.h in CopyFiles */,
@@ -75,6 +78,8 @@
 		055FA6071B193B0800D252AB /* KCTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCTableDataSource.h; sourceTree = "<group>"; };
 		055FA6081B193B0800D252AB /* KCTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCTableDataSource.m; sourceTree = "<group>"; };
 		055FA60A1B193B6100D252AB /* KCTableViewType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCTableViewType.h; sourceTree = "<group>"; };
+		056A96101B1B71F000779799 /* KCTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCTableDelegate.h; sourceTree = "<group>"; };
+		056A96111B1B71F000779799 /* KCTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCTableDelegate.m; sourceTree = "<group>"; };
 		05A2FFE41B1AECC400E2A623 /* AppDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppDefaults.plist; sourceTree = "<group>"; };
 		05A455BD1B1ACDFB0033827C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UTTableCell.xib; sourceTree = "<group>"; };
 		05FDE20C1B191FC700F6E26F /* UTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTDataSource.h; sourceTree = "<group>"; };
@@ -125,6 +130,8 @@
 				055FA60A1B193B6100D252AB /* KCTableViewType.h */,
 				055FA6071B193B0800D252AB /* KCTableDataSource.h */,
 				055FA6081B193B0800D252AB /* KCTableDataSource.m */,
+				056A96101B1B71F000779799 /* KCTableDelegate.h */,
+				056A96111B1B71F000779799 /* KCTableDelegate.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -286,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				056A96121B1B71F000779799 /* KCTableDelegate.m in Sources */,
 				0536E5691B18B6B60045878E /* KCTableView.m in Sources */,
 				055FA6091B193B0800D252AB /* KCTableDataSource.m in Sources */,
 			);

@@ -7,6 +7,6 @@
 
 #import <KCTableView/KCTableView.h>
 
-@interface UTDelegate : NSObject <UITableViewDelegate>
+@interface UTDelegate : KCTableDelegate <UITableViewDelegate>
 
 @end

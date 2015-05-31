@@ -16,5 +16,7 @@
 	<string>https://sites.google.com/site/steelwheelsproject/home/products/pzcalc</string>
 	<key>BackgroundColor</key>
 	<string>black</string>
+	<key>HeaderColor</key>
+	<string>turquoise</string>
 </dict>
 </plist>

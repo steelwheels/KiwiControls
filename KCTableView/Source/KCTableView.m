@@ -20,6 +20,15 @@
 		self.backgroundColor = backcol ;
 		self.backgroundView.backgroundColor = backcol ;
 	}
+	
+	/* Section color */
+	//UIColor * seccol = [pref color: @"SectionColor"] ;
+	//if(seccol){
+	//	self.section
+	//}
+	//self.tableView.sectionIndexColor = tintColor;
+	//self.tableView.sectionIndexTrackingBackgroundColor = trakingBackgroundColor;
+	
 }
 
 @end
