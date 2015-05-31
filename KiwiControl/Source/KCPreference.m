@@ -20,7 +20,7 @@ static NSUserDefaults * readApplicationDefaults(void) ;
 static NSString *	getStringValueInStandardUserDefaults(NSUserDefaults * defaults, NSString * key) ;
 static KCColor *	getColorInStandardUserDefaults(NSUserDefaults * defaults, NSString * key) ;
 static void		dumpStringToFile(FILE * outfp, const char * name, NSString * data) ;
-static void		dumpColorToFile(FILE * outfp, const char * name, KCColor * data) ;
+static void		dumpColorToFile(FILE * outfp, NSString * name, KCColor * data) ;
 
 @implementation KCPreference
 
@@ -42,18 +42,7 @@ static void		dumpColorToFile(FILE * outfp, const char * name, KCColor * data) ;
 		defaultFont	= [KCFont systemFontOfSize: 22.0] ;
 		boldFont	= [KCFont boldSystemFontOfSize: 22.0] ;
 		
-		fontColor	= getColorInStandardUserDefaults(applicationDefaults, @"FontColor") ;
-		if(fontColor == nil){
-			fontColor = [KCColor blackColor] ;
-		}
-		foregroundColor	= getColorInStandardUserDefaults(applicationDefaults, @"ForegroundColor") ;
-		if(foregroundColor == nil){
-			foregroundColor = [KCColor blackColor] ;
-		}
-		backgroundColor	= getColorInStandardUserDefaults(applicationDefaults, @"BackgroundColor") ;
-		if(backgroundColor == nil){
-			backgroundColor = [KCColor whiteColor] ;
-		}
+		colorDictionary = [[NSMutableDictionary alloc] initWithCapacity: 8] ;
 	}
 	return self ;
 }
@@ -122,19 +111,21 @@ static void		dumpColorToFile(FILE * outfp, const char * name, KCColor * data) ;
 	return boldFont ;
 }
 
-- (KCColor *) fontColor
+- (KCColor *) applicationColor: (NSString *) name
 {
-	return fontColor ;
-}
-
-- (KCColor *) foregroundColor
-{
-	return foregroundColor ;
-}
-
-- (KCColor *) backgroundColor
-{
-	return backgroundColor ;
+	KCColor * color = [colorDictionary valueForKey: name] ;
+	if(color == nil){
+		color = getColorInStandardUserDefaults(applicationDefaults, name) ;
+		if(color != nil){
+			[colorDictionary setObject: color forKey: name] ;
+		}
+	} else {
+		if(![color isKindOfClass: [KCColor class]]){
+			NSLog(@"Invalid color object") ;
+			color = nil ;
+		}
+	}
+	return color ;
 }
 
 - (void) dumpToFile: (FILE *) outfp
@@ -145,9 +136,10 @@ static void		dumpColorToFile(FILE * outfp, const char * name, KCColor * data) ;
 	dumpStringToFile(outfp, "developerName", [self developerName]) ;
 	dumpStringToFile(outfp, "developerURL", [self developerURL]) ;
 	
-	dumpColorToFile(outfp, "fontColor", [self fontColor]) ;
-	dumpColorToFile(outfp, "foregroundColor", [self foregroundColor]) ;
-	dumpColorToFile(outfp, "backgroundColor", [self backgroundColor]) ;
+	for(NSString * colname in [colorDictionary allKeys]){
+		KCColor * color = [colorDictionary valueForKey: colname] ;
+		dumpColorToFile(outfp, colname, color) ;
+	}
 }
 
 @end
@@ -196,8 +188,8 @@ dumpStringToFile(FILE * outfp, const char * name, NSString * data)
 }
 
 static void
-dumpColorToFile(FILE * outfp, const char * name, KCColor * data)
+dumpColorToFile(FILE * outfp, NSString * name, KCColor * data)
 {
-	dumpStringToFile(outfp, name, [data description]) ;
+	dumpStringToFile(outfp, [name UTF8String], [data description]) ;
 }
 

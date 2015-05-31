@@ -11,4 +11,9 @@
 
 @interface KCTableView : UITableView
 
+  /**
+   * @brief This method must be called after ViewDidLoad.
+   */
+- (void) applyPreferenceColors ;
+
 @end

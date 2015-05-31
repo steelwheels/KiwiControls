@@ -22,6 +22,8 @@
 	
 	tableDelegate = [[UTDelegate alloc] init] ;
 	self.tableView.delegate = tableDelegate ;
+	
+	[self.tableView applyPreferenceColors] ;
 }
 
 - (void)didReceiveMemoryWarning {

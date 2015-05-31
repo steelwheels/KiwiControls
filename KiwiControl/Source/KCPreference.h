@@ -20,9 +20,12 @@
 	NSUserDefaults *	applicationDefaults ;
 	KCFont *		defaultFont ;
 	KCFont *		boldFont ;
-	KCColor *		fontColor ;
-	KCColor *		foregroundColor ;
-	KCColor *		backgroundColor ;
+	
+	/**
+	 * @brief Dictionary of the color. The key is "NSString"
+	 *   And the value is UIColor
+	 */
+	NSMutableDictionary *	colorDictionary ;
 }
 
 + (KCPreference *) sharedPreference ;
@@ -47,9 +50,7 @@
 - (KCFont *) defaultFont ;
 - (KCFont *) boldFont ;
 
-- (KCColor *) fontColor ;
-- (KCColor *) foregroundColor ;
-- (KCColor *) backgroundColor ;
+- (KCColor *) applicationColor: (NSString *) name ;
 
 - (void) dumpToFile: (FILE *) outfp ;
 

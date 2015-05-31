@@ -6,7 +6,16 @@
  */
 
 #import "KCTableView.h"
+#import <KiwiControl/KiwiControl.h>
 
 @implementation KCTableView
+
+- (void) applyPreferenceColors
+{
+	KCPreference * pref = [KCPreference sharedPreference] ;
+	
+	/* Background color */
+	self.backgroundColor = self.backgroundView.backgroundColor = [pref applicationColor: @"BackgroundColor"] ;
+}
 
 @end
