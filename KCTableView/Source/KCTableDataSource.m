@@ -30,16 +30,17 @@
 	(void) indexPath ;
 	static NSString *	sCellIdentidier = @"KCTableViewCellIdentifier" ;
 	
-	if(didNibPrepared == NO){
-		UINib *nib = [UINib nibWithNibName: self.nibName bundle:nil];
-		[tableView registerNib:nib forCellReuseIdentifier: sCellIdentidier];
-		didNibPrepared = YES ;
+	UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier: sCellIdentidier];
+	if(cell == nil) {
+		NSArray* nibArray = [[NSBundle mainBundle] loadNibNamed: self.nibName owner:nil options:nil];
+		for(id obj in nibArray) {
+			if( [obj isMemberOfClass:[UITableViewCell class]] ) {
+				cell = (UITableViewCell *) obj;
+				break;
+			}
+		}
 	}
-	UITableViewCell * newcell = [tableView dequeueReusableCellWithIdentifier: sCellIdentidier] ;
-	if(newcell == nil){
-		NSLog(@"Table cell is NOT found") ;
-	}
-	return newcell ;
+	return cell ;
 }
 
 @end

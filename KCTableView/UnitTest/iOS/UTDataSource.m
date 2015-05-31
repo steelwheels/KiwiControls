@@ -9,6 +9,14 @@
 
 @implementation UTDataSource
 
+- (instancetype) init
+{
+	if((self = [super initWithNibName: @"UTTableCell"]) != nil){
+		
+	}
+	return self ;
+}
+
 - (NSInteger) numberOfSectionsInTableView: (UITableView *) tableView
 {
 	(void) tableView ;
@@ -35,15 +43,7 @@
 
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath
 {
-	NSString *		cellIdentifier = @"Cell";
-	UITableViewCell *	cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
- 
-	if (cell == nil) {
-		cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-	}
- 
-	cell.textLabel.text = [[NSString alloc] initWithFormat: @"cell%td", indexPath.row] ;
- 
+	UITableViewCell * cell = [super tableView: tableView cellForRowAtIndexPath: indexPath] ;
 	return cell;
 }
 

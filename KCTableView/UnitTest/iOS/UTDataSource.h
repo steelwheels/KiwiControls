@@ -9,4 +9,6 @@
 
 @interface UTDataSource : KCTableDataSource
 
+- (instancetype) init ;
+
 @end
