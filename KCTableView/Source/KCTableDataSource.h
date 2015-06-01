@@ -10,7 +10,6 @@
 @interface KCTableDataSource : NSObject <UITableViewDataSource>
 {
 	BOOL		didNibPrepared ;
-	UIColor *	backgroundColor ;
 }
 
 @property (strong, nonatomic) NSString *		nibName ;

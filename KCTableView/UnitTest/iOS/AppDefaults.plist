@@ -18,5 +18,7 @@
 	<string>black</string>
 	<key>HeaderColor</key>
 	<string>turquoise</string>
+	<key>FontColor</key>
+	<string>turquoise</string>
 </dict>
 </plist>

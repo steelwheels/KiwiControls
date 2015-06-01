@@ -6,7 +6,6 @@
  */
 
 #import "KCTableDataSource.h"
-#import <KiwiControl/KiwiControl.h>
 
 @implementation KCTableDataSource
 
@@ -15,9 +14,6 @@
 	if((self = [super init]) != nil){
 		didNibPrepared = NO ;
 		self.nibName = name ;
-		
-		KCPreference * pref = [KCPreference sharedPreference] ;
-		backgroundColor = [pref color: @"BackgroundColor"] ;
 	}
 	return self ;
 }
@@ -37,11 +33,7 @@
 		[tableView registerNib:[UINib nibWithNibName: self.nibName bundle:nil] forCellReuseIdentifier: sCellIdentidier];
 		didNibPrepared = YES ;
 	}
-	UITableViewCell * newcell = [tableView dequeueReusableCellWithIdentifier: sCellIdentidier];
-	if(newcell && backgroundColor){
-		newcell.backgroundColor = backgroundColor ;
-	}
-	return newcell ;
+	return [tableView dequeueReusableCellWithIdentifier: sCellIdentidier];
 }
 
 @end

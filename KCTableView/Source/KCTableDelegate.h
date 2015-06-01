@@ -10,6 +10,8 @@
 @interface KCTableDelegate : NSObject <UITableViewDelegate>
 {
 	UIColor *	headerColor ;
+	UIColor *	cellBackgroundColor ;
+	UIColor *	cellLabelColor ;
 }
 
 - (instancetype) init ;
