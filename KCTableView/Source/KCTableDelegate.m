@@ -10,8 +10,9 @@
 
 @implementation KCTableDelegate
 
-- (instancetype) init
+- (instancetype) initWithId: (int) dummy
 {
+	(void) dummy ;
 	if((self = [super init]) != nil){
 		KCPreference * pref = [KCPreference sharedPreference] ;
 		headerColor		= [pref color: @"HeaderColor"] ;
@@ -40,7 +41,6 @@
 - (void) tableView: (UITableView *) tableview willDisplayCell: (UITableViewCell *) cell forRowAtIndexPath: (NSIndexPath *) indexpath
 {
 	(void) tableview ; (void) indexpath ;
-	
 	if(cell && cellBackgroundColor){
 		cell.backgroundColor = [UIColor clearColor] ;
 		cell.textLabel.backgroundColor = cellBackgroundColor ;

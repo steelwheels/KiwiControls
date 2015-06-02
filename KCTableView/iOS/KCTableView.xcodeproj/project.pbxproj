@@ -34,12 +34,12 @@
 			remoteGlobalIDString = 0536E5621B18B6B60045878E;
 			remoteInfo = KCTableView;
 		};
-		055F71061B18BA690067F798 /* PBXContainerItemProxy */ = {
+		05D3598F1B1E119000C3AF33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0536E55B1B18B6B60045878E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0536E5621B18B6B60045878E;
-			remoteInfo = KCTableView;
+			remoteGlobalIDString = 055F70D61B18B8B20067F798;
+			remoteInfo = Install;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -226,7 +226,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				055F71071B18BA690067F798 /* PBXTargetDependency */,
+				05D359901B1E119000C3AF33 /* PBXTargetDependency */,
 			);
 			name = UnitTest;
 			productName = UnitTest;
@@ -319,10 +319,10 @@
 			target = 0536E5621B18B6B60045878E /* KCTableView */;
 			targetProxy = 055F70DA1B18B8BB0067F798 /* PBXContainerItemProxy */;
 		};
-		055F71071B18BA690067F798 /* PBXTargetDependency */ = {
+		05D359901B1E119000C3AF33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0536E5621B18B6B60045878E /* KCTableView */;
-			targetProxy = 055F71061B18BA690067F798 /* PBXContainerItemProxy */;
+			target = 055F70D61B18B8B20067F798 /* Install */;
+			targetProxy = 05D3598F1B1E119000C3AF33 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -442,7 +442,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(HOME)/local/include",
 				);
-				INSTALL_PATH = "$(HOME)/local/lib";
+				INSTALL_PATH = "$(HOME)/local/";
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_CFLAGS = (
 					"-W",
@@ -464,7 +464,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(HOME)/local/include",
 				);
-				INSTALL_PATH = "$(HOME)/local/lib";
+				INSTALL_PATH = "$(HOME)/local/";
 				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
 				OTHER_CFLAGS = (
 					"-W",

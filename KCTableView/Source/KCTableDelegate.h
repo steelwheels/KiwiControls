@@ -14,6 +14,6 @@
 	UIColor *	cellLabelColor ;
 }
 
-- (instancetype) init ;
+- (instancetype) initWithId: (int) dummy ;
 
 @end

@@ -20,7 +20,7 @@
 	dataSource = [[UTDataSource alloc] init] ;
 	self.tableView.dataSource = dataSource ;
 	
-	tableDelegate = [[UTDelegate alloc] init] ;
+	tableDelegate = [[UTDelegate alloc] initWithId: 0] ;
 	self.tableView.delegate = tableDelegate ;
 	
 	[self.tableView applyPreferenceColors] ;
