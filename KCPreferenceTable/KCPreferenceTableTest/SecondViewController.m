@@ -13,9 +13,12 @@
 
 @implementation SecondViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	// Do any additional setup after loading the view.
+	[self.preferenceTable applyPreferenceColors] ;
 }
 
 - (void)didReceiveMemoryWarning {

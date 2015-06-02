@@ -5,11 +5,10 @@
  *   Copyright (C) 2014 Steel Wheels Project
  */
 
-#import <UIKit/UIKit.h>
+#import <KCTableView/KCTableView.h>
 
-@interface KCPreferenceTableSource : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface KCPreferenceTableSource : KCTableDataSource <UITableViewDataSource>
 {
-	BOOL	didNibPrepared ;
 }
 
 - (instancetype) init ;

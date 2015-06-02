@@ -6,7 +6,6 @@
  */
 
 #import "KCPreferenceTableSource.h"
-#import "KCPreferenceTableCell.h"
 #import <KiwiControl/KiwiControl.h>
 
 enum KCPreferenceTableSection {
@@ -28,8 +27,8 @@ enum KCPreferenceTableSection {
 
 - (instancetype) init
 {
-	if((self = [super init]) != nil){
-		didNibPrepared = NO ;
+	if((self = [super initWithNibName: @"KCPreferenceTableCell"]) != nil){
+		//
 	}
 	return self ;
 }
@@ -72,41 +71,16 @@ enum KCPreferenceTableSection {
 	return title ;
 }
 
-- (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath
+- (UITableViewCell *) tableView: (UITableView *) tableview cellForRowAtIndexPath: (NSIndexPath *) indexpath
 {
-	if(didNibPrepared == NO){
-		UINib *nib = [UINib nibWithNibName: @"KCPreferenceTableCell" bundle:nil];
-		[tableView registerNib:nib forCellReuseIdentifier: @"CustomCell"];
-		didNibPrepared = YES ;
+	UITableViewCell * newcell = [super tableView: tableview cellForRowAtIndexPath: indexpath] ;
+	if([newcell isKindOfClass: [UITableViewCell class]]){
+		NSString * text = [self selectContextByIndexPath: indexpath] ;
+		newcell.textLabel.text = text ;
+	} else {
+		NSLog(@"Invalid cell class") ;
 	}
-	
-	/* Allocate cell */
-	KCPreferenceTableCell * newcell = [tableView dequeueReusableCellWithIdentifier: @"CustomCell"];
-	
-	/* Set title */
-	NSString * title = [self selectContextByIndexPath: indexPath] ;
-	newcell.textView.text = title ;
-	newcell.textView.editable = false ;
-	newcell.textView.dataDetectorTypes = UIDataDetectorTypeAll;
-	
-	/* Resize */
-	CGSize newsize = [self adjustSize: title] ;
-	KCUpdateViewSize(newcell.textView, newsize) ;
-	[newcell.contentView sizeToFit] ;
-	
 	return newcell ;
-}
-
-- (CGFloat)tableView: (UITableView *) tableView heightForHeaderInSection: (NSInteger)section
-{
-	((void) tableView) ; ((void) section) ;
-	return 28.0 ;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-	((void) tableView) ; ((void) section) ;
-	return 0.1 ;
 }
 
 @end

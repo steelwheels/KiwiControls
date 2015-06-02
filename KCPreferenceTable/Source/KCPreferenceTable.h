@@ -6,13 +6,15 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <KCTableView/KCTableView.h>
 
 @class KCPreferenceTableSource ;
+@class KCPreferenceTableDelegate ;
 
-@interface KCPreferenceTable : UIView
+@interface KCPreferenceTable : KCTableView
 {
-	__unsafe_unretained IBOutlet UITableView *	preferenceTableView;
-	KCPreferenceTableSource *			preferenceTableSource ;
+	KCPreferenceTableSource *			tableSource ;
+	KCPreferenceTableDelegate *			tableDelegate ;
 }
 
 @end
