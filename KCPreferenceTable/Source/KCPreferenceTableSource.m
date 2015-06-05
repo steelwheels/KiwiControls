@@ -76,7 +76,12 @@ enum KCPreferenceTableSection {
 	UITableViewCell * newcell = [super tableView: tableview cellForRowAtIndexPath: indexpath] ;
 	if([newcell isKindOfClass: [UITableViewCell class]]){
 		NSString * text = [self selectContextByIndexPath: indexpath] ;
+
 		newcell.textLabel.text = text ;
+		newcell.textLabel.numberOfLines = 0 ;
+		newcell.textLabel.lineBreakMode = NSLineBreakByWordWrapping ;
+		//newcell.textLabel.attributedText;
+		[newcell.textLabel sizeToFit] ;
 	} else {
 		NSLog(@"Invalid cell class") ;
 	}
