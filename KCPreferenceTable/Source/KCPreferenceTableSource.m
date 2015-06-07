@@ -80,6 +80,9 @@ textViewInTableCell(UITableViewCell * cell) ;
 		NSString * text = [self selectContextByIndexPath: indexpath] ;
 		UITextView * textview = textViewInTableCell(newcell) ;
 		if(textview){
+			textview.dataDetectorTypes = UIDataDetectorTypeLink ;
+			textview.editable = NO ;
+			
 			KCPreference * pref = [KCPreference sharedPreference] ;
 			
 			UIColor * forecolor = [pref color: @"ForegroundColor"] ;
