@@ -20,8 +20,10 @@ enum KCPreferenceTableSection {
 
 @interface KCPreferenceTableSource (Private)
 - (NSString *) selectContextByIndexPath: (NSIndexPath *) indexpath ;
-- (CGSize) adjustSize: (NSString *) title ;
 @end
+
+static UITextView *
+textViewInTableCell(UITableViewCell * cell) ;
 
 @implementation KCPreferenceTableSource
 
@@ -76,12 +78,39 @@ enum KCPreferenceTableSection {
 	UITableViewCell * newcell = [super tableView: tableview cellForRowAtIndexPath: indexpath] ;
 	if([newcell isKindOfClass: [UITableViewCell class]]){
 		NSString * text = [self selectContextByIndexPath: indexpath] ;
-
-		newcell.textLabel.text = text ;
-		newcell.textLabel.numberOfLines = 0 ;
-		newcell.textLabel.lineBreakMode = NSLineBreakByWordWrapping ;
-		//newcell.textLabel.attributedText;
-		[newcell.textLabel sizeToFit] ;
+		UITextView * textview = textViewInTableCell(newcell) ;
+		if(textview){
+			KCPreference * pref = [KCPreference sharedPreference] ;
+			
+			UIColor * forecolor = [pref color: @"ForegroundColor"] ;
+			if(forecolor == nil){
+				forecolor = [UIColor blackColor];
+			}
+			UIColor * backcolor = [pref color: @"BackgroundColor"] ;
+			if(backcolor == nil){
+				backcolor = [UIColor whiteColor] ;
+			}
+			UIFont * font = [UIFont systemFontOfSize: 14.0] ;
+			
+			NSDictionary * attributes = @{NSFontAttributeName:		font,
+						      NSForegroundColorAttributeName:	forecolor,
+						      NSBackgroundColorAttributeName:	backcolor
+						      };
+			NSAttributedString * attrtext ;
+			attrtext = [[NSAttributedString alloc] initWithString: text
+								   attributes: attributes];
+			textview.attributedText = attrtext ;
+			textview.backgroundColor = backcolor ;
+			
+			CGSize cellsize  = newcell.frame.size ;
+			CGSize checkSize = CGSizeMake(cellsize.width, 400) ;
+			CGRect textframe = [attrtext boundingRectWithSize: checkSize
+								  options: NSStringDrawingUsesLineFragmentOrigin
+								  context: nil];
+			textview.frame = textframe;
+		} else {
+			NSLog(@"No text view in cell") ;
+		}
 	} else {
 		NSLog(@"Invalid cell class") ;
 	}
@@ -123,18 +152,19 @@ enum KCPreferenceTableSection {
 	return result ;
 }
 
-- (CGSize) adjustSize: (NSString *) title
-{
-	CGSize		maxSize = CGSizeMake(600, CGFLOAT_MAX);
-	NSDictionary *	attr = @{NSFontAttributeName: [UIFont systemFontOfSize: 14.0]};
-	CGRect newbounds = [title boundingRectWithSize:maxSize
-					       options:NSStringDrawingUsesLineFragmentOrigin
-					    attributes:attr
-					       context:nil] ;
-	CGSize result = CGSizeMake(ceilf(newbounds.size.width  + 16.0),
-				   ceilf(newbounds.size.height + 16.0)) ;
-	return result  ;
-}
-
 @end
+
+static UITextView *
+textViewInTableCell(UITableViewCell * cell)
+{
+	UITextView * textview = nil ;
+	NSArray * subviews = [cell.contentView subviews] ;
+	for(UIView * view in subviews){
+		if([view isKindOfClass: [UITextView class]]){
+			textview = (UITextView *) view ;
+			break ;
+		}
+	}
+	return textview ;
+}
 

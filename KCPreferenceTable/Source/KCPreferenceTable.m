@@ -40,6 +40,9 @@
 	
 	tableDelegate = [[KCPreferenceTableDelegate alloc] init] ;
 	self.delegate = tableDelegate ;
+	
+	self.editing = NO ;
+	self.bounces = NO ;
 }
 
 @end

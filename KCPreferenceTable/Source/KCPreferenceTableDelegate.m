@@ -28,4 +28,15 @@
 	return 0.1 ;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
+{
+	UITableViewCell * cell = [tableView.dataSource tableView: tableView cellForRowAtIndexPath: indexPath] ;
+	if(cell){
+		return cell.frame.size.height ;
+	} else {
+		NSLog(@"Unset height for the cell") ;
+		return 12.0 ;
+	}
+}
+
 @end
