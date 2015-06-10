@@ -15,7 +15,7 @@
 
 - (void) touchesBegan: (CGPoint) point inBoundsRect: (CGRect) boundsrect ;
 - (void) touchesMoved: (CGPoint) newpoint inBoundsRect: (CGRect) boundsrect ;
-- (void) touchesEnded ;
+- (void *) touchesEnded ;
 - (void) touchesCancelled ;
 @end
 

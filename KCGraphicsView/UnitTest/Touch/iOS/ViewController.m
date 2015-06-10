@@ -27,9 +27,9 @@
 	// Dispose of any resources that can be recreated.
 }
 
-- (void) editingGraphicsEnded
+- (void) editingGraphicsEndedWithData: (void *) data
 {
-	
+	(void) data ;
 }
 
 - (void) editingGraphicsCancelled

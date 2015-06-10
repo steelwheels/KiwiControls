@@ -88,8 +88,9 @@
 	(void) newpoint ; (void) boundsrect ;
 }
 
-- (void) touchesEnded
+- (void *) touchesEnded
 {
+	return NULL ;
 }
 
 - (void) touchesCancelled

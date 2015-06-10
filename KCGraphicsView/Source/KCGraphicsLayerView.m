@@ -174,11 +174,11 @@ flipBounds(CGRect bounds)
 {
 	(void) touches ; (void) event ;
 	if([graphicsDrawer isEditable]){
-		[graphicsDrawer touchesEnded] ;
+		void * data = [graphicsDrawer touchesEnded] ;
 		[self setNeedsDisplay] ;
 
 		if(graphicsDelegate){
-			[graphicsDelegate editingGraphicsEnded] ;
+			[graphicsDelegate editingGraphicsEndedWithData: data] ;
 		}
 	}
 }
@@ -200,11 +200,11 @@ flipBounds(CGRect bounds)
 {
 	(void) event ;
 	if([graphicsDrawer isEditable]){
-		[graphicsDrawer touchesEnded] ;
+		void * data = [graphicsDrawer touchesEnded] ;
 		[self setNeedsDisplay: YES] ;
 		
 		if(graphicsDelegate){
-			[graphicsDelegate editingGraphicsEnded] ;
+			[graphicsDelegate editingGraphicsEndedWithData: data] ;
 		}
 	}
 }

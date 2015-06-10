@@ -39,8 +39,9 @@
 	(void) point ; (void) boundsrect ;
 }
 
-- (void) touchesEnded
+- (void *) touchesEnded
 {
+	return NULL ;
 }
 
 - (void) touchesCancelled

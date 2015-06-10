@@ -64,8 +64,9 @@
 	}
 }
 
-- (void) touchesEnded
+- (void *) touchesEnded
 {
+	return NULL ;
 }
 
 - (void) touchesCancelled
