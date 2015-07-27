@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05532AA81B651DB600C9F876 /* KCSegmentedController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05532AA71B651DB600C9F876 /* KCSegmentedController.h */; };
+		0581D0941B6523B0006058FB /* KCSegmentedControllerType.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0581D0931B6522E3006058FB /* KCSegmentedControllerType.h */; };
+		0581D0971B652776006058FB /* KCSegmentedControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0581D0961B652776006058FB /* KCSegmentedControlView.m */; };
+		0585410D1B65832C003273EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585410C1B65832C003273EE /* main.m */; };
+		058541101B65832C003273EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0585410F1B65832C003273EE /* AppDelegate.m */; };
+		058541131B65832C003273EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058541121B65832C003273EE /* ViewController.m */; };
+		058541161B65832C003273EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058541141B65832C003273EE /* Main.storyboard */; };
+		058541181B65832C003273EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058541171B65832C003273EE /* Images.xcassets */; };
+		0585411B1B65832C003273EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058541191B65832C003273EE /* LaunchScreen.xib */; };
+		05C67AAE1B668F95005F91C7 /* KCSegmentedControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C67AAD1B668F95005F91C7 /* KCSegmentedControlView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		058540FE1B65814A003273EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05532A9C1B651DB600C9F876 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05532AA31B651DB600C9F876;
+			remoteInfo = KCSegmentedController;
+		};
+		0585412E1B658340003273EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05532A9C1B651DB600C9F876 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 058540FA1B658142003273EE;
+			remoteInfo = Install;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05532AA21B651DB600C9F876 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				0581D0941B6523B0006058FB /* KCSegmentedControllerType.h in CopyFiles */,
+				05532AA81B651DB600C9F876 /* KCSegmentedController.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		05532AA41B651DB600C9F876 /* libKCSegmentedController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKCSegmentedController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		05532AA71B651DB600C9F876 /* KCSegmentedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCSegmentedController.h; sourceTree = "<group>"; };
+		0581D0931B6522E3006058FB /* KCSegmentedControllerType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCSegmentedControllerType.h; sourceTree = "<group>"; };
+		0581D0951B652776006058FB /* KCSegmentedControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCSegmentedControlView.h; sourceTree = "<group>"; };
+		0581D0961B652776006058FB /* KCSegmentedControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCSegmentedControlView.m; sourceTree = "<group>"; };
+		0581D0981B652858006058FB /* KCSegmentedControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCSegmentedControlView.xib; sourceTree = SOURCE_ROOT; };
+		058541011B658185003273EE /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = install.mk; path = ../../script/install.mk; sourceTree = "<group>"; };
+		058541081B65832C003273EE /* UTSegmentedController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTSegmentedController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0585410B1B65832C003273EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0585410C1B65832C003273EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0585410E1B65832C003273EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0585410F1B65832C003273EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		058541111B65832C003273EE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		058541121B65832C003273EE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		058541151B65832C003273EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		058541171B65832C003273EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0585411A1B65832C003273EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		05C67AAD1B668F95005F91C7 /* KCSegmentedControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KCSegmentedControlView.xib; path = ../../../../../../local/resource/KCSegmentedControlView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05532AA11B651DB600C9F876 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		058541051B65832C003273EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05532A9B1B651DB600C9F876 = {
+			isa = PBXGroup;
+			children = (
+				05532AA61B651DB600C9F876 /* Source */,
+				058541001B65816E003273EE /* Resource */,
+				058541021B6581D1003273EE /* UnitTest */,
+				05532AA51B651DB600C9F876 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		05532AA51B651DB600C9F876 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05532AA41B651DB600C9F876 /* libKCSegmentedController.a */,
+				058541081B65832C003273EE /* UTSegmentedController.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05532AA61B651DB600C9F876 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				05532AA71B651DB600C9F876 /* KCSegmentedController.h */,
+				0581D0931B6522E3006058FB /* KCSegmentedControllerType.h */,
+				0581D0951B652776006058FB /* KCSegmentedControlView.h */,
+				0581D0961B652776006058FB /* KCSegmentedControlView.m */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		058541001B65816E003273EE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				058541011B658185003273EE /* install.mk */,
+				0581D0981B652858006058FB /* KCSegmentedControlView.xib */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		058541021B6581D1003273EE /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				058541031B6582EA003273EE /* iOS */,
+			);
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
+		};
+		058541031B6582EA003273EE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				058541091B65832C003273EE /* UTSegmentedController */,
+			);
+			name = iOS;
+			path = ../UnitTest/iOS;
+			sourceTree = SOURCE_ROOT;
+		};
+		058541091B65832C003273EE /* UTSegmentedController */ = {
+			isa = PBXGroup;
+			children = (
+				0585410E1B65832C003273EE /* AppDelegate.h */,
+				0585410F1B65832C003273EE /* AppDelegate.m */,
+				058541111B65832C003273EE /* ViewController.h */,
+				058541121B65832C003273EE /* ViewController.m */,
+				058541141B65832C003273EE /* Main.storyboard */,
+				058541171B65832C003273EE /* Images.xcassets */,
+				058541191B65832C003273EE /* LaunchScreen.xib */,
+				0585410A1B65832C003273EE /* Supporting Files */,
+			);
+			name = UTSegmentedController;
+			path = ../UnitTest/iOS/UTSegmentedController;
+			sourceTree = SOURCE_ROOT;
+		};
+		0585410A1B65832C003273EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05C67AAD1B668F95005F91C7 /* KCSegmentedControlView.xib */,
+				0585410B1B65832C003273EE /* Info.plist */,
+				0585410C1B65832C003273EE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		058540FA1B658142003273EE /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install.mk";
+			buildConfigurationList = 058540FD1B658142003273EE /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				058540FF1B65814A003273EE /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		05532AA31B651DB600C9F876 /* KCSegmentedController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05532AB81B651DB600C9F876 /* Build configuration list for PBXNativeTarget "KCSegmentedController" */;
+			buildPhases = (
+				05532AA01B651DB600C9F876 /* Sources */,
+				05532AA11B651DB600C9F876 /* Frameworks */,
+				05532AA21B651DB600C9F876 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KCSegmentedController;
+			productName = KCSegmentedController;
+			productReference = 05532AA41B651DB600C9F876 /* libKCSegmentedController.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		058541071B65832C003273EE /* UTSegmentedController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 058541281B65832C003273EE /* Build configuration list for PBXNativeTarget "UTSegmentedController" */;
+			buildPhases = (
+				058541041B65832C003273EE /* Sources */,
+				058541051B65832C003273EE /* Frameworks */,
+				058541061B65832C003273EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0585412F1B658340003273EE /* PBXTargetDependency */,
+			);
+			name = UTSegmentedController;
+			productName = UTSegmentedController;
+			productReference = 058541081B65832C003273EE /* UTSegmentedController.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05532A9C1B651DB600C9F876 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Steel Wheels Project";
+				TargetAttributes = {
+					05532AA31B651DB600C9F876 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					058540FA1B658142003273EE = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					058541071B65832C003273EE = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 05532A9F1B651DB600C9F876 /* Build configuration list for PBXProject "KCSegmentedController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05532A9B1B651DB600C9F876;
+			productRefGroup = 05532AA51B651DB600C9F876 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05532AA31B651DB600C9F876 /* KCSegmentedController */,
+				058540FA1B658142003273EE /* Install */,
+				058541071B65832C003273EE /* UTSegmentedController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		058541061B65832C003273EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058541161B65832C003273EE /* Main.storyboard in Resources */,
+				05C67AAE1B668F95005F91C7 /* KCSegmentedControlView.xib in Resources */,
+				0585411B1B65832C003273EE /* LaunchScreen.xib in Resources */,
+				058541181B65832C003273EE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05532AA01B651DB600C9F876 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0581D0971B652776006058FB /* KCSegmentedControlView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		058541041B65832C003273EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058541131B65832C003273EE /* ViewController.m in Sources */,
+				058541101B65832C003273EE /* AppDelegate.m in Sources */,
+				0585410D1B65832C003273EE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		058540FF1B65814A003273EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05532AA31B651DB600C9F876 /* KCSegmentedController */;
+			targetProxy = 058540FE1B65814A003273EE /* PBXContainerItemProxy */;
+		};
+		0585412F1B658340003273EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 058540FA1B658142003273EE /* Install */;
+			targetProxy = 0585412E1B658340003273EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		058541141B65832C003273EE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				058541151B65832C003273EE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		058541191B65832C003273EE /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0585411A1B65832C003273EE /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		05532AB61B651DB600C9F876 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		05532AB71B651DB600C9F876 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		05532AB91B651DB600C9F876 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INSTALL_PATH = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+			};
+			name = Debug;
+		};
+		05532ABA1B651DB600C9F876 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INSTALL_PATH = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+			};
+			name = Release;
+		};
+		058540FB1B658142003273EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		058540FC1B658142003273EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		058541291B65832C003273EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = ../UnitTest/iOS/UTSegmentedController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = (
+					"-lKCSegmentedController",
+					"-lKiwiControl",
+					"-lCoconutGraphics",
+					"-lCoconut",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0585412A1B65832C003273EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(HOME)/local/include",
+				);
+				INFOPLIST_FILE = ../UnitTest/iOS/UTSegmentedController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(HOME)/local/lib";
+				OTHER_CFLAGS = (
+					"-W",
+					"-Wall",
+				);
+				OTHER_LDFLAGS = (
+					"-lKCSegmentedController",
+					"-lKiwiControl",
+					"-lCoconutGraphics",
+					"-lCoconut",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05532A9F1B651DB600C9F876 /* Build configuration list for PBXProject "KCSegmentedController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05532AB61B651DB600C9F876 /* Debug */,
+				05532AB71B651DB600C9F876 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05532AB81B651DB600C9F876 /* Build configuration list for PBXNativeTarget "KCSegmentedController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05532AB91B651DB600C9F876 /* Debug */,
+				05532ABA1B651DB600C9F876 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		058540FD1B658142003273EE /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058540FB1B658142003273EE /* Debug */,
+				058540FC1B658142003273EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		058541281B65832C003273EE /* Build configuration list for PBXNativeTarget "UTSegmentedController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058541291B65832C003273EE /* Debug */,
+				0585412A1B65832C003273EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05532A9C1B651DB600C9F876 /* Project object */;
+}
