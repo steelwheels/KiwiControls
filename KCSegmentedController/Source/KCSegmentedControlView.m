@@ -49,43 +49,35 @@
 			NSLog(@"Unknown subview class") ;
 		}
 	}
-#if 0
-	if(xibview != nil){
-		NSArray * subviews = [xibview subviews] ;
-		for(UIView * subview in subviews){
-			if([subview isKindOfClass: [UILabel class]]){
-				//NSLog(@"*** subview : label") ;
-				labelView   = (UILabel *) subview ;
-			} else if([subview isKindOfClass: [UIStepper class]]){
-				//NSLog(@"*** subview : stepper") ;
-				stepperView = (UIStepper *) subview ;
-			} else {
-				NSLog(@"Unknown subview class") ;
-			}
-		}
-		if(labelView == nil || stepperView == nil){
-			NSLog(@"Nil sub view") ;
-		}
-		[stepperView addTarget: self action: @selector(valueChanged:) forControlEvents: UIControlEventValueChanged] ;
-		stepperView.value = 0 ;
-		
+	
+	if(segmentedController){
 		KCPreference * preference = [KCPreference sharedPreference] ;
 		
-		/* Set background color */
+		//UIColor * fontcol = [preference color: @"FontColor"] ;
+		UIColor * forecol = [preference color: @"ForegroundColor"] ;
 		UIColor * backcol = [preference color: @"BackgroundColor"] ;
-		if(backcol != nil){
-			xibview.backgroundColor	    = backcol ;
-			labelView.backgroundColor   = backcol ;
-			stepperView.backgroundColor = backcol ;
+		if(backcol){
+			self.backgroundColor	= backcol ;
+			segmentedController.backgroundColor = backcol ;
 		}
-		
-		/* Set font color */
-		UIColor * fontcol = [preference color: @"FontColor"] ;
-		if(fontcol){
-			labelView.textColor = fontcol ;
+		if(forecol){
+			self.tintColor = forecol ;
 		}
 	}
-#endif
+}
+
+- (void) setTitle: (NSString *) title forSegmentAtIndex: (NSUInteger)segment
+{
+	if(segmentedController){
+		[segmentedController setTitle: title forSegmentAtIndex: segment] ;
+	}
+}
+
+- (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated
+{
+	if(segmentedController){
+		[segmentedController insertSegmentWithTitle: title atIndex: segment animated: animated] ;
+	}
 }
 
 - (void) addTarget:(id) target action:(SEL) action forControlEvents:(UIControlEvents) controlEvents
