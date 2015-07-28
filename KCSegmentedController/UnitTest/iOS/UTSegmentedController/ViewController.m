@@ -9,7 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+- (id) segmentedControllerTarget: (UISegmentedControl *) control ;
 @end
 
 @implementation ViewController
@@ -22,7 +22,15 @@
 	[self.segmentedControl setTitle: @"Slow" forSegmentAtIndex: 1] ;
 	[self.segmentedControl setTitle: @"Normal" forSegmentAtIndex: 2] ;
 	
-	[self.segmentedControl insertSegmentWithTitle: @"4th" atIndex: 3 animated: NO] ;
+	self.segmentedControl.selectedSegmentIndex = 2 ;
+	
+	[self.segmentedControl addTarget: self action: @selector(segmentedControllerTarget:) forControlEvents:  UIControlEventValueChanged] ;
+}
+
+- (id) segmentedControllerTarget: (UISegmentedControl *) control
+{
+	printf("Selected item : %u\n", (unsigned int) control.selectedSegmentIndex) ;
+	return nil ;
 }
 
 - (void)didReceiveMemoryWarning {

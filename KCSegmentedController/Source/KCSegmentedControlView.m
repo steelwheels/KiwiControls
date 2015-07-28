@@ -66,17 +66,34 @@
 	}
 }
 
-- (void) setTitle: (NSString *) title forSegmentAtIndex: (NSUInteger)segment
+- (void) setSelectedSegmentIndex: (NSUInteger) index
 {
 	if(segmentedController){
-		[segmentedController setTitle: title forSegmentAtIndex: segment] ;
+		segmentedController.selectedSegmentIndex = index ;
+	} else {
+		NSLog(@"No controller") ;
 	}
 }
 
-- (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated
+- (NSUInteger) selectedSegmentIndex
 {
 	if(segmentedController){
-		[segmentedController insertSegmentWithTitle: title atIndex: segment animated: animated] ;
+		return segmentedController.selectedSegmentIndex ;
+	} else {
+		NSLog(@"No controller") ;
+		return 0 ;
+	}
+}
+
+- (void) setTitle: (NSString *) title forSegmentAtIndex: (NSUInteger)segment
+{
+	if(segmentedController != nil){
+		NSUInteger curnum = segmentedController.numberOfSegments ;
+		if(segment < curnum){
+			[segmentedController setTitle: title forSegmentAtIndex: segment] ;
+		} else {
+			[segmentedController insertSegmentWithTitle: title atIndex: segment animated: NO] ;
+		}
 	}
 }
 

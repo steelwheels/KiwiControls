@@ -20,8 +20,9 @@
 	__weak KGSegmentedControl *		segmentedController ;
 }
 
+@property (assign, nonatomic, setter=setSelectedSegmentIndex:, getter=selectedSegmentIndex) NSUInteger selectedSegmentIndex ;
+
 - (void) setTitle: (NSString *) title forSegmentAtIndex: (NSUInteger)segment ;
-- (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated ;
 - (void) addTarget:(id) target action:(SEL) action forControlEvents: (UIControlEvents) controlEvents ;
 
 @end
