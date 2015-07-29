@@ -6,7 +6,7 @@ IOS_TMP	= tmpi
 
 all: KiwiControl KCGraphicsView KCNumberStepper KCPreferenceTable \
      KCSwitch KCTableView KCTextFieldExtension \
-     KCTextFieldExtension KCTouchableLabel
+     KCTextFieldExtension KCTouchableLabel KCSegmentedController
 
 dummy:
 
@@ -80,5 +80,14 @@ KCTouchableLabel: dummy
 	      BUILD_DIR=~/build/KCTouchableLabel.$(IOS_TMP) \
 	      BUILD_ROOT=~/build/KCTouchableLabel.$(IOS_TMP) \
 	      -f ../script/install.mk \
+	)
+
+KCSegmentedController: dummy
+	(cd KCSegmentedController/iOS && \
+	 make PROJECT_NAME=KCSegmentedController \
+	      PROJECT_DIR=. \
+	      BUILD_DIR=~/build/KCSegmentedController.$(IOS_TMP) \
+	      BUILD_ROOT=~/build/KCSegmentedController.$(IOS_TMP) \
+	      -f ../../script/install.mk \
 	)
 
