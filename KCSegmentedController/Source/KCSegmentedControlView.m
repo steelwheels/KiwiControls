@@ -63,6 +63,11 @@
 		if(forecol){
 			self.tintColor = forecol ;
 		}
+	
+		UIFont *font = [UIFont systemFontOfSize: 18.0f];
+		NSDictionary * fontattr = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
+		[segmentedController setTitleTextAttributes: fontattr
+						   forState: UIControlStateNormal];
 	}
 }
 

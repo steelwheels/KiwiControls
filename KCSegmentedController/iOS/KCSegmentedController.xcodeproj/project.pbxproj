@@ -16,6 +16,7 @@
 		058541161B65832C003273EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058541141B65832C003273EE /* Main.storyboard */; };
 		058541181B65832C003273EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058541171B65832C003273EE /* Images.xcassets */; };
 		0585411B1B65832C003273EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058541191B65832C003273EE /* LaunchScreen.xib */; };
+		05C0AFDA1B6A7AF300D848B2 /* KCSegmentedControlView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0581D0951B652776006058FB /* KCSegmentedControlView.h */; };
 		05C67AAE1B668F95005F91C7 /* KCSegmentedControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C67AAD1B668F95005F91C7 /* KCSegmentedControlView.xib */; };
 		05C67AB01B669619005F91C7 /* AppDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C67AAF1B669619005F91C7 /* AppDefaults.plist */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05C0AFDA1B6A7AF300D848B2 /* KCSegmentedControlView.h in CopyFiles */,
 				0581D0941B6523B0006058FB /* KCSegmentedControllerType.h in CopyFiles */,
 				05532AA81B651DB600C9F876 /* KCSegmentedController.h in CopyFiles */,
 			);
