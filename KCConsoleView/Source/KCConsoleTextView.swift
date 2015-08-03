@@ -10,12 +10,32 @@ import Cocoa
 public class KCConsoleTextView : NSView
 {
 	@IBOutlet var textView: NSTextView!
-
+	private var textAttribute : [NSString : AnyObject] = [:]
+	
+	public override init(frame : NSRect){
+		super.init(frame: frame) ;
+		setupContext() ;
+		
+	}
+	
+	public required init?(coder: NSCoder) {
+		super.init(coder: coder) ;
+		setupContext() ;
+	}
+	
+	internal func setupContext(){
+		if let font = NSFont(name: "Courier New", size: 16) {
+			textAttribute[NSFontAttributeName] = font
+		}
+		textAttribute[NSForegroundColorAttributeName] = NSColor.greenColor() ;
+		textAttribute[NSBackgroundColorAttributeName] = NSColor.blackColor() ;
+	}
+	
 	public func appendText(text : String){
 		if let tview = textView {
 			if let storage = tview.textStorage {
 				storage.beginEditing() ;
-				  var attrstr = NSAttributedString(string: text) ;
+				  var attrstr = NSAttributedString(string: text, attributes: textAttribute) ;
 				  storage.appendAttributedString(attrstr) ;
 				storage.endEditing() ;
 				tview.scrollToEndOfDocument(self) ;
