@@ -3,7 +3,7 @@ KiwiControls
 
 Overview
 --------
-KiwiControls is a package of the implementation of controls for iOS application.
+KiwiControls is a package of the implementation of controls for iOS/OSX application.
 
 Copyright
 ---------

@@ -20,21 +20,13 @@ public class KCConsoleView : NSView
 		super.init(coder: coder) ;
 		setupContext() ;
 	}
-	
+
 	private func setupContext(){
-		var tviewp = loadChildXib(KCConsoleTextView.self, nibname: "KCConsoleTextView")
-		if let tview = tviewp {
+		if let tview = loadChildXib(KCConsoleTextView.self, nibname: "KCConsoleTextView") {
 			textView = tview ;
-			updateContext() ;
 		} else {
 			textView = nil ;
 		}
-	}
-	
-	private func updateContext(){
-		//if let coreview = m_coreview {
-		//	coreview.teamNameLabel.stringValue = team.name
-		//}
 	}
 	
 	public func loadChildXib(thisclass : AnyClass, nibname : String) -> KCConsoleTextView? {
@@ -60,7 +52,9 @@ public class KCConsoleView : NSView
 	
 	public func appendText(text : String){
 		if let tview = textView {
-			tview.appendText(text) ;
+			dispatch_async(dispatch_get_main_queue(), {
+				tview.appendText(text) ;
+			})
 		}
 	}
 }

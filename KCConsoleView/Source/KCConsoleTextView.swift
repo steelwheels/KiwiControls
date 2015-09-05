@@ -1,16 +1,16 @@
 /**
-* @file		KCConsoleTextView.h
-* @brief	Define KCConsoleTextView class
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file		KCConsoleTextView.h
+ * @brief	Define KCConsoleTextView class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Cocoa
 
 public class KCConsoleTextView : NSView
 {
 	@IBOutlet var textView: NSTextView!
-	private var textAttribute : [NSString : AnyObject] = [:]
+	private var textAttribute : Dictionary<String, AnyObject> = [:]
 	
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -35,8 +35,12 @@ public class KCConsoleTextView : NSView
 		if let tview = textView {
 			if let storage = tview.textStorage {
 				storage.beginEditing() ;
-				  var attrstr = NSAttributedString(string: text, attributes: textAttribute) ;
-				  storage.appendAttributedString(attrstr) ;
+				
+				let attrstr = NSMutableAttributedString(string: text) ;
+				let range = NSMakeRange(0, text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+				attrstr.setAttributes(textAttribute, range: range)
+				
+				storage.appendAttributedString(attrstr) ;
 				storage.endEditing() ;
 				tview.scrollToEndOfDocument(self) ;
 			}
