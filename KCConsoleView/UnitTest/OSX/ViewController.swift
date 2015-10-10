@@ -17,8 +17,17 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
-		if let console = consoleView {
-			console.appendText("Hello, World\nGood evening") ;
+		if let view = consoleView {
+			view.appendText("Hello, World\nGood evening\n") ;
+			
+			let console = KCConsole(view: view)
+			console.putString("Good morning")
+			console.putNewline()
+			console.incIndent()
+			console.putString("Good afternoon")
+			console.putNewline()
+			console.decIndent()
+			console.putString("Good bye")
 		}
 	}
 

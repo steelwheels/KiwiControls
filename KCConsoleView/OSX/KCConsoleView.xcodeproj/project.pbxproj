@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		054BAFDE1B6E3C6100C1CBEF /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054BAFDD1B6E3C6100C1CBEF /* KCConsoleView.framework */; };
+		05669F491BC96E7D00AFE857 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057031A41BC969CB00E14D72 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
+		057031A51BC969CB00E14D72 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057031A41BC969CB00E14D72 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
+		057031A71BC96A4600E14D72 /* KCConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057031A61BC96A4600E14D72 /* KCConsole.swift */; settings = {ASSET_TAGS = (); }; };
 		057664961B6D797B0058CDAB /* KCConsoleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 057664951B6D797B0058CDAB /* KCConsoleView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C4F8AA1B6E3032008B0189 /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4F8A91B6E3032008B0189 /* KCConsoleView.swift */; };
 		05C4F8AC1B6E31B6008B0189 /* KCConsoleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4F8AB1B6E31B6008B0189 /* KCConsoleTextView.swift */; };
@@ -37,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		054BAFDD1B6E3C6100C1CBEF /* KCConsoleView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCConsoleView.framework; path = ../../../../../Library/Frameworks/KCConsoleView.framework; sourceTree = "<group>"; };
+		057031A41BC969CB00E14D72 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		057031A61BC96A4600E14D72 /* KCConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsole.swift; sourceTree = "<group>"; };
 		057664901B6D797B0058CDAB /* KCConsoleView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCConsoleView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057664941B6D797B0058CDAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		057664951B6D797B0058CDAB /* KCConsoleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCConsoleView.h; sourceTree = "<group>"; };
@@ -57,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057031A51BC969CB00E14D72 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05669F491BC96E7D00AFE857 /* Canary.framework in Frameworks */,
 				054BAFDE1B6E3C6100C1CBEF /* KCConsoleView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				057664951B6D797B0058CDAB /* KCConsoleView.h */,
+				057031A61BC96A4600E14D72 /* KCConsole.swift */,
 				05C4F8A91B6E3032008B0189 /* KCConsoleView.swift */,
 				05C4F8AB1B6E31B6008B0189 /* KCConsoleTextView.swift */,
 				05C4F8AD1B6E37E9008B0189 /* KCConsoleTextView.xib */,
@@ -114,6 +122,7 @@
 		057664931B6D797B0058CDAB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				057031A41BC969CB00E14D72 /* Canary.framework */,
 				05C4F8B61B6E3A66008B0189 /* install_osx.mk */,
 				057664941B6D797B0058CDAB /* Info.plist */,
 			);
@@ -277,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C4F8AA1B6E3032008B0189 /* KCConsoleView.swift in Sources */,
+				057031A71BC96A4600E14D72 /* KCConsole.swift in Sources */,
 				05C4F8AC1B6E31B6008B0189 /* KCConsoleTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +421,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
@@ -432,6 +446,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
