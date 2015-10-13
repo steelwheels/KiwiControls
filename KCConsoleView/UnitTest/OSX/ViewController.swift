@@ -21,13 +21,13 @@ class ViewController: NSViewController {
 			view.appendText("Hello, World\nGood evening\n") ;
 			
 			let console = KCConsole(view: view)
-			console.putString("Good morning")
-			console.putNewline()
+			console.addWord("Good morning")
+			console.addNewline()
 			console.incIndent()
-			console.putString("Good afternoon")
-			console.putNewline()
+			console.addWord("Good afternoon")
+			console.addNewline()
 			console.decIndent()
-			console.putString("Good bye")
+			console.addWord("Good bye")
 		}
 	}
 

@@ -11,29 +11,22 @@ import Canary
 public class KCConsole : CNConsole
 {
 	private var consoleView : KCConsoleView
-	private var is1stString : Bool
-	
+
 	public init(view: KCConsoleView){
 		consoleView = view
-		is1stString = true
 		super.init()
 	}
 	
-	public override func putString(str : String){
-		var newstr : String
-		if is1stString {
-			newstr = indentString() + str
-			is1stString = false
-		} else {
-			newstr = str
+	public override func printLines(lines : Array<CNConsoleLine>){
+		var text = ""
+		for line in lines {
+			var str = indentString(line)
+			for word in line.words {
+				str += word
+			}
+			text += str + "\n"
 		}
-		consoleView.appendText(newstr)
+		consoleView.appendText(text)
 	}
-	
-	public override func putNewline(){
-		consoleView.appendText("\n")
-		is1stString = true
-	}
-	
 }
 
