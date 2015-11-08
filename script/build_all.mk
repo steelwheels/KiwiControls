@@ -3,20 +3,22 @@
 #
 
 IOS_TMP	= tmpi
+OSX_TMP	= tmpx
 
-all: KiwiControl KCGraphicsView KCNumberStepper KCPreferenceTable \
+# KiwiControl
+all: KCControls KCGraphicsView KCNumberStepper KCPreferenceTable \
      KCSwitch KCTableView KCTextFieldExtension \
      KCTextFieldExtension KCTouchableLabel KCSegmentedController
 
 dummy:
 
-KiwiControl: dummy
-	(cd KiwiControl/iOS && \
-	 make PROJECT_NAME=KiwiControl \
+KCControls: dummy
+	(cd KCControls/OSX && \
+	 make PROJECT_NAME=KCControls \
 	      PROJECT_DIR=. \
-	      BUILD_DIR=~/build/KiwiControl.$(IOS_TMP) \
-	      BUILD_ROOT=~/build/KiwiControl.$(IOS_TMP) \
-	      -f ../../script/install.mk \
+	      BUILD_DIR=~/build/KCControls.$(OSX_TMP) \
+	      BUILD_ROOT=~/build/KCControls.$(OSX_TMP) \
+	      -f ../../script/install_osx.mk \
 	)
 
 KCGraphicsView: dummy
