@@ -18,6 +18,7 @@
 		0563E33F1BEED6510055E2DF /* KCControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 0563E33E1BEED6510055E2DF /* KCControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C8784C1BEED784009FFC9D /* KCState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8784A1BEED784009FFC9D /* KCState.swift */; };
 		05C8784D1BEED784009FFC9D /* KCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8784B1BEED784009FFC9D /* KCView.swift */; };
+		05F3CB691BF7353A00B5D545 /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3CB681BF7353A00B5D545 /* KCViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		0563E3401BEED6510055E2DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		05C8784A1BEED784009FFC9D /* KCState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCState.swift; sourceTree = "<group>"; };
 		05C8784B1BEED784009FFC9D /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
+		05F3CB681BF7353A00B5D545 /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				0563E33E1BEED6510055E2DF /* KCControls.h */,
 				0563E3401BEED6510055E2DF /* Info.plist */,
 				05C8784A1BEED784009FFC9D /* KCState.swift */,
+				05F3CB681BF7353A00B5D545 /* KCViewController.swift */,
 				05C8784B1BEED784009FFC9D /* KCView.swift */,
 				0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */,
 				0545FFFD1BEEEC300084D5D9 /* Supporting Files */,
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F3CB691BF7353A00B5D545 /* KCViewController.swift in Sources */,
 				05C8784D1BEED784009FFC9D /* KCView.swift in Sources */,
 				05C8784C1BEED784009FFC9D /* KCState.swift in Sources */,
 				0545FFFC1BEEEBB20084D5D9 /* KCAlert.swift in Sources */,
