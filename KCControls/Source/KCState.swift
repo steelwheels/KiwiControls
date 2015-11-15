@@ -9,4 +9,5 @@ import Foundation
 
 public class KCState : NSObject
 {
+	public class var stateKey : String { get{ return "mState" }}
 }
