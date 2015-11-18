@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		054BAFDE1B6E3C6100C1CBEF /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054BAFDD1B6E3C6100C1CBEF /* KCConsoleView.framework */; };
-		05669F491BC96E7D00AFE857 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057031A41BC969CB00E14D72 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
-		057031A51BC969CB00E14D72 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057031A41BC969CB00E14D72 /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
-		057031A71BC96A4600E14D72 /* KCConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057031A61BC96A4600E14D72 /* KCConsole.swift */; settings = {ASSET_TAGS = (); }; };
+		05669F491BC96E7D00AFE857 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057031A41BC969CB00E14D72 /* Canary.framework */; };
+		057031A51BC969CB00E14D72 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057031A41BC969CB00E14D72 /* Canary.framework */; };
+		057031A71BC96A4600E14D72 /* KCConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057031A61BC96A4600E14D72 /* KCConsole.swift */; };
 		057664961B6D797B0058CDAB /* KCConsoleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 057664951B6D797B0058CDAB /* KCConsoleView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05C4F8AA1B6E3032008B0189 /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4F8A91B6E3032008B0189 /* KCConsoleView.swift */; };
 		05C4F8AC1B6E31B6008B0189 /* KCConsoleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4F8AB1B6E31B6008B0189 /* KCConsoleTextView.swift */; };
@@ -352,7 +352,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -368,7 +368,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -398,6 +398,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -407,6 +408,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

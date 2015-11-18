@@ -24,7 +24,7 @@ public class KCConsoleTextView : NSView
 	}
 	
 	internal func setupContext(){
-		if let font = NSFont(name: "Courier New", size: 16) {
+		if let font = NSFont(name: "Courier New", size: 14) {
 			textAttribute[NSFontAttributeName] = font
 		}
 		textAttribute[NSForegroundColorAttributeName] = NSColor.greenColor() ;

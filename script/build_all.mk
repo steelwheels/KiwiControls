@@ -8,7 +8,8 @@ OSX_TMP	= tmpx
 # KiwiControl
 all: KCControls KCGraphicsView KCNumberStepper KCPreferenceTable \
      KCSwitch KCTableView KCTextFieldExtension \
-     KCTextFieldExtension KCTouchableLabel KCSegmentedController
+     KCTextFieldExtension KCTouchableLabel KCSegmentedController \
+     KCConsoleView
 
 dummy:
 
@@ -91,5 +92,14 @@ KCSegmentedController: dummy
 	      BUILD_DIR=~/build/KCSegmentedController.$(IOS_TMP) \
 	      BUILD_ROOT=~/build/KCSegmentedController.$(IOS_TMP) \
 	      -f ../../script/install.mk \
+	)
+
+KCConsoleView: dummy
+	(cd KCConsoleView/OSX && \
+	 make PROJECT_NAME=KCConsoleView \
+	      PROJECT_DIR=. \
+	      BUILD_DIR=~/build/KCConsoleView.$(OSX_TMP) \
+	      BUILD_ROOT=~/build/KCConsoleView.$(OSX_TMP) \
+	      -f ../../script/install_osx.mk \
 	)
 

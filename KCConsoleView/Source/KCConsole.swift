@@ -17,16 +17,8 @@ public class KCConsole : CNConsole
 		super.init()
 	}
 	
-	public override func printLines(lines : Array<CNConsoleLine>){
-		var text = ""
-		for line in lines {
-			var str = indentString(line)
-			for word in line.words {
-				str += word
-			}
-			text += str + "\n"
-		}
-		consoleView.appendText(text)
+	public override func flushLine(line : String){
+		consoleView.appendText(line + "\n")
 	}
 }
 
