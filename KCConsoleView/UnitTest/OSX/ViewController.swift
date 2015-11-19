@@ -24,6 +24,11 @@ class ViewController: NSViewController {
 			console.printLine("Good morning")
 			console.printLine("  Good afternoon")
 			console.printLine("Good bye")
+			
+			
+			var attr = view.defaultAttribute
+			attr[NSForegroundColorAttributeName] = NSColor.redColor()
+			console.printLine("Red String", attribute: attr)
 		}
 	}
 

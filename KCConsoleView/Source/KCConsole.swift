@@ -17,8 +17,12 @@ public class KCConsole : CNConsole
 		super.init()
 	}
 	
-	public override func flushLine(line : String){
-		consoleView.appendText(line + "\n")
+	public override func flushLine(line : String, attribute : Dictionary<String, AnyObject>?){
+		if let attr = attribute {
+			consoleView.appendTextWithAttributes(line + "\n", attribute: attr)
+		} else {
+			consoleView.appendText(line + "\n")
+		}
 	}
 }
 

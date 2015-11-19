@@ -50,10 +50,36 @@ public class KCConsoleView : NSView
 		return nil ;
 	}
 	
+	public var defaultAttribute : Dictionary<String, AnyObject> {
+		get {
+			if let tview = textView {
+				return tview.defaultAttribute
+			} else {
+				fatalError("Text view must be instatiated")
+			}
+		}
+	}
+	
 	public func appendText(text : String){
 		if let tview = textView {
 			dispatch_async(dispatch_get_main_queue(), {
 				tview.appendText(text) ;
+			})
+		}
+	}
+	
+	public func appendTextWithAttributes(text : String, attribute: Dictionary<String, AnyObject>){
+		if let tview = textView {
+			dispatch_async(dispatch_get_main_queue(), {
+				tview.appendTextWithAttributes(text, attribute: attribute)
+			})
+		}
+	}
+	
+	public func appendAttributedText(text : NSAttributedString){
+		if let tview = textView {
+			dispatch_async(dispatch_get_main_queue(), {
+				tview.appendAttributedText(text)
 			})
 		}
 	}
