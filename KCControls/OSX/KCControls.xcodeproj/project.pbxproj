@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051A82F01C20608C0022BEBE /* KCOpenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A82EF1C20608C0022BEBE /* KCOpenPanel.swift */; };
 		054500041BEEECBC0084D5D9 /* KCControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054500021BEEECAA0084D5D9 /* KCControls.framework */; };
 		054500051BEEECBF0084D5D9 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054500001BEEEC980084D5D9 /* Canary.framework */; };
 		0545FFFC1BEEEBB20084D5D9 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */; };
@@ -20,7 +21,6 @@
 		056CEA571BF7681100759646 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CEA561BF7681100759646 /* FirstViewController.swift */; };
 		056CEA591BF7681100759646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056CEA581BF7681100759646 /* Assets.xcassets */; };
 		056CEA5C1BF7681100759646 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056CEA5A1BF7681100759646 /* Main.storyboard */; };
-		05A7659A1BF7696D00500D52 /* KCSingleWindowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A765991BF7696D00500D52 /* KCSingleWindowSegue.swift */; };
 		05A7659C1BF76BA200500D52 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7659B1BF76BA200500D52 /* SecondViewController.swift */; };
 		05C8784C1BEED784009FFC9D /* KCState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8784A1BEED784009FFC9D /* KCState.swift */; };
 		05C8784D1BEED784009FFC9D /* KCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8784B1BEED784009FFC9D /* KCView.swift */; };
@@ -53,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051A82EF1C20608C0022BEBE /* KCOpenPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCOpenPanel.swift; sourceTree = "<group>"; };
 		054500001BEEEC980084D5D9 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		054500021BEEECAA0084D5D9 /* KCControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCControls.framework; path = ../../../../../Library/Frameworks/KCControls.framework; sourceTree = "<group>"; };
 		0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		056CEA581BF7681100759646 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		056CEA5B1BF7681100759646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056CEA5D1BF7681100759646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05A765991BF7696D00500D52 /* KCSingleWindowSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSingleWindowSegue.swift; sourceTree = "<group>"; };
 		05A7659B1BF76BA200500D52 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		05C8784A1BEED784009FFC9D /* KCState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCState.swift; sourceTree = "<group>"; };
 		05C8784B1BEED784009FFC9D /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 				05C8784A1BEED784009FFC9D /* KCState.swift */,
 				05F3CB681BF7353A00B5D545 /* KCViewController.swift */,
 				05C8784B1BEED784009FFC9D /* KCView.swift */,
-				05A765991BF7696D00500D52 /* KCSingleWindowSegue.swift */,
+				051A82EF1C20608C0022BEBE /* KCOpenPanel.swift */,
 				0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */,
 				0545FFFD1BEEEC300084D5D9 /* Supporting Files */,
 			);
@@ -361,9 +361,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05A7659A1BF7696D00500D52 /* KCSingleWindowSegue.swift in Sources */,
 				05F3CB691BF7353A00B5D545 /* KCViewController.swift in Sources */,
 				05C8784D1BEED784009FFC9D /* KCView.swift in Sources */,
+				051A82F01C20608C0022BEBE /* KCOpenPanel.swift in Sources */,
 				05C8784C1BEED784009FFC9D /* KCState.swift in Sources */,
 				0545FFFC1BEEEBB20084D5D9 /* KCAlert.swift in Sources */,
 			);
