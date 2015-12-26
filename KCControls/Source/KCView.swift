@@ -10,11 +10,10 @@ import Cocoa
 public class KCView : NSView
 {
 	private var mState : KCState? = nil
-	private class var stateKey : String { get{ return "mState" }}
 	
 	deinit {
-		if let currentstate = mState {
-			currentstate.removeObserver(self, forKeyPath: KCView.stateKey, context: nil)
+		if let state = mState {
+			state.removeObserver(self, forKeyPath: KCState.stateKey, context: nil)
 		}
 	}
 	
@@ -23,22 +22,15 @@ public class KCView : NSView
 			return mState
 		}
 		set (newstate) {
-			if let nextstate = newstate {
-				nextstate.addObserver(self, forKeyPath: KCView.stateKey, options: NSKeyValueObservingOptions.New, context: nil)
-				mState = nextstate
-			} else {
-				if let currentstate = mState {
-					currentstate.removeObserver(self, forKeyPath: KCView.stateKey, context: nil)
-				}
-				mState = nil
-			}
+			KCState.setStateObserver(self, currentState: mState, newState: newstate)
+			mState = newstate
 		}
 	}
 	
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		if let manager = object as? KCState {
-			if keyPath == KCView.stateKey {
-				observeState(manager)
+		if let state = object as? KCState {
+			if keyPath == KCState.stateKey {
+				observeState(state)
 			}
 		}
 	}

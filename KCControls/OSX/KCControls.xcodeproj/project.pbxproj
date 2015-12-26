@@ -132,9 +132,9 @@
 			children = (
 				0563E33E1BEED6510055E2DF /* KCControls.h */,
 				0563E3401BEED6510055E2DF /* Info.plist */,
-				05C8784A1BEED784009FFC9D /* KCState.swift */,
 				05F3CB681BF7353A00B5D545 /* KCViewController.swift */,
 				05C8784B1BEED784009FFC9D /* KCView.swift */,
+				05C8784A1BEED784009FFC9D /* KCState.swift */,
 				0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */,
 				0545FFFD1BEEEC300084D5D9 /* Supporting Files */,
 			);
