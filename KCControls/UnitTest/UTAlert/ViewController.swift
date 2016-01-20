@@ -19,6 +19,15 @@ class ViewController: NSViewController {
 		let error = NSError.serializeError("Error message")
 		KCAlert.runModal(error)
 		
+		switch KCAlert.recommendSaveModal("The \"file\""){
+		case .CancelButtonPressed:
+			print("cancel button pressed")
+		case .SaveButtonPressed:
+			print("save button pressed")
+		case .DontSaveButtonPressed:
+			print("don't save button pressed")
+		}
+		
 	}
 
 	override var representedObject: AnyObject? {
