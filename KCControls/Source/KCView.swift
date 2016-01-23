@@ -9,28 +9,27 @@ import Cocoa
 
 public class KCView : NSView
 {
-	private var mState : KCState? = nil
+	private dynamic var mState: KCState?   = nil
 	
 	deinit {
-		if let state = mState {
-			state.removeObserver(self, forKeyPath: KCState.stateKey, context: nil)
-		}
+		removeObserver(self, forKeyPath: "mState", context: nil)
 	}
 	
 	public var state : KCState? {
-		get {
-			return mState
-		}
-		set (newstate) {
-			KCState.setStateObserver(self, currentState: mState, newState: newstate)
-			mState = newstate
-		}
+		get		{ return mState		}
+		set(newstate)	{ mState = newstate	}
+	}
+	
+	public func addStateObserver(observer: NSObject){
+		self.addObserver(observer, forKeyPath: "mState", options: .New, context: nil)
 	}
 	
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		if let state = object as? KCState {
-			if keyPath == KCState.stateKey {
-				observeState(state)
+		if let manager = object as? KCView {
+			if keyPath == "mState" {
+				if let state = manager.state {
+					observeState(state)
+				}
 			}
 		}
 	}
