@@ -10,6 +10,14 @@ import Cocoa
 import Canary
 import KCControls
 
+internal class TestState : KCState {
+	internal var isDirty : Bool = false
+	
+	internal init(isDirty : Bool){
+		
+	}
+}
+
 class ViewController: KCViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,26 +34,13 @@ class ViewController: KCViewController {
 		case .DontSaveButtonPressed:
 			print("don't save button pressed")
 		}
-		//print("set 1st state")
-		//state = KCDocumentState(isDirty: true)
-		print("add observer")
-		addStateObserver(self)
-		print("set 2nd state")
-		state = KCDocumentState(isDirty: false)
+		state = TestState(isDirty: true)
+		state?.updateState()
+		state?.updateState()
 	}
 
 	internal override func observeState(state : KCState){
-		var message : String
-		if let s = state as? KCDocumentState {
-			if s.isDirty {
-				message = "dirty"
-			} else {
-				message = "clean"
-			}
-		} else {
-			message = "unknown"
-		}
-		print("observeState : \(message)")
+		print("observeState")
 	}
 	
 	override var representedObject: AnyObject? {

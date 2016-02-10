@@ -12,24 +12,30 @@ public class KCViewController : NSViewController
 	private dynamic var mState: KCState?   = nil
 
 	deinit {
-		removeObserver(self, forKeyPath: "mState", context: nil)
+		if let state = mState {
+			state.removeStateObserver(self)
+		}
 	}
 	
 	public var state : KCState? {
-		get		{ return mState		}
-		set(newstate)	{ mState = newstate	}
-	}
-	
-	public func addStateObserver(observer: NSObject){
-		self.addObserver(observer, forKeyPath: "mState", options: .New, context: nil)
+		get {
+			return mState
+		}
+		set(newstate) {
+			if let orgstate = mState {
+				orgstate.removeStateObserver(self)
+			}
+			mState = newstate
+			if let state = newstate {
+				state.addStateObserver(self)
+			}
+		}
 	}
 	
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		if let manager = object as? KCViewController {
-			if keyPath == "mState" {
-				if let state = manager.state {
-					observeState(state)
-				}
+		if let state = object as? KCState {
+			if keyPath == KCState.stateKey() {
+				observeState(state)
 			}
 		}
 	}
