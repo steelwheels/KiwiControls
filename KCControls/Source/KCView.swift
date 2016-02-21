@@ -6,10 +6,11 @@
  */
 
 import Cocoa
+import Canary
 
 public class KCView : NSView
 {
-	private dynamic var mState: KCState?   = nil
+	private dynamic var mState: CNState?   = nil
 	
 	deinit {
 		if let state = mState {
@@ -17,7 +18,7 @@ public class KCView : NSView
 		}
 	}
 	
-	public var state : KCState? {
+	public var state : CNState? {
 		get {
 			return mState
 		}
@@ -33,14 +34,14 @@ public class KCView : NSView
 	}
 	
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		if let state = object as? KCState {
-			if keyPath == KCState.stateKey() {
+		if let state = object as? CNState {
+			if keyPath == CNState.stateKey {
 				observeState(state)
 			}
 		}
 	}
 	
-	public func observeState(state : KCState){
+	public func observeState(state : CNState){
 		/* Do nothing (Override this method) */
 	}
 	

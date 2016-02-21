@@ -10,7 +10,7 @@ import Cocoa
 import Canary
 import KCControls
 
-internal class TestState : KCState {
+internal class TestState : CNState {
 	internal var isDirty : Bool = false
 	
 	internal init(isDirty : Bool){
@@ -39,7 +39,7 @@ class ViewController: KCViewController {
 		state?.updateState()
 	}
 
-	internal override func observeState(state : KCState){
+	internal override func observeState(state : CNState){
 		print("observeState")
 	}
 	
