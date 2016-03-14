@@ -10,19 +10,19 @@ import Canary
 
 public class KCConsole : CNConsole
 {
-	private var consoleView : KCConsoleView
+	private var mConsoleView : KCConsoleView
 
 	public init(view: KCConsoleView){
-		consoleView = view
+		mConsoleView = view
 		super.init()
 	}
+
+	public var consoleView: KCConsoleView {
+		get { return mConsoleView }
+	}
 	
-	public override func flushLine(line : String, attribute : Dictionary<String, AnyObject>?){
-		if let attr = attribute {
-			consoleView.appendTextWithAttributes(line + "\n", attribute: attr)
-		} else {
-			consoleView.appendText(line + "\n")
-		}
+	public override func flush(text: CNConsoleText){
+		mConsoleView.appendText(text)
 	}
 }
 

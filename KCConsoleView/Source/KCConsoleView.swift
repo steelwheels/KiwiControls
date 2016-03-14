@@ -6,6 +6,7 @@
  */
 
 import Cocoa
+import Canary
 
 public class KCConsoleView : NSView
 {
@@ -60,26 +61,55 @@ public class KCConsoleView : NSView
 		}
 	}
 	
-	public func appendText(text : String){
-		if let tview = textView {
-			dispatch_async(dispatch_get_main_queue(), {
-				tview.appendText(text) ;
-			})
+	public var fontSize: CGFloat {
+		get {
+			if let view = textView {
+				return view.fontSize
+			} else {
+				return 0.0
+			}
+		}
+		set(size){
+			if let view = textView {
+				view.fontSize = size
+			}
 		}
 	}
 	
-	public func appendTextWithAttributes(text : String, attribute: Dictionary<String, AnyObject>){
-		if let tview = textView {
-			dispatch_async(dispatch_get_main_queue(), {
-				tview.appendTextWithAttributes(text, attribute: attribute)
-			})
+	public var foregroundColor: NSColor? {
+		get {
+			if let view = textView {
+				return view.foregroundColor
+			} else {
+				return nil
+			}
+		}
+		set(color){
+			if let view = textView {
+				view.foregroundColor = color
+			}
 		}
 	}
 	
-	public func appendAttributedText(text : NSAttributedString){
+	public var backgroundColor: NSColor? {
+		get {
+			if let view = textView {
+				return view.backgroundColor
+			} else {
+				return nil
+			}
+		}
+		set(color){
+			if let view = textView {
+				view.backgroundColor = color
+			}
+		}
+	}
+	
+	public func appendText(text : CNConsoleText){
 		if let tview = textView {
 			dispatch_async(dispatch_get_main_queue(), {
-				tview.appendAttributedText(text)
+				tview.appendText(text)
 			})
 		}
 	}

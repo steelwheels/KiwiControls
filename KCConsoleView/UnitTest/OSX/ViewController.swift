@@ -8,6 +8,7 @@
 
 import Cocoa
 import KCConsoleView
+import Canary
 
 class ViewController: NSViewController {
 
@@ -18,17 +19,18 @@ class ViewController: NSViewController {
 
 		// Do any additional setup after loading the view.
 		if let view = consoleView {
-			view.appendText("Hello, World\nGood evening\n") ;
+			let text0 = CNConsoleText(string: "Hello, World\nGood evening\n")
+			view.appendText(text0)
 			
 			let console = KCConsole(view: view)
-			console.printLine("Good morning")
-			console.printLine("  Good afternoon")
-			console.printLine("Good bye")
+			console.print(string: "Good morning\n")
+			console.print(string: "  Good afternoon\n")
+			console.print(string: "Good bye : ")
 			
-			
-			var attr = view.defaultAttribute
-			attr[NSForegroundColorAttributeName] = NSColor.redColor()
-			console.printLine("Red String", attribute: attr)
+			let word1 = CNConsoleWord(string: "Red String\n", attribute:
+				[NSForegroundColorAttributeName: NSColor.redColor()])
+			let text1 = CNConsoleText(word: word1)
+			console.print(text: text1)
 		}
 	}
 
