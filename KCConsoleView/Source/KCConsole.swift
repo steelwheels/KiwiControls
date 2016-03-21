@@ -17,8 +17,31 @@ public class KCConsole : CNConsole
 		super.init()
 	}
 
-	public var consoleView: KCConsoleView {
-		get { return mConsoleView }
+	public var fontSize: CGFloat {
+		get {
+			return mConsoleView.fontSize
+		}
+		set(size){
+			mConsoleView.fontSize = size
+		}
+	}
+	
+	public var foregroundColor: NSColor? {
+		get {
+			return mConsoleView.foregroundColor
+		}
+		set(color){
+			mConsoleView.foregroundColor = color
+		}
+	}
+	
+	public var backgroundColor: NSColor? {
+		get {
+			return mConsoleView.backgroundColor
+		}
+		set(color){
+			mConsoleView.backgroundColor = color
+		}
 	}
 	
 	public override func flush(text: CNConsoleText){
