@@ -56,14 +56,14 @@ public class KCView : NSView
 		addConstraint(allocateLayout(subview, attr: NSLayoutAttribute.Right)) ;
 	}
 	
-	public func loadChildXib(thisclass : AnyClass, nibname : String) -> KCView? {
+	public func loadChildXib(thisclass : AnyClass, nibname : String) -> KCView {
 		let bundle : NSBundle = NSBundle(forClass: thisclass) ;
 		let nibp : NSNib? = NSNib(nibNamed: nibname, bundle: bundle) ;
 		if let nib = nibp {
 			var viewsp : NSArray? ;
 			if(nib.instantiateWithOwner(nil, topLevelObjects: &viewsp)){
 				if let views = viewsp {
-					for (var i = 0; i < views.count; i++) {
+					for i in 0..<views.count {
 						if let view = views[i] as? KCView {
 							view.frame = self.bounds ;
 							addSubview(view) ;
@@ -73,8 +73,7 @@ public class KCView : NSView
 				}
 			}
 		}
-		NSLog("Failed to load " + nibname)
-		return nil ;
+		fatalError("Failed to load " + nibname)
 	}
 	
 	public func searchSubViewByType<T>(view : NSView) -> T? {
