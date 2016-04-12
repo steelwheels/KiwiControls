@@ -7,8 +7,9 @@
 
 import Cocoa
 import Canary
+import KCControls
 
-public class KCConsoleView : NSView
+public class KCConsoleView : KCView
 {
 	var textView	: KCConsoleTextView? = nil ;
 	
@@ -23,32 +24,11 @@ public class KCConsoleView : NSView
 	}
 
 	private func setupContext(){
-		if let tview = loadChildXib(KCConsoleTextView.self, nibname: "KCConsoleTextView") {
+		if let tview = loadChildXib(KCConsoleView.self, nibname: "KCConsoleTextView") as? KCConsoleTextView {
 			textView = tview ;
 		} else {
-			textView = nil ;
+			fatalError("Can not load KCConsoleTextView")
 		}
-	}
-	
-	public func loadChildXib(thisclass : AnyClass, nibname : String) -> KCConsoleTextView? {
-		let bundle : NSBundle = NSBundle(forClass: thisclass) ;
-		let nibp : NSNib? = NSNib(nibNamed: nibname, bundle: bundle) ;
-		if let nib = nibp {
-			var viewsp : NSArray? ;
-			if(nib.instantiateWithOwner(nil, topLevelObjects: &viewsp)){
-				if let views = viewsp {
-					for (var i = 0; i < views.count; i++) {
-						if let view = views[i] as? KCConsoleTextView {
-							view.frame = self.bounds ;
-							addSubview(view) ;
-							return view ;
-						}
-					}
-				}
-			}
-		}
-		NSLog("Failed to load " + nibname)
-		return nil ;
 	}
 	
 	public var defaultAttribute : Dictionary<String, AnyObject> {

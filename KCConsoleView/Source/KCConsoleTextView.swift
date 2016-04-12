@@ -7,8 +7,9 @@
 
 import Cocoa
 import Canary
+import KCControls
 
-public class KCConsoleTextView : NSView
+public class KCConsoleTextView : KCView
 {
 	@IBOutlet var	textView: NSTextView!
 	private var	mDefaultAttribute : Dictionary<String, AnyObject> = [:]
