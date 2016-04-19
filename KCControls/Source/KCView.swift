@@ -50,16 +50,16 @@ public class KCView : NSView
 	}
 	
 	public func allocateSubviewLayout(subview : NSView){
+		subview.translatesAutoresizingMaskIntoConstraints = false
 		addConstraint(allocateLayout(subview, attr: NSLayoutAttribute.Top)) ;
 		addConstraint(allocateLayout(subview, attr: NSLayoutAttribute.Left)) ;
 		addConstraint(allocateLayout(subview, attr: NSLayoutAttribute.Bottom)) ;
 		addConstraint(allocateLayout(subview, attr: NSLayoutAttribute.Right)) ;
 	}
-	
+
 	public func loadChildXib(thisclass : AnyClass, nibname : String) -> KCView {
 		let bundle : NSBundle = NSBundle(forClass: thisclass) ;
-		let nibp : NSNib? = NSNib(nibNamed: nibname, bundle: bundle) ;
-		if let nib = nibp {
+		if let nib = NSNib(nibNamed: nibname, bundle: bundle) {
 			var viewsp : NSArray? ;
 			if(nib.instantiateWithOwner(nil, topLevelObjects: &viewsp)){
 				if let views = viewsp {
