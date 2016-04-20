@@ -6,6 +6,7 @@
  */
 
 import KCControls
+import SceneKit
 
 public class KCSceneView: KCView
 {
@@ -13,17 +14,33 @@ public class KCSceneView: KCView
 	
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
-		setupContext() ;
+		loadContext() ;
 	}
 	
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
-		setupContext() ;
+		loadContext() ;
 	}
 	
-	private func setupContext(){
+	private func loadContext(){
 		if let view = loadChildXib(KCSceneViewCore.self, nibname: "KCSceneViewCore") as? KCSceneViewCore {
 			mCoreView = view ;
+		} else {
+			fatalError("Can not load KCConsoleTextView")
+		}
+	}
+	
+	public func setup(){
+		if let coreview = mCoreView {
+			coreview.setup()
+		} else {
+			fatalError("Can not load KCConsoleTextView")
+		}
+	}
+	
+	public func addChildNode(node: SCNNode){
+		if let coreview = mCoreView {
+			coreview.addChildNode(node)
 		} else {
 			fatalError("Can not load KCConsoleTextView")
 		}
