@@ -40,9 +40,22 @@ public class KCSceneView: KCView
 	public func setup(){
 		coreView().setup()
 	}
-	
+
 	public func addChildNode(node: SCNNode){
 		coreView().addChildNode(node)
+	}
+	
+	public func startAnimation() {
+		coreView().startAnimation()
+	}
+	
+	public func stopAnimation() {
+		coreView().stopAnimation()
+	}
+	
+	public var delegate: SCNSceneRendererDelegate? {
+		get		{ return coreView().delegate }
+		set(newval)	{ coreView().delegate = newval }
 	}
 	
 	public var cameraNode: SCNNode {

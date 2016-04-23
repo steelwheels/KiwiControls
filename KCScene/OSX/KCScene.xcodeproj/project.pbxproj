@@ -16,6 +16,8 @@
 		058D05B41CC687140007796B /* KCSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D05B31CC687140007796B /* KCSceneView.swift */; };
 		058D05B61CC687B70007796B /* KCSceneViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D05B51CC687B70007796B /* KCSceneViewCore.swift */; };
 		058D05B81CC6882A0007796B /* KCSceneViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058D05B71CC6882A0007796B /* KCSceneViewCore.xib */; };
+		05EB41461CCBA34A005542D7 /* KCSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB41451CCBA34A005542D7 /* KCSceneNode.swift */; };
+		05EB41481CCBA3BB005542D7 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EB41471CCBA3BB005542D7 /* Canary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		058D05B31CC687140007796B /* KCSceneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneView.swift; sourceTree = "<group>"; };
 		058D05B51CC687B70007796B /* KCSceneViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneViewCore.swift; sourceTree = "<group>"; };
 		058D05B71CC6882A0007796B /* KCSceneViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCSceneViewCore.xib; sourceTree = "<group>"; };
+		05EB41451CCBA34A005542D7 /* KCSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneNode.swift; sourceTree = "<group>"; };
+		05EB41471CCBA3BB005542D7 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05EB41481CCBA3BB005542D7 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +78,7 @@
 		0531DE5C1CC690D600B6F1B2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				05EB41471CCBA3BB005542D7 /* Canary.framework */,
 				0531DE5D1CC690FF00B6F1B2 /* KCScene.framework */,
 			);
 			name = Resource;
@@ -135,6 +141,7 @@
 				058D05B31CC687140007796B /* KCSceneView.swift */,
 				058D05B51CC687B70007796B /* KCSceneViewCore.swift */,
 				058D05B71CC6882A0007796B /* KCSceneViewCore.xib */,
+				05EB41451CCBA34A005542D7 /* KCSceneNode.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -285,6 +292,7 @@
 			files = (
 				058D05B61CC687B70007796B /* KCSceneViewCore.swift in Sources */,
 				058D05B41CC687140007796B /* KCSceneView.swift in Sources */,
+				05EB41461CCBA34A005542D7 /* KCSceneNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,15 +9,18 @@
 import KCControls
 import KCScene
 import SceneKit
+import Canary
 
-class ViewController: NSViewController
+class ViewController: NSViewController, SCNSceneRendererDelegate
 {
 	@IBOutlet weak var sceneView: KCSceneView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
 		sceneView.setup()
+		sceneView.delegate = self
+		
+		let console = CNTextConsole()
 		
 		// Do any additional setup after loading the view.
 		sceneView.backgroundColor = NSColor.blueColor()
@@ -32,8 +35,15 @@ class ViewController: NSViewController
 		box1.position = SCNVector3(x: -20, y:0.0, z:0.0)
 		sceneView.addChildNode(box1)
 		
-		sceneView.cameraNode.position	= SCNVector3(x: 0.0, y: 30.0, z: 100.0)
-		sceneView.lightNode.position	= SCNVector3(x: 100.0, y: 100.0, z: 100.0)
+		let camera = sceneView.cameraNode
+		let light  = sceneView.lightNode
+		camera.position	= SCNVector3(x: 0.0, y: 0.0, z: 100.0)
+		light.position	= SCNVector3(x: 0.0, y: 0.0, z: 1000.0)
+		
+		Swift.print("[Camera]")
+		sceneView.cameraNode.dumpToConsole(console)
+		
+		sceneView.startAnimation()
 	}
 
 	override var representedObject: AnyObject? {
@@ -42,6 +52,7 @@ class ViewController: NSViewController
 		}
 	}
 
-
+	internal func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
+	}
 }
 

@@ -8,7 +8,7 @@
 import KCControls
 import SceneKit
 
-public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
+public class KCSceneViewCore: KCView
 {
 	@IBOutlet weak var sceneView: SCNView!
 
@@ -28,19 +28,18 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 	public func setup(){
 		let scene = SCNScene()
 		sceneView.scene		= scene
-		sceneView.delegate	= self
 		mScene			= scene
 		
-		mZeroNode	= KCSceneViewCore.allocateZeroPoint()
-		mLightNode	= KCSceneViewCore.allocateLight()
-		mCameraNode	= KCSceneViewCore.allocateCamera(mZeroNode!)
-		
 		let root = scene.rootNode
-		root.addChildNode(mZeroNode!)
-		root.addChildNode(mLightNode!)
-		root.addChildNode(mCameraNode!)
 		
-		//sceneView.playing	= true		/* Fource update for each frame processing */
+		mZeroNode	= KCSceneViewCore.allocateZeroPoint()
+		root.addChildNode(mZeroNode!)
+		
+		mLightNode	= KCSceneViewCore.allocateLight()
+		root.addChildNode(mLightNode!)
+		
+		mCameraNode	= KCSceneViewCore.allocateCamera(mZeroNode!)
+		root.addChildNode(mCameraNode!)
 	}
 	
 	private class func allocateZeroPoint() -> SCNNode {
@@ -63,9 +62,31 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 		node.camera	= camera
 		
 		let constraint = SCNLookAtConstraint(target: zeronode)
+		constraint.gimbalLockEnabled = true
 		node.constraints = [constraint]
 		
 		return node
+	}
+	
+	public func addChildNode(node: SCNNode){
+		if let scene = mScene {
+			scene.rootNode.addChildNode(node)
+		}
+	}
+	
+	public func startAnimation() {
+		sceneView.play(self)
+		sceneView.loops	= true
+	}
+	
+	public func stopAnimation(){
+		sceneView.play(self)
+		sceneView.loops	= false
+	}
+
+	public var delegate: SCNSceneRendererDelegate? {
+		get		{ return sceneView.delegate }
+		set(newval)	{ sceneView.delegate = newval }
 	}
 	
 	public var cameraNode: SCNNode {
@@ -85,13 +106,7 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 			fatalError("No light node")
 		}
 	}
-	
-	public func addChildNode(node: SCNNode){
-		if let scene = mScene {
-			scene.rootNode.addChildNode(node)
-		}
-	}
-	
+
 	public var backgroundColor: NSColor {
 		get {
 			return sceneView.backgroundColor
@@ -99,9 +114,5 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 		set(newcolor){
 			sceneView.backgroundColor = newcolor
 		}
-	}
-	
-	public func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
-		Swift.print("renderer \(time)")
 	}
 }
