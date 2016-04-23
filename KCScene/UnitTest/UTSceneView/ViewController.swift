@@ -17,15 +17,23 @@ class ViewController: NSViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		sceneView.setup(SCNVector3(x: 0.0, y: 0.0, z: 100.0),
-		                lightPosition: SCNVector3(x: 0.0, y: 0.0, z: 100.0))
+		sceneView.setup()
 		
 		// Do any additional setup after loading the view.
-		sceneView.backgroundColor = NSColor.blackColor()
+		sceneView.backgroundColor = NSColor.blueColor()
 		
-		let boxNode = SCNNode()
-		boxNode.geometry = SCNBox(width:50, height:50, length:50, chamferRadius:0.02)
-		sceneView.addChildNode(boxNode)
+		let box0 = SCNNode()
+		box0.geometry = SCNBox(width:10, height:10, length:10, chamferRadius:0.02)
+		box0.position = SCNVector3(x: 20, y:0.0, z:0.0)
+		sceneView.addChildNode(box0)
+		
+		let box1 = SCNNode()
+		box1.geometry = SCNBox(width:10, height:10, length:10, chamferRadius:0.02)
+		box1.position = SCNVector3(x: -20, y:0.0, z:0.0)
+		sceneView.addChildNode(box1)
+		
+		sceneView.cameraNode.position	= SCNVector3(x: 0.0, y: 30.0, z: 100.0)
+		sceneView.lightNode.position	= SCNVector3(x: 100.0, y: 100.0, z: 100.0)
 	}
 
 	override var representedObject: AnyObject? {

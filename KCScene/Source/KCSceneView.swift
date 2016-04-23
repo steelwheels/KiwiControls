@@ -37,8 +37,8 @@ public class KCSceneView: KCView
 		fatalError("No coreview")
 	}
 	
-	public func setup(cameraPosition: SCNVector3, lightPosition: SCNVector3){
-		coreView().setup(cameraPosition, lightPosition: lightPosition)
+	public func setup(){
+		coreView().setup()
 	}
 	
 	public func addChildNode(node: SCNNode){

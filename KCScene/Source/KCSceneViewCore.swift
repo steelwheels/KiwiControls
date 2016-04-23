@@ -25,18 +25,15 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 		super.init(coder: coder)
 	}
 	
-	public func setup(cameraPosition: SCNVector3, lightPosition: SCNVector3){
+	public func setup(){
 		let scene = SCNScene()
 		sceneView.scene		= scene
 		sceneView.delegate	= self
 		mScene			= scene
 		
 		mZeroNode	= KCSceneViewCore.allocateZeroPoint()
-		mLightNode	= KCSceneViewCore.allocateLight(mZeroNode!)
+		mLightNode	= KCSceneViewCore.allocateLight()
 		mCameraNode	= KCSceneViewCore.allocateCamera(mZeroNode!)
-		
-		mCameraNode!.position = cameraPosition
-		mLightNode!.position  = lightPosition
 		
 		let root = scene.rootNode
 		root.addChildNode(mZeroNode!)
@@ -52,16 +49,11 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 		return node
 	}
 	
-	private class func allocateLight(zeronode: SCNNode) -> SCNNode {
+	private class func allocateLight() -> SCNNode {
 		let node	= SCNNode()
 		let light	= SCNLight()
 		node.light	= light
 		light.type	= SCNLightTypeOmni
-		
-		let constraint = SCNLookAtConstraint(target: zeronode)
-		constraint.gimbalLockEnabled = true
-		node.constraints = [constraint]
-		
 		return node
 	}
 	
@@ -71,7 +63,6 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 		node.camera	= camera
 		
 		let constraint = SCNLookAtConstraint(target: zeronode)
-		constraint.gimbalLockEnabled = true
 		node.constraints = [constraint]
 		
 		return node
@@ -81,9 +72,8 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 		get {
 			if let node = mCameraNode {
 				return node
-			} else {
-				fatalError("No camera node")
 			}
+			fatalError("No camera node")
 		}
 	}
 	
@@ -91,9 +81,8 @@ public class KCSceneViewCore: KCView, SCNSceneRendererDelegate
 		get {
 			if let node = mLightNode {
 				return node
-			} else {
-				fatalError("No light node")
 			}
+			fatalError("No light node")
 		}
 	}
 	
