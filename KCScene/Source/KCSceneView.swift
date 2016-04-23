@@ -30,33 +30,35 @@ public class KCSceneView: KCView
 		}
 	}
 	
-	public func setup(){
+	private func coreView() -> KCSceneViewCore {
 		if let coreview = mCoreView {
-			coreview.setup()
-		} else {
-			fatalError("Can not load KCConsoleTextView")
+			return coreview
 		}
+		fatalError("No coreview")
+	}
+	
+	public func setup(cameraPosition: SCNVector3, lightPosition: SCNVector3){
+		coreView().setup(cameraPosition, lightPosition: lightPosition)
 	}
 	
 	public func addChildNode(node: SCNNode){
-		if let coreview = mCoreView {
-			coreview.addChildNode(node)
-		} else {
-			fatalError("Can not load KCConsoleTextView")
-		}
+		coreView().addChildNode(node)
+	}
+	
+	public var cameraNode: SCNNode {
+		get { return coreView().cameraNode }
+	}
+	
+	public var lightNode: SCNNode {
+		get { return coreView().lightNode }
 	}
 	
 	public var backgroundColor: NSColor {
 		get {
-			if let core = mCoreView {
-				return core.backgroundColor
-			}
-			fatalError("No core object")
+			return coreView().backgroundColor
 		}
 		set(newcolor){
-			if let core = mCoreView {
-				core.backgroundColor = newcolor
-			}
+			coreView().backgroundColor = newcolor
 		}
 	}
 }

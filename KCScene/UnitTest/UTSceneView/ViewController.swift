@@ -17,13 +17,14 @@ class ViewController: NSViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		sceneView.setup()
+		sceneView.setup(SCNVector3(x: 0.0, y: 0.0, z: 100.0),
+		                lightPosition: SCNVector3(x: 0.0, y: 0.0, z: 100.0))
 		
 		// Do any additional setup after loading the view.
 		sceneView.backgroundColor = NSColor.blackColor()
 		
 		let boxNode = SCNNode()
-		boxNode.geometry = SCNBox(width:1, height:1, length:1, chamferRadius:0.02)
+		boxNode.geometry = SCNBox(width:50, height:50, length:50, chamferRadius:0.02)
 		sceneView.addChildNode(boxNode)
 	}
 
