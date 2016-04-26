@@ -58,6 +58,10 @@ public class KCSceneView: KCView
 		set(newval)	{ coreView().delegate = newval }
 	}
 	
+	public var zeroNode: SCNNode {
+		get { return coreView().zeroNode }
+	}
+	
 	public var cameraNode: SCNNode {
 		get { return coreView().cameraNode }
 	}

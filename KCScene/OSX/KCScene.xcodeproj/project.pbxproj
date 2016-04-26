@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052B0A4E1CCFB2810032F42C /* KCVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B0A4D1CCFB2810032F42C /* KCVector3.swift */; };
 		0531DE5F1CC6910300B6F1B2 /* KCScene.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0531DE5D1CC690FF00B6F1B2 /* KCScene.framework */; };
 		0545D41A1CC68FF0001F3D8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545D4191CC68FF0001F3D8C /* AppDelegate.swift */; };
 		0545D41C1CC68FF0001F3D8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545D41B1CC68FF0001F3D8C /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		052B0A4D1CCFB2810032F42C /* KCVector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCVector3.swift; sourceTree = "<group>"; };
 		0531DE5D1CC690FF00B6F1B2 /* KCScene.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCScene.framework; path = ../../../../Library/Frameworks/KCScene.framework; sourceTree = "<group>"; };
 		0545D4171CC68FF0001F3D8C /* UTSceneView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTSceneView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0545D4191CC68FF0001F3D8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				058D05B51CC687B70007796B /* KCSceneViewCore.swift */,
 				058D05B71CC6882A0007796B /* KCSceneViewCore.xib */,
 				05EB41451CCBA34A005542D7 /* KCSceneNode.swift */,
+				052B0A4D1CCFB2810032F42C /* KCVector3.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -292,6 +295,7 @@
 			files = (
 				058D05B61CC687B70007796B /* KCSceneViewCore.swift in Sources */,
 				058D05B41CC687140007796B /* KCSceneView.swift in Sources */,
+				052B0A4E1CCFB2810032F42C /* KCVector3.swift in Sources */,
 				05EB41461CCBA34A005542D7 /* KCSceneNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

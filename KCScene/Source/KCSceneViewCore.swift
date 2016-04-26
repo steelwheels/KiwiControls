@@ -60,11 +60,6 @@ public class KCSceneViewCore: KCView
 		let node	= SCNNode()
 		let camera	= SCNCamera()
 		node.camera	= camera
-		
-		let constraint = SCNLookAtConstraint(target: zeronode)
-		constraint.gimbalLockEnabled = true
-		node.constraints = [constraint]
-		
 		return node
 	}
 	
@@ -87,6 +82,15 @@ public class KCSceneViewCore: KCView
 	public var delegate: SCNSceneRendererDelegate? {
 		get		{ return sceneView.delegate }
 		set(newval)	{ sceneView.delegate = newval }
+	}
+	
+	public var zeroNode: SCNNode {
+		get {
+			if let node = mZeroNode {
+				return node
+			}
+			fatalError("No zero node")
+		}
 	}
 	
 	public var cameraNode: SCNNode {
