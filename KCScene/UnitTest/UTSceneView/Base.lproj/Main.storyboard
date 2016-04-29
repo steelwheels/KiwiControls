@@ -673,10 +673,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SIN-32-pYF" customClass="KCSceneView" customModule="KCScene">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="SIN-32-pYF" customClass="KCSceneView" customModule="KCScene">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             </customView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SIN-32-pYF" secondAttribute="trailing" id="1Cz-mm-3lF"/>
+                            <constraint firstItem="SIN-32-pYF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="60o-r1-ejr"/>
+                            <constraint firstAttribute="bottom" secondItem="SIN-32-pYF" secondAttribute="bottom" id="SIT-OH-Kt0"/>
+                            <constraint firstItem="SIN-32-pYF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hQy-Pn-sJK"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="sceneView" destination="SIN-32-pYF" id="qdg-3R-A6u"/>

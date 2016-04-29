@@ -14,7 +14,7 @@ extension SCNVector3
 	func length() -> CGFloat {
 		return sqrt(x*x + y*y + z*z)
 	}
-	
+
 	func normalize() -> SCNVector3 {
 		let len = length()
 		if len > 0.0 {
@@ -23,19 +23,30 @@ extension SCNVector3
 			return SCNVector3(0.0, 0.0, 0.0)
 		}
 	}
-	
+
 	/**
 	 * Calculates the dot product between two SCNVector3.
 	 */
 	func dot(vector: SCNVector3) -> CGFloat {
 		return (x * vector.x) + (y * vector.y) + (z * vector.z)
 	}
-	
+
 	/**
 	 * Calculates the cross product between two SCNVector3.
 	 */
 	func cross(vector: SCNVector3) -> SCNVector3 {
-		return SCNVector3Make( ((y * vector.z) - (z * vector.y)), ((z * vector.x) - (x * vector.z)), ((x * vector.y) - (y * vector.x)))
+		return SCNVector3Make( ((y * vector.z) - (z * vector.y)),
+		                       ((z * vector.x) - (x * vector.z)),
+		                       ((x * vector.y) - (y * vector.x)))
 	}
 }
+
+func + (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
+	return SCNVector3Make(left.x + right.x, left.y + right.y, left.z + right.z)
+}
+
+func - (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
+	return SCNVector3Make(left.x - right.x, left.y - right.y, left.z - right.z)
+}
+
 
