@@ -14,7 +14,6 @@
 		0545D41E1CC68FF0001F3D8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0545D41D1CC68FF0001F3D8C /* Assets.xcassets */; };
 		0545D4211CC68FF0001F3D8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0545D41F1CC68FF0001F3D8C /* Main.storyboard */; };
 		055AE63F1CC684E1004882D3 /* KCScene.h in Headers */ = {isa = PBXBuildFile; fileRef = 055AE63E1CC684E1004882D3 /* KCScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		056352E31CD1301A009D4E1A /* KCPoint3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056352E21CD1301A009D4E1A /* KCPoint3.swift */; };
 		058D05B41CC687140007796B /* KCSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D05B31CC687140007796B /* KCSceneView.swift */; };
 		058D05B61CC687B70007796B /* KCSceneViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D05B51CC687B70007796B /* KCSceneViewCore.swift */; };
 		058D05B81CC6882A0007796B /* KCSceneViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058D05B71CC6882A0007796B /* KCSceneViewCore.xib */; };
@@ -51,7 +50,6 @@
 		055AE63B1CC684E1004882D3 /* KCScene.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCScene.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		055AE63E1CC684E1004882D3 /* KCScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCScene.h; sourceTree = "<group>"; };
 		055AE6401CC684E1004882D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		056352E21CD1301A009D4E1A /* KCPoint3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint3.swift; sourceTree = "<group>"; };
 		058D05B31CC687140007796B /* KCSceneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneView.swift; sourceTree = "<group>"; };
 		058D05B51CC687B70007796B /* KCSceneViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneViewCore.swift; sourceTree = "<group>"; };
 		058D05B71CC6882A0007796B /* KCSceneViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCSceneViewCore.xib; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 				058D05B71CC6882A0007796B /* KCSceneViewCore.xib */,
 				05EB41451CCBA34A005542D7 /* KCSceneNode.swift */,
 				052B0A4D1CCFB2810032F42C /* KCVector3.swift */,
-				056352E21CD1301A009D4E1A /* KCPoint3.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -300,7 +297,6 @@
 				058D05B41CC687140007796B /* KCSceneView.swift in Sources */,
 				052B0A4E1CCFB2810032F42C /* KCVector3.swift in Sources */,
 				05EB41461CCBA34A005542D7 /* KCSceneNode.swift in Sources */,
-				056352E31CD1301A009D4E1A /* KCPoint3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

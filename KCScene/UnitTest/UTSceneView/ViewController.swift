@@ -17,8 +17,8 @@ class ViewController: NSViewController, SCNSceneRendererDelegate
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let nearpt = KCPoint3(x: 100.0, y: 100.0, z: 100.0)
-		let farpt  = KCPoint3(x:-100.0, y:-100.0, z:-100.0)
+		let nearpt = SCNVector3(x: 100.0, y: 100.0, z: 100.0)
+		let farpt  = SCNVector3(x:-100.0, y:-100.0, z:-100.0)
 
 		sceneView.setup(nearpt, farPoint: farpt)
 		sceneView.delegate = self

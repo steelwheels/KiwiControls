@@ -12,8 +12,8 @@ public class KCSceneView: KCView
 {
 	private var mCoreView:		KCSceneViewCore? = nil
 
-	private var mNearPoint	= KCPoint3(x:0.0, y:0.0, z:0.0)
-	private var mFarPoint	= KCPoint3(x:0.0, y:0.0, z:0.0)
+	private var mNearPoint	= SCNVector3(x:0.0, y:0.0, z:0.0)
+	private var mFarPoint	= SCNVector3(x:0.0, y:0.0, z:0.0)
 
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -40,17 +40,17 @@ public class KCSceneView: KCView
 		fatalError("No coreview")
 	}
 
-	public func setup(nearPoint: KCPoint3, farPoint: KCPoint3){
+	public func setup(nearPoint: SCNVector3, farPoint: SCNVector3){
 		mNearPoint = nearPoint
 		mFarPoint  = farPoint
 		coreView().setup(nearPoint, farPoint: farPoint)
 	}
 
-	public var nearPoint: KCPoint3 {
+	public var nearPoint: SCNVector3 {
 		get { return mNearPoint }
 	}
 
-	public var farPoint: KCPoint3 {
+	public var farPoint: SCNVector3 {
 		get { return mFarPoint }
 	}
 

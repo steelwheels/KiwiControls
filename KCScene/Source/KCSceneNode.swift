@@ -9,14 +9,14 @@ import SceneKit
 import Canary
 
 public extension SCNNode {
-	public func lookAt(target: SCNVector3){
-		let srcpos   = self.position.normalize()
-		let dstpos   = (target - self.position).normalize()
-		let dot      = srcpos.dot(dstpos)
-		let rotangle = GLKMathDegreesToRadians(acos(Float(dot)))
-		let rotaxis  = srcpos.cross(dstpos).normalize()
-		let q = GLKQuaternionMakeWithAngleAndAxis(Float(rotangle), Float(rotaxis.x), Float(rotaxis.y), Float(rotaxis.z))
-		self.rotation = SCNVector4(x: CGFloat(q.x), y: CGFloat(q.y), z: CGFloat(q.z), w: CGFloat(q.w))
+	public func lookAt(target: SCNNode){
+		let constraint = SCNLookAtConstraint(target: target)
+		constraint.gimbalLockEnabled = true
+		if var constraints = self.constraints {
+			constraints.append(constraint)
+		} else {
+			self.constraints = [constraint]
+		}
 	}
 
 	public func dumpToConsole(console: CNConsole){

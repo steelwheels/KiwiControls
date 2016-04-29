@@ -13,6 +13,7 @@ public class KCSceneViewCore: KCView
 	@IBOutlet weak var sceneView: SCNView!
 
 	private var mScene	: SCNScene?	= nil
+	private var mFarNode	: SCNNode?	= nil
 	private var mCameraNode	: SCNNode?	= nil
 	private var mLightNode	: SCNNode?	= nil
 
@@ -24,21 +25,25 @@ public class KCSceneViewCore: KCView
 		super.init(coder: coder)
 	}
 
-	public func setup(nearPoint: KCPoint3, farPoint: KCPoint3){
+	public func setup(nearPoint: SCNVector3, farPoint: SCNVector3){
 		let scene = SCNScene()
 		sceneView.scene		= scene
 		mScene			= scene
 
 		let root = scene.rootNode
 
+		let farnode		= SCNNode()
+		farnode.position	= SCNVector3(farPoint.x, farPoint.y, farPoint.z)
+		mFarNode		= farnode
+		
 		mLightNode	= KCSceneViewCore.allocateLight(nearPoint)
 		root.addChildNode(mLightNode!)
 
-		mCameraNode	= KCSceneViewCore.allocateCamera(nearPoint, targetPosition: farPoint)
+		mCameraNode	= KCSceneViewCore.allocateCamera(nearPoint, targetNode: farnode)
 		root.addChildNode(mCameraNode!)
 	}
 
-	private class func allocateLight(position: KCPoint3) -> SCNNode {
+	private class func allocateLight(position: SCNVector3) -> SCNNode {
 		let node	= SCNNode()
 		let light	= SCNLight()
 		node.light	= light
@@ -47,15 +52,15 @@ public class KCSceneViewCore: KCView
 		return node
 	}
 
-	private class func allocateCamera(sourcePosition: KCPoint3, targetPosition: KCPoint3) -> SCNNode {
+	private class func allocateCamera(sourcePosition: SCNVector3, targetNode: SCNNode) -> SCNNode {
 		let node	= SCNNode()
 		let camera	= SCNCamera()
-		node.position	= SCNVector3(sourcePosition.x, sourcePosition.y, sourcePosition.z)
 		node.camera	= camera
-		node.lookAt(SCNVector3(targetPosition.x, targetPosition.y, targetPosition.z))
+		node.lookAt(targetNode)
+		node.position	= SCNVector3(sourcePosition.x, sourcePosition.y, sourcePosition.z)
 
 		/* get max distance */
-		let diffpt = sourcePosition - targetPosition
+		let diffpt = sourcePosition - targetNode.position
 		camera.zNear = 1.0
 		camera.zFar  = Double(diffpt.length())
 
