@@ -11,7 +11,7 @@ import KCScene
 import SceneKit
 import Canary
 
-class ViewController: NSViewController, SCNSceneRendererDelegate
+class ViewController: NSViewController
 {
 	@IBOutlet weak var sceneView: KCSceneView!
 
@@ -21,7 +21,6 @@ class ViewController: NSViewController, SCNSceneRendererDelegate
 		let farpt  = SCNVector3(x:-100.0, y:-100.0, z:-100.0)
 
 		sceneView.setup(nearpt, farPoint: farpt)
-		sceneView.delegate = self
 
 		let console = CNTextConsole()
 
@@ -65,9 +64,6 @@ class ViewController: NSViewController, SCNSceneRendererDelegate
 		didSet {
 		// Update the view, if already loaded.
 		}
-	}
-
-	internal func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
 	}
 }
 

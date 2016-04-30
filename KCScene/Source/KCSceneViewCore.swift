@@ -67,12 +67,6 @@ public class KCSceneViewCore: KCView
 		return node
 	}
 
-	public func addChildNode(node: SCNNode){
-		if let scene = mScene {
-			scene.rootNode.addChildNode(node)
-		}
-	}
-
 	public func startAnimation() {
 		sceneView.play(self)
 		sceneView.loops	= true
@@ -88,6 +82,15 @@ public class KCSceneViewCore: KCView
 		set(newval)	{ sceneView.delegate = newval }
 	}
 
+	public var rootNode: SCNNode {
+		get {
+			if let scene = mScene {
+				return scene.rootNode
+			}
+			fatalError("No root node")
+		}
+	}
+	
 	public var cameraNode: SCNNode {
 		get {
 			if let node = mCameraNode {

@@ -8,21 +8,25 @@
 import KCControls
 import SceneKit
 
-public class KCSceneView: KCView
+public class KCSceneView: KCView, SCNSceneRendererDelegate
 {
 	private var mCoreView:		KCSceneViewCore? = nil
 
 	private var mNearPoint	= SCNVector3(x:0.0, y:0.0, z:0.0)
 	private var mFarPoint	= SCNVector3(x:0.0, y:0.0, z:0.0)
 
+	public var renderCallback: ((renderer: SCNSceneRenderer, rootNode:SCNNode, updateAtTime: NSTimeInterval) -> Void)? = nil ;
+	
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
 		loadContext() ;
+		coreView().delegate = self
 	}
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
 		loadContext() ;
+		coreView().delegate = self
 	}
 
 	private func loadContext(){
@@ -55,7 +59,7 @@ public class KCSceneView: KCView
 	}
 
 	public func addChildNode(node: SCNNode){
-		coreView().addChildNode(node)
+		coreView().rootNode.addChildNode(node)
 	}
 
 	public func startAnimation() {
@@ -64,11 +68,6 @@ public class KCSceneView: KCView
 
 	public func stopAnimation() {
 		coreView().stopAnimation()
-	}
-
-	public var delegate: SCNSceneRendererDelegate? {
-		get		{ return coreView().delegate }
-		set(newval)	{ coreView().delegate = newval }
 	}
 
 	public var cameraNode: SCNNode {
@@ -85,6 +84,12 @@ public class KCSceneView: KCView
 		}
 		set(newcolor){
 			coreView().backgroundColor = newcolor
+		}
+	}
+	
+	public func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
+		if let callback = renderCallback {
+			callback(renderer: renderer, rootNode: coreView().rootNode, updateAtTime: time)
 		}
 	}
 }
