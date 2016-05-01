@@ -9,6 +9,35 @@ import SceneKit
 import Canary
 
 public extension SCNNode {
+	public var color: NSColor? {
+		get {
+			if let geometry = self.geometry {
+				for material in geometry.materials {
+					if let color = material.diffuse.contents as? NSColor {
+						return color
+					}
+				}
+			}
+			return nil
+		}
+		set(newcolor) {
+			if let geometry = self.geometry {
+				let materials = geometry.materials
+				if materials.count > 0 {
+					for materials in geometry.materials {
+						if let _ = materials.diffuse.contents as? NSColor {
+							materials.diffuse.contents = newcolor
+							return
+						}
+					}
+				}
+				let newmaterial = SCNMaterial()
+				newmaterial.diffuse.contents = newcolor
+				geometry.materials.append(newmaterial)
+			}
+		}
+	}
+	
 	public func lookAt(target: SCNNode){
 		let constraint = SCNLookAtConstraint(target: target)
 		constraint.gimbalLockEnabled = true

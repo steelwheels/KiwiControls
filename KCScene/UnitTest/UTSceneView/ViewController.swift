@@ -21,7 +21,11 @@ class ViewController: NSViewController
 		let farpt  = SCNVector3(x:-100.0, y:-100.0, z:-100.0)
 
 		sceneView.setup(nearpt, farPoint: farpt)
-
+		sceneView.renderCallback = {
+			(renderer: SCNSceneRenderer, rootNode:SCNNode, updateAtTime: NSTimeInterval) -> Void in
+			self.renderNode(rootNode)
+		}
+		
 		let console = CNTextConsole()
 
 		// Do any additional setup after loading the view.
@@ -41,8 +45,9 @@ class ViewController: NSViewController
 		let box0 = SCNNode()
 		box0.geometry = SCNBox(width:20, height:40, length:20, chamferRadius:0.02)
 		box0.position = SCNVector3(x:  80, y:0.0, z:0.0)
+		box0.color    = NSColor.yellowColor()
 		sceneView.addChildNode(box0)
-
+		
 		let box1 = SCNNode()
 		box1.geometry = SCNBox(width:20, height:40, length:20, chamferRadius:0.02)
 		box1.position = SCNVector3(x: -80, y:0.0, z:0.0)
@@ -63,6 +68,22 @@ class ViewController: NSViewController
 	override var representedObject: AnyObject? {
 		didSet {
 		// Update the view, if already loaded.
+		}
+	}
+	
+	private var delta: CGFloat = 1.0
+	
+	private func renderNode(rootNode: SCNNode) {
+		for node in rootNode.childNodes {
+			if let _ = node.geometry as? SCNSphere {
+				let y = node.position.y
+				if y > 50.0 {
+					delta = -1.0
+				} else if y < -50.0 {
+					delta =  1.0
+				}
+				node.position.y += delta
+			}
 		}
 	}
 }
