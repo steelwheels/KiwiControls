@@ -6,7 +6,11 @@
 //  Copyright © 2016年 Steel Wheels Project. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#if defined(TARGET_OS_IPHONE)
+#	import <UIKit/UIKit.h>
+#else
+#	import <Cocoa/Cocoa.h>
+#endif
 
 //! Project version number for KCGraphics.
 FOUNDATION_EXPORT double KCGraphicsVersionNumber;

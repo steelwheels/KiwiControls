@@ -6,7 +6,7 @@ IOS_TMP	= tmpi
 OSX_TMP	= tmpx
 
 # KiwiControl
-all: KCControls KiwiControl KCGraphicsView KCNumberStepper \
+all: KCControls KiwiControl KCGraphics KCScene KCGraphicsView KCNumberStepper \
      KCSwitch KCTableView KCPreferenceTable KCTextFieldExtension \
      KCTextFieldExtension KCTouchableLabel KCSegmentedController \
      KCConsoleView
@@ -38,6 +38,22 @@ KiwiControl: dummy
 	      -f ../../script/install_osx.mk \
 	)
 
+KCGraphics: dummy
+	(cd KCGraphics/iOS && \
+	 make PROJECT_NAME=KCGraphics \
+	      PROJECT_DIR=. \
+	      BUILD_DIR=~/build/KCGraphics.$(IOS_TMP) \
+	      BUILD_ROOT=~/build/KCGraphics.$(IOS_TMP) \
+	      -f ../../script/install_osx.mk \
+	)
+	(cd KCGraphics/OSX && \
+	 make PROJECT_NAME=KCGraphics \
+	      PROJECT_DIR=. \
+	      BUILD_DIR=~/build/KCGraphics.$(OSX_TMP) \
+	      BUILD_ROOT=~/build/KCGraphics.$(OSX_TMP) \
+	      -f ../../script/install_osx.mk \
+	)
+
 KCGraphicsView: dummy
 	(cd KCGraphicsView/iOS && \
 	 make PROJECT_NAME=KCGraphicsView \
@@ -51,6 +67,15 @@ KCGraphicsView: dummy
 	      PROJECT_DIR=. \
 	      BUILD_DIR=~/build/KCGraphicsView.$(OSX_TMP) \
 	      BUILD_ROOT=~/build/KCGraphicsView.$(OSX_TMP) \
+	      -f ../../script/install_osx.mk \
+	)
+
+KCScene: dummy
+	(cd KCScene/OSX && \
+	 make PROJECT_NAME=KCScene \
+	      PROJECT_DIR=. \
+	      BUILD_DIR=~/build/KCScene.$(OSX_TMP) \
+	      BUILD_ROOT=~/build/KCScene.$(OSX_TMP) \
 	      -f ../../script/install_osx.mk \
 	)
 
