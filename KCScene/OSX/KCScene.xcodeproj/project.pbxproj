@@ -17,6 +17,8 @@
 		058D05B41CC687140007796B /* KCSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D05B31CC687140007796B /* KCSceneView.swift */; };
 		058D05B61CC687B70007796B /* KCSceneViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D05B51CC687B70007796B /* KCSceneViewCore.swift */; };
 		058D05B81CC6882A0007796B /* KCSceneViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058D05B71CC6882A0007796B /* KCSceneViewCore.xib */; };
+		05B76AAA1CD6AED200DE2F26 /* KCGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B76AA91CD6AED200DE2F26 /* KCGraphics.framework */; };
+		05B76AAC1CD6BEE000DE2F26 /* KCSceneGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B76AAB1CD6BEE000DE2F26 /* KCSceneGraphics.swift */; };
 		05EB41461CCBA34A005542D7 /* KCSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB41451CCBA34A005542D7 /* KCSceneNode.swift */; };
 		05EB41481CCBA3BB005542D7 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EB41471CCBA3BB005542D7 /* Canary.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +55,8 @@
 		058D05B31CC687140007796B /* KCSceneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneView.swift; sourceTree = "<group>"; };
 		058D05B51CC687B70007796B /* KCSceneViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneViewCore.swift; sourceTree = "<group>"; };
 		058D05B71CC6882A0007796B /* KCSceneViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCSceneViewCore.xib; sourceTree = "<group>"; };
+		05B76AA91CD6AED200DE2F26 /* KCGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCGraphics.framework; path = ../../../../Library/Frameworks/KCGraphics.framework; sourceTree = "<group>"; };
+		05B76AAB1CD6BEE000DE2F26 /* KCSceneGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneGraphics.swift; sourceTree = "<group>"; };
 		05EB41451CCBA34A005542D7 /* KCSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSceneNode.swift; sourceTree = "<group>"; };
 		05EB41471CCBA3BB005542D7 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05EB41481CCBA3BB005542D7 /* Canary.framework in Frameworks */,
+				05B76AAA1CD6AED200DE2F26 /* KCGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +85,7 @@
 		0531DE5C1CC690D600B6F1B2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				05B76AA91CD6AED200DE2F26 /* KCGraphics.framework */,
 				05EB41471CCBA3BB005542D7 /* Canary.framework */,
 				0531DE5D1CC690FF00B6F1B2 /* KCScene.framework */,
 			);
@@ -144,6 +150,7 @@
 				058D05B51CC687B70007796B /* KCSceneViewCore.swift */,
 				058D05B71CC6882A0007796B /* KCSceneViewCore.xib */,
 				05EB41451CCBA34A005542D7 /* KCSceneNode.swift */,
+				05B76AAB1CD6BEE000DE2F26 /* KCSceneGraphics.swift */,
 				052B0A4D1CCFB2810032F42C /* KCVector3.swift */,
 			);
 			name = Source;
@@ -293,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B76AAC1CD6BEE000DE2F26 /* KCSceneGraphics.swift in Sources */,
 				058D05B61CC687B70007796B /* KCSceneViewCore.swift in Sources */,
 				058D05B41CC687140007796B /* KCSceneView.swift in Sources */,
 				052B0A4E1CCFB2810032F42C /* KCVector3.swift in Sources */,

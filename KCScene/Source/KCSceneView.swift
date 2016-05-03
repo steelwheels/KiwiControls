@@ -6,14 +6,12 @@
  */
 
 import KCControls
+import KCGraphics
 import SceneKit
 
 public class KCSceneView: KCView, SCNSceneRendererDelegate
 {
-	private var mCoreView:		KCSceneViewCore? = nil
-
-	private var mNearPoint	= SCNVector3(x:0.0, y:0.0, z:0.0)
-	private var mFarPoint	= SCNVector3(x:0.0, y:0.0, z:0.0)
+	private var mCoreView:		KCSceneViewCore?	= nil
 
 	public var renderCallback: ((renderer: SCNSceneRenderer, rootNode:SCNNode, updateAtTime: NSTimeInterval) -> Void)? = nil ;
 	
@@ -44,18 +42,8 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 		fatalError("No coreview")
 	}
 
-	public func setup(nearPoint: SCNVector3, farPoint: SCNVector3){
-		mNearPoint = nearPoint
-		mFarPoint  = farPoint
-		coreView().setup(nearPoint, farPoint: farPoint)
-	}
-
-	public var nearPoint: SCNVector3 {
-		get { return mNearPoint }
-	}
-
-	public var farPoint: SCNVector3 {
-		get { return mFarPoint }
+	public func setup(worldRect: KCRect3, lightPoint: KCPoint3, cameraPoint: KCLine3){
+		coreView().setup(worldRect, lightPoint:lightPoint, cameraPoint: cameraPoint)
 	}
 
 	public func addChildNode(node: SCNNode){
@@ -70,8 +58,12 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 		coreView().stopAnimation()
 	}
 
-	public var cameraNode: SCNNode {
-		get { return coreView().cameraNode }
+	public var cameraSourceNode: SCNNode {
+		get { return coreView().cameraSourceNode }
+	}
+	
+	public var cameraDestinationNode: SCNNode {
+		get { return coreView().cameraDestionationNode }
 	}
 
 	public var lightNode: SCNNode {

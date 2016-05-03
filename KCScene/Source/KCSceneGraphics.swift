@@ -1,9 +1,13 @@
-//
-//  KCSceneGraphics.swift
-//  KCScene
-//
-//  Created by Tomoo Hamada on 2016/05/02.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KCSceneGraphics.h
+ * @brief	Define graphics utility functions
+ * @par Copyright
+ *   Copyright (C) 2016 Steel Wheels Project
+ */
 
-import Foundation
+import SceneKit
+import KCGraphics
+
+public func KCPoint3ToVector3(source: KCPoint3) -> SCNVector3 {
+	return SCNVector3(x: source.x, y:source.y, z:source.z)
+}

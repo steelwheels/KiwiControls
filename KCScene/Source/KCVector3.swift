@@ -8,9 +8,10 @@
  */
 
 import SceneKit
+import KCGraphics
 
 extension SCNVector3
-{
+{	
 	func length() -> CGFloat {
 		return sqrt(x*x + y*y + z*z)
 	}
