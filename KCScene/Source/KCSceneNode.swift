@@ -37,7 +37,7 @@ public extension SCNNode {
 			}
 		}
 	}
-	
+
 	public func lookAt(target: SCNNode){
 		let constraint = SCNLookAtConstraint(target: target)
 		constraint.gimbalLockEnabled = true

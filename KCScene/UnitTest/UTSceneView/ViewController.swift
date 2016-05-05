@@ -19,12 +19,12 @@ class ViewController: NSViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let world = KCRect3(origin: KCPoint3(x:0.0, y:0.0, z:0.0),
-		                    size: KCSize3(width: 100.0, height: 100.0, depth: 100.0))
+		//let world = KCRect3(origin: KCPoint3(x:0.0, y:0.0, z:0.0),
+		//                    size: KCSize3(width: 100.0, height: 100.0, depth: 100.0))
 		let camera = KCLine3(fromPoint: KCPoint3(x: 50.0, y: 200.0, z: 50.0),
 		                     toPoint:   KCPoint3(x: 50.0, y: 0.0, z: 50.0))
 		let light  = camera.fromPoint
-		sceneView.setup(world, lightPoint: light, cameraPoint: camera)
+		sceneView.setup(light, cameraPoint: camera)
 		sceneView.renderCallback = {
 			(renderer: SCNSceneRenderer, rootNode:SCNNode, updateAtTime: NSTimeInterval) -> Void in
 			self.renderNode(rootNode)

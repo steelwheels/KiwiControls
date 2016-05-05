@@ -26,7 +26,7 @@ public class KCSceneViewCore: KCView
 		super.init(coder: coder)
 	}
 
-	public func setup(worldRect: KCRect3, lightPoint: KCPoint3, cameraPoint: KCLine3){
+	public func setup(lightPoint: KCPoint3, cameraPoint: KCLine3){
 		let scene = SCNScene()
 		sceneView.scene		= scene
 		mScene			= scene
@@ -56,11 +56,11 @@ public class KCSceneViewCore: KCView
 	private class func allocateCamera(cameraPoint: KCLine3) -> (SCNNode, SCNNode) {
 		let frompt = KCPoint3ToVector3(cameraPoint.fromPoint)
 		let topt   = KCPoint3ToVector3(cameraPoint.toPoint)
-		
+
 		/* Allocate target */
 		let dstnode	 = SCNNode()
 		dstnode.position = topt
-		
+
 		/* Allocate source */
 		let srcnode	= SCNNode()
 		let camera	= SCNCamera()
@@ -99,7 +99,7 @@ public class KCSceneViewCore: KCView
 			fatalError("No root node")
 		}
 	}
-	
+
 	public var cameraSourceNode: SCNNode {
 		get {
 			if let node = mCameraSourceNode {
@@ -108,7 +108,7 @@ public class KCSceneViewCore: KCView
 			fatalError("No camera source node")
 		}
 	}
-	
+
 	public var cameraDestionationNode: SCNNode {
 		get {
 			if let node = mCameraDestinationNode {

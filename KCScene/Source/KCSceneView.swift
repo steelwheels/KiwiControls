@@ -14,7 +14,7 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 	private var mCoreView:		KCSceneViewCore?	= nil
 
 	public var renderCallback: ((renderer: SCNSceneRenderer, rootNode:SCNNode, updateAtTime: NSTimeInterval) -> Void)? = nil ;
-	
+
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
 		loadContext() ;
@@ -42,8 +42,8 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 		fatalError("No coreview")
 	}
 
-	public func setup(worldRect: KCRect3, lightPoint: KCPoint3, cameraPoint: KCLine3){
-		coreView().setup(worldRect, lightPoint:lightPoint, cameraPoint: cameraPoint)
+	public func setup(lightPoint: KCPoint3, cameraPoint: KCLine3){
+		coreView().setup(lightPoint, cameraPoint: cameraPoint)
 	}
 
 	public func addChildNode(node: SCNNode){
@@ -58,10 +58,19 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 		coreView().stopAnimation()
 	}
 
+	public override var description: String {
+		get {
+			let camerapos = coreView().cameraSourceNode.position.description()
+			let lightpos  = coreView().lightNode.position.description()
+			return "(camera " + camerapos + ")\n" +
+			       "(light  " + lightpos + ")"
+		}
+	}
+
 	public var cameraSourceNode: SCNNode {
 		get { return coreView().cameraSourceNode }
 	}
-	
+
 	public var cameraDestinationNode: SCNNode {
 		get { return coreView().cameraDestionationNode }
 	}
@@ -78,7 +87,7 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 			coreView().backgroundColor = newcolor
 		}
 	}
-	
+
 	public func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
 		if let callback = renderCallback {
 			callback(renderer: renderer, rootNode: coreView().rootNode, updateAtTime: time)

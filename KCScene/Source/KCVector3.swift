@@ -11,7 +11,7 @@ import SceneKit
 import KCGraphics
 
 extension SCNVector3
-{	
+{
 	func length() -> CGFloat {
 		return sqrt(x*x + y*y + z*z)
 	}
@@ -39,6 +39,13 @@ extension SCNVector3
 		return SCNVector3Make( ((y * vector.z) - (z * vector.y)),
 		                       ((z * vector.x) - (x * vector.z)),
 		                       ((x * vector.y) - (y * vector.x)))
+	}
+
+	func description() -> String {
+		let xstr = String(format: "%.2f", Float(x))
+		let ystr = String(format: "%.2f", Float(y))
+		let zstr = String(format: "%.2f", Float(z))
+		return "(x:\(xstr), y:\(ystr), z:\(zstr))"
 	}
 }
 
