@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		050E27B71CDCCDFE00733FC1 /* KCLine2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B61CDCCDFE00733FC1 /* KCLine2.swift */; };
 		050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */; };
+		0533714F1CDCFDA900F13590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533714E1CDCFDA900F13590 /* AppDelegate.swift */; };
+		053371511CDCFDAA00F13590 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053371501CDCFDAA00F13590 /* ViewController.swift */; };
+		053371531CDCFDAA00F13590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053371521CDCFDAA00F13590 /* Assets.xcassets */; };
+		053371561CDCFDAA00F13590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053371541CDCFDAA00F13590 /* Main.storyboard */; };
+		053371601CDCFF0700F13590 /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0533715E1CDCFF0300F13590 /* KCConsoleView.framework */; };
 		0546B0BD1CD6509A0049F84E /* KCGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0546B0BC1CD6509A0049F84E /* KCGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		058F231F1CD6519C007FC156 /* KCRect3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F231E1CD6519C007FC156 /* KCRect3.swift */; };
 		058F23211CD65239007FC156 /* KCPoint3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F23201CD65239007FC156 /* KCPoint3.swift */; };
@@ -17,6 +22,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0533715B1CDCFDBA00F13590 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0546B0B01CD6509A0049F84E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05F659B51CD6ACDE00EF3456;
+			remoteInfo = Install;
+		};
 		05F659B91CD6ACE700EF3456 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0546B0B01CD6509A0049F84E /* Project object */;
@@ -29,6 +41,13 @@
 /* Begin PBXFileReference section */
 		050E27B61CDCCDFE00733FC1 /* KCLine2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLine2.swift; sourceTree = "<group>"; };
 		050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntersect2.swift; sourceTree = "<group>"; };
+		0533714C1CDCFDA900F13590 /* UTIntersect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTIntersect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0533714E1CDCFDA900F13590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		053371501CDCFDAA00F13590 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		053371521CDCFDAA00F13590 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		053371551CDCFDAA00F13590 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		053371571CDCFDAA00F13590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0533715E1CDCFF0300F13590 /* KCConsoleView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCConsoleView.framework; path = ../../../../Library/Frameworks/KCConsoleView.framework; sourceTree = "<group>"; };
 		0546B0B91CD6509A0049F84E /* KCGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0546B0BC1CD6509A0049F84E /* KCGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphics.h; sourceTree = "<group>"; };
 		0546B0BE1CD6509A0049F84E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,6 +58,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		053371491CDCFDA900F13590 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				053371601CDCFF0700F13590 /* KCConsoleView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0546B0B51CD6509A0049F84E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -49,11 +76,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		053371431CDCFC4F00F13590 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				0533715D1CDCFE4C00F13590 /* Resources */,
+				0533714D1CDCFDA900F13590 /* UTIntersect */,
+			);
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
+		};
+		0533714D1CDCFDA900F13590 /* UTIntersect */ = {
+			isa = PBXGroup;
+			children = (
+				0533714E1CDCFDA900F13590 /* AppDelegate.swift */,
+				053371501CDCFDAA00F13590 /* ViewController.swift */,
+				053371521CDCFDAA00F13590 /* Assets.xcassets */,
+				053371541CDCFDAA00F13590 /* Main.storyboard */,
+				053371571CDCFDAA00F13590 /* Info.plist */,
+			);
+			path = UTIntersect;
+			sourceTree = "<group>";
+		};
+		0533715D1CDCFE4C00F13590 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0533715E1CDCFF0300F13590 /* KCConsoleView.framework */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		0546B0AF1CD6509A0049F84E = {
 			isa = PBXGroup;
 			children = (
 				058F231D1CD6513D007FC156 /* Source */,
 				0546B0BB1CD6509A0049F84E /* OSX */,
+				053371431CDCFC4F00F13590 /* UnitTest */,
 				0546B0BA1CD6509A0049F84E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				0546B0B91CD6509A0049F84E /* KCGraphics.framework */,
+				0533714C1CDCFDA900F13590 /* UTIntersect.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +181,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		0533714B1CDCFDA900F13590 /* UTIntersect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 053371581CDCFDAA00F13590 /* Build configuration list for PBXNativeTarget "UTIntersect" */;
+			buildPhases = (
+				053371481CDCFDA900F13590 /* Sources */,
+				053371491CDCFDA900F13590 /* Frameworks */,
+				0533714A1CDCFDA900F13590 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0533715C1CDCFDBA00F13590 /* PBXTargetDependency */,
+			);
+			name = UTIntersect;
+			productName = UTIntersect;
+			productReference = 0533714C1CDCFDA900F13590 /* UTIntersect.app */;
+			productType = "com.apple.product-type.application";
+		};
 		0546B0B81CD6509A0049F84E /* KCGraphics */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0546B0C11CD6509A0049F84E /* Build configuration list for PBXNativeTarget "KCGraphics" */;
@@ -146,9 +223,13 @@
 		0546B0B01CD6509A0049F84E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					0533714B1CDCFDA900F13590 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					0546B0B81CD6509A0049F84E = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -163,6 +244,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 0546B0AF1CD6509A0049F84E;
 			productRefGroup = 0546B0BA1CD6509A0049F84E /* Products */;
@@ -171,11 +253,21 @@
 			targets = (
 				0546B0B81CD6509A0049F84E /* KCGraphics */,
 				05F659B51CD6ACDE00EF3456 /* Install */,
+				0533714B1CDCFDA900F13590 /* UTIntersect */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0533714A1CDCFDA900F13590 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				053371531CDCFDAA00F13590 /* Assets.xcassets in Resources */,
+				053371561CDCFDAA00F13590 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0546B0B71CD6509A0049F84E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -186,6 +278,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		053371481CDCFDA900F13590 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				053371511CDCFDAA00F13590 /* ViewController.swift in Sources */,
+				0533714F1CDCFDA900F13590 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0546B0B41CD6509A0049F84E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -202,6 +303,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0533715C1CDCFDBA00F13590 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05F659B51CD6ACDE00EF3456 /* Install */;
+			targetProxy = 0533715B1CDCFDBA00F13590 /* PBXContainerItemProxy */;
+		};
 		05F659BA1CD6ACE700EF3456 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0546B0B81CD6509A0049F84E /* KCGraphics */;
@@ -209,7 +315,50 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		053371541CDCFDAA00F13590 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				053371551CDCFDAA00F13590 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		053371591CDCFDAA00F13590 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/UTIntersect/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTIntersect";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0533715A1CDCFDAA00F13590 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/UTIntersect/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTIntersect";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		0546B0BF1CD6509A0049F84E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -307,9 +456,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(HOME)/Library/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -329,9 +482,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(HOME)/Library/Frameworks",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -367,6 +524,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		053371581CDCFDAA00F13590 /* Build configuration list for PBXNativeTarget "UTIntersect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				053371591CDCFDAA00F13590 /* Debug */,
+				0533715A1CDCFDAA00F13590 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		0546B0B31CD6509A0049F84E /* Build configuration list for PBXProject "KCGraphics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
