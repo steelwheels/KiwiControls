@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050E27B71CDCCDFE00733FC1 /* KCLine2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B61CDCCDFE00733FC1 /* KCLine2.swift */; };
+		050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */; };
 		0546B0BD1CD6509A0049F84E /* KCGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0546B0BC1CD6509A0049F84E /* KCGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		058F231F1CD6519C007FC156 /* KCRect3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F231E1CD6519C007FC156 /* KCRect3.swift */; };
 		058F23211CD65239007FC156 /* KCPoint3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F23201CD65239007FC156 /* KCPoint3.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050E27B61CDCCDFE00733FC1 /* KCLine2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLine2.swift; sourceTree = "<group>"; };
+		050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntersect2.swift; sourceTree = "<group>"; };
 		0546B0B91CD6509A0049F84E /* KCGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0546B0BC1CD6509A0049F84E /* KCGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphics.h; sourceTree = "<group>"; };
 		0546B0BE1CD6509A0049F84E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				0546B0BC1CD6509A0049F84E /* KCGraphics.h */,
+				050E27B61CDCCDFE00733FC1 /* KCLine2.swift */,
+				050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */,
 				058F23201CD65239007FC156 /* KCPoint3.swift */,
 				058F23221CD65364007FC156 /* KCSize3.swift */,
 				05F659BB1CD6AD8300EF3456 /* KCLine3.swift */,
@@ -187,7 +193,9 @@
 				058F23231CD65364007FC156 /* KCSize3.swift in Sources */,
 				05F659BC1CD6AD8300EF3456 /* KCLine3.swift in Sources */,
 				058F23211CD65239007FC156 /* KCPoint3.swift in Sources */,
+				050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */,
 				058F231F1CD6519C007FC156 /* KCRect3.swift in Sources */,
+				050E27B71CDCCDFE00733FC1 /* KCLine2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +392,7 @@
 				05F659B71CD6ACDE00EF3456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
