@@ -2,8 +2,9 @@
 #
 #
 
-all: document_dir
+all: dummy
 	(cd $(PROJECT_DIR) ; \
+	 mkdir -p $(DOCUMENT_DIR) ; \
 	 jazzy -o $(DOCUMENT_DIR) \
 	   --author "Steel Wheels Project" \
 	   --author_url "https://sites.google.com/site/steelwheelsproject/" \
@@ -11,11 +12,6 @@ all: document_dir
 	   --module $(MODULE_NAME) \
 	   --github_url https://github.com/steelwheels/$(GITHUB_NAME) \
 	)
-
-document_dir: dummy
-	if [ ! -d ../Document ] ; then \
-		mkdir ../Document ; \
-	fi
 
 dummy:
 
