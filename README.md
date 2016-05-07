@@ -13,18 +13,7 @@ This software is produced by [Steel Wheels Project](https://sites.google.com/sit
 Required software
 -----------------
 Following frameworks/libraries are required to build this framework.
-*  [CoconutGraphics](https://github.com/steelwheels/CoconutGraphics), require by KCGraphicsView
-
-Controllers in this package
----------------------------
-* KiwiControl:		Common function library for the other controls
-* PzTenKeyView:		Ten Key View implementation based on UICollectionView
-* PzSheetView:		Table view to display expression and it's result value
-* KCButtonTable:	Popup menu which has some buttons
-* KCPreferenceTable:	Template of the reference page of the application
-* KCTouchableLabel:	The sub class of UILabel to catch the touch event
-* KCGraphics:		View classes for bitmap graphics
-* KCConsoleView:  Non-editable text view with vertical scroll bar
+*  [Canary Framework](http://steelwheels.github.io/Canary/)
 
 References
 ----------

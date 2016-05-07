@@ -15,6 +15,8 @@
 		053371561CDCFDAA00F13590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053371541CDCFDAA00F13590 /* Main.storyboard */; };
 		053371601CDCFF0700F13590 /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0533715E1CDCFF0300F13590 /* KCConsoleView.framework */; };
 		0546B0BD1CD6509A0049F84E /* KCGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0546B0BC1CD6509A0049F84E /* KCGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		057065601CDD80DC003FF4E1 /* UTIntersect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570655F1CDD80DC003FF4E1 /* UTIntersect.swift */; };
+		057065621CDD828B003FF4E1 /* KCPoint2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057065611CDD828B003FF4E1 /* KCPoint2.swift */; };
 		058F231F1CD6519C007FC156 /* KCRect3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F231E1CD6519C007FC156 /* KCRect3.swift */; };
 		058F23211CD65239007FC156 /* KCPoint3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F23201CD65239007FC156 /* KCPoint3.swift */; };
 		058F23231CD65364007FC156 /* KCSize3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F23221CD65364007FC156 /* KCSize3.swift */; };
@@ -51,6 +53,8 @@
 		0546B0B91CD6509A0049F84E /* KCGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0546B0BC1CD6509A0049F84E /* KCGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphics.h; sourceTree = "<group>"; };
 		0546B0BE1CD6509A0049F84E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0570655F1CDD80DC003FF4E1 /* UTIntersect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTIntersect.swift; sourceTree = "<group>"; };
+		057065611CDD828B003FF4E1 /* KCPoint2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint2.swift; sourceTree = "<group>"; };
 		058F231E1CD6519C007FC156 /* KCRect3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRect3.swift; sourceTree = "<group>"; };
 		058F23201CD65239007FC156 /* KCPoint3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint3.swift; sourceTree = "<group>"; };
 		058F23221CD65364007FC156 /* KCSize3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSize3.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			children = (
 				0533714E1CDCFDA900F13590 /* AppDelegate.swift */,
 				053371501CDCFDAA00F13590 /* ViewController.swift */,
+				0570655F1CDD80DC003FF4E1 /* UTIntersect.swift */,
 				053371521CDCFDAA00F13590 /* Assets.xcassets */,
 				053371541CDCFDAA00F13590 /* Main.storyboard */,
 				053371571CDCFDAA00F13590 /* Info.plist */,
@@ -138,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				0546B0BC1CD6509A0049F84E /* KCGraphics.h */,
+				057065611CDD828B003FF4E1 /* KCPoint2.swift */,
 				050E27B61CDCCDFE00733FC1 /* KCLine2.swift */,
 				050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */,
 				058F23201CD65239007FC156 /* KCPoint3.swift */,
@@ -282,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057065601CDD80DC003FF4E1 /* UTIntersect.swift in Sources */,
 				053371511CDCFDAA00F13590 /* ViewController.swift in Sources */,
 				0533714F1CDCFDA900F13590 /* AppDelegate.swift in Sources */,
 			);
@@ -292,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058F23231CD65364007FC156 /* KCSize3.swift in Sources */,
+				057065621CDD828B003FF4E1 /* KCPoint2.swift in Sources */,
 				05F659BC1CD6AD8300EF3456 /* KCLine3.swift in Sources */,
 				058F23211CD65239007FC156 /* KCPoint3.swift in Sources */,
 				050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */,
@@ -531,6 +539,7 @@
 				0533715A1CDCFDAA00F13590 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0546B0B31CD6509A0049F84E /* Build configuration list for PBXProject "KCGraphics" */ = {
 			isa = XCConfigurationList;

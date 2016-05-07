@@ -16,6 +16,12 @@ public struct KCLine2
 		self.toPoint   = toPoint
 		self.fromPoint = fromPoint
 	}
+	
+	public func description() -> String {
+		let fromstr = self.fromPoint.description
+		let tostr   = self.toPoint.description
+		return "(line \(fromstr) -> \(tostr))"
+	}
 }
 
 public func KCZeroLine2() -> KCLine2 {

@@ -678,9 +678,13 @@
                             </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9ty-aS-KZt" secondAttribute="bottom" id="40f-2p-mQv"/>
                             <constraint firstAttribute="bottom" secondItem="9ty-aS-KZt" secondAttribute="bottom" id="FUh-i6-7cY"/>
+                            <constraint firstItem="9ty-aS-KZt" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="QK1-Lr-OZM"/>
                             <constraint firstItem="9ty-aS-KZt" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="XUO-nN-Muk"/>
                             <constraint firstItem="9ty-aS-KZt" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Yek-LM-Tsf"/>
+                            <constraint firstAttribute="trailing" secondItem="9ty-aS-KZt" secondAttribute="trailing" id="jCb-TP-r7p"/>
+                            <constraint firstItem="9ty-aS-KZt" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="jEu-w9-bEE"/>
                             <constraint firstAttribute="trailing" secondItem="9ty-aS-KZt" secondAttribute="trailing" id="sEZ-j3-ibm"/>
                         </constraints>
                     </view>

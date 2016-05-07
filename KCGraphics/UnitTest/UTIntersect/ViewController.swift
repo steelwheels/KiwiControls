@@ -19,6 +19,9 @@ class ViewController: NSViewController
 		// Do any additional setup after loading the view.
 		let console = KCConsole(view: consoleView)
 		console.print(string: "Hello, World\n")
+		
+		let testintersect = UTIntersect(console: console)
+		testintersect.executeTest()
 	}
 
 	override var representedObject: AnyObject? {
