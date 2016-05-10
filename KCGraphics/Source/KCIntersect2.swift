@@ -9,7 +9,7 @@ import CoreGraphics
 
 public class KCIntersect2
 {
-	/* Reference: http://www5d.biglobe.ne.jp/~tomoya03/shtml/algorithm/Intersection.htm */
+	/* Reference: http://www.hiramine.com/programming/graphics/2d_segmentintersection.html */
 	
 	/**
 	   Get intersection point of line0(p0s and p0e) and line1(p1s, p1e)
