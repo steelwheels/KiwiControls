@@ -11,30 +11,20 @@ public class KCIntersect2
 {
 	/* Reference: http://www5d.biglobe.ne.jp/~tomoya03/shtml/algorithm/Intersection.htm */
 	
-	public class func hasIntersection(lineA: KCLine2, lineB: KCLine2) -> Bool {
-		return hasIntersectionA(lineA.fromPoint, p2: lineA.toPoint, p3: lineB.fromPoint, p4: lineB.toPoint) &&
-		       hasIntersectionB(lineA.fromPoint, p2: lineA.toPoint, p3: lineB.fromPoint, p4: lineB.toPoint)
-	}
-	
-	private class func hasIntersectionA(p1: CGPoint, p2:CGPoint, p3: CGPoint, p4:CGPoint) -> Bool {
-		var hasintersect: Bool = true
-		if (((p1.x - p2.x) * (p3.y - p1.y) + (p1.y - p2.y) * (p1.x - p3.x)) *
-		    ((p1.x - p2.x) * (p4.y - p1.y) + (p1.y - p2.y) * (p1.x - p4.x)) > 0) {
-			hasintersect = false
+	/**
+	   Get intersection point of line0(p0s and p0e) and line1(p1s, p1e)
+	 */
+	public class func hasIntersection(p0s:CGPoint, p0e:CGPoint, p1s:CGPoint, p1e:CGPoint) -> (Bool, CGPoint) {
+		let denom =   (p0e.x - p0s.x) * (p1e.y - p1s.y) - (p0e.y - p0s.y) * (p1e.x - p1s.x)
+		if denom != 0.0 {
+			let diff = p1s - p0s
+			let dr   = ((p1e.y - p1s.y) * diff.x - (p1e.x - p1s.x) * diff.y) / denom
+			//let ds   = ((p0e.y - p0s.y) * diff.x - (p0e.x - p0s.x) * diff.y) / denom
+			let intersect = p0s + dr * (p0e - p0s)
+			return (true, intersect)
+		} else {
+			return (false, CGPointZero)
 		}
-		return hasintersect
-	}
-	
-	private class func hasIntersectionB(p1: CGPoint, p2:CGPoint, p3: CGPoint, p4:CGPoint) -> Bool {
-		var hasintersect: Bool = false
-		if (((p1.x - p2.x) * (p3.y - p1.y) + (p1.y - p2.y) * (p1.x - p3.x)) *
-		    ((p1.x - p2.x) * (p4.y - p1.y) + (p1.y - p2.y) * (p1.x - p4.x)) < 0.0){
-			if (((p3.x - p4.x) * (p1.y - p3.y) + (p3.y - p4.y) * (p3.x - p1.x)) *
-			    ((p3.x - p4.x) * (p2.y - p3.y) + (p3.y - p4.y) * (p3.x - p2.x)) < 0){
-				hasintersect = true
-			}
-		}
-		return hasintersect
 	}
 }
 

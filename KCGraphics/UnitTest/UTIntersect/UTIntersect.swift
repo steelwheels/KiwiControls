@@ -26,12 +26,14 @@ public class UTIntersect
 		
 		let line3 = KCLine2(fromPoint: CGPointMake( 0.0, 1.0), toPoint: CGPointMake(1.0, 0.0))
 		let line4 = KCLine2(fromPoint: CGPointMake( 0.0, 0.5), toPoint: CGPointMake(1.0, 0.5))
+		let line5 = KCLine2(fromPoint: CGPointMake( 0.0, 1.0), toPoint: CGPointMake(1.0, 1.0))
 		
 		var result = true
 		mConsole.print(string: "[Test Intersect Evaluation]\n")
-		result = testIntersect(false, line0: line0, line1: line1) && result
+		result = testIntersect(true, line0: line0, line1: line1) && result
 		result = testIntersect(true,  line0: line2, line1: line3) && result
 		result = testIntersect(true,  line0: line2, line1: line4) && result
+		result = testIntersect(false,  line0: line4, line1: line5) && result
 		
 		if result {
 			mConsole.print(string: "[SUMMARY] OK\n")
@@ -45,17 +47,20 @@ public class UTIntersect
 	{
 		let line0desc = line0.description()
 		let line1desc = line1.description()
-		let value  = KCIntersect2.hasIntersection(line0, lineB: line1) ;
+		let (hassect, sectpt)  = KCIntersect2.hasIntersection(line0.fromPoint, p0e: line0.toPoint, p1s: line1.fromPoint, p1e: line1.toPoint)
 		var result: Bool
-		var resstr: String
-		if (value && expect) || (!value && !expect) {
+		if (hassect && expect) || (!hassect && !expect) {
 			result = true
-			resstr = "OK"
 		} else {
 			result = false
-			resstr = "Wrong"
 		}
-		mConsole.print(string: " from \(line0desc) to \(line1desc) -> value \(value) -> result \(resstr)\n")
+		let sectstr: String
+		if hassect {
+			sectstr = sectpt.description
+		} else {
+			sectstr = "nil"
+		}
+		mConsole.print(string: " from \(line0desc) to \(line1desc) -> hassect \(hassect), sectpt \(sectstr) -> result \(result)\n")
 		return result
 	}
 }
