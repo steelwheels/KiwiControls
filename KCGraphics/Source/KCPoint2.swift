@@ -13,6 +13,14 @@ public extension CGPoint {
 			return "(\(self.x), \(self.y))"
 		}
 	}
+	
+	public func dot(src: CGPoint) -> CGFloat {
+		return (self.x * src.x) + (self.y * src.y)
+	}
+	
+	public func cross(src: CGPoint) -> CGFloat {
+		return (self.x * src.y) - (self.y * src.x)
+	}
 }
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {

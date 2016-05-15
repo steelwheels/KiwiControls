@@ -13,6 +13,8 @@ class ViewController: NSViewController
 {
 	@IBOutlet weak var consoleView: KCConsoleView!
 	
+	private var testIntersect: UTIntersect? = nil
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -20,8 +22,8 @@ class ViewController: NSViewController
 		let console = KCConsole(view: consoleView)
 		console.print(string: "Hello, World\n")
 		
-		let testintersect = UTIntersect(console: console)
-		testintersect.executeTest()
+		testIntersect = UTIntersect(console: console)
+		testIntersect!.executeTest()
 	}
 
 	override var representedObject: AnyObject? {

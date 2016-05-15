@@ -9,22 +9,45 @@ import CoreGraphics
 
 public class KCIntersect2
 {
-	/* Reference: http://www.hiramine.com/programming/graphics/2d_segmentintersection.html */
-	
 	/**
-	   Get intersection point of line0(p0s and p0e) and line1(p1s, p1e)
+	  Get the time and position where the two objects conflict
+	  Reference: http://marupeke296.com/COL_3D_No9_GetSphereColliTimeAndPos.html
 	 */
-	public class func hasIntersection(p0s:CGPoint, p0e:CGPoint, p1s:CGPoint, p1e:CGPoint) -> (Bool, CGPoint) {
-		let denom =   (p0e.x - p0s.x) * (p1e.y - p1s.y) - (p0e.y - p0s.y) * (p1e.x - p1s.x)
-		if denom != 0.0 {
-			let diff = p1s - p0s
-			let dr   = ((p1e.y - p1s.y) * diff.x - (p1e.x - p1s.x) * diff.y) / denom
-			//let ds   = ((p0e.y - p0s.y) * diff.x - (p0e.x - p0s.x) * diff.y) / denom
-			let intersect = p0s + dr * (p0e - p0s)
-			return (true, intersect)
+	public class func calculateCollisionPosition(
+		radiusA			: CGFloat,
+		motionA			: KCLine2,
+		radiusB			: CGFloat,
+		motionB			: KCLine2
+	) -> (Bool, CGFloat, CGPoint) {
+		let fromVector		= motionB.fromPoint - motionA.fromPoint
+		let toVector		= motionB.toPoint   - motionA.toPoint
+		let diffVector		= toVector	    - fromVector
+		
+		let P = diffVector.x * diffVector.x + diffVector.y * diffVector.y
+		if P == 0.0 {
+			return (false, 0.0, CGPointZero)
+		}
+		let Q = fromVector.x * diffVector.x + fromVector.y * diffVector.y
+		let R = fromVector.x * fromVector.x + fromVector.y * fromVector.y
+		
+		let radius = radiusA + radiusB
+
+		let judge = Q*Q - P*(R - (radius*radius))
+		if judge < 0 {
+			return (false, 0.0, CGPointZero)
+		}
+		
+		let t_plus  = (-Q + sqrt(judge)) / P ;
+		let t_minus = (-Q - sqrt(judge)) / P ;
+		
+		if 0.0<=t_minus && t_minus<=1.0 {
+			let pos = motionA.fromPoint + t_minus * (motionA.toPoint - motionA.fromPoint)
+			return (true, t_minus, pos)
+		} else if 0.0<=t_plus && t_plus<=1.0 {
+			let pos = motionA.fromPoint + t_plus * (motionA.toPoint - motionA.fromPoint)
+			return (true, t_plus, pos)
 		} else {
-			return (false, CGPointZero)
+			return (false, 0.0, CGPointZero)
 		}
 	}
 }
-
