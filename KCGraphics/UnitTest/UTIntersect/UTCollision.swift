@@ -11,7 +11,7 @@ import KCGraphics
 import KCConsoleView
 import CoreGraphics
 
-public class UTIntersect
+public class UTCollision
 {
 	private var mConsole: KCConsole
 	
@@ -29,16 +29,16 @@ public class UTIntersect
 		//let line5 = KCLine2(fromPoint: CGPointMake( 0.0, 1.0), toPoint: CGPointMake( 1.0, 1.0))
 		
 		var result = true
-		mConsole.print(string: "[Test Intersect Evaluation]\n")
+		mConsole.print(string: "[Test Collision]\n")
 		result = testIntersect(true,  line0: line0, line1: line4) && result
 		//result = testIntersect(true,  line0: line2, line1: line3) && result
 		result = testIntersect(false, line0: line1, line1: line3) && result
 		result = testIntersect(true, line0: line2, line1: line3) && result
 
 		if result {
-			mConsole.print(string: "[SUMMARY] OK\n")
+			mConsole.print(string: "[RESULT] OK\n")
 		} else {
-			mConsole.print(string: "[SUMMARY] Error\n")
+			mConsole.print(string: "[RESULT] Error\n")
 		}
 		return result
 	}
@@ -55,9 +55,9 @@ public class UTIntersect
 		let (hassect, secttime, sectpoint) = KCIntersect2.calculateCollisionPosition(radiusA, motionA: line0, radiusB: radiusB, motionB: line1)
 		if hassect {
 			let sectdesc = sectpoint.description
-			mConsole.print(string: " -> Has intersection: time:\(secttime), point:\(sectdesc)\n")
+			mConsole.print(string: " -> Has collision: time:\(secttime), point:\(sectdesc)\n")
 		} else {
-			mConsole.print(string: " -> Has no intersection\n")
+			mConsole.print(string: " -> Has no collision\n")
 		}
 		return hassect == expect
 	}

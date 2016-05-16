@@ -21,6 +21,17 @@ public extension CGPoint {
 	public func cross(src: CGPoint) -> CGFloat {
 		return (self.x * src.y) - (self.y * src.x)
 	}
+	
+	public func normalize() -> CGPoint {
+		let len = sqrt(self.x * self.x + self.y * self.y)
+		var result : CGPoint
+		if len != 0.0 {
+			result = CGPointMake(self.x/len, self.y/len)
+		} else {
+			result = CGPointMake(0.0, 0.0)
+		}
+		return result
+	}
 }
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {

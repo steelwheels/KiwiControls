@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		050E27B71CDCCDFE00733FC1 /* KCLine2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B61CDCCDFE00733FC1 /* KCLine2.swift */; };
 		050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */; };
+		05287EC71CEA17FC008AE625 /* UTReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05287EC61CEA17FC008AE625 /* UTReflection.swift */; };
 		0533714F1CDCFDA900F13590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533714E1CDCFDA900F13590 /* AppDelegate.swift */; };
 		053371511CDCFDAA00F13590 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053371501CDCFDAA00F13590 /* ViewController.swift */; };
 		053371531CDCFDAA00F13590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053371521CDCFDAA00F13590 /* Assets.xcassets */; };
 		053371561CDCFDAA00F13590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053371541CDCFDAA00F13590 /* Main.storyboard */; };
 		053371601CDCFF0700F13590 /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0533715E1CDCFF0300F13590 /* KCConsoleView.framework */; };
 		0546B0BD1CD6509A0049F84E /* KCGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0546B0BC1CD6509A0049F84E /* KCGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		057065601CDD80DC003FF4E1 /* UTIntersect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570655F1CDD80DC003FF4E1 /* UTIntersect.swift */; };
+		057065601CDD80DC003FF4E1 /* UTCollision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570655F1CDD80DC003FF4E1 /* UTCollision.swift */; };
 		057065621CDD828B003FF4E1 /* KCPoint2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057065611CDD828B003FF4E1 /* KCPoint2.swift */; };
 		058F231F1CD6519C007FC156 /* KCRect3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F231E1CD6519C007FC156 /* KCRect3.swift */; };
 		058F23211CD65239007FC156 /* KCPoint3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F23201CD65239007FC156 /* KCPoint3.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		050E27B61CDCCDFE00733FC1 /* KCLine2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLine2.swift; sourceTree = "<group>"; };
 		050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntersect2.swift; sourceTree = "<group>"; };
+		05287EC61CEA17FC008AE625 /* UTReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTReflection.swift; sourceTree = "<group>"; };
 		0533714C1CDCFDA900F13590 /* UTIntersect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTIntersect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0533714E1CDCFDA900F13590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053371501CDCFDAA00F13590 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,7 +55,7 @@
 		0546B0B91CD6509A0049F84E /* KCGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0546B0BC1CD6509A0049F84E /* KCGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphics.h; sourceTree = "<group>"; };
 		0546B0BE1CD6509A0049F84E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0570655F1CDD80DC003FF4E1 /* UTIntersect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTIntersect.swift; sourceTree = "<group>"; };
+		0570655F1CDD80DC003FF4E1 /* UTCollision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCollision.swift; sourceTree = "<group>"; };
 		057065611CDD828B003FF4E1 /* KCPoint2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint2.swift; sourceTree = "<group>"; };
 		058F231E1CD6519C007FC156 /* KCRect3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRect3.swift; sourceTree = "<group>"; };
 		058F23201CD65239007FC156 /* KCPoint3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint3.swift; sourceTree = "<group>"; };
@@ -95,7 +97,8 @@
 			children = (
 				0533714E1CDCFDA900F13590 /* AppDelegate.swift */,
 				053371501CDCFDAA00F13590 /* ViewController.swift */,
-				0570655F1CDD80DC003FF4E1 /* UTIntersect.swift */,
+				0570655F1CDD80DC003FF4E1 /* UTCollision.swift */,
+				05287EC61CEA17FC008AE625 /* UTReflection.swift */,
 				053371521CDCFDAA00F13590 /* Assets.xcassets */,
 				053371541CDCFDAA00F13590 /* Main.storyboard */,
 				053371571CDCFDAA00F13590 /* Info.plist */,
@@ -288,7 +291,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				057065601CDD80DC003FF4E1 /* UTIntersect.swift in Sources */,
+				057065601CDD80DC003FF4E1 /* UTCollision.swift in Sources */,
+				05287EC71CEA17FC008AE625 /* UTReflection.swift in Sources */,
 				053371511CDCFDAA00F13590 /* ViewController.swift in Sources */,
 				0533714F1CDCFDA900F13590 /* AppDelegate.swift in Sources */,
 			);

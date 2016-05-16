@@ -13,7 +13,8 @@ class ViewController: NSViewController
 {
 	@IBOutlet weak var consoleView: KCConsoleView!
 	
-	private var testIntersect: UTIntersect? = nil
+	private var testCollision:  UTCollision? = nil
+	private var testReflection: UTReflection? = nil
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -22,8 +23,19 @@ class ViewController: NSViewController
 		let console = KCConsole(view: consoleView)
 		console.print(string: "Hello, World\n")
 		
-		testIntersect = UTIntersect(console: console)
-		testIntersect!.executeTest()
+		var result: Bool = true
+		
+		testCollision = UTCollision(console: console)
+		result = testCollision!.executeTest() && result
+		
+		testReflection = UTReflection(console: console)
+		result = testReflection!.executeTest() && result
+		
+		if result {
+			Swift.print("[SUMMARY] OK")
+		} else {
+			Swift.print("[SUMMARY] NG")
+		}
 	}
 
 	override var representedObject: AnyObject? {

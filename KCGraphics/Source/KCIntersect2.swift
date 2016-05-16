@@ -50,4 +50,30 @@ public class KCIntersect2
 			return (false, 0.0, CGPointZero)
 		}
 	}
+	
+	/**
+	  Calculate updated speed after collision
+	  Reference: http://marupeke296.com/COL_MV_No1_HowToCalcVelocity.html
+	 */
+	public class func calculateRefrectionVelocity (
+		massA			: CGFloat,
+		positionA		: CGPoint,
+		velocityA		: CGPoint,
+		refrectionRateA		: CGFloat,
+		massB			: CGFloat,
+		positionB		: CGPoint,
+		velocityB		: CGPoint,
+		refrectionRateB		: CGFloat
+	) -> (CGPoint, CGPoint) // Velocity of object A and B
+	{
+		let totalMass		= massA + massB
+		let refrectionRate	= 1 + refrectionRateA * refrectionRateB
+		let collisionVector	= (positionB - positionA).normalize()
+		let dot			= (velocityA - velocityB).dot(collisionVector)
+		let constVector		= refrectionRate * dot / totalMass * collisionVector
+		
+		let outVelocityA	= -massB * constVector + velocityA
+		let outVelocityB	=  massA * constVector + velocityB
+		return (outVelocityA, outVelocityB)
+	}	
 }
