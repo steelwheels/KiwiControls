@@ -1,0 +1,23 @@
+body {
+  font-family:  Arial, Roboto, “Droid Sans”, “游ゴシック”, YuGothic, “ヒラギノ角ゴ ProN W3”, “Hiragino Kaku Gothic ProN”, “メイリオ”, Meiryo, sans-serif;
+}
+section　{
+  display:block;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {　/*「,（カンマ）」で区切って複数のセレクタを指定しています*/
+  border-collapse: collapse;
+  border:1px solid #333;
+}
+
+img {
+  padding-left: 2em ;
+}
+
+p {
+  padding-left: 1em ;
+}
