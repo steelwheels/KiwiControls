@@ -3,10 +3,10 @@ KCGraphics
 
 Overview
 --------
-KCGraphics contains primitive data structure and functions for 2D/3D graphics.
-This framework is contained in a KiwiControls package.
+KCContols contains general purpose functions for View objects.
 
 Copyright
 ---------
 This software is produced by [Steel Wheels Project](http://steelwheels.github.io) and distributed under
 [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
+

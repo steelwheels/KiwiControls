@@ -7,7 +7,7 @@ KiwiControls is a package of the implementation of controls for iOS/OSX applicat
 
 Copyright
 ---------
-This software is produced by [Steel Wheels Project](https://sites.google.com/site/steelwheelsproject/) and distributed under
+This software is produced by [Steel Wheels Project](http://steelwheels.github.io) and distributed under
 [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
 Required software
