@@ -1,3 +1,9 @@
+.header_title {
+  text-align: center ;
+  font-size: xx-large ;
+  font-weight: bold ;
+}
+
 body {
   font-family:  Arial, Roboto, “Droid Sans”, “游ゴシック”, YuGothic, “ヒラギノ角ゴ ProN W3”, “Hiragino Kaku Gothic ProN”, “メイリオ”, Meiryo, sans-serif;
 }
