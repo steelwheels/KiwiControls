@@ -34,18 +34,22 @@ public extension CGPoint {
 	}
 }
 
-func + (left: CGPoint, right: CGPoint) -> CGPoint {
+public func + (left: CGPoint, right: CGPoint) -> CGPoint {
 	return CGPointMake(left.x + right.x, left.y + right.y)
 }
 
-func - (left: CGPoint, right: CGPoint) -> CGPoint {
+public func - (left: CGPoint, right: CGPoint) -> CGPoint {
 	return CGPointMake(left.x - right.x, left.y - right.y)
 }
 
-func * (left: CGPoint, right: CGFloat) -> CGPoint {
+public func * (left: CGPoint, right: CGFloat) -> CGPoint {
 	return CGPointMake(left.x * right, left.y * right)
 }
 
-func * (left: CGFloat, right: CGPoint) -> CGPoint {
+public func * (left: CGFloat, right: CGPoint) -> CGPoint {
 	return CGPointMake(left * right.x, left * right.y)
+}
+
+public func / (left: CGPoint, right: CGFloat) -> CGPoint {
+	return CGPointMake(left.x / right, left.y / right)
 }
