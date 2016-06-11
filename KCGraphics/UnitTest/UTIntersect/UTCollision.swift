@@ -20,39 +20,37 @@ public class UTCollision
 	}
 	
 	public func executeTest() -> Bool {
-		let line0 = KCLine2(fromPoint: CGPointMake(  0.0, 0.0), toPoint: CGPointMake(10.0, 0.0))
-		let line1 = KCLine2(fromPoint: CGPointMake(  0.0, 0.0), toPoint: CGPointMake( 0.0, 10.0))
-		let line2 = KCLine2(fromPoint: CGPointMake(  0.0, 0.0), toPoint: CGPointMake(10.0, 10.0))
-		
-		let line3 = KCLine2(fromPoint: CGPointMake( 10.0, 10.0), toPoint: CGPointMake( 0.0, 0.0))
-		let line4 = KCLine2(fromPoint: CGPointMake(  0.0, -5.0), toPoint: CGPointMake(10.0, 5.0))
-		//let line5 = KCLine2(fromPoint: CGPointMake( 0.0, 1.0), toPoint: CGPointMake( 1.0, 1.0))
-		
-		var result = true
-		mConsole.print(string: "[Test Collision]\n")
-		result = testIntersect(true,  line0: line0, line1: line4) && result
-		//result = testIntersect(true,  line0: line2, line1: line3) && result
-		result = testIntersect(false, line0: line1, line1: line3) && result
-		result = testIntersect(true, line0: line2, line1: line3) && result
+		let speedA = CGPointMake( 1.0,  1.0)
+		let speedB = CGPointMake(-1.0, -1.0)
 
-		if result {
-			mConsole.print(string: "[RESULT] OK\n")
-		} else {
-			mConsole.print(string: "[RESULT] Error\n")
-		}
-		return result
+		let result0 = testIntersect(true,  deltaTime: 1.0, startA: CGPointMake(  0.0,  0.0), speedA: speedA,
+		                                                   startB: CGPointMake(  1.0,  1.0), speedB: speedB)
+		let result1 = testIntersect(false, deltaTime: 1.0, startA: CGPointMake(  0.0,  0.0), speedA: speedA,
+								   startB: CGPointMake( 10.0, 10.0), speedB: speedB)
+		let result2 = testIntersect(true,  deltaTime: 1.0, startA: CGPointMake(  0.0,  0.0), speedA: speedA,
+		                                                   startB: CGPointMake(  0.0,  0.0), speedB: speedB)
+		return result0 && result1 && result2
 	}
 	
-	private func testIntersect(expect:Bool, line0: KCLine2, line1: KCLine2) -> Bool
+	private func testIntersect(expect:Bool, deltaTime:CGFloat, startA:CGPoint, speedA:CGPoint, startB:CGPoint, speedB:CGPoint) -> Bool
 	{
-		let radiusA = CGFloat(1.0)
-		let radiusB = CGFloat(1.0)
+		mConsole.print(string: "[Test Collision]\n")
 		
-		let line0desc = line0.description()
-		let line1desc = line1.description()
-		mConsole.print(string: " from \(line0desc) to \(line1desc):")
+		let radiusA = CGFloat(0.1)
+		let radiusB = CGFloat(0.1)
+
+		mConsole.print(string: " A: start:\(startA.description), speed:\(speedA.description)\n")
+		mConsole.print(string: " B: start:\(startB.description), speed:\(speedB.description)")
 		
-		let (hassect, secttime, sectpoint) = KCIntersect2.calculateCollisionPosition(radiusA, motionA: line0, radiusB: radiusB, motionB: line1)
+		let (hassect, secttime, sectpoint) = KCIntersect2.calculateCollisionPosition(
+			deltaTime,
+			radiusA: radiusA,
+			startA:  startA,
+			speedA:	 speedA,
+			radiusB: radiusB,
+			startB:  startB,
+			speedB:	 speedB
+		)
 		if hassect {
 			let sectdesc = sectpoint.description
 			mConsole.print(string: " -> Has collision: time:\(secttime), point:\(sectdesc)\n")

@@ -14,43 +14,76 @@ public class KCIntersect2
 	  Reference: http://marupeke296.com/COL_3D_No9_GetSphereColliTimeAndPos.html
 	 */
 	public class func calculateCollisionPosition(
-		radiusA			: CGFloat,
-		motionA			: KCLine2,
-		radiusB			: CGFloat,
-		motionB			: KCLine2
-	) -> (Bool, CGFloat, CGPoint) {
-		let fromVector		= motionB.fromPoint - motionA.fromPoint
-		let toVector		= motionB.toPoint   - motionA.toPoint
-		let diffVector		= toVector	    - fromVector
+		deltaTime:	CGFloat,
+		radiusA:	CGFloat,
+		startA:		CGPoint,
+		speedA:		CGPoint,
+		radiusB:	CGFloat,
+		startB:		CGPoint,
+		speedB:		CGPoint
+	) -> (Bool, CGFloat, CGPoint) // hasSection?, intersect-time, intersect-point
+	{
+		let C0		= startB - startA
+		let A1		= startA + (speedA * deltaTime)
+		let B1		= startB + (speedB * deltaTime)
+		let C1		= B1 - A1
+		let D		= C1 - C0
 		
-		let P = diffVector.x * diffVector.x + diffVector.y * diffVector.y
-		if P == 0.0 {
+		let rAB		= radiusA + radiusB
+		let rABsq	= rAB * rAB
+		let P		= lengthSq(point: D)
+		
+		if P == 0 {
+			if lengthSq(point: C0) > rABsq {
+				return (false, 0.0, CGPointZero)
+			}
+			if startA == startB {
+				return (true, 0.0, startA)
+			}
+			let outColPos = startA + (radiusA / rAB) * C0
+			return (true, 0.0, outColPos)
+		}
+		
+		if lengthSq(point: C0) < rABsq {
+			let outColPos = startA + (radiusA / rAB) * C0
+			return (true, 0.0, outColPos)
+		}
+		
+		let Q = C0.dot(D)
+		let R = lengthSq(point: C0)
+		
+		let judge = Q * Q - P * ( R - rAB * rAB );
+		if ( judge < 0 ) {
+			/* No conflict */
 			return (false, 0.0, CGPointZero)
 		}
-		let Q = fromVector.x * diffVector.x + fromVector.y * diffVector.y
-		let R = fromVector.x * fromVector.x + fromVector.y * fromVector.y
 		
-		let radius = radiusA + radiusB
-
-		let judge = Q*Q - P*(R - (radius*radius))
-		if judge < 0 {
+		let judge_rt = sqrt(judge)
+		var t_plus   = (-Q + judge_rt) / P
+		var t_minus  = (-Q - judge_rt) / P
+		if t_minus > t_plus {
+			/* Swap */
+			let tmp = t_minus
+			t_minus = t_plus
+			t_plus  = tmp
+		}
+		
+		if t_minus<0.0 || 1.0<t_minus {
 			return (false, 0.0, CGPointZero)
 		}
 		
-		let t_plus  = (-Q + sqrt(judge)) / P ;
-		let t_minus = (-Q - sqrt(judge)) / P ;
+		let outSec = t_minus * deltaTime
+		let Atc    = startA + speedA * outSec
+		let Btc    = startB + speedB * outSec
+		let outPos = Atc + radiusA / rAB * (Btc - Atc)
 		
-		if 0.0<=t_minus && t_minus<=1.0 {
-			let pos = motionA.fromPoint + t_minus * (motionA.toPoint - motionA.fromPoint)
-			return (true, t_minus, pos)
-		} else if 0.0<=t_plus && t_plus<=1.0 {
-			let pos = motionA.fromPoint + t_plus * (motionA.toPoint - motionA.fromPoint)
-			return (true, t_plus, pos)
-		} else {
-			return (false, 0.0, CGPointZero)
-		}
+		return (true, outSec, outPos)
 	}
-	
+
+	private class func lengthSq(point p: CGPoint) -> CGFloat {
+		return (p.x * p.x) + (p.y * p.y)
+	}
+
 	/**
 	  Calculate updated speed after collision
 	  Reference: http://marupeke296.com/COL_MV_No1_HowToCalcVelocity.html
