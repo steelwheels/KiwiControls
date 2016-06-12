@@ -13,6 +13,7 @@ class ViewController: NSViewController
 {
 	@IBOutlet weak var consoleView: KCConsoleView!
 	
+	private var testVelocity:   UTVelocity? = nil
 	private var testCollision:  UTCollision? = nil
 	private var testReflection: UTReflection? = nil
 	
@@ -24,6 +25,9 @@ class ViewController: NSViewController
 		console.print(string: "Hello, World\n")
 		
 		var result: Bool = true
+		
+		testVelocity = UTVelocity(console: console)
+		result = testVelocity!.executeTest() && result
 		
 		testCollision = UTCollision(console: console)
 		result = testCollision!.executeTest() && result

@@ -21,6 +21,8 @@
 		058F231F1CD6519C007FC156 /* KCRect3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F231E1CD6519C007FC156 /* KCRect3.swift */; };
 		058F23211CD65239007FC156 /* KCPoint3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F23201CD65239007FC156 /* KCPoint3.swift */; };
 		058F23231CD65364007FC156 /* KCSize3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058F23221CD65364007FC156 /* KCSize3.swift */; };
+		05E7B7B81D0D7B7D000AF4AE /* KCVelocity2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7B7B71D0D7B7D000AF4AE /* KCVelocity2.swift */; };
+		05E7B7BA1D0D86CD000AF4AE /* UTVelocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7B7B91D0D86CD000AF4AE /* UTVelocity.swift */; };
 		05F659BC1CD6AD8300EF3456 /* KCLine3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F659BB1CD6AD8300EF3456 /* KCLine3.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		058F231E1CD6519C007FC156 /* KCRect3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRect3.swift; sourceTree = "<group>"; };
 		058F23201CD65239007FC156 /* KCPoint3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint3.swift; sourceTree = "<group>"; };
 		058F23221CD65364007FC156 /* KCSize3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSize3.swift; sourceTree = "<group>"; };
+		05E7B7B71D0D7B7D000AF4AE /* KCVelocity2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCVelocity2.swift; sourceTree = "<group>"; };
+		05E7B7B91D0D86CD000AF4AE /* UTVelocity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTVelocity.swift; sourceTree = "<group>"; };
 		05F659BB1CD6AD8300EF3456 /* KCLine3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLine3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,7 @@
 			children = (
 				0533714E1CDCFDA900F13590 /* AppDelegate.swift */,
 				053371501CDCFDAA00F13590 /* ViewController.swift */,
+				05E7B7B91D0D86CD000AF4AE /* UTVelocity.swift */,
 				0570655F1CDD80DC003FF4E1 /* UTCollision.swift */,
 				05287EC61CEA17FC008AE625 /* UTReflection.swift */,
 				053371521CDCFDAA00F13590 /* Assets.xcassets */,
@@ -147,6 +152,7 @@
 			children = (
 				0546B0BC1CD6509A0049F84E /* KCGraphics.h */,
 				057065611CDD828B003FF4E1 /* KCPoint2.swift */,
+				05E7B7B71D0D7B7D000AF4AE /* KCVelocity2.swift */,
 				050E27B61CDCCDFE00733FC1 /* KCLine2.swift */,
 				050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */,
 				058F23201CD65239007FC156 /* KCPoint3.swift */,
@@ -293,6 +299,7 @@
 			files = (
 				057065601CDD80DC003FF4E1 /* UTCollision.swift in Sources */,
 				05287EC71CEA17FC008AE625 /* UTReflection.swift in Sources */,
+				05E7B7BA1D0D86CD000AF4AE /* UTVelocity.swift in Sources */,
 				053371511CDCFDAA00F13590 /* ViewController.swift in Sources */,
 				0533714F1CDCFDA900F13590 /* AppDelegate.swift in Sources */,
 			);
@@ -304,6 +311,7 @@
 			files = (
 				058F23231CD65364007FC156 /* KCSize3.swift in Sources */,
 				057065621CDD828B003FF4E1 /* KCPoint2.swift in Sources */,
+				05E7B7B81D0D7B7D000AF4AE /* KCVelocity2.swift in Sources */,
 				05F659BC1CD6AD8300EF3456 /* KCLine3.swift in Sources */,
 				058F23211CD65239007FC156 /* KCPoint3.swift in Sources */,
 				050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */,
