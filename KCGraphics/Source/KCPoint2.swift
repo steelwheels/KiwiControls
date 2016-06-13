@@ -10,7 +10,9 @@ import CoreGraphics
 public extension CGPoint {
 	public var description: String {
 		get {
-			return "(\(self.x), \(self.y))"
+			let xstr = NSString(format: "%.2lf", self.x)
+			let ystr = NSString(format: "%.2lf", self.y)
+			return "(\(xstr), \(ystr))"
 		}
 	}
 	

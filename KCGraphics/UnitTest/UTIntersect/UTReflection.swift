@@ -22,10 +22,10 @@ public class UTReflection
 		mConsole.print(string: "[Test Reflection]\n")
 		
 		var result = true
-		result = testReflection(10.0,        positionA: CGPointMake(0.1, 0.1), velocityA: CGPointMake( 1.0,  1.0),
-		                        massB: 10.0, positionB: CGPointMake(0.9, 0.9), velocityB: CGPointMake(-1.0, -1.0)) && result
-		result = testReflection(10.0,        positionA: CGPointMake(0.0, 0.5), velocityA: CGPointMake( 0.0,  1.0),
-		                        massB: 10.0, positionB: CGPointMake(0.5, 0.0), velocityB: CGPointMake( 1.0,  0.0)) && result
+		result = testReflection(10.0,        positionA: CGPointMake(0.1, 0.1), velocityA: KCVelocity(x: 1.0, y:  1.0),
+		                        massB: 10.0, positionB: CGPointMake(0.9, 0.9), velocityB: KCVelocity(x:-1.0, y: -1.0)) && result
+		result = testReflection(10.0,        positionA: CGPointMake(0.0, 0.5), velocityA: KCVelocity(x: 0.0, y:  1.0),
+		                        massB: 10.0, positionB: CGPointMake(0.5, 0.0), velocityB: KCVelocity(x: 1.0, y:  0.0)) && result
 		if result {
 			mConsole.print(string: "[RESULT] OK\n")
 		} else {
@@ -35,32 +35,20 @@ public class UTReflection
 	}
 	
 	private func testReflection(
-		massA:CGFloat, positionA:CGPoint, velocityA:CGPoint,
-		massB:CGFloat, positionB:CGPoint, velocityB:CGPoint
+		massA:CGFloat, positionA:CGPoint, velocityA:KCVelocity,
+		massB:CGFloat, positionB:CGPoint, velocityB:KCVelocity
 	) -> Bool
 	{
 		let (refVelocityA, refVelocityB) = KCIntersect2.calculateRefrectionVelocity(
 			massA, positionA: positionA, velocityA: velocityA, refrectionRateA: 1.0,
 			massB: massB, positionB: positionB, velocityB: velocityB, refrectionRateB: 1.0)
 		
-		let vADesc = velocityA.description
-		let vBDesc = velocityB.description
-		let rADesc = refVelocityA.description
-		let rBDesc = refVelocityB.description
+		let vADesc = velocityA.longDescription
+		let vBDesc = velocityB.longDescription
+		let rADesc = refVelocityA.longDescription
+		let rBDesc = refVelocityB.longDescription
 		mConsole.print(string: "A: \(vADesc) -> \(rADesc), B: \(vBDesc) -> \(rBDesc)\n")
 		return true
 	}
 }
 
-/*
-public class func calculateRefrectionVelocity (
-	massA			: CGFloat,
-	positionA		: CGPoint,
-	velocityA		: CGPoint,
-	refrectionRateA		: CGFloat,
-	massB			: CGFloat,
-	positionB		: CGPoint,
-	velocityB		: CGPoint,
-	refrectionRateB		: CGFloat
-	) -> (CGPoint, CGPoint) // Velocity of object A and B
-*/

@@ -17,15 +17,15 @@ public class KCIntersect2
 		deltaTime:	CGFloat,
 		radiusA:	CGFloat,
 		startA:		CGPoint,
-		speedA:		CGPoint,
+		velocityA:	KCVelocity,
 		radiusB:	CGFloat,
 		startB:		CGPoint,
-		speedB:		CGPoint
+		velocityB:	KCVelocity
 	) -> (Bool, CGFloat, CGPoint) // hasSection?, intersect-time, intersect-point
 	{
 		let C0		= startB - startA
-		let A1		= startA + (speedA * deltaTime)
-		let B1		= startB + (speedB * deltaTime)
+		let A1		= startA + (velocityA.xAndY * deltaTime)
+		let B1		= startB + (velocityB.xAndY * deltaTime)
 		let C1		= B1 - A1
 		let D		= C1 - C0
 		
@@ -73,8 +73,8 @@ public class KCIntersect2
 		}
 		
 		let outSec = t_minus * deltaTime
-		let Atc    = startA + speedA * outSec
-		let Btc    = startB + speedB * outSec
+		let Atc    = startA + velocityA.xAndY * outSec
+		let Btc    = startB + velocityB.xAndY * outSec
 		let outPos = Atc + radiusA / rAB * (Btc - Atc)
 		
 		return (true, outSec, outPos)
@@ -91,22 +91,24 @@ public class KCIntersect2
 	public class func calculateRefrectionVelocity (
 		massA			: CGFloat,
 		positionA		: CGPoint,
-		velocityA		: CGPoint,
+		velocityA		: KCVelocity,
 		refrectionRateA		: CGFloat,
 		massB			: CGFloat,
 		positionB		: CGPoint,
-		velocityB		: CGPoint,
+		velocityB		: KCVelocity,
 		refrectionRateB		: CGFloat
-	) -> (CGPoint, CGPoint) // Velocity of object A and B
+	) -> (KCVelocity, KCVelocity) // Velocity of object A and B
 	{
 		let totalMass		= massA + massB
 		let refrectionRate	= 1 + refrectionRateA * refrectionRateB
 		let collisionVector	= (positionB - positionA).normalize()
-		let dot			= (velocityA - velocityB).dot(collisionVector)
+		let dot			= (velocityA.xAndY - velocityB.xAndY).dot(collisionVector)
 		let constVector		= refrectionRate * dot / totalMass * collisionVector
 		
-		let outVelocityA	= -massB * constVector + velocityA
-		let outVelocityB	=  massA * constVector + velocityB
-		return (outVelocityA, outVelocityB)
+		let outVelocityA	= -massB * constVector + velocityA.xAndY
+		let outVelocityB	=  massA * constVector + velocityB.xAndY
+		let retA		= KCVelocity(x:outVelocityA.x, y:outVelocityA.y)
+		let retB		= KCVelocity(x:outVelocityB.x, y:outVelocityB.y)
+		return (retA, retB)
 	}	
 }

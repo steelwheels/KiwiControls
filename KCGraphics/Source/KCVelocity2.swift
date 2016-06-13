@@ -45,13 +45,43 @@ public struct KCVelocity
 	public var v:CGFloat { get{ return mV }}
 	public var angle:CGFloat { get{ return mAngle }}
 	
-	public var description: String {
+	public mutating func set(x:CGFloat, y:CGFloat){
+		mX           = x
+		mY           = y
+		(mV, mAngle) = KCVelocity.point2angle(x, y: y)
+	}
+	
+	public mutating func set(v:CGFloat, angle:CGFloat){
+		mV       = v
+		mAngle   = angle
+		(mX, mY) = KCVelocity.angle2point(v, angle: angle)
+	}
+
+	public var xAndY:CGPoint {
+		get { return CGPointMake(mX, mY) }
+	}
+	
+	public var longDescription: String {
 		let xstr = NSString(format: "%.2lf", Double(mX))
 		let ystr = NSString(format: "%.2lf", Double(mY))
 		let vstr = NSString(format: "%.2lf", Double(mV))
 		let astr = NSString(format: "%.2lf", Double(Double(mAngle) / M_PI))
 		return "((x:\(xstr), y:\(ystr))=(v:\(vstr), angle:\(astr)PI))"
 	}
+	
+	public var shortDescription: String {
+		let vstr = NSString(format: "%.2lf", Double(mV))
+		let astr = NSString(format: "%.2lf", Double(Double(mAngle) / M_PI))
+		return "(v:\(vstr), angle:\(astr)PI)"
+	}
+	
+	public static func serialize(velocity: KCVelocity) -> Dictionary<String, AnyObject> {
+		var dict: Dictionary<String, AnyObject>  = [:]
+		dict["x"] = velocity.x
+		dict["y"] = velocity.y
+		return dict
+	}
 }
+
 
 
