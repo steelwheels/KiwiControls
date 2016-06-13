@@ -16,8 +16,8 @@ public struct KCVelocity
 	private var mAngle:	CGFloat	= 0.0
 
 	private static func angle2point(v:CGFloat, angle:CGFloat) -> (CGFloat, CGFloat) {
-		let x = v *  sin(angle)
-		let y = v * -cos(angle)
+		let x = v * sin(angle)
+		let y = v * cos(angle)
 		return (x, y)
 	}
 	
