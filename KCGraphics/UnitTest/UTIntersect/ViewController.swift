@@ -24,18 +24,16 @@ class ViewController: NSViewController
 		let console = KCConsole(view: consoleView)
 		console.print(string: "Hello, World\n")
 		
-		var result: Bool = true
-		
 		testVelocity = UTVelocity(console: console)
-		result = testVelocity!.executeTest() && result
+		let result0 = testVelocity!.executeTest()
 		
 		testCollision = UTCollision(console: console)
-		result = testCollision!.executeTest() && result
+		let result1 = testCollision!.executeTest()
 		
 		testReflection = UTReflection(console: console)
-		result = testReflection!.executeTest() && result
+		let result2 = testReflection!.executeTest()
 		
-		if result {
+		if result0 && result1 && result2 {
 			Swift.print("[SUMMARY] OK")
 		} else {
 			Swift.print("[SUMMARY] NG")
