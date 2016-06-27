@@ -24,7 +24,7 @@ public class KCIntersect2
 		let E		= endA - startA
 		let V		= (endB - startB).normalize()
 		let R		= startB - startA
-		let A		= E.dot(V) * V - E
+		let A		= (E.dot(V) * V) - E
 		let C		= R - R.dot(V) * V
 
 		let alpha	= lengthSq(point: A)
@@ -33,16 +33,13 @@ public class KCIntersect2
 
 		let tmp		= beta * beta - alpha * omega
 
-		if abs(alpha) <= IKD_EPSIRON && tmp < 0 {
+		if abs(alpha) <= IKD_EPSIRON || tmp < 0 {
 			return (false, 0.0, CGPointZero)
 		}
 
 		let time = (-sqrt(tmp) - beta) / alpha
 		let pos  = startA + time * E
 		if (0.0<=time) && (time<=1.0) {
-			return (true, time * deltaTime, pos)
-		}
-		if omega < 0.0 {
 			return (true, time * deltaTime, pos)
 		} else {
 			return (false, 0.0, CGPointZero)
