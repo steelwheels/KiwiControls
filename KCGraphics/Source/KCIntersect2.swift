@@ -6,6 +6,7 @@
 */
 
 import CoreGraphics
+import Canary
 
 public class KCIntersect2
 {
@@ -14,7 +15,7 @@ public class KCIntersect2
 		deltaTime:	CGFloat,
 		radiusA:	CGFloat,
 		startA:		CGPoint,
-		velocityA:	KCVelocity,
+		velocityA:	CNVelocity,
 		startB:		CGPoint,
 		endB:		CGPoint
 	) -> (Bool, CGFloat, CGPoint) {
@@ -58,10 +59,10 @@ public class KCIntersect2
 		deltaTime:	CGFloat,
 		radiusA:	CGFloat,
 		startA:		CGPoint,
-		velocityA:	KCVelocity,
+		velocityA:	CNVelocity,
 		radiusB:	CGFloat,
 		startB:		CGPoint,
-		velocityB:	KCVelocity
+		velocityB:	CNVelocity
 	) -> (Bool, CGFloat, CGPoint) // hasSection?, intersect-time, intersect-point
 	{
 		let C0		= startB - startA
@@ -132,13 +133,13 @@ public class KCIntersect2
 	public class func calculateRefrectionVelocity (
 		massA			: CGFloat,
 		positionA		: CGPoint,
-		velocityA		: KCVelocity,
+		velocityA		: CNVelocity,
 		refrectionRateA		: CGFloat,
 		massB			: CGFloat,
 		positionB		: CGPoint,
-		velocityB		: KCVelocity,
+		velocityB		: CNVelocity,
 		refrectionRateB		: CGFloat
-	) -> (KCVelocity, KCVelocity) // Velocity of object A and B
+	) -> (CNVelocity, CNVelocity) // Velocity of object A and B
 	{
 		let totalMass		= massA + massB
 		let refrectionRate	= 1 + refrectionRateA * refrectionRateB
@@ -148,8 +149,8 @@ public class KCIntersect2
 
 		let outVelocityA	= -massB * constVector + velocityA.xAndY
 		let outVelocityB	=  massA * constVector + velocityB.xAndY
-		let retA		= KCVelocity(x:outVelocityA.x, y:outVelocityA.y)
-		let retB		= KCVelocity(x:outVelocityB.x, y:outVelocityB.y)
+		let retA		= CNVelocity(x:outVelocityA.x, y:outVelocityA.y)
+		let retB		= CNVelocity(x:outVelocityB.x, y:outVelocityB.y)
 		return (retA, retB)
 	}
 }

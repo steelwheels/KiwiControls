@@ -8,6 +8,7 @@
 
 import KCGraphics
 import KCConsoleView
+import Canary
 
 public class UTReflection
 {
@@ -22,10 +23,10 @@ public class UTReflection
 		mConsole.print(string: "[Test Reflection]\n")
 		
 		var result = true
-		result = testReflection(10.0,        positionA: CGPointMake(0.1, 0.1), velocityA: KCVelocity(x: 1.0, y:  1.0),
-		                        massB: 10.0, positionB: CGPointMake(0.9, 0.9), velocityB: KCVelocity(x:-1.0, y: -1.0)) && result
-		result = testReflection(10.0,        positionA: CGPointMake(0.0, 0.5), velocityA: KCVelocity(x: 0.0, y:  1.0),
-		                        massB: 10.0, positionB: CGPointMake(0.5, 0.0), velocityB: KCVelocity(x: 1.0, y:  0.0)) && result
+		result = testReflection(10.0,        positionA: CGPointMake(0.1, 0.1), velocityA: CNVelocity(x: 1.0, y:  1.0),
+		                        massB: 10.0, positionB: CGPointMake(0.9, 0.9), velocityB: CNVelocity(x:-1.0, y: -1.0)) && result
+		result = testReflection(10.0,        positionA: CGPointMake(0.0, 0.5), velocityA: CNVelocity(x: 0.0, y:  1.0),
+		                        massB: 10.0, positionB: CGPointMake(0.5, 0.0), velocityB: CNVelocity(x: 1.0, y:  0.0)) && result
 		if result {
 			mConsole.print(string: "[RESULT] OK\n")
 		} else {
@@ -35,8 +36,8 @@ public class UTReflection
 	}
 	
 	private func testReflection(
-		massA:CGFloat, positionA:CGPoint, velocityA:KCVelocity,
-		massB:CGFloat, positionB:CGPoint, velocityB:KCVelocity
+		massA:CGFloat, positionA:CGPoint, velocityA:CNVelocity,
+		massB:CGFloat, positionB:CGPoint, velocityB:CNVelocity
 	) -> Bool
 	{
 		let (refVelocityA, refVelocityB) = KCIntersect2.calculateRefrectionVelocity(

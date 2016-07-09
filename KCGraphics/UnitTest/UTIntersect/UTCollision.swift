@@ -9,6 +9,7 @@
 import Cocoa
 import KCGraphics
 import KCConsoleView
+import Canary
 import CoreGraphics
 
 public class UTCollision
@@ -37,25 +38,25 @@ public class UTCollision
 		let result0 = testCollisionCircleAndLine(true,
 		                                         deltaTime:	10.0,
 		                                         startA:	CGPointMake(0.0, 0.0),
-		                                         velocityA:	KCVelocity(x: 1.0, y:0.0),
+		                                         velocityA:	CNVelocity(x: 1.0, y:0.0),
 		                                         startB:	CGPointMake(1.0, -1.0),
 		                                         endB:		CGPointMake(1.0,  1.0))
 		let result1 = testCollisionCircleAndLine(true,
 		                                         deltaTime:	10.0,
 		                                         startA:	CGPointMake(0.0, 0.0),
-		                                         velocityA:	KCVelocity(x: 1.0, y:0.5),
+		                                         velocityA:	CNVelocity(x: 1.0, y:0.5),
 		                                         startB:	CGPointMake( 0.0,  1.0),
 		                                         endB:		CGPointMake(10.0,  1.0))
 		let result2 = testCollisionCircleAndLine(false,
 		                                         deltaTime:	10.0,
 		                                         startA:	CGPointMake(0.0, 0.5),
-		                                         velocityA:	KCVelocity(x: 1.0, y:0.5),
+		                                         velocityA:	CNVelocity(x: 1.0, y:0.5),
 		                                         startB:	CGPointMake( 0.0,  0.0),
 		                                         endB:		CGPointMake(10.0,  0.0))
 		return result0 && result1 && result2
 	}
 	
-	private func testCollisionCircleAndLine(expect:Bool, deltaTime:CGFloat, startA:CGPoint, velocityA:KCVelocity, startB:CGPoint, endB:CGPoint) -> Bool
+	private func testCollisionCircleAndLine(expect:Bool, deltaTime:CGFloat, startA:CGPoint, velocityA:CNVelocity, startB:CGPoint, endB:CGPoint) -> Bool
 	{
 		let radius = CGFloat(0.1)
 		
@@ -93,8 +94,8 @@ public class UTCollision
 	}
 	
 	private func collisionCircleAndCircle() -> Bool {
-		let velocityA = KCVelocity(x: 1.0, y: 1.0)
-		let velocityB = KCVelocity(x:-1.0, y:-1.0)
+		let velocityA = CNVelocity(x: 1.0, y: 1.0)
+		let velocityB = CNVelocity(x:-1.0, y:-1.0)
 
 		let result0 = testCollisionCircleAndCircle(true,  deltaTime: 1.0, startA: CGPointMake(  0.0,  0.0), velocityA: velocityA,
 		                                                   startB: CGPointMake(  1.0,  1.0), velocityB: velocityB)
@@ -105,7 +106,7 @@ public class UTCollision
 		return result0 && result1 && result2
 	}
 	
-	private func testCollisionCircleAndCircle(expect:Bool, deltaTime:CGFloat, startA:CGPoint, velocityA:KCVelocity, startB:CGPoint, velocityB:KCVelocity) -> Bool
+	private func testCollisionCircleAndCircle(expect:Bool, deltaTime:CGFloat, startA:CGPoint, velocityA:CNVelocity, startB:CGPoint, velocityB:CNVelocity) -> Bool
 	{
 		mConsole.print(string: "[Test Collision Circule and Circle]\n")
 		

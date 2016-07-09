@@ -10,6 +10,7 @@ import Foundation
 import CoreGraphics
 import KCConsoleView
 import KCGraphics
+import Canary
 
 public class UTVelocity {
 	private var mConsole: KCConsole
@@ -19,30 +20,30 @@ public class UTVelocity {
 	}
 	
 	public func executeTest() -> Bool {
-		let v00 = KCVelocity(x: 10.0, y: 10.0)
+		let v00 = CNVelocity(x: 10.0, y: 10.0)
 		mConsole.print(string: "v00 = \(v00.longDescription)\n")
 		
-		let v01 = KCVelocity(x: 10.0, y:-10.0)
+		let v01 = CNVelocity(x: 10.0, y:-10.0)
 		mConsole.print(string: "v01 = \(v01.longDescription)\n")
 		
-		let v02 = KCVelocity(x:  0.0, y:10.0)
+		let v02 = CNVelocity(x:  0.0, y:10.0)
 		mConsole.print(string: "v02 = \(v02.longDescription)\n")
 		
-		let v03 = KCVelocity(x: 10.0, y: 0.0)
+		let v03 = CNVelocity(x: 10.0, y: 0.0)
 		mConsole.print(string: "v03 = \(v03.longDescription)\n")
 		
 		let PI = CGFloat(M_PI)
 		
-		let v10 = KCVelocity(v: 10.0, angle: 0.0 * PI)
+		let v10 = CNVelocity(v: 10.0, angle: 0.0 * PI)
 		mConsole.print(string: "v10 = \(v10.longDescription)\n")
 		
-		let v11 = KCVelocity(v: 10.0, angle: 0.25 * PI)
+		let v11 = CNVelocity(v: 10.0, angle: 0.25 * PI)
 		mConsole.print(string: "v11 = \(v11.longDescription)\n")
 		
-		let v12 = KCVelocity(v: 10.0, angle: 0.5 * PI)
+		let v12 = CNVelocity(v: 10.0, angle: 0.5 * PI)
 		mConsole.print(string: "v12 = \(v12.longDescription)\n")
 		
-		let v13 = KCVelocity(v: 10.0, angle: 1.5 * PI)
+		let v13 = CNVelocity(v: 10.0, angle: 1.5 * PI)
 		mConsole.print(string: "v13 = \(v13.longDescription)\n")
 		
 		return true
