@@ -8,22 +8,14 @@
 import CoreGraphics
 
 public extension CGPoint {
-	public var description: String {
-		get {
-			let xstr = NSString(format: "%.2lf", self.x)
-			let ystr = NSString(format: "%.2lf", self.y)
-			return "(\(xstr), \(ystr))"
-		}
-	}
-	
 	public func dot(src: CGPoint) -> CGFloat {
 		return (self.x * src.x) + (self.y * src.y)
 	}
-	
+
 	public func cross(src: CGPoint) -> CGFloat {
 		return (self.x * src.y) - (self.y * src.x)
 	}
-	
+
 	public func normalize() -> CGPoint {
 		let len = sqrt(self.x * self.x + self.y * self.y)
 		var result : CGPoint
