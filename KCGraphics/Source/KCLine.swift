@@ -1,20 +1,20 @@
 /**
- * @file	KCLine2.swift
- * @brief	Define KCLine2 class
+ * @file	KCLine.swift
+ * @brief	Define KCLine class
  * @par Copyright
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
 import CoreGraphics
 
-public struct KCLine2
+public struct KCLine
 {
 	public var fromPoint:	CGPoint
 	public var toPoint:	CGPoint
 	
-	public init(fromPoint: CGPoint, toPoint: CGPoint){
-		self.toPoint   = toPoint
-		self.fromPoint = fromPoint
+	public init(fromPoint frompt: CGPoint, toPoint topt: CGPoint){
+		self.fromPoint = frompt
+		self.toPoint   = topt
 	}
 	
 	public func description() -> String {
@@ -24,6 +24,6 @@ public struct KCLine2
 	}
 }
 
-public func KCZeroLine2() -> KCLine2 {
-	return KCLine2(fromPoint: CGPointZero, toPoint: CGPointZero)
+public func KCZeroLine() -> KCLine {
+	return KCLine(fromPoint: CGPointZero, toPoint: CGPointZero)
 }
