@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		050E27B71CDCCDFE00733FC1 /* KCLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B61CDCCDFE00733FC1 /* KCLine.swift */; };
-		050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */; };
+		050E27B91CDCCE8F00733FC1 /* KCIntersect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E27B81CDCCE8F00733FC1 /* KCIntersect.swift */; };
 		05287EC71CEA17FC008AE625 /* UTReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05287EC61CEA17FC008AE625 /* UTReflection.swift */; };
 		0533714F1CDCFDA900F13590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0533714E1CDCFDA900F13590 /* AppDelegate.swift */; };
 		053371511CDCFDAA00F13590 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053371501CDCFDAA00F13590 /* ViewController.swift */; };
@@ -44,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		050E27B61CDCCDFE00733FC1 /* KCLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLine.swift; sourceTree = "<group>"; };
-		050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntersect2.swift; sourceTree = "<group>"; };
+		050E27B81CDCCE8F00733FC1 /* KCIntersect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntersect.swift; sourceTree = "<group>"; };
 		05287EC61CEA17FC008AE625 /* UTReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTReflection.swift; sourceTree = "<group>"; };
 		0533714C1CDCFDA900F13590 /* UTIntersect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTIntersect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0533714E1CDCFDA900F13590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 				0546B0BC1CD6509A0049F84E /* KCGraphics.h */,
 				057065611CDD828B003FF4E1 /* KCPoint2.swift */,
 				050E27B61CDCCDFE00733FC1 /* KCLine.swift */,
-				050E27B81CDCCE8F00733FC1 /* KCIntersect2.swift */,
+				050E27B81CDCCE8F00733FC1 /* KCIntersect.swift */,
 				058F23201CD65239007FC156 /* KCPoint3.swift */,
 				058F23221CD65364007FC156 /* KCSize3.swift */,
 				05F659BB1CD6AD8300EF3456 /* KCLine3.swift */,
@@ -310,7 +310,7 @@
 				057065621CDD828B003FF4E1 /* KCPoint2.swift in Sources */,
 				05F659BC1CD6AD8300EF3456 /* KCLine3.swift in Sources */,
 				058F23211CD65239007FC156 /* KCPoint3.swift in Sources */,
-				050E27B91CDCCE8F00733FC1 /* KCIntersect2.swift in Sources */,
+				050E27B91CDCCE8F00733FC1 /* KCIntersect.swift in Sources */,
 				058F231F1CD6519C007FC156 /* KCRect3.swift in Sources */,
 				050E27B71CDCCDFE00733FC1 /* KCLine.swift in Sources */,
 			);

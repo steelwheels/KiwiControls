@@ -8,29 +8,28 @@
 import CoreGraphics
 import Canary
 
-public class KCIntersect2
+public class KCIntersect
 {
 	/* http://marupeke296.sakura.ne.jp/COL_3D_No16_MoveShereAndSepLine.html */
 	public class func detectCollisionCircleAndLine(
-		deltaTime:	CGFloat,
-		radiusA:	CGFloat,
-		startA:		CGPoint,
-		velocityA:	CNVelocity,
-		startB:		CGPoint,
-		endB:		CGPoint
+		deltaTime	dT	: CGFloat,
+		radiusA		rA	: CGFloat,
+		startA		sA	: CGPoint,
+		velocityA	vA	: CNVelocity,
+		lineB		lB	: KCLine
 	) -> (Bool, CGFloat, CGPoint) {
 		let IKD_EPSIRON	: CGFloat = 0.00001
 
-		let endA	= startA + velocityA.xAndY * deltaTime
-		let E		= endA - startA
-		let V		= (endB - startB).normalize()
-		let R		= startB - startA
+		let endA	= sA + vA.xAndY * dT
+		let E		= endA - sA
+		let V		= (lB.toPoint - lB.fromPoint).normalize()
+		let R		= lB.fromPoint - sA
 		let A		= (E.dot(V) * V) - E
 		let C		= R - R.dot(V) * V
 
 		let alpha	= lengthSq(point: A)
 		let beta	= A.dot(C)
-		let omega	= lengthSq(point: C) - radiusA * radiusA
+		let omega	= lengthSq(point: C) - rA * rA
 
 		let tmp		= beta * beta - alpha * omega
 
@@ -39,9 +38,9 @@ public class KCIntersect2
 		}
 
 		let time = (-sqrt(tmp) - beta) / alpha
-		let pos  = startA + time * E
+		let pos  = sA + time * E
 		if (0.0<=time) && (time<=1.0) {
-			return (true, time * deltaTime, pos)
+			return (true, time * dT, pos)
 		} else {
 			return (false, 0.0, CGPointZero)
 		}
@@ -56,22 +55,22 @@ public class KCIntersect2
 	  Reference: http://marupeke296.com/COL_3D_No9_GetSphereColliTimeAndPos.html
 	 */
 	public class func detectCollisionCircleAndCircle(
-		deltaTime:	CGFloat,
-		radiusA:	CGFloat,
-		startA:		CGPoint,
-		velocityA:	CNVelocity,
-		radiusB:	CGFloat,
-		startB:		CGPoint,
-		velocityB:	CNVelocity
+		deltaTime	dT : CGFloat,
+		radiusA		rA : CGFloat,
+		startA		sA : CGPoint,
+		velocity	vA : CNVelocity,
+		radiusB		rB : CGFloat,
+		startB		sB : CGPoint,
+		velocityB	vB : CNVelocity
 	) -> (Bool, CGFloat, CGPoint) // hasSection?, intersect-time, intersect-point
 	{
-		let C0		= startB - startA
-		let A1		= startA + (velocityA.xAndY * deltaTime)
-		let B1		= startB + (velocityB.xAndY * deltaTime)
+		let C0		= sB - sA
+		let A1		= sA + (vA.xAndY * dT)
+		let B1		= sB + (vB.xAndY * dT)
 		let C1		= B1 - A1
 		let D		= C1 - C0
 
-		let rAB		= radiusA + radiusB
+		let rAB		= rA + rB
 		let rABsq	= rAB * rAB
 		let P		= lengthSq(point: D)
 
@@ -79,15 +78,15 @@ public class KCIntersect2
 			if lengthSq(point: C0) > rABsq {
 				return (false, 0.0, CGPointZero)
 			}
-			if startA == startB {
-				return (true, 0.0, startA)
+			if sA == sB {
+				return (true, 0.0, sA)
 			}
-			let outColPos = startA + (radiusA / rAB) * C0
+			let outColPos = sA + (rA / rAB) * C0
 			return (true, 0.0, outColPos)
 		}
 
 		if lengthSq(point: C0) < rABsq {
-			let outColPos = startA + (radiusA / rAB) * C0
+			let outColPos = sA + (rA / rAB) * C0
 			return (true, 0.0, outColPos)
 		}
 
@@ -114,10 +113,10 @@ public class KCIntersect2
 			return (false, 0.0, CGPointZero)
 		}
 
-		let outSec = t_minus * deltaTime
-		let Atc    = startA + velocityA.xAndY * outSec
-		let Btc    = startB + velocityB.xAndY * outSec
-		let outPos = Atc + radiusA / rAB * (Btc - Atc)
+		let outSec = t_minus * dT
+		let Atc    = sA + vA.xAndY * outSec
+		let Btc    = sB + vB.xAndY * outSec
+		let outPos = Atc + rA / rAB * (Btc - Atc)
 
 		return (true, outSec, outPos)
 	}
@@ -131,24 +130,24 @@ public class KCIntersect2
 	  Reference: http://marupeke296.com/COL_MV_No1_HowToCalcVelocity.html
 	 */
 	public class func calculateRefrectionVelocity (
-		massA			: CGFloat,
-		positionA		: CGPoint,
-		velocityA		: CNVelocity,
-		refrectionRateA		: CGFloat,
-		massB			: CGFloat,
-		positionB		: CGPoint,
-		velocityB		: CNVelocity,
-		refrectionRateB		: CGFloat
+		massA			mA  : CGFloat,
+		positionA		pA  : CGPoint,
+		velocityA		vA  : CNVelocity,
+		refrectionRateA		rrA : CGFloat,
+		massB			mB  : CGFloat,
+		positionB		pB  : CGPoint,
+		velocityB		vB  : CNVelocity,
+		refrectionRateB		rrB : CGFloat
 	) -> (CNVelocity, CNVelocity) // Velocity of object A and B
 	{
-		let totalMass		= massA + massB
-		let refrectionRate	= 1 + refrectionRateA * refrectionRateB
-		let collisionVector	= (positionB - positionA).normalize()
-		let dot			= (velocityA.xAndY - velocityB.xAndY).dot(collisionVector)
+		let totalMass		= mA + mB
+		let refrectionRate	= 1 + rrA * rrB
+		let collisionVector	= (pB - pA).normalize()
+		let dot			= (vA.xAndY - vB.xAndY).dot(collisionVector)
 		let constVector		= refrectionRate * dot / totalMass * collisionVector
 
-		let outVelocityA	= -massB * constVector + velocityA.xAndY
-		let outVelocityB	=  massA * constVector + velocityB.xAndY
+		let outVelocityA	= -mB * constVector + vA.xAndY
+		let outVelocityB	=  mA * constVector + vB.xAndY
 		let retA		= CNVelocity(x:outVelocityA.x, y:outVelocityA.y)
 		let retB		= CNVelocity(x:outVelocityB.x, y:outVelocityB.y)
 		return (retA, retB)

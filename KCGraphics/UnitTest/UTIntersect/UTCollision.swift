@@ -69,12 +69,14 @@ public class UTCollision
 					+ "endB:\(endB.description) => "
 					)
 		
-		let (hascollision, coltime, colpos) = KCIntersect2.detectCollisionCircleAndLine(deltaTime,
-		                                                                                radiusA: radius,
-		                                                                                startA:startA,
-		                                                                                velocityA: velocityA,
-		                                                                                startB: startB,
-		                                                                                endB: endB)
+		let lineB = KCLine(fromPoint: startB, toPoint: endB)
+		let (hascollision, coltime, colpos) = KCIntersect.detectCollisionCircleAndLine(
+			deltaTime: deltaTime,
+			radiusA: radius,
+		        startA:startA,
+		        velocityA: velocityA,
+		        lineB: lineB)
+		
 		if(hascollision){
 			mConsole.print(string: " -> Collision detect at \(colpos.description), \(coltime) -> ")
 		} else {
@@ -116,11 +118,11 @@ public class UTCollision
 		mConsole.print(string: " A: start:\(startA.description), speed:\(velocityA.longDescription)\n")
 		mConsole.print(string: " B: start:\(startB.description), speed:\(velocityB.longDescription)")
 		
-		let (hassect, secttime, sectpoint) = KCIntersect2.detectCollisionCircleAndCircle(
-			deltaTime,
+		let (hassect, secttime, sectpoint) = KCIntersect.detectCollisionCircleAndCircle(
+			deltaTime:	deltaTime,
 			radiusA:	radiusA,
 			startA:		startA,
-			velocityA:	velocityA,
+			velocity:	velocityA,
 			radiusB:	radiusB,
 			startB:		startB,
 			velocityB:	velocityB

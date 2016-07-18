@@ -40,8 +40,8 @@ public class UTReflection
 		massB:CGFloat, positionB:CGPoint, velocityB:CNVelocity
 	) -> Bool
 	{
-		let (refVelocityA, refVelocityB) = KCIntersect2.calculateRefrectionVelocity(
-			massA, positionA: positionA, velocityA: velocityA, refrectionRateA: 1.0,
+		let (refVelocityA, refVelocityB) = KCIntersect.calculateRefrectionVelocity(
+			massA: massA, positionA: positionA, velocityA: velocityA, refrectionRateA: 1.0,
 			massB: massB, positionB: positionB, velocityB: velocityB, refrectionRateB: 1.0)
 		
 		let vADesc = velocityA.longDescription
