@@ -15,6 +15,7 @@
 		053371531CDCFDAA00F13590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053371521CDCFDAA00F13590 /* Assets.xcassets */; };
 		053371561CDCFDAA00F13590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053371541CDCFDAA00F13590 /* Main.storyboard */; };
 		053371601CDCFF0700F13590 /* KCConsoleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0533715E1CDCFF0300F13590 /* KCConsoleView.framework */; };
+		0537D2881D425F1900EF4374 /* KCQuadrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537D2871D425F1900EF4374 /* KCQuadrant.swift */; };
 		0546B0BD1CD6509A0049F84E /* KCGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0546B0BC1CD6509A0049F84E /* KCGraphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		057065601CDD80DC003FF4E1 /* UTCollision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570655F1CDD80DC003FF4E1 /* UTCollision.swift */; };
 		057065621CDD828B003FF4E1 /* KCPoint2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057065611CDD828B003FF4E1 /* KCPoint2.swift */; };
@@ -53,6 +54,7 @@
 		053371551CDCFDAA00F13590 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		053371571CDCFDAA00F13590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0533715E1CDCFF0300F13590 /* KCConsoleView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCConsoleView.framework; path = ../../../../Library/Frameworks/KCConsoleView.framework; sourceTree = "<group>"; };
+		0537D2871D425F1900EF4374 /* KCQuadrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCQuadrant.swift; sourceTree = "<group>"; };
 		0546B0B91CD6509A0049F84E /* KCGraphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCGraphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0546B0BC1CD6509A0049F84E /* KCGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCGraphics.h; sourceTree = "<group>"; };
 		0546B0BE1CD6509A0049F84E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				0546B0BC1CD6509A0049F84E /* KCGraphics.h */,
 				057065611CDD828B003FF4E1 /* KCPoint2.swift */,
 				050E27B61CDCCDFE00733FC1 /* KCLine.swift */,
+				0537D2871D425F1900EF4374 /* KCQuadrant.swift */,
 				050E27B81CDCCE8F00733FC1 /* KCIntersect.swift */,
 				058F23201CD65239007FC156 /* KCPoint3.swift */,
 				058F23221CD65364007FC156 /* KCSize3.swift */,
@@ -307,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058F23231CD65364007FC156 /* KCSize3.swift in Sources */,
+				0537D2881D425F1900EF4374 /* KCQuadrant.swift in Sources */,
 				057065621CDD828B003FF4E1 /* KCPoint2.swift in Sources */,
 				05F659BC1CD6AD8300EF3456 /* KCLine3.swift in Sources */,
 				058F23211CD65239007FC156 /* KCPoint3.swift in Sources */,
