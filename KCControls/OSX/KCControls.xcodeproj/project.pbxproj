@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0513C64B1C7242BB00FFC561 /* KCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513C64A1C7242BB00FFC561 /* KCTextField.swift */; };
+		0513C64B1C7242BB00FFC561 /* KCTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513C64A1C7242BB00FFC561 /* KCTextFieldDelegate.swift */; };
 		054500041BEEECBC0084D5D9 /* KCControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054500021BEEECAA0084D5D9 /* KCControls.framework */; };
 		054500051BEEECBF0084D5D9 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054500001BEEEC980084D5D9 /* Canary.framework */; };
 		0545FFFC1BEEEBB20084D5D9 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */; };
@@ -17,6 +17,11 @@
 		055E7B8B1BEEEAD700BACA51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055E7B8A1BEEEAD700BACA51 /* Assets.xcassets */; };
 		055E7B8E1BEEEAD700BACA51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055E7B8C1BEEEAD700BACA51 /* Main.storyboard */; };
 		0563E33F1BEED6510055E2DF /* KCControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 0563E33E1BEED6510055E2DF /* KCControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05C535F61D4467E800E73F28 /* KCNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C535F51D4467E800E73F28 /* KCNumberField.swift */; };
+		05C535FE1D44681400E73F28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C535FD1D44681400E73F28 /* AppDelegate.swift */; };
+		05C536001D44681400E73F28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C535FF1D44681400E73F28 /* ViewController.swift */; };
+		05C536021D44681400E73F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C536011D44681400E73F28 /* Assets.xcassets */; };
+		05C536051D44681400E73F28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C536031D44681400E73F28 /* Main.storyboard */; };
 		05C8784D1BEED784009FFC9D /* KCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C8784B1BEED784009FFC9D /* KCView.swift */; };
 		05F3CB691BF7353A00B5D545 /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3CB681BF7353A00B5D545 /* KCViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,10 +41,17 @@
 			remoteGlobalIDString = 0524490F1BEED9C300DF7A67;
 			remoteInfo = Install;
 		};
+		05C5360A1D44682200E73F28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0563E3321BEED6510055E2DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0524490F1BEED9C300DF7A67;
+			remoteInfo = Install;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0513C64A1C7242BB00FFC561 /* KCTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextField.swift; sourceTree = "<group>"; };
+		0513C64A1C7242BB00FFC561 /* KCTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextFieldDelegate.swift; sourceTree = "<group>"; };
 		054500001BEEEC980084D5D9 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		054500021BEEECAA0084D5D9 /* KCControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCControls.framework; path = ../../../../../Library/Frameworks/KCControls.framework; sourceTree = "<group>"; };
 		0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
@@ -53,6 +65,13 @@
 		0563E33B1BEED6510055E2DF /* KCControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0563E33E1BEED6510055E2DF /* KCControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCControls.h; sourceTree = "<group>"; };
 		0563E3401BEED6510055E2DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		05C535F51D4467E800E73F28 /* KCNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCNumberField.swift; sourceTree = "<group>"; };
+		05C535FB1D44681400E73F28 /* UTNumberFieldCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTNumberFieldCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C535FD1D44681400E73F28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05C535FF1D44681400E73F28 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05C536011D44681400E73F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05C536041D44681400E73F28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05C536061D44681400E73F28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C8784B1BEED784009FFC9D /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
 		05F3CB681BF7353A00B5D545 /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +94,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05C535F81D44681400E73F28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -89,6 +115,7 @@
 		055E7B7F1BEEEA8E00BACA51 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				05C535FC1D44681400E73F28 /* UTNumberFieldCell */,
 				055E7B851BEEEAD700BACA51 /* UTAlert */,
 			);
 			name = UnitTest;
@@ -123,6 +150,7 @@
 			children = (
 				0563E33B1BEED6510055E2DF /* KCControls.framework */,
 				055E7B841BEEEAD700BACA51 /* UTAlert.app */,
+				05C535FB1D44681400E73F28 /* UTNumberFieldCell.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,11 +163,25 @@
 				05F3CB681BF7353A00B5D545 /* KCViewController.swift */,
 				05C8784B1BEED784009FFC9D /* KCView.swift */,
 				0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */,
-				0513C64A1C7242BB00FFC561 /* KCTextField.swift */,
+				0513C64A1C7242BB00FFC561 /* KCTextFieldDelegate.swift */,
+				05C535F51D4467E800E73F28 /* KCNumberField.swift */,
 				0545FFFD1BEEEC300084D5D9 /* Supporting Files */,
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		05C535FC1D44681400E73F28 /* UTNumberFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				05C535FD1D44681400E73F28 /* AppDelegate.swift */,
+				05C535FF1D44681400E73F28 /* ViewController.swift */,
+				05C536011D44681400E73F28 /* Assets.xcassets */,
+				05C536031D44681400E73F28 /* Main.storyboard */,
+				05C536061D44681400E73F28 /* Info.plist */,
+			);
+			name = UTNumberFieldCell;
+			path = ../UnitTest/UTNumberFieldCell;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -210,13 +252,31 @@
 			productReference = 0563E33B1BEED6510055E2DF /* KCControls.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		05C535FA1D44681400E73F28 /* UTNumberFieldCell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C536071D44681400E73F28 /* Build configuration list for PBXNativeTarget "UTNumberFieldCell" */;
+			buildPhases = (
+				05C535F71D44681400E73F28 /* Sources */,
+				05C535F81D44681400E73F28 /* Frameworks */,
+				05C535F91D44681400E73F28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05C5360B1D44682200E73F28 /* PBXTargetDependency */,
+			);
+			name = UTNumberFieldCell;
+			productName = UTNumberFieldCell;
+			productReference = 05C535FB1D44681400E73F28 /* UTNumberFieldCell.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0563E3321BEED6510055E2DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
@@ -228,6 +288,9 @@
 					};
 					0563E33A1BEED6510055E2DF = {
 						CreatedOnToolsVersion = 7.1;
+					};
+					05C535FA1D44681400E73F28 = {
+						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
 			};
@@ -247,6 +310,7 @@
 				0563E33A1BEED6510055E2DF /* KCControls */,
 				0524490F1BEED9C300DF7A67 /* Install */,
 				055E7B831BEEEAD600BACA51 /* UTAlert */,
+				05C535FA1D44681400E73F28 /* UTNumberFieldCell */,
 			);
 		};
 /* End PBXProject section */
@@ -268,6 +332,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05C535F91D44681400E73F28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C536021D44681400E73F28 /* Assets.xcassets in Resources */,
+				05C536051D44681400E73F28 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -285,9 +358,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F3CB691BF7353A00B5D545 /* KCViewController.swift in Sources */,
+				05C535F61D4467E800E73F28 /* KCNumberField.swift in Sources */,
 				05C8784D1BEED784009FFC9D /* KCView.swift in Sources */,
-				0513C64B1C7242BB00FFC561 /* KCTextField.swift in Sources */,
+				0513C64B1C7242BB00FFC561 /* KCTextFieldDelegate.swift in Sources */,
 				0545FFFC1BEEEBB20084D5D9 /* KCAlert.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05C535F71D44681400E73F28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C536001D44681400E73F28 /* ViewController.swift in Sources */,
+				05C535FE1D44681400E73F28 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +387,11 @@
 			target = 0524490F1BEED9C300DF7A67 /* Install */;
 			targetProxy = 055E7B931BEEEAE500BACA51 /* PBXContainerItemProxy */;
 		};
+		05C5360B1D44682200E73F28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0524490F1BEED9C300DF7A67 /* Install */;
+			targetProxy = 05C5360A1D44682200E73F28 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -311,6 +399,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				055E7B8D1BEEEAD700BACA51 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05C536031D44681400E73F28 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05C536041D44681400E73F28 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -511,6 +607,34 @@
 			};
 			name = Release;
 		};
+		05C536081D44681400E73F28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = ../UnitTest/UTNumberFieldCell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTNumberFieldCell";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		05C536091D44681400E73F28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ../UnitTest/UTNumberFieldCell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTNumberFieldCell";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -546,6 +670,15 @@
 			buildConfigurations = (
 				0563E3501BEED6510055E2DF /* Debug */,
 				0563E3511BEED6510055E2DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05C536071D44681400E73F28 /* Build configuration list for PBXNativeTarget "UTNumberFieldCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C536081D44681400E73F28 /* Debug */,
+				05C536091D44681400E73F28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
