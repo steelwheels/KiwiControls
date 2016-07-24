@@ -10,20 +10,20 @@ import Cocoa
 import Canary
 import KCControls
 
-@IBOutlet weak var mFormattedTextField: KCFormattedTextField!
 internal class TestState : CNState {
 	internal var isDirty : Bool = false
 	
 	internal init(isDirty : Bool){
+		@IBOutlet weak var mTextField: NSTextField!
+        
 		
 	}
 }
 
 class ViewController: KCViewController {
-    @IBOutlet weak var mLabelField: NSTextField!
+	@IBOutlet weak var mLabelField: NSTextField!
 	@IBOutlet weak var mTableView: NSTableView!
-	@IBOutlet weak var mTableView: NSTableView!
-	@IBOutlet weak var mTableView: NSTableView!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

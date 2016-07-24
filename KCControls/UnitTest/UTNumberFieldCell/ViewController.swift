@@ -11,25 +11,33 @@ import Canary
 import KCControls
 
 class ViewController: KCViewController
-{	
-	@IBOutlet weak var mFormattedTextField:	KCFormattedTextField!
+{
+	@IBOutlet weak var mTextField:		NSTextField!
 	@IBOutlet weak var mLabelField:		NSTextField!
 	@IBOutlet weak var mButton:		NSButton!
+	
+	var textFieldDelegate: KCFormattedTextFieldDelegate? = nil
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
 		self.state = UTState()
-		mFormattedTextField.textDidChangeCallback = { (text: String) -> Void in
-			let hasvalid = self.mFormattedTextField.hasValidValue
-			Swift.print("textDidChange -> \(hasvalid)")
-			if let s = self.state as? UTState {
-				s.setValid(hasvalid)
-			} else {
-				fatalError("Invalid state")
+		
+		let fdelegate = KCFormattedTextFieldDelegate()
+		fdelegate.fieldFormat = .IntegerFormat
+		fdelegate.textDidChangeCallback = { (textField:NSTextField, text: String) -> Void in
+			if let delegate = textField.delegate as? KCFormattedTextFieldDelegate {
+				let hasvalid = delegate.checkString(textField.stringValue)
+				if let s = self.state as? UTState {
+					s.setValid(hasvalid)
+					return
+				}
 			}
+			fatalError("Invalid object")
 		}
+		textFieldDelegate   = fdelegate
+		mTextField.delegate = fdelegate
 	}
 
 	override var representedObject: AnyObject? {
@@ -46,7 +54,7 @@ class ViewController: KCViewController
 				break
 			case .ValidValueState:
 				mButton.enabled = true
-				mLabelField.stringValue = mFormattedTextField.stringValue
+				mLabelField.stringValue = mTextField.stringValue
 				break
 			}
 		} else {

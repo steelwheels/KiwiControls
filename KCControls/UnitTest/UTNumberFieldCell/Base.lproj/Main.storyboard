@@ -673,7 +673,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="116"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aer-94-T9O" customClass="KCIntegerTextField" customModule="KCControls">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aer-94-T9O">
                                 <rect key="frame" x="20" y="74" width="440" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="dQG-Xk-aNd"/>
@@ -714,8 +714,8 @@
                     </view>
                     <connections>
                         <outlet property="mButton" destination="YKt-yq-4GH" id="c1K-Rg-EgH"/>
-                        <outlet property="mFormattedTextField" destination="Aer-94-T9O" id="UZ3-5R-NoR"/>
                         <outlet property="mLabelField" destination="SqI-yj-hn2" id="LmI-WM-Aah"/>
+                        <outlet property="mTextField" destination="Aer-94-T9O" id="B5g-cx-dla"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
