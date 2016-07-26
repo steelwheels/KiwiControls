@@ -12,6 +12,8 @@
 		054500051BEEECBF0084D5D9 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054500001BEEEC980084D5D9 /* Canary.framework */; };
 		0545FFFC1BEEEBB20084D5D9 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */; };
 		0545FFFF1BEEEC4D0084D5D9 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0545FFFE1BEEEC4D0084D5D9 /* Canary.framework */; };
+		0546A4EB1D47BAF10099E83D /* UTTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546A4EA1D47BAF10099E83D /* UTTableDataSource.swift */; };
+		0546A4ED1D47BB1A0099E83D /* UTTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0546A4EC1D47BB1A0099E83D /* UTTableDelegate.swift */; };
 		055E7B871BEEEAD700BACA51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7B861BEEEAD700BACA51 /* AppDelegate.swift */; };
 		055E7B891BEEEAD700BACA51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E7B881BEEEAD700BACA51 /* ViewController.swift */; };
 		055E7B8B1BEEEAD700BACA51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055E7B8A1BEEEAD700BACA51 /* Assets.xcassets */; };
@@ -19,6 +21,10 @@
 		0563E33F1BEED6510055E2DF /* KCControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 0563E33E1BEED6510055E2DF /* KCControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05678D4C1D44A6AC001F804F /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054500001BEEEC980084D5D9 /* Canary.framework */; };
 		05678D4E1D44A6FD001F804F /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05678D4D1D44A6FD001F804F /* UTState.swift */; };
+		058AF2971D47B0D40054A309 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058AF2961D47B0D40054A309 /* AppDelegate.swift */; };
+		058AF2991D47B0D40054A309 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058AF2981D47B0D40054A309 /* ViewController.swift */; };
+		058AF29B1D47B0D40054A309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058AF29A1D47B0D40054A309 /* Assets.xcassets */; };
+		058AF29E1D47B0D40054A309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058AF29C1D47B0D40054A309 /* Main.storyboard */; };
 		05C535FE1D44681400E73F28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C535FD1D44681400E73F28 /* AppDelegate.swift */; };
 		05C536001D44681400E73F28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C535FF1D44681400E73F28 /* ViewController.swift */; };
 		05C536021D44681400E73F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C536011D44681400E73F28 /* Assets.xcassets */; };
@@ -42,6 +48,13 @@
 			remoteGlobalIDString = 0524490F1BEED9C300DF7A67;
 			remoteInfo = Install;
 		};
+		058AF2A31D47B0E30054A309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0563E3321BEED6510055E2DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0524490F1BEED9C300DF7A67;
+			remoteInfo = Install;
+		};
 		05C5360A1D44682200E73F28 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0563E3321BEED6510055E2DF /* Project object */;
@@ -57,6 +70,8 @@
 		054500021BEEECAA0084D5D9 /* KCControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KCControls.framework; path = ../../../../../Library/Frameworks/KCControls.framework; sourceTree = "<group>"; };
 		0545FFFB1BEEEBB20084D5D9 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
 		0545FFFE1BEEEC4D0084D5D9 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		0546A4EA1D47BAF10099E83D /* UTTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTableDataSource.swift; sourceTree = "<group>"; };
+		0546A4EC1D47BB1A0099E83D /* UTTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTableDelegate.swift; sourceTree = "<group>"; };
 		055E7B841BEEEAD700BACA51 /* UTAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		055E7B861BEEEAD700BACA51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		055E7B881BEEEAD700BACA51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +82,12 @@
 		0563E33E1BEED6510055E2DF /* KCControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCControls.h; sourceTree = "<group>"; };
 		0563E3401BEED6510055E2DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		05678D4D1D44A6FD001F804F /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
+		058AF2941D47B0D40054A309 /* UTTextFieldCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTextFieldCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		058AF2961D47B0D40054A309 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		058AF2981D47B0D40054A309 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		058AF29A1D47B0D40054A309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		058AF29D1D47B0D40054A309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		058AF29F1D47B0D40054A309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C535FB1D44681400E73F28 /* UTNumberFieldCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTNumberFieldCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C535FD1D44681400E73F28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05C535FF1D44681400E73F28 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +116,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058AF2911D47B0D40054A309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05C535F81D44681400E73F28 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,6 +147,7 @@
 			children = (
 				05C535FC1D44681400E73F28 /* UTNumberFieldCell */,
 				055E7B851BEEEAD700BACA51 /* UTAlert */,
+				058AF2951D47B0D40054A309 /* UTTextFieldCell */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -153,6 +182,7 @@
 				0563E33B1BEED6510055E2DF /* KCControls.framework */,
 				055E7B841BEEEAD700BACA51 /* UTAlert.app */,
 				05C535FB1D44681400E73F28 /* UTNumberFieldCell.app */,
+				058AF2941D47B0D40054A309 /* UTTextFieldCell.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +200,21 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		058AF2951D47B0D40054A309 /* UTTextFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				058AF2961D47B0D40054A309 /* AppDelegate.swift */,
+				058AF2981D47B0D40054A309 /* ViewController.swift */,
+				0546A4EA1D47BAF10099E83D /* UTTableDataSource.swift */,
+				0546A4EC1D47BB1A0099E83D /* UTTableDelegate.swift */,
+				058AF29A1D47B0D40054A309 /* Assets.xcassets */,
+				058AF29C1D47B0D40054A309 /* Main.storyboard */,
+				058AF29F1D47B0D40054A309 /* Info.plist */,
+			);
+			name = UTTextFieldCell;
+			path = ../UnitTest/UTTextFieldCell;
 			sourceTree = SOURCE_ROOT;
 		};
 		05C535FC1D44681400E73F28 /* UTNumberFieldCell */ = {
@@ -254,6 +299,24 @@
 			productReference = 0563E33B1BEED6510055E2DF /* KCControls.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		058AF2931D47B0D40054A309 /* UTTextFieldCell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 058AF2A21D47B0D40054A309 /* Build configuration list for PBXNativeTarget "UTTextFieldCell" */;
+			buildPhases = (
+				058AF2901D47B0D40054A309 /* Sources */,
+				058AF2911D47B0D40054A309 /* Frameworks */,
+				058AF2921D47B0D40054A309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				058AF2A41D47B0E30054A309 /* PBXTargetDependency */,
+			);
+			name = UTTextFieldCell;
+			productName = UTTextFieldCell;
+			productReference = 058AF2941D47B0D40054A309 /* UTTextFieldCell.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05C535FA1D44681400E73F28 /* UTNumberFieldCell */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05C536071D44681400E73F28 /* Build configuration list for PBXNativeTarget "UTNumberFieldCell" */;
@@ -291,6 +354,9 @@
 					0563E33A1BEED6510055E2DF = {
 						CreatedOnToolsVersion = 7.1;
 					};
+					058AF2931D47B0D40054A309 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					05C535FA1D44681400E73F28 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -313,6 +379,7 @@
 				0524490F1BEED9C300DF7A67 /* Install */,
 				055E7B831BEEEAD600BACA51 /* UTAlert */,
 				05C535FA1D44681400E73F28 /* UTNumberFieldCell */,
+				058AF2931D47B0D40054A309 /* UTTextFieldCell */,
 			);
 		};
 /* End PBXProject section */
@@ -331,6 +398,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		058AF2921D47B0D40054A309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058AF29B1D47B0D40054A309 /* Assets.xcassets in Resources */,
+				058AF29E1D47B0D40054A309 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +442,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058AF2901D47B0D40054A309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0546A4ED1D47BB1A0099E83D /* UTTableDelegate.swift in Sources */,
+				058AF2991D47B0D40054A309 /* ViewController.swift in Sources */,
+				0546A4EB1D47BAF10099E83D /* UTTableDataSource.swift in Sources */,
+				058AF2971D47B0D40054A309 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05C535F71D44681400E73F28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -389,6 +476,11 @@
 			target = 0524490F1BEED9C300DF7A67 /* Install */;
 			targetProxy = 055E7B931BEEEAE500BACA51 /* PBXContainerItemProxy */;
 		};
+		058AF2A41D47B0E30054A309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0524490F1BEED9C300DF7A67 /* Install */;
+			targetProxy = 058AF2A31D47B0E30054A309 /* PBXContainerItemProxy */;
+		};
 		05C5360B1D44682200E73F28 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0524490F1BEED9C300DF7A67 /* Install */;
@@ -401,6 +493,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				055E7B8D1BEEEAD700BACA51 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		058AF29C1D47B0D40054A309 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				058AF29D1D47B0D40054A309 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -609,6 +709,34 @@
 			};
 			name = Release;
 		};
+		058AF2A01D47B0D40054A309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = ../UnitTest/UTTextFieldCell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTTextFieldCell";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		058AF2A11D47B0D40054A309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ../UnitTest/UTTextFieldCell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTTextFieldCell";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05C536081D44681400E73F28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -680,6 +808,15 @@
 			buildConfigurations = (
 				0563E3501BEED6510055E2DF /* Debug */,
 				0563E3511BEED6510055E2DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		058AF2A21D47B0D40054A309 /* Build configuration list for PBXNativeTarget "UTTextFieldCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058AF2A01D47B0D40054A309 /* Debug */,
+				058AF2A11D47B0D40054A309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
