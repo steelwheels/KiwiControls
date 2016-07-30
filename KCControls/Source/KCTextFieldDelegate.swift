@@ -10,13 +10,13 @@ import Cocoa
 
 public class KCTextFieldDelegate : NSObject, NSTextFieldDelegate
 {
-	public var textDidChangeCallback : ((textField:NSTextField, text: String) -> Void)?	= nil
+	public var textDidChangeCallback : ((text: String) -> Void)?	= nil
 	
 	public override func controlTextDidChange(notification: NSNotification) {
 		if let textfield = notification.object as? NSTextField {
 			if let callback = textDidChangeCallback {
 				/* Call callback method */
-				callback(textField: textfield, text: textfield.stringValue)
+				callback(text: textfield.stringValue)
 			}
 		} else {
 			fatalError("Unknown sender")
@@ -31,22 +31,32 @@ public enum KCFieldFormat {
 
 public class KCFormattedTextFieldDelegate: KCTextFieldDelegate
 {
-	public var fieldFormat: KCFieldFormat = .TextFormat
+	public  var fieldFormat:		KCFieldFormat = .TextFormat
+	private var ownerTextField:		NSTextField?  = nil
 
 	public override func controlTextDidChange(notification: NSNotification) {
 		if let textfield = notification.object as? NSTextField {
+			ownerTextField = textfield
 			if checkString(textfield.stringValue){
 				textfield.textColor = NSColor.blackColor()
-				if let callback = textDidChangeCallback {
-					/* Call callback method */
-					callback(textField: textfield, text: textfield.stringValue)
-				}
 			} else {
 				textfield.textColor = NSColor.redColor()
 			}
 		} else {
 			fatalError("Unknown sender")
 		}
+	}
+
+	public func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+		if let str = fieldEditor.string {
+			if checkString(str) {
+				if let callback = textDidChangeCallback, textfield = ownerTextField {
+					/* Call callback method */
+					callback(text: textfield.stringValue)
+				}
+			}
+		}
+		return true
 	}
 
 	public func checkString(text: String) -> Bool {
