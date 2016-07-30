@@ -7,15 +7,21 @@
 //
 
 import Cocoa
+import KCControls
 
 class ViewController: NSViewController
 {
 	@IBOutlet weak var mTableView: NSTableView!
-	
+
+	private var mTableDelegate	= UTTableDelegate()
+	private var mTableDataSource	= UTTableDataSource()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
+		mTableView.setDelegate(mTableDelegate)
+		mTableView.setDataSource(mTableDataSource)
 	}
 
 	override var representedObject: AnyObject? {

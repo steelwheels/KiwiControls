@@ -22,7 +22,6 @@ internal class TestState : CNState {
 
 class ViewController: KCViewController {
 	@IBOutlet weak var mLabelField: NSTextField!
-	@IBOutlet weak var mTableView: NSTableView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

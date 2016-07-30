@@ -13,6 +13,7 @@ import KCControls
 class ViewController: KCViewController
 {
 	@IBOutlet weak var mTextField:		NSTextField!
+    @IBOutlet weak var mTableView: NSTableView!
 	@IBOutlet weak var mLabelField:		NSTextField!
 	@IBOutlet weak var mButton:		NSButton!
 	
