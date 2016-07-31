@@ -8,36 +8,25 @@
 import Foundation
 import Cocoa
 
-public class KCTextFieldDelegate : NSObject, NSTextFieldDelegate
-{
-	public var textDidChangeCallback : ((text: String) -> Void)?	= nil
-	
-	public override func controlTextDidChange(notification: NSNotification) {
-		if let textfield = notification.object as? NSTextField {
+public class KCTextFieldDelegate: NSObject, NSTextFieldDelegate {
+	public var textDidChangeCallback: ((value: String, tag:Int) -> Void)? = nil
+
+	public func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+		if let textfield = control as? NSTextField, let str = fieldEditor.string {
 			if let callback = textDidChangeCallback {
-				/* Call callback method */
-				callback(text: textfield.stringValue)
+				callback(value: str, tag: textfield.tag)
 			}
-		} else {
-			fatalError("Unknown sender")
 		}
+		return true
 	}
 }
 
-public enum KCFieldFormat {
-	case TextFormat
-	case IntegerFormat
-}
-
-public class KCFormattedTextFieldDelegate: KCTextFieldDelegate
-{
-	public  var fieldFormat:		KCFieldFormat = .TextFormat
-	private var ownerTextField:		NSTextField?  = nil
+public class KCIntegerFieldDelegate: NSObject, NSTextFieldDelegate {
+	public var valueDidChangeCallback: ((value:Int, tag:Int) -> Void)? = nil
 
 	public override func controlTextDidChange(notification: NSNotification) {
 		if let textfield = notification.object as? NSTextField {
-			ownerTextField = textfield
-			if checkString(textfield.stringValue){
+			if let _ = Int(textfield.stringValue) {
 				textfield.textColor = NSColor.blackColor()
 			} else {
 				textfield.textColor = NSColor.redColor()
@@ -48,28 +37,12 @@ public class KCFormattedTextFieldDelegate: KCTextFieldDelegate
 	}
 
 	public func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-		if let str = fieldEditor.string {
-			if checkString(str) {
-				if let callback = textDidChangeCallback, textfield = ownerTextField {
-					/* Call callback method */
-					callback(text: textfield.stringValue)
-				}
+		if let textfield = control as? NSTextField, let str = fieldEditor.string {
+			if let value = Int(str), callback = valueDidChangeCallback {
+				callback(value: value, tag: textfield.tag)
 			}
 		}
 		return true
-	}
-
-	public func checkString(text: String) -> Bool {
-		var result = false
-		switch fieldFormat {
-		case .TextFormat:
-			result = true
-		case .IntegerFormat:
-			if let _ = Int(text) {
-				result = true
-			}
-		}
-		return result
 	}
 }
 
