@@ -20,8 +20,8 @@ class ViewController: NSViewController
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
-		mTableView.setDelegate(mTableDelegate)
-		mTableView.setDataSource(mTableDataSource)
+		mTableView.delegate = mTableDelegate
+		mTableView.dataSource = mTableDataSource
 	}
 
 	override var representedObject: AnyObject? {

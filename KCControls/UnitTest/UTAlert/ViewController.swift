@@ -11,12 +11,10 @@ import Canary
 import KCControls
 
 internal class TestState : CNState {
-	internal var isDirty : Bool = false
+	internal var isDirty : Bool
 	
-	internal init(isDirty : Bool){
-		@IBOutlet weak var mTextField: NSTextField!
-        
-		
+	internal init(isDirty dirty: Bool){
+		isDirty = dirty
 	}
 }
 

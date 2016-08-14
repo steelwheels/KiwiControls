@@ -13,11 +13,11 @@ import KCControls
 class ViewController: KCViewController
 {
 	@IBOutlet weak var mTextField:		NSTextField!
-    @IBOutlet weak var mTableView: NSTableView!
+	@IBOutlet weak var mTableView: NSTableView!
 	@IBOutlet weak var mLabelField:		NSTextField!
 	@IBOutlet weak var mButton:		NSButton!
 	
-	var textFieldDelegate: KCFormattedTextFieldDelegate? = nil
+	var mIntegerFieldDelegate: KCIntegerFieldDelegate? = nil
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -25,19 +25,15 @@ class ViewController: KCViewController
 		// Do any additional setup after loading the view.
 		self.state = UTState()
 		
-		let fdelegate = KCFormattedTextFieldDelegate()
-		fdelegate.fieldFormat = .IntegerFormat
-		fdelegate.textDidChangeCallback = { (textField:NSTextField, text: String) -> Void in
-			if let delegate = textField.delegate as? KCFormattedTextFieldDelegate {
-				let hasvalid = delegate.checkString(textField.stringValue)
-				if let s = self.state as? UTState {
-					s.setValid(hasvalid)
-					return
-				}
+		let fdelegate = KCIntegerFieldDelegate()
+		fdelegate.valueDidChangeCallback = { (value:Int, tag: Int) -> Void in
+			if let s = self.state as? UTState {
+				s.setValid(true)
+			} else {
+				fatalError("Invalid state object")
 			}
-			fatalError("Invalid object")
 		}
-		textFieldDelegate   = fdelegate
+		mIntegerFieldDelegate   = fdelegate
 		mTextField.delegate = fdelegate
 	}
 
