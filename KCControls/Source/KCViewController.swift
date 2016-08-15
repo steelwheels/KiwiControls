@@ -14,7 +14,7 @@ public class KCViewController : NSViewController
 
 	deinit {
 		if let state = mState {
-			state.removeStateObserver(self)
+			state.remove(stateObserver: self)
 		}
 	}
 	
@@ -24,11 +24,11 @@ public class KCViewController : NSViewController
 		}
 		set(newstate) {
 			if let orgstate = mState {
-				orgstate.removeStateObserver(self)
+				orgstate.remove(stateObserver: self)
 			}
 			mState = newstate
 			if let state = newstate {
-				state.addStateObserver(self)
+				state.add(stateObserver: self)
 			}
 		}
 	}

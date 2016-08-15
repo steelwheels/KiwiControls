@@ -14,7 +14,7 @@ public class KCView : NSView
 	
 	deinit {
 		if let state = mState {
-			state.removeStateObserver(self)
+			state.remove(stateObserver: self)
 		}
 	}
 	
@@ -24,11 +24,11 @@ public class KCView : NSView
 		}
 		set(state) {
 			if let orgstate = mState {
-				orgstate.removeStateObserver(self)
+				orgstate.remove(stateObserver: self)
 			}
 			mState = state
 			if let s = state {
-				s.addStateObserver(self)
+				s.add(stateObserver: self)
 			}
 		}
 	}
