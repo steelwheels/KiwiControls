@@ -44,8 +44,8 @@ public class KCConsole : CNConsole
 		}
 	}
 	
-	public override func flush(text: CNConsoleText){
-		mConsoleView.appendText(text)
+	public override func flush(text t: CNConsoleText){
+		mConsoleView.appendText(t)
 	}
 }
 
