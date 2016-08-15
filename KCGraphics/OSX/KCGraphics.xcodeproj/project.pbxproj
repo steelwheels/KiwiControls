@@ -299,17 +299,26 @@
 				TargetAttributes = {
 					051366D21D60BA250018F9A5 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					051366F01D60BE030018F9A5 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					0546B0B81CD6509A0049F84E = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					05F659B51CD6ACDE00EF3456 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -423,6 +432,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KCGraphicsTestBundle";
 				PRODUCT_NAME = KCGraphicsTest;
 				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 2.3;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -444,6 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KCGraphicsTestBundle";
 				PRODUCT_NAME = KCGraphicsTest;
 				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 2.3;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -504,6 +515,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -553,6 +565,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -576,6 +589,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -596,6 +610,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -603,6 +619,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -622,6 +639,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KCGraphics";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -635,6 +654,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -645,6 +665,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
