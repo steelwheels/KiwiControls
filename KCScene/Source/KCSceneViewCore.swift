@@ -18,44 +18,44 @@ public class KCSceneViewCore: KCView
 	private var mCameraSourceNode		: SCNNode?	= nil
 	private var mLightNode			: SCNNode?	= nil
 
-	public override init(frame : NSRect){
-		super.init(frame: frame)
+	public override init(frame f: NSRect){
+		super.init(frame: f)
 	}
 
-	public required init?(coder: NSCoder) {
-		super.init(coder: coder)
+	public required init?(coder c: NSCoder) {
+		super.init(coder: c)
 	}
 
-	public func setup(lightPoint: KCPoint3, cameraPoint: KCLine3){
+	public func setup(lightPoint lp: KCPoint3, cameraPoint cp: KCLine3){
 		let scene = SCNScene()
 		sceneView.scene		= scene
 		mScene			= scene
 
 		let root = scene.rootNode
 
-		let lightorigin = KCPoint3ToVector3(lightPoint)
-		mLightNode	= KCSceneViewCore.allocateLight(lightorigin)
+		let lightorigin = KCPoint3ToVector3(lp)
+		mLightNode	= KCSceneViewCore.allocateLight(position: lightorigin)
 		root.addChildNode(mLightNode!)
 
-		let (camerasrc, cameradst) = KCSceneViewCore.allocateCamera(cameraPoint)
+		let (camerasrc, cameradst) = KCSceneViewCore.allocateCamera(cameraPoint: cp)
 		root.addChildNode(camerasrc)
 		root.addChildNode(cameradst)
 		mCameraSourceNode = camerasrc
 		mCameraDestinationNode = cameradst
 	}
 
-	private class func allocateLight(position: SCNVector3) -> SCNNode {
+	private class func allocateLight(position pos: SCNVector3) -> SCNNode {
 		let node	= SCNNode()
 		let light	= SCNLight()
 		node.light	= light
-		node.position	= SCNVector3(position.x, position.y, position.z)
+		node.position	= SCNVector3(pos.x, pos.y, pos.z)
 		light.type	= SCNLightTypeOmni
 		return node
 	}
 
-	private class func allocateCamera(cameraPoint: KCLine3) -> (SCNNode, SCNNode) {
-		let frompt = KCPoint3ToVector3(cameraPoint.fromPoint)
-		let topt   = KCPoint3ToVector3(cameraPoint.toPoint)
+	private class func allocateCamera(cameraPoint cp: KCLine3) -> (SCNNode, SCNNode) {
+		let frompt = KCPoint3ToVector3(cp.fromPoint)
+		let topt   = KCPoint3ToVector3(cp.toPoint)
 
 		/* Allocate target */
 		let dstnode	 = SCNNode()
@@ -65,7 +65,7 @@ public class KCSceneViewCore: KCView
 		let srcnode	= SCNNode()
 		let camera	= SCNCamera()
 		srcnode.camera	= camera
-		srcnode.lookAt(dstnode)
+		srcnode.lookAt(target: dstnode)
 		srcnode.position = frompt
 
 		/* get max distance */

@@ -24,7 +24,7 @@ class ViewController: NSViewController
 		let camera = KCLine3(fromPoint: KCPoint3(x: 50.0, y: 200.0, z: 50.0),
 		                     toPoint:   KCPoint3(x: 50.0, y: 0.0, z: 50.0))
 		let light  = camera.fromPoint
-		sceneView.setup(light, cameraPoint: camera)
+		sceneView.setup(lightPoint: light, cameraPoint: camera)
 		sceneView.renderCallback = {
 			(renderer: SCNSceneRenderer, rootNode:SCNNode, updateAtTime: NSTimeInterval) -> Void in
 			self.renderNode(rootNode)
@@ -43,12 +43,12 @@ class ViewController: NSViewController
 		floor0.color = NSColor.brownColor()
 		floor0.rotation = SCNVector4(x:1.0, y:0.0, z:0.0, w: CGFloat(M_PI/2))
 		//floor0.geometry?.firstMaterial?.diffuse.contents = NSColor.whiteColor()
-		sceneView.addChildNode(floor0)
+		sceneView.addChildNode(node: floor0)
 		
 		let sphere0 = SCNNode()
 		sphere0.geometry = SCNSphere(radius: 50.0)
 		sphere0.position = SCNVector3(50.0, 50.0, 0.0)
-		sceneView.addChildNode(sphere0)
+		sceneView.addChildNode(node: sphere0)
 
 		/*
 		let box0 = SCNNode()
@@ -70,10 +70,10 @@ class ViewController: NSViewController
 		sceneView.addChildNode(cone2)
 */
 		Swift.print("[Camera source]")
-		sceneView.cameraSourceNode.dumpToConsole(console)
+		sceneView.cameraSourceNode.dump(console: console)
 		
 		Swift.print("[Camera destination]")
-		sceneView.cameraDestinationNode.dumpToConsole(console)
+		sceneView.cameraDestinationNode.dump(console: console)
 		
 		sceneView.startAnimation()
 	}

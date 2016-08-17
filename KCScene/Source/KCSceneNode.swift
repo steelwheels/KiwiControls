@@ -38,8 +38,8 @@ public extension SCNNode {
 		}
 	}
 
-	public func lookAt(target: SCNNode){
-		let constraint = SCNLookAtConstraint(target: target)
+	public func lookAt(target targ: SCNNode){
+		let constraint = SCNLookAtConstraint(target: targ)
 		constraint.gimbalLockEnabled = true
 		if var constraints = self.constraints {
 			constraints.append(constraint)
@@ -48,16 +48,16 @@ public extension SCNNode {
 		}
 	}
 
-	public func dumpToConsole(console: CNConsole){
+	public func dump(console cons: CNConsole){
 		let position = self.position
-		console.print(string: "(position: x=\(position.x), y=\(position.y), z=\(position.z))")
+		cons.print(string: "(position: x=\(position.x), y=\(position.y), z=\(position.z))")
 		let rotation = self.rotation
-		console.print(string: "(rotation: x=\(rotation.x), y=\(rotation.y), z=\(rotation.z), w=\(rotation.w))")
+		cons.print(string: "(rotation: x=\(rotation.x), y=\(rotation.y), z=\(rotation.z), w=\(rotation.w))")
 		let orientation = self.orientation
-		console.print(string: "(orientation: x=\(orientation.x), y=\(orientation.y), z=\(orientation.z), w=\(orientation.w))")
+		cons.print(string: "(orientation: x=\(orientation.x), y=\(orientation.y), z=\(orientation.z), w=\(orientation.w))")
 
 		if let camera = self.camera {
-			console.print(string: "(camera zNear:\(camera.zNear), zFar:\(camera.zFar), xFov:\(camera.xFov), yFov:\(camera.yFov))")
+			cons.print(string: "(camera zNear:\(camera.zNear), zFar:\(camera.zFar), xFov:\(camera.xFov), yFov:\(camera.yFov))")
 		}
 	}
 }

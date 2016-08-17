@@ -15,14 +15,14 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 
 	public var renderCallback: ((renderer: SCNSceneRenderer, rootNode:SCNNode, updateAtTime: NSTimeInterval) -> Void)? = nil ;
 
-	public override init(frame : NSRect){
-		super.init(frame: frame) ;
+	public override init(frame f: NSRect){
+		super.init(frame: f) ;
 		loadContext() ;
 		coreView().delegate = self
 	}
 
-	public required init?(coder: NSCoder) {
-		super.init(coder: coder) ;
+	public required init?(coder c: NSCoder) {
+		super.init(coder: c) ;
 		loadContext() ;
 		coreView().delegate = self
 	}
@@ -42,12 +42,12 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 		fatalError("No coreview")
 	}
 
-	public func setup(lightPoint: KCPoint3, cameraPoint: KCLine3){
-		coreView().setup(lightPoint, cameraPoint: cameraPoint)
+	public func setup(lightPoint lp: KCPoint3, cameraPoint cp: KCLine3){
+		coreView().setup(lightPoint: lp, cameraPoint: cp)
 	}
 
-	public func addChildNode(node: SCNNode){
-		coreView().rootNode.addChildNode(node)
+	public func addChildNode(node n: SCNNode){
+		coreView().rootNode.addChildNode(n)
 	}
 
 	public func startAnimation() {
@@ -88,9 +88,9 @@ public class KCSceneView: KCView, SCNSceneRendererDelegate
 		}
 	}
 
-	public func renderer(renderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
+	public func renderer(renderer rend: SCNSceneRenderer, updateAtTime time: NSTimeInterval) {
 		if let callback = renderCallback {
-			callback(renderer: renderer, rootNode: coreView().rootNode, updateAtTime: time)
+			callback(renderer: rend, rootNode: coreView().rootNode, updateAtTime: time)
 		}
 	}
 }
