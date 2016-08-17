@@ -25,10 +25,10 @@ class ViewController: KCViewController {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
-		let error = NSError.serializeError("Error message")
-		KCAlert.runModal(error)
+		let error = NSError.serializeError(message: "Error message")
+		KCAlert.runModal(error: error)
 		
-		switch KCAlert.recommendSaveModal("The \"file\""){
+		switch KCAlert.recommendSaveModal(fileName: "The \"file\""){
 		case .CancelButtonPressed:
 			print("cancel button pressed")
 		case .SaveButtonPressed:
@@ -41,7 +41,7 @@ class ViewController: KCViewController {
 		state?.updateState()
 	}
 
-	internal override func observeState(state : CNState){
+	internal override func observe(state stat: CNState){
 		print("observeState")
 	}
 	

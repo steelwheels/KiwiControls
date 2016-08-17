@@ -36,12 +36,12 @@ public class KCView : NSView
 	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
 		if let state = object as? CNState {
 			if keyPath == CNState.stateKey {
-				observeState(state)
+				observe(state: state)
 			}
 		}
 	}
 	
-	public func observeState(state : CNState){
+	public func observe(state stat: CNState){
 		/* Do nothing (Override this method) */
 	}
 	

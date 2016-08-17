@@ -8,8 +8,8 @@
 import Cocoa
 
 public class KCAlert : NSObject {
-	public class func runModal(error : NSError) -> NSModalResponse {
-		let alert = NSAlert(error: error)
+	public class func runModal(error err: NSError) -> NSModalResponse {
+		let alert = NSAlert(error: err)
 		return alert.runModal()
 	}
 	
@@ -19,9 +19,9 @@ public class KCAlert : NSObject {
 		case DontSaveButtonPressed
 	}
 	
-	public class func recommendSaveModal(filename: String) -> SaveModalResponce {
+	public class func recommendSaveModal(fileName fname: String) -> SaveModalResponce {
 		let alert = NSAlert()
-		alert.messageText = "\(filename) has changes. Do you want to save it"
+		alert.messageText = "\(fname) has changes. Do you want to save it"
 		alert.informativeText = "Your changes will be lost if you close this item without saving."
 		alert.addButtonWithTitle("Save")
 		alert.addButtonWithTitle("Cancel")

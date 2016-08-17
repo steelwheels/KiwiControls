@@ -13,7 +13,7 @@ import KCControls
 class ViewController: KCViewController
 {
 	@IBOutlet weak var mTextField:		NSTextField!
-	@IBOutlet weak var mTableView: NSTableView!
+	@IBOutlet weak var mTableView:		NSTableView!
 	@IBOutlet weak var mLabelField:		NSTextField!
 	@IBOutlet weak var mButton:		NSButton!
 	
@@ -43,8 +43,8 @@ class ViewController: KCViewController
 		}
 	}
 
-	internal override func observeState(state : CNState){
-		if let s = state as? UTState {
+	internal override func observe(state stat: CNState){
+		if let s = stat as? UTState {
 			switch s.stateId {
 			case .InvalidValueState:
 				mButton.enabled = false
