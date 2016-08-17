@@ -13,13 +13,13 @@ public class KCConsoleView : KCView
 {
 	var textView	: KCConsoleTextView? = nil ;
 	
-	public override init(frame : NSRect){
-		super.init(frame: frame) ;
+	public override init(frame f: NSRect){
+		super.init(frame: f) ;
 		setupContext() ;
 	}
 	
-	public required init?(coder: NSCoder) {
-		super.init(coder: coder) ;
+	public required init?(coder c: NSCoder) {
+		super.init(coder: c) ;
 		setupContext() ;
 	}
 
@@ -86,10 +86,10 @@ public class KCConsoleView : KCView
 		}
 	}
 	
-	public func appendText(text : CNConsoleText){
+	public func appendText(text t: CNConsoleText){
 		if let tview = textView {
 			dispatch_async(dispatch_get_main_queue(), {
-				tview.appendText(text)
+				tview.append(text: t)
 			})
 		}
 	}

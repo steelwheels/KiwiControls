@@ -15,14 +15,14 @@ public class KCConsoleTextView : KCView
 	private var	mDefaultAttribute : Dictionary<String, AnyObject> = [:]
 	private	var	mFontSize : CGFloat = 14.0
 	
-	public override init(frame : NSRect){
-		super.init(frame: frame) ;
+	public override init(frame f: NSRect){
+		super.init(frame: f) ;
 		setupContext() ;
 		
 	}
 	
-	public required init?(coder: NSCoder) {
-		super.init(coder: coder) ;
+	public required init?(coder c: NSCoder) {
+		super.init(coder: c) ;
 		setupContext() ;
 	}
 	
@@ -76,33 +76,33 @@ public class KCConsoleTextView : KCView
 		}
 	}
 	
-	public func appendText(text : CNConsoleText){
+	public func append(text t: CNConsoleText){
 		dispatch_async(dispatch_get_main_queue(), {
-			for word in text.words {
-				self.appendWord(word)
+			for word in t.words {
+				self.append(word: word)
 			}
 		})
 	}
 	
-	private func appendWord(word : CNConsoleWord){
-		let attrs  = mergeAttributes(word)
-		let newstr = NSAttributedString(string: word.string, attributes: attrs)
-		appendAttributedText(newstr)
+	private func append(word w: CNConsoleWord){
+		let attrs  = mergeAttributes(word: w)
+		let newstr = NSAttributedString(string: w.string, attributes: attrs)
+		appendAttributedText(attributedString: newstr)
 	}
 	
-	private func mergeAttributes(word: CNConsoleWord) -> Dictionary<String, AnyObject> {
+	private func mergeAttributes(word w: CNConsoleWord) -> Dictionary<String, AnyObject> {
 		var info = mDefaultAttribute
-		for (key, value) in word.attributes {
+		for (key, value) in w.attributes {
 			info[key] = value
 		}
 		return info
 	}
 	
-	private func appendAttributedText(text : NSAttributedString){
+	private func appendAttributedText(attributedString s: NSAttributedString){
 		if let tview = textView {
 			if let storage = tview.textStorage {
 				storage.beginEditing() ;
-				storage.appendAttributedString(text) ;
+				storage.appendAttributedString(s) ;
 				storage.endEditing() ;
 				tview.scrollToEndOfDocument(self) ;
 			}

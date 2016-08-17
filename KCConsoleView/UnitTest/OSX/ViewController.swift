@@ -20,7 +20,7 @@ class ViewController: NSViewController {
 		// Do any additional setup after loading the view.
 		if let view = consoleView {
 			let text0 = CNConsoleText(string: "Hello, World\nGood evening\n")
-			view.appendText(text0)
+			view.appendText(text: text0)
 			
 			let console = KCConsole(view: view)
 			console.print(string: "Good morning\n")

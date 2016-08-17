@@ -12,8 +12,8 @@ public class KCConsole : CNConsole
 {
 	private var mConsoleView : KCConsoleView
 
-	public init(view: KCConsoleView){
-		mConsoleView = view
+	public init(view v: KCConsoleView){
+		mConsoleView = v
 		super.init()
 	}
 
@@ -45,7 +45,7 @@ public class KCConsole : CNConsole
 	}
 	
 	public override func flush(text t: CNConsoleText){
-		mConsoleView.appendText(t)
+		mConsoleView.appendText(text: t)
 	}
 }
 
