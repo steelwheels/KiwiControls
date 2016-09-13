@@ -11,7 +11,7 @@ import Cocoa
 public class KCGraphicsViewCore: KCView
 {
 	@IBOutlet weak var graphicsView: NSView!
-	var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
+	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
 
 	public func setOriginPosition(){
 		if let grcontext = NSGraphicsContext.current() {

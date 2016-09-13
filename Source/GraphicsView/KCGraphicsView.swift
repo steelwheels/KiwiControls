@@ -30,7 +30,7 @@ public class KCGraphicsView: KCView
 		}
 	}
 
-	var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? {
+	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? {
 		get {
 			if let core = mGraphicsViewCore {
 				return core.drawCallback

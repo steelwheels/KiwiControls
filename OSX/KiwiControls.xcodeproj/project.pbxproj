@@ -16,10 +16,13 @@
 		05386D591D858603004B8DDF /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D581D858603004B8DDF /* KCGraphicsView.swift */; };
 		05386D5B1D858792004B8DDF /* KCGraphicsViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D5A1D858792004B8DDF /* KCGraphicsViewCore.swift */; };
 		05386D5D1D8587E7004B8DDF /* KCGraphicsViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05386D5C1D8587E7004B8DDF /* KCGraphicsViewCore.xib */; };
+		05506ACA1D86F76B009B3D3C /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
 		0569CCCE1D85CC8E005412C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569CCCD1D85CC8E005412C7 /* AppDelegate.swift */; };
 		0569CCD01D85CC8E005412C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569CCCF1D85CC8E005412C7 /* ViewController.swift */; };
 		0569CCD21D85CC8E005412C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0569CCD11D85CC8E005412C7 /* Assets.xcassets */; };
 		0569CCD51D85CC8F005412C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569CCD31D85CC8E005412C7 /* Main.storyboard */; };
+		05FD295D1D8857C0001DD85B /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FD295C1D8857C0001DD85B /* KiwiGraphics.framework */; };
+		05FD295E1D885CA2001DD85B /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FD295C1D8857C0001DD85B /* KiwiGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,7 @@
 		0569CCD11D85CC8E005412C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0569CCD41D85CC8E005412C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0569CCD61D85CC8F005412C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05FD295C1D8857C0001DD85B /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = ../../../../Library/Frameworks/KiwiGraphics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05386D4E1D8571FD004B8DDF /* Canary.framework in Frameworks */,
+				05FD295D1D8857C0001DD85B /* KiwiGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05506ACA1D86F76B009B3D3C /* KiwiControls.framework in Frameworks */,
+				05FD295E1D885CA2001DD85B /* KiwiGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +108,7 @@
 		05043C1E1D856F910033FEC6 /* KiwiControls */ = {
 			isa = PBXGroup;
 			children = (
+				05FD295C1D8857C0001DD85B /* KiwiGraphics.framework */,
 				05386D551D857FC3004B8DDF /* install_osx.mk */,
 				05386D4D1D8571FD004B8DDF /* Canary.framework */,
 				05043C201D856F910033FEC6 /* Info.plist */,
@@ -532,10 +540,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphicsView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -546,10 +561,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphicsView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
