@@ -23,7 +23,7 @@
                 <constraint firstItem="pXw-9x-7ky" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="m6a-2S-SZr"/>
             </constraints>
             <connections>
-                <outlet property="graphicsView" destination="pXw-9x-7ky" id="U3b-6M-Uha"/>
+                <outlet property="mGraphicsView" destination="pXw-9x-7ky" id="ZZR-wi-szK"/>
             </connections>
         </customView>
     </objects>

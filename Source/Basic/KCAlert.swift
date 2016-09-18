@@ -7,7 +7,8 @@
 
 import Cocoa
 
-public class KCAlert : NSObject {
+public class KCAlert : NSObject
+{
 	public class func runModal(error err: NSError) -> NSModalResponse {
 		let alert = NSAlert(error: err)
 		return alert.runModal()

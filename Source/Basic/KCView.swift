@@ -44,7 +44,15 @@ open class KCView : NSView
 	open func observe(state stat: CNState){
 		/* Do nothing (Override this method) */
 	}
-	
+
+	#if os(OSX)
+	public var currentContext : CGContext? {
+		get {
+			return NSGraphicsContext.current()?.cgContext
+		}
+	}
+	#endif
+
 	private func allocateLayout(subView sview : NSView, attribute attr: NSLayoutAttribute) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: NSLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
 	}

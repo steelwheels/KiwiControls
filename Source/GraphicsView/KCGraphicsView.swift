@@ -9,7 +9,7 @@ import Cocoa
 
 public class KCGraphicsView: KCView
 {
-	var mGraphicsViewCore : KCGraphicsViewCore? = nil
+	private var mGraphicsViewCore : KCGraphicsViewCore? = nil
 
 	public override init(frame f: NSRect){
 		super.init(frame: f)

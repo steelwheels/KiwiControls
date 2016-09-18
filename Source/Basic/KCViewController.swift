@@ -44,4 +44,12 @@ open class KCViewController : NSViewController
 	open func observe(state s: CNState){
 		/* Do nothing (Override this method) */
 	}
+
+	#if os(OSX)
+	public var currentContext : CGContext? {
+		get {
+			return NSGraphicsContext.current()?.cgContext
+		}
+	}
+	#endif
 }
