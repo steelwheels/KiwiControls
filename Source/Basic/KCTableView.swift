@@ -5,7 +5,11 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
 
 public class KCTableView: NSTableView
 {

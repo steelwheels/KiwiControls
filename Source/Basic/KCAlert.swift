@@ -5,7 +5,13 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
+
+#if os(OSX)
 
 public class KCAlert : NSObject
 {
@@ -42,4 +48,7 @@ public class KCAlert : NSObject
 		return result
 	}
 }
+
+#endif /* os(OSX) */
+
 

@@ -5,16 +5,27 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
 
 public class KCGraphicsView: KCView
 {
 	private var mGraphicsViewCore : KCGraphicsViewCore? = nil
 
+	#if os(iOS)
+	public override init(frame f: CGRect){
+		super.init(frame: f)
+		setupContext() ;
+	}
+	#else
 	public override init(frame f: NSRect){
 		super.init(frame: f)
 		setupContext() ;
 	}
+	#endif
 
 	public required init?(coder c: NSCoder) {
 		super.init(coder: c)

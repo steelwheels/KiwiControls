@@ -5,8 +5,11 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
-import Foundation
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
 
 public class KCGraphicsViewCore: KCView
 {
@@ -15,9 +18,7 @@ public class KCGraphicsViewCore: KCView
 	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
 
 	public func setOriginPosition(){
-		if let grcontext = NSGraphicsContext.current() {
-			let context = grcontext.cgContext
-			
+		if let context = currentContext {
 			/* Setup as left-lower-origin */
 			let height = self.bounds.size.height
 			context.translateBy(x: 0.0, y: height);

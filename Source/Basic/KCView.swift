@@ -5,13 +5,23 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
 import Canary
 
-open class KCView : NSView
+#if os(iOS)
+	public typealias KCViewBase = UIView
+#else
+	public typealias KCViewBase = NSView
+#endif
+
+open class KCView : KCViewBase
 {
 	private dynamic var mState: CNState?   = nil
-	
+
 	deinit {
 		if let state = mState {
 			state.remove(stateObserver: self)
@@ -45,7 +55,13 @@ open class KCView : NSView
 		/* Do nothing (Override this method) */
 	}
 
-	#if os(OSX)
+	#if os(iOS)
+	public var currentContext : CGContext? {
+		get {
+			return UIGraphicsGetCurrentContext()
+		}
+	}
+	#else
 	public var currentContext : CGContext? {
 		get {
 			return NSGraphicsContext.current()?.cgContext
@@ -53,11 +69,11 @@ open class KCView : NSView
 	}
 	#endif
 
-	private func allocateLayout(subView sview : NSView, attribute attr: NSLayoutAttribute) -> NSLayoutConstraint {
+	private func allocateLayout(subView sview : KCViewBase, attribute attr: NSLayoutAttribute) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: NSLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
 	}
 	
-	public func allocateSubviewLayout(subView sview: NSView){
+	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
 		addConstraint(allocateLayout(subView: sview, attribute: NSLayoutAttribute.top)) ;
 		addConstraint(allocateLayout(subView: sview, attribute: NSLayoutAttribute.left)) ;

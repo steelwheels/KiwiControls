@@ -5,10 +5,20 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
 import Canary
 
-open class KCViewController : NSViewController
+#if os(iOS)
+	public typealias KCViewControllerBase = UIViewController
+#else
+	public typealias KCViewControllerBase = NSViewController
+#endif
+
+open class KCViewController : KCViewControllerBase
 {
 	private dynamic var mState: CNState?   = nil
 

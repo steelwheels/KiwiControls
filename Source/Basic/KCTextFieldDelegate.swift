@@ -5,8 +5,11 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
-import Foundation
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
 
 public class KCTextFieldDelegate: NSObject, NSTextFieldDelegate {
 	public var textDidChangeCallback: ((_: String, _:Int) -> Void)? = nil
