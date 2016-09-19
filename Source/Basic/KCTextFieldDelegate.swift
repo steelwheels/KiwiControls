@@ -11,6 +11,8 @@
 	import Cocoa
 #endif
 
+#if os(OSX)
+
 public class KCTextFieldDelegate: NSObject, NSTextFieldDelegate {
 	public var textDidChangeCallback: ((_: String, _:Int) -> Void)? = nil
 
@@ -48,4 +50,7 @@ public class KCIntegerFieldDelegate: NSObject, NSTextFieldDelegate {
 		return true
 	}
 }
+
+#endif
+
 

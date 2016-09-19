@@ -11,6 +11,8 @@
 	import Cocoa
 #endif
 
+#if os(OSX)
+
 public class KCTableView: NSTableView
 {
 	public override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
@@ -21,4 +23,6 @@ public class KCTableView: NSTableView
 		return super.validateProposedFirstResponder(responder, for: event)
 	}
 }
+
+#endif
 

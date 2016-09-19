@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051D64651D8F9FAC00809DD0 /* KCGraphicsViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051D64641D8F9FAC00809DD0 /* KCGraphicsViewCore.xib */; };
 		05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E951D8F7B950092C2C6 /* KCAlert.swift */; };
 		05841E9B1D8F7B950092C2C6 /* KCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E961D8F7B950092C2C6 /* KCTableView.swift */; };
 		05841E9C1D8F7B950092C2C6 /* KCTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E971D8F7B950092C2C6 /* KCTextFieldDelegate.swift */; };
@@ -14,13 +15,13 @@
 		05841E9E1D8F7B950092C2C6 /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E991D8F7B950092C2C6 /* KCViewController.swift */; };
 		05841EA21D8F7BA00092C2C6 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E9F1D8F7BA00092C2C6 /* KCGraphicsView.swift */; };
 		05841EA31D8F7BA00092C2C6 /* KCGraphicsViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841EA01D8F7BA00092C2C6 /* KCGraphicsViewCore.swift */; };
-		05841EA41D8F7BA00092C2C6 /* KCGraphicsViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05841EA11D8F7BA00092C2C6 /* KCGraphicsViewCore.xib */; };
 		05CEE1951D8F97A000D3593C /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		05CEE1961D8F97A400D3593C /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
 		05EDB7FF1D8F792C00443B08 /* KiwiControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 05EDB7FD1D8F792C00443B08 /* KiwiControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051D64641D8F9FAC00809DD0 /* KCGraphicsViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCGraphicsViewCore.xib; sourceTree = "<group>"; };
 		05841E951D8F7B950092C2C6 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
 		05841E961D8F7B950092C2C6 /* KCTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTableView.swift; sourceTree = "<group>"; };
 		05841E971D8F7B950092C2C6 /* KCTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +29,6 @@
 		05841E991D8F7B950092C2C6 /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 		05841E9F1D8F7BA00092C2C6 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
 		05841EA01D8F7BA00092C2C6 /* KCGraphicsViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsViewCore.swift; sourceTree = "<group>"; };
-		05841EA11D8F7BA00092C2C6 /* KCGraphicsViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCGraphicsViewCore.xib; sourceTree = "<group>"; };
 		05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = /Users/tomoo/local/Frameworks/KiwiGraphics.framework; sourceTree = "<absolute>"; };
 		05CEE1931D8F87A900D3593C /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/local/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
 		05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		051D64631D8F9F7400809DD0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				051D64641D8F9FAC00809DD0 /* KCGraphicsViewCore.xib */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		05841E921D8F7B320092C2C6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,9 +83,9 @@
 		05841E941D8F7B6F0092C2C6 /* GraphicsView */ = {
 			isa = PBXGroup;
 			children = (
+				051D64631D8F9F7400809DD0 /* iOS */,
 				05841E9F1D8F7BA00092C2C6 /* KCGraphicsView.swift */,
 				05841EA01D8F7BA00092C2C6 /* KCGraphicsViewCore.swift */,
-				05841EA11D8F7BA00092C2C6 /* KCGraphicsViewCore.xib */,
 			);
 			path = GraphicsView;
 			sourceTree = "<group>";
@@ -180,7 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05841EA41D8F7BA00092C2C6 /* KCGraphicsViewCore.xib in Resources */,
+				051D64651D8F9FAC00809DD0 /* KCGraphicsViewCore.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,11 @@
 
 public class KCGraphicsViewCore: KCView
 {
+	#if os(iOS)
+	@IBOutlet weak var mGraphicsView: UIView!
+	#else
 	@IBOutlet weak var mGraphicsView: NSView!
+	#endif
 	
 	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
 
@@ -26,15 +30,25 @@ public class KCGraphicsViewCore: KCView
 		}
 	}
 
-	public override func draw(_ dirtyRect: NSRect) {
+	#if os(iOS)
+	public override func draw(_ dirtyRect: CGRect){
 		super.draw(dirtyRect)
-		if let grcontext = NSGraphicsContext.current() {
-			let cgcontext = grcontext.cgContext
-			cgcontext.saveGState()
+		drawContext(dirtyRect: dirtyRect)
+	}
+	#else
+	public override func draw(_ dirtyRect: NSRect){
+		super.draw(dirtyRect)
+		drawContext(dirtyRect: dirtyRect)
+	}
+	#endif
+
+	private func drawContext(dirtyRect drect: CGRect){
+		if let context = currentContext {
+			context.saveGState()
 			if let callback = drawCallback {
-				callback(cgcontext, bounds, dirtyRect)
+				callback(context, bounds, drect)
 			}
-			cgcontext.restoreGState()
+			context.restoreGState()
 		}
 	}
 }

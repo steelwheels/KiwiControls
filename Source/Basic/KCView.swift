@@ -83,22 +83,34 @@ open class KCView : KCViewBase
 
 	public func loadChildXib(thisClass tc: AnyClass, nibName nn: String) -> KCView {
 		let bundle : Bundle = Bundle(for: tc) ;
-		if let nib = NSNib(nibNamed: nn, bundle: bundle) {
-			var views : NSArray = NSArray()
-			if(nib.instantiate(withOwner: nil, topLevelObjects: &views)){
-				for i in 0..<views.count {
-					if let view = views[i] as? KCView {
-						view.frame = self.bounds ;
-						addSubview(view) ;
-						return view ;
+		#if os(iOS)
+			let nib = UINib(nibName: nn, bundle: bundle)
+			let views = nib.instantiate(withOwner: nil, options: nil)
+			for i in 0..<views.count {
+				if let view = views[i] as? KCView {
+					view.frame = self.bounds ;
+					addSubview(view) ;
+					return view ;
+				}
+			}
+		#else
+			if let nib = NSNib(nibNamed: nn, bundle: bundle) {
+				var views : NSArray = NSArray()
+				if(nib.instantiate(withOwner: nil, topLevelObjects: &views)){
+					for i in 0..<views.count {
+						if let view = views[i] as? KCView {
+							view.frame = self.bounds ;
+							addSubview(view) ;
+							return view ;
+						}
 					}
 				}
 			}
-		}
+		#endif
 		fatalError("Failed to load " + nn)
 	}
-	
-	public func searchSubViewByType<T>(view v: NSView) -> T? {
+
+	public func searchSubViewByType<T>(view v: KCViewBase) -> T? {
 		for subview in v.subviews {
 			if let targetview = subview as? T {
 				return targetview
