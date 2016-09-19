@@ -91,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0500E51F1D8F9EA800B1F57E /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				05386D5C1D8587E7004B8DDF /* KCGraphicsViewCore.xib */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
 		05043C121D856F910033FEC6 = {
 			isa = PBXGroup;
 			children = (
@@ -144,9 +152,9 @@
 		05386D571D8585AC004B8DDF /* GraphicsView */ = {
 			isa = PBXGroup;
 			children = (
+				0500E51F1D8F9EA800B1F57E /* OSX */,
 				05386D581D858603004B8DDF /* KCGraphicsView.swift */,
 				05386D5A1D858792004B8DDF /* KCGraphicsViewCore.swift */,
-				05386D5C1D8587E7004B8DDF /* KCGraphicsViewCore.xib */,
 			);
 			path = GraphicsView;
 			sourceTree = "<group>";
