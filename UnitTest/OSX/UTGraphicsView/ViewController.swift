@@ -25,7 +25,10 @@ class ViewController: KCViewController {
 			context.setFillColor(KGColorTable.blue2.cgColor)
 			//context.fill(bounds)
 			self.drawLine(context: context, bounds: bounds)
-			self.drawHexagon(context: context, bounds: bounds)
+
+			let (bounds0, bounds1) = bounds.splitByVertically()
+			self.drawHexagon(context: context, bounds: bounds0, withGrapdient: false)
+			self.drawHexagon(context: context, bounds: bounds1, withGrapdient: true)
 		}
 	}
 
@@ -38,14 +41,14 @@ class ViewController: KCViewController {
 		ctxt.strokePath()
 	}
 
-	private func drawHexagon(context ctxt:CGContext, bounds bnd: CGRect){
+	private func drawHexagon(context ctxt:CGContext, bounds bnd: CGRect, withGrapdient wg: Bool){
 		let h      = bnd.size.height
 		let w      = bnd.size.width
 		let radius = min(w, h) / 2.0
 		let hex    = KGHexagon(center: bnd.center, radius: radius)
 		Swift.print("Hexagon: \(hex.description)")
 		ctxt.setStrokeColor(KGColorTable.red2.cgColor)
-		ctxt.draw(hexagon: hex)
+		ctxt.draw(hexagon: hex, withGradient: wg)
 	}
 
 	override var representedObject: Any? {

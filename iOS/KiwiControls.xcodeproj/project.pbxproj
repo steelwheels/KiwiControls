@@ -15,12 +15,26 @@
 		05841E9E1D8F7B950092C2C6 /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E991D8F7B950092C2C6 /* KCViewController.swift */; };
 		05841EA21D8F7BA00092C2C6 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E9F1D8F7BA00092C2C6 /* KCGraphicsView.swift */; };
 		05841EA31D8F7BA00092C2C6 /* KCGraphicsViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841EA01D8F7BA00092C2C6 /* KCGraphicsViewCore.swift */; };
+		059434141D8FBDD400B16623 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059434131D8FBDD400B16623 /* AppDelegate.swift */; };
+		059434161D8FBDD400B16623 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059434151D8FBDD400B16623 /* ViewController.swift */; };
+		059434191D8FBDD400B16623 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059434171D8FBDD400B16623 /* Main.storyboard */; };
+		0594341B1D8FBDD400B16623 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0594341A1D8FBDD400B16623 /* Assets.xcassets */; };
+		0594341E1D8FBDD400B16623 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0594341C1D8FBDD400B16623 /* LaunchScreen.storyboard */; };
 		05CEE1951D8F97A000D3593C /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		05CEE1961D8F97A400D3593C /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
+		05DD3F121D8FCEB4002ECF86 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
+		05DD3F131D8FCEB7002ECF86 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
 		05EDB7FF1D8F792C00443B08 /* KiwiControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 05EDB7FD1D8F792C00443B08 /* KiwiControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		059434231D8FBDDE00B16623 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
+			remoteInfo = Install;
+		};
 		05BB23A81D8FBC9100C44B3F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
@@ -39,6 +53,13 @@
 		05841E991D8F7B950092C2C6 /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 		05841E9F1D8F7BA00092C2C6 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
 		05841EA01D8F7BA00092C2C6 /* KCGraphicsViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsViewCore.swift; sourceTree = "<group>"; };
+		059434111D8FBDD400B16623 /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		059434131D8FBDD400B16623 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		059434151D8FBDD400B16623 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		059434181D8FBDD400B16623 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0594341A1D8FBDD400B16623 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0594341D1D8FBDD400B16623 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0594341F1D8FBDD400B16623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05BB23AA1D8FBCB600C44B3F /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install.mk; path = ../Script/install.mk; sourceTree = "<group>"; };
 		05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = /Users/tomoo/local/Frameworks/KiwiGraphics.framework; sourceTree = "<absolute>"; };
 		05CEE1931D8F87A900D3593C /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/local/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
@@ -48,6 +69,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0594340E1D8FBDD400B16623 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DD3F121D8FCEB4002ECF86 /* Canary.framework in Frameworks */,
+				05DD3F131D8FCEB7002ECF86 /* KiwiGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05EDB7F61D8F792C00443B08 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -101,10 +131,41 @@
 			path = GraphicsView;
 			sourceTree = "<group>";
 		};
+		059434121D8FBDD400B16623 /* UTGraphicsView */ = {
+			isa = PBXGroup;
+			children = (
+				059434131D8FBDD400B16623 /* AppDelegate.swift */,
+				059434151D8FBDD400B16623 /* ViewController.swift */,
+				059434171D8FBDD400B16623 /* Main.storyboard */,
+				0594341A1D8FBDD400B16623 /* Assets.xcassets */,
+				0594341C1D8FBDD400B16623 /* LaunchScreen.storyboard */,
+				0594341F1D8FBDD400B16623 /* Info.plist */,
+			);
+			path = UTGraphicsView;
+			sourceTree = "<group>";
+		};
+		05CEEB931D8FBE2800CF2514 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				05CEEB941D8FBE3F00CF2514 /* iOS */,
+			);
+			name = UnitTest;
+			path = ../UnitTest;
+			sourceTree = SOURCE_ROOT;
+		};
+		05CEEB941D8FBE3F00CF2514 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				059434121D8FBDD400B16623 /* UTGraphicsView */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		05EDB7F01D8F792C00443B08 = {
 			isa = PBXGroup;
 			children = (
 				05841E921D8F7B320092C2C6 /* Source */,
+				05CEEB931D8FBE2800CF2514 /* UnitTest */,
 				05EDB7FC1D8F792C00443B08 /* KiwiControls */,
 				05EDB7FB1D8F792C00443B08 /* Products */,
 			);
@@ -114,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */,
+				059434111D8FBDD400B16623 /* UTGraphicsView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +223,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		059434101D8FBDD400B16623 /* UTGraphicsView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 059434221D8FBDD400B16623 /* Build configuration list for PBXNativeTarget "UTGraphicsView" */;
+			buildPhases = (
+				0594340D1D8FBDD400B16623 /* Sources */,
+				0594340E1D8FBDD400B16623 /* Frameworks */,
+				0594340F1D8FBDD400B16623 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				059434241D8FBDDE00B16623 /* PBXTargetDependency */,
+			);
+			name = UTGraphicsView;
+			productName = UTGraphicsView;
+			productReference = 059434111D8FBDD400B16623 /* UTGraphicsView.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05EDB7F91D8F792C00443B08 /* KiwiControls */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05EDB8021D8F792C00443B08 /* Build configuration list for PBXNativeTarget "KiwiControls" */;
@@ -185,9 +265,15 @@
 		05EDB7F11D8F792C00443B08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					059434101D8FBDD400B16623 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 					05BB23A41D8FBC8800C44B3F = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TR2DNF3P93;
@@ -207,6 +293,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 05EDB7F01D8F792C00443B08;
 			productRefGroup = 05EDB7FB1D8F792C00443B08 /* Products */;
@@ -215,11 +302,22 @@
 			targets = (
 				05EDB7F91D8F792C00443B08 /* KiwiControls */,
 				05BB23A41D8FBC8800C44B3F /* Install */,
+				059434101D8FBDD400B16623 /* UTGraphicsView */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0594340F1D8FBDD400B16623 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0594341E1D8FBDD400B16623 /* LaunchScreen.storyboard in Resources */,
+				0594341B1D8FBDD400B16623 /* Assets.xcassets in Resources */,
+				059434191D8FBDD400B16623 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05EDB7F81D8F792C00443B08 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,6 +329,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0594340D1D8FBDD400B16623 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				059434161D8FBDD400B16623 /* ViewController.swift in Sources */,
+				059434141D8FBDD400B16623 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05EDB7F51D8F792C00443B08 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -248,6 +355,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		059434241D8FBDDE00B16623 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BB23A41D8FBC8800C44B3F /* Install */;
+			targetProxy = 059434231D8FBDDE00B16623 /* PBXContainerItemProxy */;
+		};
 		05BB23A91D8FBC9100C44B3F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05EDB7F91D8F792C00443B08 /* KiwiControls */;
@@ -255,7 +367,58 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		059434171D8FBDD400B16623 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				059434181D8FBDD400B16623 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0594341C1D8FBDD400B16623 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0594341D1D8FBDD400B16623 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		059434201D8FBDD400B16623 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsView";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		059434211D8FBDD400B16623 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsView";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		05BB23A51D8FBC8800C44B3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -396,6 +559,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/local/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(HOME)/local/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
@@ -421,6 +585,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/local/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(HOME)/local/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
@@ -432,6 +597,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		059434221D8FBDD400B16623 /* Build configuration list for PBXNativeTarget "UTGraphicsView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				059434201D8FBDD400B16623 /* Debug */,
+				059434211D8FBDD400B16623 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05BB23A71D8FBC8800C44B3F /* Build configuration list for PBXLegacyTarget "Install" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -439,6 +613,7 @@
 				05BB23A61D8FBC8800C44B3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05EDB7F41D8F792C00443B08 /* Build configuration list for PBXProject "KiwiControls" */ = {
 			isa = XCConfigurationList;
