@@ -55,7 +55,7 @@
 		05043C1C1D856F910033FEC6 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05043C201D856F910033FEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0504EE381D8E9D3900D20B55 /* KiwiControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControls.framework; path = ../../../../../Library/Frameworks/KiwiControls.framework; sourceTree = "<group>"; };
-		052711741D8FBAD500AB7531 /* install.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install.mk; path = ../Script/install.mk; sourceTree = "<group>"; };
+		052711741D8FBAD500AB7531 /* install_osx.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_osx.mk; path = ../Script/install_osx.mk; sourceTree = "<group>"; };
 		05386D411D8570A4004B8DDF /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
 		05386D421D8570A4004B8DDF /* KCTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTableView.swift; sourceTree = "<group>"; };
 		05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 		05043C1E1D856F910033FEC6 /* KiwiControls */ = {
 			isa = PBXGroup;
 			children = (
-				052711741D8FBAD500AB7531 /* install.mk */,
+				052711741D8FBAD500AB7531 /* install_osx.mk */,
 				05043C201D856F910033FEC6 /* Info.plist */,
 			);
 			path = KiwiControls;
@@ -197,7 +197,7 @@
 /* Begin PBXLegacyTarget section */
 		05386D4F1D857F77004B8DDF /* Install */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f ../Script/install.mk";
+			buildArgumentsString = "-f ../Script/install_osx.mk";
 			buildConfigurationList = 05386D501D857F77004B8DDF /* Build configuration list for PBXLegacyTarget "Install" */;
 			buildPhases = (
 			);

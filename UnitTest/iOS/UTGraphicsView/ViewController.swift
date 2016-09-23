@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import KiwiControls
 
 class ViewController: UIViewController {
+
+	@IBOutlet weak var mGraphicsView: KCGraphicsView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
