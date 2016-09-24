@@ -1,25 +1,25 @@
 /**
-* @file		KCGraphicsLayer.h
-* @brief	Define KCGraphicsLayer class
-* @par Copyright
-*   Copyright (C) 2016 Steel Wheels Project
-*/
+ * @file	KCGraphicsLayer.swift
+ * @brief	Define KCGraphicsLayer class
+ * @par Copyright
+ *   Copyright (C) 2016 Steel Wheels Project
+ */
 
 import Foundation
 import CoreGraphics
 
 open class KCGraphicsLayer
 {
-	private var mBounds: CGRect
+	public var bounds: CGRect
 
 	public init(bounds b: CGRect){
-		mBounds = b
+		bounds = b
 	}
 
-	public var bounds: CGRect {
-		get { return mBounds }
-	}
-	
 	public func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
+	}
+
+	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> Bool {
+		return false
 	}
 }

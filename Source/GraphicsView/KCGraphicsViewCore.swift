@@ -1,5 +1,5 @@
 /**
- * @file	KCGraphicsViewCore.h
+ * @file	KCGraphicsViewCore.swift
  * @brief	Define KCGraphicsViewCore class
  * @par Copyright
  *   Copyright (C) 2016 Steel Wheels Project
@@ -11,6 +11,24 @@
 	import Cocoa
 #endif
 
+public enum KCMouseEvent {
+	case down
+	case drag
+	case up
+
+	public var description: String {
+		get {
+			var result:String = "?"
+			switch self {
+			case .up:	result = "up"
+			case .drag:	result = "drag"
+			case .down:	result = "down"
+			}
+			return result
+		}
+	}
+}
+
 public class KCGraphicsViewCore: KCView
 {
 	#if os(iOS)
@@ -20,6 +38,7 @@ public class KCGraphicsViewCore: KCView
 	#endif
 	
 	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
+	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> Bool)? = nil
 
 	public func setOriginPosition(){
 		if let context = currentContext {
@@ -51,5 +70,27 @@ public class KCGraphicsViewCore: KCView
 			context.restoreGState()
 		}
 	}
+
+	public override func mouseDown(with event: NSEvent) {
+		let pos = convert(event.locationInWindow, to: nil)
+		if let callback = mouseEventCallback {
+			_ = callback(.down, pos)
+		}
+	}
+
+	public override func mouseDragged(with event: NSEvent) {
+		let pos = convert(event.locationInWindow, to: nil)
+		if let callback = mouseEventCallback {
+			_ = callback(.drag, pos)
+		}
+	}
+
+	public override func mouseUp(with event: NSEvent) {
+		let pos = convert(event.locationInWindow, to: nil)
+		if let callback = mouseEventCallback {
+			_ = callback(.up, pos)
+		}
+	}
 }
+
 

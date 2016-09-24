@@ -1,5 +1,5 @@
 /**
- * @file	KCGraphicsView.h
+ * @file	KCGraphicsView.swifr
  * @brief	Define KCGraphicsView class
  * @par Copyright
  *   Copyright (C) 2016 Steel Wheels Project
@@ -52,6 +52,21 @@ public class KCGraphicsView: KCView
 		set(callback){
 			if let core = mGraphicsViewCore {
 				core.drawCallback = callback
+			}
+		}
+	}
+
+	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> Bool)? {
+		get {
+			if let core = mGraphicsViewCore {
+				return core.mouseEventCallback
+			} else {
+				return nil
+			}
+		}
+		set(callback){
+			if let core = mGraphicsViewCore {
+				core.mouseEventCallback = callback
 			}
 		}
 	}

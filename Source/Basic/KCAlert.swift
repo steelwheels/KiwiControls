@@ -1,5 +1,5 @@
 /**
- * @file	KCAlert.h
+ * @file	KCAlert.swift
  * @brief	Define KCAlert class
  * @par Copyright
  *   Copyright (C) 2015 Steel Wheels Project

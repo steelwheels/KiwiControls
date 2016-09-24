@@ -7,13 +7,40 @@
 //
 
 import Cocoa
+import KiwiControls
+import KiwiGraphics
 
 class ViewController: NSViewController {
 
+	@IBOutlet private var mGraphicsView: KCGraphicsView!
+
+	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
+		mGraphicsDrawer = allocateDrawer()
+		if let drawer = mGraphicsDrawer {
+			let hexlayer = UTHexagonLayer(bounds: mGraphicsView.frame, backgroundColor: KGColorTable.black)
+			drawer.addLayer(layer: hexlayer)
+		}
+
+		mGraphicsView.drawCallback = {
+			(context:CGContext, bounds:CGRect, dirtyRect:CGRect) -> Void in
+			if let drawer = self.mGraphicsDrawer {
+				drawer.drawContent(context: context, bounds: bounds, dirtyRect: dirtyRect)
+			}
+		}
+
+		mGraphicsView.mouseEventCallback = {
+			(event: KCMouseEvent, point: CGPoint) -> Bool in
+			if let drawer = self.mGraphicsDrawer {
+				return drawer.mouseEvent(event: event, at: point)
+			} else {
+				return false
+			}
+		}
 	}
 
 	override var representedObject: Any? {
@@ -22,6 +49,9 @@ class ViewController: NSViewController {
 		}
 	}
 
-
+	private func allocateDrawer() -> KCGraphicsDrawer {
+		let drawer = KCGraphicsDrawer()
+		return drawer
+	}
 }
 

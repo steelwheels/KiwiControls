@@ -1,5 +1,5 @@
 /**
- * @file	KCViewController.h
+ * @file	KCViewController.swift
  * @brief	Define KCViewController class
  * @par Copyright
  *   Copyright (C) 2015 Steel Wheels Project

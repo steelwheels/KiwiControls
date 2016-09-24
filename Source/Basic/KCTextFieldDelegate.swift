@@ -1,5 +1,5 @@
 /**
- * @file	KCTextField.h
+ * @file	KCTextField.swift
  * @brief	Extend NSTextField class
  * @par Copyright
  *   Copyright (C) 2015 Steel Wheels Project

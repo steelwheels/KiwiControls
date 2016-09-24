@@ -1,5 +1,5 @@
 /**
- * @file	KCTableView.h
+ * @file	KCTableView.swift
  * @brief	Define KCTableView class
  * @par Copyright
  *   Copyright (C) 2016 Steel Wheels Project

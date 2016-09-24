@@ -1,5 +1,5 @@
 /**
- * @file	KCView.h
+ * @file	KCView.swift
  * @brief	Define KCView class
  * @par Copyright
  *   Copyright (C) 2015 Steel Wheels Project
