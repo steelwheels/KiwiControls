@@ -20,6 +20,8 @@
 		05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05648A6A1D8EB1B100EABCD0 /* Main.storyboard */; };
 		05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */; };
 		05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BCED131D8E67FE00EBEA0B /* Assets.xcassets */; };
+		05E7CF901D95FC44009DCC4A /* KCGraphicsDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */; };
+		05E7CF921D95FDC6009DCC4A /* KCGraphicsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7CF911D95FDC6009DCC4A /* KCGraphicsLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BCED131D8E67FE00EBEA0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BCED181D8E67FE00EBEA0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsDrawer.swift; sourceTree = "<group>"; };
+		05E7CF911D95FDC6009DCC4A /* KCGraphicsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 			children = (
 				05386D401D85708E004B8DDF /* Basic */,
 				05386D571D8585AC004B8DDF /* GraphicsView */,
+				05E7CF8E1D95F8EB009DCC4A /* GraphicsDrawer */,
 			);
 			name = Source;
 			path = ../Source;
@@ -180,6 +185,15 @@
 			);
 			name = UTGraphicsView;
 			path = OSX/UTGraphicsView;
+			sourceTree = "<group>";
+		};
+		05E7CF8E1D95F8EB009DCC4A /* GraphicsDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */,
+				05E7CF911D95FDC6009DCC4A /* KCGraphicsLayer.swift */,
+			);
+			path = GraphicsDrawer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +342,8 @@
 				05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */,
 				05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */,
 				05386D5B1D858792004B8DDF /* KCGraphicsViewCore.swift in Sources */,
+				05E7CF901D95FC44009DCC4A /* KCGraphicsDrawer.swift in Sources */,
+				05E7CF921D95FDC6009DCC4A /* KCGraphicsLayer.swift in Sources */,
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
 				05386D591D858603004B8DDF /* KCGraphicsView.swift in Sources */,
 			);
