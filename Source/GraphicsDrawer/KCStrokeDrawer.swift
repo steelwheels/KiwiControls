@@ -15,14 +15,20 @@ open class KCStrokeDrawer: KCGraphicsLayer
 	private var mCurrentStroke: KGStroke?	= nil
 	private var mStrokes: Array<KGStroke>	= []
 
+	public var lineWidth: CGFloat
+	public var lineColor: NSColor
+
 	public override init(bounds b: CGRect){
+		lineWidth = 10.0
+		lineColor = KGColorTable.black
 		super.init(bounds: b)
 	}
 
 	public override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
-		Swift.print("dirty:\(drect.description)")
-		ctxt.setLineWidth(10.0)
-		ctxt.setStrokeColor(KGColorTable.red2.cgColor)
+		//Swift.print("dirty:\(drect.description)")
+		ctxt.setLineWidth(lineWidth)
+		ctxt.setStrokeColor(lineColor.cgColor)
+		ctxt.setLineCap(.round)
 
 		for s in mStrokes {
 			drawStroke(context: ctxt, stroke: s, bounds: bnd, dirtyRect: drect)
@@ -34,7 +40,7 @@ open class KCStrokeDrawer: KCGraphicsLayer
 	}
 
 	private func drawStroke(context ctxt:CGContext, stroke strk: KGStroke, bounds bnd:CGRect, dirtyRect drect:CGRect){
-		Swift.print("drawStroke")
+		//Swift.print("drawStroke")
 		let points = strk.points
 		let count  = points.count
 		if count >= 2 {
@@ -48,9 +54,12 @@ open class KCStrokeDrawer: KCGraphicsLayer
 	}
 
 	private func drawPoints(context ctxt:CGContext, fromPoint fp: CGPoint, toPoint tp: CGPoint, bounds bnd:CGRect, dirtyRect drect:CGRect){
-		Swift.print("drawPoints: \(fp.description) -> \(tp.description)")
-		ctxt.move(to: fp)
-		ctxt.addLine(to: tp)
+		//Swift.print("drawPoints: \(fp.description) -> \(tp.description)")
+		let drawrect = CGRect.pointsToRect(fromPoint: fp, toPoint: tp)
+		if drawrect.intersects(drect) {
+			ctxt.move(to: fp)
+			ctxt.addLine(to: tp)
+		}
 	}
 
 	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
@@ -62,18 +71,17 @@ open class KCStrokeDrawer: KCGraphicsLayer
 		case .drag:
 			if let stroke = mCurrentStroke {
 				didadded   = stroke.addPoint(point: point)
-				updatearea = stroke.lastUpdatedArea()
+				updatearea = expandByLineWidth(source: stroke.lastUpdatedArea())
 			} else {
 				mCurrentStroke = KGStroke(firstPoint: point)
 			}
 		case .up:
 			if let stroke = mCurrentStroke {
-				didadded       = stroke.addPoint(point: point)
+				didadded = stroke.addPoint(point: point)
 				if didadded {
-
+					mStrokes.append(stroke)
+					updatearea   = expandByLineWidth(source: stroke.lastUpdatedArea())
 				}
-				mStrokes.append(stroke)
-				updatearea   = stroke.lastUpdatedArea()
 			}
 			mCurrentStroke = nil
 		}
@@ -94,5 +102,14 @@ open class KCStrokeDrawer: KCGraphicsLayer
 		} else {
 			return KCMouseEventResult()
 		}
+	}
+
+	private func expandByLineWidth(source src:CGRect) -> CGRect {
+		let lwidth = lineWidth / 2.0
+		let x      = src.origin.x - lwidth
+		let y      = src.origin.y - lwidth
+		let width  = src.size.width  + lineWidth
+		let height = src.size.height + lineWidth
+		return CGRect(x: x, y: y, width: width, height: height)
 	}
 }

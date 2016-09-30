@@ -133,8 +133,8 @@ public class KCGraphicsViewCore: KCView
 
 	private func acceptMouseEventResult(result res: KCMouseEventResult){
 		if res.didAccepted && res.updateRequired {
-			//setNeedsDisplay(res.updateArea)
-			setNeedsDisplay(bounds)
+			setNeedsDisplay(res.updateArea)
+			//setNeedsDisplay(bounds)
 		}
 	}
 
