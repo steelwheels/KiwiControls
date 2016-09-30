@@ -56,7 +56,7 @@ public class KCGraphicsView: KCView
 		}
 	}
 
-	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> Bool)? {
+	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> KCMouseEventResult)? {
 		get {
 			if let core = mGraphicsViewCore {
 				return core.mouseEventCallback

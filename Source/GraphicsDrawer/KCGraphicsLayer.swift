@@ -10,7 +10,7 @@ import CoreGraphics
 
 open class KCGraphicsLayer
 {
-	public var bounds: CGRect
+	public  var	bounds: CGRect
 
 	public init(bounds b: CGRect){
 		bounds = b
@@ -19,7 +19,7 @@ open class KCGraphicsLayer
 	public func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 	}
 
-	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> Bool {
-		return false
+	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
+		return KCMouseEventResult()
 	}
 }

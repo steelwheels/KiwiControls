@@ -22,8 +22,8 @@ class ViewController: NSViewController {
 		// Do any additional setup after loading the view.
 		mGraphicsDrawer = allocateDrawer()
 		if let drawer = mGraphicsDrawer {
-			let hexlayer = UTHexagonLayer(bounds: mGraphicsView.frame, backgroundColor: KGColorTable.black)
-			drawer.addLayer(layer: hexlayer)
+			let layer = KCStrokeDrawer(bounds: mGraphicsView.frame)
+			drawer.addLayer(layer: layer)
 		}
 
 		mGraphicsView.drawCallback = {
@@ -34,11 +34,11 @@ class ViewController: NSViewController {
 		}
 
 		mGraphicsView.mouseEventCallback = {
-			(event: KCMouseEvent, point: CGPoint) -> Bool in
+			(event: KCMouseEvent, point: CGPoint) -> KCMouseEventResult in
 			if let drawer = self.mGraphicsDrawer {
 				return drawer.mouseEvent(event: event, at: point)
 			} else {
-				return false
+				return KCMouseEventResult()
 			}
 		}
 	}

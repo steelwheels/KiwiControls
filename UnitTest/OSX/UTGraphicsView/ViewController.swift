@@ -10,7 +10,6 @@ import KiwiControls
 import KiwiGraphics
 import Cocoa
 
-@IBOutlet weak var mGraphicsView: KCGraphicsView!
 class ViewController: KCViewController {
 
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
