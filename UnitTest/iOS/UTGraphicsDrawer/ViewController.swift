@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  UTGraphicsView
+//  UTGraphicsDrawer
 //
-//  Created by Tomoo Hamada on 2016/09/19.
+//  Created by Tomoo Hamada on 2016/10/02.
 //  Copyright © 2016年 Steel Wheels Project. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ class ViewController: UIViewController
 	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
 
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -52,6 +52,4 @@ class ViewController: UIViewController
 		return drawer
 	}
 }
-
-
 
