@@ -24,7 +24,7 @@
                 <constraint firstItem="KqD-rS-6at" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rL6-ud-9Xr"/>
             </constraints>
             <connections>
-                <outlet property="mGraphicsView" destination="KqD-rS-6at" id="Apd-3L-k7c"/>
+                <outlet property="iGraphicsView" destination="KqD-rS-6at" id="Mvf-qs-Wc0"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>

@@ -10,6 +10,7 @@
 #else
 	import Cocoa
 #endif
+import KiwiGraphics
 
 public enum KCMouseEvent {
 	case down
@@ -49,8 +50,9 @@ public struct KCMouseEventResult {
 
 public class KCGraphicsViewCore: KCView
 {
+
 	#if os(iOS)
-	@IBOutlet weak var mGraphicsView: UIView!
+	@IBOutlet weak var iGraphicsView: UIView!
 	#else
 	@IBOutlet weak var mGraphicsView: NSView!
 	#endif
@@ -81,7 +83,8 @@ public class KCGraphicsViewCore: KCView
 
 	private var areaToBeDisplay = CGRect.zero
 
-	public override func setNeedsDisplay(_ invalidRect: NSRect) {
+	public override func setNeedsDisplay(_ invalidRect: CNRect)
+	{
 		if areaToBeDisplay.isEmpty {
 			areaToBeDisplay = invalidRect
 		} else {
@@ -102,6 +105,15 @@ public class KCGraphicsViewCore: KCView
 		}
 	}
 
+	#if os(iOS)
+	public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		let pos = eventLocation(touches: touches)
+		if let callback = mouseEventCallback {
+			let result = callback(.down, pos)
+			acceptMouseEventResult(result: result)
+		}
+	}
+	#else
 	public override func mouseDown(with event: NSEvent) {
 		let pos = eventLocation(event: event)
 		if let callback = mouseEventCallback {
@@ -109,7 +121,17 @@ public class KCGraphicsViewCore: KCView
 			acceptMouseEventResult(result: result)
 		}
 	}
+	#endif
 
+	#if os(iOS)
+	public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		let pos = eventLocation(touches: touches)
+		if let callback = mouseEventCallback {
+			let result = callback(.drag, pos)
+			acceptMouseEventResult(result: result)
+		}
+	}
+	#else
 	public override func mouseDragged(with event: NSEvent) {
 		let pos = eventLocation(event: event)
 		if let callback = mouseEventCallback {
@@ -117,7 +139,17 @@ public class KCGraphicsViewCore: KCView
 			acceptMouseEventResult(result: result)
 		}
 	}
+	#endif
 
+	#if os(iOS)
+	public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		let pos = eventLocation(touches: touches)
+		if let callback = mouseEventCallback {
+			let result = callback(.up, pos)
+			acceptMouseEventResult(result: result)
+		}
+	}
+	#else
 	public override func mouseUp(with event: NSEvent) {
 		let pos = eventLocation(event: event)
 		if let callback = mouseEventCallback {
@@ -125,11 +157,23 @@ public class KCGraphicsViewCore: KCView
 			acceptMouseEventResult(result: result)
 		}
 	}
+	#endif
 
+	#if os(iOS)
+	private func eventLocation(touches tchs: Set<UITouch>) -> CGPoint {
+		if let touch = tchs.first {
+			let pos = touch.location(in: self)
+			return pos
+		} else {
+			fatalError("No touch location")
+		}
+	}
+	#else
 	private func eventLocation(event evt: NSEvent) -> CGPoint {
 		let pos = convert(evt.locationInWindow, to: nil)
 		return convert(pos, to: nil)
 	}
+	#endif
 
 	private func acceptMouseEventResult(result res: KCMouseEventResult){
 		if res.didAccepted && res.updateRequired {

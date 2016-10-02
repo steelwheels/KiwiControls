@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050374CF1DA12FF800CA86DC /* KCGraphicsDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050374CC1DA12FF800CA86DC /* KCGraphicsDrawer.swift */; };
+		050374D01DA12FF800CA86DC /* KCGraphicsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050374CD1DA12FF800CA86DC /* KCGraphicsLayer.swift */; };
+		050374D11DA12FF800CA86DC /* KCStrokeDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050374CE1DA12FF800CA86DC /* KCStrokeDrawer.swift */; };
 		05070F091D958CDE00BA88DD /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05070F071D958CD400BA88DD /* KiwiControls.framework */; };
 		051D64651D8F9FAC00809DD0 /* KCGraphicsViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051D64641D8F9FAC00809DD0 /* KCGraphicsViewCore.xib */; };
 		05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E951D8F7B950092C2C6 /* KCAlert.swift */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050374CC1DA12FF800CA86DC /* KCGraphicsDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsDrawer.swift; sourceTree = "<group>"; };
+		050374CD1DA12FF800CA86DC /* KCGraphicsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsLayer.swift; sourceTree = "<group>"; };
+		050374CE1DA12FF800CA86DC /* KCStrokeDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeDrawer.swift; sourceTree = "<group>"; };
 		05070F071D958CD400BA88DD /* KiwiControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControls.framework; path = ../../../../../local/Frameworks/KiwiControls.framework; sourceTree = "<group>"; };
 		051D64641D8F9FAC00809DD0 /* KCGraphicsViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCGraphicsViewCore.xib; sourceTree = "<group>"; };
 		05841E951D8F7B950092C2C6 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
@@ -93,6 +99,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050374CB1DA12FCE00CA86DC /* GraphicsDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				050374CC1DA12FF800CA86DC /* KCGraphicsDrawer.swift */,
+				050374CD1DA12FF800CA86DC /* KCGraphicsLayer.swift */,
+				050374CE1DA12FF800CA86DC /* KCStrokeDrawer.swift */,
+			);
+			path = GraphicsDrawer;
+			sourceTree = "<group>";
+		};
 		051D64631D8F9F7400809DD0 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +123,7 @@
 				05EDB7FD1D8F792C00443B08 /* KiwiControls.h */,
 				05841E931D8F7B670092C2C6 /* Basic */,
 				05841E941D8F7B6F0092C2C6 /* GraphicsView */,
+				050374CB1DA12FCE00CA86DC /* GraphicsDrawer */,
 			);
 			name = Source;
 			path = ../Source;
@@ -350,7 +367,10 @@
 				05841E9D1D8F7B950092C2C6 /* KCView.swift in Sources */,
 				05841E9C1D8F7B950092C2C6 /* KCTextFieldDelegate.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
+				050374D11DA12FF800CA86DC /* KCStrokeDrawer.swift in Sources */,
 				05841EA31D8F7BA00092C2C6 /* KCGraphicsViewCore.swift in Sources */,
+				050374CF1DA12FF800CA86DC /* KCGraphicsDrawer.swift in Sources */,
+				050374D01DA12FF800CA86DC /* KCGraphicsLayer.swift in Sources */,
 				05841E9B1D8F7B950092C2C6 /* KCTableView.swift in Sources */,
 				05841EA21D8F7BA00092C2C6 /* KCGraphicsView.swift in Sources */,
 			);
@@ -398,11 +418,13 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -414,6 +436,7 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
