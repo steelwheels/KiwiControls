@@ -60,15 +60,6 @@ public class KCGraphicsViewCore: KCView
 	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
 	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> KCMouseEventResult)? = nil
 
-	public func setOriginPosition(){
-		if let context = currentContext {
-			/* Setup as left-lower-origin */
-			let height = self.bounds.size.height
-			context.translateBy(x: 0.0, y: height);
-			context.scaleBy(x: 1.0, y: -1.0);
-		}
-	}
-
 	#if os(iOS)
 	public override func draw(_ dirtyRect: CGRect){
 		super.draw(dirtyRect)
@@ -99,6 +90,11 @@ public class KCGraphicsViewCore: KCView
 		if let context = currentContext {
 			context.saveGState()
 			if let callback = drawCallback {
+				/* Setup as left-lower-origin */
+				let height = self.bounds.size.height
+				context.translateBy(x: 0.0, y: height);
+				context.scaleBy(x: 1.0, y: -1.0);
+
 				callback(context, bounds, drect)
 			}
 			context.restoreGState()
@@ -177,6 +173,7 @@ public class KCGraphicsViewCore: KCView
 
 	private func acceptMouseEventResult(result res: KCMouseEventResult){
 		if res.didAccepted && res.updateRequired {
+			//Swift.print("update: \(res.updateArea.description)")
 			setNeedsDisplay(res.updateArea)
 			//setNeedsDisplay(bounds)
 		}

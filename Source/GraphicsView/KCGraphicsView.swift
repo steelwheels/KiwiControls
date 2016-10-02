@@ -35,7 +35,6 @@ public class KCGraphicsView: KCView
 	private func setupContext(){
 		if let view = loadChildXib(thisClass: KCGraphicsView.self, nibName: "KCGraphicsViewCore") as? KCGraphicsViewCore {
 			mGraphicsViewCore = view ;
-			view.setOriginPosition()
 		} else {
 			fatalError("Can not load KCConsoleTextView")
 		}
