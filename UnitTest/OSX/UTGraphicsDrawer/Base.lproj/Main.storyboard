@@ -691,8 +691,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="hdT-hd-sWu" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="5hS-Sa-tuO"/>
+                            <constraint firstItem="hdT-hd-sWu" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="5je-7d-Zff"/>
                             <constraint firstAttribute="trailing" secondItem="hdT-hd-sWu" secondAttribute="trailing" id="8Ou-Gz-t4b"/>
                             <constraint firstItem="hdT-hd-sWu" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Afy-7e-fnv"/>
+                            <constraint firstAttribute="trailing" secondItem="hdT-hd-sWu" secondAttribute="trailing" id="Cte-s3-SWg"/>
+                            <constraint firstItem="hdT-hd-sWu" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Qxh-Bi-YV8"/>
+                            <constraint firstAttribute="bottom" secondItem="hdT-hd-sWu" secondAttribute="bottom" id="kwR-MF-q9c"/>
                             <constraint firstAttribute="bottom" secondItem="hdT-hd-sWu" secondAttribute="bottom" id="pZ6-Qz-hSG"/>
                         </constraints>
                     </view>

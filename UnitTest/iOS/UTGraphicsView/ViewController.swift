@@ -11,34 +11,14 @@ import KiwiControls
 
 class ViewController: UIViewController
 {
-	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
-
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		// Do any additional setup after loading the view, typically from a nib.
-		mGraphicsDrawer = allocateDrawer()
-		if let drawer = mGraphicsDrawer {
-			let layer = KCStrokeDrawer(bounds: mGraphicsView.frame)
-			drawer.addLayer(layer: layer)
-		}
-
 		mGraphicsView.drawCallback = {
 			(context:CGContext, bounds:CGRect, dirtyRect:CGRect) -> Void in
-			if let drawer = self.mGraphicsDrawer {
-				drawer.drawContent(context: context, bounds: bounds, dirtyRect: dirtyRect)
-			}
-		}
-
-		mGraphicsView.mouseEventCallback = {
-			(event: KCMouseEvent, point: CGPoint) -> KCMouseEventResult in
-			if let drawer = self.mGraphicsDrawer {
-				return drawer.mouseEvent(event: event, at: point)
-			} else {
-				return KCMouseEventResult()
-			}
+				self.drawContext(context: context, bounds: bounds, dirtyRect: dirtyRect)
 		}
 	}
 
@@ -47,9 +27,15 @@ class ViewController: UIViewController
 		// Dispose of any resources that can be recreated.
 	}
 
-	private func allocateDrawer() -> KCGraphicsDrawer {
-		let drawer = KCGraphicsDrawer()
-		return drawer
+	private func drawContext(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
+		ctxt.move(to: CGPoint(x: 0.0, y:0.0))
+		ctxt.addLine(to: CGPoint(x: bnd.size.width, y: bnd.size.height))
+		ctxt.strokePath()
+
+		let radius  = min(bnd.size.width, bnd.size.height)
+		let center  = CGPoint(x: bnd.origin.x + radius/2.0, y: bnd.origin.y + radius/2.0)
+		let hexagon = KGHexagon(center: center, radius: radius)
+		ctxt.draw(hexagon: hexagon)
 	}
 }
 

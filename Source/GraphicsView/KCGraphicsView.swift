@@ -11,6 +11,8 @@
 	import Cocoa
 #endif
 
+import KiwiGraphics
+
 public class KCGraphicsView: KCView
 {
 	private var mGraphicsViewCore : KCGraphicsViewCore? = nil

@@ -54,7 +54,7 @@ open class KCStrokeDrawer: KCGraphicsLayer
 	}
 
 	private func drawPoints(context ctxt:CGContext, fromPoint fp: CGPoint, toPoint tp: CGPoint, bounds bnd:CGRect, dirtyRect drect:CGRect){
-		Swift.print("drawPoints: \(fp.description) -> \(tp.description) in \(drect.description)")
+		//Swift.print("drawPoints: \(fp.description) -> \(tp.description) in \(drect.description)")
 		let drawrect = CGRect.pointsToRect(fromPoint: fp, toPoint: tp)
 		if drawrect.intersects(drect){
 			ctxt.move(to: fp)

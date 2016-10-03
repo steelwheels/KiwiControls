@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
@@ -11,20 +11,6 @@
         <customView id="c22-O7-iKe" customClass="KCGraphicsViewCore" customModule="KiwiControls">
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="pXw-9x-7ky">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
-                </customView>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="pXw-9x-7ky" secondAttribute="trailing" id="Fiv-tp-3fe"/>
-                <constraint firstAttribute="bottom" secondItem="pXw-9x-7ky" secondAttribute="bottom" id="Kz9-rT-C1i"/>
-                <constraint firstItem="pXw-9x-7ky" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="MEW-AK-jCx"/>
-                <constraint firstItem="pXw-9x-7ky" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="m6a-2S-SZr"/>
-            </constraints>
-            <connections>
-                <outlet property="mGraphicsView" destination="pXw-9x-7ky" id="ZZR-wi-szK"/>
-            </connections>
         </customView>
     </objects>
 </document>

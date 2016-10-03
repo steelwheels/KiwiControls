@@ -49,14 +49,7 @@ public struct KCMouseEventResult {
 }
 
 public class KCGraphicsViewCore: KCView
-{
-
-	#if os(iOS)
-	@IBOutlet weak var iGraphicsView: UIView!
-	#else
-	@IBOutlet weak var mGraphicsView: NSView!
-	#endif
-	
+{	
 	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
 	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> KCMouseEventResult)? = nil
 
@@ -74,7 +67,7 @@ public class KCGraphicsViewCore: KCView
 
 	private var areaToBeDisplay = CGRect.zero
 
-	public override func setNeedsDisplay(_ invalidRect: CNRect)
+	public override func setNeedsDisplay(_ invalidRect: KGRect)
 	{
 		if areaToBeDisplay.isEmpty {
 			areaToBeDisplay = invalidRect
@@ -90,11 +83,12 @@ public class KCGraphicsViewCore: KCView
 		if let context = currentContext {
 			context.saveGState()
 			if let callback = drawCallback {
+				#if os(iOS)
 				/* Setup as left-lower-origin */
 				let height = self.bounds.size.height
 				context.translateBy(x: 0.0, y: height);
 				context.scaleBy(x: 1.0, y: -1.0);
-
+				#endif
 				callback(context, bounds, drect)
 			}
 			context.restoreGState()
