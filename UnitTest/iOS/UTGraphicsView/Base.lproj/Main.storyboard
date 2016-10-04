@@ -25,8 +25,16 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="KVY-2J-Azx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3KB-h4-u1R"/>
+                            <constraint firstAttribute="trailing" secondItem="KVY-2J-Azx" secondAttribute="trailing" id="7LR-kc-mTf"/>
                             <constraint firstItem="KVY-2J-Azx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="E7j-1T-fI9"/>
                             <constraint firstAttribute="trailing" secondItem="KVY-2J-Azx" secondAttribute="trailing" id="EaW-ue-ihf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KVY-2J-Azx" secondAttribute="bottom" id="L46-0G-xuW"/>
+                            <constraint firstItem="KVY-2J-Azx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LK2-mq-3fm"/>
+                            <constraint firstAttribute="trailing" secondItem="KVY-2J-Azx" secondAttribute="trailing" id="NHU-oi-M50"/>
+                            <constraint firstItem="KVY-2J-Azx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SXg-kC-ETc"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KVY-2J-Azx" secondAttribute="bottom" id="kBZ-18-BKX"/>
+                            <constraint firstItem="KVY-2J-Azx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="l6d-1O-Y27"/>
+                            <constraint firstItem="KVY-2J-Azx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="var-h7-6uz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KVY-2J-Azx" secondAttribute="bottom" id="wkv-2z-s7P"/>
                         </constraints>
                     </view>

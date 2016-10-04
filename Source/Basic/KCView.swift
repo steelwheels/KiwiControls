@@ -118,6 +118,14 @@ open class KCView : KCViewBase
 		}
 		return nil
 	}
+
+	public func setTransparentView(){
+		#if os(iOS)
+		self.isOpaque = false
+		self.backgroundColor = UIColor.clear
+		self.clearsContextBeforeDrawing = false
+		#endif
+	}
 }
 
 

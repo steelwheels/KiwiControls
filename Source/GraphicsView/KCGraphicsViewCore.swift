@@ -84,10 +84,10 @@ public class KCGraphicsViewCore: KCView
 			context.saveGState()
 			if let callback = drawCallback {
 				#if os(iOS)
-				/* Setup as left-lower-origin */
-				let height = self.bounds.size.height
-				context.translateBy(x: 0.0, y: height);
-				context.scaleBy(x: 1.0, y: -1.0);
+					/* Setup as left-lower-origin */
+					let height = self.bounds.size.height
+					context.translateBy(x: 0.0, y: height);
+					context.scaleBy(x: 1.0, y: -1.0);
 				#endif
 				callback(context, bounds, drect)
 			}
@@ -153,7 +153,7 @@ public class KCGraphicsViewCore: KCView
 	private func eventLocation(touches tchs: Set<UITouch>) -> CGPoint {
 		if let touch = tchs.first {
 			let pos = touch.location(in: self)
-			return pos
+			return toLeftLowerOrigin(source: pos, bounds: bounds)
 		} else {
 			fatalError("No touch location")
 		}
@@ -165,15 +165,29 @@ public class KCGraphicsViewCore: KCView
 	}
 	#endif
 
+	private func toLeftLowerOrigin(source src: CGPoint, bounds bnds: CGRect) -> CGPoint {
+		let origin = CGPoint(x: src.x, y: (bnds.size.height - src.y))
+		return origin
+	}
+
 	private func acceptMouseEventResult(result res: KCMouseEventResult){
 		if res.didAccepted && res.updateRequired {
 			//Swift.print("update: \(res.updateArea.description)")
-			setNeedsDisplay(res.updateArea)
-			//setNeedsDisplay(bounds)
+			#if os(iOS)
+				//let uparea = toLeftUpperOrigin(source: res.updateArea, bounds: bounds)
+				//setNeedsDisplay(uparea)
+				setNeedsDisplay()
+			#else
+				setNeedsDisplay(res.updateArea)
+				//setNeedsDisplay()
+			#endif
 		}
 	}
 
-
+	private func toLeftUpperOrigin(source src: CGRect, bounds bnds: CGRect) -> CGRect {
+		let origin = CGPoint(x: src.origin.x, y: bnds.size.height - src.origin.y - src.size.height)
+		return CGRect(origin: origin, size: src.size)
+	}
 }
 
 
