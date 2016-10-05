@@ -23,6 +23,10 @@ public class KCRepetitiveDrawer: KCGraphicsLayer
 		super.init(bounds: b)
 	}
 
+	public func add(location p: CGPoint){
+		mLocations.append(p)
+	}
+	
 	public override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect)
 	{
 		var layer: CGLayer? = nil

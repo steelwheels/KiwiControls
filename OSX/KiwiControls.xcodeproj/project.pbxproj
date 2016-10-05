@@ -20,9 +20,15 @@
 		053B67EB1D96135B00A153F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B67EA1D96135B00A153F8 /* ViewController.swift */; };
 		053B67ED1D96135B00A153F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053B67EC1D96135B00A153F8 /* Assets.xcassets */; };
 		053B67F01D96135B00A153F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053B67EE1D96135B00A153F8 /* Main.storyboard */; };
+		053C95F51DA5543700E6E62E /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
+		053C95F61DA5543A00E6E62E /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		055DFA5D1D9789430029BA0A /* KCStrokeDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DFA5C1D9789430029BA0A /* KCStrokeDrawer.swift */; };
 		05648A691D8EB1A500EABCD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05648A681D8EB1A500EABCD0 /* ViewController.swift */; };
 		05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05648A6A1D8EB1B100EABCD0 /* Main.storyboard */; };
+		0569ECAE1DA552EB00428373 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569ECAD1DA552EB00428373 /* AppDelegate.swift */; };
+		0569ECB01DA552EB00428373 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569ECAF1DA552EB00428373 /* ViewController.swift */; };
+		0569ECB21DA552EB00428373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0569ECB11DA552EB00428373 /* Assets.xcassets */; };
+		0569ECB51DA552EB00428373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569ECB31DA552EB00428373 /* Main.storyboard */; };
 		056DDBC61D969FF4007A8677 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
 		056DDBC81D96A00C007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		056DDBC91D96A014007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
@@ -50,6 +56,13 @@
 			remoteInfo = KiwiControls;
 		};
 		053B67F51D96136700A153F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05386D4F1D857F77004B8DDF;
+			remoteInfo = Install;
+		};
+		0569ECBA1DA552F600428373 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
 			proxyType = 1;
@@ -92,6 +105,12 @@
 		055DFA5C1D9789430029BA0A /* KCStrokeDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeDrawer.swift; sourceTree = "<group>"; };
 		05648A681D8EB1A500EABCD0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		05648A6B1D8EB1B100EABCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0569ECAB1DA552EB00428373 /* UTRepetitiveDrawer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRepetitiveDrawer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0569ECAD1DA552EB00428373 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0569ECAF1DA552EB00428373 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0569ECB11DA552EB00428373 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0569ECB41DA552EB00428373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0569ECB61DA552EB00428373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = ../../../Library/Frameworks/KiwiGraphics.framework; sourceTree = "<group>"; };
 		05A3EAC21DA41729008654F6 /* KCRepetitiveDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveDrawer.swift; sourceTree = "<group>"; };
 		05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +136,15 @@
 			files = (
 				056DDBC61D969FF4007A8677 /* KiwiControls.framework in Frameworks */,
 				056DDBCA1D96A015007A8677 /* KiwiGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0569ECA81DA552EB00428373 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				053C95F51DA5543700E6E62E /* KiwiControls.framework in Frameworks */,
+				053C95F61DA5543A00E6E62E /* KiwiGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +184,7 @@
 				05043C1C1D856F910033FEC6 /* KiwiControls.framework */,
 				05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */,
 				053B67E61D96135B00A153F8 /* UTGraphicsDrawer.app */,
+				0569ECAB1DA552EB00428373 /* UTRepetitiveDrawer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +247,7 @@
 		0569CCDC1D85CCA2005412C7 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				0569ECAC1DA552EB00428373 /* UTRepetitiveDrawer */,
 				05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */,
 				053B67E71D96135B00A153F8 /* UTGraphicsDrawer */,
 				0504EE381D8E9D3900D20B55 /* KiwiControls.framework */,
@@ -225,6 +255,19 @@
 			);
 			name = UnitTest;
 			path = ../UnitTest;
+			sourceTree = "<group>";
+		};
+		0569ECAC1DA552EB00428373 /* UTRepetitiveDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				0569ECAD1DA552EB00428373 /* AppDelegate.swift */,
+				0569ECAF1DA552EB00428373 /* ViewController.swift */,
+				0569ECB11DA552EB00428373 /* Assets.xcassets */,
+				0569ECB31DA552EB00428373 /* Main.storyboard */,
+				0569ECB61DA552EB00428373 /* Info.plist */,
+			);
+			name = UTRepetitiveDrawer;
+			path = OSX/UTRepetitiveDrawer;
 			sourceTree = "<group>";
 		};
 		05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */ = {
@@ -318,6 +361,24 @@
 			productReference = 053B67E61D96135B00A153F8 /* UTGraphicsDrawer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0569ECAA1DA552EB00428373 /* UTRepetitiveDrawer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0569ECB91DA552EB00428373 /* Build configuration list for PBXNativeTarget "UTRepetitiveDrawer" */;
+			buildPhases = (
+				0569ECA71DA552EB00428373 /* Sources */,
+				0569ECA81DA552EB00428373 /* Frameworks */,
+				0569ECA91DA552EB00428373 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0569ECBB1DA552F600428373 /* PBXTargetDependency */,
+			);
+			name = UTRepetitiveDrawer;
+			productName = UTRepetitiveDrawer;
+			productReference = 0569ECAB1DA552EB00428373 /* UTRepetitiveDrawer.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05BCED0C1D8E67FE00EBEA0B /* UTGraphicsView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05BCED191D8E67FE00EBEA0B /* Build configuration list for PBXNativeTarget "UTGraphicsView" */;
@@ -363,6 +424,11 @@
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
 					};
+					0569ECAA1DA552EB00428373 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 					05BCED0C1D8E67FE00EBEA0B = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TR2DNF3P93;
@@ -387,6 +453,7 @@
 				05386D4F1D857F77004B8DDF /* Install */,
 				05BCED0C1D8E67FE00EBEA0B /* UTGraphicsView */,
 				053B67E51D96135B00A153F8 /* UTGraphicsDrawer */,
+				0569ECAA1DA552EB00428373 /* UTRepetitiveDrawer */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +473,15 @@
 			files = (
 				053B67ED1D96135B00A153F8 /* Assets.xcassets in Resources */,
 				053B67F01D96135B00A153F8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0569ECA91DA552EB00428373 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0569ECB21DA552EB00428373 /* Assets.xcassets in Resources */,
+				0569ECB51DA552EB00428373 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +524,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0569ECA71DA552EB00428373 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0569ECB01DA552EB00428373 /* ViewController.swift in Sources */,
+				0569ECAE1DA552EB00428373 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05BCED091D8E67FE00EBEA0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -475,6 +560,11 @@
 			target = 05386D4F1D857F77004B8DDF /* Install */;
 			targetProxy = 053B67F51D96136700A153F8 /* PBXContainerItemProxy */;
 		};
+		0569ECBB1DA552F600428373 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05386D4F1D857F77004B8DDF /* Install */;
+			targetProxy = 0569ECBA1DA552F600428373 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -490,6 +580,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				05648A6B1D8EB1B100EABCD0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0569ECB31DA552EB00428373 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0569ECB41DA552EB00428373 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -718,6 +816,44 @@
 			};
 			name = Release;
 		};
+		0569ECB71DA552EB00428373 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/OSX/UTRepetitiveDrawer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTRepetitiveDrawer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		0569ECB81DA552EB00428373 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/OSX/UTRepetitiveDrawer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTRepetitiveDrawer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		05BCED1A1D8E67FE00EBEA0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -794,6 +930,15 @@
 			buildConfigurations = (
 				053B67F21D96135B00A153F8 /* Debug */,
 				053B67F31D96135B00A153F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0569ECB91DA552EB00428373 /* Build configuration list for PBXNativeTarget "UTRepetitiveDrawer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0569ECB71DA552EB00428373 /* Debug */,
+				0569ECB81DA552EB00428373 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
