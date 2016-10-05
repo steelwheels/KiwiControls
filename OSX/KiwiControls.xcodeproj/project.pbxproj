@@ -27,6 +27,7 @@
 		056DDBC81D96A00C007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		056DDBC91D96A014007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		056DDBCA1D96A015007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
+		05A3EAC31DA41729008654F6 /* KCRepetitiveDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3EAC21DA41729008654F6 /* KCRepetitiveDrawer.swift */; };
 		05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */; };
 		05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BCED131D8E67FE00EBEA0B /* Assets.xcassets */; };
 		05E7CF901D95FC44009DCC4A /* KCGraphicsDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */; };
@@ -92,6 +93,7 @@
 		05648A681D8EB1A500EABCD0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		05648A6B1D8EB1B100EABCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = ../../../Library/Frameworks/KiwiGraphics.framework; sourceTree = "<group>"; };
+		05A3EAC21DA41729008654F6 /* KCRepetitiveDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveDrawer.swift; sourceTree = "<group>"; };
 		05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BCED131D8E67FE00EBEA0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */,
 				05E7CF911D95FDC6009DCC4A /* KCGraphicsLayer.swift */,
 				055DFA5C1D9789430029BA0A /* KCStrokeDrawer.swift */,
+				05A3EAC21DA41729008654F6 /* KCRepetitiveDrawer.swift */,
 			);
 			path = GraphicsDrawer;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 			files = (
 				05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */,
 				05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */,
+				05A3EAC31DA41729008654F6 /* KCRepetitiveDrawer.swift in Sources */,
 				05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */,
 				05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */,
 				055DFA5D1D9789430029BA0A /* KCStrokeDrawer.swift in Sources */,
