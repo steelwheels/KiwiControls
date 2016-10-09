@@ -44,7 +44,6 @@ public class KCRepetitiveDrawer: KCGraphicsLayer
 				ctxt.draw(layer!, at: point)
 			}
 		}
-
 	}
 }
 
