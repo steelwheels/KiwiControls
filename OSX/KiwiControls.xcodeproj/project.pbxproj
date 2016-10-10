@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0504EE391D8E9D3900D20B55 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
+		050DF4801DAA35CD00A49907 /* UTVertexLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050DF47F1DAA35CD00A49907 /* UTVertexLayer.swift */; };
 		05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D411D8570A4004B8DDF /* KCAlert.swift */; };
 		05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D421D8570A4004B8DDF /* KCTableView.swift */; };
 		05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */; };
@@ -100,6 +101,7 @@
 		05043C1C1D856F910033FEC6 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05043C201D856F910033FEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0504EE381D8E9D3900D20B55 /* KiwiControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControls.framework; path = /Users/tomoo/Project/KiwiControls/UnitTest/../../../Library/Frameworks/KiwiControls.framework; sourceTree = "<absolute>"; };
+		050DF47F1DAA35CD00A49907 /* UTVertexLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTVertexLayer.swift; sourceTree = "<group>"; };
 		052711741D8FBAD500AB7531 /* install_osx.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_osx.mk; path = ../Script/install_osx.mk; sourceTree = "<group>"; };
 		05386D411D8570A4004B8DDF /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
 		05386D421D8570A4004B8DDF /* KCTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTableView.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			children = (
 				05656E0A1DAA2D0100B5157E /* AppDelegate.swift */,
 				05656E0C1DAA2D0100B5157E /* ViewController.swift */,
+				050DF47F1DAA35CD00A49907 /* UTVertexLayer.swift */,
 				05656E0E1DAA2D0100B5157E /* Assets.xcassets */,
 				05656E101DAA2D0100B5157E /* Main.storyboard */,
 				05656E131DAA2D0100B5157E /* Info.plist */,
@@ -605,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05656E0D1DAA2D0100B5157E /* ViewController.swift in Sources */,
+				050DF4801DAA35CD00A49907 /* UTVertexLayer.swift in Sources */,
 				05656E0B1DAA2D0100B5157E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

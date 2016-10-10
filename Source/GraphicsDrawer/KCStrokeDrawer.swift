@@ -24,7 +24,7 @@ open class KCStrokeDrawer: KCGraphicsLayer
 		super.init(bounds: b)
 	}
 
-	public override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
+	open override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 		//Swift.print("dirty:\(drect.description)")
 		ctxt.setLineWidth(lineWidth)
 		ctxt.setStrokeColor(lineColor.cgColor)

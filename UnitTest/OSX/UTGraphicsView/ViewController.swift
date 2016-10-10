@@ -46,7 +46,7 @@ class ViewController: KCViewController {
 		let w      = bnd.size.width
 		let radius = min(w, h) / 2.0
 		let hex    = KGHexagon(center: bnd.center, radius: radius)
-		Swift.print("Hexagon: \(hex.description)")
+		//Swift.print("Hexagon: \(hex.description)")
 		ctxt.setStrokeColor(KGColorTable.red2.cgColor)
 		ctxt.draw(hexagon: hex, withGradient: wg)
 	}

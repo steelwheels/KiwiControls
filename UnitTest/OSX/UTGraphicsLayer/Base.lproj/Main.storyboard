@@ -699,6 +699,9 @@
                             <constraint firstItem="qL6-ld-zwd" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="tSg-OL-4SI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mGraphicsView" destination="qL6-ld-zwd" id="VZj-OC-xz3"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

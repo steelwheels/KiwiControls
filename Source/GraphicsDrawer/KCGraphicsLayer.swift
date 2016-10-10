@@ -16,7 +16,7 @@ open class KCGraphicsLayer
 		bounds = b
 	}
 
-	public func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
+	open func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 	}
 
 	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
