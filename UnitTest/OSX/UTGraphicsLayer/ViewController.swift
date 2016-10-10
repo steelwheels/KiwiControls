@@ -29,7 +29,12 @@ class ViewController: NSViewController
 				self.mGraphicsDrawer.mouseEvent(event: event, at: point)
 		}
 
-		mGraphicsDrawer.addLayer(layer: UTVertexLayer(bounds: mGraphicsView.bounds))
+		let bounds = mGraphicsView.bounds
+		let background = KCBackgroundDrawer(bounds: bounds)
+		background.color = CGColor.black
+		mGraphicsDrawer.addLayer(layer: background)
+
+		mGraphicsDrawer.addLayer(layer: UTVertexLayer(bounds: bounds))
 	}
 
 	override var representedObject: Any? {

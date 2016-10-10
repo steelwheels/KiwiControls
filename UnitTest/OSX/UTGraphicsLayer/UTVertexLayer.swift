@@ -17,7 +17,7 @@ private class UTVertexDrawer: KCGraphicsLayer
 	public override init(bounds b: CGRect){
 		let center = b.center
 		let radius = min(b.size.width, b.size.height)/2.0
-		mVertex = KGEclipse(center: center, innerRadius: radius*0.8, outerRadius: radius)
+		mVertex = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
 		super.init(bounds: b)
 	}
 
@@ -66,24 +66,9 @@ public func UTVertexLayer(bounds b: CGRect) -> KCRepetitiveDrawer
 	points.append(point9)
 	let point10 = points[1] + (diff4_1 * (1.0 / 4.0))
 	points.append(point10)
-	
-	#if fale
-	let diff5_2  = points[5] - points[2]
-	let diff5_2x = diff5_2.x / 4.0
-	let diff5_2y = diff5_2.y / 4.0
-	for i in 0..<1 {
-		let pt = CGPoint(x: points[5].x - (diff5_2x * CGFloat(i)), y: points[5].y - (diff5_2y * CGFloat(i)))
-		points.append(pt)
-	}
 
-	let diff4_1  = points[4] - points[2]
-	let diff4_1x = diff4_1.x / 4.0
-	let diff4_1y = diff4_1.y / 4.0
-	points.append(CGPoint(x: points[4].x - (diff4_1x * 1.0), y: points[4].y - (diff4_1y * 1.0))) // points[ 9]
-	points.append(CGPoint(x: points[4].x - (diff4_1x * 3.0), y: points[4].y - (diff4_1y * 3.0))) // points[10]
-	#endif
 	layer.add(locations: points)
-	Swift.print("UTVL: \(points.description)")
+
 	return layer
 }
 

@@ -45,6 +45,7 @@
 		05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BCED131D8E67FE00EBEA0B /* Assets.xcassets */; };
 		05E7CF901D95FC44009DCC4A /* KCGraphicsDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */; };
 		05E7CF921D95FDC6009DCC4A /* KCGraphicsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7CF911D95FDC6009DCC4A /* KCGraphicsLayer.swift */; };
+		05ED4D581DAB669500A1A2D5 /* KCBackgroundDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED4D571DAB669500A1A2D5 /* KCBackgroundDrawer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		05BCED181D8E67FE00EBEA0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsDrawer.swift; sourceTree = "<group>"; };
 		05E7CF911D95FDC6009DCC4A /* KCGraphicsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsLayer.swift; sourceTree = "<group>"; };
+		05ED4D571DAB669500A1A2D5 /* KCBackgroundDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCBackgroundDrawer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +336,7 @@
 			children = (
 				05E7CF8F1D95FC44009DCC4A /* KCGraphicsDrawer.swift */,
 				05E7CF911D95FDC6009DCC4A /* KCGraphicsLayer.swift */,
+				05ED4D571DAB669500A1A2D5 /* KCBackgroundDrawer.swift */,
 				055DFA5C1D9789430029BA0A /* KCStrokeDrawer.swift */,
 				05A3EAC21DA41729008654F6 /* KCRepetitiveDrawer.swift */,
 			);
@@ -590,6 +593,7 @@
 				05E7CF901D95FC44009DCC4A /* KCGraphicsDrawer.swift in Sources */,
 				05E7CF921D95FDC6009DCC4A /* KCGraphicsLayer.swift in Sources */,
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
+				05ED4D581DAB669500A1A2D5 /* KCBackgroundDrawer.swift in Sources */,
 				05386D591D858603004B8DDF /* KCGraphicsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
