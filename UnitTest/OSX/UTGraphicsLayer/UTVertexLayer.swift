@@ -12,29 +12,33 @@ import KiwiGraphics
 
 private class UTVertexDrawer: KCGraphicsLayer
 {
-	private var mVertex: KGEclipse
+	private var mEclipse:	KGEclipse
+	private var mGradient:	CGGradient
 
-	public override init(bounds b: CGRect){
+	public init(bounds b: CGRect, color c: CGColor){
 		let center = b.center
 		let radius = min(b.size.width, b.size.height)/2.0
-		mVertex = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
+		mEclipse  = KGEclipse(center: center, innerRadius: radius*0.4, outerRadius: radius)
+		mGradient = KGGradientTable.sharedGradientTable.gradient(forColor: c)
 		super.init(bounds: b)
 	}
 
 	public override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 		if bnd.intersects(drect) {
-			ctxt.draw(eclipse: mVertex)
+			ctxt.setStrokeColor(KGColorTable.gold.cgColor)
+			ctxt.draw(eclipse: mEclipse, withGradient: mGradient)
 		}
 	}
 }
 
+#if true
 public func UTVertexLayer(bounds b: CGRect) -> KCRepetitiveDrawer
 {
-	let elmradius = min(b.size.width, b.size.height) / 20.0
+	let elmradius = min(b.size.width, b.size.height) * 0.075
 	let elmsize   = CGSize(width: elmradius, height: elmradius)
 	let elmbounds = CGRect(origin: CGPoint.zero, size: elmsize)
 
-	let drawer = UTVertexDrawer(bounds: elmbounds)
+	let drawer = UTVertexDrawer(bounds: elmbounds, color: KGColorTable.gold.cgColor)
 	let layer  = KCRepetitiveDrawer(bounds: b, elementDrawer: drawer)
 
 	/* Get center and radius of bounds */
@@ -71,4 +75,11 @@ public func UTVertexLayer(bounds b: CGRect) -> KCRepetitiveDrawer
 
 	return layer
 }
+#else
+public func UTVertexLayer(bounds b: CGRect) -> KCGraphicsLayer
+{
+	return UTVertexDrawer(bounds: b, color: KGColorTable.gold.cgColor)
+}
+#endif
+
 

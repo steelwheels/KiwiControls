@@ -63,25 +63,30 @@ open class KCStrokeDrawer: KCGraphicsLayer
 	}
 
 	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
-		var didadded    = false
 		var updatearea  = CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
+		var didadded: Bool
+
 		switch evt {
 		case .down:
 			mCurrentStroke = KGStroke(firstPoint: point)
+			didadded = false
 		case .drag:
 			if let stroke = mCurrentStroke {
-				didadded   = stroke.addPoint(point: point)
+				didadded = stroke.addPoint(point: point)
 				updatearea = expandByLineWidth(source: stroke.lastUpdatedArea())
 			} else {
 				mCurrentStroke = KGStroke(firstPoint: point)
+				didadded = false
 			}
 		case .up:
 			if let stroke = mCurrentStroke {
 				didadded = stroke.addPoint(point: point)
-				if didadded {
+				if stroke.points.count >= 2 {
 					mStrokes.append(stroke)
 					updatearea   = expandByLineWidth(source: stroke.lastUpdatedArea())
 				}
+			} else {
+				didadded = false
 			}
 			mCurrentStroke = nil
 		}
