@@ -11,7 +11,7 @@ import CoreGraphics
 
 public class KCBackgroundDrawer: KCGraphicsLayer
 {
-	public var color: CGColor = CGColor.white
+	public var color: CGColor = KGColorTable.white.cgColor
 
 	public override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 		ctxt.setFillColor(color)
