@@ -11,9 +11,9 @@ import KiwiControls
 
 class ViewController: UIViewController
 {
-	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
-
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
+
+	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

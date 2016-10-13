@@ -168,9 +168,9 @@
 		050374CB1DA12FCE00CA86DC /* GraphicsDrawer */ = {
 			isa = PBXGroup;
 			children = (
+				050374CC1DA12FF800CA86DC /* KCGraphicsDrawer.swift */,
 				05134A331DAD47860081A778 /* KCRepetitiveDrawer.swift */,
 				05134A311DAD477F0081A778 /* KCBackgroundDrawer.swift */,
-				050374CC1DA12FF800CA86DC /* KCGraphicsDrawer.swift */,
 				050374CD1DA12FF800CA86DC /* KCGraphicsLayer.swift */,
 				050374CE1DA12FF800CA86DC /* KCStrokeDrawer.swift */,
 			);
@@ -236,9 +236,9 @@
 		0599D2291DAD46920040A37F /* UTGraphicsLayer */ = {
 			isa = PBXGroup;
 			children = (
-				05134A2E1DAD474A0081A778 /* UTVertexLayer.swift */,
 				0599D22A1DAD46920040A37F /* AppDelegate.swift */,
 				0599D22C1DAD46920040A37F /* ViewController.swift */,
+				05134A2E1DAD474A0081A778 /* UTVertexLayer.swift */,
 				0599D22E1DAD46920040A37F /* Main.storyboard */,
 				0599D2311DAD46920040A37F /* Assets.xcassets */,
 				0599D2331DAD46920040A37F /* LaunchScreen.storyboard */,
@@ -689,6 +689,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -704,6 +705,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsLayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

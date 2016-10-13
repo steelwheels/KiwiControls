@@ -11,12 +11,14 @@ import KiwiControls
 
 class ViewController: UIViewController
 {
-	@IBOutlet weak var mGraphicsView: KCGraphicsView!
+    @IBOutlet weak var mGraphicsView: KCGraphicsView!
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		mGraphicsView.drawCallback = {
+
 			(context:CGContext, bounds:CGRect, dirtyRect:CGRect) -> Void in
 				self.drawContext(context: context, bounds: bounds, dirtyRect: dirtyRect)
 		}
@@ -39,7 +41,10 @@ class ViewController: UIViewController
 		let radius  = min(bnd.size.width, bnd.size.height)/2.0
 		let center  = CGPoint(x: bnd.origin.x + radius, y: bnd.origin.y + radius)
 		let hexagon = KGHexagon(center: center, radius: radius)
-		ctxt.draw(hexagon: hexagon)
+
+		let table = KGGradientTable.sharedGradientTable
+		let gradient = table.gradient(forColor: KGColorTable.black.cgColor)
+		ctxt.draw(hexagon: hexagon, withGradient: gradient)
 	}
 }
 
