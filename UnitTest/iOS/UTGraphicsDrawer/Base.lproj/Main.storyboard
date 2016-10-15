@@ -26,8 +26,12 @@
                         <constraints>
                             <constraint firstItem="9Je-Jq-ORH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="6wn-TH-VbG"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9Je-Jq-ORH" secondAttribute="bottom" constant="20" id="7AX-fH-qtW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9Je-Jq-ORH" secondAttribute="bottom" constant="20" id="7FP-gG-Zlo"/>
                             <constraint firstItem="9Je-Jq-ORH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AH1-zQ-4b8"/>
                             <constraint firstAttribute="trailing" secondItem="9Je-Jq-ORH" secondAttribute="trailing" id="apE-Pz-60z"/>
+                            <constraint firstItem="9Je-Jq-ORH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="imy-uF-uZH"/>
+                            <constraint firstItem="9Je-Jq-ORH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jFa-Bo-Cfw"/>
+                            <constraint firstAttribute="trailing" secondItem="9Je-Jq-ORH" secondAttribute="trailing" id="uVT-NR-H0y"/>
                         </constraints>
                     </view>
                     <connections>

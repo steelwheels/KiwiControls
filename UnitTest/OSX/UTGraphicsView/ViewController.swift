@@ -48,7 +48,7 @@ class ViewController: KCViewController {
 		let hex    = KGHexagon(center: bnd.center, radius: radius)
 		//Swift.print("Hexagon: \(hex.description)")
 		ctxt.setStrokeColor(KGColorTable.red2.cgColor)
-		ctxt.draw(hexagon: hex, withGradient: wg)
+		ctxt.draw(hexagon: hex, withGradient: nil)
 	}
 
 	override var representedObject: Any? {

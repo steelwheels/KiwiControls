@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  UTGraphicsLayer
 //
-//  Created by Tomoo Hamada on 2016/10/12.
+//  Created by Tomoo Hamada on 2016/10/14.
 //  Copyright © 2016年 Steel Wheels Project. All rights reserved.
 //
 
@@ -11,32 +11,19 @@ import KiwiControls
 
 class ViewController: UIViewController
 {
-	@IBOutlet weak var	mGraphicsView: KCGraphicsView!
-	private var		mGraphicsDrawer: KCGraphicsDrawer = KCGraphicsDrawer()
-
+	@IBOutlet weak var mGraphicsView: KCGraphicsView!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+		// Do any additional setup after loading the view, typically from a nib
 		let bounds = mGraphicsView.bounds
-		Swift.print("bounds: \(bounds.description)")
+		Swift.print("**** Bounds0: \(bounds.description)")
+	}
 
-		/* Add background */
-		let background = KCBackgroundDrawer(bounds: bounds)
-		background.color = KGColorTable.black.cgColor
-		mGraphicsDrawer.addLayer(layer: background)
-
-		/* Add vertex drawer */
-		let vertices = UTVertexLayer(bounds: bounds)
-		mGraphicsDrawer.addLayer(layer: vertices)
-
-		mGraphicsView.drawCallback = {
-			(context:CGContext, bounds:CGRect, dirtyRect:CGRect) -> Void in
-				self.mGraphicsDrawer.drawContent(context: context, bounds:bounds, dirtyRect:dirtyRect)
-		}
-		mGraphicsView.mouseEventCallback = {
-			(event: KCMouseEvent, point: CGPoint) -> KCMouseEventResult in
-				return self.mGraphicsDrawer.mouseEvent(event: event, at: point)
-		}
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		let bounds = mGraphicsView.bounds
+		Swift.print("**** Bounds1: \(bounds.description)")
 	}
 
 	override func didReceiveMemoryWarning() {

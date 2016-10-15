@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		0504EE391D8E9D3900D20B55 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
 		050DF4801DAA35CD00A49907 /* UTVertexLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050DF47F1DAA35CD00A49907 /* UTVertexLayer.swift */; };
+		051814E31DB1AFC9002110A8 /* UTVertexLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050DF47F1DAA35CD00A49907 /* UTVertexLayer.swift */; };
 		05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D411D8570A4004B8DDF /* KCAlert.swift */; };
 		05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D421D8570A4004B8DDF /* KCTableView.swift */; };
 		05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */; };
 		05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D441D8570A4004B8DDF /* KCView.swift */; };
 		05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D451D8570A4004B8DDF /* KCViewController.swift */; };
 		05386D591D858603004B8DDF /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D581D858603004B8DDF /* KCGraphicsView.swift */; };
-		05386D5B1D858792004B8DDF /* KCGraphicsViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D5A1D858792004B8DDF /* KCGraphicsViewCore.swift */; };
-		05386D5D1D8587E7004B8DDF /* KCGraphicsViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05386D5C1D8587E7004B8DDF /* KCGraphicsViewCore.xib */; };
 		053B67E91D96135B00A153F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B67E81D96135B00A153F8 /* AppDelegate.swift */; };
 		053B67EB1D96135B00A153F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B67EA1D96135B00A153F8 /* ViewController.swift */; };
 		053B67ED1D96135B00A153F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053B67EC1D96135B00A153F8 /* Assets.xcassets */; };
@@ -110,8 +109,6 @@
 		05386D441D8570A4004B8DDF /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
 		05386D451D8570A4004B8DDF /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 		05386D581D858603004B8DDF /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
-		05386D5A1D858792004B8DDF /* KCGraphicsViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsViewCore.swift; sourceTree = "<group>"; };
-		05386D5C1D8587E7004B8DDF /* KCGraphicsViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCGraphicsViewCore.xib; sourceTree = "<group>"; };
 		053B67E61D96135B00A153F8 /* UTGraphicsDrawer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsDrawer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053B67E81D96135B00A153F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053B67EA1D96135B00A153F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -192,14 +189,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0500E51F1D8F9EA800B1F57E /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				05386D5C1D8587E7004B8DDF /* KCGraphicsViewCore.xib */,
-			);
-			path = OSX;
-			sourceTree = "<group>";
-		};
 		05043C121D856F910033FEC6 = {
 			isa = PBXGroup;
 			children = (
@@ -257,9 +246,7 @@
 		05386D571D8585AC004B8DDF /* GraphicsView */ = {
 			isa = PBXGroup;
 			children = (
-				0500E51F1D8F9EA800B1F57E /* OSX */,
 				05386D581D858603004B8DDF /* KCGraphicsView.swift */,
-				05386D5A1D858792004B8DDF /* KCGraphicsViewCore.swift */,
 			);
 			path = GraphicsView;
 			sourceTree = "<group>";
@@ -536,7 +523,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05386D5D1D8587E7004B8DDF /* KCGraphicsViewCore.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +575,6 @@
 				05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */,
 				05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */,
 				055DFA5D1D9789430029BA0A /* KCStrokeDrawer.swift in Sources */,
-				05386D5B1D858792004B8DDF /* KCGraphicsViewCore.swift in Sources */,
 				05E7CF901D95FC44009DCC4A /* KCGraphicsDrawer.swift in Sources */,
 				05E7CF921D95FDC6009DCC4A /* KCGraphicsLayer.swift in Sources */,
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
@@ -622,6 +607,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0569ECB01DA552EB00428373 /* ViewController.swift in Sources */,
+				051814E31DB1AFC9002110A8 /* UTVertexLayer.swift in Sources */,
 				0569ECAE1DA552EB00428373 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

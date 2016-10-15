@@ -15,42 +15,37 @@ class ViewController: NSViewController
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
 	private var	   mRepetitiveDrawer: KCRepetitiveDrawer? = nil
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
 
-		let bounds   = mGraphicsView.bounds
-		let counts   = 10
-		let elmwidth = min(bounds.size.width / CGFloat(counts), bounds.size.height / CGFloat(counts))
-		let elmsize  = CGSize(width: elmwidth, height: elmwidth)
+	override func viewDidLayout() {
+		let bounds = mGraphicsView.bounds
 
-		let drawer = KCRepetitiveDrawer(bounds: bounds, elementSize: elmsize, elementDrawer: {
-			(_ context: CGContext, _ size: CGSize) -> Void in
-				let radius  = min(size.width, size.height) / 2.0
-				let center  = CGPoint(x: radius, y:radius)
-				let hexagon = KGHexagon(center: center, radius: radius)
-				context.draw(hexagon: hexagon, withGradient: false)
-		})
+		/* Decide the bounds of element */
+		let counts    = 4
+		let elmwidth  = min(bounds.size.width, bounds.size.height) / CGFloat(counts)
+		let elmbounds = CGRect(x: 0.0, y: 0.0, width: elmwidth, height: elmwidth)
+
+		let vertex = UTVertexLayer(bounds: elmbounds)
+		let drawer = KCRepetitiveDrawer(bounds: bounds, elementDrawer: vertex)
+		mRepetitiveDrawer = drawer
+
 		for x in 0..<counts {
 			for y in 0..<counts {
-				let posx = elmwidth * CGFloat(x + 1)
-				let posy = elmwidth * CGFloat(y + 1)
+				let posx = elmwidth * CGFloat(x)
+				let posy = elmwidth * CGFloat(y)
 				let pos  = CGPoint(x:posx, y:posy)
 				drawer.add(location: pos)
 			}
 		}
 
-		// Do any additional setup after loading the view.
 		mGraphicsView.drawCallback = {
 			(_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void in
-				drawer.drawContent(context: context, bounds: bounds, dirtyRect: dirtyRect)
+			drawer.drawContent(context: context, bounds: bounds, dirtyRect: dirtyRect)
 		}
 
 		mGraphicsView.mouseEventCallback = {
 			(_ event: KCMouseEvent, _ point: CGPoint) -> KCMouseEventResult in
-				drawer.mouseEvent(event: event, at: point)
+			drawer.mouseEvent(event: event, at: point)
 		}
-
-		mRepetitiveDrawer = drawer
 	}
 
 	override var representedObject: Any? {

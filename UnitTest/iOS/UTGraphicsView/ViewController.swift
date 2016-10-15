@@ -11,7 +11,7 @@ import KiwiControls
 
 class ViewController: UIViewController
 {
-    @IBOutlet weak var mGraphicsView: KCGraphicsView!
+	@IBOutlet weak var mGraphicsView: KCGraphicsView!
 
 
 	override func viewDidLoad() {

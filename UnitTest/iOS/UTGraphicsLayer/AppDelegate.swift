@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  UTGraphicsLayer
 //
-//  Created by Tomoo Hamada on 2016/10/12.
+//  Created by Tomoo Hamada on 2016/10/14.
 //  Copyright © 2016年 Steel Wheels Project. All rights reserved.
 //
 
