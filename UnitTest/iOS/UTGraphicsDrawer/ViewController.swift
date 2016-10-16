@@ -15,8 +15,8 @@ class ViewController: UIViewController
 
 	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
 
 		// Do any additional setup after loading the view, typically from a nib.
 		mGraphicsDrawer = allocateDrawer()

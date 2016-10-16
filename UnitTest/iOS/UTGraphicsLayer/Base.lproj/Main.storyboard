@@ -19,20 +19,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVB-bc-AHs">
+                            <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVB-bc-AHs" customClass="KCGraphicsView" customModule="KiwiControls">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="oVB-bc-AHs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7W3-eB-a5a"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oVB-bc-AHs" secondAttribute="bottom" constant="20" id="7dO-lM-70P"/>
                             <constraint firstItem="oVB-bc-AHs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="GWz-Jb-308"/>
+                            <constraint firstItem="oVB-bc-AHs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="OI6-j7-h1l"/>
                             <constraint firstItem="oVB-bc-AHs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RX2-C8-65o"/>
+                            <constraint firstItem="oVB-bc-AHs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="SXr-za-zOX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oVB-bc-AHs" secondAttribute="bottom" constant="20" id="cxC-Gb-9Ud"/>
                             <constraint firstItem="oVB-bc-AHs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="xcQ-6z-VJT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mGraphicsView" destination="oVB-bc-AHs" id="mS8-3T-dOt"/>
+                        <outlet property="mGraphicsView" destination="oVB-bc-AHs" id="IC1-7f-3DT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

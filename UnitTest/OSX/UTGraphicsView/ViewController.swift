@@ -14,8 +14,8 @@ class ViewController: KCViewController {
 
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewDidLayout() {
+		super.viewDidLayout()
 
 		// Do any additional setup after loading the view.
 		Swift.print("View did load")

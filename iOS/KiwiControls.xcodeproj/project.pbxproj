@@ -13,6 +13,7 @@
 		05070F091D958CDE00BA88DD /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05070F071D958CD400BA88DD /* KiwiControls.framework */; };
 		05134A321DAD477F0081A778 /* KCBackgroundDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05134A311DAD477F0081A778 /* KCBackgroundDrawer.swift */; };
 		05134A341DAD47860081A778 /* KCRepetitiveDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05134A331DAD47860081A778 /* KCRepetitiveDrawer.swift */; };
+		05159DB41DB38EEB0042FF21 /* UTVertexLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05159DB21DB38EB10042FF21 /* UTVertexLayer.swift */; };
 		0522A7AD1DA144EF0095C8F3 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
 		0522A7AE1DA144F20095C8F3 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		0522A7AF1DA144F60095C8F3 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05070F071D958CD400BA88DD /* KiwiControls.framework */; };
@@ -77,6 +78,7 @@
 		05070F071D958CD400BA88DD /* KiwiControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControls.framework; path = ../../../../../local/Frameworks/KiwiControls.framework; sourceTree = "<group>"; };
 		05134A311DAD477F0081A778 /* KCBackgroundDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCBackgroundDrawer.swift; sourceTree = "<group>"; };
 		05134A331DAD47860081A778 /* KCRepetitiveDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveDrawer.swift; sourceTree = "<group>"; };
+		05159DB21DB38EB10042FF21 /* UTVertexLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UTVertexLayer.swift; path = ../../OSX/UTGraphicsLayer/UTVertexLayer.swift; sourceTree = "<group>"; };
 		0560EDB11DAFF13800301A11 /* UTGraphicsLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560EDB31DAFF13900301A11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0560EDB51DAFF13900301A11 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				0560EDB31DAFF13900301A11 /* AppDelegate.swift */,
 				0560EDB51DAFF13900301A11 /* ViewController.swift */,
+				05159DB21DB38EB10042FF21 /* UTVertexLayer.swift */,
 				0560EDB71DAFF13900301A11 /* Main.storyboard */,
 				0560EDBA1DAFF13900301A11 /* Assets.xcassets */,
 				0560EDBC1DAFF13900301A11 /* LaunchScreen.storyboard */,
@@ -498,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0560EDB61DAFF13900301A11 /* ViewController.swift in Sources */,
+				05159DB41DB38EEB0042FF21 /* UTVertexLayer.swift in Sources */,
 				0560EDB41DAFF13900301A11 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

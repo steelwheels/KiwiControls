@@ -16,8 +16,8 @@ class ViewController: NSViewController {
 
 	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewDidLayout() {
+		super.viewDidLayout()
 
 		// Do any additional setup after loading the view.
 		mGraphicsDrawer = allocateDrawer()

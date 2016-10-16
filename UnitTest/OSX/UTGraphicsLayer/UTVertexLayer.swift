@@ -25,7 +25,7 @@ private class UTVertexDrawer: KCGraphicsLayer
 
 	public override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 		if bnd.intersects(drect) {
-			ctxt.setStrokeColor(KGColorTable.gold.cgColor)
+			ctxt.setStrokeColor(KGColorTable.white.cgColor)
 			ctxt.draw(eclipse: mEclipse, withGradient: mGradient)
 		}
 	}

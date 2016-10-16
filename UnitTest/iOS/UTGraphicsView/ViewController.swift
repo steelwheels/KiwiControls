@@ -14,8 +14,8 @@ class ViewController: UIViewController
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
 
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
 
 		mGraphicsView.drawCallback = {
 

@@ -17,6 +17,8 @@ class ViewController: NSViewController
 
 
 	override func viewDidLayout() {
+		super.viewDidLayout()
+
 		let bounds = mGraphicsView.bounds
 
 		/* Decide the bounds of element */
