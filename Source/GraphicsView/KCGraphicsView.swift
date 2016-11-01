@@ -174,9 +174,9 @@ public class KCGraphicsView: KCView
 		if res.didAccepted && res.updateRequired {
 			//Swift.print("update: \(res.updateArea.description)")
 			#if os(iOS)
-				//let uparea = toLeftUpperOrigin(source: res.updateArea, bounds: bounds)
-				//setNeedsDisplay(uparea)
-				setNeedsDisplay()
+				let uparea = toLeftUpperOrigin(source: res.updateArea, bounds: bounds)
+				setNeedsDisplay(uparea)
+				//setNeedsDisplay()
 			#else
 				setNeedsDisplay(res.updateArea)
 				//setNeedsDisplay()
