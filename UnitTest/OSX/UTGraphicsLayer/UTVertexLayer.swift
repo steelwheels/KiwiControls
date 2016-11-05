@@ -18,7 +18,7 @@ private class UTVertexDrawer: KCGraphicsLayer
 	public init(bounds b: CGRect, color c: CGColor){
 		let center = b.center
 		let radius = min(b.size.width, b.size.height)/2.0
-		mEclipse  = KGEclipse(center: center, innerRadius: radius*0.4, outerRadius: radius)
+		mEclipse  = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
 		mGradient = KGGradientTable.sharedGradientTable.gradient(forColor: c)
 		super.init(bounds: b)
 	}
@@ -39,7 +39,7 @@ public func UTVertexLayer(bounds b: CGRect) -> KCRepetitiveDrawer
 	let elmradius = glyph.elementRadius
 	let elmbounds = CGRect(origin: CGPoint.zero, size: CGSize(width: elmradius, height: elmradius))
 
-	let drawer = UTVertexDrawer(bounds: elmbounds, color: KGColorTable.gold.cgColor)
+	let drawer = UTVertexDrawer(bounds: elmbounds, color: KGColorTable.white.cgColor)
 	let layer  = KCRepetitiveDrawer(bounds: b, elementDrawer: drawer)
 
 	let halfradius = elmradius / 2.0
@@ -56,5 +56,4 @@ public func UTVertexLayer(bounds b: CGRect) -> KCGraphicsLayer
 	return UTVertexDrawer(bounds: b, color: KGColorTable.gold.cgColor)
 }
 #endif
-
 
