@@ -9,7 +9,7 @@ import Foundation
 import KiwiGraphics
 
 
-public class KCRepetitiveDrawer: KCGraphicsLayer
+open class KCRepetitiveDrawer: KCGraphicsLayer
 {
 	private var mElementDrawer: KCGraphicsLayer
 	private var mLocations	  : Array<CGPoint> = []
@@ -27,7 +27,7 @@ public class KCRepetitiveDrawer: KCGraphicsLayer
 		mLocations.append(contentsOf: a)
 	}
 
-	public override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect)
+	open override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect)
 	{
 		let elmsize = mElementDrawer.bounds.size
 		var layer: CGLayer? = nil
