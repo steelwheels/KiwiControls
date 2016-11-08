@@ -85,9 +85,9 @@ public class KCGraphicsView: KCView
 			if let callback = drawCallback {
 				#if os(iOS)
 					/* Setup as left-lower-origin */
-					let height = self.bounds.size.height
-					context.translateBy(x: 0.0, y: height);
-					context.scaleBy(x: 1.0, y: -1.0);
+					//let height = self.bounds.size.height
+					//context.translateBy(x: 0.0, y: height);
+					//context.scaleBy(x: 1.0, y: -1.0);
 				#endif
 				callback(context, bounds, drect)
 			}

@@ -14,9 +14,17 @@
 		05134A321DAD477F0081A778 /* KCBackgroundDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05134A311DAD477F0081A778 /* KCBackgroundDrawer.swift */; };
 		05134A341DAD47860081A778 /* KCRepetitiveDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05134A331DAD47860081A778 /* KCRepetitiveDrawer.swift */; };
 		05159DB41DB38EEB0042FF21 /* UTVertexLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05159DB21DB38EB10042FF21 /* UTVertexLayer.swift */; };
+		0521FC851DD23A05009A6365 /* DebugLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0521FC841DD23A05009A6365 /* DebugLayer.swift */; };
+		0521FC861DD23CE7009A6365 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
+		0521FC871DD23CF8009A6365 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
+		0521FC881DD241D8009A6365 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553B88C1DD2303C00C3F5F9 /* ViewController.swift */; };
 		0522A7AD1DA144EF0095C8F3 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
 		0522A7AE1DA144F20095C8F3 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		0522A7AF1DA144F60095C8F3 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05070F071D958CD400BA88DD /* KiwiControls.framework */; };
+		0553B88B1DD2303C00C3F5F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553B88A1DD2303C00C3F5F9 /* AppDelegate.swift */; };
+		0553B8901DD2303C00C3F5F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0553B88E1DD2303C00C3F5F9 /* Main.storyboard */; };
+		0553B8921DD2303C00C3F5F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0553B8911DD2303C00C3F5F9 /* Assets.xcassets */; };
+		0553B8951DD2303C00C3F5F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0553B8931DD2303C00C3F5F9 /* LaunchScreen.storyboard */; };
 		0560EDB41DAFF13900301A11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560EDB31DAFF13900301A11 /* AppDelegate.swift */; };
 		0560EDB61DAFF13900301A11 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0560EDB51DAFF13900301A11 /* ViewController.swift */; };
 		0560EDB91DAFF13900301A11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0560EDB71DAFF13900301A11 /* Main.storyboard */; };
@@ -48,6 +56,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0553B89A1DD2304600C3F5F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
+			remoteInfo = Install;
+		};
 		059434231D8FBDDE00B16623 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
@@ -79,6 +94,14 @@
 		05134A311DAD477F0081A778 /* KCBackgroundDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCBackgroundDrawer.swift; sourceTree = "<group>"; };
 		05134A331DAD47860081A778 /* KCRepetitiveDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveDrawer.swift; sourceTree = "<group>"; };
 		05159DB21DB38EB10042FF21 /* UTVertexLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UTVertexLayer.swift; path = ../../OSX/UTGraphicsLayer/UTVertexLayer.swift; sourceTree = "<group>"; };
+		0521FC841DD23A05009A6365 /* DebugLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLayer.swift; sourceTree = "<group>"; };
+		0553B8881DD2303C00C3F5F9 /* UTCoodinateTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTCoodinateTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0553B88A1DD2303C00C3F5F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0553B88C1DD2303C00C3F5F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0553B88F1DD2303C00C3F5F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0553B8911DD2303C00C3F5F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0553B8941DD2303C00C3F5F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0553B8961DD2303C00C3F5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0560EDB11DAFF13800301A11 /* UTGraphicsLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0560EDB31DAFF13900301A11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0560EDB51DAFF13900301A11 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +138,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0553B8851DD2303C00C3F5F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0521FC871DD23CF8009A6365 /* Canary.framework in Frameworks */,
+				0521FC861DD23CE7009A6365 /* KiwiGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0560EDAE1DAFF13800301A11 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -166,6 +198,20 @@
 				050374CE1DA12FF800CA86DC /* KCStrokeDrawer.swift */,
 			);
 			path = GraphicsDrawer;
+			sourceTree = "<group>";
+		};
+		0553B8891DD2303C00C3F5F9 /* UTCoodinateTest */ = {
+			isa = PBXGroup;
+			children = (
+				0553B88A1DD2303C00C3F5F9 /* AppDelegate.swift */,
+				0553B88C1DD2303C00C3F5F9 /* ViewController.swift */,
+				0521FC841DD23A05009A6365 /* DebugLayer.swift */,
+				0553B88E1DD2303C00C3F5F9 /* Main.storyboard */,
+				0553B8911DD2303C00C3F5F9 /* Assets.xcassets */,
+				0553B8931DD2303C00C3F5F9 /* LaunchScreen.storyboard */,
+				0553B8961DD2303C00C3F5F9 /* Info.plist */,
+			);
+			path = UTCoodinateTest;
 			sourceTree = "<group>";
 		};
 		0560EDB21DAFF13800301A11 /* UTGraphicsLayer */ = {
@@ -253,6 +299,7 @@
 		05CEEB941D8FBE3F00CF2514 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0553B8891DD2303C00C3F5F9 /* UTCoodinateTest */,
 				0560EDB21DAFF13800301A11 /* UTGraphicsLayer */,
 				05C1475A1DA1430800E89198 /* UTGraphicsDrawer */,
 				059434121D8FBDD400B16623 /* UTGraphicsView */,
@@ -277,6 +324,7 @@
 				059434111D8FBDD400B16623 /* UTGraphicsView.app */,
 				05C147591DA1430800E89198 /* UTGraphicsDrawer.app */,
 				0560EDB11DAFF13800301A11 /* UTGraphicsLayer.app */,
+				0553B8881DD2303C00C3F5F9 /* UTCoodinateTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,6 +372,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		0553B8871DD2303C00C3F5F9 /* UTCoodinateTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0553B8991DD2303C00C3F5F9 /* Build configuration list for PBXNativeTarget "UTCoodinateTest" */;
+			buildPhases = (
+				0553B8841DD2303C00C3F5F9 /* Sources */,
+				0553B8851DD2303C00C3F5F9 /* Frameworks */,
+				0553B8861DD2303C00C3F5F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0553B89B1DD2304600C3F5F9 /* PBXTargetDependency */,
+			);
+			name = UTCoodinateTest;
+			productName = UTCoodinateTest;
+			productReference = 0553B8881DD2303C00C3F5F9 /* UTCoodinateTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 		0560EDB01DAFF13800301A11 /* UTGraphicsLayer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0560EDC01DAFF13900301A11 /* Build configuration list for PBXNativeTarget "UTGraphicsLayer" */;
@@ -401,10 +467,15 @@
 		05EDB7F11D8F792C00443B08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					0553B8871DD2303C00C3F5F9 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 					0560EDB01DAFF13800301A11 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TR2DNF3P93;
@@ -451,11 +522,22 @@
 				059434101D8FBDD400B16623 /* UTGraphicsView */,
 				05C147581DA1430800E89198 /* UTGraphicsDrawer */,
 				0560EDB01DAFF13800301A11 /* UTGraphicsLayer */,
+				0553B8871DD2303C00C3F5F9 /* UTCoodinateTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0553B8861DD2303C00C3F5F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0553B8951DD2303C00C3F5F9 /* LaunchScreen.storyboard in Resources */,
+				0553B8921DD2303C00C3F5F9 /* Assets.xcassets in Resources */,
+				0553B8901DD2303C00C3F5F9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0560EDAF1DAFF13800301A11 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -496,6 +578,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0553B8841DD2303C00C3F5F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0521FC881DD241D8009A6365 /* ViewController.swift in Sources */,
+				0521FC851DD23A05009A6365 /* DebugLayer.swift in Sources */,
+				0553B88B1DD2303C00C3F5F9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0560EDAD1DAFF13800301A11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -545,6 +637,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0553B89B1DD2304600C3F5F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BB23A41D8FBC8800C44B3F /* Install */;
+			targetProxy = 0553B89A1DD2304600C3F5F9 /* PBXContainerItemProxy */;
+		};
 		059434241D8FBDDE00B16623 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05BB23A41D8FBC8800C44B3F /* Install */;
@@ -563,6 +660,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0553B88E1DD2303C00C3F5F9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0553B88F1DD2303C00C3F5F9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0553B8931DD2303C00C3F5F9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0553B8941DD2303C00C3F5F9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		0560EDB71DAFF13900301A11 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -614,6 +727,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0553B8971DD2303C00C3F5F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTCoodinateTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTCoodinateTest";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		0553B8981DD2303C00C3F5F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTCoodinateTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTCoodinateTest";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		0560EDC11DAFF13900301A11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -891,6 +1038,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0553B8991DD2303C00C3F5F9 /* Build configuration list for PBXNativeTarget "UTCoodinateTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0553B8971DD2303C00C3F5F9 /* Debug */,
+				0553B8981DD2303C00C3F5F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0560EDC01DAFF13900301A11 /* Build configuration list for PBXNativeTarget "UTGraphicsLayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
