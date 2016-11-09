@@ -48,6 +48,18 @@ public struct KCMouseEventResult {
 	}
 }
 
+private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoint
+{
+	let y = (b.size.height - p.y)
+	return CGPoint(x: p.x, y: y)
+}
+
+private func convertCoodinate(sourceRect r: CGRect, bounds b: CGRect) -> CGRect
+{
+	let y = (b.size.height - (r.size.height + r.origin.y))
+	return CGRect(x: r.origin.x, y: y, width: r.size.width, height: r.size.height)
+}
+
 public class KCGraphicsView: KCView
 {	
 	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
@@ -82,14 +94,18 @@ public class KCGraphicsView: KCView
 		areaToBeDisplay = CGRect.zero
 		if let context = currentContext {
 			context.saveGState()
+			#if os(iOS)
+			 /* Setup as left-lower-origin */
+			let height = self.bounds.size.height
+			context.translateBy(x: 0.0, y: height)
+			context.scaleBy(x: 1.0, y: -1.0);
+			/* Translate coodinate of dirty-rect */
+			let mdrect = convertCoodinate(sourceRect: drect, bounds: bounds)
+			#else
+			let mdrect = drect
+			#endif
 			if let callback = drawCallback {
-				#if os(iOS)
-					/* Setup as left-lower-origin */
-					//let height = self.bounds.size.height
-					//context.translateBy(x: 0.0, y: height);
-					//context.scaleBy(x: 1.0, y: -1.0);
-				#endif
-				callback(context, bounds, drect)
+				callback(context, bounds, mdrect)
 			}
 			context.restoreGState()
 		}
@@ -153,7 +169,7 @@ public class KCGraphicsView: KCView
 	private func eventLocation(touches tchs: Set<UITouch>) -> CGPoint {
 		if let touch = tchs.first {
 			let pos = touch.location(in: self)
-			return toLeftLowerOrigin(source: pos, bounds: bounds)
+			return convertCoodinate(sourcePoint: pos, bounds: bounds)
 		} else {
 			fatalError("No touch location")
 		}
@@ -165,28 +181,17 @@ public class KCGraphicsView: KCView
 	}
 	#endif
 
-	private func toLeftLowerOrigin(source src: CGPoint, bounds bnds: CGRect) -> CGPoint {
-		let origin = CGPoint(x: src.x, y: (bnds.size.height - src.y))
-		return origin
-	}
-
 	private func acceptMouseEventResult(result res: KCMouseEventResult){
 		if res.didAccepted && res.updateRequired {
 			//Swift.print("update: \(res.updateArea.description)")
 			#if os(iOS)
-				let uparea = toLeftUpperOrigin(source: res.updateArea, bounds: bounds)
+				let uparea = convertCoodinate(sourceRect: res.updateArea, bounds: bounds)
 				setNeedsDisplay(uparea)
 				//setNeedsDisplay()
 			#else
 				setNeedsDisplay(res.updateArea)
-				//setNeedsDisplay()
 			#endif
 		}
-	}
-
-	private func toLeftUpperOrigin(source src: CGRect, bounds bnds: CGRect) -> CGRect {
-		let origin = CGPoint(x: src.origin.x, y: bnds.size.height - src.origin.y - src.size.height)
-		return CGRect(origin: origin, size: src.size)
 	}
 }
 
