@@ -77,25 +77,12 @@ public class KCGraphicsView: KCView
 	}
 	#endif
 
-	private var areaToBeDisplay = CGRect.zero
-
-	public override func setNeedsDisplay(_ invalidRect: KGRect)
-	{
-		if areaToBeDisplay.isEmpty {
-			areaToBeDisplay = invalidRect
-		} else {
-			areaToBeDisplay = areaToBeDisplay.union(invalidRect)
-		}
-		super.setNeedsDisplay(areaToBeDisplay)
-		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
-	}
-
 	private func drawContext(dirtyRect drect: CGRect){
 		areaToBeDisplay = CGRect.zero
 		if let context = currentContext {
 			context.saveGState()
 			#if os(iOS)
-			 /* Setup as left-lower-origin */
+			/* Setup as left-lower-origin */
 			let height = self.bounds.size.height
 			context.translateBy(x: 0.0, y: height)
 			context.scaleBy(x: 1.0, y: -1.0);
@@ -109,6 +96,19 @@ public class KCGraphicsView: KCView
 			}
 			context.restoreGState()
 		}
+	}
+
+	private var areaToBeDisplay = CGRect.zero
+
+	public override func setNeedsDisplay(_ invalidRect: KGRect)
+	{
+		if areaToBeDisplay.isEmpty {
+			areaToBeDisplay = invalidRect
+		} else {
+			areaToBeDisplay = areaToBeDisplay.union(invalidRect)
+		}
+		super.setNeedsDisplay(areaToBeDisplay)
+		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
 	}
 
 	#if os(iOS)

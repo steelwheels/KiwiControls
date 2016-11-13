@@ -16,18 +16,18 @@ open class KCStrokeDrawer: KCGraphicsLayer
 	private var mStrokes: Array<KGStroke>	= []
 
 	public var lineWidth: CGFloat
-	public var lineColor: KGColor
+	public var lineColor: CGColor
 
 	public override init(bounds b: CGRect){
 		lineWidth = 10.0
-		lineColor = KGColorTable.black
+		lineColor = KGColorTable.black.cgColor
 		super.init(bounds: b)
 	}
 
 	open override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 		//Swift.print("dirty:\(drect.description)")
 		ctxt.setLineWidth(lineWidth)
-		ctxt.setStrokeColor(lineColor.cgColor)
+		ctxt.setStrokeColor(lineColor)
 		ctxt.setLineCap(.round)
 
 		for s in mStrokes {
