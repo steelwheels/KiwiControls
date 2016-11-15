@@ -33,11 +33,11 @@ class ViewController: UIViewController
 		}
 
 		mGraphicsView.mouseEventCallback = {
-			(event: KCMouseEvent, point: CGPoint) -> KCMouseEventResult in
+			(event: KCMouseEvent, point: CGPoint) -> CGRect in
 			if let drawer = self.mGraphicsDrawer {
 				return drawer.mouseEvent(event: event, at: point)
 			} else {
-				return KCMouseEventResult()
+				return CGRect.zero
 			}
 		}
 	}

@@ -23,7 +23,7 @@ class DebugLayer: KCGraphicsLayer
 		ctxt.fillPath()
 	}
 
-	public override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
+	public override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> CGRect {
 		print("mouseEvent: \(point.description)")
 		switch evt {
 		case .down:
@@ -35,7 +35,7 @@ class DebugLayer: KCGraphicsLayer
 		}
 		mousePoint = point
 		let update = point2rect(point: point)
-		return KCMouseEventResult(didAccepted: true, updateRequired: true, updateArea: bounds)
+		return update
 	}
 
 	private func point2rect(point pt:CGPoint) -> CGRect {

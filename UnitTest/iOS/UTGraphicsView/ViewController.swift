@@ -11,10 +11,10 @@ import KiwiControls
 
 class ViewController: UIViewController
 {
+	@IBOutlet weak var mGraphicsView: KCGraphicsView!
+
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-        @IBOutlet weak var mGraphicsView: KCGraphicsView!
-
 		mGraphicsView.drawCallback = {
 
 			(context:CGContext, bounds:CGRect, dirtyRect:CGRect) -> Void in

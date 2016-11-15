@@ -27,15 +27,20 @@ public class KCGraphicsDrawer
 		}
 	}
 
-	public func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
-		let cnt = mGraphicsLayers.count
+	public func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> CGRect {
+		var result = CGRect.zero
+		let cnt    = mGraphicsLayers.count
 		for i in (0..<cnt).reversed() {
 			let layer = mGraphicsLayers[i]
-			let result = layer.mouseEvent(event: evt, at: point)
-			if result.didAccepted {
-				return result
+			let updaterect = layer.mouseEvent(event: evt, at: point)
+			if !updaterect.isEmpty {
+				if !result.isEmpty {
+					result = result.union(updaterect)
+				} else {
+					result = updaterect
+				}
 			}
 		}
-		return KCMouseEventResult()
+		return result
 	}
 }

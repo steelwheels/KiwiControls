@@ -62,9 +62,9 @@ open class KCStrokeDrawer: KCGraphicsLayer
 		}
 	}
 
-	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
-		var updatearea  = CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
-		var didadded: Bool
+	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> CGRect {
+		var result	: CGRect = CGRect.zero
+		var didadded	: Bool
 
 		switch evt {
 		case .down:
@@ -73,7 +73,7 @@ open class KCStrokeDrawer: KCGraphicsLayer
 		case .drag:
 			if let stroke = mCurrentStroke {
 				didadded = stroke.addPoint(point: point)
-				updatearea = expandByLineWidth(source: stroke.lastUpdatedArea())
+				result   = expandByLineWidth(source: stroke.lastUpdatedArea())
 			} else {
 				mCurrentStroke = KGStroke(firstPoint: point)
 				didadded = false
@@ -83,7 +83,7 @@ open class KCStrokeDrawer: KCGraphicsLayer
 				didadded = stroke.addPoint(point: point)
 				if stroke.points.count >= 2 {
 					mStrokes.append(stroke)
-					updatearea   = expandByLineWidth(source: stroke.lastUpdatedArea())
+					result = expandByLineWidth(source: stroke.lastUpdatedArea())
 				}
 			} else {
 				didadded = false
@@ -103,9 +103,9 @@ open class KCStrokeDrawer: KCGraphicsLayer
 
 		if didadded {
 			//Swift.print("update: \(updatearea.description)")
-			return KCMouseEventResult(didAccepted: true, updateRequired: didadded, updateArea: updatearea)
+			return result
 		} else {
-			return KCMouseEventResult()
+			return CGRect.zero
 		}
 	}
 

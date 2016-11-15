@@ -19,7 +19,7 @@ open class KCGraphicsLayer
 	open func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
 	}
 
-	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> KCMouseEventResult {
-		return KCMouseEventResult()
+	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> CGRect {
+		return CGRect.zero
 	}
 }

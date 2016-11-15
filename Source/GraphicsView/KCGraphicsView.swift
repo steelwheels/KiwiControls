@@ -30,24 +30,6 @@ public enum KCMouseEvent {
 	}
 }
 
-public struct KCMouseEventResult {
-	public var didAccepted: Bool
-	public var updateRequired: Bool
-	public var updateArea: CGRect
-
-	public init(){
-		didAccepted	= false
-		updateRequired	= false
-		updateArea	= CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
-	}
-
-	public init(didAccepted da: Bool, updateRequired ur:Bool, updateArea ua: CGRect){
-		didAccepted	= da
-		updateRequired	= ur
-		updateArea	= ua
-	}
-}
-
 private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoint
 {
 	let y = (b.size.height - p.y)
@@ -63,7 +45,7 @@ private func convertCoodinate(sourceRect r: CGRect, bounds b: CGRect) -> CGRect
 public class KCGraphicsView: KCView
 {	
 	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
-	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> KCMouseEventResult)? = nil
+	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> CGRect)? = nil
 
 	#if os(iOS)
 	public override func draw(_ dirtyRect: CGRect){
@@ -116,7 +98,7 @@ public class KCGraphicsView: KCView
 		let pos = eventLocation(touches: touches)
 		if let callback = mouseEventCallback {
 			let result = callback(.down, pos)
-			acceptMouseEventResult(result: result)
+			acceptMouseEventResult(updateRect: result)
 		}
 	}
 	#else
@@ -134,7 +116,7 @@ public class KCGraphicsView: KCView
 		let pos = eventLocation(touches: touches)
 		if let callback = mouseEventCallback {
 			let result = callback(.drag, pos)
-			acceptMouseEventResult(result: result)
+			acceptMouseEventResult(updateRect: result)
 		}
 	}
 	#else
@@ -142,7 +124,7 @@ public class KCGraphicsView: KCView
 		let pos = eventLocation(event: event)
 		if let callback = mouseEventCallback {
 			let result = callback(.drag, pos)
-			acceptMouseEventResult(result: result)
+			acceptMouseEventResult(updateRect: result)
 		}
 	}
 	#endif
@@ -152,7 +134,7 @@ public class KCGraphicsView: KCView
 		let pos = eventLocation(touches: touches)
 		if let callback = mouseEventCallback {
 			let result = callback(.up, pos)
-			acceptMouseEventResult(result: result)
+			acceptMouseEventResult(updateRect: result)
 		}
 	}
 	#else
@@ -160,7 +142,7 @@ public class KCGraphicsView: KCView
 		let pos = eventLocation(event: event)
 		if let callback = mouseEventCallback {
 			let result = callback(.up, pos)
-			acceptMouseEventResult(result: result)
+			acceptMouseEventResult(updateRect: result)
 		}
 	}
 	#endif
@@ -181,13 +163,12 @@ public class KCGraphicsView: KCView
 	}
 	#endif
 
-	private func acceptMouseEventResult(result res: KCMouseEventResult){
-		if res.didAccepted && res.updateRequired {
+	private func acceptMouseEventResult(updateRect urect: CGRect){
+		if !urect.isEmpty {
 			//Swift.print("update: \(res.updateArea.description)")
 			#if os(iOS)
-				let uparea = convertCoodinate(sourceRect: res.updateArea, bounds: bounds)
+				let uparea = convertCoodinate(sourceRect: urect, bounds: bounds)
 				setNeedsDisplay(uparea)
-				//setNeedsDisplay()
 			#else
 				setNeedsDisplay(res.updateArea)
 			#endif

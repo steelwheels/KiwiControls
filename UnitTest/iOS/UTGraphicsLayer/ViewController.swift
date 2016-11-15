@@ -33,7 +33,7 @@ class ViewController: UIViewController
 		/* Add drawer */
 		let drawer = KCStrokeDrawer(bounds: bounds)
 		drawer.lineWidth = 10.0
-		drawer.lineColor = KGColorTable.gold
+		drawer.lineColor = KGColorTable.gold.cgColor
 		mGraphicsDrawer.addLayer(layer: drawer)
 		
 		mGraphicsView!.drawCallback = {
@@ -45,7 +45,7 @@ class ViewController: UIViewController
 		}
 
 		mGraphicsView!.mouseEventCallback = {
-			(event: KCMouseEvent, point: CGPoint) -> KCMouseEventResult in
+			(event: KCMouseEvent, point: CGPoint) -> CGRect in
 			return self.mGraphicsDrawer.mouseEvent(event: event, at: point)
 		}
 	}
