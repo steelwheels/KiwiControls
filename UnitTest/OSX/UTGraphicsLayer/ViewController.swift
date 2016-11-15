@@ -25,8 +25,8 @@ class ViewController: NSViewController
 				self.mGraphicsDrawer.drawContent(context: context, bounds: bounds, dirtyRect: dirtyRect)
 		}
 		mGraphicsView.mouseEventCallback = {
-			(_ event: KCMouseEvent, _ point: CGPoint) -> KCMouseEventResult in
-				self.mGraphicsDrawer.mouseEvent(event: event, at: point)
+			(_ event: KCMouseEvent, _ point: CGPoint) -> CGRect in
+				return self.mGraphicsDrawer.mouseEvent(event: event, at: point)
 		}
 
 		let bounds = mGraphicsView.bounds

@@ -45,7 +45,7 @@ class ViewController: NSViewController
 		}
 
 		mGraphicsView.mouseEventCallback = {
-			(_ event: KCMouseEvent, _ point: CGPoint) -> KCMouseEventResult in
+			(_ event: KCMouseEvent, _ point: CGPoint) -> CGRect in
 			drawer.mouseEvent(event: event, at: point)
 		}
 	}

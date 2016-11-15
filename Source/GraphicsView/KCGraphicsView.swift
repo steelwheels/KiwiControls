@@ -106,7 +106,7 @@ public class KCGraphicsView: KCView
 		let pos = eventLocation(event: event)
 		if let callback = mouseEventCallback {
 			let result = callback(.down, pos)
-			acceptMouseEventResult(result: result)
+			acceptMouseEventResult(updateRect: result)
 		}
 	}
 	#endif
@@ -170,7 +170,7 @@ public class KCGraphicsView: KCView
 				let uparea = convertCoodinate(sourceRect: urect, bounds: bounds)
 				setNeedsDisplay(uparea)
 			#else
-				setNeedsDisplay(res.updateArea)
+				setNeedsDisplay(urect)
 			#endif
 		}
 	}
