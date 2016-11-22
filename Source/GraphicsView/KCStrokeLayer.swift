@@ -10,7 +10,7 @@ import KiwiGraphics
 
 let DO_DEBUG = false
 
-open class KCStrokeDrawer: KCGraphicsLayer
+open class KCStrokeLayer: KCLayer
 {
 	private var mCurrentStroke: KGStroke?	= nil
 	private var mStrokes: Array<KGStroke>	= []
@@ -18,28 +18,33 @@ open class KCStrokeDrawer: KCGraphicsLayer
 	public var lineWidth: CGFloat
 	public var lineColor: CGColor
 
-	public override init(bounds b: CGRect){
+	public override init(frame frm: CGRect){
 		lineWidth = 10.0
 		lineColor = KGColorTable.black.cgColor
-		super.init(bounds: b)
+		super.init(frame: frm)
 	}
 
-	open override func drawContent(context ctxt:CGContext, bounds bnd:CGRect, dirtyRect drect:CGRect){
-		//Swift.print("dirty:\(drect.description)")
-		ctxt.setLineWidth(lineWidth)
-		ctxt.setStrokeColor(lineColor)
-		ctxt.setLineCap(.round)
-
+	public required init?(coder decoder: NSCoder) {
+		lineWidth = 10.0
+		lineColor = KGColorTable.black.cgColor
+		super.init(coder: decoder)
+	}
+	
+	open override func draw(in context: CGContext) {
+		context.setLineWidth(lineWidth)
+		context.setStrokeColor(lineColor)
+		context.setLineCap(.round)
+		context.setLineJoin(.round)
 		for s in mStrokes {
-			drawStroke(context: ctxt, stroke: s, bounds: bnd, dirtyRect: drect)
+			drawStroke(in: context, stroke: s)
 		}
 		if let s = mCurrentStroke {
-			drawStroke(context: ctxt, stroke: s, bounds: bnd, dirtyRect: drect)
+			drawStroke(in: context, stroke: s)
 		}
-		ctxt.strokePath()
+		context.strokePath()
 	}
 
-	private func drawStroke(context ctxt:CGContext, stroke strk: KGStroke, bounds bnd:CGRect, dirtyRect drect:CGRect){
+	private func drawStroke(in context:CGContext, stroke strk: KGStroke){
 		//Swift.print("drawStroke")
 		let points = strk.points
 		let count  = points.count
@@ -47,19 +52,15 @@ open class KCStrokeDrawer: KCGraphicsLayer
 			var prevpoint = points[0]
 			for i in 1..<count {
 				let nextpoint = points[i]
-				drawPoints(context: ctxt, fromPoint: prevpoint, toPoint: nextpoint, bounds: bnd, dirtyRect: drect)
+				drawPoints(in: context, fromPoint: prevpoint, toPoint: nextpoint)
 				prevpoint = nextpoint
 			}
 		}
 	}
 
-	private func drawPoints(context ctxt:CGContext, fromPoint fp: CGPoint, toPoint tp: CGPoint, bounds bnd:CGRect, dirtyRect drect:CGRect){
-		//Swift.print("drawPoints: \(fp.description) -> \(tp.description) in \(drect.description)")
-		let drawrect = CGRect.pointsToRect(fromPoint: fp, toPoint: tp)
-		if drawrect.intersects(drect){
-			ctxt.move(to: fp)
-			ctxt.addLine(to: tp)
-		}
+	private func drawPoints(in context:CGContext, fromPoint fp: CGPoint, toPoint tp: CGPoint){
+		context.move(to: fp)
+		context.addLine(to: tp)
 	}
 
 	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> CGRect {

@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  UTRepetitiveDrawer
+//  UTLayer
 //
-//  Created by Tomoo Hamada on 2016/10/06.
+//  Created by Tomoo Hamada on 2016/11/19.
 //  Copyright © 2016年 Steel Wheels Project. All rights reserved.
 //
 

@@ -43,44 +43,36 @@ private func convertCoodinate(sourceRect r: CGRect, bounds b: CGRect) -> CGRect
 }
 
 public class KCGraphicsView: KCView
-{	
-	public var drawCallback: ((_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void)? = nil
-	public var mouseEventCallback: ((_ event: KCMouseEvent, _ point: CGPoint) -> CGRect)? = nil
+{
+	private var areaToBeDisplay = CGRect.zero
+
+	public func setup(){
+		self.layer = KCLayer(frame: bounds)
+	}
+
+	public var rootLayer: KCLayer {
+		get {
+			if let layer = self.layer as? KCLayer {
+				return layer
+			} else {
+				fatalError("No valid layer")
+			}
+		}
+	}
 
 	#if os(iOS)
 	public override func draw(_ dirtyRect: CGRect){
 		super.draw(dirtyRect)
-		drawContext(dirtyRect: dirtyRect)
+		//drawContext(dirtyRect: dirtyRect)
+		areaToBeDisplay = CGRect.zero
 	}
 	#else
 	public override func draw(_ dirtyRect: NSRect){
 		super.draw(dirtyRect)
-		drawContext(dirtyRect: dirtyRect)
+		//drawContext(dirtyRect: dirtyRect)
+		areaToBeDisplay = CGRect.zero
 	}
 	#endif
-
-	private func drawContext(dirtyRect drect: CGRect){
-		areaToBeDisplay = CGRect.zero
-		if let context = currentContext {
-			context.saveGState()
-			#if os(iOS)
-			/* Setup as left-lower-origin */
-			let height = self.bounds.size.height
-			context.translateBy(x: 0.0, y: height)
-			context.scaleBy(x: 1.0, y: -1.0);
-			/* Translate coodinate of dirty-rect */
-			let mdrect = convertCoodinate(sourceRect: drect, bounds: bounds)
-			#else
-			let mdrect = drect
-			#endif
-			if let callback = drawCallback {
-				callback(context, bounds, mdrect)
-			}
-			context.restoreGState()
-		}
-	}
-
-	private var areaToBeDisplay = CGRect.zero
 
 	public override func setNeedsDisplay(_ invalidRect: KGRect)
 	{
@@ -96,54 +88,36 @@ public class KCGraphicsView: KCView
 	#if os(iOS)
 	public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		let pos = eventLocation(touches: touches)
-		if let callback = mouseEventCallback {
-			let result = callback(.down, pos)
-			acceptMouseEventResult(updateRect: result)
-		}
+		acceptMouseEvent(mouseEvent: .down,mousePosition: pos)
 	}
 	#else
 	public override func mouseDown(with event: NSEvent) {
 		let pos = eventLocation(event: event)
-		if let callback = mouseEventCallback {
-			let result = callback(.down, pos)
-			acceptMouseEventResult(updateRect: result)
-		}
+		acceptMouseEvent(mouseEvent: .down,mousePosition: pos)
 	}
 	#endif
 
 	#if os(iOS)
 	public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		let pos = eventLocation(touches: touches)
-		if let callback = mouseEventCallback {
-			let result = callback(.drag, pos)
-			acceptMouseEventResult(updateRect: result)
-		}
+		acceptMouseEvent(mouseEvent: .drag,mousePosition: pos)
 	}
 	#else
 	public override func mouseDragged(with event: NSEvent) {
 		let pos = eventLocation(event: event)
-		if let callback = mouseEventCallback {
-			let result = callback(.drag, pos)
-			acceptMouseEventResult(updateRect: result)
-		}
+		acceptMouseEvent(mouseEvent: .drag,mousePosition: pos)
 	}
 	#endif
 
 	#if os(iOS)
 	public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		let pos = eventLocation(touches: touches)
-		if let callback = mouseEventCallback {
-			let result = callback(.up, pos)
-			acceptMouseEventResult(updateRect: result)
-		}
+		acceptMouseEvent(mouseEvent: .up,mousePosition: pos)
 	}
 	#else
 	public override func mouseUp(with event: NSEvent) {
 		let pos = eventLocation(event: event)
-		if let callback = mouseEventCallback {
-			let result = callback(.up, pos)
-			acceptMouseEventResult(updateRect: result)
-		}
+		acceptMouseEvent(mouseEvent: .up,mousePosition: pos)
 	}
 	#endif
 
@@ -163,17 +137,20 @@ public class KCGraphicsView: KCView
 	}
 	#endif
 
-	private func acceptMouseEventResult(updateRect urect: CGRect){
-		if !urect.isEmpty {
-			//Swift.print("update: \(res.updateArea.description)")
-			#if os(iOS)
-				let uparea = convertCoodinate(sourceRect: urect, bounds: bounds)
-				setNeedsDisplay(uparea)
-			#else
-				setNeedsDisplay(urect)
-			#endif
+	private func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
+		if let toplayer = self.layer as? KCLayer {
+			let urect = toplayer.mouseEvent(event: event, at: position)
+			if !urect.isEmpty {
+				//Swift.print("update: \(res.updateArea.description)")
+				#if os(iOS)
+					let uparea = convertCoodinate(sourceRect: urect, bounds: bounds)
+					setNeedsDisplay(uparea)
+				#else
+					setNeedsDisplay(urect)
+				#endif
+			}
 		}
-	}
+	}	
 }
 
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -11,11 +12,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="UTRepetitiveDrawer" id="1Xt-HY-uBw">
+                            <menuItem title="UTLayer" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="UTRepetitiveDrawer" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="UTLayer" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About UTRepetitiveDrawer" id="5kV-Vb-QxS">
+                                        <menuItem title="About UTLayer" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -29,7 +30,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide UTRepetitiveDrawer" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide UTLayer" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -47,7 +48,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit UTRepetitiveDrawer" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit UTLayer" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -640,7 +641,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="UTRepetitiveDrawer Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="UTLayer Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -654,7 +655,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="UTRepetitiveDrawer" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="UTLayer" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -680,24 +681,25 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="UTRepetitiveDrawer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="UTLayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="eGx-sG-n6d" customClass="KCGraphicsView" customModule="KiwiControls">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                            </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kQA-Ly-Qgx">
+                                <rect key="frame" x="20" y="20" width="440" height="230"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="kOU-zQ-oXK"/>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="eGx-sG-n6d" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="DQu-X4-yAS"/>
-                            <constraint firstAttribute="bottom" secondItem="eGx-sG-n6d" secondAttribute="bottom" id="ZFS-Wt-4Ic"/>
-                            <constraint firstItem="eGx-sG-n6d" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="nRt-AZ-oaE"/>
-                            <constraint firstAttribute="trailing" secondItem="eGx-sG-n6d" secondAttribute="trailing" id="pl8-Fd-6RW"/>
+                            <constraint firstAttribute="trailing" secondItem="kQA-Ly-Qgx" secondAttribute="trailing" constant="20" id="AD5-5Y-vPp"/>
+                            <constraint firstItem="kQA-Ly-Qgx" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="PIV-3R-pfj"/>
+                            <constraint firstAttribute="bottom" secondItem="kQA-Ly-Qgx" secondAttribute="bottom" constant="20" id="leW-gq-Kgg"/>
+                            <constraint firstItem="kQA-Ly-Qgx" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="wLc-B6-dTR"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mGraphicsView" destination="eGx-sG-n6d" id="lvk-O2-NN1"/>
+                        <outlet property="mImageView" destination="kQA-Ly-Qgx" id="p9C-Xp-0SB"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

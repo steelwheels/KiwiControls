@@ -10,6 +10,24 @@ import KiwiControls
 import KiwiGraphics
 import Cocoa
 
+private class UTVertexDrawer
+{
+	private var mEclipse:	KGEclipse
+	private var mGradient:	CGGradient
+
+	public init(bounds b: CGRect, color c: CGColor){
+		let center = b.center
+		let radius = min(b.size.width, b.size.height)/2.0
+		mEclipse  = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
+		mGradient = KGGradientTable.sharedGradientTable.gradient(forColor: c)
+	}
+
+	public func drawContent(context ctxt:CGContext){
+		ctxt.setStrokeColor(KGColorTable.white.cgColor)
+		ctxt.draw(eclipse: mEclipse, withGradient: mGradient)
+	}
+}
+
 class ViewController: KCViewController {
 
 	@IBOutlet weak var mGraphicsView: KCGraphicsView!
@@ -20,35 +38,40 @@ class ViewController: KCViewController {
 		// Do any additional setup after loading the view.
 		Swift.print("View did load")
 
-		mGraphicsView.drawCallback = {
-			(_ context:CGContext, _ bounds:CGRect, _ dirtyRect:CGRect) -> Void in
-			context.setFillColor(KGColorTable.blue2.cgColor)
-			//context.fill(bounds)
-			self.drawLine(context: context, bounds: bounds)
+		mGraphicsView.setup()
 
-			let (bounds0, bounds1) = bounds.splitByVertically()
-			self.drawHexagon(context: context, bounds: bounds0, withGrapdient: false)
-			self.drawHexagon(context: context, bounds: bounds1, withGrapdient: true)
+		/* Background layer */
+		let bounds     = mGraphicsView.bounds
+		let background = KCBackgroundLayer(frame: bounds)
+		background.color = CGColor.black
+		mGraphicsView.rootLayer.addSublayer(background)
+		let backdesc = background.layerDescription()
+		print("background: \(backdesc)")
+
+		/* Graphics layer */
+		let graphics = KCGraphicsLayer(frame: bounds, drawer: {
+			(size: CGSize, context: CGContext) -> Void in
+				let bounds = CGRect(origin: CGPoint.zero, size: size)
+				let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.blue.cgColor)
+				vertex.drawContent(context: context)
+		})
+		mGraphicsView.rootLayer.addSublayer(graphics)
+
+		/* Repetitive layer */
+		let glyph = KGGlyph(bounds: bounds)
+		let eradius = glyph.elementRadius
+		let esize = CGSize(width: eradius*2.0, height: eradius*2.0)
+		let repetitive = KCRepetitiveLayer(frame: bounds, elementSize: esize, elementDrawer: {
+			(size: CGSize, context: CGContext) -> Void in
+				let bounds = CGRect(origin: CGPoint.zero, size: size)
+				let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.yellow.cgColor)
+				vertex.drawContent(context: context)
+		})
+		for vertex in glyph.vertices {
+			let mvertex = CGPoint(x: vertex.x-eradius, y: vertex.y-eradius)
+			repetitive.add(location: mvertex)
 		}
-	}
-
-	private func drawLine(context ctxt:CGContext, bounds bnd: CGRect){
-		let endpt = bnd.origin.move(dx: bnd.size.width, dy: bnd.size.height)
-		ctxt.setLineWidth(10.0)
-		ctxt.setStrokeColor(KGColorTable.red2.cgColor)
-		ctxt.move(to: bnd.origin)
-		ctxt.addLine(to: endpt)
-		ctxt.strokePath()
-	}
-
-	private func drawHexagon(context ctxt:CGContext, bounds bnd: CGRect, withGrapdient wg: Bool){
-		let h      = bnd.size.height
-		let w      = bnd.size.width
-		let radius = min(w, h) / 2.0
-		let hex    = KGHexagon(center: bnd.center, radius: radius)
-		//Swift.print("Hexagon: \(hex.description)")
-		ctxt.setStrokeColor(KGColorTable.red2.cgColor)
-		ctxt.draw(hexagon: hex, withGradient: nil)
+		mGraphicsView.rootLayer.addSublayer(repetitive)
 	}
 
 	override var representedObject: Any? {
@@ -56,7 +79,5 @@ class ViewController: KCViewController {
 		// Update the view, if already loaded.
 		}
 	}
-
-
 }
 
