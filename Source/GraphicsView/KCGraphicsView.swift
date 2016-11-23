@@ -47,19 +47,21 @@ public class KCGraphicsView: KCView
 	private var areaToBeDisplay = CGRect.zero
 
 	public var rootLayer: CALayer {
-		#if os(OSX)
-			/* for OSX */
-			if let root = self.layer {
-				return root
-			} else {
-				let newlayer = KCLayer(frame: bounds)
-				self.layer   = newlayer
-				return newlayer
-			}
-		#else
-			/* for iOS */
-			return self.layer
-		#endif
+		get {
+			#if os(OSX)
+				/* for OSX */
+				if let root = self.layer {
+					return root
+				} else {
+					let newlayer = KCLayer(frame: bounds)
+					self.layer   = newlayer
+					return newlayer
+				}
+			#else
+				/* for iOS */
+				return self.layer
+			#endif
+		}
 	}
 
 	#if os(iOS)

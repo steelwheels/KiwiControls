@@ -40,7 +40,7 @@ open class KCLayer: CALayer
 		}
 
 		set(newimg){
-			self.contents = newimg
+			self.contents = newimg?.cgImage
 		}
 	}
 
