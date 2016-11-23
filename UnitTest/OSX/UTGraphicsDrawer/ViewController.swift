@@ -17,9 +17,6 @@ class ViewController: NSViewController {
 	override func viewDidLayout() {
 		super.viewDidLayout()
 
-		// Do any additional setup after loading the view.
-		mGraphicsView.setup()
-
 		let bounds = mGraphicsView.bounds
 		let stroke = KCStrokeLayer(frame: bounds)
 		mGraphicsView.rootLayer.addSublayer(stroke)

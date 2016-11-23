@@ -38,8 +38,6 @@ class ViewController: KCViewController {
 		// Do any additional setup after loading the view.
 		Swift.print("View did load")
 
-		mGraphicsView.setup()
-
 		/* Background layer */
 		let bounds     = mGraphicsView.bounds
 		let background = KCBackgroundLayer(frame: bounds)

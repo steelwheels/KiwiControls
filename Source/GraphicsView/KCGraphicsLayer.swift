@@ -7,8 +7,12 @@
 
 import Foundation
 import CoreGraphics
-import Cocoa
 import KiwiGraphics
+#if os(iOS)
+  import UIKit
+#else
+  import Cocoa
+#endif
 
 open class KCGraphicsLayer: KCLayer
 {
@@ -17,7 +21,7 @@ open class KCGraphicsLayer: KCLayer
 	public init(frame frm: CGRect, drawer drw: @escaping KGImageDrawer){
 		mLayerDrawer = drw
 		super.init(frame: frm)
-		super.image = NSImage.generate(size: frm.size, drawFunc: mLayerDrawer)
+		super.image = KGImage.generate(size: frm.size, drawFunc: mLayerDrawer)
 	}
 
 	public required init?(coder decoder: NSCoder) {

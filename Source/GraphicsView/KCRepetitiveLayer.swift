@@ -8,7 +8,6 @@
 import Foundation
 import KiwiGraphics
 
-
 open class KCRepetitiveLayer: KCLayer
 {
 	private var mElementSize	: CGSize

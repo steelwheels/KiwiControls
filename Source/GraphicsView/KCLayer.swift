@@ -8,7 +8,11 @@
 import Foundation
 import KiwiGraphics
 import CoreGraphics
-import Cocoa
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
 
 open class KCLayer: CALayer
 {
@@ -23,16 +27,12 @@ open class KCLayer: CALayer
 	}
 
 	public required init?(coder decoder: NSCoder) {
-		let newbounds = decoder.decodeRect()
-		mDirtyRect = newbounds
-		super.init(coder: decoder)
-		frame  = newbounds
-		bounds = newbounds
+		fatalError("init(coder:) has not been implemented")
 	}
 
-	public var image: NSImage? {
+	public var image: KGImage? {
 		get {
-			if let img = self.contents as? NSImage {
+			if let img = self.contents as? KGImage {
 				return img
 			} else {
 				return nil

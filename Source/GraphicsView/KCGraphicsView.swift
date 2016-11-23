@@ -46,18 +46,20 @@ public class KCGraphicsView: KCView
 {
 	private var areaToBeDisplay = CGRect.zero
 
-	public func setup(){
-		self.layer = KCLayer(frame: bounds)
-	}
-
-	public var rootLayer: KCLayer {
-		get {
-			if let layer = self.layer as? KCLayer {
-				return layer
+	public var rootLayer: CALayer {
+		#if os(OSX)
+			/* for OSX */
+			if let root = self.layer {
+				return root
 			} else {
-				fatalError("No valid layer")
+				let newlayer = KCLayer(frame: bounds)
+				self.layer   = newlayer
+				return newlayer
 			}
-		}
+		#else
+			/* for iOS */
+			return self.layer
+		#endif
 	}
 
 	#if os(iOS)
@@ -138,10 +140,9 @@ public class KCGraphicsView: KCView
 	#endif
 
 	private func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
-		//Swift.print("aME: position:\(position.description)")
-		if let sublayers = self.rootLayer.sublayers {
-			for sublayer in sublayers {
-				if let target = sublayer as? KCLayer {
+		if let rootlayers = rootLayer.sublayers {
+			for rootlayer in rootlayers {
+				if let target = rootlayer as? KCLayer {
 					//Swift.print(" -> position:\(position.description)")
 					target.mouseEvent(event: event, at: position)
 				}

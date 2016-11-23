@@ -13,7 +13,7 @@ public class KCBackgroundLayer: KCLayer
 {
 	public override init(frame frm: CGRect){
 		super.init(frame: frm)
-		self.backgroundColor = CGColor.white
+		self.backgroundColor = KGColorTable.white.cgColor
 	}
 
 	public required init?(coder decoder: NSCoder) {
