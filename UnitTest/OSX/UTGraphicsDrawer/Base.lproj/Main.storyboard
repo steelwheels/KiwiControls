@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -695,9 +696,13 @@
                             <constraint firstAttribute="trailing" secondItem="hdT-hd-sWu" secondAttribute="trailing" id="8Ou-Gz-t4b"/>
                             <constraint firstItem="hdT-hd-sWu" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Afy-7e-fnv"/>
                             <constraint firstAttribute="trailing" secondItem="hdT-hd-sWu" secondAttribute="trailing" id="Cte-s3-SWg"/>
+                            <constraint firstAttribute="bottom" secondItem="hdT-hd-sWu" secondAttribute="bottom" id="FoY-Rp-WGy"/>
+                            <constraint firstAttribute="trailing" secondItem="hdT-hd-sWu" secondAttribute="trailing" id="Gna-i4-ipd"/>
                             <constraint firstItem="hdT-hd-sWu" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Qxh-Bi-YV8"/>
+                            <constraint firstItem="hdT-hd-sWu" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hKc-8L-K3N"/>
                             <constraint firstAttribute="bottom" secondItem="hdT-hd-sWu" secondAttribute="bottom" id="kwR-MF-q9c"/>
                             <constraint firstAttribute="bottom" secondItem="hdT-hd-sWu" secondAttribute="bottom" id="pZ6-Qz-hSG"/>
+                            <constraint firstItem="hdT-hd-sWu" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="qy1-RF-F3d"/>
                         </constraints>
                     </view>
                     <connections>

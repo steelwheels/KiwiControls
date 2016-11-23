@@ -63,7 +63,7 @@ open class KCStrokeLayer: KCLayer
 		context.addLine(to: tp)
 	}
 
-	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> CGRect {
+	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) {
 		var result	: CGRect = CGRect.zero
 		var didadded	: Bool
 
@@ -103,11 +103,11 @@ open class KCStrokeLayer: KCLayer
 		}
 
 		if didadded {
-			//Swift.print("update: \(updatearea.description)")
-			return result
-		} else {
-			return CGRect.zero
+			//Swift.print("update: \(result.description)")
+			self.setNeedsDisplayIn(result)
 		}
+
+		super.mouseEvent(event: evt, at: point)
 	}
 
 	private func expandByLineWidth(source src:CGRect) -> CGRect {

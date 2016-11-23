@@ -12,16 +12,22 @@ import Cocoa
 
 open class KCLayer: CALayer
 {
+	private var mDirtyRect: CGRect
+
 	public init(frame frm: CGRect){
+		let newbounds = CGRect(origin: CGPoint.zero, size: frm.size)
+		mDirtyRect = newbounds
 		super.init()
-		frame  = frm
-		bounds = CGRect(origin: CGPoint.zero, size: frm.size)
+		frame      = frm
+		bounds     = newbounds
 	}
 
 	public required init?(coder decoder: NSCoder) {
-		let b = decoder.decodeRect()
+		let newbounds = decoder.decodeRect()
+		mDirtyRect = newbounds
 		super.init(coder: decoder)
-		bounds = b
+		frame  = newbounds
+		bounds = newbounds
 	}
 
 	public var image: NSImage? {
@@ -38,20 +44,24 @@ open class KCLayer: CALayer
 		}
 	}
 
-	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) -> CGRect {
-		var result: CGRect = CGRect.zero
-		/* Visit subviews */
+	open override func draw(in context: CGContext) {
+		super.draw(in: context)
+		mDirtyRect = CGRect.zero
+	}
+
+	open override func setNeedsDisplayIn(_ r: CGRect) {
+		mDirtyRect = mDirtyRect.union(r)
+		super.setNeedsDisplayIn(mDirtyRect)
+	}
+
+	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) {
 		if let sublayers = self.sublayers {
 			for sublayer in sublayers {
 				if let l = sublayer as? KCLayer {
-					let urect = l.mouseEvent(event: evt, at: point)
-					if !urect.isEmpty {
-						result = result.union(urect)
-					}
+					l.mouseEvent(event: evt, at: point)
 				}
 			}
 		}
-		return result
 	}
 
 	open func layerDescription() -> String {

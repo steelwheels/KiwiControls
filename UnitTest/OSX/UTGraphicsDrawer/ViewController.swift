@@ -14,12 +14,17 @@ class ViewController: NSViewController {
 
 	@IBOutlet private var mGraphicsView: KCGraphicsView!
 
-	private var mGraphicsDrawer: KCGraphicsDrawer? = nil
-	
 	override func viewDidLayout() {
 		super.viewDidLayout()
 
 		// Do any additional setup after loading the view.
+		mGraphicsView.setup()
+
+		let bounds = mGraphicsView.bounds
+		let stroke = KCStrokeLayer(frame: bounds)
+		mGraphicsView.rootLayer.addSublayer(stroke)
+
+/*
 		mGraphicsDrawer = allocateDrawer()
 		if let drawer = mGraphicsDrawer {
 			let layer = KCStrokeDrawer(bounds: mGraphicsView.frame)
@@ -41,6 +46,7 @@ class ViewController: NSViewController {
 				return CGRect.zero
 			}
 		}
+*/
 	}
 
 	override var representedObject: Any? {
@@ -49,9 +55,10 @@ class ViewController: NSViewController {
 		}
 	}
 
+	/*
 	private func allocateDrawer() -> KCGraphicsDrawer {
 		let drawer = KCGraphicsDrawer()
 		return drawer
-	}
+	} */
 }
 

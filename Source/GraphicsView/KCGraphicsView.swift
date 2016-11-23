@@ -138,16 +138,13 @@ public class KCGraphicsView: KCView
 	#endif
 
 	private func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
-		if let toplayer = self.layer as? KCLayer {
-			let urect = toplayer.mouseEvent(event: event, at: position)
-			if !urect.isEmpty {
-				//Swift.print("update: \(res.updateArea.description)")
-				#if os(iOS)
-					let uparea = convertCoodinate(sourceRect: urect, bounds: bounds)
-					setNeedsDisplay(uparea)
-				#else
-					setNeedsDisplay(urect)
-				#endif
+		//Swift.print("aME: position:\(position.description)")
+		if let sublayers = self.rootLayer.sublayers {
+			for sublayer in sublayers {
+				if let target = sublayer as? KCLayer {
+					//Swift.print(" -> position:\(position.description)")
+					target.mouseEvent(event: event, at: position)
+				}
 			}
 		}
 	}	
