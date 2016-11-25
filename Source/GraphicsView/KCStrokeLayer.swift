@@ -29,8 +29,8 @@ open class KCStrokeLayer: KCLayer
 		lineColor = KGColorTable.black.cgColor
 		super.init(coder: decoder)
 	}
-	
-	open override func draw(in context: CGContext) {
+
+	open override func drawContent(in context: CGContext){
 		context.setLineWidth(lineWidth)
 		context.setStrokeColor(lineColor)
 		context.setLineCap(.round)

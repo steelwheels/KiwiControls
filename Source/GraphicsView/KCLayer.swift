@@ -44,9 +44,22 @@ open class KCLayer: CALayer
 		}
 	}
 
-	open override func draw(in context: CGContext) {
+	final public override func draw(in context: CGContext) {
+		context.saveGState()
+
+		#if os(iOS)
+		context.translateBy(x: 0.0, y: bounds.size.height)
+		context.scaleBy(x: 1.0, y: -1.0)
+		#endif
+		drawContent(in: context)
 		super.draw(in: context)
+
+		context.restoreGState()
 		mDirtyRect = CGRect.zero
+	}
+
+	open func drawContent(in context: CGContext){
+		/* This method will be overridden */
 	}
 
 	open override func setNeedsDisplayIn(_ r: CGRect) {
