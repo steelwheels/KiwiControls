@@ -14,6 +14,12 @@ import CoreGraphics
 	import Cocoa
 #endif
 
+private func convertCoodinate(sourceRect r: CGRect, bounds b: CGRect) -> CGRect
+{
+	let y = (b.size.height - (r.size.height + r.origin.y))
+	return CGRect(x: r.origin.x, y: y, width: r.size.width, height: r.size.height)
+}
+
 open class KCLayer: CALayer
 {
 	private var mDirtyRect: CGRect
@@ -46,10 +52,9 @@ open class KCLayer: CALayer
 
 	final public override func draw(in context: CGContext) {
 		context.saveGState()
-
 		#if os(iOS)
-		context.translateBy(x: 0.0, y: bounds.size.height)
-		context.scaleBy(x: 1.0, y: -1.0)
+			context.translateBy(x: 0.0, y: bounds.size.height)
+			context.scaleBy(x: 1.0, y: -1.0)
 		#endif
 		drawContent(in: context)
 		super.draw(in: context)
@@ -64,7 +69,12 @@ open class KCLayer: CALayer
 
 	open override func setNeedsDisplayIn(_ r: CGRect) {
 		mDirtyRect = mDirtyRect.union(r)
-		super.setNeedsDisplayIn(mDirtyRect)
+		#if os(iOS)
+			let convrect = convertCoodinate(sourceRect: mDirtyRect, bounds: bounds)
+			super.setNeedsDisplayIn(convrect)
+		#else
+			super.setNeedsDisplayIn(mDirtyRect)
+		#endif
 	}
 
 	open func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) {

@@ -21,12 +21,18 @@
 		058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659D1DE536B600C3BE27 /* KCLayer.swift */; };
 		058265A31DE536B600C3BE27 /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659E1DE536B600C3BE27 /* KCRepetitiveLayer.swift */; };
 		058265A41DE536B600C3BE27 /* KCStrokeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659F1DE536B600C3BE27 /* KCStrokeLayer.swift */; };
+		0583FCAE1DEC805F00C4FCD1 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
 		05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E951D8F7B950092C2C6 /* KCAlert.swift */; };
 		05841E9B1D8F7B950092C2C6 /* KCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E961D8F7B950092C2C6 /* KCTableView.swift */; };
 		05841E9C1D8F7B950092C2C6 /* KCTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E971D8F7B950092C2C6 /* KCTextFieldDelegate.swift */; };
 		05841E9D1D8F7B950092C2C6 /* KCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E981D8F7B950092C2C6 /* KCView.swift */; };
 		05841E9E1D8F7B950092C2C6 /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841E991D8F7B950092C2C6 /* KCViewController.swift */; };
 		05841EA31D8F7BA00092C2C6 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841EA01D8F7BA00092C2C6 /* KCGraphicsView.swift */; };
+		05BA2D8F1DEB10CE00A8EB62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA2D8E1DEB10CE00A8EB62 /* AppDelegate.swift */; };
+		05BA2D911DEB10CE00A8EB62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA2D901DEB10CE00A8EB62 /* ViewController.swift */; };
+		05BA2D941DEB10CE00A8EB62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BA2D921DEB10CE00A8EB62 /* Main.storyboard */; };
+		05BA2D961DEB10CE00A8EB62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BA2D951DEB10CE00A8EB62 /* Assets.xcassets */; };
+		05BA2D991DEB10CE00A8EB62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BA2D971DEB10CE00A8EB62 /* LaunchScreen.storyboard */; };
 		05CEE1951D8F97A000D3593C /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		05CEE1961D8F97A400D3593C /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
 		05EDB7FF1D8F792C00443B08 /* KiwiControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 05EDB7FD1D8F792C00443B08 /* KiwiControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,6 +52,13 @@
 			remoteInfo = Install;
 		};
 		053DB0571DE59774003F0AE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
+			remoteInfo = Install;
+		};
+		05BA2D9E1DEB10D700A8EB62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
 			proxyType = 1;
@@ -80,6 +93,13 @@
 		05841E981D8F7B950092C2C6 /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
 		05841E991D8F7B950092C2C6 /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 		05841EA01D8F7BA00092C2C6 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
+		05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05BA2D8E1DEB10CE00A8EB62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05BA2D901DEB10CE00A8EB62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05BA2D931DEB10CE00A8EB62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05BA2D951DEB10CE00A8EB62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05BA2D981DEB10CE00A8EB62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		05BA2D9A1DEB10CE00A8EB62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05BB23AA1D8FBCB600C44B3F /* install_ios.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_ios.mk; path = ../Script/install_ios.mk; sourceTree = "<group>"; };
 		05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = /Users/tomoo/local/Frameworks/KiwiGraphics.framework; sourceTree = "<absolute>"; };
 		05CEE1931D8F87A900D3593C /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/local/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
@@ -102,6 +122,14 @@
 			files = (
 				0545E9DE1DE5A00300605A09 /* KiwiControls.framework in Frameworks */,
 				0545E9DD1DE59FFF00605A09 /* KiwiGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05BA2D891DEB10CE00A8EB62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0583FCAE1DEC805F00C4FCD1 /* KiwiControls.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +203,19 @@
 			path = GraphicsView;
 			sourceTree = "<group>";
 		};
+		05BA2D8D1DEB10CE00A8EB62 /* UTGraphicsEditor */ = {
+			isa = PBXGroup;
+			children = (
+				05BA2D8E1DEB10CE00A8EB62 /* AppDelegate.swift */,
+				05BA2D901DEB10CE00A8EB62 /* ViewController.swift */,
+				05BA2D921DEB10CE00A8EB62 /* Main.storyboard */,
+				05BA2D951DEB10CE00A8EB62 /* Assets.xcassets */,
+				05BA2D971DEB10CE00A8EB62 /* LaunchScreen.storyboard */,
+				05BA2D9A1DEB10CE00A8EB62 /* Info.plist */,
+			);
+			path = UTGraphicsEditor;
+			sourceTree = "<group>";
+		};
 		05CEEB931D8FBE2800CF2514 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +228,7 @@
 		05CEEB941D8FBE3F00CF2514 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				05BA2D8D1DEB10CE00A8EB62 /* UTGraphicsEditor */,
 				05021D001DE59F35003D4F20 /* UTGraphicsView */,
 				05FCD8961DE59703002246D4 /* UTLayer */,
 			);
@@ -209,6 +251,7 @@
 				05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */,
 				05FCD8951DE59703002246D4 /* UTLayer.app */,
 				05021CFF1DE59F35003D4F20 /* UTGraphicsView.app */,
+				05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -287,6 +330,24 @@
 			productReference = 05021CFF1DE59F35003D4F20 /* UTGraphicsView.app */;
 			productType = "com.apple.product-type.application";
 		};
+		05BA2D8B1DEB10CE00A8EB62 /* UTGraphicsEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05BA2D9D1DEB10CE00A8EB62 /* Build configuration list for PBXNativeTarget "UTGraphicsEditor" */;
+			buildPhases = (
+				05BA2D881DEB10CE00A8EB62 /* Sources */,
+				05BA2D891DEB10CE00A8EB62 /* Frameworks */,
+				05BA2D8A1DEB10CE00A8EB62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05BA2D9F1DEB10D700A8EB62 /* PBXTargetDependency */,
+			);
+			name = UTGraphicsEditor;
+			productName = UTGraphicsEditor;
+			productReference = 05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05EDB7F91D8F792C00443B08 /* KiwiControls */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05EDB8021D8F792C00443B08 /* Build configuration list for PBXNativeTarget "KiwiControls" */;
@@ -338,6 +399,11 @@
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
 					};
+					05BA2D8B1DEB10CE00A8EB62 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 					05BB23A41D8FBC8800C44B3F = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TR2DNF3P93;
@@ -373,6 +439,7 @@
 				05BB23A41D8FBC8800C44B3F /* Install */,
 				05FCD8941DE59703002246D4 /* UTLayer */,
 				05021CFE1DE59F35003D4F20 /* UTGraphicsView */,
+				05BA2D8B1DEB10CE00A8EB62 /* UTGraphicsEditor */,
 			);
 		};
 /* End PBXProject section */
@@ -385,6 +452,16 @@
 				05021D0C1DE59F35003D4F20 /* LaunchScreen.storyboard in Resources */,
 				05021D091DE59F35003D4F20 /* Assets.xcassets in Resources */,
 				05021D071DE59F35003D4F20 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05BA2D8A1DEB10CE00A8EB62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05BA2D991DEB10CE00A8EB62 /* LaunchScreen.storyboard in Resources */,
+				05BA2D961DEB10CE00A8EB62 /* Assets.xcassets in Resources */,
+				05BA2D941DEB10CE00A8EB62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +491,15 @@
 			files = (
 				05021D041DE59F35003D4F20 /* ViewController.swift in Sources */,
 				05021D021DE59F35003D4F20 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05BA2D881DEB10CE00A8EB62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05BA2D911DEB10CE00A8EB62 /* ViewController.swift in Sources */,
+				05BA2D8F1DEB10CE00A8EB62 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +543,11 @@
 			target = 05BB23A41D8FBC8800C44B3F /* Install */;
 			targetProxy = 053DB0571DE59774003F0AE1 /* PBXContainerItemProxy */;
 		};
+		05BA2D9F1DEB10D700A8EB62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BB23A41D8FBC8800C44B3F /* Install */;
+			targetProxy = 05BA2D9E1DEB10D700A8EB62 /* PBXContainerItemProxy */;
+		};
 		05BB23A91D8FBC9100C44B3F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05EDB7F91D8F792C00443B08 /* KiwiControls */;
@@ -477,6 +568,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				05021D0B1DE59F35003D4F20 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		05BA2D921DEB10CE00A8EB62 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05BA2D931DEB10CE00A8EB62 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05BA2D971DEB10CE00A8EB62 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05BA2D981DEB10CE00A8EB62 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -532,6 +639,42 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		05BA2D9B1DEB10CE00A8EB62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsEditor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsEditor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		05BA2D9C1DEB10CE00A8EB62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsEditor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsEditor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -759,6 +902,15 @@
 			buildConfigurations = (
 				05021D0E1DE59F35003D4F20 /* Debug */,
 				05021D0F1DE59F35003D4F20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05BA2D9D1DEB10CE00A8EB62 /* Build configuration list for PBXNativeTarget "UTGraphicsEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05BA2D9B1DEB10CE00A8EB62 /* Debug */,
+				05BA2D9C1DEB10CE00A8EB62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

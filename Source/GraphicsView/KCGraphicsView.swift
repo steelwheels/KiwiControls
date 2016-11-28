@@ -36,12 +36,6 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 	return CGPoint(x: p.x, y: y)
 }
 
-private func convertCoodinate(sourceRect r: CGRect, bounds b: CGRect) -> CGRect
-{
-	let y = (b.size.height - (r.size.height + r.origin.y))
-	return CGRect(x: r.origin.x, y: y, width: r.size.width, height: r.size.height)
-}
-
 public class KCGraphicsView: KCView
 {
 	private var areaToBeDisplay = CGRect.zero
@@ -129,6 +123,7 @@ public class KCGraphicsView: KCView
 	private func eventLocation(touches tchs: Set<UITouch>) -> CGPoint {
 		if let touch = tchs.first {
 			let pos = touch.location(in: self)
+			//Swift.print(" -> event:\(pos.description)")
 			return convertCoodinate(sourcePoint: pos, bounds: bounds)
 		} else {
 			fatalError("No touch location")
@@ -136,8 +131,10 @@ public class KCGraphicsView: KCView
 	}
 	#else
 	private func eventLocation(event evt: NSEvent) -> CGPoint {
-		let pos = convert(evt.locationInWindow, to: nil)
-		return convert(pos, to: nil)
+		let pos = convert(evt.locationInWindow, from: self)
+		//Swift.print(" -> event:\(pos.description)")
+		let diffpos = pos - self.frame.origin
+		return diffpos
 	}
 	#endif
 

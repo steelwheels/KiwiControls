@@ -17,6 +17,7 @@ class ViewController: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
 		// Do any additional setup after loading the view, typically from a nib.
 		let bounds = mImageView.bounds
 		let image = UIImage.generate(size: bounds.size, drawFunc: {

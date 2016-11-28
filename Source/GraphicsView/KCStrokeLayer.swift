@@ -25,9 +25,7 @@ open class KCStrokeLayer: KCLayer
 	}
 
 	public required init?(coder decoder: NSCoder) {
-		lineWidth = 10.0
-		lineColor = KGColorTable.black.cgColor
-		super.init(coder: decoder)
+		fatalError("init(coder:) has not been implemented")
 	}
 
 	open override func drawContent(in context: CGContext){
@@ -103,7 +101,7 @@ open class KCStrokeLayer: KCLayer
 		}
 
 		if didadded {
-			//Swift.print("update: \(result.description)")
+			//Swift.print("AddedPoint: \(point.description)")
 			self.setNeedsDisplayIn(result)
 		}
 

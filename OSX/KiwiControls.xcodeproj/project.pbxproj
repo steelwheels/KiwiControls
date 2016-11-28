@@ -28,6 +28,8 @@
 		056DDBC81D96A00C007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		056DDBC91D96A014007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		056DDBCA1D96A015007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
+		0584E7601DEADFDE007E33C3 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
+		0584E7611DEADFE3007E33C3 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		0598D5781DE180D50098C5B8 /* KCBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5731DE180D50098C5B8 /* KCBackgroundLayer.swift */; };
 		0598D5791DE180D50098C5B8 /* KCGraphicsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5741DE180D50098C5B8 /* KCGraphicsLayer.swift */; };
 		0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5751DE180D50098C5B8 /* KCLayer.swift */; };
@@ -35,6 +37,10 @@
 		0598D57C1DE180D50098C5B8 /* KCStrokeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5771DE180D50098C5B8 /* KCStrokeLayer.swift */; };
 		05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */; };
 		05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BCED131D8E67FE00EBEA0B /* Assets.xcassets */; };
+		05C20D5C1DEADEDE007EF254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C20D5B1DEADEDE007EF254 /* AppDelegate.swift */; };
+		05C20D5E1DEADEDE007EF254 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C20D5D1DEADEDE007EF254 /* ViewController.swift */; };
+		05C20D601DEADEDE007EF254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C20D5F1DEADEDE007EF254 /* Assets.xcassets */; };
+		05C20D631DEADEDE007EF254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C20D611DEADEDE007EF254 /* Main.storyboard */; };
 		05CBCF3E1DDF53A2007E16F9 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +67,13 @@
 			remoteInfo = Install;
 		};
 		054983F21DDF519F00C66782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05386D4F1D857F77004B8DDF;
+			remoteInfo = Install;
+		};
+		0584E75E1DEADF4B007E33C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
 			proxyType = 1;
@@ -116,6 +129,12 @@
 		05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BCED131D8E67FE00EBEA0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05BCED181D8E67FE00EBEA0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C20D591DEADEDE007EF254 /* UTGraphicsEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C20D5B1DEADEDE007EF254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05C20D5D1DEADEDE007EF254 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05C20D5F1DEADEDE007EF254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05C20D621DEADEDE007EF254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05C20D641DEADEDE007EF254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +172,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05C20D561DEADEDE007EF254 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0584E7601DEADFDE007E33C3 /* KiwiControls.framework in Frameworks */,
+				0584E7611DEADFE3007E33C3 /* KiwiGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -173,6 +201,7 @@
 				05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */,
 				053B67E61D96135B00A153F8 /* UTGraphicsDrawer.app */,
 				054983E31DDF519400C66782 /* UTLayer.app */,
+				05C20D591DEADEDE007EF254 /* UTGraphicsEditor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -253,6 +282,7 @@
 				054983E41DDF519400C66782 /* UTLayer */,
 				05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */,
 				053B67E71D96135B00A153F8 /* UTGraphicsDrawer */,
+				05C20D5A1DEADEDE007EF254 /* UTGraphicsEditor */,
 				0504EE381D8E9D3900D20B55 /* KiwiControls.framework */,
 				056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */,
 			);
@@ -271,6 +301,19 @@
 			);
 			name = UTGraphicsView;
 			path = OSX/UTGraphicsView;
+			sourceTree = "<group>";
+		};
+		05C20D5A1DEADEDE007EF254 /* UTGraphicsEditor */ = {
+			isa = PBXGroup;
+			children = (
+				05C20D5B1DEADEDE007EF254 /* AppDelegate.swift */,
+				05C20D5D1DEADEDE007EF254 /* ViewController.swift */,
+				05C20D5F1DEADEDE007EF254 /* Assets.xcassets */,
+				05C20D611DEADEDE007EF254 /* Main.storyboard */,
+				05C20D641DEADEDE007EF254 /* Info.plist */,
+			);
+			name = UTGraphicsEditor;
+			path = OSX/UTGraphicsEditor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +420,24 @@
 			productReference = 05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */;
 			productType = "com.apple.product-type.application";
 		};
+		05C20D581DEADEDE007EF254 /* UTGraphicsEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C20D671DEADEDE007EF254 /* Build configuration list for PBXNativeTarget "UTGraphicsEditor" */;
+			buildPhases = (
+				05C20D551DEADEDE007EF254 /* Sources */,
+				05C20D561DEADEDE007EF254 /* Frameworks */,
+				05C20D571DEADEDE007EF254 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0584E75F1DEADF4B007E33C3 /* PBXTargetDependency */,
+			);
+			name = UTGraphicsEditor;
+			productName = UTGraphicsEditor;
+			productReference = 05C20D591DEADEDE007EF254 /* UTGraphicsEditor.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -413,6 +474,11 @@
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
 					};
+					05C20D581DEADEDE007EF254 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 05043C161D856F910033FEC6 /* Build configuration list for PBXProject "KiwiControls" */;
@@ -433,6 +499,7 @@
 				05BCED0C1D8E67FE00EBEA0B /* UTGraphicsView */,
 				053B67E51D96135B00A153F8 /* UTGraphicsDrawer */,
 				054983E21DDF519400C66782 /* UTLayer */,
+				05C20D581DEADEDE007EF254 /* UTGraphicsEditor */,
 			);
 		};
 /* End PBXProject section */
@@ -469,6 +536,15 @@
 			files = (
 				05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */,
 				05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05C20D571DEADEDE007EF254 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C20D601DEADEDE007EF254 /* Assets.xcassets in Resources */,
+				05C20D631DEADEDE007EF254 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +596,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05C20D551DEADEDE007EF254 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C20D5E1DEADEDE007EF254 /* ViewController.swift in Sources */,
+				05C20D5C1DEADEDE007EF254 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -542,6 +627,11 @@
 			isa = PBXTargetDependency;
 			target = 05386D4F1D857F77004B8DDF /* Install */;
 			targetProxy = 054983F21DDF519F00C66782 /* PBXContainerItemProxy */;
+		};
+		0584E75F1DEADF4B007E33C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05386D4F1D857F77004B8DDF /* Install */;
+			targetProxy = 0584E75E1DEADF4B007E33C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -566,6 +656,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				05648A6B1D8EB1B100EABCD0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05C20D611DEADEDE007EF254 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05C20D621DEADEDE007EF254 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -875,6 +973,44 @@
 			};
 			name = Release;
 		};
+		05C20D651DEADEDE007EF254 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphicsEditor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsEditor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		05C20D661DEADEDE007EF254 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphicsEditor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsEditor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -928,6 +1064,15 @@
 			buildConfigurations = (
 				05BCED1A1D8E67FE00EBEA0B /* Debug */,
 				05BCED1B1D8E67FE00EBEA0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05C20D671DEADEDE007EF254 /* Build configuration list for PBXNativeTarget "UTGraphicsEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C20D651DEADEDE007EF254 /* Debug */,
+				05C20D661DEADEDE007EF254 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
