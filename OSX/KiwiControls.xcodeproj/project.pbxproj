@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0504EE391D8E9D3900D20B55 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
+		051F31A71DEF2F7D00020258 /* KCTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F31A61DEF2F7D00020258 /* KCTimerState.swift */; };
 		05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D411D8570A4004B8DDF /* KCAlert.swift */; };
 		05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D421D8570A4004B8DDF /* KCTableView.swift */; };
 		05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */; };
@@ -30,6 +31,10 @@
 		056DDBCA1D96A015007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		0584E7601DEADFDE007E33C3 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
 		0584E7611DEADFE3007E33C3 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
+		058A953A1DF07CE5003C47CD /* KCTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A95391DF07CE5003C47CD /* KCTimerView.swift */; };
+		058A953C1DF07D61003C47CD /* KCTimerViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A953B1DF07D61003C47CD /* KCTimerViewCore.swift */; };
+		058A953E1DF07DC9003C47CD /* KCTimerViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058A953D1DF07DC9003C47CD /* KCTimerViewCore.xib */; };
+		058A953F1DF08E47003C47CD /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
 		05931FDD1DEF28C200B25543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05931FDC1DEF28C200B25543 /* AppDelegate.swift */; };
 		05931FDF1DEF28C200B25543 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05931FDE1DEF28C200B25543 /* ViewController.swift */; };
 		05931FE11DEF28C200B25543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05931FE01DEF28C200B25543 /* Assets.xcassets */; };
@@ -85,6 +90,13 @@
 			remoteGlobalIDString = 05386D4F1D857F77004B8DDF;
 			remoteInfo = Install;
 		};
+		058A95401DF08E5C003C47CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05386D4F1D857F77004B8DDF;
+			remoteInfo = Install;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,6 +115,7 @@
 		05043C1C1D856F910033FEC6 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05043C201D856F910033FEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0504EE381D8E9D3900D20B55 /* KiwiControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControls.framework; path = /Users/tomoo/Project/KiwiControls/UnitTest/../../../Library/Frameworks/KiwiControls.framework; sourceTree = "<absolute>"; };
+		051F31A61DEF2F7D00020258 /* KCTimerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimerState.swift; sourceTree = "<group>"; };
 		052711741D8FBAD500AB7531 /* install_osx.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_osx.mk; path = ../Script/install_osx.mk; sourceTree = "<group>"; };
 		05386D411D8570A4004B8DDF /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
 		05386D421D8570A4004B8DDF /* KCTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTableView.swift; sourceTree = "<group>"; };
@@ -125,6 +138,9 @@
 		05648A681D8EB1A500EABCD0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		05648A6B1D8EB1B100EABCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = ../../../Library/Frameworks/KiwiGraphics.framework; sourceTree = "<group>"; };
+		058A95391DF07CE5003C47CD /* KCTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimerView.swift; sourceTree = "<group>"; };
+		058A953B1DF07D61003C47CD /* KCTimerViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimerViewCore.swift; sourceTree = "<group>"; };
+		058A953D1DF07DC9003C47CD /* KCTimerViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTimerViewCore.xib; sourceTree = "<group>"; };
 		05931FDA1DEF28C200B25543 /* UTCountDownTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTCountDownTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05931FDC1DEF28C200B25543 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05931FDE1DEF28C200B25543 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058A953F1DF08E47003C47CD /* KiwiControls.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +372,10 @@
 			isa = PBXGroup;
 			children = (
 				05D10C591DEDEFC700210470 /* KCCountDownTimer.swift */,
+				051F31A61DEF2F7D00020258 /* KCTimerState.swift */,
+				058A95391DF07CE5003C47CD /* KCTimerView.swift */,
+				058A953B1DF07D61003C47CD /* KCTimerViewCore.swift */,
+				058A953D1DF07DC9003C47CD /* KCTimerViewCore.xib */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -455,6 +476,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				058A95411DF08E5C003C47CD /* PBXTargetDependency */,
 			);
 			name = UTCountDownTimer;
 			productName = UTCountDownTimer;
@@ -575,6 +597,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058A953E1DF07DC9003C47CD /* KCTimerViewCore.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,10 +660,13 @@
 				05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */,
 				0598D5791DE180D50098C5B8 /* KCGraphicsLayer.swift in Sources */,
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
+				058A953C1DF07D61003C47CD /* KCTimerViewCore.swift in Sources */,
 				0598D57C1DE180D50098C5B8 /* KCStrokeLayer.swift in Sources */,
 				05386D591D858603004B8DDF /* KCGraphicsView.swift in Sources */,
+				051F31A71DEF2F7D00020258 /* KCTimerState.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCCountDownTimer.swift in Sources */,
 				0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */,
+				058A953A1DF07CE5003C47CD /* KCTimerView.swift in Sources */,
 				0598D5781DE180D50098C5B8 /* KCBackgroundLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -717,6 +743,11 @@
 			isa = PBXTargetDependency;
 			target = 05386D4F1D857F77004B8DDF /* Install */;
 			targetProxy = 0584E75E1DEADF4B007E33C3 /* PBXContainerItemProxy */;
+		};
+		058A95411DF08E5C003C47CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05386D4F1D857F77004B8DDF /* Install */;
+			targetProxy = 058A95401DF08E5C003C47CD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1031,11 +1062,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTCountDownTimer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $(HOME)/Library/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTCountDownTimer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1046,11 +1081,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTCountDownTimer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $(HOME)/Library/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTCountDownTimer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

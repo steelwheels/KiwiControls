@@ -9,7 +9,9 @@
 import Cocoa
 import KiwiControls
 
-class ViewController: NSViewController {
+class ViewController: NSViewController
+{
+	@IBOutlet weak var mTimerView: KCTimerView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

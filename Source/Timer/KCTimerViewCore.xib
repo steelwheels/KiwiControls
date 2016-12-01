@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="KCTimerViewCore" customModule="KiwiControls">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cTB-FF-Ef0">
+                    <rect key="frame" x="30" y="15" width="100" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Bhc-mC-rN6"/>
+                    </constraints>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="10.00" id="sVm-UT-1oC">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="cTB-FF-Ef0" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="15" id="Jr2-AU-Mvb"/>
+                <constraint firstAttribute="trailing" secondItem="cTB-FF-Ef0" secondAttribute="trailing" constant="32" id="VUd-Pf-UBA"/>
+                <constraint firstItem="cTB-FF-Ef0" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="32" id="z9B-om-wXp"/>
+            </constraints>
+            <connections>
+                <outlet property="mTextField" destination="cTB-FF-Ef0" id="h0S-9T-RF7"/>
+            </connections>
+            <point key="canvasLocation" x="-2.5" y="67"/>
+        </customView>
+    </objects>
+</document>
