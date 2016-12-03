@@ -8,16 +8,19 @@
 
 import Cocoa
 import KiwiControls
+import Canary
 
-class ViewController: NSViewController
+class ViewController: KCViewController
 {
 	@IBOutlet weak var mTimerView: KCTimerView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		// Do any additional setup after loading the view.
-		timerTest()
+		let timestate = KCTimerState(startValue: 5.0, stepValue: 1.0)
+		state = timestate
+		mTimerView.state = timestate
+		timestate.start()
 	}
 
 	override var representedObject: Any? {
@@ -26,6 +29,16 @@ class ViewController: NSViewController
 		}
 	}
 
+	open override func observe(state s: CNState){
+		if let timestate = state as? KCTimerState {
+			let time = timestate.currentTime
+			Swift.print("timerValue: \(time)")
+		} else {
+			fatalError("Invalid state object")
+		}
+	}
+
+	/*
 	private func timerTest() -> Void {
 		let timer = KCCountDownTimer(startValue: 5.0, stepValue: 1.0)
 		timer.updateCallback = {
@@ -39,5 +52,6 @@ class ViewController: NSViewController
 		}
 		timer.start()
 	}
+	*/
 }
 

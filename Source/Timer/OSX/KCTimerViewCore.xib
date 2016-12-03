@@ -19,7 +19,7 @@
                         <constraint firstAttribute="height" constant="30" id="Bhc-mC-rN6"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="10.00" id="sVm-UT-1oC">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="18" name=".SFNSText"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

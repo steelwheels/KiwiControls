@@ -342,6 +342,14 @@
 			path = OSX/UTCountDownTimer;
 			sourceTree = "<group>";
 		};
+		05B385621DF0923400FE1DAC /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				058A953D1DF07DC9003C47CD /* KCTimerViewCore.xib */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
 		05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,11 +379,11 @@
 		05D10C581DEDEFA300210470 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				05B385621DF0923400FE1DAC /* OSX */,
 				05D10C591DEDEFC700210470 /* KCCountDownTimer.swift */,
 				051F31A61DEF2F7D00020258 /* KCTimerState.swift */,
 				058A95391DF07CE5003C47CD /* KCTimerView.swift */,
 				058A953B1DF07D61003C47CD /* KCTimerViewCore.swift */,
-				058A953D1DF07DC9003C47CD /* KCTimerViewCore.xib */,
 			);
 			path = Timer;
 			sourceTree = "<group>";

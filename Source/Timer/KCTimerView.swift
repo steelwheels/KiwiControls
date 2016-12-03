@@ -5,11 +5,24 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
-import Foundation
+#if os(OSX)
+	import Cocoa
+#endif
+import Canary
 
 open class KCTimerView : KCView
 {
 	private var	mCoreView : KCTimerViewCore?	= nil
+
+	private var coreView: KCTimerViewCore {
+		get {
+			if let cview = mCoreView {
+				return cview
+			} else {
+				fatalError("No core view")
+			}
+		}
+	}
 
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -26,6 +39,22 @@ open class KCTimerView : KCView
 			mCoreView = coreview
 		} else {
 			fatalError("Can not load KCTimerViewCore")
+		}
+	}
+
+	open override func observe(state stat: CNState){
+		if let timstate = stat as? KCTimerState {
+			switch timstate.timerState {
+			  case .idle, .stop:
+				//Do nothing
+				//coreView.timerValue = nil
+			  break
+			  case .work:
+				coreView.timerValue = timstate.currentTime
+			  break
+			}
+		} else {
+			fatalError("Invalid state object")
 		}
 	}
 }
