@@ -11,7 +11,11 @@
 
 open class KCTimerViewCore : KCView
 {
+	#if os(OSX)
 	@IBOutlet weak var mTextField: NSTextField!
+	#else
+	@IBOutlet weak var mLabel: UILabel!
+	#endif
 
 	var mTimerValue: TimeInterval? = 0.0
 
@@ -28,8 +32,16 @@ open class KCTimerViewCore : KCView
 			}
 			mTimerValue = newval
 			DispatchQueue.main.async(execute: {
-				self.mTextField.stringValue = valstr as String
+				self.setLabel(label: valstr as String)
 			})
 		}
+	}
+
+	private func setLabel(label str:String){
+		#if os(OSX)
+			mTextField.stringValue = str
+		#else
+			mLabel.text = str
+		#endif
 	}
 }

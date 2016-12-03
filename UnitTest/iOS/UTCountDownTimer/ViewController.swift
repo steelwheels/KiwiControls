@@ -9,12 +9,18 @@
 import UIKit
 import KiwiControls
 
-class ViewController: UIViewController {
+class ViewController: KCViewController
+{
+
+	@IBOutlet weak var mTimerView: KCTimerView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
-		timerTest()
+
+		let timestate = KCTimerState(startValue: 5.0, stepValue: 1.0)
+		state = timestate
+		mTimerView.state = timestate
+		timestate.start()
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -22,6 +28,16 @@ class ViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
+	open override func observe(state s: CNState){
+		if let timestate = state as? KCTimerState {
+			let time = timestate.currentTime
+			Swift.print("timerValue: \(time)")
+		} else {
+			fatalError("Invalid state object")
+		}
+	}
+
+	/*
 	private func timerTest() -> Void {
 		let timer = KCCountDownTimer(startValue: 5.0, stepValue: 1.0)
 		timer.updateCallback = {
@@ -35,5 +51,6 @@ class ViewController: UIViewController {
 		}
 		timer.start()
 	}
+	*/
 }
 

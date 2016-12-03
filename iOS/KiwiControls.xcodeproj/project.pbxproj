@@ -18,11 +18,21 @@
 		050E5E1E1DEF2CCE006DC247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050E5E1C1DEF2CCE006DC247 /* Main.storyboard */; };
 		050E5E201DEF2CCE006DC247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050E5E1F1DEF2CCE006DC247 /* Assets.xcassets */; };
 		050E5E231DEF2CCE006DC247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050E5E211DEF2CCE006DC247 /* LaunchScreen.storyboard */; };
+		0516DC5E1DF2CABA0006508B /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
+		0516DC5F1DF2CABB0006508B /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
+		0516DC601DF2CABE0006508B /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
+		0516DC611DF2CABF0006508B /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
+		0516DC621DF2CAC00006508B /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
+		0516DC631DF2CAC00006508B /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		053DB0591DE597B1003F0AE1 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
 		053DB05B1DE598BD003F0AE1 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
 		0545E9DD1DE59FFF00605A09 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
 		0545E9DE1DE5A00300605A09 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
 		056BD8B21DEF2D6A0009E0D4 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
+		056C04FC1DF25E6F009468C5 /* KCTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C04F91DF25E6F009468C5 /* KCTimerState.swift */; };
+		056C04FD1DF25E6F009468C5 /* KCTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C04FA1DF25E6F009468C5 /* KCTimerView.swift */; };
+		056C04FE1DF25E6F009468C5 /* KCTimerViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C04FB1DF25E6F009468C5 /* KCTimerViewCore.swift */; };
+		056C05011DF26030009468C5 /* KCTimerViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056C05001DF26030009468C5 /* KCTimerViewCore.xib */; };
 		058265A01DE536B600C3BE27 /* KCBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659B1DE536B600C3BE27 /* KCBackgroundLayer.swift */; };
 		058265A11DE536B600C3BE27 /* KCGraphicsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659C1DE536B600C3BE27 /* KCGraphicsLayer.swift */; };
 		058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659D1DE536B600C3BE27 /* KCLayer.swift */; };
@@ -52,6 +62,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		05021D111DE59F3E003D4F20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
+			remoteInfo = Install;
+		};
+		0516DC641DF2CB590006508B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
 			proxyType = 1;
@@ -97,6 +114,10 @@
 		050E5E1F1DEF2CCE006DC247 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050E5E221DEF2CCE006DC247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		050E5E241DEF2CCE006DC247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		056C04F91DF25E6F009468C5 /* KCTimerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimerState.swift; path = Timer/KCTimerState.swift; sourceTree = "<group>"; };
+		056C04FA1DF25E6F009468C5 /* KCTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimerView.swift; path = Timer/KCTimerView.swift; sourceTree = "<group>"; };
+		056C04FB1DF25E6F009468C5 /* KCTimerViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimerViewCore.swift; path = Timer/KCTimerViewCore.swift; sourceTree = "<group>"; };
+		056C05001DF26030009468C5 /* KCTimerViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTimerViewCore.xib; sourceTree = "<group>"; };
 		0582659B1DE536B600C3BE27 /* KCBackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCBackgroundLayer.swift; sourceTree = "<group>"; };
 		0582659C1DE536B600C3BE27 /* KCGraphicsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsLayer.swift; sourceTree = "<group>"; };
 		0582659D1DE536B600C3BE27 /* KCLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayer.swift; sourceTree = "<group>"; };
@@ -136,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0545E9DE1DE5A00300605A09 /* KiwiControls.framework in Frameworks */,
+				0516DC611DF2CABF0006508B /* Canary.framework in Frameworks */,
 				0545E9DD1DE59FFF00605A09 /* KiwiGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +167,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				056BD8B21DEF2D6A0009E0D4 /* KiwiControls.framework in Frameworks */,
+				0516DC631DF2CAC00006508B /* Canary.framework in Frameworks */,
+				0516DC5F1DF2CABB0006508B /* KiwiGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +177,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0583FCAE1DEC805F00C4FCD1 /* KiwiControls.framework in Frameworks */,
+				0516DC621DF2CAC00006508B /* Canary.framework in Frameworks */,
+				0516DC5E1DF2CABA0006508B /* KiwiGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				053DB05B1DE598BD003F0AE1 /* KiwiControls.framework in Frameworks */,
+				0516DC601DF2CABE0006508B /* Canary.framework in Frameworks */,
 				053DB0591DE597B1003F0AE1 /* KiwiGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +220,10 @@
 		050E5E0F1DEF2C2F006DC247 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				056C04FF1DF25F8A009468C5 /* iOS */,
+				056C04F91DF25E6F009468C5 /* KCTimerState.swift */,
+				056C04FA1DF25E6F009468C5 /* KCTimerView.swift */,
+				056C04FB1DF25E6F009468C5 /* KCTimerViewCore.swift */,
 				050E5E101DEF2C42006DC247 /* KCCountDownTimer.swift */,
 			);
 			name = Timer;
@@ -209,6 +240,15 @@
 				050E5E241DEF2CCE006DC247 /* Info.plist */,
 			);
 			path = UTCountDownTimer;
+			sourceTree = "<group>";
+		};
+		056C04FF1DF25F8A009468C5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				056C05001DF26030009468C5 /* KCTimerViewCore.xib */,
+			);
+			name = iOS;
+			path = Timer/iOS;
 			sourceTree = "<group>";
 		};
 		05841E921D8F7B320092C2C6 /* Source */ = {
@@ -388,6 +428,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0516DC651DF2CB590006508B /* PBXTargetDependency */,
 			);
 			name = UTCountDownTimer;
 			productName = UTCountDownTimer;
@@ -549,6 +590,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				056C05011DF26030009468C5 /* KCTimerViewCore.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,10 +645,13 @@
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
 				058265A11DE536B600C3BE27 /* KCGraphicsLayer.swift in Sources */,
 				05841EA31D8F7BA00092C2C6 /* KCGraphicsView.swift in Sources */,
+				056C04FE1DF25E6F009468C5 /* KCTimerViewCore.swift in Sources */,
 				058265A41DE536B600C3BE27 /* KCStrokeLayer.swift in Sources */,
 				05841E9B1D8F7B950092C2C6 /* KCTableView.swift in Sources */,
+				056C04FC1DF25E6F009468C5 /* KCTimerState.swift in Sources */,
 				050E5E111DEF2C42006DC247 /* KCCountDownTimer.swift in Sources */,
 				058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */,
+				056C04FD1DF25E6F009468C5 /* KCTimerView.swift in Sources */,
 				058265A01DE536B600C3BE27 /* KCBackgroundLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,6 +672,11 @@
 			isa = PBXTargetDependency;
 			target = 05BB23A41D8FBC8800C44B3F /* Install */;
 			targetProxy = 05021D111DE59F3E003D4F20 /* PBXContainerItemProxy */;
+		};
+		0516DC651DF2CB590006508B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BB23A41D8FBC8800C44B3F /* Install */;
+			targetProxy = 0516DC641DF2CB590006508B /* PBXContainerItemProxy */;
 		};
 		053DB0581DE59774003F0AE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

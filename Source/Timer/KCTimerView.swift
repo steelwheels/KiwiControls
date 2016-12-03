@@ -24,10 +24,17 @@ open class KCTimerView : KCView
 		}
 	}
 
+	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
 		setupContext() ;
 	}
+	#else
+	public override init(frame: CGRect){
+		super.init(frame: frame) ;
+		setupContext()
+	}
+	#endif
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
@@ -37,6 +44,7 @@ open class KCTimerView : KCView
 	private func setupContext(){
 		if let coreview = loadChildXib(thisClass: KCTimerView.self, nibName: "KCTimerViewCore") as? KCTimerViewCore {
 			mCoreView = coreview
+			mCoreView?.timerValue = nil ; /* Clear label */
 		} else {
 			fatalError("Can not load KCTimerViewCore")
 		}
