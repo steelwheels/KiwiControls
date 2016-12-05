@@ -17,7 +17,7 @@ class ViewController: KCViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let timestate = KCTimerState(startValue: 5.0, stepValue: 1.0)
+		let timestate = KCTimerState(startValue: 5.0, stopValue: 0.0, stepValue: -1.0)
 		state = timestate
 		mTimerView.state = timestate
 		timestate.start()

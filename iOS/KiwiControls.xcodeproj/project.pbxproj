@@ -12,7 +12,7 @@
 		05021D071DE59F35003D4F20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05021D051DE59F35003D4F20 /* Main.storyboard */; };
 		05021D091DE59F35003D4F20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05021D081DE59F35003D4F20 /* Assets.xcassets */; };
 		05021D0C1DE59F35003D4F20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05021D0A1DE59F35003D4F20 /* LaunchScreen.storyboard */; };
-		050E5E111DEF2C42006DC247 /* KCCountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5E101DEF2C42006DC247 /* KCCountDownTimer.swift */; };
+		050E5E111DEF2C42006DC247 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5E101DEF2C42006DC247 /* KCTimer.swift */; };
 		050E5E191DEF2CCE006DC247 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5E181DEF2CCE006DC247 /* AppDelegate.swift */; };
 		050E5E1B1DEF2CCE006DC247 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5E1A1DEF2CCE006DC247 /* ViewController.swift */; };
 		050E5E1E1DEF2CCE006DC247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050E5E1C1DEF2CCE006DC247 /* Main.storyboard */; };
@@ -106,7 +106,7 @@
 		05021D081DE59F35003D4F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05021D0B1DE59F35003D4F20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05021D0D1DE59F35003D4F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		050E5E101DEF2C42006DC247 /* KCCountDownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCCountDownTimer.swift; path = Timer/KCCountDownTimer.swift; sourceTree = "<group>"; };
+		050E5E101DEF2C42006DC247 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimer.swift; path = Timer/KCTimer.swift; sourceTree = "<group>"; };
 		050E5E161DEF2CCE006DC247 /* UTCountDownTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTCountDownTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		050E5E181DEF2CCE006DC247 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		050E5E1A1DEF2CCE006DC247 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				056C04F91DF25E6F009468C5 /* KCTimerState.swift */,
 				056C04FA1DF25E6F009468C5 /* KCTimerView.swift */,
 				056C04FB1DF25E6F009468C5 /* KCTimerViewCore.swift */,
-				050E5E101DEF2C42006DC247 /* KCCountDownTimer.swift */,
+				050E5E101DEF2C42006DC247 /* KCTimer.swift */,
 			);
 			name = Timer;
 			sourceTree = "<group>";
@@ -649,7 +649,7 @@
 				058265A41DE536B600C3BE27 /* KCStrokeLayer.swift in Sources */,
 				05841E9B1D8F7B950092C2C6 /* KCTableView.swift in Sources */,
 				056C04FC1DF25E6F009468C5 /* KCTimerState.swift in Sources */,
-				050E5E111DEF2C42006DC247 /* KCCountDownTimer.swift in Sources */,
+				050E5E111DEF2C42006DC247 /* KCTimer.swift in Sources */,
 				058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */,
 				056C04FD1DF25E6F009468C5 /* KCTimerView.swift in Sources */,
 				058265A01DE536B600C3BE27 /* KCBackgroundLayer.swift in Sources */,

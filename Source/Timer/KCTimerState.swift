@@ -20,20 +20,23 @@ public class KCTimerState: CNState
 	public var currentTime	: TimeInterval
 
 	private var mStartValue	: TimeInterval
+	private var mStopValue	: TimeInterval
 	private var mStepValue	: TimeInterval
 
-	private var mTimer: KCCountDownTimer? = nil
+	private var mTimer: KCTimer? = nil
 
-	public init(startValue start: TimeInterval, stepValue step: TimeInterval){
+	public init(startValue start: TimeInterval, stopValue stop: TimeInterval, stepValue step: TimeInterval){
 		timerState	= .idle
 		mStartValue	= start
+		mStopValue	= stop
 		mStepValue	= step
 		currentTime	= start
 		super.init()
 	}
 
 	public func start(){
-		let timer = KCCountDownTimer(startValue: mStartValue, stepValue: mStepValue)
+		currentTime = mStartValue
+		let timer = KCTimer(startValue: mStartValue, stopValue: mStopValue, stepValue: mStepValue)
 		timer.updateCallback = {
 			(_ time:TimeInterval) -> Bool in
 				self.timerState  = .work
