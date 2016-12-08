@@ -12,9 +12,10 @@ import KiwiGraphics
 
 class ViewController: UIViewController
 {
-	@IBOutlet weak var mGraphicsView: KCGraphicsView!
+	@IBOutlet weak var mGraphicsView: KCLayerView!
 
 	override func viewDidLoad() {
+       
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 	}

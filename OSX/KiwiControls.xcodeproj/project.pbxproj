@@ -14,7 +14,7 @@
 		05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */; };
 		05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D441D8570A4004B8DDF /* KCView.swift */; };
 		05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D451D8570A4004B8DDF /* KCViewController.swift */; };
-		05386D591D858603004B8DDF /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D581D858603004B8DDF /* KCGraphicsView.swift */; };
+		05386D591D858603004B8DDF /* KCLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D581D858603004B8DDF /* KCLayerView.swift */; };
 		053B67E91D96135B00A153F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B67E81D96135B00A153F8 /* AppDelegate.swift */; };
 		053B67EB1D96135B00A153F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B67EA1D96135B00A153F8 /* ViewController.swift */; };
 		053B67ED1D96135B00A153F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053B67EC1D96135B00A153F8 /* Assets.xcassets */; };
@@ -122,7 +122,7 @@
 		05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextFieldDelegate.swift; sourceTree = "<group>"; };
 		05386D441D8570A4004B8DDF /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
 		05386D451D8570A4004B8DDF /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
-		05386D581D858603004B8DDF /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
+		05386D581D858603004B8DDF /* KCLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
 		053B67E61D96135B00A153F8 /* UTGraphicsDrawer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsDrawer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053B67E81D96135B00A153F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053B67EA1D96135B00A153F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				05386D401D85708E004B8DDF /* Basic */,
-				05386D571D8585AC004B8DDF /* GraphicsView */,
+				05386D571D8585AC004B8DDF /* LayerView */,
 				05D10C581DEDEFA300210470 /* Timer */,
 			);
 			name = Source;
@@ -275,17 +275,17 @@
 			path = Basic;
 			sourceTree = "<group>";
 		};
-		05386D571D8585AC004B8DDF /* GraphicsView */ = {
+		05386D571D8585AC004B8DDF /* LayerView */ = {
 			isa = PBXGroup;
 			children = (
-				05386D581D858603004B8DDF /* KCGraphicsView.swift */,
+				05386D581D858603004B8DDF /* KCLayerView.swift */,
 				0598D5751DE180D50098C5B8 /* KCLayer.swift */,
 				0598D5731DE180D50098C5B8 /* KCBackgroundLayer.swift */,
 				0598D5741DE180D50098C5B8 /* KCGraphicsLayer.swift */,
 				0598D5761DE180D50098C5B8 /* KCRepetitiveLayer.swift */,
 				0598D5771DE180D50098C5B8 /* KCStrokeLayer.swift */,
 			);
-			path = GraphicsView;
+			path = LayerView;
 			sourceTree = "<group>";
 		};
 		053B67E71D96135B00A153F8 /* UTGraphicsDrawer */ = {
@@ -670,7 +670,7 @@
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
 				058A953C1DF07D61003C47CD /* KCTimerViewCore.swift in Sources */,
 				0598D57C1DE180D50098C5B8 /* KCStrokeLayer.swift in Sources */,
-				05386D591D858603004B8DDF /* KCGraphicsView.swift in Sources */,
+				05386D591D858603004B8DDF /* KCLayerView.swift in Sources */,
 				051F31A71DEF2F7D00020258 /* KCTimerState.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,
 				0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */,

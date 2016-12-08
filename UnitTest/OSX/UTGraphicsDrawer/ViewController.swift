@@ -12,7 +12,7 @@ import KiwiGraphics
 
 class ViewController: NSViewController {
 
-	@IBOutlet private var mGraphicsView: KCGraphicsView!
+	@IBOutlet private var mGraphicsView: KCLayerView!
 
 	override func viewDidLayout() {
 		super.viewDidLayout()

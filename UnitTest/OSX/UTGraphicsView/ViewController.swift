@@ -30,7 +30,7 @@ private class UTVertexDrawer
 
 class ViewController: KCViewController {
 
-	@IBOutlet weak var mGraphicsView: KCGraphicsView!
+	@IBOutlet weak var mGraphicsView: KCLayerView!
 
 	override func viewDidLayout() {
 		super.viewDidLayout()

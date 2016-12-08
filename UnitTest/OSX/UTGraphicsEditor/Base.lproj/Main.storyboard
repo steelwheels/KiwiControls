@@ -686,7 +686,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="H9K-kh-rPR" customClass="KCGraphicsView" customModule="KiwiControls">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="H9K-kh-rPR" customClass="KCLayerView" customModule="KiwiControls">
                                 <rect key="frame" x="20" y="20" width="440" height="230"/>
                             </customView>
                         </subviews>

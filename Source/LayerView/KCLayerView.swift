@@ -1,6 +1,6 @@
 /**
- * @file	KCGraphicsView.swift
- * @brief	Define KCGraphicsView class
+ * @file	KCLayerView.swift
+ * @brief	Define KCLayerView class
  * @par Copyright
  *   Copyright (C) 2016 Steel Wheels Project
  */
@@ -36,7 +36,7 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 	return CGPoint(x: p.x, y: y)
 }
 
-public class KCGraphicsView: KCView
+public class KCLayerView: KCView
 {
 	private var areaToBeDisplay = CGRect.zero
 
