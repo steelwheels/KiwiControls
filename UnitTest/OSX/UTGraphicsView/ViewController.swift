@@ -32,8 +32,8 @@ class ViewController: KCViewController {
 
 	@IBOutlet weak var mGraphicsView: KCLayerView!
 
-	override func viewDidLayout() {
-		super.viewDidLayout()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
 		Swift.print("View did load")
@@ -41,14 +41,15 @@ class ViewController: KCViewController {
 		/* Background layer */
 		let bounds     = mGraphicsView.bounds
 		let background = KCBackgroundLayer(frame: bounds)
-		background.color = CGColor.black
+		background.color = KGColorTable.aliceBlue.cgColor
 		mGraphicsView.rootLayer.addSublayer(background)
 		let backdesc = background.layerDescription()
 		print("background: \(backdesc)")
-
+		
 		/* Graphics layer */
 		let graphics = KCGraphicsLayer(frame: bounds, drawer: {
 			(size: CGSize, context: CGContext) -> Void in
+				Swift.print("Graphics Layer: bounds:\(bounds.description)")
 				let bounds = CGRect(origin: CGPoint.zero, size: size)
 				let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.blue.cgColor)
 				vertex.drawContent(context: context)

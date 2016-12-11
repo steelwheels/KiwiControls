@@ -21,7 +21,7 @@ open class KCGraphicsLayer: KCLayer
 	public init(frame frm: CGRect, drawer drw: @escaping KGImageDrawer){
 		mLayerDrawer = drw
 		super.init(frame: frm)
-		super.image = KGImage.generate(size: frm.size, drawFunc: mLayerDrawer)
+		self.image = KGImage.generate(size: frame.size, drawFunc: mLayerDrawer)
 	}
 
 	public required init?(coder decoder: NSCoder) {

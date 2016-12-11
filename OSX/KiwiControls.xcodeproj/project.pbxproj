@@ -23,6 +23,7 @@
 		054983E81DDF519400C66782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054983E71DDF519400C66782 /* ViewController.swift */; };
 		054983EA1DDF519400C66782 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054983E91DDF519400C66782 /* Assets.xcassets */; };
 		054983ED1DDF519400C66782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054983EB1DDF519400C66782 /* Main.storyboard */; };
+		055674CB1DFB963B00794510 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055674CA1DFB963B00794510 /* KCGraphicsView.swift */; };
 		05648A691D8EB1A500EABCD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05648A681D8EB1A500EABCD0 /* ViewController.swift */; };
 		05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05648A6A1D8EB1B100EABCD0 /* Main.storyboard */; };
 		056DDBC61D969FF4007A8677 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
@@ -135,6 +136,7 @@
 		054983E91DDF519400C66782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		054983EC1DDF519400C66782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		054983EE1DDF519400C66782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055674CA1DFB963B00794510 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
 		05648A681D8EB1A500EABCD0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		05648A6B1D8EB1B100EABCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = ../../../Library/Frameworks/KiwiGraphics.framework; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				05386D401D85708E004B8DDF /* Basic */,
+				055674C91DFB960100794510 /* GraphicsView */,
 				05386D571D8585AC004B8DDF /* LayerView */,
 				05D10C581DEDEFA300210470 /* Timer */,
 			);
@@ -312,6 +315,14 @@
 			);
 			name = UTLayer;
 			path = OSX/UTLayer;
+			sourceTree = "<group>";
+		};
+		055674C91DFB960100794510 /* GraphicsView */ = {
+			isa = PBXGroup;
+			children = (
+				055674CA1DFB963B00794510 /* KCGraphicsView.swift */,
+			);
+			path = GraphicsView;
 			sourceTree = "<group>";
 		};
 		0569CCDC1D85CCA2005412C7 /* UnitTest */ = {
@@ -670,6 +681,7 @@
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
 				058A953C1DF07D61003C47CD /* KCTimerViewCore.swift in Sources */,
 				0598D57C1DE180D50098C5B8 /* KCStrokeLayer.swift in Sources */,
+				055674CB1DFB963B00794510 /* KCGraphicsView.swift in Sources */,
 				05386D591D858603004B8DDF /* KCLayerView.swift in Sources */,
 				051F31A71DEF2F7D00020258 /* KCTimerState.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,

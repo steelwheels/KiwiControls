@@ -10,6 +10,7 @@
 #else
 	import Cocoa
 #endif
+import KiwiGraphics
 import Canary
 
 #if os(iOS)
@@ -17,6 +18,30 @@ import Canary
 #else
 	public typealias KCViewBase = NSView
 #endif
+
+public enum KCMouseEvent {
+	case down
+	case drag
+	case up
+
+	public var description: String {
+		get {
+			var result:String = "?"
+			switch self {
+			case .up:	result = "up"
+			case .drag:	result = "drag"
+			case .down:	result = "down"
+			}
+			return result
+		}
+	}
+}
+
+private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoint
+{
+	let y = (b.size.height - p.y)
+	return CGPoint(x: p.x, y: y)
+}
 
 open class KCView : KCViewBase
 {
@@ -55,20 +80,102 @@ open class KCView : KCViewBase
 		/* Do nothing (Override this method) */
 	}
 
+	/*
+	 * Event control
+	 */
 	#if os(iOS)
-	public var currentContext : CGContext? {
-		get {
-			return UIGraphicsGetCurrentContext()
-		}
+	final public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		let pos = eventLocation(touches: touches)
+		acceptMouseEvent(mouseEvent: .down,mousePosition: pos)
 	}
 	#else
-	public var currentContext : CGContext? {
-		get {
-			return NSGraphicsContext.current()?.cgContext
-		}
+	final public override func mouseDown(with event: NSEvent) {
+		let pos = eventLocation(event: event)
+		acceptMouseEvent(mouseEvent: .down,mousePosition: pos)
 	}
 	#endif
 
+	#if os(iOS)
+	final public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		let pos = eventLocation(touches: touches)
+		acceptMouseEvent(mouseEvent: .drag,mousePosition: pos)
+	}
+	#else
+	final public override func mouseDragged(with event: NSEvent) {
+		let pos = eventLocation(event: event)
+		acceptMouseEvent(mouseEvent: .drag,mousePosition: pos)
+	}
+	#endif
+
+	#if os(iOS)
+	final public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		let pos = eventLocation(touches: touches)
+		acceptMouseEvent(mouseEvent: .up,mousePosition: pos)
+	}
+	#else
+	final public override func mouseUp(with event: NSEvent) {
+		let pos = eventLocation(event: event)
+		acceptMouseEvent(mouseEvent: .up,mousePosition: pos)
+	}
+	#endif
+
+	#if os(iOS)
+	open func eventLocation(touches tchs: Set<UITouch>) -> CGPoint {
+		if let touch = tchs.first {
+			let pos = touch.location(in: self)
+			//Swift.print(" -> event:\(pos.description)")
+			return convertCoodinate(sourcePoint: pos, bounds: bounds)
+		} else {
+			fatalError("No touch location")
+		}
+	}
+	#else
+	private func eventLocation(event evt: NSEvent) -> CGPoint {
+	let pos = convert(evt.locationInWindow, from: self)
+	//Swift.print(" -> event:\(pos.description)")
+	let diffpos = pos - self.frame.origin
+	return diffpos
+	}
+	#endif
+
+	open func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
+		/* Must be override by sub class */
+	}
+
+	/*
+	 * Update area control
+	 */
+
+	private var areaToBeDisplay = CGRect.zero
+
+	#if os(iOS)
+	open override func draw(_ dirtyRect: CGRect){
+		super.draw(dirtyRect)
+		//drawContext(dirtyRect: dirtyRect)
+		areaToBeDisplay = CGRect.zero
+	}
+	#else
+	open override func draw(_ dirtyRect: NSRect){
+	super.draw(dirtyRect)
+		//drawContext(dirtyRect: dirtyRect)
+		areaToBeDisplay = CGRect.zero
+	}
+	#endif
+
+	open override func setNeedsDisplay(_ invalidRect: KGRect)
+	{
+		if areaToBeDisplay.isEmpty {
+			areaToBeDisplay = invalidRect
+		} else {
+			areaToBeDisplay = areaToBeDisplay.union(invalidRect)
+		}
+		super.setNeedsDisplay(areaToBeDisplay)
+		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
+	}
+
+	/*
+	 * XIB load support 
+	 */
 	private func allocateLayout(subView sview : KCViewBase, attribute attr: NSLayoutAttribute) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: NSLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
 	}

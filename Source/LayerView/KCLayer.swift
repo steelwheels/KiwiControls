@@ -46,7 +46,7 @@ open class KCLayer: CALayer
 		}
 
 		set(newimg){
-			self.contents = newimg?.cgImage
+			self.contents = newimg?.toCGImage
 		}
 	}
 
@@ -57,14 +57,13 @@ open class KCLayer: CALayer
 			context.scaleBy(x: 1.0, y: -1.0)
 		#endif
 		drawContent(in: context)
-		super.draw(in: context)
 
 		context.restoreGState()
 		mDirtyRect = CGRect.zero
 	}
 
 	open func drawContent(in context: CGContext){
-		/* This method will be overridden */
+		super.draw(in: context)
 	}
 
 	open override func setNeedsDisplayIn(_ r: CGRect) {
