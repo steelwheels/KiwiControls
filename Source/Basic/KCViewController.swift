@@ -43,7 +43,7 @@ open class KCViewController : KCViewControllerBase
 		}
 	}
 
-	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+	final public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if let state = object as? CNState {
 			if keyPath == CNState.stateKey {
 				observe(state: state)

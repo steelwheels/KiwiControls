@@ -86,6 +86,16 @@ open class KCLayer: CALayer
 		}
 	}
 
+	open func observe(state s: CNState){
+		if let sublayers = self.sublayers {
+			for sublayer in sublayers {
+				if let l = sublayer as? KCLayer {
+					l.observe(state: s)
+				}
+			}
+		}
+	}
+
 	open func layerDescription() -> String {
 		return "(bounds:\(bounds.description) frame:\(frame.description))"
 	}
