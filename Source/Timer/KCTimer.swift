@@ -61,11 +61,11 @@ public class KCTimer
 
 			switch mCountType {
 			case .CountUp:
-				if mCurrentValue >= mStopValue {
+				if mCurrentValue > mStopValue {
 					donetimer = true
 				}
 			case .CountDown:
-				if mCurrentValue <= mStopValue {
+				if mCurrentValue < mStopValue {
 					donetimer = true
 				}
 			}
