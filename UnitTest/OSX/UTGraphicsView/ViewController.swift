@@ -71,6 +71,16 @@ class ViewController: KCViewController {
 			repetitive.add(location: mvertex)
 		}
 		mGraphicsView.rootLayer.addSublayer(repetitive)
+
+		/* Text font */
+		let font:NSFont = NSFont.systemFont(ofSize: NSFont.systemFontSize())
+		let textbounds = KGAlignRect(holizontalAlignment: .center,
+		                             verticalAlignment: .top,
+		                             targetSize: CGSize(width: bounds.size.width, height: 40.0),
+		                             in: bounds)
+		let textcolor = KGColorTable.red.cgColor
+		let text = KCTextLayer(frame: textbounds, font: font, color: textcolor, text: "Hello, world")
+		mGraphicsView.rootLayer.addSublayer(text)
 	}
 
 	override var representedObject: Any? {

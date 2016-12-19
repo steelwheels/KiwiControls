@@ -76,6 +76,15 @@ class ViewController: UIViewController
 			repetitive.add(location: mvertex)
 		}
 		mGraphicsView.rootLayer.addSublayer(repetitive)
+
+		/* Text layer */
+		let textbounds = KGAlignRect(holizontalAlignment:	.center,
+		                             verticalAlignment:		.middle,
+		                             targetSize:		CGSize(width: bounds.width, height: 40.0),
+		                             in: bounds)
+		let textfont  = UIFont(name: "Helvetica", size: 30.0)
+		let textlayer = KCTextLayer(frame: textbounds, font: textfont!, color: KGColorTable.white.cgColor, text: "Hello, World !!")
+		mGraphicsView.rootLayer.addSublayer(textlayer)
 	}
 
 	override func didReceiveMemoryWarning() {
