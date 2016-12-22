@@ -34,6 +34,7 @@
 		056C04FD1DF25E6F009468C5 /* KCTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C04FA1DF25E6F009468C5 /* KCTimerView.swift */; };
 		056C04FE1DF25E6F009468C5 /* KCTimerViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C04FB1DF25E6F009468C5 /* KCTimerViewCore.swift */; };
 		056C05011DF26030009468C5 /* KCTimerViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056C05001DF26030009468C5 /* KCTimerViewCore.xib */; };
+		057A349A1E0C29900071F20A /* KCStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A34991E0C29900071F20A /* KCStateObserver.swift */; };
 		058265A01DE536B600C3BE27 /* KCBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659B1DE536B600C3BE27 /* KCBackgroundLayer.swift */; };
 		058265A11DE536B600C3BE27 /* KCGraphicsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659C1DE536B600C3BE27 /* KCGraphicsLayer.swift */; };
 		058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659D1DE536B600C3BE27 /* KCLayer.swift */; };
@@ -136,6 +137,7 @@
 		056C04FA1DF25E6F009468C5 /* KCTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimerView.swift; path = Timer/KCTimerView.swift; sourceTree = "<group>"; };
 		056C04FB1DF25E6F009468C5 /* KCTimerViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimerViewCore.swift; path = Timer/KCTimerViewCore.swift; sourceTree = "<group>"; };
 		056C05001DF26030009468C5 /* KCTimerViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTimerViewCore.xib; sourceTree = "<group>"; };
+		057A34991E0C29900071F20A /* KCStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStateObserver.swift; sourceTree = "<group>"; };
 		0582659B1DE536B600C3BE27 /* KCBackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCBackgroundLayer.swift; sourceTree = "<group>"; };
 		0582659C1DE536B600C3BE27 /* KCGraphicsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsLayer.swift; sourceTree = "<group>"; };
 		0582659D1DE536B600C3BE27 /* KCLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayer.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				05841E971D8F7B950092C2C6 /* KCTextFieldDelegate.swift */,
 				05841E981D8F7B950092C2C6 /* KCView.swift */,
 				05841E991D8F7B950092C2C6 /* KCViewController.swift */,
+				057A34991E0C29900071F20A /* KCStateObserver.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				05841E9C1D8F7B950092C2C6 /* KCTextFieldDelegate.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
 				058265A11DE536B600C3BE27 /* KCGraphicsLayer.swift in Sources */,
+				057A349A1E0C29900071F20A /* KCStateObserver.swift in Sources */,
 				05841EA31D8F7BA00092C2C6 /* KCLayerView.swift in Sources */,
 				056C04FE1DF25E6F009468C5 /* KCTimerViewCore.swift in Sources */,
 				058265A41DE536B600C3BE27 /* KCStrokeLayer.swift in Sources */,

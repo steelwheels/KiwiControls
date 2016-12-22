@@ -32,6 +32,8 @@ class ViewController: KCViewController {
 
 	@IBOutlet weak var mGraphicsView: KCLayerView!
 
+	private var mTimer: KCTimer? = nil
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -73,7 +75,14 @@ class ViewController: KCViewController {
 		mGraphicsView.rootLayer.addSublayer(repetitive)
 
 		/* Text font */
-		let font:NSFont = NSFont.systemFont(ofSize: NSFont.systemFontSize())
+		//let font:NSFont = NSFont.systemFont(ofSize: NSFont.systemFontSize())
+		var font: NSFont
+		if let f = NSFont(name: "Helvetica", size: 36.0) {
+			font = f
+		} else {
+			fatalError("Can not allocate the font")
+		}
+
 		let textbounds = KGAlignRect(holizontalAlignment: .center,
 		                             verticalAlignment: .top,
 		                             targetSize: CGSize(width: bounds.size.width, height: 40.0),
@@ -81,6 +90,16 @@ class ViewController: KCViewController {
 		let textcolor = KGColorTable.red.cgColor
 		let text = KCTextLayer(frame: textbounds, font: font, color: textcolor, text: "Hello, world")
 		mGraphicsView.rootLayer.addSublayer(text)
+
+		/* Timer */
+		let timer = KCTimer(startValue: 10.0, stopValue: 0.0, stepValue: -1.0)
+		timer.updateCallback = {
+			(time:TimeInterval) -> Bool in
+			text.setDouble(value: Double(time))
+			return true
+		}
+		mTimer = timer
+		timer.start()
 	}
 
 	override var representedObject: Any? {

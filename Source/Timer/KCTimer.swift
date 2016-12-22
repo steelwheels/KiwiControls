@@ -65,7 +65,7 @@ public class KCTimer
 					donetimer = true
 				}
 			case .CountDown:
-				if mCurrentValue < mStopValue {
+				if mCurrentValue <= mStopValue {
 					donetimer = true
 				}
 			}

@@ -23,9 +23,7 @@ open class KCViewController : KCViewControllerBase
 	private dynamic var mState: CNState?   = nil
 
 	deinit {
-		if let state = mState {
-			state.remove(stateObserver: self)
-		}
+		KCDeinitObserver(state: mState, observer: self)
 	}
 	
 	public var state : CNState? {
@@ -33,21 +31,13 @@ open class KCViewController : KCViewControllerBase
 			return mState
 		}
 		set(newstate) {
-			if let orgstate = mState {
-				orgstate.remove(stateObserver: self)
-			}
-			mState = newstate
-			if let state = newstate {
-				state.add(stateObserver: self)
-			}
+			mState = KCReplaceState(originalState: mState, newState: newstate, observer: self)
 		}
 	}
 
 	final public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if let state = object as? CNState {
-			if keyPath == CNState.stateKey {
-				observe(state: state)
-			}
+		if let state = KCDidStateUpdated(forKeyPath: keyPath, of: object) {
+			observe(state: state)
 		}
 	}
 	

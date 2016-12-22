@@ -13,7 +13,7 @@ import KiwiGraphics
 	import Cocoa
 #endif
 
-public class KCTextLayer: KCLayer
+open class KCTextLayer: KCLayer
 {
 	private var mFont:	KGFont
 	private var mText:	String
@@ -27,6 +27,7 @@ public class KCTextLayer: KCLayer
 		mTextLayer	= nil
 		super.init(frame: frm)
 		bounds     = KCTextLayer.calculateBounds(frame: frame, font: fnt, text: txt)
+		//Swift.print("bounds0 = \(bounds.description)")
 		let newlayer = KCTextLayer.allocateTextLayer(frame: bounds, font: fnt, color: col, text: txt)
 		super.addSublayer(newlayer)
 		mTextLayer = newlayer
@@ -34,6 +35,24 @@ public class KCTextLayer: KCLayer
 	
 	public required init?(coder decoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	public func setText(text: String){
+		if let layer = mTextLayer {
+			let bnds = KCTextLayer.calculateBounds(frame: frame, font: mFont, text: text)
+			//Swift.print("bounds1 = \(bnds.description)")
+			layer.string	= text
+			layer.frame	= bnds
+			self.setNeedsDisplay()
+		} else {
+			fatalError("No text layer")
+		}
+	}
+
+	public func setDouble(value: Double){
+		let valstr = String(format: "%4.2f", value)
+		Swift.print("\(valstr)")
+		setText(text: valstr)
 	}
 
 	open override func drawContent(in context: CGContext){
@@ -64,7 +83,7 @@ public class KCTextLayer: KCLayer
 		return KGAlignRect(holizontalAlignment: .center,
 		                   verticalAlignment:   .middle,
 		                   targetSize:          textsize,
-		                   in:			CGRect(origin: CGPoint.zero, size: frm.size))
+		                   in:			frm) //CGRect(origin: CGPoint.zero, size: frm.size))
 	}
 }
 
