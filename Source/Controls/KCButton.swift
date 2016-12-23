@@ -7,12 +7,14 @@
 
 #if os(iOS)
 	import UIKit
+	public typealias KCButtonBase = UIButton
 #else
 	import Cocoa
+	public typealias KCButtonBase = NSButton
 #endif
 import Canary
 
-open class KCButton: NSButton
+open class KCButton: KCButtonBase
 {
 	private dynamic var mState: CNState?   = nil
 
@@ -35,7 +37,11 @@ open class KCButton: NSButton
 				self.isEnabled = doenable
 			}
 			if let title = updateTitle(state: state) {
+				#if os(iOS)
+				self.setTitle(title, for: .normal)
+				#else
 				self.title = title
+				#endif
 			}
 		}
 	}
