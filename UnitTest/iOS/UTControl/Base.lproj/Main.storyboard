@@ -32,9 +32,19 @@
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VTi-nt-1fv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKh-iI-ela" customClass="KCStepper" customModule="KiwiControls">
+                                <rect key="frame" x="16" y="28" width="343" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="Lq4-j7-yU7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nKh-iI-ela" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="DIa-Z5-jv0"/>
+                            <constraint firstItem="nKh-iI-ela" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HW7-7d-Wb3"/>
+                            <constraint firstItem="nKh-iI-ela" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ia3-71-O3s"/>
                             <constraint firstItem="Qjg-NL-faK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cSY-QZ-IfB"/>
                             <constraint firstItem="Qjg-NL-faK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="mHD-CQ-Zhs"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Qjg-NL-faK" secondAttribute="bottom" constant="20" id="rs8-Ac-Q9j"/>
@@ -42,6 +52,7 @@
                     </view>
                     <connections>
                         <outlet property="mButton" destination="Qjg-NL-faK" id="dCc-iW-e6P"/>
+                        <outlet property="mStepper" destination="nKh-iI-ela" id="lNr-XP-0Qq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

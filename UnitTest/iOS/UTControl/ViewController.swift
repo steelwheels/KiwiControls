@@ -12,6 +12,7 @@ import KiwiControls
 class ViewController: UIViewController {
 
 	@IBOutlet weak var mButton: KCButton!
+	@IBOutlet weak var mStepper: KCStepper!
 
 	private var mState: UTState? = nil
 
@@ -21,6 +22,12 @@ class ViewController: UIViewController {
 		let state = UTState()
 		mButton.controllerState = state
 		mState = state
+
+		mStepper.maxValue		= 5.0
+		mStepper.minValue		= 2.0
+		mStepper.increment		= 1.0
+		mStepper.numberOfDecimalPlaces	= 0
+		mStepper.currentValue		= 2.0
 	}
 
 	override func didReceiveMemoryWarning() {
