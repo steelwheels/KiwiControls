@@ -11,6 +11,9 @@
 		050E30D31E0D48F60076EBF1 /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E30D21E0D48F60076EBF1 /* UTState.swift */; };
 		050E30D41E0D49B90076EBF1 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
 		050E30D51E0D49BD0076EBF1 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
+		051847C51E0DD4F700671A2D /* KCStepperCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051847C41E0DD4F700671A2D /* KCStepperCore.xib */; };
+		051847C71E0DD53E00671A2D /* KCStepperCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C61E0DD53E00671A2D /* KCStepperCore.swift */; };
+		051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C81E0DD76F00671A2D /* KCStepper.swift */; };
 		051F31A71DEF2F7D00020258 /* KCTimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F31A61DEF2F7D00020258 /* KCTimerState.swift */; };
 		05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D411D8570A4004B8DDF /* KCAlert.swift */; };
 		05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D421D8570A4004B8DDF /* KCTableView.swift */; };
@@ -135,6 +138,9 @@
 		05043C201D856F910033FEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0504EE381D8E9D3900D20B55 /* KiwiControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiControls.framework; path = /Users/tomoo/Project/KiwiControls/UnitTest/../../../Library/Frameworks/KiwiControls.framework; sourceTree = "<absolute>"; };
 		050E30D21E0D48F60076EBF1 /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
+		051847C41E0DD4F700671A2D /* KCStepperCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStepperCore.xib; sourceTree = "<group>"; };
+		051847C61E0DD53E00671A2D /* KCStepperCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCStepperCore.swift; path = Controls/KCStepperCore.swift; sourceTree = "<group>"; };
+		051847C81E0DD76F00671A2D /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCStepper.swift; path = Controls/KCStepper.swift; sourceTree = "<group>"; };
 		051F31A61DEF2F7D00020258 /* KCTimerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimerState.swift; sourceTree = "<group>"; };
 		052711741D8FBAD500AB7531 /* install_osx.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_osx.mk; path = ../Script/install_osx.mk; sourceTree = "<group>"; };
 		05386D411D8570A4004B8DDF /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
@@ -293,6 +299,15 @@
 			path = KiwiControls;
 			sourceTree = "<group>";
 		};
+		051847C31E0DD46200671A2D /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				051847C41E0DD4F700671A2D /* KCStepperCore.xib */,
+			);
+			name = OSX;
+			path = Controls/OSX;
+			sourceTree = "<group>";
+		};
 		05386D3F1D857009004B8DDF /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,7 +414,10 @@
 		05ACEF571E0C2BC9009F10A7 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				051847C31E0DD46200671A2D /* OSX */,
 				05ACEF581E0C2C3C009F10A7 /* KCButton.swift */,
+				051847C81E0DD76F00671A2D /* KCStepper.swift */,
+				051847C61E0DD53E00671A2D /* KCStepperCore.swift */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -706,6 +724,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				051847C51E0DD4F700671A2D /* KCStepperCore.xib in Resources */,
 				058A953E1DF07DC9003C47CD /* KCTimerViewCore.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -777,8 +796,10 @@
 				05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */,
 				05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */,
 				05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */,
+				051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */,
 				0598D5791DE180D50098C5B8 /* KCGraphicsLayer.swift in Sources */,
 				057A34981E0C1E3E0071F20A /* KCStateObserver.swift in Sources */,
+				051847C71E0DD53E00671A2D /* KCStepperCore.swift in Sources */,
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
 				058A953C1DF07D61003C47CD /* KCTimerViewCore.swift in Sources */,
 				0598D57C1DE180D50098C5B8 /* KCStrokeLayer.swift in Sources */,

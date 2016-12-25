@@ -12,6 +12,7 @@ import KiwiControls
 class ViewController: NSViewController
 {
 	@IBOutlet weak var	mButton: UTButton!
+	@IBOutlet weak var	mStepper: KCStepper!
 	private var		mState:  UTState? = nil
 
 	override func viewDidLoad() {
@@ -21,6 +22,11 @@ class ViewController: NSViewController
 		let state = UTState()
 		mButton.controllerState = state
 		mState = state
+
+		mStepper.maxValue     = 5.0
+		mStepper.minValue     = 2.0
+		mStepper.increment    = 1.0
+		mStepper.currentValue = 2.0
 	}
 
 	override var representedObject: Any? {
