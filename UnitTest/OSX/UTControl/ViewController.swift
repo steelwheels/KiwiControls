@@ -26,7 +26,13 @@ class ViewController: NSViewController
 		mStepper.maxValue     = 5.0
 		mStepper.minValue     = 2.0
 		mStepper.increment    = 1.0
+		mStepper.numberOfDecimalPlaces = 0
 		mStepper.currentValue = 2.0
+		mStepper.updateValueCallback = {
+			(value: Double) -> Void in
+			Swift.print("updateValueCallback = \(value)")
+		}
+
 	}
 
 	override var representedObject: Any? {

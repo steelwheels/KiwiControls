@@ -57,6 +57,16 @@ public class KCStepper: KCView
 		set(newval) { coreView().increment = newval }
 	}
 
+	public var numberOfDecimalPlaces: Int {
+		get { return coreView().numberOfDecimalPlaces }
+		set(newval) { coreView().numberOfDecimalPlaces = newval }
+	}
+
+	public var updateValueCallback: ((_ newvalue: Double) -> Void)? {
+		get { return coreView().updateValueCallback }
+		set(newval){ coreView().updateValueCallback = newval }
+	}
+	
 	private func coreView() -> KCStepperCore {
 		if let coreview = mCoreView {
 			return coreview

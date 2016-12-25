@@ -17,9 +17,17 @@ public class KCStepperCore: KCView
 	@IBOutlet weak var	mTextField:	NSTextField!
 	@IBOutlet weak var	mStepper:	NSStepper!
 
+	public var numberOfDecimalPlaces: Int	= 2
+	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
+
 	public func setup() -> Void {
 		mTextField.stringValue = ""
 		mTextField.alignment = .center
+	}
+
+	private func updateTextField(value: Double){
+		let str = String(format: "%.*lf", numberOfDecimalPlaces, value)
+		mTextField.stringValue = str
 	}
 
 	public var maxValue: Double {
@@ -42,7 +50,7 @@ public class KCStepperCore: KCView
 				v = maxValue
 			}
 			mStepper.doubleValue = v
-			mTextField.stringValue = String(format: "%lf", v)
+			updateTextField(value: v)
 		}
 	}
 
@@ -53,7 +61,10 @@ public class KCStepperCore: KCView
 
 	@IBAction func stepperAction(_ sender: NSStepper) {
 		let value = sender.doubleValue
-		mTextField.stringValue = String(format: "%lf", value)
+		updateTextField(value: value)
+		if let callback = updateValueCallback {
+			callback(value)
+		}
 	}
 }
 
