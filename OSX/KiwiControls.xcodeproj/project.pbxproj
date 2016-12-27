@@ -37,6 +37,8 @@
 		056DDBC91D96A014007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		056DDBCA1D96A015007A8677 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		057A34981E0C1E3E0071F20A /* KCStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A34971E0C1E3E0071F20A /* KCStateObserver.swift */; };
+		057E16B01E11886100EC4DF6 /* KCButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */; };
+		057E16B21E1189D900EC4DF6 /* KCButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */; };
 		0584E7601DEADFDE007E33C3 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
 		0584E7611DEADFE3007E33C3 /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */; };
 		0587CD6E1E069565006646DE /* KCTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587CD6D1E069565006646DE /* KCTextLayer.swift */; };
@@ -58,7 +60,6 @@
 		05ACEF631E0C3317009F10A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEF621E0C3317009F10A7 /* ViewController.swift */; };
 		05ACEF651E0C3317009F10A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF641E0C3317009F10A7 /* Assets.xcassets */; };
 		05ACEF681E0C3317009F10A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF661E0C3317009F10A7 /* Main.storyboard */; };
-		05ACEF701E0C34F9009F10A7 /* UTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEF6F1E0C34F9009F10A7 /* UTButton.swift */; };
 		05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */; };
 		05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BCED131D8E67FE00EBEA0B /* Assets.xcassets */; };
 		05C20D5C1DEADEDE007EF254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C20D5B1DEADEDE007EF254 /* AppDelegate.swift */; };
@@ -166,6 +167,8 @@
 		05648A6B1D8EB1B100EABCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056DDBC71D96A00C007A8677 /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = ../../../Library/Frameworks/KiwiGraphics.framework; sourceTree = "<group>"; };
 		057A34971E0C1E3E0071F20A /* KCStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStateObserver.swift; sourceTree = "<group>"; };
+		057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonCore.xib; sourceTree = "<group>"; };
+		057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCButtonCore.swift; path = Controls/KCButtonCore.swift; sourceTree = "<group>"; };
 		0587CD6D1E069565006646DE /* KCTextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextLayer.swift; sourceTree = "<group>"; };
 		058A95391DF07CE5003C47CD /* KCTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimerView.swift; sourceTree = "<group>"; };
 		058A953B1DF07D61003C47CD /* KCTimerViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimerViewCore.swift; sourceTree = "<group>"; };
@@ -188,7 +191,6 @@
 		05ACEF641E0C3317009F10A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05ACEF671E0C3317009F10A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05ACEF691E0C3317009F10A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05ACEF6F1E0C34F9009F10A7 /* UTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTButton.swift; sourceTree = "<group>"; };
 		05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BCED131D8E67FE00EBEA0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				051847C41E0DD4F700671A2D /* KCStepperCore.xib */,
+				057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */,
 			);
 			name = OSX;
 			path = Controls/OSX;
@@ -416,6 +419,7 @@
 			children = (
 				051847C31E0DD46200671A2D /* OSX */,
 				05ACEF581E0C2C3C009F10A7 /* KCButton.swift */,
+				057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */,
 				051847C81E0DD76F00671A2D /* KCStepper.swift */,
 				051847C61E0DD53E00671A2D /* KCStepperCore.swift */,
 			);
@@ -427,7 +431,6 @@
 			children = (
 				05ACEF601E0C3317009F10A7 /* AppDelegate.swift */,
 				05ACEF621E0C3317009F10A7 /* ViewController.swift */,
-				05ACEF6F1E0C34F9009F10A7 /* UTButton.swift */,
 				050E30D21E0D48F60076EBF1 /* UTState.swift */,
 				05ACEF641E0C3317009F10A7 /* Assets.xcassets */,
 				05ACEF661E0C3317009F10A7 /* Main.storyboard */,
@@ -724,6 +727,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057E16B01E11886100EC4DF6 /* KCButtonCore.xib in Resources */,
 				051847C51E0DD4F700671A2D /* KCStepperCore.xib in Resources */,
 				058A953E1DF07DC9003C47CD /* KCTimerViewCore.xib in Resources */,
 			);
@@ -810,6 +814,7 @@
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,
 				0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */,
 				058A953A1DF07CE5003C47CD /* KCTimerView.swift in Sources */,
+				057E16B21E1189D900EC4DF6 /* KCButtonCore.swift in Sources */,
 				0598D5781DE180D50098C5B8 /* KCBackgroundLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,7 +853,6 @@
 				05ACEF631E0C3317009F10A7 /* ViewController.swift in Sources */,
 				05ACEF611E0C3317009F10A7 /* AppDelegate.swift in Sources */,
 				050E30D31E0D48F60076EBF1 /* UTState.swift in Sources */,
-				05ACEF701E0C34F9009F10A7 /* UTButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

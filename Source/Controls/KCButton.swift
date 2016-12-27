@@ -7,50 +7,68 @@
 
 #if os(iOS)
 	import UIKit
-	public typealias KCButtonBase = UIButton
 #else
 	import Cocoa
-	public typealias KCButtonBase = NSButton
 #endif
 import Canary
 
-open class KCButton: KCButtonBase
+open class KCButton: KCView
 {
-	private dynamic var mState: CNState?   = nil
+	public var decideEnableCallback : ((_: CNState) -> Bool?)? = nil
+	public var decideVisibleCallback: ((_: CNState) -> Bool?)? = nil
 
-	deinit {
-		KCDeinitObserver(state: mState, observer: self)
+	public var buttonPressedCallback: (() -> Void)? {
+		get { return coreView().buttonPressedCallback }
+		set(callback){ coreView().buttonPressedCallback = callback }
 	}
 
-	public var controllerState : CNState? {
-		get {
-			return mState
-		}
-		set(newstate) {
-			mState = KCReplaceState(originalState: mState, newState: newstate, observer: self)
+	private var mCoreView: KCButtonCore? = nil
+
+	#if os(OSX)
+	public override init(frame : NSRect){
+		super.init(frame: frame) ;
+		setupContext() ;
+	}
+	#else
+	public override init(frame: CGRect){
+	super.init(frame: frame) ;
+	setupContext()
+	}
+	#endif
+
+	public required init?(coder: NSCoder) {
+		super.init(coder: coder) ;
+		setupContext() ;
+	}
+
+	private func setupContext(){
+		if let coreview = loadChildXib(thisClass: KCButton.self, nibName: "KCButtonCore") as? KCButtonCore {
+			mCoreView = coreview
+			coreview.setup()
+		} else {
+			fatalError("Can not load KCButtonCore")
 		}
 	}
 
-	final public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if let state = KCDidStateUpdated(forKeyPath: keyPath, of: object) {
-			if let doenable = updateEnable(state: state) {
-				self.isEnabled = doenable
+	public final override func observe(state stat: CNState){
+		if let decen = decideEnableCallback {
+			if let doenable = decen(stat) {
+				coreView().isEnabled = doenable
 			}
-			if let title = updateTitle(state: state) {
-				#if os(iOS)
-				self.setTitle(title, for: .normal)
-				#else
-				self.title = title
-				#endif
+		}
+		if let decvis = decideVisibleCallback {
+			if let dovis = decvis(stat) {
+				coreView().isVisible = dovis
 			}
 		}
 	}
 
-	open func updateEnable(state: CNState) -> Bool? {
-		return nil
-	}
-
-	open func updateTitle(state: CNState) -> String? {
-		return nil
+	private func coreView() -> KCButtonCore {
+		if let coreview = mCoreView {
+			return coreview
+		} else {
+			fatalError("No core view")
+		}
 	}
 }
+

@@ -686,23 +686,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3nJ-6w-UyY" customClass="UTButton" customModule="UTControl" customModuleProvider="target">
-                                <rect key="frame" x="200" y="13" width="81" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Bs-ir-hMq">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buttonPressed:" target="XfG-lQ-9wD" id="Ell-h1-ur4"/>
-                                </connections>
-                            </button>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="H5A-TS-4S9" customClass="KCStepper" customModule="KiwiControls">
                                 <rect key="frame" x="20" y="216" width="113" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="228-vR-cD9"/>
                                     <constraint firstAttribute="width" constant="113" id="qnO-lt-cPV"/>
                                 </constraints>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KnZ-6t-CHT" customClass="KCButton" customModule="KiwiControls">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -711,7 +704,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mButton" destination="3nJ-6w-UyY" id="9Re-af-rcf"/>
+                        <outlet property="mButton" destination="KnZ-6t-CHT" id="aIO-jh-qdh"/>
                         <outlet property="mStepper" destination="H5A-TS-4S9" id="VVw-Db-HY0"/>
                     </connections>
                 </viewController>

@@ -9,7 +9,8 @@
 import UIKit
 import KiwiControls
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
 
 	@IBOutlet weak var mButton: KCButton!
 	@IBOutlet weak var mStepper: KCStepper!
@@ -20,14 +21,39 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		let state = UTState()
-		mButton.controllerState = state
-		mState = state
+		mButton.state = state
+		mButton.decideEnableCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mButton.decideVisibleCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mButton.buttonPressedCallback = {
+			() -> Void in
+			Swift.print("buttonPressedCallback")
+		}
 
 		mStepper.maxValue		= 5.0
 		mStepper.minValue		= 2.0
 		mStepper.increment		= 1.0
 		mStepper.numberOfDecimalPlaces	= 0
 		mStepper.currentValue		= 2.0
+		mStepper.decideEnableCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mStepper.decideVisibleCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mStepper.updateValueCallback = {
+			(value: Double) -> Void in
+			Swift.print("updateValueCallback = \(value)")
+		}
+		
+		mState = state
 	}
 
 	override func didReceiveMemoryWarning() {

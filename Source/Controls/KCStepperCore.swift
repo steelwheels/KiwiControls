@@ -119,6 +119,27 @@ public class KCStepperCore: KCView
 		}
 	}
 
+	public var isEnabled: Bool {
+		get {
+			return mStepper.isEnabled
+		}
+		set(newval){
+			mStepper.isEnabled   = newval
+			mTextField.isEnabled = newval
+		}
+	}
+
+	public var isVisible: Bool {
+		get {
+			return !(mStepper.isHidden)
+		}
+		set(newval){
+			mStepper.isHidden   = !newval
+			mTextField.isHidden = !newval
+			super.isHidden      = !newval
+		}
+	}
+	
 	#if os(iOS)
 	@IBAction func stepperAction(_ sender: UIStepper) {
 		let value = sender.value

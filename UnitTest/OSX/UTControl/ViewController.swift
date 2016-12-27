@@ -7,11 +7,12 @@
 //
 
 import Cocoa
+import Canary
 import KiwiControls
 
 class ViewController: NSViewController
 {
-	@IBOutlet weak var	mButton: UTButton!
+	@IBOutlet weak var	mButton: KCButton!
 	@IBOutlet weak var	mStepper: KCStepper!
 	private var		mState:  UTState? = nil
 
@@ -20,35 +21,45 @@ class ViewController: NSViewController
 
 		// Do any additional setup after loading the view.
 		let state = UTState()
-		mButton.controllerState = state
-		mState = state
+		mButton.state	= state
+		mButton.decideEnableCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mButton.decideVisibleCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mButton.buttonPressedCallback = {
+			() -> Void in
+			Swift.print("buttonPressedCallback")
+		}
 
+		mStepper.state	      = state
 		mStepper.maxValue     = 5.0
 		mStepper.minValue     = 2.0
 		mStepper.increment    = 1.0
 		mStepper.numberOfDecimalPlaces = 0
 		mStepper.currentValue = 2.0
+		mStepper.decideEnableCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mStepper.decideVisibleCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
 		mStepper.updateValueCallback = {
 			(value: Double) -> Void in
 			Swift.print("updateValueCallback = \(value)")
 		}
 
+		mState = state
 	}
 
 	override var representedObject: Any? {
 		didSet {
 		// Update the view, if already loaded.
-		}
-	}
-
-	@IBAction func buttonPressed(_ sender: UTButton) {
-		Swift.print("buttonPressed")
-		if let state = mState {
-			switch state.progress {
-			case .Init:	state.progress = .Step1
-			case .Step1:	state.progress = .Step2
-			case .Step2:	state.progress = .Init
-			}
 		}
 	}
 }

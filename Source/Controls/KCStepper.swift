@@ -5,10 +5,22 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
-import Foundation
+#if os(iOS)
+	import UIKit
+#else
+	import Cocoa
+#endif
+import Canary
 
 public class KCStepper: KCView
 {
+	public var decideEnableCallback : ((_: CNState) -> Bool?)? = nil
+	public var decideVisibleCallback: ((_: CNState) -> Bool?)? = nil
+	public var updateValueCallback: ((_ newvalue: Double) -> Void)? {
+		get { return coreView().updateValueCallback }
+		set(newval){ coreView().updateValueCallback = newval }
+	}
+
 	private var mCoreView: KCStepperCore? = nil
 
 	#if os(OSX)
@@ -37,6 +49,19 @@ public class KCStepper: KCView
 		}
 	}
 
+	public final override func observe(state stat: CNState){
+		if let decen = decideEnableCallback {
+			if let doenable = decen(stat) {
+				coreView().isEnabled = doenable
+			}
+		}
+		if let decvis = decideVisibleCallback {
+			if let dovis = decvis(stat) {
+				coreView().isVisible = dovis
+			}
+		}
+	}
+
 	public var maxValue: Double {
 		get { return coreView().maxValue }
 		set(newval) { coreView().maxValue = newval }
@@ -60,11 +85,6 @@ public class KCStepper: KCView
 	public var numberOfDecimalPlaces: Int {
 		get { return coreView().numberOfDecimalPlaces }
 		set(newval) { coreView().numberOfDecimalPlaces = newval }
-	}
-
-	public var updateValueCallback: ((_ newvalue: Double) -> Void)? {
-		get { return coreView().updateValueCallback }
-		set(newval){ coreView().updateValueCallback = newval }
 	}
 	
 	private func coreView() -> KCStepperCore {
