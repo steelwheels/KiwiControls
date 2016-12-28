@@ -75,6 +75,9 @@
 		05BA61761E0839CA00A647E9 /* KCTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA61751E0839CA00A647E9 /* KCTextLayer.swift */; };
 		05CEE1951D8F97A000D3593C /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		05CEE1961D8F97A400D3593C /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
+		05E75DF61E13F3E100287756 /* KCCheckBoxCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */; };
+		05E75DF91E13F4C000287756 /* KCCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75DF71E13F4C000287756 /* KCCheckBox.swift */; };
+		05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */; };
 		05EDB7FF1D8F792C00443B08 /* KiwiControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 05EDB7FD1D8F792C00443B08 /* KiwiControls.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05FCD8981DE59703002246D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD8971DE59703002246D4 /* AppDelegate.swift */; };
 		05FCD89A1DE59703002246D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCD8991DE59703002246D4 /* ViewController.swift */; };
@@ -201,6 +204,9 @@
 		05BB23AA1D8FBCB600C44B3F /* install_ios.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_ios.mk; path = ../Script/install_ios.mk; sourceTree = "<group>"; };
 		05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = /Users/tomoo/local/Frameworks/KiwiGraphics.framework; sourceTree = "<absolute>"; };
 		05CEE1931D8F87A900D3593C /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/local/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
+		05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCCheckBoxCore.xib; sourceTree = "<group>"; };
+		05E75DF71E13F4C000287756 /* KCCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBox.swift; sourceTree = "<group>"; };
+		05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBoxCore.swift; sourceTree = "<group>"; };
 		05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EDB7FD1D8F792C00443B08 /* KiwiControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiControls.h; sourceTree = "<group>"; };
 		05EDB7FE1D8F792C00443B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
@@ -336,6 +342,8 @@
 				058AE0501E12C3A800116D89 /* KCButtonCore.swift */,
 				058021A11E102D9A001457C8 /* KCStepper.swift */,
 				0580219F1E102882001457C8 /* KCStepperCore.swift */,
+				05E75DF71E13F4C000287756 /* KCCheckBox.swift */,
+				05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 			children = (
 				0580219D1E102766001457C8 /* KCStepperCore.xib */,
 				058AE0521E12C3BF00116D89 /* KCButtonCore.xib */,
+				05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -802,6 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058AE0531E12C3BF00116D89 /* KCButtonCore.xib in Resources */,
+				05E75DF61E13F3E100287756 /* KCCheckBoxCore.xib in Resources */,
 				0580219E1E102766001457C8 /* KCStepperCore.xib in Resources */,
 				056C05011DF26030009468C5 /* KCTimerViewCore.xib in Resources */,
 			);
@@ -876,6 +886,7 @@
 				05841E9E1D8F7B950092C2C6 /* KCViewController.swift in Sources */,
 				05841E9D1D8F7B950092C2C6 /* KCView.swift in Sources */,
 				05841E9C1D8F7B950092C2C6 /* KCTextFieldDelegate.swift in Sources */,
+				05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
 				058265A11DE536B600C3BE27 /* KCGraphicsLayer.swift in Sources */,
@@ -886,6 +897,7 @@
 				058265A41DE536B600C3BE27 /* KCStrokeLayer.swift in Sources */,
 				05353FFB1E0D5A340031812D /* KCButton.swift in Sources */,
 				0506F2EB1DFB12690028D1E2 /* KCGraphicsView.swift in Sources */,
+				05E75DF91E13F4C000287756 /* KCCheckBox.swift in Sources */,
 				05841E9B1D8F7B950092C2C6 /* KCTableView.swift in Sources */,
 				056C04FC1DF25E6F009468C5 /* KCTimerState.swift in Sources */,
 				050E5E111DEF2C42006DC247 /* KCTimer.swift in Sources */,

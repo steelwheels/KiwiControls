@@ -697,14 +697,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-4W-thl" customClass="KCCheckBox" customModule="KiwiControls">
+                                <rect key="frame" x="20" y="168" width="156" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="156" id="V5l-Li-rUi"/>
+                                    <constraint firstAttribute="height" constant="40" id="aRG-AC-PQS"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="H5A-TS-4S9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="4KD-zw-Ugq"/>
+                            <constraint firstItem="1Ag-4W-thl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QDi-mW-Y21"/>
+                            <constraint firstItem="1Ag-4W-thl" firstAttribute="top" secondItem="H5A-TS-4S9" secondAttribute="bottom" constant="8" id="Yc1-Ny-Seh"/>
                             <constraint firstItem="H5A-TS-4S9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="v7y-ZQ-S5W"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mButton" destination="KnZ-6t-CHT" id="aIO-jh-qdh"/>
+                        <outlet property="mCheckBox" destination="1Ag-4W-thl" id="ddf-lc-1ab"/>
                         <outlet property="mStepper" destination="H5A-TS-4S9" id="VVw-Db-HY0"/>
                     </connections>
                 </viewController>

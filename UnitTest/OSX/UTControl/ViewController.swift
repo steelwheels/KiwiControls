@@ -12,8 +12,10 @@ import KiwiControls
 
 class ViewController: NSViewController
 {
-	@IBOutlet weak var	mButton: KCButton!
-	@IBOutlet weak var	mStepper: KCStepper!
+	@IBOutlet weak var mButton: KCButton!
+	@IBOutlet weak var mStepper: KCStepper!
+	@IBOutlet weak var mCheckBox: KCCheckBox!
+
 	private var		mState:  UTState? = nil
 
 	override func viewDidLoad() {
@@ -52,6 +54,19 @@ class ViewController: NSViewController
 		mStepper.updateValueCallback = {
 			(value: Double) -> Void in
 			Swift.print("updateValueCallback = \(value)")
+		}
+
+		mCheckBox.decideEnableCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mCheckBox.decideVisibleCallback = {
+			(_: CNState) -> Bool? in
+			return nil
+		}
+		mCheckBox.checkUpdatedCallback = {
+			(value: Bool) -> Void in
+			Swift.print("update check box value: \(value)")
 		}
 
 		mState = state

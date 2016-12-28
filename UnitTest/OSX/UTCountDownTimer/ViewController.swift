@@ -13,7 +13,6 @@ import Canary
 class ViewController: KCViewController
 {
 	@IBOutlet weak var mTimerView: KCTimerView!
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
