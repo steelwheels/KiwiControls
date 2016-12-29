@@ -42,6 +42,27 @@ public class KCCheckBoxCore: KCView
 	}
 	#endif
 
+	public var title: String {
+		get {
+			#if os(iOS)
+				if let text = mLabel.text {
+					return text
+				} else {
+					return ""
+				}
+			#else
+				return mCheckBox.title
+			#endif
+		}
+		set(newval){
+			#if os(iOS)
+				mLabel.text = newval
+			#else
+				mCheckBox.title = newval
+			#endif
+		}
+	}
+
 	public var isEnabled: Bool {
 		get {
 			#if os(iOS)

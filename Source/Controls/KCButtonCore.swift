@@ -39,6 +39,27 @@ public class KCButtonCore: KCView
 	}
 	#endif
 
+	public var title: String {
+		get {
+			#if os(iOS)
+				if let title = mButton.currentTitle {
+					return title
+				} else {
+					return ""
+				}
+			#else
+				return mButton.title
+			#endif
+		}
+		set(newstr){
+			#if os(iOS)
+				mButton.setTitle(newstr, for: .normal)
+			#else
+				mButton.title = newstr
+			#endif
+		}
+	}
+
 	public var isEnabled: Bool {
 		get {
 			return mButton.isEnabled

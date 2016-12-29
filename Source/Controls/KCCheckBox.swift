@@ -21,6 +21,11 @@ open class KCCheckBox: KCView
 		get { return coreView().checkUpdatedCallback }
 		set(callback){ coreView().checkUpdatedCallback = callback }
 	}
+
+	public var title: String {
+		get { return coreView().title }
+		set(newstr){ coreView().title = newstr }
+	}
 	
 	private var mCoreView: KCCheckBoxCore? = nil
 

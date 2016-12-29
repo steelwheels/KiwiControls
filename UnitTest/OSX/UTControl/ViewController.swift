@@ -56,6 +56,7 @@ class ViewController: NSViewController
 			Swift.print("updateValueCallback = \(value)")
 		}
 
+		mCheckBox.title = "Check Box"
 		mCheckBox.decideEnableCallback = {
 			(_: CNState) -> Bool? in
 			return nil

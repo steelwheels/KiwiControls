@@ -22,6 +22,11 @@ open class KCButton: KCView
 		set(callback){ coreView().buttonPressedCallback = callback }
 	}
 
+	public var title: String {
+		get { return coreView().title }
+		set(newstr){ coreView().title = newstr }
+	}
+
 	private var mCoreView: KCButtonCore? = nil
 
 	#if os(OSX)
