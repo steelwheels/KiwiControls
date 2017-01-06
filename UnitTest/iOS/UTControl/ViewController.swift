@@ -21,6 +21,7 @@ class ViewController: UIViewController
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		let state = UTState()
+		
 		mButton.state = state
 		mButton.decideEnableCallback = {
 			(_: CNState) -> Bool? in
@@ -34,6 +35,8 @@ class ViewController: UIViewController
 			() -> Void in
 			Swift.print("buttonPressedCallback")
 		}
+		let background = KGColorPreference.BackgroundColors(highlight: UIColor.lightGray, normal: UIColor.darkGray)
+		mButton.setColors(colors: KGColorPreference.ButtonColors.init(title: UIColor.cyan, background: background))
 
 		mStepper.maxValue		= 5.0
 		mStepper.minValue		= 2.0

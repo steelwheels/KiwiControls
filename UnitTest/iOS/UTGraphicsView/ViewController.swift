@@ -19,7 +19,7 @@ private class UTVertexDrawer
 		let center = b.center
 		let radius = min(b.size.width, b.size.height)/2.0
 		mEclipse  = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
-		mGradient = KGGradientTable.sharedGradientTable.gradient(forColor: c)
+		mGradient = KGGradientTable.sharedGradientTable.Gradient(forColor: c)
 	}
 
 	public func drawContent(context ctxt:CGContext){

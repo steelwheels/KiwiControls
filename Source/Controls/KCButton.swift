@@ -11,6 +11,7 @@
 	import Cocoa
 #endif
 import Canary
+import KiwiGraphics
 
 open class KCButton: KCView
 {
@@ -68,6 +69,10 @@ open class KCButton: KCView
 		}
 	}
 
+	public func setColors(colors cols: KGColorPreference.ButtonColors){
+		coreView().setColors(colors: cols)
+	}
+	
 	private func coreView() -> KCButtonCore {
 		if let coreview = mCoreView {
 			return coreview

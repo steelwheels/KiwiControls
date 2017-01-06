@@ -39,7 +39,7 @@ class ViewController: UIViewController
 		let center = bounds.center
 		let radius = min(sz.width, sz.height)/2.0
 		let eclipse  = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
-		let gradient = KGGradientTable.sharedGradientTable.gradient(forColor: KGColorTable.black.cgColor)
+		let gradient = KGGradientTable.sharedGradientTable.Gradient(forColor: KGColorTable.black.cgColor)
 
 		ctxt.draw(eclipse: eclipse, withGradient: gradient)
 	}

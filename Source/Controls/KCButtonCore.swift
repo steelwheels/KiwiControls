@@ -11,13 +11,14 @@
 	import Cocoa
 #endif
 import KiwiGraphics
+import Canary
 
 public class KCButtonCore: KCView
 {
 	#if os(iOS)
 	@IBOutlet weak var mButton: UIButton!
 	#else
-	@IBOutlet weak var mButton: NSButton!
+	@IBOutlet weak var mButton: KCButtonBody!
 	#endif
 
 	public var buttonPressedCallback: (() -> Void)? = nil
@@ -76,6 +77,15 @@ public class KCButtonCore: KCView
 		set(newval){
 			mButton.isHidden   = !newval
 		}
+	}
+
+	public func setColors(colors cols: KGColorPreference.ButtonColors){
+		#if os(iOS)
+			mButton.setTitleColor(cols.title, for: .normal)
+			mButton.backgroundColor = cols.background.normal
+		#else
+			mButton.colors = cols
+		#endif
 	}
 }
 

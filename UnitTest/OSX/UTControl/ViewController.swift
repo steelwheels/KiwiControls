@@ -9,6 +9,7 @@
 import Cocoa
 import Canary
 import KiwiControls
+import KiwiGraphics
 
 class ViewController: NSViewController
 {
@@ -24,6 +25,8 @@ class ViewController: NSViewController
 		// Do any additional setup after loading the view.
 		let state = UTState()
 		mButton.state	= state
+		let buttonback = KGColorPreference.BackgroundColors(highlight: NSColor.lightGray, normal: NSColor.black)
+		mButton.setColors(colors: KGColorPreference.ButtonColors(title: NSColor.cyan, background: buttonback))
 		mButton.decideEnableCallback = {
 			(_: CNState) -> Bool? in
 			return nil
