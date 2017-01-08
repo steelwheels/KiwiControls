@@ -29,7 +29,20 @@ public class KCTimer
 	public var updateCallback: ((_ time:TimeInterval) -> Bool)? = nil
 	public var doneCallback: (() -> Void)? = nil
 
-	public init(startValue start: TimeInterval, stopValue stop: TimeInterval, stepValue step: TimeInterval){
+	public init(){
+		mCountType	= .CountDown
+		mStartValue	= 0.0
+		mStopValue	= 0.0
+		mStepValue	= 0.0
+		mCurrentValue	= 0.0
+
+	}
+
+	public func start(startValue start: TimeInterval, stopValue stop: TimeInterval, stepValue step: TimeInterval){
+		guard start != stop && step != 0.0 else {
+			return
+		}
+
 		if start <= stop {
 			mCountType = .CountUp
 		} else {
@@ -39,10 +52,7 @@ public class KCTimer
 		mStopValue	= stop
 		mStepValue	= step
 		mCurrentValue	= start
-	}
 
-	public func start(){
-		mCurrentValue = mStartValue
 		let interval = abs(mStepValue)
 		let timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(KCTimer.update(_:)), userInfo: nil, repeats: true)
 		RunLoop.current.add(timer, forMode: .commonModes)

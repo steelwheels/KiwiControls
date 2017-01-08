@@ -45,7 +45,7 @@ public class KCStepper: KCView
 			mCoreView = coreview
 			coreview.setup()
 		} else {
-			fatalError("Can not load KCTimerViewCore")
+			fatalError("Can not load KCStepperCore")
 		}
 	}
 

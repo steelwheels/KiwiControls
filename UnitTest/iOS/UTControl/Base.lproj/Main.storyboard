@@ -22,39 +22,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjg-NL-faK" customClass="KCButton" customModule="KiwiControls">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjg-NL-faK" customClass="KCButton" customModule="KiwiControls">
                                 <rect key="frame" x="16" y="615" width="343" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="eXS-Tx-xyw"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKh-iI-ela" customClass="KCStepper" customModule="KiwiControls">
-                                <rect key="frame" x="16" y="20" width="343" height="29"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="16" y="69" width="343" height="29"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="4iQ-4u-xTa"/>
+                                    <constraint firstAttribute="height" constant="29" id="Dur-zP-Hz9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBs-2A-eNb" customClass="KCTextField" customModule="KiwiControls">
+                                <rect key="frame" x="16" y="20" width="343" height="41"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="4T2-x5-ybO"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9G4-DP-bQx" customClass="KCCheckBox" customModule="KiwiControls">
-                                <rect key="frame" x="16" y="57" width="343" height="32"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="16" y="106" width="343" height="32"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="0iJ-hF-xMr"/>
+                                    <constraint firstAttribute="height" constant="32" id="zpH-pI-KcB"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Qjg-NL-faK" secondAttribute="bottom" constant="20" id="EQz-Dq-RBn"/>
-                            <constraint firstItem="nKh-iI-ela" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="PIC-31-Mvk"/>
-                            <constraint firstItem="9G4-DP-bQx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="PJb-LR-klN"/>
-                            <constraint firstItem="Qjg-NL-faK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="PUQ-MK-C6y"/>
-                            <constraint firstItem="Qjg-NL-faK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="iEU-0x-J3e"/>
-                            <constraint firstItem="9G4-DP-bQx" firstAttribute="top" secondItem="nKh-iI-ela" secondAttribute="bottom" constant="8" id="pN0-o7-5MM"/>
-                            <constraint firstItem="9G4-DP-bQx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="pWO-8u-SDl"/>
-                            <constraint firstItem="nKh-iI-ela" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rdh-fK-tTw"/>
-                            <constraint firstItem="nKh-iI-ela" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rzC-Mc-Rfn"/>
+                            <constraint firstItem="CBs-2A-eNb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3jY-mo-Qes"/>
+                            <constraint firstItem="nKh-iI-ela" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7hm-JJ-UXB"/>
+                            <constraint firstItem="9G4-DP-bQx" firstAttribute="top" secondItem="nKh-iI-ela" secondAttribute="bottom" constant="8" id="Q7V-vB-6K0"/>
+                            <constraint firstItem="nKh-iI-ela" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aPv-ar-sqk"/>
+                            <constraint firstItem="nKh-iI-ela" firstAttribute="top" secondItem="CBs-2A-eNb" secondAttribute="bottom" constant="8" id="bFU-ST-9Gj"/>
+                            <constraint firstItem="CBs-2A-eNb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="css-Cx-VLK"/>
+                            <constraint firstItem="CBs-2A-eNb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dra-ol-K1n"/>
+                            <constraint firstItem="9G4-DP-bQx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rqH-nG-b3C"/>
+                            <constraint firstItem="9G4-DP-bQx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="s6U-7V-IZH"/>
                         </constraints>
                     </view>
                     <connections>

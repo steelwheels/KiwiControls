@@ -16,7 +16,8 @@ class ViewController: NSViewController
 	@IBOutlet weak var mButton: KCButton!
 	@IBOutlet weak var mStepper: KCStepper!
 	@IBOutlet weak var mCheckBox: KCCheckBox!
-
+	@IBOutlet weak var mTextField: KCTextField!
+	
 	private var		mState:  UTState? = nil
 
 	override func viewDidLoad() {
@@ -73,6 +74,8 @@ class ViewController: NSViewController
 			Swift.print("update check box value: \(value)")
 		}
 
+		mTextField.text = "Hello, World !!"
+		
 		mState = state
 	}
 

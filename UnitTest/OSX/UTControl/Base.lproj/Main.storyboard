@@ -687,10 +687,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="H5A-TS-4S9" customClass="KCStepper" customModule="KiwiControls">
-                                <rect key="frame" x="20" y="216" width="113" height="34"/>
+                                <rect key="frame" x="20" y="164" width="113" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="228-vR-cD9"/>
-                                    <constraint firstAttribute="width" constant="113" id="qnO-lt-cPV"/>
+                                    <constraint firstAttribute="height" constant="34" id="PoY-4R-0TY"/>
+                                    <constraint firstAttribute="width" constant="113" id="exP-SS-fg9"/>
                                 </constraints>
                             </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KnZ-6t-CHT" customClass="KCButton" customModule="KiwiControls">
@@ -698,24 +698,34 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-4W-thl" customClass="KCCheckBox" customModule="KiwiControls">
-                                <rect key="frame" x="20" y="168" width="156" height="40"/>
+                                <rect key="frame" x="20" y="115" width="156" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="156" id="V5l-Li-rUi"/>
-                                    <constraint firstAttribute="height" constant="40" id="aRG-AC-PQS"/>
+                                    <constraint firstAttribute="width" constant="156" id="gF4-Px-EKR"/>
+                                    <constraint firstAttribute="height" constant="40" id="vmv-m2-UIF"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="GX2-US-REo" customClass="KCTextField" customModule="KiwiControls">
+                                <rect key="frame" x="20" y="206" width="440" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Dyv-rT-wh2"/>
                                 </constraints>
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="H5A-TS-4S9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="4KD-zw-Ugq"/>
-                            <constraint firstItem="1Ag-4W-thl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QDi-mW-Y21"/>
-                            <constraint firstItem="1Ag-4W-thl" firstAttribute="top" secondItem="H5A-TS-4S9" secondAttribute="bottom" constant="8" id="Yc1-Ny-Seh"/>
-                            <constraint firstItem="H5A-TS-4S9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="v7y-ZQ-S5W"/>
+                            <constraint firstItem="1Ag-4W-thl" firstAttribute="top" secondItem="H5A-TS-4S9" secondAttribute="bottom" constant="9" id="1R4-J7-ixF"/>
+                            <constraint firstItem="GX2-US-REo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="6W0-HQ-T3p"/>
+                            <constraint firstItem="H5A-TS-4S9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Azt-lT-QUK"/>
+                            <constraint firstItem="GX2-US-REo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="KSP-Zx-TLR"/>
+                            <constraint firstItem="H5A-TS-4S9" firstAttribute="top" secondItem="GX2-US-REo" secondAttribute="bottom" constant="8" id="QSp-DC-rlf"/>
+                            <constraint firstAttribute="trailing" secondItem="GX2-US-REo" secondAttribute="trailing" constant="20" id="ShY-f0-3Df"/>
+                            <constraint firstItem="1Ag-4W-thl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="tRs-aT-dLj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mButton" destination="KnZ-6t-CHT" id="aIO-jh-qdh"/>
                         <outlet property="mCheckBox" destination="1Ag-4W-thl" id="ddf-lc-1ab"/>
                         <outlet property="mStepper" destination="H5A-TS-4S9" id="VVw-Db-HY0"/>
+                        <outlet property="mTextField" destination="GX2-US-REo" id="exI-4v-cmM"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
