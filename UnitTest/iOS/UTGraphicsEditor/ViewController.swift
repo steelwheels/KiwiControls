@@ -15,6 +15,7 @@ class ViewController: UIViewController
 
 	@IBOutlet weak var mGraphicsView: KCLayerView!
 
+
 	override func viewDidLoad() {
        
 		super.viewDidLoad()

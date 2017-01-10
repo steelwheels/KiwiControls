@@ -10,6 +10,7 @@
 #else
 	import UIKit
 #endif
+import KiwiGraphics
 
 open class KCTextFieldCore : KCView
 {
@@ -47,6 +48,17 @@ open class KCTextFieldCore : KCView
 			mTextField.stringValue = str
 		#else
 			mLabel.text = str
+		#endif
+	}
+
+	public func setColors(colors cols: KGColorPreference.TextColors){
+		#if os(OSX)
+			mTextField.textColor       = cols.foreground
+			mTextField.drawsBackground = true
+			mTextField.backgroundColor = cols.background
+		#else
+			mLabel.tintColor = cols.foreground
+			mLabel.backgroundColor = cols.background
 		#endif
 	}
 }

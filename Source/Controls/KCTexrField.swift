@@ -11,6 +11,7 @@
 	import UIKit
 #endif
 import Canary
+import KiwiGraphics
 
 open class KCTextField : KCView
 {
@@ -54,6 +55,10 @@ open class KCTextField : KCView
 	public var text: String {
 		get { return coreView.text }
 		set(newval){ coreView.text = newval }
+	}
+
+	public func setColors(colors cols: KGColorPreference.TextColors){
+		coreView.setColors(colors: cols)
 	}
 
 	public func setDouble(value val: Double) {

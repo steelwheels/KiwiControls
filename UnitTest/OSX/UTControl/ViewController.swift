@@ -74,7 +74,9 @@ class ViewController: NSViewController
 			Swift.print("update check box value: \(value)")
 		}
 
+		let textcolor = KGColorPreference.TextColors(foreground: KGColorTable.gold4, background: KGColorTable.gold)
 		mTextField.text = "Hello, World !!"
+		mTextField.setColors(colors: textcolor)
 		
 		mState = state
 	}

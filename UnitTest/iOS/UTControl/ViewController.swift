@@ -11,6 +11,7 @@ import KiwiControls
 
 class ViewController: UIViewController
 {
+	@IBOutlet weak var mTextField: KCTextField!
 	@IBOutlet weak var mButton: KCButton!
 	@IBOutlet weak var mStepper: KCStepper!
 	@IBOutlet weak var mCheckBox: KCCheckBox!
@@ -21,6 +22,10 @@ class ViewController: UIViewController
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		let state = UTState()
+
+		let textcolor = KGColorPreference.TextColors(foreground: KGColorTable.black, background: KGColorTable.gold)
+		mTextField.text = "KCTextField"
+		mTextField.setColors(colors: textcolor)
 		
 		mButton.state = state
 		mButton.decideEnableCallback = {

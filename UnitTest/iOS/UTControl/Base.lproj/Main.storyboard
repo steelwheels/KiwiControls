@@ -66,6 +66,7 @@
                         <outlet property="mButton" destination="Qjg-NL-faK" id="l9G-gf-csN"/>
                         <outlet property="mCheckBox" destination="9G4-DP-bQx" id="MMV-et-Uiu"/>
                         <outlet property="mStepper" destination="nKh-iI-ela" id="lNr-XP-0Qq"/>
+                        <outlet property="mTextField" destination="CBs-2A-eNb" id="zrS-84-CvC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
