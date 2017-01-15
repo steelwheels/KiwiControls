@@ -25,6 +25,7 @@ class ViewController: UIViewController
 
 		let textcolor = KGColorPreference.TextColors(foreground: KGColorTable.black, background: KGColorTable.gold)
 		mTextField.text = "KCTextField"
+		mTextField.alignment = .left
 		mTextField.setColors(colors: textcolor)
 		
 		mButton.state = state

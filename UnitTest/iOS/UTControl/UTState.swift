@@ -18,13 +18,17 @@ public enum UTProgress {
 
 public class UTState: CNState
 {
+	public enum Factor: Int {
+		case Progress
+	}
+
 	private var mProgress: UTProgress = .Init
 
 	public var progress: UTProgress {
 		get { return mProgress }
 		set(newprogress){
 			mProgress = newprogress
-			self.updateState()
+			self.updateState(factorValue: Factor.Progress.rawValue)
 		}
 	}
 }

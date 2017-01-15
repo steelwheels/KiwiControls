@@ -50,7 +50,7 @@
 		05931FE11DEF28C200B25543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05931FE01DEF28C200B25543 /* Assets.xcassets */; };
 		05931FE41DEF28C200B25543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05931FE21DEF28C200B25543 /* Main.storyboard */; };
 		05978CC11E2228380023640E /* KCTextFieldCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05978CC01E2228380023640E /* KCTextFieldCore.xib */; };
-		05978CC41E2228510023640E /* KCTexrField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05978CC21E2228510023640E /* KCTexrField.swift */; };
+		05978CC41E2228510023640E /* KCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05978CC21E2228510023640E /* KCTextField.swift */; };
 		0598D5781DE180D50098C5B8 /* KCBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5731DE180D50098C5B8 /* KCBackgroundLayer.swift */; };
 		0598D5791DE180D50098C5B8 /* KCGraphicsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5741DE180D50098C5B8 /* KCGraphicsLayer.swift */; };
 		0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5751DE180D50098C5B8 /* KCLayer.swift */; };
@@ -182,7 +182,7 @@
 		05931FE31DEF28C200B25543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05931FE51DEF28C200B25543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05978CC01E2228380023640E /* KCTextFieldCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTextFieldCore.xib; sourceTree = "<group>"; };
-		05978CC21E2228510023640E /* KCTexrField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTexrField.swift; path = Controls/KCTexrField.swift; sourceTree = "<group>"; };
+		05978CC21E2228510023640E /* KCTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTextField.swift; path = Controls/KCTextField.swift; sourceTree = "<group>"; };
 		05978CC31E2228510023640E /* KCTextFieldCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTextFieldCore.swift; path = Controls/KCTextFieldCore.swift; sourceTree = "<group>"; };
 		0598D5731DE180D50098C5B8 /* KCBackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCBackgroundLayer.swift; sourceTree = "<group>"; };
 		0598D5741DE180D50098C5B8 /* KCGraphicsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsLayer.swift; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 				0501F7A21E12D84300B68A98 /* KCCheckBoxCore.swift */,
 				051847C81E0DD76F00671A2D /* KCStepper.swift */,
 				051847C61E0DD53E00671A2D /* KCStepperCore.swift */,
-				05978CC21E2228510023640E /* KCTexrField.swift */,
+				05978CC21E2228510023640E /* KCTextField.swift */,
 				05978CC31E2228510023640E /* KCTextFieldCore.swift */,
 			);
 			name = Controls;
@@ -806,7 +806,7 @@
 				0598D5791DE180D50098C5B8 /* KCGraphicsLayer.swift in Sources */,
 				05B03B7F1E223194001656A0 /* KCTextFieldCore.swift in Sources */,
 				057A34981E0C1E3E0071F20A /* KCStateObserver.swift in Sources */,
-				05978CC41E2228510023640E /* KCTexrField.swift in Sources */,
+				05978CC41E2228510023640E /* KCTextField.swift in Sources */,
 				051847C71E0DD53E00671A2D /* KCStepperCore.swift in Sources */,
 				05386D481D8570A4004B8DDF /* KCTableView.swift in Sources */,
 				0598D57C1DE180D50098C5B8 /* KCStrokeLayer.swift in Sources */,

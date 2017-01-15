@@ -57,6 +57,11 @@ open class KCTextField : KCView
 		set(newval){ coreView.text = newval }
 	}
 
+	public var alignment: NSTextAlignment {
+		get	  { return coreView.alignment }
+		set(align){ coreView.alignment = align }
+	}
+
 	public func setColors(colors cols: KGColorPreference.TextColors){
 		coreView.setColors(colors: cols)
 	}
@@ -64,5 +69,15 @@ open class KCTextField : KCView
 	public func setDouble(value val: Double) {
 		let valstr = String(format: "%4.2lf", val)
 		text = valstr
+	}
+
+	public var decideTextCallback : ((_: CNState) -> String?)? = nil
+
+	public final override func observe(state stat: CNState){
+		if let dectext = decideTextCallback {
+			if let text = dectext(stat) {
+				coreView.text = text
+			}
+		}
 	}
 }

@@ -26,7 +26,7 @@
 		0516DC621DF2CAC00006508B /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		0516DC631DF2CAC00006508B /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		052237B31E2234370073E4C9 /* KCTextFieldCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052237B21E2234370073E4C9 /* KCTextFieldCore.xib */; };
-		052237B61E2234480073E4C9 /* KCTexrField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052237B41E2234480073E4C9 /* KCTexrField.swift */; };
+		052237B61E2234480073E4C9 /* KCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052237B41E2234480073E4C9 /* KCTextField.swift */; };
 		052237B71E2234480073E4C9 /* KCTextFieldCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052237B51E2234480073E4C9 /* KCTextFieldCore.swift */; };
 		05353FFB1E0D5A340031812D /* KCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05353FFA1E0D5A340031812D /* KCButton.swift */; };
 		053540031E0D5BD20031812D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053540021E0D5BD20031812D /* AppDelegate.swift */; };
@@ -155,7 +155,7 @@
 		050E5E221DEF2CCE006DC247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		050E5E241DEF2CCE006DC247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		052237B21E2234370073E4C9 /* KCTextFieldCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTextFieldCore.xib; sourceTree = "<group>"; };
-		052237B41E2234480073E4C9 /* KCTexrField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTexrField.swift; sourceTree = "<group>"; };
+		052237B41E2234480073E4C9 /* KCTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextField.swift; sourceTree = "<group>"; };
 		052237B51E2234480073E4C9 /* KCTextFieldCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextFieldCore.swift; sourceTree = "<group>"; };
 		05353FFA1E0D5A340031812D /* KCButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButton.swift; sourceTree = "<group>"; };
 		053540001E0D5BD20031812D /* UTControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,7 +338,7 @@
 				0580219F1E102882001457C8 /* KCStepperCore.swift */,
 				05E75DF71E13F4C000287756 /* KCCheckBox.swift */,
 				05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */,
-				052237B41E2234480073E4C9 /* KCTexrField.swift */,
+				052237B41E2234480073E4C9 /* KCTextField.swift */,
 				052237B51E2234480073E4C9 /* KCTextFieldCore.swift */,
 			);
 			path = Controls;
@@ -877,7 +877,7 @@
 				052237B71E2234480073E4C9 /* KCTextFieldCore.swift in Sources */,
 				05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
-				052237B61E2234480073E4C9 /* KCTexrField.swift in Sources */,
+				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
 				058265A11DE536B600C3BE27 /* KCGraphicsLayer.swift in Sources */,
 				057A349A1E0C29900071F20A /* KCStateObserver.swift in Sources */,

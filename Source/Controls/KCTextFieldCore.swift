@@ -51,6 +51,23 @@ open class KCTextFieldCore : KCView
 		#endif
 	}
 
+	public var alignment: NSTextAlignment {
+		get {
+			#if os(iOS)
+				return mLabel.textAlignment
+			#else
+				return mTextField.alignment
+			#endif
+		}
+		set(align){
+			#if os(iOS)
+				mLabel.textAlignment = align
+			#else
+				mTextField.alignment = align
+			#endif
+		}
+	}
+
 	public func setColors(colors cols: KGColorPreference.TextColors){
 		#if os(OSX)
 			mTextField.textColor       = cols.foreground
@@ -58,6 +75,7 @@ open class KCTextFieldCore : KCView
 			mTextField.backgroundColor = cols.background
 		#else
 			mLabel.tintColor = cols.foreground
+			mLabel.textColor = cols.foreground
 			mLabel.backgroundColor = cols.background
 		#endif
 	}
