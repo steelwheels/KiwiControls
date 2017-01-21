@@ -57,6 +57,11 @@ open class KCTextField : KCView
 		set(newval){ coreView.text = newval }
 	}
 
+	public var font: KGFont? {
+		get		{ return coreView.font }
+		set(font)	{ coreView.font = font }
+	}
+
 	public var alignment: NSTextAlignment {
 		get	  { return coreView.alignment }
 		set(align){ coreView.alignment = align }
@@ -64,10 +69,14 @@ open class KCTextField : KCView
 
 	public func setColors(colors cols: KGColorPreference.TextColors){
 		coreView.setColors(colors: cols)
+		#if os(iOS)
+			self.backgroundColor = cols.background
+		#endif
 	}
 
 	public func setDouble(value val: Double) {
-		let valstr = String(format: "%4.2lf", val)
+		let rval   = round(value: val, atPoint: 2)
+		let valstr = String(format: "%4.2lf", rval)
 		text = valstr
 	}
 

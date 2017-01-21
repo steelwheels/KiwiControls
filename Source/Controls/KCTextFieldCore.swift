@@ -51,6 +51,23 @@ open class KCTextFieldCore : KCView
 		#endif
 	}
 
+	public var font: KGFont? {
+		get {
+			#if os(iOS)
+				return mLabel.font
+			#else
+				return mTextField.font
+			#endif
+		}
+		set(font){
+			#if os(iOS)
+				mLabel.font = font
+			#else
+				mTextField.font = font
+			#endif
+		}
+	}
+
 	public var alignment: NSTextAlignment {
 		get {
 			#if os(iOS)

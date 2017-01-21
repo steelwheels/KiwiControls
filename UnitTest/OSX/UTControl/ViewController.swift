@@ -75,6 +75,8 @@ class ViewController: NSViewController
 		}
 
 		let textcolor = KGColorPreference.TextColors(foreground: KGColorTable.gold4, background: KGColorTable.gold)
+		let table = KGFontTable.sharedFontTable
+		mTextField.font = table.font(withStyle: .Title)
 		mTextField.text = "Hello, World !!"
 		mTextField.alignment = .center
 		mTextField.setColors(colors: textcolor)

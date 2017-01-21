@@ -71,6 +71,9 @@ open class KCButton: KCView
 
 	public func setColors(colors cols: KGColorPreference.ButtonColors){
 		coreView().setColors(colors: cols)
+		#if os(iOS)
+			self.backgroundColor = cols.background.normal
+		#endif
 	}
 	
 	private func coreView() -> KCButtonCore {

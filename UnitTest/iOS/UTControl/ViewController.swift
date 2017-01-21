@@ -21,10 +21,12 @@ class ViewController: UIViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
-		let state = UTState()
+		let state     = UTState()
+		let fonttable = KGFontTable.sharedFontTable
 
 		let textcolor = KGColorPreference.TextColors(foreground: KGColorTable.black, background: KGColorTable.gold)
 		mTextField.text = "KCTextField"
+		mTextField.font = fonttable.font(withStyle: .Title)
 		mTextField.alignment = .left
 		mTextField.setColors(colors: textcolor)
 		

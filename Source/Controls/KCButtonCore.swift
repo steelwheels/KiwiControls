@@ -83,6 +83,7 @@ public class KCButtonCore: KCView
 		#if os(iOS)
 			mButton.setTitleColor(cols.title, for: .normal)
 			mButton.backgroundColor = cols.background.normal
+			self.backgroundColor = cols.background.normal
 		#else
 			mButton.colors = cols
 		#endif
