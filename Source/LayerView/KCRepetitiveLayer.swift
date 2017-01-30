@@ -1,6 +1,6 @@
 /**
-* @file		KCRepetitiveDrawer.swift
-* @brief	Define KCRepetitiveDrawer class
+* @file		KCRepetitiveImagesLayer.swift
+* @brief	Define KCRepetitiveImagesLayer class
 * @par Copyright
 *   Copyright (C) 2016 Steel Wheels Project
 */
@@ -8,25 +8,43 @@
 import Foundation
 import KiwiGraphics
 
-open class KCRepetitiveLayer: KCLayer
+public class KCRepetitiveImagesLayer: KCLayer
 {
 	private var mElementSize	: CGSize
-	private var mElementDrawer	: KGImageDrawer
+	private var mElementOrigins	: Array<CGPoint>
 
-	public init(frame frm: CGRect, elementSize es:CGSize, elementDrawer ed: @escaping KGImageDrawer){
-		mElementSize   = es
-		mElementDrawer = ed
-		super.init(frame: frm)
+	public init(frame f: CGRect,
+	            elementSize es: CGSize,
+	            elementOrigins eo: Array<CGPoint>,
+	            elementDrawer ed: @escaping KGImageDrawer)
+	{
+		mElementSize	= es
+		mElementOrigins	= eo
+		super.init(frame: f)
+		for origin in eo {
+			//Swift.print("repetitive: allocate layers")
+			let suborigin = calcOrigin(elementOrigin: origin, elementSize: es, entireFrame: f)
+			let subframe  = CGRect(origin: suborigin, size: es)
+			let sublayer  = KCImageDrawerLayer(frame: subframe, drawer: ed)
+			self.addSublayer(sublayer)
+			sublayer.setNeedsDisplay()
+		}
 	}
-	
-	public required init?(coder decoder: NSCoder) {
+
+	private func calcOrigin(elementOrigin elmorg: CGPoint, elementSize elmsz: CGSize, entireFrame frame: CGRect) -> CGPoint {
+		let origin: CGPoint
+		let xpos = frame.size.width  * elmorg.x
+		let ypos = frame.size.height * elmorg.y
+		#if os(iOS)
+			origin = CGPoint(x: xpos, y: frame.size.height - ypos - elmsz.height)
+		#else
+			origin = CGPoint(x: xpos, y: ypos)
+		#endif
+		return origin
+	}
+
+	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-
-	public func add(location p: CGPoint){
-		let eframe = CGRect(origin: p + bounds.origin, size: mElementSize)
-		let layer  = KCGraphicsLayer(frame: eframe, drawer: mElementDrawer)
-		self.addSublayer(layer)
 	}
 }
 

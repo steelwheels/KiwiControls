@@ -1,5 +1,5 @@
 /**
- * @file	KCBackgroundDrawer.swift
+ * @file	KCBackgroundLayer.swift
  * @brief	Define KCBackgroundDrawer class
  * @par Copyright
  *   Copyright (C) 2016 Steel Wheels Project
@@ -11,36 +11,18 @@ import CoreGraphics
 
 public class KCBackgroundLayer: KCLayer
 {
-	public override init(frame frm: CGRect){
-		super.init(frame: frm)
-		self.backgroundColor = KGColorTable.white.cgColor
+	public init(frame f: CGRect, color c: CGColor){
+		super.init(frame: f)
+		self.backgroundColor = c
+		#if os(OSX)
+			self.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
+		#endif
 	}
-
-	public required init?(coder decoder: NSCoder) {
+	
+	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
-	public var color: CGColor {
-		get {
-			if let color = self.backgroundColor {
-				return color
-			} else {
-				fatalError("No background color")
-			}
-		}
-		set(newcolor) { self.backgroundColor = newcolor }
-	}
-
-	public override func layerDescription() -> String {
-		let superdesc = super.layerDescription()
-
-		var colname: String
-		if let components = color.components {
-			colname = "[\(components)]"
-		} else {
-			colname = "No color"
-		}
-		return "(background-layer color:\(colname) super:\(superdesc))"
-	}
 }
+
+
 

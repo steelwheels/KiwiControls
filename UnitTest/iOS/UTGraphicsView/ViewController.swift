@@ -44,25 +44,41 @@ class ViewController: UIViewController
 		let bounds     = mGraphicsView.bounds
 
 		/* Background layer */
-		let background = KCBackgroundLayer(frame: bounds)
-		background.color = KGColorTable.black.cgColor
+		let background = KCBackgroundLayer(frame: bounds, color: KGColorTable.black.cgColor)
 		mGraphicsView.rootLayer.addSublayer(background)
-		let backdesc = background.layerDescription()
-		print("background: \(backdesc)")
 
-		/* Graphics layer */
-		let graphics = KCGraphicsLayer(frame: bounds, drawer: {
-			(size: CGSize, context: CGContext) -> Void in
-				Swift.print("Graphics Layer: draw in size:\(size.description) bounds:\(bounds.description)")
-				let bounds = CGRect(origin: CGPoint.zero, size: size)
-				let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.blue.cgColor)
-				vertex.drawContent(context: context)
+		/* Image drawer */
+		let drawer = KCImageDrawerLayer(frame: bounds, drawer: {
+			(context: CGContext, size: CGSize) -> Void in
+			Swift.print("Graphics Layer: draw in size:\(size.description) bounds:\(bounds.description)")
+			let bounds = CGRect(origin: CGPoint.zero, size: size)
+			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.blue.cgColor)
+			vertex.drawContent(context: context)
 		})
-		//graphics.backgroundColor = KGColorTable.red.cgColor
-		mGraphicsView.rootLayer.addSublayer(graphics)
+		background.addSublayer(drawer)
+		drawer.setNeedsDisplay()
 
 		/* Repetitive layer */
-		let glyph = KGGlyph(bounds: bounds)
+		let elmsize = CGSize(width: bounds.size.width/10.0, height: bounds.size.height/10.0)
+		var elmorigin : Array<CGPoint> = []
+		for i in 0..<10 {
+			let origin = CGPoint(x: 0.1*CGFloat(i), y:0.1*CGFloat(i))
+			elmorigin.append(origin)
+		}
+		let repetitive = KCRepetitiveImagesLayer(frame: bounds, elementSize: elmsize, elementOrigins: elmorigin, elementDrawer: {
+			(context: CGContext, size: CGSize) -> Void in
+			Swift.print("Graphics Layer: draw in size:\(size.description) bounds:\(bounds.description)")
+			let bounds = CGRect(origin: CGPoint.zero, size: size)
+			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.yellow.cgColor)
+			vertex.drawContent(context: context)
+		})
+		drawer.addSublayer(repetitive)
+		repetitive.setNeedsDisplay()
+
+#if false
+
+		let maxsize = min(bounds.size.width, bounds.size.height)
+		let glyph = KGGlyph(bounds: bounds, maxSize: maxsize)
 		let eradius = glyph.elementRadius
 		let esize = CGSize(width: eradius*2.0, height: eradius*2.0)
 		let repetitive = KCRepetitiveLayer(frame: bounds, elementSize: esize, elementDrawer: {
@@ -85,6 +101,7 @@ class ViewController: UIViewController
 		let textfont  = UIFont(name: "Helvetica", size: 30.0)
 		let textlayer = KCTextLayer(frame: textbounds, font: textfont!, color: KGColorTable.white.cgColor, text: "Hello, World !!")
 		mGraphicsView.rootLayer.addSublayer(textlayer)
+#endif
 	}
 
 	override func didReceiveMemoryWarning() {
