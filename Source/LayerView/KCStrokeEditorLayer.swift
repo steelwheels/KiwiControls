@@ -1,8 +1,8 @@
 /**
- * @file	KCStrokeDrawer.swift
- * @brief	Define KCStrokeDrawer class
+ * @file	KCStrokeEditorLayer.swift
+ * @brief	Define KCStrokeEditorLayer class
  * @par Copyright
- *   Copyright (C) 2016 Steel Wheels Project
+ *   Copyright (C) 2016-2017 Steel Wheels Project
  */
 
 import Foundation
@@ -10,7 +10,7 @@ import KiwiGraphics
 
 let DO_DEBUG = false
 
-public class KCStrokeLayer: KCLayer, CALayerDelegate
+public class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 {
 	private var mCurrentStroke	: KGStroke?		= nil
 	private var mStrokes		: Array<KGStroke>	= []
@@ -20,6 +20,7 @@ public class KCStrokeLayer: KCLayer, CALayerDelegate
 
 	public override init(frame f:CGRect) {
 		super.init(frame: f)
+		self.delegate = self
 	}
 	
 	required public init?(coder aDecoder: NSCoder) {

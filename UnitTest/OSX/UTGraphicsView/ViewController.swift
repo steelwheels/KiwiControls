@@ -32,6 +32,8 @@ class ViewController: KCViewController {
 
 	@IBOutlet weak var mGraphicsView: KCLayerView!
 
+	private var mStrokeDrawer: KCStrokeDrawerLayer? = nil
+
 	override func viewDidLoad() {
 		Swift.print("View did load")
 		super.viewDidLoad()
@@ -78,6 +80,31 @@ class ViewController: KCViewController {
 		})
 		idrawer.addSublayer(repetitive)
 		repetitive.setNeedsDisplay()
+
+		/* Stroke drawer */
+		let sdrawer = KCStrokeDrawerLayer(frame: bounds)
+		sdrawer.lineWidth = 10.0
+		sdrawer.lineColor = KGColorTable.yellow.cgColor
+		sdrawer.stroke = [CGPoint(x:0.0, y:0.0), CGPoint(x:100, y:100), CGPoint(x:150, y:100), CGPoint(x:200, y:200)]
+		repetitive.addSublayer(sdrawer)
+		sdrawer.setNeedsDisplay()
+		mStrokeDrawer = sdrawer
+
+		/* Animation */
+		let timer = KCTimer()
+		timer.updateCallback = {
+			(time:TimeInterval) -> Bool in
+			if let drawer = self.mStrokeDrawer {
+				let center = drawer.bounds.center
+
+				let cosv = CGFloat(cos(Double(time)) * 80.0)
+				let sinv = CGFloat(sin(Double(time)) * 80.0)
+				let endpt = CGPoint(x: center.x + cosv, y: center.y + sinv)
+				drawer.stroke = [CGPoint(x:center.x, y:center.y), endpt]
+			}
+			return true /* continue */
+		}
+		timer.start(startValue: 0.0, stopValue: 10.0, stepValue: 0.4)
 	}
 
 	override var representedObject: Any? {
