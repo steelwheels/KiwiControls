@@ -29,7 +29,7 @@ class ViewController: UIViewController
 		let bounds = mGraphicsView.bounds
 		let frame  = mGraphicsView.frame
 		Swift.print("mGraphicsView: frame=\(frame.description), bounds=\(bounds.description)")
-		let stroke = KCStrokeLayer(frame: bounds)
+		let stroke = KCStrokeEditorLayer(frame: bounds)
 		stroke.backgroundColor = KGColorTable.blue.cgColor
 		mGraphicsView.rootLayer.addSublayer(stroke)
 	}
