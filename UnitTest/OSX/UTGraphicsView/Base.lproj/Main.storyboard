@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -683,27 +683,77 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="UTGraphicsView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="373"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="yKV-e7-XkF" customClass="KCLayerView" customModule="KiwiControls">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="325"/>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="aOJ-U6-rh1" customClass="KCLayerView" customModule="KiwiControls">
+                                <rect key="frame" x="0.0" y="333" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="FPR-50-DDl"/>
+                                    <constraint firstAttribute="height" constant="40" id="zXS-GM-TfJ"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Aow-ZR-y6V" customClass="KCLayerView" customModule="KiwiControls">
+                                <rect key="frame" x="48" y="333" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="8jX-xy-H3n"/>
+                                    <constraint firstAttribute="height" constant="40" id="Wd7-WW-Sm7"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="e9D-zb-WEN" customClass="KCLayerView" customModule="KiwiControls">
+                                <rect key="frame" x="96" y="333" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2gH-Lq-5VC"/>
+                                    <constraint firstAttribute="height" constant="40" id="quK-6a-r0g"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="SqP-T9-Vx4" customClass="KCLayerView" customModule="KiwiControls">
+                                <rect key="frame" x="144" y="333" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Plw-gg-q2i"/>
+                                    <constraint firstAttribute="width" constant="40" id="gNL-wi-5Pt"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="98P-Hb-VWe" customClass="KCLayerView" customModule="KiwiControls">
+                                <rect key="frame" x="192" y="333" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="AVo-Yp-xYI"/>
+                                    <constraint firstAttribute="height" constant="40" id="abz-aA-cK9"/>
+                                </constraints>
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="yKV-e7-XkF" secondAttribute="bottom" id="7XT-hr-kze"/>
-                            <constraint firstItem="yKV-e7-XkF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="T4o-Ax-MUN"/>
-                            <constraint firstAttribute="trailing" secondItem="yKV-e7-XkF" secondAttribute="trailing" id="dzk-xV-Du2"/>
-                            <constraint firstItem="yKV-e7-XkF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="xAp-Nu-SLW"/>
+                            <constraint firstItem="aOJ-U6-rh1" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="5d1-gD-MLq"/>
+                            <constraint firstAttribute="bottom" secondItem="yKV-e7-XkF" secondAttribute="bottom" id="BKF-cn-Mw4"/>
+                            <constraint firstItem="yKV-e7-XkF" firstAttribute="top" secondItem="SqP-T9-Vx4" secondAttribute="bottom" constant="8" id="EXu-um-CMS"/>
+                            <constraint firstAttribute="trailing" secondItem="yKV-e7-XkF" secondAttribute="trailing" id="IdG-Ut-fAk"/>
+                            <constraint firstItem="e9D-zb-WEN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="JYn-AL-m64"/>
+                            <constraint firstItem="yKV-e7-XkF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Ll5-Y0-FLr"/>
+                            <constraint firstItem="aOJ-U6-rh1" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Qai-7c-SJa"/>
+                            <constraint firstItem="SqP-T9-Vx4" firstAttribute="leading" secondItem="e9D-zb-WEN" secondAttribute="trailing" constant="8" id="T7D-oP-o6g"/>
+                            <constraint firstItem="98P-Hb-VWe" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="VUW-Zm-l5K"/>
+                            <constraint firstItem="e9D-zb-WEN" firstAttribute="leading" secondItem="Aow-ZR-y6V" secondAttribute="trailing" constant="8" id="cTy-T6-DWg"/>
+                            <constraint firstItem="98P-Hb-VWe" firstAttribute="leading" secondItem="SqP-T9-Vx4" secondAttribute="trailing" constant="8" id="g8X-1o-Fds"/>
+                            <constraint firstItem="Aow-ZR-y6V" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="irt-9P-JfJ"/>
+                            <constraint firstItem="SqP-T9-Vx4" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="psD-bf-c0C"/>
+                            <constraint firstItem="Aow-ZR-y6V" firstAttribute="leading" secondItem="aOJ-U6-rh1" secondAttribute="trailing" constant="8" id="xl6-lt-jio"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mGraphicsView" destination="yKV-e7-XkF" id="Haz-be-Va0"/>
+                        <outlet property="mSelectionView" destination="98P-Hb-VWe" id="GWz-4p-xEe"/>
+                        <outlet property="mSymbol0View" destination="aOJ-U6-rh1" id="z8H-or-fHd"/>
+                        <outlet property="mSymbol1View" destination="Aow-ZR-y6V" id="5XQ-V9-xsY"/>
+                        <outlet property="mSymbol2View" destination="e9D-zb-WEN" id="d5V-ix-AYC"/>
+                        <outlet property="mSymbol3View" destination="SqP-T9-Vx4" id="QBL-RF-BTV"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="706.5"/>
         </scene>
     </scenes>
 </document>

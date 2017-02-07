@@ -8,9 +8,9 @@
 import Foundation
 import KiwiGraphics
 
-public class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
+open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 {
-	private var mStroke	: Array<CGPoint>	= []
+	private var mStrokes	: Array<CGPoint>	= []
 	private var mDoClear	: Bool			= true
 	public var lineWidth	: CGFloat		= 10.0
 	public var lineColor	: CGColor		= KGColorTable.black.cgColor
@@ -24,10 +24,10 @@ public class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public var stroke: Array<CGPoint> {
-		get { return mStroke }
+	public var strokes: Array<CGPoint> {
+		get { return mStrokes }
 		set(points){
-			mStroke  = points
+			mStrokes  = points
 			mDoClear = true
 			super.setNeedsDisplay()
 		}
@@ -35,10 +35,10 @@ public class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 
 	public func draw(_ layer: CALayer, in context: CGContext) {
 		//Swift.print("KCStrokeDrawerLayer.draw")
-		if mDoClear || mStroke.count == 0 {
+		if mDoClear || mStrokes.count == 0 {
 			context.clear(bounds)
 		}
-		if mStroke.count > 0 {
+		if mStrokes.count > 0 {
 			context.saveGState()
 			#if os(iOS)
 				context.translateBy(x: 0.0, y: bounds.size.height)
@@ -49,9 +49,9 @@ public class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 			context.setLineCap(.round)
 			context.setLineJoin(.round)
 
-			context.move(to: mStroke[0])
-			for i in 1..<mStroke.count {
-				context.addLine(to: mStroke[i])
+			context.move(to: mStrokes[0])
+			for i in 1..<mStrokes.count {
+				context.addLine(to: mStrokes[i])
 			}
 
 			context.strokePath()

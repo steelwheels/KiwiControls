@@ -20,7 +20,7 @@ private func convertCoodinate(sourceRect r: CGRect, bounds b: CGRect) -> CGRect
 	return CGRect(x: r.origin.x, y: y, width: r.size.width, height: r.size.height)
 }
 
-public class KCLayer: CALayer
+open class KCLayer: CALayer
 {
 	private var mDirtyRect		: CGRect
 

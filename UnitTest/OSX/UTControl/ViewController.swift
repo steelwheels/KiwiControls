@@ -31,8 +31,10 @@ class ViewController: NSViewController
 		mButton.decideEnableCallback = {
 			(_: CNState) -> Bool? in
 			return nil
+            
 		}
 		mButton.decideVisibleCallback = {
+			
 			(_: CNState) -> Bool? in
 			return nil
 		}

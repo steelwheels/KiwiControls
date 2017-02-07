@@ -1,9 +1,9 @@
 /**
-* @file		KCRepetitiveImagesLayer.swift
-* @brief	Define KCRepetitiveImagesLayer class
-* @par Copyright
-*   Copyright (C) 2016 Steel Wheels Project
-*/
+ * @file		KCRepetitiveLayer.swift
+ * @brief	Define KCRepetitiveLayer class
+ * @par Copyright
+ *   Copyright (C) 2016 Steel Wheels Project
+ */
 
 import Foundation
 import KiwiGraphics

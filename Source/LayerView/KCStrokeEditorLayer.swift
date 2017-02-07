@@ -10,7 +10,7 @@ import KiwiGraphics
 
 let DO_DEBUG = false
 
-public class KCStrokeEditorLayer: KCLayer, CALayerDelegate
+open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 {
 	private var mCurrentStroke	: KGStroke?		= nil
 	private var mStrokes		: Array<KGStroke>	= []

@@ -19,7 +19,7 @@ private class UTVertexDrawer
 		let center = b.center
 		let radius = min(b.size.width, b.size.height)/2.0
 		mEclipse  = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
-		mGradient = KGGradientTable.sharedGradientTable.Gradient(forColor: c)
+		mGradient = KGGradientTable.sharedGradientTable.gradient(forColor: c)
 	}
 
 	public func drawContent(context ctxt:CGContext){
@@ -32,6 +32,13 @@ class ViewController: UIViewController
 {
 
 	@IBOutlet weak var mGraphicsView: KCLayerView!
+	@IBOutlet weak var mSymbol0View: KCLayerView!
+	@IBOutlet weak var mSymbol1View: KCLayerView!
+	@IBOutlet weak var mSymbol2View: KCLayerView!
+	@IBOutlet weak var mSymbol3View: KCLayerView!
+	@IBOutlet weak var mSelectionView: KCLayerView!
+
+	private var mSelectionLayer: KCSelectionLayer? = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -39,7 +46,14 @@ class ViewController: UIViewController
 	}
 
 	public override func viewDidLayoutSubviews() {
+		setupGraphicsView()
+		setupSymbolViews()
+		setupSelectionView()
+		setupTimer()
+	}
 
+	private func setupGraphicsView()
+	{
 		Swift.print("View did layout")
 		let bounds     = mGraphicsView.bounds
 
@@ -74,34 +88,71 @@ class ViewController: UIViewController
 		})
 		drawer.addSublayer(repetitive)
 		repetitive.setNeedsDisplay()
+	}
 
-#if false
+	private func setupSymbolViews()
+	{
+		for symid in 0..<4 {
+			let view: KCLayerView
+			switch symid {
+			case 0:		view = mSymbol0View
+			case 1:		view = mSymbol1View
+			case 2:		view = mSymbol2View
+			default:	view = mSymbol3View
+			}
 
-		let maxsize = min(bounds.size.width, bounds.size.height)
-		let glyph = KGGlyph(bounds: bounds, maxSize: maxsize)
-		let eradius = glyph.elementRadius
-		let esize = CGSize(width: eradius*2.0, height: eradius*2.0)
-		let repetitive = KCRepetitiveLayer(frame: bounds, elementSize: esize, elementDrawer: {
-			(size: CGSize, context: CGContext) -> Void in
-			let bounds = CGRect(origin: CGPoint.zero, size: size)
-			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.yellow.cgColor)
-			vertex.drawContent(context: context)
-		})
-		for vertex in glyph.vertices {
-			let mvertex = CGPoint(x: vertex.x-eradius, y: vertex.y-eradius)
-			repetitive.add(location: mvertex)
+			let bounds     = view.bounds
+			let background = KCBackgroundLayer(frame: bounds, color: KGColorTable.black.cgColor)
+
+			view.rootLayer.addSublayer(background)
+			let symlayer = UTAllocateSymbol(symbolId: symid, parentBounds: view.bounds)
+			background.addSublayer(symlayer)
 		}
-		mGraphicsView.rootLayer.addSublayer(repetitive)
+	}
 
-		/* Text layer */
-		let textbounds = KGAlignRect(holizontalAlignment:	.center,
-		                             verticalAlignment:		.middle,
-		                             targetSize:		CGSize(width: bounds.width, height: 40.0),
-		                             in: bounds)
-		let textfont  = UIFont(name: "Helvetica", size: 30.0)
-		let textlayer = KCTextLayer(frame: textbounds, font: textfont!, color: KGColorTable.white.cgColor, text: "Hello, World !!")
-		mGraphicsView.rootLayer.addSublayer(textlayer)
-#endif
+	private func setupSelectionView()
+	{
+		let selbounds	= mSelectionView.bounds
+
+		let background = KCBackgroundLayer(frame: selbounds, color: KGColorTable.black.cgColor)
+		mSelectionView.rootLayer.addSublayer(background)
+
+		let sellayer	= KCSelectionLayer(frame: selbounds)
+		for i in 0...3 {
+			let symbol = UTAllocateSymbol(symbolId: i, parentBounds: selbounds)
+			sellayer.addSublayer(symbol)
+		}
+		sellayer.visibleIndex = 0
+		background.addSublayer(sellayer)
+		mSelectionLayer = sellayer
+	}
+
+	public func setupTimer(){
+		let timer = KCTimer()
+		timer.updateCallback = {
+			(time:TimeInterval) -> Bool in
+			/*
+			if let drawer = self.mStrokeDrawer {
+				let center = drawer.bounds.center
+
+				let cosv = CGFloat(cos(Double(time)) * 80.0)
+				let sinv = CGFloat(sin(Double(time)) * 80.0)
+				let endpt = CGPoint(x: center.x + cosv, y: center.y + sinv)
+				drawer.strokes = [CGPoint(x:center.x, y:center.y), endpt]
+			}
+			*/
+			if let selection = self.mSelectionLayer {
+				if selection.visibleIndex == KCSelectionLayer.None {
+					selection.visibleIndex = 0
+				} else {
+					let count = selection.count
+					let next  = (selection.visibleIndex + 1) % count
+					selection.visibleIndex = next
+				}
+			}
+			return true /* continue */
+		}
+		timer.start(startValue: 0.0, stopValue: 10.0, stepValue: 0.4)
 	}
 
 	override func didReceiveMemoryWarning() {

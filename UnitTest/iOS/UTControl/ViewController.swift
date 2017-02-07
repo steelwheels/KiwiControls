@@ -33,6 +33,7 @@ class ViewController: UIViewController
 		mButton.state = state
 		mButton.decideEnableCallback = {
 			(_: CNState) -> Bool? in
+            
 			return nil
 		}
 		mButton.decideVisibleCallback = {
@@ -40,6 +41,7 @@ class ViewController: UIViewController
 			return nil
 		}
 		mButton.buttonPressedCallback = {
+			
 			() -> Void in
 			Swift.print("buttonPressedCallback")
 		}

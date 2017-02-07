@@ -12,9 +12,7 @@ import KiwiGraphics
 
 class ViewController: UIViewController
 {
-
 	@IBOutlet weak var mGraphicsView: KCLayerView!
-
 
 	override func viewDidLoad() {
        
@@ -23,7 +21,6 @@ class ViewController: UIViewController
 	}
 
 	public override func viewDidLayoutSubviews() {
-
 		Swift.print("View did layout")
 
 		let bounds = mGraphicsView.bounds
@@ -34,6 +31,7 @@ class ViewController: UIViewController
 		mGraphicsView.rootLayer.addSublayer(stroke)
 	}
 
+    
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
@@ -41,4 +39,6 @@ class ViewController: UIViewController
 
 
 }
+
+
 
