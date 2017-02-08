@@ -1,5 +1,5 @@
 /**
- * @file		KCRepetitiveLayer.swift
+ * @file	KCRepetitiveLayer.swift
  * @brief	Define KCRepetitiveLayer class
  * @par Copyright
  *   Copyright (C) 2016 Steel Wheels Project
@@ -8,7 +8,7 @@
 import Foundation
 import KiwiGraphics
 
-public class KCRepetitiveImagesLayer: KCLayer
+open class KCRepetitiveLayer: KCLayer
 {
 	private var mElementSize	: CGSize
 	private var mElementOrigins	: Array<CGPoint>
@@ -33,12 +33,10 @@ public class KCRepetitiveImagesLayer: KCLayer
 
 	private func calcOrigin(elementOrigin elmorg: CGPoint, elementSize elmsz: CGSize, entireFrame frame: CGRect) -> CGPoint {
 		let origin: CGPoint
-		let xpos = frame.size.width  * elmorg.x
-		let ypos = frame.size.height * elmorg.y
 		#if os(iOS)
-			origin = CGPoint(x: xpos, y: frame.size.height - ypos - elmsz.height)
+			origin = CGPoint(x: elmorg.x, y: frame.size.height - elmsz.height - elmorg.y)
 		#else
-			origin = CGPoint(x: xpos, y: ypos)
+			origin = CGPoint(x: elmorg.x, y: elmorg.y)
 		#endif
 		return origin
 	}

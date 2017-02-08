@@ -111,14 +111,15 @@ class ViewController: KCViewController {
 		/* Repetitive layer */
 		var origins: Array<CGPoint> = []
 		for i in 0..<10 {
-			let p = Double(i) * 0.1
-			origins.append(CGPoint(x: p, y: p))
+			let x = bounds.size.width  / 10.0 * CGFloat(i)
+			let y = bounds.size.height / 10.0 * CGFloat(i)
+			origins.append(CGPoint(x: x, y: y))
 		}
 		Swift.print("repetitive: \(origins)")
-		let repetitive = KCRepetitiveImagesLayer(frame: bounds,
-		                                         elementSize: CGSize(width: 30, height: 30),
-		                                         elementOrigins: origins,
-		                                         elementDrawer: {
+		let repetitive = KCRepetitiveLayer(frame: bounds,
+						   elementSize: CGSize(width: 30, height: 30),
+						   elementOrigins: origins,
+						   elementDrawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			//Swift.print("KRepetitiverLayer: bounds:\(size.description)")
 			let elmbounds = CGRect(origin: CGPoint.zero, size: size)

@@ -76,10 +76,10 @@ class ViewController: UIViewController
 		let elmsize = CGSize(width: bounds.size.width/10.0, height: bounds.size.height/10.0)
 		var elmorigin : Array<CGPoint> = []
 		for i in 0..<10 {
-			let origin = CGPoint(x: 0.1*CGFloat(i), y:0.1*CGFloat(i))
+			let origin = CGPoint(x: bounds.size.width/10.0*CGFloat(i), y:bounds.size.height/10.0*CGFloat(i))
 			elmorigin.append(origin)
 		}
-		let repetitive = KCRepetitiveImagesLayer(frame: bounds, elementSize: elmsize, elementOrigins: elmorigin, elementDrawer: {
+		let repetitive = KCRepetitiveLayer(frame: bounds, elementSize: elmsize, elementOrigins: elmorigin, elementDrawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			Swift.print("Graphics Layer: draw in size:\(size.description) bounds:\(bounds.description)")
 			let bounds = CGRect(origin: CGPoint.zero, size: size)
