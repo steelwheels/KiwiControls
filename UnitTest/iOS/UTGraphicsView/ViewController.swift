@@ -62,7 +62,8 @@ class ViewController: UIViewController
 		mGraphicsView.rootLayer.addSublayer(background)
 
 		/* Image drawer */
-		let drawer = KCImageDrawerLayer(frame: bounds, drawer: {
+		let drawrect = CGRect(origin: CGPoint.zero, size: bounds.size)
+		let drawer = KCImageDrawerLayer(frame: bounds, drawRect: drawrect, drawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			Swift.print("Graphics Layer: draw in size:\(size.description) bounds:\(bounds.description)")
 			let bounds = CGRect(origin: CGPoint.zero, size: size)
@@ -105,7 +106,9 @@ class ViewController: UIViewController
 			let background = KCBackgroundLayer(frame: bounds, color: KGColorTable.black.cgColor)
 
 			view.rootLayer.addSublayer(background)
-			let symlayer = UTAllocateSymbol(symbolId: symid, parentBounds: view.bounds)
+			let symbounds = view.bounds
+			let drawrect = CGRect(origin: CGPoint.zero, size: symbounds.size)
+			let symlayer = UTAllocateSymbol(symbolId: symid, frame: symbounds, drawRect: drawrect)
 			background.addSublayer(symlayer)
 		}
 	}
@@ -119,7 +122,8 @@ class ViewController: UIViewController
 
 		let sellayer	= KCSelectionLayer(frame: selbounds)
 		for i in 0...3 {
-			let symbol = UTAllocateSymbol(symbolId: i, parentBounds: selbounds)
+			let drawrect = CGRect(origin: CGPoint.zero, size: selbounds.size)
+			let symbol = UTAllocateSymbol(symbolId: i, frame: selbounds, drawRect: drawrect)
 			sellayer.addSublayer(symbol)
 		}
 		sellayer.visibleIndex = 0

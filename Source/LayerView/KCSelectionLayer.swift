@@ -8,12 +8,12 @@
 import Foundation
 import KiwiGraphics
 
-public class KCSelectionLayer: KCLayer
+open class KCSelectionLayer: KCLayer, KCDrawerLayerProtocol
 {
 	public static let	None: Int		= -1
 	private var		mVisibleIndex: Int	= None
 
-	public override func addSublayer(_ layer: CALayer) {
+	open override func addSublayer(_ layer: CALayer) {
 		layer.frame	= self.frame
 		layer.isHidden	= true
 		super.addSublayer(layer)
@@ -43,6 +43,26 @@ public class KCSelectionLayer: KCLayer
 					mVisibleIndex = idx
 				} else {
 					mVisibleIndex = KCSelectionLayer.None
+				}
+			}
+		}
+	}
+
+	public func move(dx xval: CGFloat, dy yval: CGFloat) {
+		if let subs = self.sublayers {
+			for layer in subs {
+				if let drawer = layer as? KCDrawerLayerProtocol {
+					drawer.move(dx: xval, dy: yval)
+				}
+			}
+		}
+	}
+
+	public func moveTo(x xval: CGFloat, y yval: CGFloat) {
+		if let subs = self.sublayers {
+			for layer in subs {
+				if let drawer = layer as? KCDrawerLayerProtocol {
+					drawer.moveTo(x: xval, y: yval)
 				}
 			}
 		}

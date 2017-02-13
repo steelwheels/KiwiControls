@@ -29,7 +29,6 @@ open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 		set(points){
 			mStrokes  = points
 			mDoClear = true
-			super.setNeedsDisplay()
 		}
 	}
 

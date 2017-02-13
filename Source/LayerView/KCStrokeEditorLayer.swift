@@ -27,7 +27,7 @@ open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) {
+	open override func mouseEvent(event evt: KCMouseEvent, at point: CGPoint) {
 		var result	: CGRect = CGRect.zero
 		var didadded	: Bool
 

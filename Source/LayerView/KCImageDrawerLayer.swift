@@ -14,15 +14,17 @@ import KiwiGraphics
   import Cocoa
 #endif
 
-public class KCImageDrawerLayer: KCLayer, CALayerDelegate
+open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 {
+	private var mDrawRect:		CGRect
 	private var mLayerDrawer:	KGImageDrawer
 	private var mDrawnSize:		CGSize
 
-	public init(frame f: CGRect, drawer d: @escaping KGImageDrawer){
-		mLayerDrawer = d
+	public init(frame frm: CGRect, drawRect drect: CGRect, drawer drw: @escaping KGImageDrawer){
+		mDrawRect = drect
+		mLayerDrawer = drw
 		mDrawnSize   = CGSize.zero
-		super.init(frame: f)
+		super.init(frame: frm)
 		super.delegate = self
 	}
 	
@@ -34,22 +36,31 @@ public class KCImageDrawerLayer: KCLayer, CALayerDelegate
 	//	Swift.print("display")
 	//}
 
+	public func move(dx xval: CGFloat, dy yval: CGFloat) {
+		mDrawRect = mDrawRect.move(dx: xval, dy: yval)
+	}
+
+	public func moveTo(x xval: CGFloat, y yval:CGFloat){
+		mDrawRect.origin = CGPoint(x: xval, y: yval)
+	}
+
 	public func draw(_ layer: CALayer, in ctx: CGContext) {
 		//Swift.print("draw")
-		let framesize = layer.frame.size
+		let drawsize = mDrawRect.size
 		var image: KGImage
 		if let imgp = layer.contents as? KGImage {
-			if framesize != mDrawnSize {
-				layer.contents = image = drawImage(context: ctx, size: framesize)
-				mDrawnSize = framesize
+			if drawsize != mDrawnSize {
+				layer.contents = image = drawImage(context: ctx, size: drawsize)
+				mDrawnSize = drawsize
 			} else {
 				image = imgp
 			}
 		} else {
-			layer.contents = image = drawImage(context: ctx, size: framesize)
-			mDrawnSize = framesize
+			layer.contents = image = drawImage(context: ctx, size: drawsize)
+			mDrawnSize = drawsize
 		}
-		ctx.draw(image.toCGImage, in: layer.frame)
+		let drawrect = layer.frame.move(dx: mDrawRect.origin.x, dy: mDrawRect.origin.y)
+		ctx.draw(image.toCGImage, in: drawrect)
 	}
 
 	private func drawImage(context ctx:CGContext, size sz:CGSize) -> KGImage {
@@ -65,35 +76,6 @@ public class KCImageDrawerLayer: KCLayer, CALayerDelegate
 		#endif
 		return image
 	}
-
-	/*
-	public func layerWillDraw(_ layer: CALayer) {
-		Swift.print("layerWilDraw")
-		let framesize = layer.frame.size
-		if (layer.contents == nil) || (framesize != mDrawnSize){
-			Swift.print("* layerWilDraw *")
-
-			let image = KGImage.generate(size: framesize, drawFunc: mLayerDrawer)
-			layer.contents = image
-			mDrawnSize = framesize
-		}
-	}
-
-
-	public func action(for layer: CALayer, forKey event: String) -> CAAction? {
-		Swift.print("action: \(event)")
-		switch KCLayerAction(rawValue: event)! {
-		case .onOrderIn:	Swift.print("* onOrderIn *")
-		case .onOrderOut:	Swift.print("* onOrderOut *")
-		case .onLayout:		Swift.print("* onLayout *")
-		case .onDraw:		Swift.print("* onDraw *")
-		case .sublayer:		Swift.print("* sublayer *")
-		case .contents:		Swift.print("* contents *")
-		case .bounds:		Swift.print("* bounds *")
-		}
-		return nil
-	}
-*/
 }
 
 

@@ -65,7 +65,8 @@ class ViewController: KCViewController {
 		let background = KCBackgroundLayer(frame: symbolbounds, color: KGColorTable.black.cgColor)
 		lview.rootLayer.addSublayer(background)
 
-		let symbolLayer = UTAllocateSymbol(symbolId: sid, parentBounds: symbolbounds)
+		let drawrect    = CGRect(origin: CGPoint.zero, size: symbolbounds.size)
+		let symbolLayer = UTAllocateSymbol(symbolId: sid, frame: symbolbounds, drawRect: drawrect)
 		background.addSublayer(symbolLayer)
 	}
 
@@ -79,7 +80,8 @@ class ViewController: KCViewController {
 		/* Selection layer */
 		let selection = KCSelectionLayer(frame: symbolbounds)
 		for i in 0...3 {
-			let symbol = UTAllocateSymbol(symbolId: i, parentBounds: symbolbounds)
+			let drawrect    = CGRect(origin: CGPoint.zero, size: symbolbounds.size)
+			let symbol = UTAllocateSymbol(symbolId: i, frame: symbolbounds, drawRect: drawrect)
 			selection.addSublayer(symbol)
 		}
 		selection.visibleIndex = 0
@@ -97,7 +99,8 @@ class ViewController: KCViewController {
 		mGraphicsView.rootLayer.addSublayer(background)
 
 		/* Image layer */
-		let idrawer = KCImageDrawerLayer(frame: bounds, drawer: {
+		let drawrect    = CGRect(origin: CGPoint.zero, size: bounds.size)
+		let idrawer = KCImageDrawerLayer(frame: bounds, drawRect: drawrect, drawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			//Swift.print("KCImageDrawerLayer: bounds:\(size.description)")
 			let bounds = CGRect(origin: CGPoint.zero, size: size)

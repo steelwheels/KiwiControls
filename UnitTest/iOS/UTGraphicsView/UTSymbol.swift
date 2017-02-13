@@ -10,14 +10,14 @@ import Foundation
 import KiwiControls
 import KiwiGraphics
 
-public func UTAllocateSymbol(symbolId sid: Int, parentBounds pbounds: CGRect) -> KCImageDrawerLayer
+public func UTAllocateSymbol(symbolId sid: Int, frame frm: CGRect, drawRect drect: CGRect) -> KCImageDrawerLayer
 {
 	let gtable	= KGGradientTable.sharedGradientTable
 
 	var symbolLayer: KCImageDrawerLayer
 	switch sid {
 	case 0:
-		symbolLayer = KCImageDrawerLayer(frame: pbounds, drawer: {
+		symbolLayer = KCImageDrawerLayer(frame: frm, drawRect: drect, drawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			let bounds  = CGRect(origin: CGPoint.zero, size: size)
 			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
@@ -26,14 +26,14 @@ public func UTAllocateSymbol(symbolId sid: Int, parentBounds pbounds: CGRect) ->
 		})
 	case 1:
 		let cyangrad = gtable.gradient(forColor: KGColorTable.cyan.cgColor)
-		symbolLayer = KCImageDrawerLayer(frame: pbounds, drawer: {
+		symbolLayer = KCImageDrawerLayer(frame: frm, drawRect: drect, drawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			let bounds  = CGRect(origin: CGPoint.zero, size: size)
 			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
 			context.draw(hexagon: hexagon, withGradient: cyangrad)
 		})
 	case 2:
-		symbolLayer = KCImageDrawerLayer(frame: pbounds, drawer: {
+		symbolLayer = KCImageDrawerLayer(frame: frm, drawRect: drect, drawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			let bounds  = CGRect(origin: CGPoint.zero, size: size)
 			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
@@ -42,7 +42,7 @@ public func UTAllocateSymbol(symbolId sid: Int, parentBounds pbounds: CGRect) ->
 		})
 	default:
 		let goldgrad	= gtable.gradient(forColor: KGColorTable.goldenrod.cgColor)
-		symbolLayer = KCImageDrawerLayer(frame: pbounds, drawer: {
+		symbolLayer = KCImageDrawerLayer(frame: frm, drawRect: drect, drawer: {
 			(context: CGContext, size: CGSize) -> Void in
 			let bounds  = CGRect(origin: CGPoint.zero, size: size)
 			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
