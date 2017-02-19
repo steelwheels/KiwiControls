@@ -19,13 +19,13 @@ public class KCAlert : NSObject
 		let alert = NSAlert(error: err)
 		return alert.runModal()
 	}
-	
+
 	public enum SaveModalResponce {
 		case SaveButtonPressed
 		case CancelButtonPressed
 		case DontSaveButtonPressed
 	}
-	
+
 	public class func recommendSaveModal(fileName fname: String) -> SaveModalResponce {
 		let alert = NSAlert()
 		alert.messageText = "\(fname) has changes. Do you want to save it"
@@ -33,7 +33,7 @@ public class KCAlert : NSObject
 		alert.addButton(withTitle: "Save")
 		alert.addButton(withTitle: "Cancel")
 		alert.addButton(withTitle: "Don't save")
-		
+
 		var result : SaveModalResponce
 		switch alert.runModal() {
 		  case NSAlertFirstButtonReturn:

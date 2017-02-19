@@ -26,7 +26,7 @@ open class KCCheckBox: KCView
 		get { return coreView().title }
 		set(newstr){ coreView().title = newstr }
 	}
-	
+
 	private var mCoreView: KCCheckBoxCore? = nil
 
 	#if os(OSX)

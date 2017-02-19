@@ -23,10 +23,9 @@ open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 		super.init(frame: f)
 		for origin in eo {
 			//Swift.print("repetitive: allocate layers")
-			let suborigin = calcOrigin(elementOrigin: origin, elementSize: es, entireFrame: f)
-			let subframe  = CGRect(origin: suborigin, size: es)
-			let sublayer  = KCImageDrawerLayer(frame: subframe, drawRect: subframe, drawer: ed)
-			sublayer.setNeedsDisplay()
+			let suborigin = KGOrigin(origin: origin, size: es, frame: f)
+			let subrect   = CGRect(origin: suborigin, size: es)
+			let sublayer  = KCImageDrawerLayer(frame: f, contentRect: subrect, drawer: ed)
 			self.addSublayer(sublayer)
 		}
 	}
@@ -35,14 +34,8 @@ open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	private func calcOrigin(elementOrigin elmorg: CGPoint, elementSize elmsz: CGSize, entireFrame frame: CGRect) -> CGPoint {
-		let origin: CGPoint
-		#if os(iOS)
-			origin = CGPoint(x: elmorg.x, y: frame.size.height - elmsz.height - elmorg.y)
-		#else
-			origin = CGPoint(x: elmorg.x, y: elmorg.y)
-		#endif
-		return origin
+	public var contentRect: CGRect {
+		get { return frame }
 	}
 
 	public func move(dx xval: CGFloat, dy yval: CGFloat) {

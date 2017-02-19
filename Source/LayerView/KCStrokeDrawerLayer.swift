@@ -19,7 +19,7 @@ open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 		super.init(frame: f)
 		self.delegate = self
 	}
-	
+
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -27,8 +27,9 @@ open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 	public var strokes: Array<CGPoint> {
 		get { return mStrokes }
 		set(points){
-			mStrokes  = points
+			mStrokes = points
 			mDoClear = true
+			requrestUpdateIn(dirtyRect: frame)
 		}
 	}
 

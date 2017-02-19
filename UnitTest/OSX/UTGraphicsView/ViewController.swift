@@ -65,9 +65,11 @@ class ViewController: KCViewController {
 		let background = KCBackgroundLayer(frame: symbolbounds, color: KGColorTable.black.cgColor)
 		lview.rootLayer.addSublayer(background)
 
-		let drawrect    = CGRect(origin: CGPoint.zero, size: symbolbounds.size)
-		let symbolLayer = UTAllocateSymbol(symbolId: sid, frame: symbolbounds, drawRect: drawrect)
+		let contentrect = CGRect(origin: CGPoint.zero, size: symbolbounds.size)
+		let symbolLayer = UTAllocateSymbol(symbolId: sid, frame: symbolbounds, contentRect: contentrect)
 		background.addSublayer(symbolLayer)
+
+		background.doUpdate()
 	}
 
 	private func setupSelectionView(layerView lview: KCLayerView)
@@ -80,13 +82,15 @@ class ViewController: KCViewController {
 		/* Selection layer */
 		let selection = KCSelectionLayer(frame: symbolbounds)
 		for i in 0...3 {
-			let drawrect    = CGRect(origin: CGPoint.zero, size: symbolbounds.size)
-			let symbol = UTAllocateSymbol(symbolId: i, frame: symbolbounds, drawRect: drawrect)
+			let contentrect = CGRect(origin: CGPoint.zero, size: symbolbounds.size)
+			let symbol      = UTAllocateSymbol(symbolId: i, frame: symbolbounds, contentRect: contentrect)
 			selection.addSublayer(symbol)
 		}
 		selection.visibleIndex = 0
 		mSelectionLayer = selection
 		background.addSublayer(selection)
+
+		background.doUpdate()
 	}
 
 	private func setupGraphicsView()
@@ -100,16 +104,13 @@ class ViewController: KCViewController {
 
 		/* Image layer */
 		let drawrect    = CGRect(origin: CGPoint.zero, size: bounds.size)
-		let idrawer = KCImageDrawerLayer(frame: bounds, drawRect: drawrect, drawer: {
-			(context: CGContext, size: CGSize) -> Void in
+		let idrawer = KCImageDrawerLayer(frame: bounds, contentRect: drawrect, drawer: {
+			(context: CGContext, bounds: CGRect) -> Void in
 			//Swift.print("KCImageDrawerLayer: bounds:\(size.description)")
-			let bounds = CGRect(origin: CGPoint.zero, size: size)
 			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.white.cgColor)
 			vertex.drawContent(context: context)
 		})
 		background.addSublayer(idrawer)
-		//mGraphicsView.rootLayer.addSublayer(idrawer)
-		idrawer.setNeedsDisplay()
 		
 		/* Repetitive layer */
 		var origins: Array<CGPoint> = []
@@ -123,14 +124,12 @@ class ViewController: KCViewController {
 						   elementSize: CGSize(width: 30, height: 30),
 						   elementOrigins: origins,
 						   elementDrawer: {
-			(context: CGContext, size: CGSize) -> Void in
+			(context: CGContext, bounds: CGRect) -> Void in
 			//Swift.print("KRepetitiverLayer: bounds:\(size.description)")
-			let elmbounds = CGRect(origin: CGPoint.zero, size: size)
-			let vertex = UTVertexDrawer(bounds: elmbounds, color: KGColorTable.gray.cgColor)
+			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.gray.cgColor)
 			vertex.drawContent(context: context)
 		})
 		idrawer.addSublayer(repetitive)
-		repetitive.setNeedsDisplay()
 
 		/* Stroke drawer */
 		let sdrawer = KCStrokeDrawerLayer(frame: bounds)
@@ -138,8 +137,9 @@ class ViewController: KCViewController {
 		sdrawer.lineColor = KGColorTable.yellow.cgColor
 		sdrawer.strokes = [CGPoint(x:0.0, y:0.0), CGPoint(x:100, y:100), CGPoint(x:150, y:100), CGPoint(x:200, y:200)]
 		repetitive.addSublayer(sdrawer)
-		sdrawer.setNeedsDisplay()
 		mStrokeDrawer = sdrawer
+
+		background.doUpdate()
 
 		/* Animation */
 		let timer = KCTimer()
@@ -152,14 +152,17 @@ class ViewController: KCViewController {
 				let sinv = CGFloat(sin(Double(time)) * 80.0)
 				let endpt = CGPoint(x: center.x + cosv, y: center.y + sinv)
 				drawer.strokes = [CGPoint(x:center.x, y:center.y), endpt]
+				drawer.doUpdate()
 			}
 			if let selection = self.mSelectionLayer {
 				if selection.visibleIndex == KCSelectionLayer.None {
 					selection.visibleIndex = 0
+					selection.doUpdate()
 				} else {
 					let count = selection.count
 					let next  = (selection.visibleIndex + 1) % count
 					selection.visibleIndex = next
+					selection.doUpdate()
 				}
 			}
 			return true /* continue */

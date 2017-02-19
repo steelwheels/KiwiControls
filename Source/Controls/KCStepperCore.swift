@@ -139,7 +139,7 @@ public class KCStepperCore: KCView
 			super.isHidden      = !newval
 		}
 	}
-	
+
 	#if os(iOS)
 	@IBAction func stepperAction(_ sender: UIStepper) {
 		let value = sender.value

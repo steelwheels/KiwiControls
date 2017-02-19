@@ -20,7 +20,7 @@ public class KCCheckBoxCore: KCView
 	#else
 	@IBOutlet weak var mCheckBox: NSButton!
 	#endif
-	
+
 	public var checkUpdatedCallback: ((_ value: Bool) -> Void)? = nil
 
 	public func setup() -> Void {

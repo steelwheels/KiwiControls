@@ -75,7 +75,7 @@ open class KCButton: KCView
 			self.backgroundColor = cols.background.normal
 		#endif
 	}
-	
+
 	private func coreView() -> KCButtonCore {
 		if let coreview = mCoreView {
 			return coreview

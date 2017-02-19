@@ -29,6 +29,10 @@ open class KCSelectionLayer: KCLayer, KCDrawerLayerProtocol
 		}
 	}
 
+	public var contentRect: CGRect {
+		get { return frame }
+	}
+
 	public var visibleIndex: Int {
 		get {
 			return mVisibleIndex
@@ -36,10 +40,20 @@ open class KCSelectionLayer: KCLayer, KCDrawerLayerProtocol
 		set(idx){
 			if let layers = self.sublayers {
 				if mVisibleIndex != KCSelectionLayer.None {
-					layers[mVisibleIndex].isHidden = true
+					if let l = layers[mVisibleIndex] as? KCLayer {
+						l.isHidden = true
+						l.requrestUpdateIn(dirtyRect: l.frame)
+					} else {
+						fatalError("Invalid object")
+					}
 				}
 				if 0<=idx && idx<layers.count {
-					layers[idx].isHidden = false
+					if let l = layers[idx] as? KCLayer {
+						l.isHidden = false
+						l.requrestUpdateIn(dirtyRect: l.frame)
+					} else {
+						fatalError("Invalid object")
+					}
 					mVisibleIndex = idx
 				} else {
 					mVisibleIndex = KCSelectionLayer.None

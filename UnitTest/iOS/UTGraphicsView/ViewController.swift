@@ -62,16 +62,15 @@ class ViewController: UIViewController
 		mGraphicsView.rootLayer.addSublayer(background)
 
 		/* Image drawer */
-		let drawrect = CGRect(origin: CGPoint.zero, size: bounds.size)
-		let drawer = KCImageDrawerLayer(frame: bounds, drawRect: drawrect, drawer: {
-			(context: CGContext, size: CGSize) -> Void in
-			Swift.print("Graphics Layer: draw in size:\(size.description) bounds:\(bounds.description)")
-			let bounds = CGRect(origin: CGPoint.zero, size: size)
+		let origin = KGOrigin(origin: CGPoint.zero, size: bounds.size, frame: bounds)
+		let contentrect = CGRect(origin: origin, size: bounds.size)
+		let drawer = KCImageDrawerLayer(frame: bounds, contentRect: contentrect, drawer: {
+			(context: CGContext, bounds: CGRect) -> Void in
+			Swift.print("Graphics Layer: draw in content:\(contentrect.description) bounds:\(bounds.description)")
 			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.blue.cgColor)
 			vertex.drawContent(context: context)
 		})
 		background.addSublayer(drawer)
-		drawer.setNeedsDisplay()
 
 		/* Repetitive layer */
 		let elmsize = CGSize(width: bounds.size.width/10.0, height: bounds.size.height/10.0)
@@ -81,14 +80,14 @@ class ViewController: UIViewController
 			elmorigin.append(origin)
 		}
 		let repetitive = KCRepetitiveLayer(frame: bounds, elementSize: elmsize, elementOrigins: elmorigin, elementDrawer: {
-			(context: CGContext, size: CGSize) -> Void in
-			Swift.print("Graphics Layer: draw in size:\(size.description) bounds:\(bounds.description)")
-			let bounds = CGRect(origin: CGPoint.zero, size: size)
+			(context: CGContext, bounds: CGRect) -> Void in
+			Swift.print("Graphics Layer: draw in bounds:\(bounds.description)")
 			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.yellow.cgColor)
 			vertex.drawContent(context: context)
 		})
 		drawer.addSublayer(repetitive)
-		repetitive.setNeedsDisplay()
+
+		background.doUpdate()
 	}
 
 	private func setupSymbolViews()
@@ -108,8 +107,10 @@ class ViewController: UIViewController
 			view.rootLayer.addSublayer(background)
 			let symbounds = view.bounds
 			let drawrect = CGRect(origin: CGPoint.zero, size: symbounds.size)
-			let symlayer = UTAllocateSymbol(symbolId: symid, frame: symbounds, drawRect: drawrect)
+			let symlayer = UTAllocateSymbol(symbolId: symid, frame: symbounds, contentRect: drawrect)
 			background.addSublayer(symlayer)
+
+			background.doUpdate()
 		}
 	}
 
@@ -123,12 +124,14 @@ class ViewController: UIViewController
 		let sellayer	= KCSelectionLayer(frame: selbounds)
 		for i in 0...3 {
 			let drawrect = CGRect(origin: CGPoint.zero, size: selbounds.size)
-			let symbol = UTAllocateSymbol(symbolId: i, frame: selbounds, drawRect: drawrect)
+			let symbol = UTAllocateSymbol(symbolId: i, frame: selbounds, contentRect: drawrect)
 			sellayer.addSublayer(symbol)
 		}
 		sellayer.visibleIndex = 0
 		background.addSublayer(sellayer)
 		mSelectionLayer = sellayer
+
+		background.doUpdate()
 	}
 
 	public func setupTimer(){
@@ -149,10 +152,11 @@ class ViewController: UIViewController
 				if selection.visibleIndex == KCSelectionLayer.None {
 					selection.visibleIndex = 0
 				} else {
-					let count = selection.count
+					let count = selection.count - 1
 					let next  = (selection.visibleIndex + 1) % count
 					selection.visibleIndex = next
 				}
+				selection.doUpdate()
 			}
 			return true /* continue */
 		}

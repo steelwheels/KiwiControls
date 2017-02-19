@@ -50,7 +50,7 @@ open class KCView : KCViewBase
 	deinit {
 		KCDeinitObserver(state: mState, observer: self)
 	}
-	
+
 	public var state : CNState? {
 		get {
 			return mState
@@ -65,7 +65,7 @@ open class KCView : KCViewBase
 			observe(state: state)
 		}
 	}
-	
+
 	open func observe(state stat: CNState){
 		/* Do nothing (Override this method) */
 	}
@@ -169,7 +169,7 @@ open class KCView : KCViewBase
 	private func allocateLayout(subView sview : KCViewBase, attribute attr: NSLayoutAttribute) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: NSLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
 	}
-	
+
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
 		addConstraint(allocateLayout(subView: sview, attribute: NSLayoutAttribute.top)) ;

@@ -16,63 +16,73 @@ import KiwiGraphics
 
 open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 {
-	private var mDrawRect:		CGRect
+	private var mContentRect:	CGRect
 	private var mLayerDrawer:	KGImageDrawer
 	private var mDrawnSize:		CGSize
 
-	public init(frame frm: CGRect, drawRect drect: CGRect, drawer drw: @escaping KGImageDrawer){
-		mDrawRect = drect
-		mLayerDrawer = drw
-		mDrawnSize   = CGSize.zero
+	public init(frame frm: CGRect, contentRect crect: CGRect, drawer drw: @escaping KGImageDrawer){
+		mContentRect  = crect
+		mLayerDrawer  = drw
+		mDrawnSize    = CGSize.zero
 		super.init(frame: frm)
 		super.delegate = self
+		self.requrestUpdateIn(dirtyRect: frm)
 	}
-	
+
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	public var contentRect: CGRect {
+		get { return mContentRect }
+	}
+
+	public func move(dx xval: CGFloat, dy yval: CGFloat) {
+		requrestUpdateIn(dirtyRect: mContentRect)
+		mContentRect.origin.x += xval
+		mContentRect.origin.y += yval
+		requrestUpdateIn(dirtyRect: mContentRect)
+	}
+
+	public func moveTo(x xval: CGFloat, y yval: CGFloat) {
+		requrestUpdateIn(dirtyRect: mContentRect)
+		mContentRect.origin.x = xval
+		mContentRect.origin.y = yval
+		requrestUpdateIn(dirtyRect: mContentRect)
 	}
 
 	//public func display(_ layer: CALayer) {
 	//	Swift.print("display")
 	//}
 
-	public func move(dx xval: CGFloat, dy yval: CGFloat) {
-		mDrawRect = mDrawRect.move(dx: xval, dy: yval)
-	}
-
-	public func moveTo(x xval: CGFloat, y yval:CGFloat){
-		mDrawRect.origin = CGPoint(x: xval, y: yval)
-	}
-
 	public func draw(_ layer: CALayer, in ctx: CGContext) {
-		//Swift.print("draw")
-		let drawsize = mDrawRect.size
+		let contentsize = mContentRect.size
 		var image: KGImage
 		if let imgp = layer.contents as? KGImage {
-			if drawsize != mDrawnSize {
-				layer.contents = image = drawImage(context: ctx, size: drawsize)
-				mDrawnSize = drawsize
+			if contentsize != mDrawnSize {
+				layer.contents = image = drawImage(context: ctx, bounds: mContentRect)
+				mDrawnSize = contentsize
 			} else {
 				image = imgp
 			}
 		} else {
-			layer.contents = image = drawImage(context: ctx, size: drawsize)
-			mDrawnSize = drawsize
+			layer.contents = image = drawImage(context: ctx, bounds: mContentRect)
+			mDrawnSize = contentsize
 		}
-		let drawrect = layer.frame.move(dx: mDrawRect.origin.x, dy: mDrawRect.origin.y)
+		let drawrect = mContentRect.move(dx: frame.origin.x, dy: frame.origin.y)
 		ctx.draw(image.toCGImage, in: drawrect)
 	}
 
-	private func drawImage(context ctx:CGContext, size sz:CGSize) -> KGImage {
+	private func drawImage(context ctx:CGContext, bounds bnds:CGRect) -> KGImage {
 		let image: KGImage
 		#if os(iOS)
 			ctx.saveGState()
 			ctx.translateBy(x: 0.0, y: bounds.size.height)
 			ctx.scaleBy(x: 1.0, y: -1.0)
-			image = KGImage.generate(context: ctx, size: sz, drawFunc: mLayerDrawer)
+			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: mLayerDrawer)
 			ctx.restoreGState()
 		#else
-			image = KGImage.generate(context: ctx, size: sz, drawFunc: mLayerDrawer)
+			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: mLayerDrawer)
 		#endif
 		return image
 	}

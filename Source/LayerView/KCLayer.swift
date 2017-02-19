@@ -22,17 +22,21 @@ private func convertCoodinate(sourceRect r: CGRect, bounds b: CGRect) -> CGRect
 
 public protocol KCDrawerLayerProtocol
 {
+	var  contentRect: CGRect { get }
 	func move(dx: CGFloat, dy: CGFloat)
 	func moveTo(x: CGFloat, y: CGFloat)
 }
 
 open class KCLayer: CALayer
 {
+	private var mUpdateRect:  CGRect
+
 	public init(frame f: CGRect){
+		mUpdateRect  = CGRect.zero
 		super.init()
 		frame = f
 	}
-	
+
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -69,6 +73,26 @@ open class KCLayer: CALayer
 				}
 			}
 		}
+	}
+
+	public func doUpdate(){
+		if mUpdateRect.size.width > 0.0 && mUpdateRect.size.height > 0.0 {
+			setNeedsDisplayIn(mUpdateRect)
+			mUpdateRect = CGRect.zero
+		}
+		if let slayers = self.sublayers {
+			for sublayer in slayers {
+				if let l = sublayer as? KCLayer {
+					if !l.isHidden {
+						l.doUpdate()
+					}
+				}
+			}
+		}
+	}
+
+	public func requrestUpdateIn(dirtyRect drect: CGRect){
+		mUpdateRect = mUpdateRect.union(drect)
 	}
 
 	open override func setNeedsDisplayIn(_ dirtyrect: CGRect) {

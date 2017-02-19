@@ -18,11 +18,9 @@ public class KCBackgroundLayer: KCLayer
 			self.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
 		#endif
 	}
-	
+
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 }
-
-
 

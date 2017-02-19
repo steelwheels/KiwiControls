@@ -86,7 +86,7 @@ public class KCStepper: KCView
 		get { return coreView().numberOfDecimalPlaces }
 		set(newval) { coreView().numberOfDecimalPlaces = newval }
 	}
-	
+
 	private func coreView() -> KCStepperCore {
 		if let coreview = mCoreView {
 			return coreview

@@ -22,7 +22,7 @@ open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 		super.init(frame: f)
 		self.delegate = self
 	}
-	
+
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -68,7 +68,8 @@ open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 
 		if didadded {
 			//Swift.print("AddedPoint: \(point.description)")
-			setNeedsDisplayIn(result)
+			requrestUpdateIn(dirtyRect: result)
+			doUpdate()
 		}
 	}
 
@@ -111,7 +112,7 @@ open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 		context.move(to: fp)
 		context.addLine(to: tp)
 	}
-	
+
 	private func expandByLineWidth(source src:CGRect) -> CGRect {
 		let lwidth = lineWidth / 2.0
 		let x      = src.origin.x - lwidth

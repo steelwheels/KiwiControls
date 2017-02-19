@@ -25,7 +25,7 @@ open class KCViewController : KCViewControllerBase
 	deinit {
 		KCDeinitObserver(state: mState, observer: self)
 	}
-	
+
 	public var state : CNState? {
 		get {
 			return mState
@@ -40,7 +40,7 @@ open class KCViewController : KCViewControllerBase
 			observe(state: state)
 		}
 	}
-	
+
 	open func observe(state s: CNState){
 		/* Do nothing (Override this method) */
 	}
