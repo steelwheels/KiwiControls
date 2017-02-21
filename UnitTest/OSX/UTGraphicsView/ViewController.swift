@@ -143,8 +143,8 @@ class ViewController: KCViewController {
 
 		/* Animation */
 		let timer = KCTimer()
-		timer.updateCallback = {
-			(time:TimeInterval) -> Bool in
+		timer.addUpdateCallback(interval: 0.0, callback: {
+			(time:TimeInterval) -> Void in
 			if let drawer = self.mStrokeDrawer {
 				let center = drawer.bounds.center
 
@@ -165,8 +165,7 @@ class ViewController: KCViewController {
 					selection.doUpdate()
 				}
 			}
-			return true /* continue */
-		}
+		})
 		timer.start(startValue: 0.0, stopValue: 10.0, stepValue: 0.4)
 	}
 

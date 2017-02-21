@@ -13,11 +13,20 @@ import Foundation
 	import UIKit
 #endif
 
+public typealias KCTimerUpdateCallback = (_ time: TimeInterval) -> Void
+public typealias KCTimerDoneCallback   = () -> Void
+
 public class KCTimer
 {
 	private enum CountType {
 		case CountUp
 		case CountDown
+	}
+
+	struct Callback {
+		var interval:		TimeInterval
+		var currentTime:	TimeInterval
+		var callback:		KCTimerUpdateCallback
 	}
 
 	private var mCountType:		CountType
@@ -26,8 +35,8 @@ public class KCTimer
 	private var mStepValue:		TimeInterval
 	private var mCurrentValue:	TimeInterval
 
-	public var updateCallback: ((_ time:TimeInterval) -> Bool)? = nil
-	public var doneCallback: (() -> Void)? = nil
+	private var mUpdateCallbacks:	Array<Callback>
+	private var mDoneCallbacks:	Array<KCTimerDoneCallback>
 
 	public init(){
 		mCountType	= .CountDown
@@ -36,6 +45,17 @@ public class KCTimer
 		mStepValue	= 0.0
 		mCurrentValue	= 0.0
 
+		mUpdateCallbacks = []
+		mDoneCallbacks	 = []
+	}
+
+	public func addUpdateCallback(interval intvl: TimeInterval, callback cbck: @escaping KCTimerUpdateCallback){
+		let newitem = Callback(interval: intvl, currentTime: 0.0, callback: cbck)
+		mUpdateCallbacks.append(newitem)
+	}
+
+	public func addDoneCallback(callback cbck: @escaping KCTimerDoneCallback){
+		mDoneCallbacks.append(cbck)
 	}
 
 	public func start(startValue start: TimeInterval, stopValue stop: TimeInterval, stepValue step: TimeInterval){
@@ -60,15 +80,20 @@ public class KCTimer
 
 	@objc func update(_ timer: Timer){
 		if timer.isValid {
-			var donetimer = false
 			mCurrentValue = mCurrentValue + mStepValue
 
-			if let updatecb = updateCallback {
-				if !updatecb(mCurrentValue){
-					donetimer = true
+			/* Call update callbacks */
+			for i in 0..<mUpdateCallbacks.count {
+				let interval = abs(mStepValue)
+				mUpdateCallbacks[i].currentTime += interval
+				if mUpdateCallbacks[i].currentTime >= mUpdateCallbacks[i].interval {
+					let callback = mUpdateCallbacks[i].callback
+					callback(mCurrentValue)
+					mUpdateCallbacks[i].currentTime = 0.0
 				}
 			}
 
+			var donetimer = false
 			switch mCountType {
 			case .CountUp:
 				if mCurrentValue > mStopValue {
@@ -81,8 +106,8 @@ public class KCTimer
 			}
 
 			if donetimer {
-				if let donecb = doneCallback {
-					donecb()
+				for callback in mDoneCallbacks {
+					callback()
 				}
 				timer.invalidate()
 			}

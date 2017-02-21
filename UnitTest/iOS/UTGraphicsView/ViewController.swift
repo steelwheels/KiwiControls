@@ -136,18 +136,8 @@ class ViewController: UIViewController
 
 	public func setupTimer(){
 		let timer = KCTimer()
-		timer.updateCallback = {
-			(time:TimeInterval) -> Bool in
-			/*
-			if let drawer = self.mStrokeDrawer {
-				let center = drawer.bounds.center
-
-				let cosv = CGFloat(cos(Double(time)) * 80.0)
-				let sinv = CGFloat(sin(Double(time)) * 80.0)
-				let endpt = CGPoint(x: center.x + cosv, y: center.y + sinv)
-				drawer.strokes = [CGPoint(x:center.x, y:center.y), endpt]
-			}
-			*/
+		timer.addUpdateCallback(interval: 0.0, callback: {
+			(time:TimeInterval) -> Void in
 			if let selection = self.mSelectionLayer {
 				if selection.visibleIndex == KCSelectionLayer.None {
 					selection.visibleIndex = 0
@@ -158,8 +148,7 @@ class ViewController: UIViewController
 				}
 				selection.doUpdate()
 			}
-			return true /* continue */
-		}
+		})
 		timer.start(startValue: 0.0, stopValue: 10.0, stepValue: 0.4)
 	}
 
