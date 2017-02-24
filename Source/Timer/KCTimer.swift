@@ -54,8 +54,16 @@ public class KCTimer
 		mUpdateCallbacks.append(newitem)
 	}
 
+	public func clearUpdateCallback(){
+		mUpdateCallbacks = []
+	}
+
 	public func addDoneCallback(callback cbck: @escaping KCTimerDoneCallback){
 		mDoneCallbacks.append(cbck)
+	}
+
+	public func clearDoneCallback(){
+		mDoneCallbacks = []
 	}
 
 	public func start(startValue start: TimeInterval, stopValue stop: TimeInterval, stepValue step: TimeInterval){
