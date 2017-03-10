@@ -88,6 +88,7 @@ class ViewController: NSViewController
 		mIconView.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
 			Swift.print("Icon view")
+			context.fill(bounds)
 		}
 		
 		mState = state

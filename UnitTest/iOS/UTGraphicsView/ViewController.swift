@@ -64,12 +64,13 @@ class ViewController: UIViewController
 		/* Image drawer */
 		let origin = KGOrigin(origin: CGPoint.zero, size: bounds.size, frame: bounds)
 		let contentrect = CGRect(origin: origin, size: bounds.size)
-		let drawer = KCImageDrawerLayer(frame: bounds, contentRect: contentrect, drawer: {
+		let drawer = KCImageDrawerLayer(frame: bounds, contentRect: contentrect)
+		drawer.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
 			Swift.print("Graphics Layer: draw in content:\(contentrect.description) bounds:\(bounds.description)")
 			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.blue.cgColor)
 			vertex.drawContent(context: context)
-		})
+		}
 		background.addSublayer(drawer)
 
 		/* Repetitive layer */

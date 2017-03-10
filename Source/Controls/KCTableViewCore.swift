@@ -17,6 +17,7 @@ open class KCTableViewCore : KCView
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
 	#else
+	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
 	/*

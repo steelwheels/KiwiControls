@@ -14,8 +14,14 @@ import KiwiGraphics
 
 open class KCIconViewCore : KCView
 {
+	#if os(OSX)
 	@IBOutlet weak var mLayerView: KCLayerView!
 	@IBOutlet weak var mLabelView: NSTextField!
+	#elseif os(iOS)
+	@IBOutlet weak var mLayerView: KCLayerView!
+	@IBOutlet weak var mLabelView: UILabel!
+	#endif
+
 	private var mIconDrawer: KCImageDrawerLayer? = nil
 
 	public func setup() {
@@ -45,10 +51,22 @@ open class KCIconViewCore : KCView
 
 	public var label: String {
 		set(str){
-			mLabelView.stringValue = str
+			#if os(OSX)
+				mLabelView.stringValue = str
+			#elseif os(iOS)
+				mLabelView.text = str
+			#endif
 		}
 		get {
-			return mLabelView.stringValue
+			#if os(OSX)
+				return mLabelView.stringValue
+			#elseif os(iOS)
+				if let text = mLabelView.text {
+					return text
+				} else {
+					return ""
+				}
+			#endif
 		}
 	}
 }
