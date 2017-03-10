@@ -17,6 +17,7 @@ class ViewController: NSViewController
 	@IBOutlet weak var mStepper: KCStepper!
 	@IBOutlet weak var mCheckBox: KCCheckBox!
 	@IBOutlet weak var mTextField: KCTextField!
+	@IBOutlet weak var mIconView: KCIconView!
 	
 	private var		mState:  UTState? = nil
 
@@ -82,6 +83,12 @@ class ViewController: NSViewController
 		mTextField.text = "Hello, World !!"
 		mTextField.alignment = .center
 		mTextField.setColors(colors: textcolor)
+
+		mIconView.label = "Icon Label"
+		mIconView.imageDrawer = {
+			(context: CGContext, bounds: CGRect) -> Void in
+			Swift.print("Icon view")
+		}
 		
 		mState = state
 	}

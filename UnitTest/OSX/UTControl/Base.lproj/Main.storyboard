@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -687,43 +687,58 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="H5A-TS-4S9" customClass="KCStepper" customModule="KiwiControls">
-                                <rect key="frame" x="20" y="164" width="113" height="34"/>
+                                <rect key="frame" x="20" y="164" width="156" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="PoY-4R-0TY"/>
-                                    <constraint firstAttribute="width" constant="113" id="exP-SS-fg9"/>
+                                    <constraint firstAttribute="width" constant="156" id="GfO-wV-r2W"/>
+                                    <constraint firstAttribute="height" constant="34" id="mhH-Tj-NAf"/>
                                 </constraints>
                             </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KnZ-6t-CHT" customClass="KCButton" customModule="KiwiControls">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="KnZ-6t-CHT" customClass="KCButton" customModule="KiwiControls">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="CZ0-kB-43n"/>
+                                </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-4W-thl" customClass="KCCheckBox" customModule="KiwiControls">
-                                <rect key="frame" x="20" y="115" width="156" height="40"/>
+                                <rect key="frame" x="20" y="116" width="156" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="156" id="gF4-Px-EKR"/>
-                                    <constraint firstAttribute="height" constant="40" id="vmv-m2-UIF"/>
+                                    <constraint firstAttribute="height" constant="40" id="94h-se-p7H"/>
+                                    <constraint firstAttribute="width" constant="156" id="yNV-Ll-QaN"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="GX2-US-REo" customClass="KCTextField" customModule="KiwiControls">
                                 <rect key="frame" x="20" y="206" width="440" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Dyv-rT-wh2"/>
+                                    <constraint firstAttribute="height" constant="44" id="iWI-Wr-i6q"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="xbw-DX-dGN" customClass="KCIconView" customModule="KiwiControls">
+                                <rect key="frame" x="184" y="57" width="141" height="141"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="141" id="AFc-8W-Zi7"/>
+                                    <constraint firstAttribute="width" constant="141" id="WPf-yK-JMS"/>
                                 </constraints>
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="1Ag-4W-thl" firstAttribute="top" secondItem="H5A-TS-4S9" secondAttribute="bottom" constant="9" id="1R4-J7-ixF"/>
-                            <constraint firstItem="GX2-US-REo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="6W0-HQ-T3p"/>
-                            <constraint firstItem="H5A-TS-4S9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Azt-lT-QUK"/>
-                            <constraint firstItem="GX2-US-REo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="KSP-Zx-TLR"/>
-                            <constraint firstItem="H5A-TS-4S9" firstAttribute="top" secondItem="GX2-US-REo" secondAttribute="bottom" constant="8" id="QSp-DC-rlf"/>
-                            <constraint firstAttribute="trailing" secondItem="GX2-US-REo" secondAttribute="trailing" constant="20" id="ShY-f0-3Df"/>
-                            <constraint firstItem="1Ag-4W-thl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="tRs-aT-dLj"/>
+                            <constraint firstItem="KnZ-6t-CHT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="2wt-fw-0bg"/>
+                            <constraint firstItem="H5A-TS-4S9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="5or-Tk-etC"/>
+                            <constraint firstItem="H5A-TS-4S9" firstAttribute="top" secondItem="GX2-US-REo" secondAttribute="bottom" constant="8" id="CRx-65-xzN"/>
+                            <constraint firstAttribute="trailing" secondItem="KnZ-6t-CHT" secondAttribute="trailing" id="Nt2-ip-5rX"/>
+                            <constraint firstItem="1Ag-4W-thl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Til-z7-5DO"/>
+                            <constraint firstItem="1Ag-4W-thl" firstAttribute="top" secondItem="H5A-TS-4S9" secondAttribute="bottom" constant="8" id="VN9-zd-Iqx"/>
+                            <constraint firstItem="GX2-US-REo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="aSh-cg-Ae4"/>
+                            <constraint firstItem="xbw-DX-dGN" firstAttribute="leading" secondItem="1Ag-4W-thl" secondAttribute="trailing" constant="8" id="aV8-Mo-4aX"/>
+                            <constraint firstItem="xbw-DX-dGN" firstAttribute="top" secondItem="GX2-US-REo" secondAttribute="bottom" constant="8" id="kob-7M-tzn"/>
+                            <constraint firstAttribute="bottom" secondItem="KnZ-6t-CHT" secondAttribute="bottom" id="lX3-Hg-Rcs"/>
+                            <constraint firstAttribute="trailing" secondItem="GX2-US-REo" secondAttribute="trailing" constant="20" id="qTW-4F-32a"/>
+                            <constraint firstItem="GX2-US-REo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="xhv-4T-iYa"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mButton" destination="KnZ-6t-CHT" id="aIO-jh-qdh"/>
                         <outlet property="mCheckBox" destination="1Ag-4W-thl" id="ddf-lc-1ab"/>
+                        <outlet property="mIconView" destination="xbw-DX-dGN" id="bcg-xu-e58"/>
                         <outlet property="mStepper" destination="H5A-TS-4S9" id="VVw-Db-HY0"/>
                         <outlet property="mTextField" destination="GX2-US-REo" id="exI-4v-cmM"/>
                     </connections>

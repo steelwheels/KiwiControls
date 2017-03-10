@@ -17,12 +17,11 @@ import KiwiGraphics
 open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 {
 	private var mContentRect:	CGRect
-	private var mLayerDrawer:	KGImageDrawer
+	private var mImageDrawer:	KGImageDrawer? = nil
 	private var mDrawnSize:		CGSize
 
-	public init(frame frm: CGRect, contentRect crect: CGRect, drawer drw: @escaping KGImageDrawer){
+	public init(frame frm: CGRect, contentRect crect: CGRect){
 		mContentRect  = crect
-		mLayerDrawer  = drw
 		mDrawnSize    = CGSize.zero
 		super.init(frame: frm)
 		super.delegate = self
@@ -31,6 +30,11 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	public var imageDrawer: KGImageDrawer? {
+		get { return mImageDrawer }
+		set(drawer) { mImageDrawer = drawer }
 	}
 
 	public var contentRect: CGRect {
@@ -56,33 +60,35 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 	//}
 
 	public func draw(_ layer: CALayer, in ctx: CGContext) {
-		let contentsize = mContentRect.size
-		var image: KGImage
-		if let imgp = layer.contents as? KGImage {
-			if contentsize != mDrawnSize {
-				layer.contents = image = drawImage(context: ctx, bounds: mContentRect)
-				mDrawnSize = contentsize
+		if let drawer = mImageDrawer {
+			let contentsize = mContentRect.size
+			var image: KGImage
+			if let imgp = layer.contents as? KGImage {
+				if contentsize != mDrawnSize {
+					layer.contents = image = drawImage(context: ctx, bounds: mContentRect, drawer: drawer)
+					mDrawnSize = contentsize
+				} else {
+					image = imgp
+				}
 			} else {
-				image = imgp
+				layer.contents = image = drawImage(context: ctx, bounds: mContentRect, drawer: drawer)
+				mDrawnSize = contentsize
 			}
-		} else {
-			layer.contents = image = drawImage(context: ctx, bounds: mContentRect)
-			mDrawnSize = contentsize
+			let drawrect = mContentRect.move(dx: frame.origin.x, dy: frame.origin.y)
+			ctx.draw(image.toCGImage, in: drawrect)
 		}
-		let drawrect = mContentRect.move(dx: frame.origin.x, dy: frame.origin.y)
-		ctx.draw(image.toCGImage, in: drawrect)
 	}
 
-	private func drawImage(context ctx:CGContext, bounds bnds:CGRect) -> KGImage {
+	private func drawImage(context ctx:CGContext, bounds bnds:CGRect, drawer drw: KGImageDrawer) -> KGImage {
 		let image: KGImage
 		#if os(iOS)
 			ctx.saveGState()
 			ctx.translateBy(x: 0.0, y: bounds.size.height)
 			ctx.scaleBy(x: 1.0, y: -1.0)
-			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: mLayerDrawer)
+			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
 			ctx.restoreGState()
 		#else
-			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: mLayerDrawer)
+			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
 		#endif
 		return image
 	}

@@ -25,7 +25,8 @@ open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 			//Swift.print("repetitive: allocate layers")
 			let suborigin = KGOrigin(origin: origin, size: es, frame: f)
 			let subrect   = CGRect(origin: suborigin, size: es)
-			let sublayer  = KCImageDrawerLayer(frame: f, contentRect: subrect, drawer: ed)
+			let sublayer  = KCImageDrawerLayer(frame: f, contentRect: subrect)
+			sublayer.imageDrawer = ed
 			self.addSublayer(sublayer)
 		}
 	}

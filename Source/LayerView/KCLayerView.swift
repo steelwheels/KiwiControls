@@ -34,6 +34,16 @@ public class KCLayerView: KCView
 		}
 	}
 
+	public func doUpdate() {
+		if let rootlayers = rootLayer.sublayers {
+			for rootlayer in rootlayers {
+				if let target = rootlayer as? KCLayer {
+					target.doUpdate()
+				}
+			}
+		}
+	}
+
 	public override func observe(state stat: CNState) {
 		if let rootlayers = rootLayer.sublayers {
 			for rootlayer in rootlayers {
