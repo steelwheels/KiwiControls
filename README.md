@@ -1,20 +1,16 @@
-KiwiControls
-============
+# KiwiControls Framework
 
-Overview
---------
-KiwiControls is a package of the implementation of controls for iOS/OSX application.
+## Introduction
+KiwiControls framework contains the implementation of GUI controls which can be
+used by macOS and iOS. The purpose of this framework is definition and implementation of common API between macOS and iOS.
 
-Copyright
----------
+## Copyright
 This software is produced by [Steel Wheels Project](http://steelwheels.github.io) and distributed under
 [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
-Required software
------------------
-Following frameworks/libraries are required to build this framework.
-*  [Canary Framework](http://steelwheels.github.io/Canary/)
-
-References
-----------
+## Related documents
+### Specification
 * [RGB Color Chart](http://lowlife.jp/yasusii/static/color_chart.html)
+
+### Required Software by this framework
+*  [Canary Framework](http://steelwheels.github.io/Canary/): This framework defines primitive data structure and functions. For more details, see [README file](https://github.com/steelwheels/Canary) on github.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -48,23 +48,34 @@
                                     <constraint firstAttribute="height" constant="32" id="zpH-pI-KcB"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rC4-OA-AGm" customClass="KCIconView" customModule="KiwiControls">
+                                <rect key="frame" x="16" y="146" width="343" height="128"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Ui4-W4-5TA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="CBs-2A-eNb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3jY-mo-Qes"/>
                             <constraint firstItem="nKh-iI-ela" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7hm-JJ-UXB"/>
+                            <constraint firstItem="rC4-OA-AGm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PPg-O3-6zG"/>
                             <constraint firstItem="9G4-DP-bQx" firstAttribute="top" secondItem="nKh-iI-ela" secondAttribute="bottom" constant="8" id="Q7V-vB-6K0"/>
                             <constraint firstItem="nKh-iI-ela" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aPv-ar-sqk"/>
                             <constraint firstItem="nKh-iI-ela" firstAttribute="top" secondItem="CBs-2A-eNb" secondAttribute="bottom" constant="8" id="bFU-ST-9Gj"/>
                             <constraint firstItem="CBs-2A-eNb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="css-Cx-VLK"/>
                             <constraint firstItem="CBs-2A-eNb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dra-ol-K1n"/>
+                            <constraint firstItem="rC4-OA-AGm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="pMV-0I-Cv7"/>
                             <constraint firstItem="9G4-DP-bQx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rqH-nG-b3C"/>
                             <constraint firstItem="9G4-DP-bQx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="s6U-7V-IZH"/>
+                            <constraint firstItem="rC4-OA-AGm" firstAttribute="top" secondItem="9G4-DP-bQx" secondAttribute="bottom" constant="8" id="tAg-7N-Kmi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mButton" destination="Qjg-NL-faK" id="l9G-gf-csN"/>
                         <outlet property="mCheckBox" destination="9G4-DP-bQx" id="MMV-et-Uiu"/>
+                        <outlet property="mIconView" destination="rC4-OA-AGm" id="5EO-5g-tjg"/>
                         <outlet property="mStepper" destination="nKh-iI-ela" id="lNr-XP-0Qq"/>
                         <outlet property="mTextField" destination="CBs-2A-eNb" id="zrS-84-CvC"/>
                     </connections>

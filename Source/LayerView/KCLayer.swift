@@ -91,6 +91,17 @@ open class KCLayer: CALayer
 		}
 	}
 
+	public func updateLayout(frame f: CGRect){
+		frame = f
+		if let slayers = self.sublayers {
+			for sublayer in slayers {
+				if let l = sublayer as? KCLayer {
+					l.updateLayout(frame: f)
+				}
+			}
+		}
+	}
+
 	public func requrestUpdateIn(dirtyRect drect: CGRect){
 		mUpdateRect = mUpdateRect.union(drect)
 	}

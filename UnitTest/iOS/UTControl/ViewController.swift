@@ -15,6 +15,7 @@ class ViewController: UIViewController
 	@IBOutlet weak var mButton: KCButton!
 	@IBOutlet weak var mStepper: KCStepper!
 	@IBOutlet weak var mCheckBox: KCCheckBox!
+	@IBOutlet weak var mIconView: KCIconView!
 
 	private var mState: UTState? = nil
 
@@ -78,6 +79,24 @@ class ViewController: UIViewController
 		mCheckBox.checkUpdatedCallback = {
 			(value: Bool) -> Void in
 			Swift.print("update check box value: \(value)")
+		}
+
+		mIconView.label = "The Icon View"
+		mIconView.imageDrawer = {
+			(context: CGContext, bounds: CGRect) -> Void in
+			Swift.print("Draw Icon")
+			let hexagon = KGHexagon(bounds: bounds, lineWidth: 2.0)
+			context.draw(hexagon: hexagon, withGradient: nil)
+		}
+
+		mIconView.label = "The Icon View"
+		mIconView.imageDrawer = {
+			(context: CGContext, bounds: CGRect) -> Void in
+			Swift.print("Draw Icon in \(bounds.description)")
+			let hexagon = KGHexagon(bounds: bounds, lineWidth: 2.0)
+			Swift.print(" -> hexagon \(hexagon.description)")
+			context.draw(hexagon: hexagon, withGradient: nil)
+			//context.fillEllipse(in: bounds)
 		}
 		
 		mState = state

@@ -41,6 +41,11 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 		get { return mContentRect }
 	}
 
+	public override func updateLayout(frame f: CGRect){
+		super.updateLayout(frame: f)
+		mContentRect = mContentRect.intersection(f)
+	}
+
 	public func move(dx xval: CGFloat, dy yval: CGFloat) {
 		requrestUpdateIn(dirtyRect: mContentRect)
 		mContentRect.origin.x += xval

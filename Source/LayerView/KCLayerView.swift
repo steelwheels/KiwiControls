@@ -12,8 +12,6 @@
 #endif
 import KiwiGraphics
 
-
-
 public class KCLayerView: KCView
 {
 	public var rootLayer: CALayer {
@@ -44,6 +42,20 @@ public class KCLayerView: KCView
 		}
 	}
 
+	#if os(iOS)
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+		let f = frame
+		if let rootlayers = rootLayer.sublayers {
+			for rootlayer in rootlayers {
+				if let target = rootlayer as? KCLayer {
+					target.updateLayout(frame: f)
+				}
+			}
+		}
+	}
+	#endif /* os(iOS) */
+	
 	public override func observe(state stat: CNState) {
 		if let rootlayers = rootLayer.sublayers {
 			for rootlayer in rootlayers {

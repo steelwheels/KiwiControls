@@ -38,7 +38,7 @@ open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 	public var contentRect: CGRect {
 		get { return frame }
 	}
-
+	
 	public func move(dx xval: CGFloat, dy yval: CGFloat) {
 		if let subs = self.sublayers {
 			for layer in subs {
