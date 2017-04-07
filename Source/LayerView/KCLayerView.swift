@@ -11,6 +11,7 @@
 	import Cocoa
 #endif
 import KiwiGraphics
+import Canary
 
 public class KCLayerView: KCView
 {

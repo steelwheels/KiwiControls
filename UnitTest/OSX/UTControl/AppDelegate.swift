@@ -1,10 +1,9 @@
-//
-//  AppDelegate.swift
-//  UTControl
-//
-//  Created by Tomoo Hamada on 2016/12/23.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	AppDelegate.swift
+ * @brief	AppDelegate for UTControl
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Cocoa
 

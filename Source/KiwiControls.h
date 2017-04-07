@@ -1,10 +1,9 @@
-//
-//  KiwiControls.h
-//  KiwiControls
-//
-//  Created by Tomoo Hamada on 2016/09/11.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	KiwiControl.h.
+ * @brief	Bridge for Objective-C
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 #import "TargetConditionals.h"
 #if TARGET_OS_IPHONE

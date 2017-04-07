@@ -11,6 +11,7 @@
 	import UIKit
 #endif
 import KiwiGraphics
+import Canary
 
 open class KCTableView : KCView
 {

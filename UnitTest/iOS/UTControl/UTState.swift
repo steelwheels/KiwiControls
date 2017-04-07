@@ -1,13 +1,11 @@
-//
-//  UTState.swift
-//  KiwiControls
-//
-//  Created by Tomoo Hamada on 2016/12/24.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTState.swift
+ * @brief	Unit test for CNState class
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Foundation
-
 import Canary
 
 public enum UTProgress {

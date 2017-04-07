@@ -7,6 +7,7 @@
 
 import Foundation
 import KiwiGraphics
+import Canary
 
 open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 {

@@ -2,7 +2,7 @@
  * @file	KCButton.swift
  * @brief	Define KCButton class
  * @par Copyright
- *   Copyright (C) 2016 Steel Wheels Project
+ *   Copyright (C) 2016-2017 Steel Wheels Project
  */
 
 #if os(iOS)

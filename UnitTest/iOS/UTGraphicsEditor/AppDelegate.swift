@@ -1,10 +1,9 @@
-//
-//  AppDelegate.swift
-//  UTGraphicsEditor
-//
-//  Created by Tomoo Hamada on 2016/11/27.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	AppDelegate.swift
+ * @brief	Delegate for UTGraphicsEditor
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import UIKit
 

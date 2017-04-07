@@ -1,10 +1,9 @@
-//
-//  ViewController.swift
-//  UTGraphicsView
-//
-//  Created by Tomoo Hamada on 2016/09/18.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	ViewController.swift
+ * @brief	View controller for UTGraphicsView
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import KiwiControls
 import KiwiGraphics

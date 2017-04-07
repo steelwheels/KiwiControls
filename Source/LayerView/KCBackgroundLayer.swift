@@ -6,8 +6,9 @@
  */
 
 import Foundation
-import KiwiGraphics
 import CoreGraphics
+import KiwiGraphics
+import Canary
 
 public class KCBackgroundLayer: KCLayer
 {

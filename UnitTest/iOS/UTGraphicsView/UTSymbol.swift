@@ -1,10 +1,9 @@
-//
-//  UTSymbol.swift
-//  KiwiControls
-//
-//  Created by Tomoo Hamada on 2017/02/07.
-//  Copyright © 2017年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTSymbol.swift
+ * @brief	Unit test for KCImagaDrawer class
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Foundation
 import KiwiControls
