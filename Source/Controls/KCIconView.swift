@@ -43,33 +43,13 @@ open class KCIconView: KCView
 	}
 
 	public var imageDrawer: KGImageDrawer? {
-		get {
-			if let coreview = mCoreView {
-				return coreview.imageDrawer
-			} else {
-				return nil
-			}
-		}
-		set(drawer){
-			if let coreview = mCoreView {
-				coreview.imageDrawer = drawer
-			}
-		}
+		get { return coreView().imageDrawer }
+		set(drawer){ coreView().imageDrawer = drawer }
 	}
 
 	public var label: String {
-		get {
-			if let coreview = mCoreView {
-				return coreview.label
-			} else {
-				return ""
-			}
-		}
-		set(str){
-			if let coreview = mCoreView {
-				coreview.label = str
-			}
-		}
+		get { return coreView().label }
+		set(str){ coreView().label = str }
 	}
 
 	private func coreView() -> KCIconViewCore {
@@ -79,26 +59,4 @@ open class KCIconView: KCView
 			fatalError("No core view")
 		}
 	}
-
-	/*
-	public final override func observe(state stat: CNState){
-		if let decen = decideEnableCallback {
-			if let doenable = decen(stat) {
-				coreView().isEnabled = doenable
-			}
-		}
-		if let decvis = decideVisibleCallback {
-			if let dovis = decvis(stat) {
-				coreView().isVisible = dovis
-			}
-		}
-	}
-
-	public func setColors(colors cols: KGColorPreference.ButtonColors){
-		coreView().setColors(colors: cols)
-		#if os(iOS)
-			self.backgroundColor = cols.background.normal
-		#endif
-	}
-*/
 }

@@ -15,30 +15,17 @@ import KiwiGraphics
 
 open class KCButton: KCView
 {
-	public var decideEnableCallback : ((_: CNState) -> Bool?)? = nil
-	public var decideVisibleCallback: ((_: CNState) -> Bool?)? = nil
-
-	public var buttonPressedCallback: (() -> Void)? {
-		get { return coreView().buttonPressedCallback }
-		set(callback){ coreView().buttonPressedCallback = callback }
-	}
-
-	public var title: String {
-		get { return coreView().title }
-		set(newstr){ coreView().title = newstr }
-	}
-
 	private var mCoreView: KCButtonCore? = nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		super.init(frame: frame) ;
+	super.init(frame: frame) ;
 		setupContext() ;
 	}
 	#else
 	public override init(frame: CGRect){
-	super.init(frame: frame) ;
-	setupContext()
+		super.init(frame: frame) ;
+		setupContext()
 	}
 	#endif
 
@@ -56,17 +43,24 @@ open class KCButton: KCView
 		}
 	}
 
-	public final override func observe(state stat: CNState){
-		if let decen = decideEnableCallback {
-			if let doenable = decen(stat) {
-				coreView().isEnabled = doenable
-			}
-		}
-		if let decvis = decideVisibleCallback {
-			if let dovis = decvis(stat) {
-				coreView().isVisible = dovis
-			}
-		}
+	public var buttonPressedCallback: (() -> Void)? {
+		get { return coreView().buttonPressedCallback }
+		set(callback){ coreView().buttonPressedCallback = callback }
+	}
+
+	public var isEnabled: Bool {
+		get { return coreView().isEnabled }
+		set(v) { coreView().isEnabled = v }
+	}
+
+	public var isVisible: Bool {
+		get { return coreView().isVisible }
+		set(v) { coreView().isVisible = v }
+	}
+
+	public var title: String {
+		get { return coreView().title }
+		set(newstr){ coreView().title = newstr }
 	}
 
 	public func setColors(colors cols: KGColorPreference.ButtonColors){

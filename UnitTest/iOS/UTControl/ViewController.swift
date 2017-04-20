@@ -31,15 +31,8 @@ class ViewController: UIViewController
 		mTextField.setColors(colors: textcolor)
 		
 		mButton.state = state
-		mButton.decideEnableCallback = {
-			(_: CNState) -> Bool? in
-            
-			return nil
-		}
-		mButton.decideVisibleCallback = {
-			(_: CNState) -> Bool? in
-			return nil
-		}
+		mButton.isEnabled = true
+		mButton.isVisible = true
 		mButton.buttonPressedCallback = {
 			
 			() -> Void in
@@ -53,28 +46,16 @@ class ViewController: UIViewController
 		mStepper.increment		= 1.0
 		mStepper.numberOfDecimalPlaces	= 0
 		mStepper.currentValue		= 2.0
-		mStepper.decideEnableCallback = {
-			(_: CNState) -> Bool? in
-			return nil
-		}
-		mStepper.decideVisibleCallback = {
-			(_: CNState) -> Bool? in
-			return nil
-		}
+		mStepper.isEnabled		= true
+		mStepper.isVisible		= true
 		mStepper.updateValueCallback = {
 			(value: Double) -> Void in
 			Swift.print("updateValueCallback = \(value)")
 		}
 
 		mCheckBox.title = "Check Box"
-		mCheckBox.decideEnableCallback = {
-			(_: CNState) -> Bool? in
-			return nil
-		}
-		mCheckBox.decideVisibleCallback = {
-			(_: CNState) -> Bool? in
-			return nil
-		}
+		mCheckBox.isEnabled = true
+		mCheckBox.isVisible = true
 		mCheckBox.checkUpdatedCallback = {
 			(value: Bool) -> Void in
 			Swift.print("update check box value: \(value)")
