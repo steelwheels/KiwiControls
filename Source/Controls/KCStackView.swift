@@ -34,8 +34,8 @@ open class KCStackView : KCView
 	}
 	#else
 	public override init(frame: CGRect){
-	super.init(frame: frame) ;
-	setupContext()
+		super.init(frame: frame) ;
+		setupContext()
 	}
 	#endif
 

@@ -6,9 +6,12 @@
 //  Copyright © 2017年 Steel Wheels Project. All rights reserved.
 //
 
+import KiwiControls
 import Cocoa
 
-class ViewController: NSViewController {
+class ViewController: NSViewController
+{
+	@IBOutlet weak var mStackView: KCStackView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -21,7 +24,5 @@ class ViewController: NSViewController {
 		// Update the view, if already loaded.
 		}
 	}
-
-
 }
 
