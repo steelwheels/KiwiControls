@@ -79,14 +79,4 @@ open class KCTextField : KCView
 		let valstr = String(format: "%4.2lf", rval)
 		text = valstr
 	}
-
-	public var decideTextCallback : ((_: CNState) -> String?)? = nil
-
-	public final override func observe(state stat: CNState){
-		if let dectext = decideTextCallback {
-			if let text = dectext(stat) {
-				coreView.text = text
-			}
-		}
-	}
 }

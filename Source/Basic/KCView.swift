@@ -45,31 +45,6 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 
 open class KCView : KCViewBase
 {
-	private dynamic var mState: CNState?   = nil
-
-	deinit {
-		KCDeinitObserver(state: mState, observer: self)
-	}
-
-	public var state : CNState? {
-		get {
-			return mState
-		}
-		set(newstate) {
-			mState = KCReplaceState(originalState: mState, newState: newstate, observer: self)
-		}
-	}
-
-	final public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if let state = KCDidStateUpdated(forKeyPath: keyPath, of: object) {
-			observe(state: state)
-		}
-	}
-
-	open func observe(state stat: CNState){
-		/* Do nothing (Override this method) */
-	}
-
 	/*
 	 * Event control
 	 */

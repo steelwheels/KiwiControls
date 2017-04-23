@@ -51,9 +51,6 @@ open class KCTableView : KCView
 			fatalError("Can not load KCTextFieldCore")
 		}
 	}
-
-	public final override func observe(state stat: CNState){
-	}
 }
 
 

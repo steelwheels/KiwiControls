@@ -56,16 +56,6 @@ public class KCLayerView: KCView
 		}
 	}
 	#endif /* os(iOS) */
-	
-	public override func observe(state stat: CNState) {
-		if let rootlayers = rootLayer.sublayers {
-			for rootlayer in rootlayers {
-				if let target = rootlayer as? KCLayer {
-					target.observe(state: stat)
-				}
-			}
-		}
-	}
 
 	public override func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
 		if let rootlayers = rootLayer.sublayers {
