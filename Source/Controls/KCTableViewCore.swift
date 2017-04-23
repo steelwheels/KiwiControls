@@ -2,7 +2,7 @@
  * @file	KCTableViewCore.swift
  * @brief	Define KCTableViewCore class
  * @par Copyright
- *   Copyright (C) 017 Steel Wheels Project
+ *   Copyright (C) 2017 Steel Wheels Project
  */
 
 #if os(OSX)

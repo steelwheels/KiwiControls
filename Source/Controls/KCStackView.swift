@@ -1,8 +1,8 @@
 /**
- * @file	KCTableView.swift
- * @brief	Define KCTableView class
+ * @file KCStackView.swift
+ * @brief Define KCStackView class
  * @par Copyright
- *   Copyright (C) 017 Steel Wheels Project
+ *   Copyright (C) 2017 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -13,11 +13,11 @@
 import KiwiGraphics
 import Canary
 
-open class KCTableView : KCView
+open class KCStackView : KCView
 {
-	private var mCoreView : KCTableViewCore?	= nil
+	private var mCoreView : KCStackViewCore?	= nil
 
-	private var coreView: KCTableViewCore {
+	private var coreView: KCStackViewCore {
 		get {
 			if let cview = mCoreView {
 				return cview
@@ -34,8 +34,8 @@ open class KCTableView : KCView
 	}
 	#else
 	public override init(frame: CGRect){
-		super.init(frame: frame) ;
-		setupContext()
+	super.init(frame: frame) ;
+	setupContext()
 	}
 	#endif
 
@@ -45,12 +45,11 @@ open class KCTableView : KCView
 	}
 
 	private func setupContext(){
-		if let coreview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
+		if let coreview = loadChildXib(thisClass: KCStackView.self, nibName: "KCStackViewCore") as? KCStackViewCore {
 			mCoreView = coreview
 		} else {
-			fatalError("Can not load KCTextFieldCore")
+			fatalError("Can not load KCStackCore")
 		}
 	}
 }
-
 
