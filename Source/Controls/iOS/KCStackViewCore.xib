@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="346"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vSI-x3-fgI">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vSI-x3-fgI">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="346"/>
                 </stackView>
             </subviews>
@@ -27,6 +27,9 @@
                 <constraint firstAttribute="bottom" secondItem="vSI-x3-fgI" secondAttribute="bottom" id="dzH-KK-BbU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mStackView" destination="vSI-x3-fgI" id="ZX6-ij-8RI"/>
+            </connections>
             <point key="canvasLocation" x="22.5" y="866"/>
         </view>
     </objects>

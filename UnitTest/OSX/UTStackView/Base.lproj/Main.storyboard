@@ -686,11 +686,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6f-ic-EzT" customClass="KCStackView" customModule="KiwiControls">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="a6f-ic-EzT" customClass="KCStackView" customModule="KiwiControls">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="a6f-ic-EzT" secondAttribute="bottom" id="M6M-OA-nsq"/>
+                            <constraint firstItem="a6f-ic-EzT" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="aOT-rF-Oe9"/>
+                            <constraint firstAttribute="trailing" secondItem="a6f-ic-EzT" secondAttribute="trailing" id="iIE-PD-uuS"/>
+                            <constraint firstItem="a6f-ic-EzT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="isd-O2-TeT"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mStackView" destination="a6f-ic-EzT" id="uDm-1P-5tq"/>

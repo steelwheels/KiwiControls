@@ -15,6 +15,17 @@ import Canary
 
 open class KCStackView : KCView
 {
+	public enum Axis {
+		case Holizontal
+		case Vertical
+	}
+
+	public enum Alignment {
+		case Leading
+		case Center
+		case Trailing
+	}
+
 	private var mCoreView : KCStackViewCore?	= nil
 
 	private var coreView: KCStackViewCore {
@@ -50,6 +61,20 @@ open class KCStackView : KCView
 		} else {
 			fatalError("Can not load KCStackCore")
 		}
+	}
+
+	public var axis: Axis {
+		get		{ return coreView.axis }
+		set(newval)	{ coreView.axis = newval }
+	}
+
+	public var alignment: Alignment {
+		get		{ return coreView.alignment }
+		set(newval)	{ coreView.alignment = newval }
+	}
+
+	public func addContentView(view v: KCView) {
+		coreView.addContentView(view: v)
 	}
 }
 
