@@ -93,7 +93,13 @@ open class KCStackViewCore : KCView
 		}
 	}
 
-	public func setViews(views vs:Array<KCView>, in gravity: NSStackViewGravity){
-		mStackView.setViews(vs, in: gravity)
+	public func setViews(views vs:Array<KCView>){
+		#if os(iOS)
+			for view in vs {
+				mStackView.addArrangedSubview(view)
+			}
+		#else
+			mStackView.setViews(vs, in: .top)
+		#endif
 	}
 }

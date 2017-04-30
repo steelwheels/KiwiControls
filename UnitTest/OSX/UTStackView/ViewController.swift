@@ -29,7 +29,7 @@ class ViewController: NSViewController
 		button1.title = "Button-1"
 		mStackView.addSubview(button1)
 
-		mStackView.setViews(views:[button0, button1], in: .top)
+		mStackView.setViews(views:[button0, button1])
 
 		// Do any additional setup after loading the view.
 	}

@@ -26,8 +26,6 @@ open class KCStackView : KCCoreView
 		case Trailing
 	}
 
-
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -63,8 +61,8 @@ open class KCStackView : KCCoreView
 		set(newval)	{ coreView.alignment = newval }
 	}
 
-	public func setViews(views vs:Array<KCView>, in gravity: NSStackViewGravity){
-		coreView.setViews(views: vs, in: gravity)
+	public func setViews(views vs:Array<KCView>){
+		coreView.setViews(views: vs)
 	}
 
 	private var coreView: KCStackViewCore {
