@@ -23,11 +23,13 @@ class ViewController: NSViewController
 
 		let button0 = KCButton(frame: NSRect(origin: origin, size: CGSize(width: size.width, height: 32.0)))
 		button0.title = "Button-0"
-		mStackView.addSubview(view: button0)
+		mStackView.addSubview(button0)
 
 		let button1 = KCButton(frame: NSRect(origin: CGPoint(x: origin.x, y:origin.y+32), size: CGSize(width: size.width, height: 32.0)))
 		button1.title = "Button-1"
-		mStackView.addSubview(view: button1)
+		mStackView.addSubview(button1)
+
+		mStackView.setViews(views:[button0, button1], in: .top)
 
 		// Do any additional setup after loading the view.
 	}

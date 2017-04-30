@@ -73,8 +73,8 @@ open class KCStackView : KCView
 		set(newval)	{ coreView.alignment = newval }
 	}
 
-	public func addContentView(view v: KCView) {
-		coreView.addContentView(view: v)
+	public func setViews(views vs:Array<KCView>, in gravity: NSStackViewGravity){
+		coreView.setViews(views: vs, in: gravity)
 	}
 }
 
