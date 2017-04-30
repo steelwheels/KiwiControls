@@ -55,6 +55,7 @@
 		0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5751DE180D50098C5B8 /* KCLayer.swift */; };
 		0598D57B1DE180D50098C5B8 /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5761DE180D50098C5B8 /* KCRepetitiveLayer.swift */; };
 		0598D57C1DE180D50098C5B8 /* KCStrokeEditorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D5771DE180D50098C5B8 /* KCStrokeEditorLayer.swift */; };
+		059CFFA61EB5E9A30005F3C0 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059CFFA51EB5E9A30005F3C0 /* KCCoreView.swift */; };
 		05A03C0A1E1EAB5300156321 /* KCButtonBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A03C091E1EAB5300156321 /* KCButtonBody.swift */; };
 		05ACEF591E0C2C3C009F10A7 /* KCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEF581E0C2C3C009F10A7 /* KCButton.swift */; };
 		05ACEF611E0C3317009F10A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEF601E0C3317009F10A7 /* AppDelegate.swift */; };
@@ -172,6 +173,7 @@
 		0598D5751DE180D50098C5B8 /* KCLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayer.swift; sourceTree = "<group>"; };
 		0598D5761DE180D50098C5B8 /* KCRepetitiveLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveLayer.swift; sourceTree = "<group>"; };
 		0598D5771DE180D50098C5B8 /* KCStrokeEditorLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeEditorLayer.swift; sourceTree = "<group>"; };
+		059CFFA51EB5E9A30005F3C0 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		05A03C091E1EAB5300156321 /* KCButtonBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButtonBody.swift; sourceTree = "<group>"; };
 		05ACEF581E0C2C3C009F10A7 /* KCButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCButton.swift; path = Controls/KCButton.swift; sourceTree = "<group>"; };
 		05ACEF5E1E0C3317009F10A7 /* UTControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +325,7 @@
 				05386D411D8570A4004B8DDF /* KCAlert.swift */,
 				05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */,
 				05386D441D8570A4004B8DDF /* KCView.swift */,
+				059CFFA51EB5E9A30005F3C0 /* KCCoreView.swift */,
 				05386D451D8570A4004B8DDF /* KCViewController.swift */,
 				057A34971E0C1E3E0071F20A /* KCStateObserver.swift */,
 			);
@@ -701,6 +704,7 @@
 				055674CB1DFB963B00794510 /* KCGraphicsView.swift in Sources */,
 				055FBC351E6A30F600A7A640 /* KCTableView.swift in Sources */,
 				0566C5B81E69BE9B001F6FD7 /* KCTableViewCore.swift in Sources */,
+				059CFFA61EB5E9A30005F3C0 /* KCCoreView.swift in Sources */,
 				05386D591D858603004B8DDF /* KCLayerView.swift in Sources */,
 				0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,

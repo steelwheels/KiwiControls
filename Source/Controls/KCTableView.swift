@@ -13,19 +13,9 @@
 import KiwiGraphics
 import Canary
 
-open class KCTableView : KCView
+open class KCTableView : KCCoreView
 {
-	private var mCoreView : KCTableViewCore?	= nil
 
-	private var coreView: KCTableViewCore {
-		get {
-			if let cview = mCoreView {
-				return cview
-			} else {
-				fatalError("No core view")
-			}
-		}
-	}
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -45,11 +35,15 @@ open class KCTableView : KCView
 	}
 
 	private func setupContext(){
-		if let coreview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
-			mCoreView = coreview
+		if let newview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
+			setCoreView(view: newview)
 		} else {
 			fatalError("Can not load KCTextFieldCore")
 		}
+	}
+
+	private var coreView: KCTableViewCore {
+		get { return getCoreView() }
 	}
 }
 

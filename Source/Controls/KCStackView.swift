@@ -13,7 +13,7 @@
 import KiwiGraphics
 import Canary
 
-open class KCStackView : KCView
+open class KCStackView : KCCoreView
 {
 	public enum Axis {
 		case Holizontal
@@ -26,17 +26,7 @@ open class KCStackView : KCView
 		case Trailing
 	}
 
-	private var mCoreView : KCStackViewCore?	= nil
 
-	private var coreView: KCStackViewCore {
-		get {
-			if let cview = mCoreView {
-				return cview
-			} else {
-				fatalError("No core view")
-			}
-		}
-	}
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -56,8 +46,8 @@ open class KCStackView : KCView
 	}
 
 	private func setupContext(){
-		if let coreview = loadChildXib(thisClass: KCStackView.self, nibName: "KCStackViewCore") as? KCStackViewCore {
-			mCoreView = coreview
+		if let newview = loadChildXib(thisClass: KCStackView.self, nibName: "KCStackViewCore") as? KCStackViewCore {
+			setCoreView(view: newview)
 		} else {
 			fatalError("Can not load KCStackCore")
 		}
@@ -75,6 +65,10 @@ open class KCStackView : KCView
 
 	public func setViews(views vs:Array<KCView>, in gravity: NSStackViewGravity){
 		coreView.setViews(views: vs, in: gravity)
+	}
+
+	private var coreView: KCStackViewCore {
+		get { return getCoreView() }
 	}
 }
 

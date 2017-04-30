@@ -13,10 +13,8 @@
 import Canary
 import KiwiGraphics
 
-open class KCButton: KCView
+open class KCButton: KCCoreView
 {
-	private var mCoreView: KCButtonCore? = nil
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 	super.init(frame: frame) ;
@@ -35,47 +33,43 @@ open class KCButton: KCView
 	}
 
 	private func setupContext(){
-		if let coreview = loadChildXib(thisClass: KCButton.self, nibName: "KCButtonCore") as? KCButtonCore {
-			mCoreView = coreview
-			coreview.setup()
+		if let newview = loadChildXib(thisClass: KCButton.self, nibName: "KCButtonCore") as? KCButtonCore {
+			setCoreView(view: newview)
+			newview.setup()
 		} else {
 			fatalError("Can not load KCButtonCore")
 		}
 	}
 
 	public var buttonPressedCallback: (() -> Void)? {
-		get { return coreView().buttonPressedCallback }
-		set(callback){ coreView().buttonPressedCallback = callback }
+		get { return coreView.buttonPressedCallback }
+		set(callback){ coreView.buttonPressedCallback = callback }
 	}
 
 	public var isEnabled: Bool {
-		get { return coreView().isEnabled }
-		set(v) { coreView().isEnabled = v }
+		get { return coreView.isEnabled }
+		set(v) { coreView.isEnabled = v }
 	}
 
 	public var isVisible: Bool {
-		get { return coreView().isVisible }
-		set(v) { coreView().isVisible = v }
+		get { return coreView.isVisible }
+		set(v) { coreView.isVisible = v }
 	}
 
 	public var title: String {
-		get { return coreView().title }
-		set(newstr){ coreView().title = newstr }
+		get { return coreView.title }
+		set(newstr){ coreView.title = newstr }
 	}
 
 	public func setColors(colors cols: KGColorPreference.ButtonColors){
-		coreView().setColors(colors: cols)
+		coreView.setColors(colors: cols)
 		#if os(iOS)
 			self.backgroundColor = cols.background.normal
 		#endif
 	}
 
-	private func coreView() -> KCButtonCore {
-		if let coreview = mCoreView {
-			return coreview
-		} else {
-			fatalError("No core view")
-		}
+	private var coreView : KCButtonCore {
+		get { return getCoreView() }
 	}
 }
 

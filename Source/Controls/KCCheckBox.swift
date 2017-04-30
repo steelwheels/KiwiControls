@@ -12,10 +12,8 @@
 #endif
 import Canary
 
-open class KCCheckBox: KCView
+open class KCCheckBox: KCCoreView
 {
-	private var mCoreView: KCCheckBoxCore? = nil
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 	super.init(frame: frame) ;
@@ -34,40 +32,36 @@ open class KCCheckBox: KCView
 	}
 
 	private func setupContext(){
-		if let coreview = loadChildXib(thisClass: KCCheckBox.self, nibName: "KCCheckBoxCore") as? KCCheckBoxCore {
-			mCoreView = coreview
-			coreview.setup()
+		if let newview = loadChildXib(thisClass: KCCheckBox.self, nibName: "KCCheckBoxCore") as? KCCheckBoxCore {
+			setCoreView(view: newview)
+			newview.setup()
 		} else {
 			fatalError("Can not load KCCheckBoxCore")
 		}
 	}
 
 	public var checkUpdatedCallback: ((_ value: Bool) -> Void)? {
-		get { return coreView().checkUpdatedCallback }
-		set(callback){ coreView().checkUpdatedCallback = callback }
+		get { return coreView.checkUpdatedCallback }
+		set(callback){ coreView.checkUpdatedCallback = callback }
 	}
 
 	public var title: String {
-		get { return coreView().title }
-		set(newstr){ coreView().title = newstr }
+		get { return coreView.title }
+		set(newstr){ coreView.title = newstr }
 	}
 
 	public var isEnabled: Bool {
-		get { return coreView().isEnabled }
-		set(v) { coreView().isEnabled = v }
+		get { return coreView.isEnabled }
+		set(v) { coreView.isEnabled = v }
 	}
 
 	public var isVisible: Bool {
-		get { return coreView().isVisible }
-		set(v) { coreView().isVisible = v }
+		get { return coreView.isVisible }
+		set(v) { coreView.isVisible = v }
 	}
 
-	private func coreView() -> KCCheckBoxCore {
-		if let coreview = mCoreView {
-			return coreview
-		} else {
-			fatalError("No core view")
-		}
+	private var coreView: KCCheckBoxCore {
+		get { return getCoreView() }
 	}
 }
 

@@ -13,20 +13,8 @@
 import Canary
 import KiwiGraphics
 
-open class KCTextField : KCView
+open class KCTextField : KCCoreView
 {
-	private var mCoreView : KCTextFieldCore?	= nil
-
-	private var coreView: KCTextFieldCore {
-		get {
-			if let cview = mCoreView {
-				return cview
-			} else {
-				fatalError("No core view")
-			}
-		}
-	}
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -45,8 +33,8 @@ open class KCTextField : KCView
 	}
 
 	private func setupContext(){
-		if let coreview = loadChildXib(thisClass: KCTextField.self, nibName: "KCTextFieldCore") as? KCTextFieldCore {
-			mCoreView = coreview
+		if let newview = loadChildXib(thisClass: KCTextField.self, nibName: "KCTextFieldCore") as? KCTextFieldCore {
+			setCoreView(view: newview)
 		} else {
 			fatalError("Can not load KCTextFieldCore")
 		}
@@ -78,5 +66,9 @@ open class KCTextField : KCView
 		let rval   = round(value: val, atPoint: 2)
 		let valstr = String(format: "%4.2lf", rval)
 		text = valstr
+	}
+
+	private var coreView: KCTextFieldCore {
+		get { return getCoreView() }
 	}
 }
