@@ -126,6 +126,20 @@ open class KCStackViewCore : KCView
 		}
 	}
 
+	#if os(iOS)
+	private func distribution2string(distribution dist: UIStackViewDistribution) -> String
+	{
+		let result: String
+		switch dist {
+		case .fill:			result = "fill"
+		case .fillEqually:		result = "fillEqually"
+		case .fillProportionally:	result = "fillProportionally"
+		case .equalSpacing:		result = "equalSpacing"
+		case .equalCentering:		result = "equalCentering"
+		}
+		return result
+	}
+	#else
 	private func distribution2string(distribution dist: NSStackViewDistribution) -> String
 	{
 		let result: String
@@ -139,4 +153,5 @@ open class KCStackViewCore : KCView
 		}
 		return result
 	}
+	#endif
 }
