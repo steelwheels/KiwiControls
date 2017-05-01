@@ -20,6 +20,13 @@ open class KCTableViewCore : KCView
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
+	open override func printDebugInfo(indent idt: Int){
+		super.printDebugInfo(indent: idt)
+		if let v = mTableView {
+			v.printDebugInfo(indent: idt+1)
+		}
+	}
+
 	/*
 	#if os(OSX)
 	@IBOutlet weak var mTextField: NSTextField!

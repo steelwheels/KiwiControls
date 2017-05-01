@@ -30,7 +30,8 @@ class ViewController: NSViewController
 		mStackView.addSubview(button1)
 
 		mStackView.setViews(views:[button0, button1])
-
+		mStackView.printDebugInfo(indent: 0)
+		
 		// Do any additional setup after loading the view.
 	}
 

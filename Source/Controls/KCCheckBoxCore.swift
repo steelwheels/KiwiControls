@@ -99,5 +99,21 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 	}
+
+	open override func printDebugInfo(indent idt: Int){
+		super.printDebugInfo(indent: idt)
+		#if os(iOS)
+			if let v = mSwitch {
+				v.printDebugInfo(indent: idt+1)
+			}
+			if let v = mLabel {
+				v.printDebugInfo(indent: idt+1)
+			}
+		#else
+			if let v = mCheckBox {
+				v.printDebugInfo(indent: idt+1)
+			}
+		#endif
+	}
 }
 

@@ -43,6 +43,30 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 	return CGPoint(x: p.x, y: y)
 }
 
+extension KCViewBase
+{
+	/*
+	* Debug information
+	*/
+	open func printDebugInfo(indent idt: Int){
+		#if os(iOS)
+			let name = NSStringFromClass(type(of: self))
+		#else
+			let name = self.className
+		#endif
+
+		printIndent(indent: idt) ; Swift.print("[\(name)]")
+		printIndent(indent: idt) ; Swift.print("- frame : \(self.frame.description)")
+		printIndent(indent: idt) ; Swift.print("- bounds: \(self.bounds.description)")
+	}
+
+	public func printIndent(indent idt: Int){
+		for _ in 0..<idt {
+			Swift.print("  ", terminator:"")
+		}
+	}
+}
+
 open class KCView : KCViewBase
 {
 	/*

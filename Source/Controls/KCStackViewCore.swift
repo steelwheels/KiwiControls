@@ -102,4 +102,18 @@ open class KCStackViewCore : KCView
 			mStackView.setViews(vs, in: .top)
 		#endif
 	}
+
+	open override func printDebugInfo(indent idt: Int){
+		super.printDebugInfo(indent: idt)
+		if let v = mStackView {
+			v.printDebugInfo(indent: idt+1)
+		}
+		var viewid = 0
+		for v in mStackView.arrangedSubviews {
+			printIndent(indent: idt+2)
+			Swift.print("[\(viewid)] ")
+			v.printDebugInfo(indent: idt+2)
+			viewid = viewid + 1
+		}
+	}
 }

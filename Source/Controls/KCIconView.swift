@@ -12,10 +12,8 @@
 #endif
 import KiwiGraphics
 
-open class KCIconView: KCView
+open class KCIconView: KCCoreView
 {
-	private var mCoreView: KCIconViewCore? = nil
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -34,29 +32,25 @@ open class KCIconView: KCView
 	}
 
 	private func setupContext(){
-		if let coreview = loadChildXib(thisClass: KCIconView.self, nibName: "KCIconViewCore") as? KCIconViewCore {
-			mCoreView = coreview
-			coreview.setup()
+		if let newview = loadChildXib(thisClass: KCIconView.self, nibName: "KCIconViewCore") as? KCIconViewCore {
+			setCoreView(view: newview)
+			newview.setup()
 		} else {
 			fatalError("Can not load KCIconViewCore")
 		}
 	}
 
 	public var imageDrawer: KGImageDrawer? {
-		get { return coreView().imageDrawer }
-		set(drawer){ coreView().imageDrawer = drawer }
+		get { return coreView.imageDrawer }
+		set(drawer){ coreView.imageDrawer = drawer }
 	}
 
 	public var label: String {
-		get { return coreView().label }
-		set(str){ coreView().label = str }
+		get { return coreView.label }
+		set(str){ coreView.label = str }
 	}
 
-	private func coreView() -> KCIconViewCore {
-		if let coreview = mCoreView {
-			return coreview
-		} else {
-			fatalError("No core view")
-		}
+	private var coreView: KCIconViewCore {
+		get { return super.getCoreView() }
 	}
 }

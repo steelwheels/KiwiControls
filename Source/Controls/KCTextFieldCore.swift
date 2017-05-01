@@ -96,4 +96,17 @@ open class KCTextFieldCore : KCView
 			mLabel.backgroundColor = cols.background
 		#endif
 	}
+
+	open override func printDebugInfo(indent idt: Int){
+		super.printDebugInfo(indent: idt)
+		#if os(iOS)
+			if let v = mLabel {
+				v.printDebugInfo(indent: idt+1)
+			}
+		#else
+			if let v = mTextField {
+				v.printDebugInfo(indent: idt+1)
+			}
+		#endif
+	}
 }

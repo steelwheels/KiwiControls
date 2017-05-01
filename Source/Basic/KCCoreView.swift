@@ -22,4 +22,11 @@ open class KCCoreView: KCView
 			fatalError("No core view")
 		}
 	}
+
+	open override func printDebugInfo(indent idt: Int){
+		super.printDebugInfo(indent: idt)
+		if let v = mCoreView {
+			v.printDebugInfo(indent: idt+1)
+		}
+	}
 }

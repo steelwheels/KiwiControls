@@ -88,5 +88,12 @@ public class KCButtonCore: KCView
 			mButton.colors = cols
 		#endif
 	}
+
+	open override func printDebugInfo(indent idt: Int){
+		super.printDebugInfo(indent: idt)
+		if let v = mButton {
+			v.printDebugInfo(indent: idt+1)
+		}
+	}
 }
 
