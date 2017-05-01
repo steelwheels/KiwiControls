@@ -23,7 +23,11 @@ public class KCCheckBoxCore: KCView
 
 	public var checkUpdatedCallback: ((_ value: Bool) -> Void)? = nil
 
-	public func setup() -> Void {
+	public func setup(frame frm: CGRect) -> Void
+	{
+		let bounds = CGRect(origin: CGPoint.zero, size: frm.size)
+		self.frame  = bounds
+		self.bounds = bounds
 	}
 
 	#if os(iOS)
@@ -92,8 +96,8 @@ public class KCCheckBoxCore: KCView
 		set(newval){
 			let nnewval = !newval
 			#if os(iOS)
-			mSwitch.isEnabled  = nnewval
-			mLabel.isEnabled   = nnewval
+			mSwitch.isHidden   = nnewval
+			mLabel.isHidden    = nnewval
 			#else
 			mCheckBox.isHidden = nnewval
 			#endif

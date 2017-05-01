@@ -46,6 +46,7 @@ open class KCStackView : KCCoreView
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCStackView.self, nibName: "KCStackViewCore") as? KCStackViewCore {
 			setCoreView(view: newview)
+			newview.setup(frame: self.frame)
 		} else {
 			fatalError("Can not load KCStackCore")
 		}

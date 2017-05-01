@@ -34,7 +34,7 @@ open class KCIconView: KCCoreView
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCIconView.self, nibName: "KCIconViewCore") as? KCIconViewCore {
 			setCoreView(view: newview)
-			newview.setup()
+			newview.setup(frame: self.frame)
 		} else {
 			fatalError("Can not load KCIconViewCore")
 		}

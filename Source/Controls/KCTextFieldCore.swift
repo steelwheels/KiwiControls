@@ -20,6 +20,12 @@ open class KCTextFieldCore : KCView
 	@IBOutlet weak var mLabel: UILabel!
 	#endif
 
+	public func setup(frame frm: CGRect){
+		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
+		self.frame  = bounds
+		self.bounds = bounds
+	}
+
 	public var text: String {
 		get {
 			return getText()

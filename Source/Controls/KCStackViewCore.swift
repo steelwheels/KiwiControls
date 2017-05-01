@@ -18,6 +18,12 @@ open class KCStackViewCore : KCView
 	#else
 	@IBOutlet weak var mStackView: UIStackView!
 	#endif
+
+	public func setup(frame frm: CGRect) {
+		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
+		self.bounds = bounds
+		self.frame  = bounds
+	}
 	
 	public var axis: KCStackView.Axis {
 		get {

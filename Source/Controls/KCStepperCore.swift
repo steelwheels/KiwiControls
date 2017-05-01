@@ -15,8 +15,8 @@ import KiwiGraphics
 public class KCStepperCore: KCView
 {
 	#if os(iOS)
-	@IBOutlet weak var	mTextField: UILabel!
-	@IBOutlet weak var	mStepper: UIStepper!
+	@IBOutlet weak var	mTextField:	UILabel!
+	@IBOutlet weak var	mStepper:	UIStepper!
 	#else
 	@IBOutlet weak var	mTextField:	NSTextField!
 	@IBOutlet weak var	mStepper:	NSStepper!
@@ -25,7 +25,10 @@ public class KCStepperCore: KCView
 	public var numberOfDecimalPlaces: Int	= 2
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
-	public func setup() -> Void {
+	public func setup(frame frm: CGRect) -> Void {
+		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
+		self.frame  = bounds
+		self.bounds = bounds
 		#if os(iOS)
 			mTextField.text = ""
 			mTextField.textAlignment = .center

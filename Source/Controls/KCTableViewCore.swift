@@ -20,6 +20,12 @@ open class KCTableViewCore : KCView
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
+	public func setup(frame frm: CGRect) {
+		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
+		self.bounds = bounds
+		self.frame  = bounds
+	}
+
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		if let v = mTableView {

@@ -17,25 +17,25 @@ open class KCButton: KCCoreView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){
-	super.init(frame: frame) ;
-		setupContext() ;
+		super.init(frame: frame)
+		setupContext(frame: frame)
 	}
 	#else
 	public override init(frame: CGRect){
-		super.init(frame: frame) ;
-		setupContext()
+		super.init(frame: frame)
+		setupContext(frame: frame)
 	}
 	#endif
 
 	public required init?(coder: NSCoder) {
-		super.init(coder: coder) ;
-		setupContext() ;
+		super.init(coder: coder)
+		setupContext(frame: self.frame)
 	}
 
-	private func setupContext(){
+	private func setupContext(frame frm: CGRect){
 		if let newview = loadChildXib(thisClass: KCButton.self, nibName: "KCButtonCore") as? KCButtonCore {
 			setCoreView(view: newview)
-			newview.setup()
+			newview.setup(frame: frm)
 		} else {
 			fatalError("Can not load KCButtonCore")
 		}

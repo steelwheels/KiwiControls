@@ -31,7 +31,6 @@ class ViewController: UIViewController
 		mTextField.alignment = .left
 		mTextField.setColors(colors: textcolor)
 		
-		mButton.state = state
 		mButton.isEnabled = true
 		mButton.isVisible = true
 		mButton.buttonPressedCallback = {

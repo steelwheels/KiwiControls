@@ -23,7 +23,10 @@ public class KCButtonCore: KCView
 
 	public var buttonPressedCallback: (() -> Void)? = nil
 
-	public func setup() -> Void {
+	public func setup(frame frm: CGRect) -> Void {
+		let bounds     = CGRect(origin: CGPoint.zero, size: frm.size)
+		self.frame  = bounds
+		self.bounds = bounds
 	}
 
 	#if os(iOS)

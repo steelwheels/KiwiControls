@@ -34,7 +34,7 @@ public class KCStepper: KCCoreView
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCStepper.self, nibName: "KCStepperCore") as? KCStepperCore {
 			setCoreView(view: newview)
-			newview.setup()
+			newview.setup(frame: self.frame)
 		} else {
 			fatalError("Can not load KCStepperCore")
 		}
