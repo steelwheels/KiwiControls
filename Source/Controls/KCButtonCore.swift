@@ -94,6 +94,8 @@ public class KCButtonCore: KCView
 
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
+		printIndent(indent: idt) ; Swift.print("- isEnabled: \(isEnabled)")
+		printIndent(indent: idt) ; Swift.print("- isVisible: \(isVisible)")
 		if let v = mButton {
 			v.printDebugInfo(indent: idt+1)
 		}

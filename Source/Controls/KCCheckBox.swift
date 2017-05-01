@@ -33,8 +33,9 @@ open class KCCheckBox: KCCoreView
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCCheckBox.self, nibName: "KCCheckBoxCore") as? KCCheckBoxCore {
-			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
+			allocateSubviewLayout(subView: newview)
+			setCoreView(view: newview)
 		} else {
 			fatalError("Can not load KCCheckBoxCore")
 		}

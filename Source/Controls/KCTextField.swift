@@ -34,8 +34,9 @@ open class KCTextField : KCCoreView
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCTextField.self, nibName: "KCTextFieldCore") as? KCTextFieldCore {
-			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
+			allocateSubviewLayout(subView: newview)
+			setCoreView(view: newview)
 		} else {
 			fatalError("Can not load KCTextFieldCore")
 		}

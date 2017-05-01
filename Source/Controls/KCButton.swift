@@ -34,8 +34,9 @@ open class KCButton: KCCoreView
 
 	private func setupContext(frame frm: CGRect){
 		if let newview = loadChildXib(thisClass: KCButton.self, nibName: "KCButtonCore") as? KCButtonCore {
-			setCoreView(view: newview)
 			newview.setup(frame: frm)
+			allocateSubviewLayout(subView: newview)
+			setCoreView(view: newview)
 		} else {
 			fatalError("Can not load KCButtonCore")
 		}

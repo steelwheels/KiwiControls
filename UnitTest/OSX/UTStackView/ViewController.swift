@@ -15,9 +15,7 @@ class ViewController: NSViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	}
 
-	override func viewDidLayout() {
 		let origin = mStackView.frame.origin
 		let size   = mStackView.frame.size
 
@@ -30,9 +28,16 @@ class ViewController: NSViewController
 		mStackView.addSubview(button1)
 
 		mStackView.setViews(views:[button0, button1])
+
+		Swift.print("[ViewDidLoad]")
 		mStackView.printDebugInfo(indent: 0)
-		
-		// Do any additional setup after loading the view.
+	}
+
+	override func viewDidLayout() {
+		super.viewDidLayout()
+
+		Swift.print("[ViewDidLayout]")
+		mStackView.printDebugInfo(indent: 0)
 	}
 
 	override var representedObject: Any? {

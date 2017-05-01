@@ -113,6 +113,9 @@ open class KCStackViewCore : KCView
 		super.printDebugInfo(indent: idt)
 		if let v = mStackView {
 			v.printDebugInfo(indent: idt+1)
+
+			let diststr = distribution2string(distribution: v.distribution)
+			printIndent(indent: idt+1) ; Swift.print("- distribution: \(diststr)")
 		}
 		var viewid = 0
 		for v in mStackView.arrangedSubviews {
@@ -121,5 +124,19 @@ open class KCStackViewCore : KCView
 			v.printDebugInfo(indent: idt+2)
 			viewid = viewid + 1
 		}
+	}
+
+	private func distribution2string(distribution dist: NSStackViewDistribution) -> String
+	{
+		let result: String
+		switch dist {
+		case .fill:			result = "fill"
+		case .fillEqually:		result = "fillEqually"
+		case .fillProportionally:	result = "fillProportionarlly"
+		case .equalSpacing:		result = "equalSpacing"
+		case .equalCentering:		result = "equalCentring"
+		case .gravityAreas:		result = "gravityAreas"
+		}
+		return result
 	}
 }
