@@ -109,6 +109,14 @@ open class KCStackViewCore : KCView
 		#endif
 	}
 
+	open func arrangedSubviews() -> Array<KCView> {
+		#if os(iOS)
+			return mStackView.arrangedSubviews as! Array<KCView>
+		#else
+			return mStackView.views(in: .top) as! Array<KCView>
+		#endif
+	}
+	
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		if let v = mStackView {
