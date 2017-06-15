@@ -11,22 +11,54 @@
 	import Cocoa
 #endif
 
-#if os(OSX)
-
 public class KCAlert : NSObject
 {
-	public class func runModal(error err: NSError) -> NSModalResponse {
+	public enum AlertResponce {
+		case Stop
+		case Abort
+		case Continue
+	}
+
+	public enum SaveResponce {
+		case Save
+		case Cancel
+		case DontSave
+	}
+
+	#if os(OSX)
+	public class func runModal(error err: NSError) -> AlertResponce
+	{
+		var result: AlertResponce
 		let alert = NSAlert(error: err)
-		return alert.runModal()
+		switch alert.runModal() {
+		case NSModalResponceStop:
+			result = .Stop
+		case NSModalResporceAbort:
+			result = .Abort
+		case NSModalResporceContinue:
+			result = .Continue
+		}
+		return result
 	}
-
-	public enum SaveModalResponce {
-		case SaveButtonPressed
-		case CancelButtonPressed
-		case DontSaveButtonPressed
+	#else
+	public class func runModal(error err: NSError, in viewcont: UIViewController) -> AlertResponce
+	{
+		let title   = "Error"
+		let message = err.description
+		let alert   = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let acttion = UIAlertAction(title: "OK", style: .default, handler: {
+			(action:UIAlertAction!) -> Void in
+		})
+		alert.addAction(acttion)
+		viewcont.present(alert, animated: false, completion: nil)
+		return .Stop
 	}
+	#endif
 
-	public class func recommendSaveModal(fileName fname: String) -> SaveModalResponce {
+
+	#if os(OSX)
+	public class func recommendSaveModal(fileName fname: String) -> SaveResponce
+	{
 		let alert = NSAlert()
 		alert.messageText = "\(fname) has changes. Do you want to save it"
 		alert.informativeText = "Your changes will be lost if you close this item without saving."
@@ -36,19 +68,17 @@ public class KCAlert : NSObject
 
 		var result : SaveModalResponce
 		switch alert.runModal() {
-		  case NSAlertFirstButtonReturn:
+		case NSAlertFirstButtonReturn:
 			result = .SaveButtonPressed
-		  case NSAlertSecondButtonReturn:
+		case NSAlertSecondButtonReturn:
 			result = .CancelButtonPressed
-		  case NSAlertThirdButtonReturn:
+		case NSAlertThirdButtonReturn:
 			result = .DontSaveButtonPressed
-		  default:
+		default:
 			result = .CancelButtonPressed
 		}
 		return result
 	}
+	#endif
 }
-
-#endif /* os(OSX) */
-
 

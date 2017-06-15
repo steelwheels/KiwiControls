@@ -21,6 +21,9 @@ class ViewController: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+
+
 		// Do any additional setup after loading the view, typically from a nib.
 		let state     = UTState()
 		let fonttable = KGFontTable.sharedFontTable
@@ -80,6 +83,19 @@ class ViewController: UIViewController
 		}
 		
 		mState = state
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		/* Display alert */
+		let errmsg = NSError.fileError(message: "Alert test")
+		switch KCAlert.runModal(error: errmsg, in: self) {
+		case .Stop:
+			Swift.print("Alert -> Stop")
+		case .Abort:
+			Swift.print("Alert -> Abort")
+		case .Continue:
+			Swift.print("Alert -> Continue")
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
