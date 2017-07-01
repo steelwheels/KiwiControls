@@ -31,12 +31,15 @@ public class KCAlert : NSObject
 		var result: AlertResponce
 		let alert = NSAlert(error: err)
 		switch alert.runModal() {
-		case NSModalResponceStop:
+		case NSModalResponseStop:
 			result = .Stop
-		case NSModalResporceAbort:
+		case NSModalResponseAbort:
 			result = .Abort
-		case NSModalResporceContinue:
+		case NSModalResponseContinue:
 			result = .Continue
+		default:
+			NSLog("Unknown result")
+			result = .Abort
 		}
 		return result
 	}
@@ -44,7 +47,7 @@ public class KCAlert : NSObject
 	public class func runModal(error err: NSError, in viewcont: UIViewController) -> AlertResponce
 	{
 		let title   = "Error"
-		let message = err.description
+		let message = err.toString()
 		let alert   = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		let acttion = UIAlertAction(title: "OK", style: .default, handler: {
 			(action:UIAlertAction!) -> Void in
@@ -66,16 +69,16 @@ public class KCAlert : NSObject
 		alert.addButton(withTitle: "Cancel")
 		alert.addButton(withTitle: "Don't save")
 
-		var result : SaveModalResponce
+		var result : SaveResponce
 		switch alert.runModal() {
 		case NSAlertFirstButtonReturn:
-			result = .SaveButtonPressed
+			result = .Save
 		case NSAlertSecondButtonReturn:
-			result = .CancelButtonPressed
+			result = .Cancel
 		case NSAlertThirdButtonReturn:
-			result = .DontSaveButtonPressed
+			result = .DontSave
 		default:
-			result = .CancelButtonPressed
+			result = .Cancel
 		}
 		return result
 	}
