@@ -26,6 +26,41 @@ open class KCTextFieldCore : KCView
 		self.bounds = bounds
 	}
 
+	public var isEnabled: Bool {
+		get {
+			#if os(OSX)
+				return mTextField.isEnabled
+			#else
+				return mLabel.isEnabled
+			#endif
+		}
+		set(newval){
+			#if os(OSX)
+				mTextField.isEnabled   = newval
+			#else
+				mLabel.isEnabled   = newval
+			#endif
+		}
+	}
+
+	public var isVisible: Bool {
+		get {
+			#if os(OSX)
+				return !(mTextField.isHidden)
+			#else
+				return !(mLabel.isHidden)
+			#endif
+
+		}
+		set(newval){
+			#if os(OSX)
+				mTextField.isHidden   = !newval
+			#else
+				mLabel.isHidden = !newval
+			#endif
+		}
+	}
+
 	public var text: String {
 		get {
 			return getText()
