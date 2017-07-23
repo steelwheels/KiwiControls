@@ -56,11 +56,13 @@ public class KCButtonCore: KCView
 			#endif
 		}
 		set(newstr){
-			#if os(iOS)
-				mButton.setTitle(newstr, for: .normal)
-			#else
-				mButton.title = newstr
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mButton.setTitle(newstr, for: .normal)
+				#else
+					mButton.title = newstr
+				#endif
+			})
 		}
 	}
 
@@ -69,7 +71,9 @@ public class KCButtonCore: KCView
 			return mButton.isEnabled
 		}
 		set(newval){
-			mButton.isEnabled   = newval
+			executeInMainThread(execute: { () -> Void in
+				mButton.isEnabled   = newval
+			})
 		}
 	}
 
@@ -78,18 +82,22 @@ public class KCButtonCore: KCView
 			return !(mButton.isHidden)
 		}
 		set(newval){
-			mButton.isHidden   = !newval
+			executeInMainThread(execute: { () -> Void in
+				mButton.isHidden   = !newval
+			})
 		}
 	}
 
 	public func setColors(colors cols: KGColorPreference.ButtonColors){
-		#if os(iOS)
-			mButton.setTitleColor(cols.title, for: .normal)
-			mButton.backgroundColor = cols.background.normal
-			self.backgroundColor = cols.background.normal
-		#else
-			mButton.colors = cols
-		#endif
+		executeInMainThread(execute: { () -> Void in
+			#if os(iOS)
+				mButton.setTitleColor(cols.title, for: .normal)
+				mButton.backgroundColor = cols.background.normal
+				self.backgroundColor = cols.background.normal
+			#else
+				mButton.colors = cols
+			#endif
+		})
 	}
 
 	open override func printDebugInfo(indent idt: Int){

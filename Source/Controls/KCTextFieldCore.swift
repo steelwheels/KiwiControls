@@ -35,11 +35,13 @@ open class KCTextFieldCore : KCView
 			#endif
 		}
 		set(newval){
-			#if os(OSX)
-				mTextField.isEnabled   = newval
-			#else
-				mLabel.isEnabled   = newval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(OSX)
+					mTextField.isEnabled   = newval
+				#else
+					mLabel.isEnabled   = newval
+				#endif
+			})
 		}
 	}
 
@@ -53,11 +55,13 @@ open class KCTextFieldCore : KCView
 
 		}
 		set(newval){
-			#if os(OSX)
-				mTextField.isHidden   = !newval
-			#else
-				mLabel.isHidden = !newval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(OSX)
+					mTextField.isHidden   = !newval
+				#else
+					mLabel.isHidden = !newval
+				#endif
+			})
 		}
 	}
 
@@ -66,8 +70,8 @@ open class KCTextFieldCore : KCView
 			return getText()
 		}
 		set(newval) {
-			DispatchQueue.main.async(execute: {
-				self.setText(label: newval)
+			executeInMainThread(execute: { () -> Void in
+				setText(label: newval)
 			})
 		}
 	}
@@ -85,11 +89,13 @@ open class KCTextFieldCore : KCView
 	}
 
 	private func setText(label str:String){
-		#if os(OSX)
-			mTextField.stringValue = str
-		#else
-			mLabel.text = str
-		#endif
+		executeInMainThread(execute: { () -> Void in
+			#if os(OSX)
+				mTextField.stringValue = str
+			#else
+				mLabel.text = str
+			#endif
+		})
 	}
 
 	public var font: KGFont? {
@@ -101,11 +107,13 @@ open class KCTextFieldCore : KCView
 			#endif
 		}
 		set(font){
-			#if os(iOS)
-				mLabel.font = font
-			#else
-				mTextField.font = font
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mLabel.font = font
+				#else
+					mTextField.font = font
+				#endif
+			})
 		}
 	}
 
@@ -118,24 +126,28 @@ open class KCTextFieldCore : KCView
 			#endif
 		}
 		set(align){
-			#if os(iOS)
-				mLabel.textAlignment = align
-			#else
-				mTextField.alignment = align
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mLabel.textAlignment = align
+				#else
+					mTextField.alignment = align
+				#endif
+			})
 		}
 	}
 
 	public func setColors(colors cols: KGColorPreference.TextColors){
-		#if os(OSX)
-			mTextField.textColor       = cols.foreground
-			mTextField.drawsBackground = true
-			mTextField.backgroundColor = cols.background
-		#else
-			mLabel.tintColor = cols.foreground
-			mLabel.textColor = cols.foreground
-			mLabel.backgroundColor = cols.background
-		#endif
+		executeInMainThread(execute: { () -> Void in
+			#if os(OSX)
+				mTextField.textColor       = cols.foreground
+				mTextField.drawsBackground = true
+				mTextField.backgroundColor = cols.background
+			#else
+				mLabel.tintColor = cols.foreground
+				mLabel.textColor = cols.foreground
+				mLabel.backgroundColor = cols.background
+			#endif
+		})
 	}
 
 	open override func printDebugInfo(indent idt: Int){

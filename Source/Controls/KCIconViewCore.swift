@@ -67,11 +67,13 @@ open class KCIconViewCore : KCView
 
 	public var label: String {
 		set(str){
-			#if os(OSX)
-				mLabelView.stringValue = str
-			#elseif os(iOS)
-				mLabelView.text = str
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(OSX)
+					mLabelView.stringValue = str
+				#elseif os(iOS)
+					mLabelView.text = str
+				#endif
+			})
 		}
 		get {
 			#if os(OSX)

@@ -40,17 +40,19 @@ open class KCStackViewCore : KCView
 			#endif
 		}
 		set(newval){
-			#if os(OSX)
-				switch newval {
-				case .Vertical:   mStackView.orientation = .vertical
-				case .Holizontal: mStackView.orientation = .horizontal
-				}
-			#else
-				switch newval {
-				case .Vertical:   mStackView.axis = .vertical
-				case .Holizontal: mStackView.axis = .horizontal
-				}
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(OSX)
+					switch newval {
+					case .Vertical:   mStackView.orientation = .vertical
+					case .Holizontal: mStackView.orientation = .horizontal
+					}
+				#else
+					switch newval {
+					case .Vertical:   mStackView.axis = .vertical
+					case .Holizontal: mStackView.axis = .horizontal
+					}
+				#endif
+			})
 		}
 	}
 
@@ -73,40 +75,44 @@ open class KCStackViewCore : KCView
 			#endif
 		}
 		set(newval){
-			#if os(OSX)
-				switch newval {
-				case .Leading:
-					mStackView.alignment = .leading
-				case .Center:
-					if axis == .Vertical {
-						mStackView.alignment = .centerY
-					} else {
-						mStackView.alignment = .centerX
+			executeInMainThread(execute: { () -> Void in
+				#if os(OSX)
+					switch newval {
+					case .Leading:
+						mStackView.alignment = .leading
+					case .Center:
+						if axis == .Vertical {
+							mStackView.alignment = .centerY
+						} else {
+							mStackView.alignment = .centerX
+						}
+					case .Trailing:
+						mStackView.alignment = .trailing
 					}
-				case .Trailing:
-					mStackView.alignment = .trailing
-				}
-			#else
-				switch newval {
-				case .Leading:
-					mStackView.alignment = .leading
-				case .Center:
-					mStackView.alignment = .center
-				case .Trailing:
-					mStackView.alignment = .trailing
-				}
-			#endif
+				#else
+					switch newval {
+					case .Leading:
+						mStackView.alignment = .leading
+					case .Center:
+						mStackView.alignment = .center
+					case .Trailing:
+						mStackView.alignment = .trailing
+					}
+				#endif
+			})
 		}
 	}
 
 	public func setViews(views vs:Array<KCView>){
-		#if os(iOS)
-			for view in vs {
-				mStackView.addArrangedSubview(view)
-			}
-		#else
-			mStackView.setViews(vs, in: .top)
-		#endif
+		executeInMainThread(execute: { () -> Void in
+			#if os(iOS)
+				for view in vs {
+					mStackView.addArrangedSubview(view)
+				}
+			#else
+				mStackView.setViews(vs, in: .top)
+			#endif
+		})
 	}
 
 	open func arrangedSubviews() -> Array<KCView> {

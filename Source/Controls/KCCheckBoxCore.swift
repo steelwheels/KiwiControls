@@ -59,48 +59,54 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 		set(newval){
-			#if os(iOS)
-				mLabel.text = newval
-			#else
-				mCheckBox.title = newval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mLabel.text = newval
+				#else
+					mCheckBox.title = newval
+				#endif
+			})
 		}
 	}
 
 	public var isEnabled: Bool {
 		get {
 			#if os(iOS)
-			return mSwitch.isEnabled
+				return mSwitch.isEnabled
 			#else
-			return mCheckBox.isEnabled
+				return mCheckBox.isEnabled
 			#endif
 		}
 		set(newval){
-			#if os(iOS)
-			mSwitch.isEnabled = newval
-			mLabel.isEnabled  = newval
-			#else
-			mCheckBox.isEnabled   = newval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mSwitch.isEnabled = newval
+					mLabel.isEnabled  = newval
+				#else
+					mCheckBox.isEnabled   = newval
+				#endif
+			})
 		}
 	}
 
 	public var isVisible: Bool {
 		get {
 			#if os(iOS)
-			return !(mSwitch.isHidden)
+				return !(mSwitch.isHidden)
 			#else
-			return !(mCheckBox.isHidden)
+				return !(mCheckBox.isHidden)
 			#endif
 		}
 		set(newval){
-			let nnewval = !newval
-			#if os(iOS)
-			mSwitch.isHidden   = nnewval
-			mLabel.isHidden    = nnewval
-			#else
-			mCheckBox.isHidden = nnewval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				let nnewval = !newval
+				#if os(iOS)
+					mSwitch.isHidden   = nnewval
+					mLabel.isHidden    = nnewval
+				#else
+					mCheckBox.isHidden = nnewval
+				#endif
+			})
 		}
 	}
 

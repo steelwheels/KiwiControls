@@ -46,8 +46,19 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 extension KCViewBase
 {
 	/*
-	* Debug information
-	*/
+	 * Thread control
+	 */
+	public func executeInMainThread(execute exec: () -> Void){
+		if Thread.isMainThread {
+			exec()
+		} else {
+			DispatchQueue.main.sync(execute: exec)
+		}
+	}
+
+	/*
+	 * Debug information
+	 */
 	open func printDebugInfo(indent idt: Int){
 		#if os(iOS)
 			let name = NSStringFromClass(type(of: self))

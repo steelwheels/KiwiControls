@@ -40,11 +40,13 @@ public class KCStepperCore: KCView
 
 	private func updateTextField(value: Double){
 		let str = String(format: "%.*lf", numberOfDecimalPlaces, value)
-		#if os(iOS)
-			mTextField.text = str
-		#else
-			mTextField.stringValue = str
-		#endif
+		executeInMainThread(execute: { () -> Void in
+			#if os(iOS)
+				mTextField.text = str
+			#else
+				mTextField.stringValue = str
+			#endif
+		})
 	}
 
 	public var maxValue: Double {
@@ -56,11 +58,13 @@ public class KCStepperCore: KCView
 			#endif
 		}
 		set(newval) {
-			#if os(iOS)
-				mStepper.maximumValue = newval
-			#else
-				mStepper.maxValue = newval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mStepper.maximumValue = newval
+				#else
+					mStepper.maxValue = newval
+				#endif
+			})
 		}
 	}
 
@@ -73,11 +77,13 @@ public class KCStepperCore: KCView
 			#endif
 		}
 		set(newval) {
-			#if os(iOS)
-				mStepper.minimumValue = newval
-			#else
-				mStepper.minValue = newval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mStepper.minimumValue = newval
+				#else
+					mStepper.minValue = newval
+				#endif
+			})
 		}
 	}
 
@@ -96,12 +102,14 @@ public class KCStepperCore: KCView
 			} else if v > maxValue {
 				v = maxValue
 			}
-			#if os(iOS)
-				mStepper.value = v
-			#else
-				mStepper.doubleValue = v
-			#endif
-			updateTextField(value: v)
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mStepper.value = v
+				#else
+					mStepper.doubleValue = v
+				#endif
+				updateTextField(value: v)
+			})
 		}
 	}
 
@@ -114,11 +122,13 @@ public class KCStepperCore: KCView
 			#endif
 		}
 		set(newval) {
-			#if os(iOS)
-				mStepper.stepValue = newval
-			#else
-				mStepper.increment = newval
-			#endif
+			executeInMainThread(execute: { () -> Void in
+				#if os(iOS)
+					mStepper.stepValue = newval
+				#else
+					mStepper.increment = newval
+				#endif
+			})
 		}
 	}
 
@@ -127,8 +137,10 @@ public class KCStepperCore: KCView
 			return mStepper.isEnabled
 		}
 		set(newval){
-			mStepper.isEnabled   = newval
-			mTextField.isEnabled = newval
+			executeInMainThread(execute: { () -> Void in
+				mStepper.isEnabled   = newval
+				mTextField.isEnabled = newval
+			})
 		}
 	}
 
@@ -137,9 +149,11 @@ public class KCStepperCore: KCView
 			return !(mStepper.isHidden)
 		}
 		set(newval){
-			mStepper.isHidden   = !newval
-			mTextField.isHidden = !newval
-			super.isHidden      = !newval
+			executeInMainThread(execute: { () -> Void in
+				mStepper.isHidden   = !newval
+				mTextField.isHidden = !newval
+				super.isHidden      = !newval
+			})
 		}
 	}
 
