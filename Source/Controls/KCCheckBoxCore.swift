@@ -11,6 +11,7 @@
 	import Cocoa
 #endif
 import KiwiGraphics
+import Canary
 
 public class KCCheckBoxCore: KCView
 {
@@ -59,11 +60,11 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 		set(newval){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(iOS)
-					mLabel.text = newval
+					self.mLabel.text = newval
 				#else
-					mCheckBox.title = newval
+					self.mCheckBox.title = newval
 				#endif
 			})
 		}
@@ -78,12 +79,12 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 		set(newval){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(iOS)
-					mSwitch.isEnabled = newval
-					mLabel.isEnabled  = newval
+					self.mSwitch.isEnabled = newval
+					self.mLabel.isEnabled  = newval
 				#else
-					mCheckBox.isEnabled   = newval
+					self.mCheckBox.isEnabled   = newval
 				#endif
 			})
 		}
@@ -98,13 +99,13 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 		set(newval){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				let nnewval = !newval
 				#if os(iOS)
-					mSwitch.isHidden   = nnewval
-					mLabel.isHidden    = nnewval
+					self.mSwitch.isHidden   = nnewval
+					self.mLabel.isHidden    = nnewval
 				#else
-					mCheckBox.isHidden = nnewval
+					self.mCheckBox.isHidden = nnewval
 				#endif
 			})
 		}

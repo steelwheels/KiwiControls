@@ -11,6 +11,7 @@
 	import UIKit
 #endif
 import KiwiGraphics
+import Canary
 
 open class KCIconViewCore : KCView
 {
@@ -67,11 +68,11 @@ open class KCIconViewCore : KCView
 
 	public var label: String {
 		set(str){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(OSX)
-					mLabelView.stringValue = str
+					self.mLabelView.stringValue = str
 				#elseif os(iOS)
-					mLabelView.text = str
+					self.mLabelView.text = str
 				#endif
 			})
 		}

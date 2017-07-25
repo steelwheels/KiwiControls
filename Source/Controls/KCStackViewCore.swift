@@ -10,6 +10,7 @@
 #else
 	import UIKit
 #endif
+import Canary
 
 open class KCStackViewCore : KCView
 {
@@ -40,16 +41,16 @@ open class KCStackViewCore : KCView
 			#endif
 		}
 		set(newval){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(OSX)
 					switch newval {
-					case .Vertical:   mStackView.orientation = .vertical
-					case .Holizontal: mStackView.orientation = .horizontal
+					case .Vertical:   self.mStackView.orientation = .vertical
+					case .Holizontal: self.mStackView.orientation = .horizontal
 					}
 				#else
 					switch newval {
-					case .Vertical:   mStackView.axis = .vertical
-					case .Holizontal: mStackView.axis = .horizontal
+					case .Vertical:   self.mStackView.axis = .vertical
+					case .Holizontal: self.mStackView.axis = .horizontal
 					}
 				#endif
 			})
@@ -75,28 +76,28 @@ open class KCStackViewCore : KCView
 			#endif
 		}
 		set(newval){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(OSX)
 					switch newval {
 					case .Leading:
-						mStackView.alignment = .leading
+						self.mStackView.alignment = .leading
 					case .Center:
-						if axis == .Vertical {
-							mStackView.alignment = .centerY
+						if self.axis == .Vertical {
+							self.mStackView.alignment = .centerY
 						} else {
-							mStackView.alignment = .centerX
+							self.mStackView.alignment = .centerX
 						}
 					case .Trailing:
-						mStackView.alignment = .trailing
+						self.mStackView.alignment = .trailing
 					}
 				#else
 					switch newval {
 					case .Leading:
-						mStackView.alignment = .leading
+						self.mStackView.alignment = .leading
 					case .Center:
-						mStackView.alignment = .center
+						self.mStackView.alignment = .center
 					case .Trailing:
-						mStackView.alignment = .trailing
+						self.mStackView.alignment = .trailing
 					}
 				#endif
 			})
@@ -104,13 +105,13 @@ open class KCStackViewCore : KCView
 	}
 
 	public func setViews(views vs:Array<KCView>){
-		executeInMainThread(execute: { () -> Void in
+		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(iOS)
 				for view in vs {
-					mStackView.addArrangedSubview(view)
+					self.mStackView.addArrangedSubview(view)
 				}
 			#else
-				mStackView.setViews(vs, in: .top)
+				self.mStackView.setViews(vs, in: .top)
 			#endif
 		})
 	}

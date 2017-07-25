@@ -11,6 +11,7 @@
 	import UIKit
 #endif
 import KiwiGraphics
+import Canary
 
 open class KCTextFieldCore : KCView
 {
@@ -35,11 +36,11 @@ open class KCTextFieldCore : KCView
 			#endif
 		}
 		set(newval){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(OSX)
-					mTextField.isEnabled   = newval
+					self.mTextField.isEnabled   = newval
 				#else
-					mLabel.isEnabled   = newval
+					self.mLabel.isEnabled   = newval
 				#endif
 			})
 		}
@@ -55,11 +56,11 @@ open class KCTextFieldCore : KCView
 
 		}
 		set(newval){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(OSX)
-					mTextField.isHidden   = !newval
+					self.mTextField.isHidden   = !newval
 				#else
-					mLabel.isHidden = !newval
+					self.mLabel.isHidden = !newval
 				#endif
 			})
 		}
@@ -70,8 +71,8 @@ open class KCTextFieldCore : KCView
 			return getText()
 		}
 		set(newval) {
-			executeInMainThread(execute: { () -> Void in
-				setText(label: newval)
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
+				self.setText(label: newval)
 			})
 		}
 	}
@@ -89,11 +90,11 @@ open class KCTextFieldCore : KCView
 	}
 
 	private func setText(label str:String){
-		executeInMainThread(execute: { () -> Void in
+		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(OSX)
-				mTextField.stringValue = str
+				self.mTextField.stringValue = str
 			#else
-				mLabel.text = str
+				self.mLabel.text = str
 			#endif
 		})
 	}
@@ -107,11 +108,11 @@ open class KCTextFieldCore : KCView
 			#endif
 		}
 		set(font){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(iOS)
-					mLabel.font = font
+					self.mLabel.font = font
 				#else
-					mTextField.font = font
+					self.mTextField.font = font
 				#endif
 			})
 		}
@@ -126,26 +127,26 @@ open class KCTextFieldCore : KCView
 			#endif
 		}
 		set(align){
-			executeInMainThread(execute: { () -> Void in
+			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(iOS)
-					mLabel.textAlignment = align
+					self.mLabel.textAlignment = align
 				#else
-					mTextField.alignment = align
+					self.mTextField.alignment = align
 				#endif
 			})
 		}
 	}
 
 	public func setColors(colors cols: KGColorPreference.TextColors){
-		executeInMainThread(execute: { () -> Void in
+		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(OSX)
-				mTextField.textColor       = cols.foreground
-				mTextField.drawsBackground = true
-				mTextField.backgroundColor = cols.background
+				self.mTextField.textColor       = cols.foreground
+				self.mTextField.drawsBackground = true
+				self.mTextField.backgroundColor = cols.background
 			#else
-				mLabel.tintColor = cols.foreground
-				mLabel.textColor = cols.foreground
-				mLabel.backgroundColor = cols.background
+				self.mLabel.tintColor = cols.foreground
+				self.mLabel.textColor = cols.foreground
+				self.mLabel.backgroundColor = cols.background
 			#endif
 		})
 	}

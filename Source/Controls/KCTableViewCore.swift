@@ -45,7 +45,7 @@ open class KCTableViewCore : KCView
 			return getText()
 		}
 		set(newval) {
-			DispatchQueue.main.async(execute: {
+			CNExecuteInMainThread(doSync: false, execute: {
 				self.setText(label: newval)
 			})
 		}
