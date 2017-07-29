@@ -26,6 +26,15 @@ open class KCCheckBox: KCCoreView
 	}
 	#endif
 
+	public convenience init(){
+		#if os(OSX)
+			let frame = NSRect(x: 0.0, y: 0.0, width: 156, height: 16)
+		#else
+			let frame = CGRect(x: 0.0, y: 0.0, width: 200, height: 32)
+		#endif
+		self.init(frame: frame)
+	}
+
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
 		setupContext() ;

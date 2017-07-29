@@ -29,6 +29,15 @@ open class KCTableView : KCCoreView
 	}
 	#endif
 
+	public convenience init(){
+		#if os(OSX)
+			let frame = NSRect(x: 0.0, y: 0.0, width: 480, height: 272)
+		#else
+			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 375)
+		#endif
+		self.init(frame: frame)
+	}
+
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
 		setupContext() ;

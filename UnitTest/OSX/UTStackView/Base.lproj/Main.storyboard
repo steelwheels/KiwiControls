@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -691,10 +691,18 @@
                             </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="a6f-ic-EzT" secondAttribute="bottom" id="7ik-3k-P05"/>
+                            <constraint firstItem="a6f-ic-EzT" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="ECc-x4-fna"/>
+                            <constraint firstItem="a6f-ic-EzT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="GT5-vp-hgY"/>
                             <constraint firstAttribute="bottom" secondItem="a6f-ic-EzT" secondAttribute="bottom" id="M6M-OA-nsq"/>
+                            <constraint firstItem="a6f-ic-EzT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="PxM-ED-OQi"/>
+                            <constraint firstAttribute="trailing" secondItem="a6f-ic-EzT" secondAttribute="trailing" id="Sac-Iq-oIn"/>
                             <constraint firstItem="a6f-ic-EzT" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="aOT-rF-Oe9"/>
+                            <constraint firstAttribute="bottom" secondItem="a6f-ic-EzT" secondAttribute="bottom" id="eNs-MG-60W"/>
+                            <constraint firstItem="a6f-ic-EzT" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="iCe-bH-tWp"/>
                             <constraint firstAttribute="trailing" secondItem="a6f-ic-EzT" secondAttribute="trailing" id="iIE-PD-uuS"/>
                             <constraint firstItem="a6f-ic-EzT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="isd-O2-TeT"/>
+                            <constraint firstAttribute="trailing" secondItem="a6f-ic-EzT" secondAttribute="trailing" id="nD8-Fd-f04"/>
                         </constraints>
                     </view>
                     <connections>

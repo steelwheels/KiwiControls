@@ -25,6 +25,7 @@ class ViewController: UIViewController
 		button1.title = "Goodbye"
 
 		mStackView.setViews(views: [button0, button1])
+		mStackView.axis = .Holizontal
 	}
 
 	override func didReceiveMemoryWarning() {

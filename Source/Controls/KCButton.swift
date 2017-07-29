@@ -27,6 +27,15 @@ open class KCButton: KCCoreView
 	}
 	#endif
 
+	public convenience init(){
+		#if os(OSX)
+			let frame = NSRect(x: 0.0, y: 0.0, width: 188, height: 21)
+		#else
+			let frame = CGRect(x: 0.0, y: 0.0, width: 160, height: 32)
+		#endif
+		self.init(frame: frame)
+	}
+
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		setupContext(frame: self.frame)

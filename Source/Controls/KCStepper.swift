@@ -26,6 +26,15 @@ public class KCStepper: KCCoreView
 	}
 	#endif
 
+	public convenience init(){
+		#if os(OSX)
+			let frame = NSRect(x: 0.0, y: 0.0, width: 163, height: 34)
+		#else
+			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 29)
+		#endif
+		self.init(frame: frame)
+	}
+	
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
 		setupContext() ;

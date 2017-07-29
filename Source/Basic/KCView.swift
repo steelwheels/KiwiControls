@@ -58,6 +58,7 @@ extension KCViewBase
 		printIndent(indent: idt) ; Swift.print("[\(name)]")
 		printIndent(indent: idt) ; Swift.print("- frame : \(self.frame.description)")
 		printIndent(indent: idt) ; Swift.print("- bounds: \(self.bounds.description)")
+		printIndent(indent: idt) ; Swift.print("- translatesAutoresizingMaskIntoConstraints: \(self.translatesAutoresizingMaskIntoConstraints)")
 	}
 
 	public func printIndent(indent idt: Int){

@@ -104,24 +104,23 @@ open class KCStackViewCore : KCView
 		}
 	}
 
-	public func setViews(views vs:Array<KCView>){
+	public func setViews(views viewset:Array<KCView>){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(iOS)
-				for view in vs {
+				for view in viewset {
 					self.mStackView.addArrangedSubview(view)
 				}
 			#else
-				self.mStackView.setViews(vs, in: .top)
+				//self.mStackView.setViews(viewset, in: .top)
+				for view in viewset {
+					self.mStackView.addArrangedSubview(view)
+				}
 			#endif
 		})
 	}
 
 	open func arrangedSubviews() -> Array<KCView> {
-		#if os(iOS)
-			return mStackView.arrangedSubviews as! Array<KCView>
-		#else
-			return mStackView.views(in: .top) as! Array<KCView>
-		#endif
+		return mStackView.arrangedSubviews as! Array<KCView>
 	}
 	
 	open override func printDebugInfo(indent idt: Int){
@@ -129,8 +128,10 @@ open class KCStackViewCore : KCView
 		if let v = mStackView {
 			v.printDebugInfo(indent: idt+1)
 
-			let diststr = distribution2string(distribution: v.distribution)
-			printIndent(indent: idt+1) ; Swift.print("- distribution: \(diststr)")
+			let algstr  = alignment.description
+			printIndent(indent: idt+1) ; Swift.print("- alignment: \(algstr)")
+			let axisstr = axis.description
+			printIndent(indent: idt+1) ; Swift.print("- axis:      \(axisstr)")
 		}
 		var viewid = 0
 		for v in mStackView.arrangedSubviews {
@@ -140,33 +141,4 @@ open class KCStackViewCore : KCView
 			viewid = viewid + 1
 		}
 	}
-
-	#if os(iOS)
-	private func distribution2string(distribution dist: UIStackViewDistribution) -> String
-	{
-		let result: String
-		switch dist {
-		case .fill:			result = "fill"
-		case .fillEqually:		result = "fillEqually"
-		case .fillProportionally:	result = "fillProportionally"
-		case .equalSpacing:		result = "equalSpacing"
-		case .equalCentering:		result = "equalCentering"
-		}
-		return result
-	}
-	#else
-	private func distribution2string(distribution dist: NSStackViewDistribution) -> String
-	{
-		let result: String
-		switch dist {
-		case .fill:			result = "fill"
-		case .fillEqually:		result = "fillEqually"
-		case .fillProportionally:	result = "fillProportionarlly"
-		case .equalSpacing:		result = "equalSpacing"
-		case .equalCentering:		result = "equalCentring"
-		case .gravityAreas:		result = "gravityAreas"
-		}
-		return result
-	}
-	#endif
 }

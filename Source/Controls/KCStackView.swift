@@ -18,12 +18,35 @@ open class KCStackView : KCCoreView
 	public enum Axis {
 		case Holizontal
 		case Vertical
+
+		public var description: String {
+			get {
+				let result: String
+				switch self {
+				case .Holizontal: result = "holizontal"
+				case .Vertical:   result = "vertical"
+				}
+				return result
+			}
+		}
 	}
 
 	public enum Alignment {
 		case Leading
 		case Center
 		case Trailing
+
+		public var description: String {
+			get {
+				let result: String
+				switch self {
+				case .Center:   result  = "center"
+				case .Leading:  result = "leading"
+				case .Trailing: result = "trailing"
+				}
+				return result
+			}
+		}
 	}
 
 	#if os(OSX)
@@ -37,6 +60,15 @@ open class KCStackView : KCCoreView
 		setupContext()
 	}
 	#endif
+
+	public convenience init(){
+		#if os(OSX)
+			let frame = NSRect(x: 0.0, y: 0.0, width: 480, height: 270)
+		#else
+			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 346)
+		#endif
+		self.init(frame: frame)
+	}
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
