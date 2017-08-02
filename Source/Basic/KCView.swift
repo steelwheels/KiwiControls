@@ -55,10 +55,22 @@ extension KCViewBase
 			let name = self.className
 		#endif
 
+		let contentsize = self.intrinsicContentSize
+
+		let hhugging  = self.contentHuggingPriority(for: .horizontal)
+		let vhugging  = self.contentHuggingPriority(for: .vertical)
+		let hcompress = self.contentCompressionResistancePriority(for: .horizontal)
+		let vcompress = self.contentCompressionResistancePriority(for: .vertical)
+
 		printIndent(indent: idt) ; Swift.print("[\(name)]")
 		printIndent(indent: idt) ; Swift.print("- frame : \(self.frame.description)")
 		printIndent(indent: idt) ; Swift.print("- bounds: \(self.bounds.description)")
+		printIndent(indent: idt) ; Swift.print("- intrinsicContentSize: \(contentsize.description)")
 		printIndent(indent: idt) ; Swift.print("- translatesAutoresizingMaskIntoConstraints: \(self.translatesAutoresizingMaskIntoConstraints)")
+		printIndent(indent: idt) ; Swift.print("- contentHuggingPriority: [holiz] \(hhugging.description)")
+		printIndent(indent: idt) ; Swift.print("-                         [verty] \(vhugging.description)")
+		printIndent(indent: idt) ; Swift.print("- contentCompressionResistancePriority: [holiz] \(hcompress.description)")
+		printIndent(indent: idt) ; Swift.print("-                                       [vert ] \(vcompress.description)")
 	}
 
 	public func printIndent(indent idt: Int){
@@ -70,6 +82,22 @@ extension KCViewBase
 
 open class KCView : KCViewBase
 {
+	public enum Axis {
+		case Holizontal
+		case Vertical
+
+		public var description: String {
+			get {
+				let result: String
+				switch self {
+				case .Holizontal: result = "holizontal"
+				case .Vertical:   result = "vertical"
+				}
+				return result
+			}
+		}
+	}
+
 	/*
 	 * Event control
 	 */

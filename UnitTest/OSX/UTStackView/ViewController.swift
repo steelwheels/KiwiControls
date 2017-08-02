@@ -17,7 +17,7 @@ class ViewController: NSViewController
 	{
 		super.viewDidLoad()
 
-		let selection = 0
+		let selection = 1
 		switch selection {
 		case 0:
 			addSubviews_0()
@@ -31,8 +31,8 @@ class ViewController: NSViewController
 
 	private func addSubviews_0()
 	{
-		//mStackView.axis = .Holizontal
-		mStackView.axis = .Vertical
+		mStackView.axis = .Holizontal
+		//mStackView.axis = .Vertical
 		mStackView.alignment = .Trailing
 
 		let text0 = KCTextField()
@@ -51,22 +51,24 @@ class ViewController: NSViewController
 		let origin     = NSPoint.zero
 		let size       = mStackView.frame.size
 		let halfsize   = NSSize(width: size.width, height: size.height/2.0)
-		let quatersize = NSSize(width: size.width/4.0, height: size.height/4.0)
 
-		let text0 = KCTextField(frame: NSRect(origin: origin, size: quatersize))
+		let text0 = KCTextField()
 		text0.text = "Hello, Field !!!!!"
 
-		let button0 = KCButton(frame: NSRect(origin: origin, size: quatersize))
+		let button0 = KCButton()
 		button0.title = "Button-0"
+
+		let button1 = KCButton()
+		button1.title = "Button-1"
 
 		let box0 = KCStackView(frame: NSRect(origin: origin, size: halfsize))
 		box0.axis = .Holizontal
 		//box0.alignment = .Trailing
-		box0.setViews(views: [text0, button0])
+		box0.setViews(views: [text0, button0, button1])
 
-		let button1 = KCButton(frame: NSRect(origin: origin, size: quatersize))
-		button1.title = "Button-1"
-		mStackView.setViews(views: [box0, button1])
+		let button2 = KCButton()
+		button2.title = "Button-2"
+		mStackView.setViews(views: [box0, button2])
 	}
 
 	override func viewDidLayout() {

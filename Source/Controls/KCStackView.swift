@@ -15,22 +15,6 @@ import Canary
 
 open class KCStackView : KCCoreView
 {
-	public enum Axis {
-		case Holizontal
-		case Vertical
-
-		public var description: String {
-			get {
-				let result: String
-				switch self {
-				case .Holizontal: result = "holizontal"
-				case .Vertical:   result = "vertical"
-				}
-				return result
-			}
-		}
-	}
-
 	public enum Alignment {
 		case Leading
 		case Center
@@ -48,7 +32,7 @@ open class KCStackView : KCCoreView
 			}
 		}
 	}
-
+	
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -97,6 +81,14 @@ open class KCStackView : KCCoreView
 
 	open func setViews(views vs:Array<KCView>){
 		coreView.setViews(views: vs)
+	}
+
+	public func setClippingRegistancePriority(priority p: LayoutPriority, forAxis a: Axis){
+		coreView.setClippingRegistancePriority(priority: p, forAxis: a)
+	}
+
+	public func setHuggingPriority(priority p: LayoutPriority, forAxis a: Axis){
+		coreView.setHuggingPriority(priority: p, forAxis: a)
 	}
 
 	open func arrangedSubviews() -> Array<KCView> {

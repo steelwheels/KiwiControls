@@ -26,7 +26,7 @@ open class KCStackViewCore : KCView
 		self.frame  = bounds
 	}
 	
-	public var axis: KCStackView.Axis {
+	public var axis: Axis {
 		get {
 			#if os(OSX)
 				switch mStackView.orientation {
@@ -117,6 +117,40 @@ open class KCStackViewCore : KCView
 				}
 			#endif
 		})
+	}
+
+	public func setClippingRegistancePriority(priority p: KCStackView.LayoutPriority, forAxis a: KCStackView.Axis){
+		#if os(OSX)
+			let orientation : NSLayoutConstraintOrientation
+			switch a {
+			case .Holizontal: orientation = .horizontal
+			case .Vertical:   orientation = .vertical
+			}
+			let priority: NSLayoutPriority
+			switch p {
+			case .HighPriority: priority = NSLayoutPriorityDefaultHigh
+			case .LowPriority:  priority = NSLayoutPriorityDefaultLow
+			}
+			mStackView.setClippingResistancePriority(priority, for: orientation)
+		#else
+		#endif
+	}
+
+	public func setHuggingPriority(priority p: KCStackView.LayoutPriority, forAxis a: Axis){
+		#if os(OSX)
+			let orientation : NSLayoutConstraintOrientation
+			switch a {
+			case .Holizontal: orientation = .horizontal
+			case .Vertical:   orientation = .vertical
+			}
+			let priority: NSLayoutPriority
+			switch p {
+			case .HighPriority: priority = NSLayoutPriorityDefaultHigh
+			case .LowPriority:  priority = NSLayoutPriorityDefaultLow
+			}
+			mStackView.setHuggingPriority(priority, for: orientation)
+		#else
+		#endif
 	}
 
 	open func arrangedSubviews() -> Array<KCView> {
