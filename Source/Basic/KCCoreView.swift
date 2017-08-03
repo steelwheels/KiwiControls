@@ -108,7 +108,7 @@ open class KCCoreView: KCView
 		case LowPriority
 	}
 
-	public func serPriorityToResistAutoResize(priority value: LayoutPriority) {
+	public func setPriorityToResistAutoResize(priority value: LayoutPriority) {
 		#if os(OSX)
 			let parameter: NSLayoutPriority
 			switch value {

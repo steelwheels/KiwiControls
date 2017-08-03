@@ -44,6 +44,8 @@ open class KCIconView: KCCoreView
 		if let newview = loadChildXib(thisClass: KCIconView.self, nibName: "KCIconViewCore") as? KCIconViewCore {
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
+			allocateSubviewLayout(subView: newview)
+			setPriorityToResistAutoResize(priority: .HighPriority)
 		} else {
 			fatalError("Can not load KCIconViewCore")
 		}

@@ -61,9 +61,10 @@ open class KCStackView : KCCoreView
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCStackView.self, nibName: "KCStackViewCore") as? KCStackViewCore {
+			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setCoreView(view: newview)
+			setPriorityToResistAutoResize(priority: .LowPriority)
 		} else {
 			fatalError("Can not load KCStackCore")
 		}

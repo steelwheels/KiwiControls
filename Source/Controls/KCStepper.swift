@@ -42,9 +42,10 @@ public class KCStepper: KCCoreView
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCStepper.self, nibName: "KCStepperCore") as? KCStepperCore {
+			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setCoreView(view: newview)
+			setPriorityToResistAutoResize(priority: .HighPriority)
 		} else {
 			fatalError("Can not load KCStepperCore")
 		}
