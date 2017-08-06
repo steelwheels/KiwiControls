@@ -151,6 +151,12 @@ open class KCTextFieldCore : KCView
 		})
 	}
 
+	open override var intrinsicContentSize: KCSize
+	{
+		/* Dont have intrinsic size */
+		return KCSize(width: -1.0, height: -1.0)
+	}
+	
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		#if os(iOS)

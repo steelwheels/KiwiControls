@@ -100,6 +100,11 @@ public class KCButtonCore: KCView
 		})
 	}
 
+	open override var intrinsicContentSize: KCSize
+	{
+		return mButton.intrinsicContentSize
+	}
+
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		printIndent(indent: idt) ; Swift.print("- isEnabled: \(isEnabled)")

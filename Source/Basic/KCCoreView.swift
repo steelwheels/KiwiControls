@@ -8,10 +8,8 @@
 import Foundation
 #if os(OSX)
 	import Cocoa
-	public typealias KCSize = NSSize
 #else
 	import UIKit
-	public typealias KCSize = CGSize
 #endif
 
 open class KCCoreView: KCView

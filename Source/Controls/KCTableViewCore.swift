@@ -33,6 +33,12 @@ open class KCTableViewCore : KCView
 		}
 	}
 
+	open override var intrinsicContentSize: KCSize
+	{
+		/* Dont have intrinsic size */
+		return KCSize(width: -1.0, height: -1.0)
+	}
+
 	/*
 	#if os(OSX)
 	@IBOutlet weak var mTextField: NSTextField!

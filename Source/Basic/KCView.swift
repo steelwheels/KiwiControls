@@ -7,8 +7,10 @@
 
 #if os(iOS)
 	import UIKit
+	public typealias KCSize = CGSize
 #else
 	import Cocoa
+	public typealias KCSize = NSSize
 #endif
 import KiwiGraphics
 import Canary
@@ -46,6 +48,25 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 extension KCViewBase
 {
 	/*
+	 *
+	 */
+	public enum Axis {
+		case Holizontal
+		case Vertical
+
+		public var description: String {
+			get {
+				let result: String
+				switch self {
+				case .Holizontal: result = "holizontal"
+				case .Vertical:   result = "vertical"
+				}
+				return result
+			}
+		}
+	}
+
+	/*
 	 * Debug information
 	 */
 	open func printDebugInfo(indent idt: Int){
@@ -82,22 +103,6 @@ extension KCViewBase
 
 open class KCView : KCViewBase
 {
-	public enum Axis {
-		case Holizontal
-		case Vertical
-
-		public var description: String {
-			get {
-				let result: String
-				switch self {
-				case .Holizontal: result = "holizontal"
-				case .Vertical:   result = "vertical"
-				}
-				return result
-			}
-		}
-	}
-
 	/*
 	 * Event control
 	 */
@@ -191,6 +196,45 @@ open class KCView : KCViewBase
 		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
 	}
 
+	/*
+	 *
+	 */
+	public class func unionHolizontalIntrinsicSizes(left s0: KCSize, right s1: KCSize) -> KCSize
+	{
+		let padding: CGFloat = 8.0
+		let width: CGFloat
+		if s0.width > 0.0 && s1.width > 0.0 {
+			width = s0.width + padding + s1.width
+		} else {
+			width = -1.0
+		}
+		let height: CGFloat
+		if s0.height > 0.0 && s1.height > 0.0 {
+			height  = max(s0.height, s1.height)
+		} else {
+			height = -1.0
+		}
+		return KCSize(width: width, height: height)
+	}
+
+	public class func unionVerticalIntrinsicSizes(top s0: KCSize, bottom s1: KCSize) -> KCSize
+	{
+		let padding: CGFloat = 8.0
+		let width: CGFloat
+		if s0.width > 0.0 && s1.width > 0.0 {
+			width = max(s0.width, s1.width)
+		} else {
+			width = -1.0
+		}
+		let height: CGFloat
+		if s0.height > 0.0 && s1.height > 0.0 {
+			height  = s0.height + padding + s1.height
+		} else {
+			height = -1.0
+		}
+		return KCSize(width: width, height: height)
+	}
+	
 	/*
 	 * XIB load support 
 	 */

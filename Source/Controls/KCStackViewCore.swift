@@ -153,6 +153,27 @@ open class KCStackViewCore : KCView
 		#endif
 	}
 
+	open override var intrinsicContentSize: KCSize
+	{
+		var result = KCSize(width: 0.0, height: 0.0)
+		let subviews = arrangedSubviews()
+		let ax       = axis
+		for subview in subviews {
+			let size = subview.intrinsicContentSize
+			if size.width > 0.0 && size.height > 0.0 {
+				switch ax {
+				case .Holizontal:
+					result = KCView.unionHolizontalIntrinsicSizes(left: result, right: size)
+				case .Vertical:
+					result = KCView.unionVerticalIntrinsicSizes(top: result, bottom: size)
+				}
+			} else {
+				return KCSize(width: -1.0, height: -1.0)
+			}
+		}
+		return result
+	}
+
 	open func arrangedSubviews() -> Array<KCView> {
 		return mStackView.arrangedSubviews as! Array<KCView>
 	}
