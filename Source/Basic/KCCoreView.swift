@@ -104,27 +104,50 @@ open class KCCoreView: KCView
 	public enum LayoutPriority {
 		case HighPriority
 		case LowPriority
+
+		public var description: String {
+			get {
+				var result: String
+				switch self {
+				case .HighPriority: result = "high"
+				case .LowPriority:  result = "low"
+				}
+				return result
+			}
+		}
 	}
 
-	public func setPriorityToResistAutoResize(priority value: LayoutPriority) {
-		#if os(OSX)
-			let parameter: NSLayoutPriority
-			switch value {
-			case .HighPriority:	parameter = NSLayoutPriorityDefaultHigh
-			case .LowPriority:	parameter = NSLayoutPriorityDefaultLow
-			}
-		#else
-			let parameter: UILayoutPriority
-			switch value {
-			case .HighPriority:	parameter = UILayoutPriorityDefaultLow
-			case .LowPriority:	parameter = UILayoutPriorityDefaultLow
-			}
-		#endif
-		setContentCompressionResistancePriority(parameter, for: .horizontal)
-		setContentCompressionResistancePriority(parameter, for: .vertical)
-		setContentHuggingPriority(parameter, for: .horizontal)
-		setContentHuggingPriority(parameter, for: .vertical)
+	public func setPriorityToResistAutoResize(holizontalPriority hval: LayoutPriority, verticalPriority vval: LayoutPriority)
+	{
+		let hparam = decodePriority(priority: hval)
+		let vparam = decodePriority(priority: vval)
+		setContentCompressionResistancePriority(hparam, for: .horizontal)
+		setContentCompressionResistancePriority(vparam, for: .vertical)
+		setContentHuggingPriority(hparam, for: .horizontal)
+		setContentHuggingPriority(vparam, for: .vertical)
 	}
+
+	#if os(OSX)
+	private func decodePriority(priority value: LayoutPriority) -> NSLayoutPriority
+	{
+		let parameter: NSLayoutPriority
+		switch value {
+		case .HighPriority:	parameter = NSLayoutPriorityDefaultHigh
+		case .LowPriority:	parameter = NSLayoutPriorityDefaultLow
+		}
+		return parameter
+	}
+	#else
+	private func decodePriority(priority value: LayoutPriority) -> UILayoutPriority
+	{
+		let parameter: UILayoutPriority
+		switch value {
+		case .HighPriority:	parameter = UILayoutPriorityDefaultLow
+		case .LowPriority:	parameter = UILayoutPriorityDefaultLow
+		}
+		return parameter
+	}
+	#endif
 
 	public func getCoreView<T>() -> T {
 		if let v = mCoreView as? T {

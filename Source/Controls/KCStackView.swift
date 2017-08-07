@@ -64,7 +64,6 @@ open class KCStackView : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setPriorityToResistAutoResize(priority: .LowPriority)
 		} else {
 			fatalError("Can not load KCStackCore")
 		}

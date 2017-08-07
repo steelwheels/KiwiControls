@@ -137,6 +137,24 @@ open class KCTextFieldCore : KCView
 		}
 	}
 
+	public var lineBreak: NSLineBreakMode {
+		get {
+			#if os(iOS)
+				return mLabel.lineBreakMode
+
+			#else
+				return mTextField.lineBreakMode
+			#endif
+		}
+		set(mode) {
+			#if os(iOS)
+				mLabel.lineBreakMode = mode
+			#else
+				mTextField.lineBreakMode = mode
+			#endif
+		}
+	}
+
 	public func setColors(colors cols: KGColorPreference.TextColors){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(OSX)

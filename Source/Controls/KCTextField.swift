@@ -46,7 +46,6 @@ open class KCTextField : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setPriorityToResistAutoResize(priority: .LowPriority)
 		} else {
 			fatalError("Can not load KCTextFieldCore")
 		}
@@ -75,6 +74,11 @@ open class KCTextField : KCCoreView
 	public var alignment: NSTextAlignment {
 		get	  { return coreView.alignment }
 		set(align){ coreView.alignment = align }
+	}
+
+	public var lineBreak: NSLineBreakMode {
+		get	  { return coreView.lineBreak	}
+		set(mode) { coreView.lineBreak = mode	}
 	}
 
 	public func setColors(colors cols: KGColorPreference.TextColors){
