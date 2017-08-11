@@ -2,7 +2,7 @@
 
 ## Introduction
 KiwiControls framework contains the implementation of GUI controls which can be
-used by macOS and iOS. The purpose of this framework is definition and implementation of common API between macOS and iOS.
+used by macOS and iOS. The purpose of this framework is definition and implementation of common API for macOS and iOS.
 
 ## Copyright
 This software is produced by [Steel Wheels Project](http://steelwheels.github.io) and distributed under
