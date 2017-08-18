@@ -88,10 +88,8 @@ extension KCViewBase
 		printIndent(indent: idt) ; Swift.print("- bounds: \(self.bounds.description)")
 		printIndent(indent: idt) ; Swift.print("- intrinsicContentSize: \(contentsize.description)")
 		printIndent(indent: idt) ; Swift.print("- translatesAutoresizingMaskIntoConstraints: \(self.translatesAutoresizingMaskIntoConstraints)")
-		printIndent(indent: idt) ; Swift.print("- contentHuggingPriority: [holiz] \(hhugging.description)")
-		printIndent(indent: idt) ; Swift.print("-                         [verty] \(vhugging.description)")
-		printIndent(indent: idt) ; Swift.print("- contentCompressionResistancePriority: [holiz] \(hcompress.description)")
-		printIndent(indent: idt) ; Swift.print("-                                       [vert ] \(vcompress.description)")
+		printIndent(indent: idt) ; Swift.print("- contentHuggingPriority: [holiz] \(hhugging.description), [vert] \(vhugging.description)")
+		printIndent(indent: idt) ; Swift.print("- contentCompressionResistancePriority: [holiz] \(hcompress.description), [vert] \(vcompress.description)")
 	}
 
 	public func printIndent(indent idt: Int){

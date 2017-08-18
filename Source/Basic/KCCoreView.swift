@@ -142,7 +142,7 @@ open class KCCoreView: KCView
 	{
 		let parameter: UILayoutPriority
 		switch value {
-		case .HighPriority:	parameter = UILayoutPriorityDefaultLow
+		case .HighPriority:	parameter = UILayoutPriorityDefaultHigh
 		case .LowPriority:	parameter = UILayoutPriorityDefaultLow
 		}
 		return parameter
