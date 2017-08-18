@@ -16,6 +16,7 @@ class ViewController: UIViewController
 	@IBOutlet weak var mStepper: KCStepper!
 	@IBOutlet weak var mCheckBox: KCCheckBox!
 	@IBOutlet weak var mIconView: KCIconView!
+	@IBOutlet weak var mConsoleView: KCConsoleView!
 
 	private var mState: UTState? = nil
 
@@ -81,6 +82,9 @@ class ViewController: UIViewController
 			context.draw(hexagon: hexagon, withGradient: nil)
 			//context.fillEllipse(in: bounds)
 		}
+
+		let console = mConsoleView.console
+		console.print(string: "Hello, world!!")
 		
 		mState = state
 	}

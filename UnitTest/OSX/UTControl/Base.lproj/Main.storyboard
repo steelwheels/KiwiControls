@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -725,6 +725,10 @@
                                     <constraint firstAttribute="height" constant="40" id="tPS-O9-ubU"/>
                                 </constraints>
                             </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jgk-fV-gsg" customClass="KCConsoleView" customModule="KiwiControls">
+                                <rect key="frame" x="191" y="57" width="415" height="177"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="GX2-US-REo" firstAttribute="leading" secondItem="jXX-v8-soY" secondAttribute="trailing" constant="8" id="AQz-xJ-KoA"/>
@@ -747,6 +751,7 @@
                     <connections>
                         <outlet property="mButton" destination="KnZ-6t-CHT" id="aIO-jh-qdh"/>
                         <outlet property="mCheckBox" destination="1Ag-4W-thl" id="ddf-lc-1ab"/>
+                        <outlet property="mConsoleView" destination="jgk-fV-gsg" id="afw-Dn-ZRw"/>
                         <outlet property="mIconView" destination="xbw-DX-dGN" id="bcg-xu-e58"/>
                         <outlet property="mStepper" destination="H5A-TS-4S9" id="VVw-Db-HY0"/>
                         <outlet property="mTextField" destination="GX2-US-REo" id="exI-4v-cmM"/>

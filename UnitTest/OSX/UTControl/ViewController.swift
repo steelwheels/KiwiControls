@@ -17,7 +17,8 @@ class ViewController: NSViewController
 	@IBOutlet weak var mCheckBox: KCCheckBox!
 	@IBOutlet weak var mTextField: KCTextField!
 	@IBOutlet weak var mIconView: KCIconView!
-	
+	@IBOutlet weak var mConsoleView: KCConsoleView!
+
 	private var		mState:  UTState? = nil
 
 	override func viewDidLoad() {
@@ -61,6 +62,9 @@ class ViewController: NSViewController
 			Swift.print("Icon view")
 			context.fill(bounds)
 		}
+
+		let console = mConsoleView.console
+		console.print(string: "Hello, world !!")
 		
 		mState = state
 	}
