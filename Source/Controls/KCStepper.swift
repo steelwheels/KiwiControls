@@ -45,6 +45,7 @@ public class KCStepper: KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
+			setPriorityToResistAutoResize(holizontalPriority: .HighPriority, verticalPriority: .HighPriority)
 		} else {
 			fatalError("Can not load KCStepperCore")
 		}

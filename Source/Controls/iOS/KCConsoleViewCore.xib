@@ -12,22 +12,22 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KCConsoleViewCore" customModule="KiwiControls" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="346"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="22"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gei-IC-oVJ">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="346"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gei-IC-oVJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gei-IC-oVJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Bx7-u6-KQS"/>
-                <constraint firstAttribute="trailing" secondItem="gei-IC-oVJ" secondAttribute="trailing" id="Rax-CB-vF2"/>
-                <constraint firstAttribute="bottom" secondItem="gei-IC-oVJ" secondAttribute="bottom" id="S3k-sb-YVY"/>
-                <constraint firstItem="gei-IC-oVJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Z2j-DF-y4V"/>
+                <constraint firstItem="gei-IC-oVJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5zt-SK-MxY"/>
+                <constraint firstAttribute="bottom" secondItem="gei-IC-oVJ" secondAttribute="bottom" id="giN-nG-pT9"/>
+                <constraint firstItem="gei-IC-oVJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hxh-uI-82A"/>
+                <constraint firstAttribute="trailing" secondItem="gei-IC-oVJ" secondAttribute="trailing" id="ppB-82-vwq"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -36,7 +36,7 @@
             <connections>
                 <outlet property="mTextView" destination="gei-IC-oVJ" id="WgS-uL-gh4"/>
             </connections>
-            <point key="canvasLocation" x="41" y="42"/>
+            <point key="canvasLocation" x="40.5" y="42"/>
         </view>
     </objects>
 </document>

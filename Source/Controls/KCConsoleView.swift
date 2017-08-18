@@ -30,7 +30,7 @@ open class KCConsoleView : KCCoreView
 		#if os(OSX)
 			let frame = NSRect(x: 0.0, y: 0.0, width: 480, height: 270)
 		#else
-			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 346)
+			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 22)
 		#endif
 		self.init(frame: frame)
 	}
@@ -47,6 +47,7 @@ open class KCConsoleView : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
+			setPriorityToResistAutoResize(holizontalPriority: .LowPriority, verticalPriority: .LowPriority)
 		} else {
 			fatalError("Can not load KCConsoleViewCore")
 		}

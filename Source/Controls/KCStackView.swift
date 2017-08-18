@@ -64,6 +64,7 @@ open class KCStackView : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
+			setPriorityToResistAutoResize(holizontalPriority: .LowPriority, verticalPriority: .LowPriority)
 		} else {
 			fatalError("Can not load KCStackCore")
 		}
@@ -81,14 +82,6 @@ open class KCStackView : KCCoreView
 
 	open func setViews(views vs:Array<KCView>){
 		coreView.setViews(views: vs)
-	}
-
-	public func setClippingRegistancePriority(priority p: LayoutPriority, forAxis a: Axis){
-		coreView.setClippingRegistancePriority(priority: p, forAxis: a)
-	}
-
-	public func setHuggingPriority(priority p: LayoutPriority, forAxis a: Axis){
-		coreView.setHuggingPriority(priority: p, forAxis: a)
 	}
 
 	open func arrangedSubviews() -> Array<KCView> {

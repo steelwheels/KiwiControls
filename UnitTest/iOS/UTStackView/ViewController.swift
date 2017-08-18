@@ -17,20 +17,35 @@ class ViewController: UIViewController
 	{
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
-		let frame  = CGRect(origin: CGPoint.zero, size: CGSize(width:200,height:32))
-		let button0 = KCButton(frame: frame)
+
+		let field0 = KCTextField()
+		field0.text = "TextField"
+
+		let button0 = KCButton()
 		button0.title = "Hello"
 
-		let button1 = KCButton(frame: frame)
+		let button1 = KCButton()
 		button1.title = "Goodbye"
 
-		mStackView.setViews(views: [button0, button1])
-		mStackView.axis = .Holizontal
+		let box0 = KCStackView()
+		box0.setViews(views: [field0, button0, button1])
+		box0.axis = .Holizontal
+
+		let text1 = KCConsoleView()
+		let console1 = text1.console
+		console1.print(string: "Welcome to ViewController")
+
+		mStackView.setViews(views: [text1, box0])
+		mStackView.axis = .Vertical
 	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		mStackView.printDebugInfo(indent: 0)
 	}
 }
 

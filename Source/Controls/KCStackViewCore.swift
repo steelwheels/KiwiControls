@@ -119,40 +119,6 @@ open class KCStackViewCore : KCView
 		})
 	}
 
-	public func setClippingRegistancePriority(priority p: KCStackView.LayoutPriority, forAxis a: KCStackView.Axis){
-		#if os(OSX)
-			let orientation : NSLayoutConstraintOrientation
-			switch a {
-			case .Holizontal: orientation = .horizontal
-			case .Vertical:   orientation = .vertical
-			}
-			let priority: NSLayoutPriority
-			switch p {
-			case .HighPriority: priority = NSLayoutPriorityDefaultHigh
-			case .LowPriority:  priority = NSLayoutPriorityDefaultLow
-			}
-			mStackView.setClippingResistancePriority(priority, for: orientation)
-		#else
-		#endif
-	}
-
-	public func setHuggingPriority(priority p: KCStackView.LayoutPriority, forAxis a: Axis){
-		#if os(OSX)
-			let orientation : NSLayoutConstraintOrientation
-			switch a {
-			case .Holizontal: orientation = .horizontal
-			case .Vertical:   orientation = .vertical
-			}
-			let priority: NSLayoutPriority
-			switch p {
-			case .HighPriority: priority = NSLayoutPriorityDefaultHigh
-			case .LowPriority:  priority = NSLayoutPriorityDefaultLow
-			}
-			mStackView.setHuggingPriority(priority, for: orientation)
-		#else
-		#endif
-	}
-
 	open override var intrinsicContentSize: KCSize
 	{
 		var result = KCSize(width: 0.0, height: 0.0)

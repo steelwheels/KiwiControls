@@ -64,6 +64,7 @@ open class KCConsoleViewCore : KCView
 			let storage = mTextView.textStorage
 			appendText(destinationStorage: storage, string: str)
 		#endif
+		scrollToBottom()
 	}
 
 	private func appendText(destinationStorage storage: NSTextStorage, string str: String){
@@ -75,10 +76,28 @@ open class KCConsoleViewCore : KCView
 		storage.endEditing()
 	}
 
+	public func scrollToBottom(){
+		#if os(OSX)
+			mTextView.scrollToEndOfDocument(self)
+		#else
+			mTextView.selectedRange = NSRange(location: mTextView.text.characters.count, length: 0)
+			mTextView.isScrollEnabled = true
+
+			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
+			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
+			mTextView.setContentOffset(scrollPoint, animated: true)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize
 	{
-		/* Dont have intrinsic size */
-		return KCSize(width: -1.0, height: -1.0)
+		#if os(OSX)
+			return mTextView.intrinsicContentSize
+		#else
+			let cursize = mTextView.frame.size
+			let maxsize = KCSize(width: cursize.width, height: cursize.height*256)
+			return mTextView.sizeThatFits(maxsize)
+		#endif
 	}
 
 	open override func printDebugInfo(indent idt: Int){

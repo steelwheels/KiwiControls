@@ -68,7 +68,12 @@ class ViewController: NSViewController
 
 		let button2 = KCButton()
 		button2.title = "Button-2"
-		mStackView.setViews(views: [box0, button2])
+
+		let text1 = KCConsoleView()
+		let console1 = text1.console
+		console1.print(string: "Hello, world !!")
+
+		mStackView.setViews(views: [box0, text1, button2])
 	}
 
 	override func viewDidLayout() {

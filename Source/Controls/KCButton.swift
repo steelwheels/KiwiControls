@@ -46,6 +46,7 @@ open class KCButton: KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: frm)
 			allocateSubviewLayout(subView: newview)
+			setPriorityToResistAutoResize(holizontalPriority: .HighPriority, verticalPriority: .HighPriority)
 		} else {
 			fatalError("Can not load KCButtonCore")
 		}
