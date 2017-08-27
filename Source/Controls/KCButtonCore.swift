@@ -77,17 +77,6 @@ public class KCButtonCore: KCView
 		}
 	}
 
-	public var isVisible: Bool {
-		get {
-			return !(mButton.isHidden)
-		}
-		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.mButton.isHidden   = !newval
-			})
-		}
-	}
-
 	public func setColors(colors cols: KGColorPreference.ButtonColors){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(iOS)
@@ -107,8 +96,9 @@ public class KCButtonCore: KCView
 
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
+
 		printIndent(indent: idt) ; Swift.print("- isEnabled: \(isEnabled)")
-		printIndent(indent: idt) ; Swift.print("- isVisible: \(isVisible)")
+		printIndent(indent: idt) ; Swift.print("- isVisible: \(!isHidden)")
 		if let v = mButton {
 			v.printDebugInfo(indent: idt+1)
 		}

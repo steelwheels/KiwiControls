@@ -56,11 +56,6 @@ open class KCTextField : KCCoreView
 		get { return coreView.isEnabled }
 		set(v) { coreView.isEnabled = v }
 	}
-
-	public var isVisible: Bool {
-		get { return coreView.isVisible }
-		set(v) { coreView.isVisible = v }
-	}
 	
 	public var text: String {
 		get { return coreView.text }

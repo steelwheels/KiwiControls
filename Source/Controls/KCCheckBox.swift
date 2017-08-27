@@ -66,11 +66,6 @@ open class KCCheckBox: KCCoreView
 		set(v) { coreView.isEnabled = v }
 	}
 
-	public var isVisible: Bool {
-		get { return coreView.isVisible }
-		set(v) { coreView.isVisible = v }
-	}
-
 	private var coreView: KCCheckBoxCore {
 		get { return getCoreView() }
 	}

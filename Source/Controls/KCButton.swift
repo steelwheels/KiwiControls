@@ -62,11 +62,6 @@ open class KCButton: KCCoreView
 		set(v) { coreView.isEnabled = v }
 	}
 
-	public var isVisible: Bool {
-		get { return coreView.isVisible }
-		set(v) { coreView.isVisible = v }
-	}
-
 	public var title: String {
 		get { return coreView.title }
 		set(newstr){ coreView.title = newstr }

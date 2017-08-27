@@ -6,6 +6,7 @@
  */
 
 import Foundation
+import Canary
 #if os(OSX)
 	import Cocoa
 #else
@@ -148,6 +149,23 @@ open class KCCoreView: KCView
 		return parameter
 	}
 	#endif
+
+	public var isVisible: Bool {
+		get {
+			if let core = mCoreView {
+				return !(core.isHidden)
+			} else {
+				fatalError("No core view")
+			}
+		}
+		set(newval){
+			if let core = mCoreView {
+				CNExecuteInMainThread(doSync: false, execute: { () -> Void in
+					core.isHidden   = !newval
+				})
+			}
+		}
+	}
 
 	public func getCoreView<T>() -> T {
 		if let v = mCoreView as? T {

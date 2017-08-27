@@ -46,26 +46,6 @@ open class KCTextFieldCore : KCView
 		}
 	}
 
-	public var isVisible: Bool {
-		get {
-			#if os(OSX)
-				return !(mTextField.isHidden)
-			#else
-				return !(mLabel.isHidden)
-			#endif
-
-		}
-		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(OSX)
-					self.mTextField.isHidden   = !newval
-				#else
-					self.mLabel.isHidden = !newval
-				#endif
-			})
-		}
-	}
-
 	public var text: String {
 		get {
 			return getText()

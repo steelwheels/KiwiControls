@@ -61,7 +61,7 @@ public class KCStepper: KCCoreView
 		set(v) { coreView.isEnabled = v }
 	}
 
-	public var isVisible: Bool {
+	public override var isVisible: Bool {
 		get { return coreView.isVisible }
 		set(v) { coreView.isVisible = v }
 	}
