@@ -104,19 +104,33 @@ open class KCStackViewCore : KCView
 		}
 	}
 
-	public func setViews(views viewset:Array<KCView>){
+	public func addArrangedSubViews(subViews views:Array<KCView>){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(iOS)
-				for view in viewset {
+				for view in views {
 					self.mStackView.addArrangedSubview(view)
 				}
 			#else
 				//self.mStackView.setViews(viewset, in: .top)
-				for view in viewset {
+				for view in views {
 					self.mStackView.addArrangedSubview(view)
 				}
 			#endif
 		})
+	}
+
+	public func addArrangedSubView(subView view: KCView){
+		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
+			#if os(iOS)
+				self.mStackView.addArrangedSubview(view)
+			#else
+				self.mStackView.addArrangedSubview(view)
+			#endif
+		})
+	}
+
+	open func arrangedSubviews() -> Array<KCView> {
+		return mStackView.arrangedSubviews as! Array<KCView>
 	}
 
 	open override var intrinsicContentSize: KCSize
@@ -138,10 +152,6 @@ open class KCStackViewCore : KCView
 			}
 		}
 		return result
-	}
-
-	open func arrangedSubviews() -> Array<KCView> {
-		return mStackView.arrangedSubviews as! Array<KCView>
 	}
 	
 	open override func printDebugInfo(indent idt: Int){

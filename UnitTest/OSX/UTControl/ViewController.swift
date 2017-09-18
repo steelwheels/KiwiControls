@@ -63,9 +63,11 @@ class ViewController: NSViewController
 			context.fill(bounds)
 		}
 
-		let console = mConsoleView.console
-		console.print(string: "Hello, world !!")
-		
+		let str0 = NSAttributedString(string: "Hello, world!!\n")
+		mConsoleView.appendText(string: str0)
+		let str1 = NSAttributedString(string: "Good, evening!!\n")
+		mConsoleView.appendText(string: str1)
+
 		mState = state
 	}
 

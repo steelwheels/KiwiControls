@@ -40,8 +40,6 @@ open class KCConsoleView : KCCoreView
 		setupContext() ;
 	}
 
-	public var console: KCViewConsole { get { return coreView.console }}
-
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCConsoleViewCore") as? KCConsoleViewCore {
 			setCoreView(view: newview)
@@ -51,6 +49,10 @@ open class KCConsoleView : KCCoreView
 		} else {
 			fatalError("Can not load KCConsoleViewCore")
 		}
+	}
+
+	public func appendText(string str: NSAttributedString){
+		coreView.appendText(string: str)
 	}
 
 	private var coreView: KCConsoleViewCore {

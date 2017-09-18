@@ -80,8 +80,12 @@ open class KCStackView : KCCoreView
 		set(newval)	{ coreView.alignment = newval }
 	}
 
-	open func setViews(views vs:Array<KCView>){
-		coreView.setViews(views: vs)
+	open func addArrangedSubViews(subViews vs:Array<KCView>){
+		coreView.addArrangedSubViews(subViews: vs)
+	}
+
+	open func addArrangedSubView(subView v: KCView){
+		coreView.addArrangedSubView(subView: v)
 	}
 
 	open func arrangedSubviews() -> Array<KCView> {
