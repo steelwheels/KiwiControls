@@ -40,7 +40,7 @@ public class KCButtonBody: NSButton
 
 		/* Do not change the image color when the button is hilighted */
 		if let buttonCell = self.cell as? NSButtonCell {
-			buttonCell.highlightsBy = NSCellStyleMask.pushInCellMask
+			buttonCell.highlightsBy = NSCell.StyleMask.pushInCellMask
 		}
 	}
 
@@ -60,7 +60,7 @@ public class KCButtonBody: NSButton
 		if let cols = mColors  {
 			let colorAttributeTitle = NSMutableAttributedString(attributedString: self.attributedTitle)
 			let range = NSMakeRange(0, colorAttributeTitle.length)
-			colorAttributeTitle.addAttribute(NSForegroundColorAttributeName, value: cols.title, range: range)
+			colorAttributeTitle.addAttribute(NSAttributedStringKey.foregroundColor, value: cols.title, range: range)
 			self.attributedTitle = colorAttributeTitle
 		}
 	}

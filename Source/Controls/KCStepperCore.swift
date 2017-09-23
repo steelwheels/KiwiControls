@@ -186,10 +186,10 @@ public class KCStepperCore: KCView
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		if let v = mTextField {
-			v.printDebugInfo(indent: idt+1)
+			KCPrintDebugInfo(view: v, indent: idt+1)
 		}
 		if let v = mStepper {
-			v.printDebugInfo(indent: idt+1)
+			KCPrintDebugInfo(view: v, indent: idt+1)
 		}
 	}
 }

@@ -28,14 +28,14 @@ class ViewController: UIViewController
 		button1.title = "Goodbye"
 
 		let box0 = KCStackView()
-		box0.setViews(views: [field0, button0, button1])
+		box0.addArrangedSubViews(subViews: [field0, button0, button1])
 		box0.axis = .Holizontal
 
 		let text1 = KCConsoleView()
-		let console1 = text1.console
-		console1.print(string: "Welcome to ViewController")
+		let astr = NSAttributedString(string: "welcome to ViewController")
+		text1.appendText(string: astr)
 
-		mStackView.setViews(views: [text1, box0])
+		mStackView.addArrangedSubViews(subViews: [text1, box0])
 		mStackView.axis = .Vertical
 	}
 

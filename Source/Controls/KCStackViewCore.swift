@@ -157,18 +157,17 @@ open class KCStackViewCore : KCView
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		if let v = mStackView {
-			v.printDebugInfo(indent: idt+1)
+			KCPrintDebugInfo(view: v, indent: idt+1)
 
 			let algstr  = alignment.description
-			printIndent(indent: idt+1) ; Swift.print("- alignment: \(algstr)")
+			KCPrintIndent(indent: idt+1) ; Swift.print("- alignment: \(algstr)")
 			let axisstr = axis.description
-			printIndent(indent: idt+1) ; Swift.print("- axis:      \(axisstr)")
+			KCPrintIndent(indent: idt+1) ; Swift.print("- axis:      \(axisstr)")
 		}
 		var viewid = 0
 		for v in mStackView.arrangedSubviews {
-			printIndent(indent: idt+2)
-			Swift.print("[\(viewid)] ")
-			v.printDebugInfo(indent: idt+2)
+			KCPrintIndent(indent: idt+2) ; Swift.print("[\(viewid)] ")
+			KCPrintDebugInfo(view: v, indent: idt+2)
 			viewid = viewid + 1
 		}
 	}

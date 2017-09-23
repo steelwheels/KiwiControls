@@ -41,7 +41,7 @@ public class KCCheckBoxCore: KCView
 	#else
 	@IBAction func checkUpdated(_ sender: NSButton) {
 		if let updatecallback = checkUpdatedCallback {
-			let ison = sender.state == NSOnState
+			let ison = (sender.state == .on)
 			updatecallback(ison)
 		}
 	}
@@ -126,14 +126,14 @@ public class KCCheckBoxCore: KCView
 		super.printDebugInfo(indent: idt)
 		#if os(iOS)
 			if let v = mSwitch {
-				v.printDebugInfo(indent: idt+1)
+				KCPrintDebugInfo(view: v, indent: idt+1)
 			}
 			if let v = mLabel {
-				v.printDebugInfo(indent: idt+1)
+				KCPrintDebugInfo(view: v, indent: idt+1)
 			}
 		#else
 			if let v = mCheckBox {
-				v.printDebugInfo(indent: idt+1)
+				KCPrintDebugInfo(view: v, indent: idt+1)
 			}
 		#endif
 	}

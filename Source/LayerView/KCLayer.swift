@@ -78,7 +78,7 @@ open class KCLayer: CALayer
 
 	public func doUpdate(){
 		if mUpdateRect.size.width > 0.0 && mUpdateRect.size.height > 0.0 {
-			setNeedsDisplayIn(mUpdateRect)
+			setNeedsDisplay(mUpdateRect)
 			mUpdateRect = CGRect.zero
 		}
 		if let slayers = self.sublayers {
@@ -107,12 +107,12 @@ open class KCLayer: CALayer
 		mUpdateRect = mUpdateRect.union(drect)
 	}
 
-	open override func setNeedsDisplayIn(_ dirtyrect: CGRect) {
+	open override func setNeedsDisplay(_ dirtyrect: CGRect) {
 		#if os(iOS)
 			let convrect = convertCoodinate(sourceRect: dirtyrect, bounds: bounds)
-			super.setNeedsDisplayIn(convrect)
+			super.setNeedsDisplay(convrect)
 		#else
-			super.setNeedsDisplayIn(dirtyrect)
+			super.setNeedsDisplay(dirtyrect)
 		#endif
 	}
 }

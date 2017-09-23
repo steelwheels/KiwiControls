@@ -32,7 +32,7 @@ open class KCCoreView: KCView
 	}
 
 	#if os(OSX)
-	open override func contentCompressionResistancePriority(for orientation: NSLayoutConstraintOrientation) -> NSLayoutPriority
+	open override func contentCompressionResistancePriority(for orientation: NSLayoutConstraint.Orientation) -> NSLayoutConstraint.Priority
 	{
 		if let core = mCoreView {
 			return core.contentCompressionResistancePriority(for: orientation)
@@ -51,7 +51,7 @@ open class KCCoreView: KCView
 	#endif
 
 	#if os(OSX)
-	open override func setContentCompressionResistancePriority(_ priority: NSLayoutPriority, for orientation: NSLayoutConstraintOrientation)
+	open override func setContentCompressionResistancePriority(_ priority: NSLayoutConstraint.Priority, for orientation: NSLayoutConstraint.Orientation)
 	{
 		if let core = mCoreView	 {
 			core.setContentCompressionResistancePriority(priority, for: orientation)
@@ -68,7 +68,7 @@ open class KCCoreView: KCView
 	#endif
 
 	#if os(OSX)
-	open override func contentHuggingPriority(for orientation: NSLayoutConstraintOrientation) -> NSLayoutPriority
+	open override func contentHuggingPriority(for orientation: NSLayoutConstraint.Orientation) -> NSLayoutConstraint.Priority
 	{
 		if let core = mCoreView {
 			return core.contentHuggingPriority(for: orientation)
@@ -87,7 +87,7 @@ open class KCCoreView: KCView
 	#endif
 
 	#if os(OSX)
-	open override func setContentHuggingPriority(_ priority: NSLayoutPriority, for orientation: NSLayoutConstraintOrientation) {
+	open override func setContentHuggingPriority(_ priority: NSLayoutConstraint.Priority, for orientation: NSLayoutConstraint.Orientation) {
 		if let core = mCoreView {
 			core.setContentHuggingPriority(priority, for: orientation)
 		}
@@ -129,12 +129,12 @@ open class KCCoreView: KCView
 	}
 
 	#if os(OSX)
-	private func decodePriority(priority value: LayoutPriority) -> NSLayoutPriority
+	private func decodePriority(priority value: LayoutPriority) -> NSLayoutConstraint.Priority
 	{
-		let parameter: NSLayoutPriority
+		let parameter: NSLayoutConstraint.Priority
 		switch value {
-		case .HighPriority:	parameter = NSLayoutPriorityDefaultHigh
-		case .LowPriority:	parameter = NSLayoutPriorityDefaultLow
+		case .HighPriority:	parameter = NSLayoutConstraint.Priority.defaultHigh
+		case .LowPriority:	parameter = NSLayoutConstraint.Priority.defaultLow
 		}
 		return parameter
 	}
@@ -143,8 +143,8 @@ open class KCCoreView: KCView
 	{
 		let parameter: UILayoutPriority
 		switch value {
-		case .HighPriority:	parameter = UILayoutPriorityDefaultHigh
-		case .LowPriority:	parameter = UILayoutPriorityDefaultLow
+		case .HighPriority:	parameter = .defaultHigh
+		case .LowPriority:	parameter = .defaultLow
 		}
 		return parameter
 	}

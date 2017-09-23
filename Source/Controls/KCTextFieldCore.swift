@@ -117,7 +117,7 @@ open class KCTextFieldCore : KCView
 		}
 	}
 
-	public var lineBreak: NSLineBreakMode {
+	public var lineBreak: KCLineBreakMode {
 		get {
 			#if os(iOS)
 				return mLabel.lineBreakMode
@@ -158,11 +158,11 @@ open class KCTextFieldCore : KCView
 		super.printDebugInfo(indent: idt)
 		#if os(iOS)
 			if let v = mLabel {
-				v.printDebugInfo(indent: idt+1)
+				KCPrintDebugInfo(view: v, indent: idt+1)
 			}
 		#else
 			if let v = mTextField {
-				v.printDebugInfo(indent: idt+1)
+				KCPrintDebugInfo(view: v, indent: idt+1)
 			}
 		#endif
 	}

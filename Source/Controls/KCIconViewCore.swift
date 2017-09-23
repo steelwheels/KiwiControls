@@ -99,10 +99,10 @@ open class KCIconViewCore : KCView
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		if let v = mLayerView {
-			v.printDebugInfo(indent: idt+1)
+			KCPrintDebugInfo(view: v, indent: idt+1)
 		}
 		if let v = mLabelView {
-			v.printDebugInfo(indent: idt+1)
+			KCPrintDebugInfo(view: v, indent: idt+1)
 		}
 	}
 }

@@ -31,11 +31,11 @@ public class KCAlert : NSObject
 		var result: AlertResponce
 		let alert = NSAlert(error: err)
 		switch alert.runModal() {
-		case NSModalResponseStop:
+		case NSApplication.ModalResponse.stop:
 			result = .Stop
-		case NSModalResponseAbort:
+		case NSApplication.ModalResponse.abort:
 			result = .Abort
-		case NSModalResponseContinue:
+		case NSApplication.ModalResponse.continue:
 			result = .Continue
 		default:
 			NSLog("Unknown result")
@@ -71,11 +71,11 @@ public class KCAlert : NSObject
 
 		var result : SaveResponce
 		switch alert.runModal() {
-		case NSAlertFirstButtonReturn:
+		case NSApplication.ModalResponse.alertFirstButtonReturn:
 			result = .Save
-		case NSAlertSecondButtonReturn:
+		case NSApplication.ModalResponse.alertSecondButtonReturn:
 			result = .Cancel
-		case NSAlertThirdButtonReturn:
+		case NSApplication.ModalResponse.alertThirdButtonReturn:
 			result = .DontSave
 		default:
 			result = .Cancel

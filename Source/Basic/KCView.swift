@@ -16,9 +16,9 @@ import KiwiGraphics
 import Canary
 
 #if os(iOS)
-	public typealias KCViewBase = UIView
+	public typealias KCViewBase 		= UIView
 #else
-	public typealias KCViewBase = NSView
+	public typealias KCViewBase 		= NSView
 #endif
 
 public enum KCMouseEvent {
@@ -43,60 +43,6 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 {
 	let y = (b.size.height - p.y)
 	return CGPoint(x: p.x, y: y)
-}
-
-extension KCViewBase
-{
-	/*
-	 *
-	 */
-	public enum Axis {
-		case Holizontal
-		case Vertical
-
-		public var description: String {
-			get {
-				let result: String
-				switch self {
-				case .Holizontal: result = "holizontal"
-				case .Vertical:   result = "vertical"
-				}
-				return result
-			}
-		}
-	}
-
-	/*
-	 * Debug information
-	 */
-	open func printDebugInfo(indent idt: Int){
-		#if os(iOS)
-			let name = NSStringFromClass(type(of: self))
-		#else
-			let name = self.className
-		#endif
-
-		let contentsize = self.intrinsicContentSize
-
-		let hhugging  = self.contentHuggingPriority(for: .horizontal)
-		let vhugging  = self.contentHuggingPriority(for: .vertical)
-		let hcompress = self.contentCompressionResistancePriority(for: .horizontal)
-		let vcompress = self.contentCompressionResistancePriority(for: .vertical)
-
-		printIndent(indent: idt) ; Swift.print("[\(name)]")
-		printIndent(indent: idt) ; Swift.print("- frame : \(self.frame.description)")
-		printIndent(indent: idt) ; Swift.print("- bounds: \(self.bounds.description)")
-		printIndent(indent: idt) ; Swift.print("- intrinsicContentSize: \(contentsize.description)")
-		printIndent(indent: idt) ; Swift.print("- translatesAutoresizingMaskIntoConstraints: \(self.translatesAutoresizingMaskIntoConstraints)")
-		printIndent(indent: idt) ; Swift.print("- contentHuggingPriority: [holiz] \(hhugging.description), [vert] \(vhugging.description)")
-		printIndent(indent: idt) ; Swift.print("- contentCompressionResistancePriority: [holiz] \(hcompress.description), [vert] \(vcompress.description)")
-	}
-
-	public func printIndent(indent idt: Int){
-		for _ in 0..<idt {
-			Swift.print("  ", terminator:"")
-		}
-	}
 }
 
 open class KCView : KCViewBase
@@ -236,16 +182,16 @@ open class KCView : KCViewBase
 	/*
 	 * XIB load support 
 	 */
-	private func allocateLayout(subView sview : KCViewBase, attribute attr: NSLayoutAttribute) -> NSLayoutConstraint {
-		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: NSLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
+	private func allocateLayout(subView sview : KCViewBase, attribute attr: KCLayoutAttribute) -> NSLayoutConstraint {
+		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
 	}
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
-		addConstraint(allocateLayout(subView: sview, attribute: NSLayoutAttribute.top)) ;
-		addConstraint(allocateLayout(subView: sview, attribute: NSLayoutAttribute.left)) ;
-		addConstraint(allocateLayout(subView: sview, attribute: NSLayoutAttribute.bottom)) ;
-		addConstraint(allocateLayout(subView: sview, attribute: NSLayoutAttribute.right)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.top)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.left)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.bottom)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.right)) ;
 	}
 
 	public func loadChildXib(thisClass tc: AnyClass, nibName nn: String) -> KCView {
@@ -261,14 +207,16 @@ open class KCView : KCViewBase
 				}
 			}
 		#else
-			if let nib = NSNib(nibNamed: nn, bundle: bundle) {
-				var views : NSArray = NSArray()
-				if(nib.instantiate(withOwner: nil, topLevelObjects: &views)){
-					for i in 0..<views.count {
-						if let view = views[i] as? KCView {
-							view.frame = self.bounds ;
-							addSubview(view) ;
-							return view ;
+			if let nib = NSNib(nibNamed: NSNib.Name(rawValue: nn), bundle: bundle) {
+				var viewsp : NSArray? = NSArray()
+				if(nib.instantiate(withOwner: nil, topLevelObjects: &viewsp)){
+					if let views = viewsp {
+						for i in 0..<views.count {
+							if let view = views[i] as? KCView {
+								view.frame = self.bounds ;
+								addSubview(view) ;
+								return view ;
+							}
 						}
 					}
 				}
@@ -293,6 +241,41 @@ open class KCView : KCViewBase
 		self.clearsContextBeforeDrawing = false
 		#endif
 	}
+
+	open func printDebugInfo(indent idt: Int) {
+		KCPrintDebugInfo(view: self, indent: idt)
+	}
 }
 
+/*
+ * Debug information
+ */
+public func KCPrintDebugInfo(view v: KCViewBase, indent idt: Int){
+	#if os(iOS)
+		let name = NSStringFromClass(type(of: v))
+	#else
+		let name = v.className
+	#endif
+
+	let contentsize = v.intrinsicContentSize
+
+	let hhugging  = v.contentHuggingPriority(for: .horizontal)
+	let vhugging  = v.contentHuggingPriority(for: .vertical)
+	let hcompress = v.contentCompressionResistancePriority(for: .horizontal)
+	let vcompress = v.contentCompressionResistancePriority(for: .vertical)
+
+	KCPrintIndent(indent: idt) ; Swift.print("[\(name)]")
+	KCPrintIndent(indent: idt) ; Swift.print("- frame : \(v.frame.description)")
+	KCPrintIndent(indent: idt) ; Swift.print("- bounds: \(v.bounds.description)")
+	KCPrintIndent(indent: idt) ; Swift.print("- intrinsicContentSize: \(contentsize.description)")
+	KCPrintIndent(indent: idt) ; Swift.print("- translatesAutoresizingMaskIntoConstraints: \(v.translatesAutoresizingMaskIntoConstraints)")
+	KCPrintIndent(indent: idt) ; Swift.print("- contentHuggingPriority: [holiz] \(hhugging), [vert] \(vhugging)")
+	KCPrintIndent(indent: idt) ; Swift.print("- contentCompressionResistancePriority: [holiz] \(hcompress), [vert] \(vcompress)")
+}
+
+public func KCPrintIndent(indent idt: Int){
+	for _ in 0..<idt {
+		Swift.print("  ", terminator:"")
+	}
+}
 

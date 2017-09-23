@@ -29,7 +29,7 @@ open class KCTableViewCore : KCView
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
 		if let v = mTableView {
-			v.printDebugInfo(indent: idt+1)
+			KCPrintDebugInfo(view: v, indent: idt+1)
 		}
 	}
 

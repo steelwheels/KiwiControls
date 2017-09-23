@@ -67,6 +67,7 @@
 		05841EA31D8F7BA00092C2C6 /* KCLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05841EA01D8F7BA00092C2C6 /* KCLayerView.swift */; };
 		058AE0511E12C3A800116D89 /* KCButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058AE0501E12C3A800116D89 /* KCButtonCore.swift */; };
 		058AE0531E12C3BF00116D89 /* KCButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058AE0521E12C3BF00116D89 /* KCButtonCore.xib */; };
+		059570451F7659D6007898FB /* KCType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059570441F7659D6007898FB /* KCType.swift */; };
 		05BA2D8F1DEB10CE00A8EB62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA2D8E1DEB10CE00A8EB62 /* AppDelegate.swift */; };
 		05BA2D911DEB10CE00A8EB62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA2D901DEB10CE00A8EB62 /* ViewController.swift */; };
 		05BA2D941DEB10CE00A8EB62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BA2D921DEB10CE00A8EB62 /* Main.storyboard */; };
@@ -179,6 +180,7 @@
 		05841EA01D8F7BA00092C2C6 /* KCLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
 		058AE0501E12C3A800116D89 /* KCButtonCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButtonCore.swift; sourceTree = "<group>"; };
 		058AE0521E12C3BF00116D89 /* KCButtonCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonCore.xib; sourceTree = "<group>"; };
+		059570441F7659D6007898FB /* KCType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCType.swift; sourceTree = "<group>"; };
 		05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BA2D8E1DEB10CE00A8EB62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BA2D901DEB10CE00A8EB62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		05841E931D8F7B670092C2C6 /* Basic */ = {
 			isa = PBXGroup;
 			children = (
+				059570441F7659D6007898FB /* KCType.swift */,
 				05841E951D8F7B950092C2C6 /* KCAlert.swift */,
 				05841E971D8F7B950092C2C6 /* KCTextFieldDelegate.swift */,
 				05841E981D8F7B950092C2C6 /* KCView.swift */,
@@ -583,7 +586,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					05021CFE1DE59F35003D4F20 = {
@@ -599,6 +602,7 @@
 					0544C7731EAF955B00AD0609 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					05BA2D8B1DEB10CE00A8EB62 = {
@@ -614,7 +618,7 @@
 					05EDB7F91D8F792C00443B08 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TR2DNF3P93;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -756,6 +760,7 @@
 				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
 				057A349A1E0C29900071F20A /* KCStateObserver.swift in Sources */,
+				059570451F7659D6007898FB /* KCType.swift in Sources */,
 				051E34E41E42370000620E1C /* KCStrokeDrawerLayer.swift in Sources */,
 				058021A01E102882001457C8 /* KCStepperCore.swift in Sources */,
 				05841EA31D8F7BA00092C2C6 /* KCLayerView.swift in Sources */,
@@ -962,8 +967,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTStackView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -981,8 +987,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTStackView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1056,7 +1063,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1064,7 +1073,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1110,7 +1123,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1118,7 +1133,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1170,8 +1189,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1196,8 +1216,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

@@ -20,7 +20,7 @@ import Canary
 
 open class KCViewController : KCViewControllerBase
 {
-	private dynamic var mState: CNState?   = nil
+	@objc private dynamic var mState: CNState?   = nil
 
 	deinit {
 		KCDeinitObserver(state: mState, observer: self)
@@ -48,7 +48,7 @@ open class KCViewController : KCViewControllerBase
 	#if os(OSX)
 	public var currentContext : CGContext? {
 		get {
-			return NSGraphicsContext.current()?.cgContext
+			return NSGraphicsContext.current?.cgContext
 		}
 	}
 	#endif

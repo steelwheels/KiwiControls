@@ -73,7 +73,7 @@ open class KCConsoleViewCore : KCView
 
 	open override func printDebugInfo(indent idt: Int){
 		super.printDebugInfo(indent: idt)
-		mTextView.printDebugInfo(indent: idt+1)
+		KCPrintDebugInfo(view: mTextView,indent: idt+1)
 	}
 
 }

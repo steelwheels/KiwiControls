@@ -17,8 +17,9 @@ public class KCTextFieldDelegate: NSObject, NSTextFieldDelegate {
 	public var textDidChangeCallback: ((_: String, _:Int) -> Void)? = nil
 
 	public func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-		if let textfield = control as? NSTextField, let str = fieldEditor.string {
+		if let textfield = control as? NSTextField  {
 			if let callback = textDidChangeCallback {
+				let str = fieldEditor.string
 				callback(str, textfield.tag)
 			}
 		}
@@ -42,8 +43,9 @@ public class KCIntegerFieldDelegate: NSObject, NSTextFieldDelegate {
 	}
 
 	public func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-		if let textfield = control as? NSTextField, let str = fieldEditor.string {
-			if let value = Int(str), let callback = valueDidChangeCallback {
+		if let textfield = control as? NSTextField {
+			let str = fieldEditor.string
+			if let callback = valueDidChangeCallback, let value = Int(str) {
 				callback(value, textfield.tag)
 			}
 		}

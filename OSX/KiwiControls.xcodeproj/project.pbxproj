@@ -29,6 +29,7 @@
 		05386D591D858603004B8DDF /* KCLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D581D858603004B8DDF /* KCLayerView.swift */; };
 		054278031EACB495009CB6C7 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
 		055674CB1DFB963B00794510 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055674CA1DFB963B00794510 /* KCGraphicsView.swift */; };
+		055DA41D1F7651DE00005FD4 /* KCType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DA41C1F7651DE00005FD4 /* KCType.swift */; };
 		055FBC351E6A30F600A7A640 /* KCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FBC341E6A30F600A7A640 /* KCTableView.swift */; };
 		055FBC371E6A441200A7A640 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055FBC361E6A441200A7A640 /* KCIconViewCore.xib */; };
 		055FBC391E6A442F00A7A640 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FBC381E6A442F00A7A640 /* KCIconViewCore.swift */; };
@@ -152,6 +153,7 @@
 		05386D451D8570A4004B8DDF /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 		05386D581D858603004B8DDF /* KCLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
 		055674CA1DFB963B00794510 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
+		055DA41C1F7651DE00005FD4 /* KCType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCType.swift; sourceTree = "<group>"; };
 		055FBC341E6A30F600A7A640 /* KCTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTableView.swift; path = Controls/KCTableView.swift; sourceTree = "<group>"; };
 		055FBC361E6A441200A7A640 /* KCIconViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		055FBC381E6A442F00A7A640 /* KCIconViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCIconViewCore.swift; path = Controls/KCIconViewCore.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		05386D401D85708E004B8DDF /* Basic */ = {
 			isa = PBXGroup;
 			children = (
+				055DA41C1F7651DE00005FD4 /* KCType.swift */,
 				05386D411D8570A4004B8DDF /* KCAlert.swift */,
 				05386D431D8570A4004B8DDF /* KCTextFieldDelegate.swift */,
 				05386D441D8570A4004B8DDF /* KCView.swift */,
@@ -584,7 +587,7 @@
 					05043C1B1D856F910033FEC6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TR2DNF3P93;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					0515CD521EACB37F00B4736D = {
@@ -600,6 +603,7 @@
 					05ACEF5D1E0C3317009F10A7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					05BCED0C1D8E67FE00EBEA0B = {
@@ -701,6 +705,7 @@
 				05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */,
 				05386D491D8570A4004B8DDF /* KCTextFieldDelegate.swift in Sources */,
 				05F66D331F45C8B4004786FE /* KCConsoleView.swift in Sources */,
+				055DA41D1F7651DE00005FD4 /* KCType.swift in Sources */,
 				05386D471D8570A4004B8DDF /* KCAlert.swift in Sources */,
 				051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */,
 				0598D5791DE180D50098C5B8 /* KCImageDrawerLayer.swift in Sources */,
@@ -958,8 +963,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -986,8 +992,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1065,7 +1072,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTControl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1084,7 +1092,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTControl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

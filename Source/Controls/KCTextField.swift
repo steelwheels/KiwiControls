@@ -72,7 +72,7 @@ open class KCTextField : KCCoreView
 		set(align){ coreView.alignment = align }
 	}
 
-	public var lineBreak: NSLineBreakMode {
+	public var lineBreak: KCLineBreakMode {
 		get	  { return coreView.lineBreak	}
 		set(mode) { coreView.lineBreak = mode	}
 	}
