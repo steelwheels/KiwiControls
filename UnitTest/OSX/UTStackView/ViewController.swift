@@ -9,7 +9,7 @@
 import KiwiControls
 import Cocoa
 
-class ViewController: NSViewController
+class ViewController: KCViewController
 {
 	@IBOutlet weak var mStackView: KCStackView!
 

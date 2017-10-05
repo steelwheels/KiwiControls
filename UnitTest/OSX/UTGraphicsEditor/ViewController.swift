@@ -11,7 +11,8 @@ import KiwiGraphics
 
 class ViewController: NSViewController {
 
-	@IBOutlet weak var mGraphicsView: KCLayerView!
+
+    @IBOutlet weak var mGraphicsView: KCLayerView!
 
 	override func viewDidLoad() {
         
