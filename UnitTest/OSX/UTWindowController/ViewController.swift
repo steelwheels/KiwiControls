@@ -9,7 +9,7 @@
 import KiwiControls
 import Cocoa
 
-private class UTWindowController: KCWindowController
+private class UTWindowController: NSWindowController
 {
 	open override func windowDidLoad() {
 		super.windowDidLoad()
@@ -17,7 +17,7 @@ private class UTWindowController: KCWindowController
 	}
 }
 
-class ViewController: KCViewController {
+class ViewController: NSViewController {
 
 @	IBOutlet weak var mStackView: KCStackView!
 
@@ -34,27 +34,25 @@ class ViewController: KCViewController {
 		mStackView.addArrangedSubView(subView: button0)
 	}
 
-	private var mWindowController: KCWindowController? = nil
+	private var mWindowController: NSWindowController? = nil
+
 	private func openWindow() {
 		Swift.print("open window")
 		if mWindowController == nil {
-			let newcontroller = UTWindowController()
-			newcontroller.showWindow(nil)
-			mWindowController = newcontroller
+			let vcont = KCViewController.loadViewController(delegate: nil)
 
-			if let window = newcontroller.window as? KCWindow {
-				let button0 = KCButton()
-				button0.title = "Close"
-				button0.buttonPressedCallback = {
-					() -> Void in
-					Swift.print("Close button pressed")
-				}
-				let stackview = KCStackView()
-				stackview.addArrangedSubView(subView: button0)
-				window.setRootView(view: stackview)
-			} else {
-				fatalError("Invalid window object")
+			let window = KCWindow(contentViewController: vcont)
+			let wcont = UTWindowController(window: window)
+			wcont.showWindow(nil)
+			mWindowController = wcont
+
+			let button0 = KCButton()
+			button0.title = "Close"
+			button0.buttonPressedCallback = {
+				() -> Void in
+				Swift.print("Close button pressed")
 			}
+			window.setRootView(view: button0)
 		}
 	}
 

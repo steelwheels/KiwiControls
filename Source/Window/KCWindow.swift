@@ -9,12 +9,16 @@ import AppKit
 import Foundation
 
 public class KCWindow: NSWindow
-{	
-	@IBOutlet weak var mRootView: KCView!
-
+{
+	public class func loadWindow(delegate delegateref: KCViewControllerDelegate?) -> KCWindow {
+		let viewcont = KCViewController.loadViewController(delegate: delegateref)
+		return KCWindow(contentViewController: viewcont)
+	}
+	
 	public func setRootView(view v: KCView){
-		mRootView.addSubview(v)
-		mRootView.allocateSubviewLayout(subView: v)
+		if let root = self.contentView as? KCView {
+			root.addSubview(v)
+			root.allocateSubviewLayout(subView: v)
+		}
 	}
 }
-

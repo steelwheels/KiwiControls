@@ -9,9 +9,8 @@ import Cocoa
 import KiwiControls
 import KiwiGraphics
 
-class ViewController: NSViewController {
-
-
+class ViewController: NSViewController
+{
     @IBOutlet weak var mGraphicsView: KCLayerView!
 
 	override func viewDidLoad() {
