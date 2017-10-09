@@ -26,8 +26,10 @@ open class KCViewControllerDelegate
 	open func viewDidAppear(rootView view: KCView){			}
 	/* Resize */
 	open func updateViewConstraints(rootView view: KCView){		}
+	#if false
 	open func viewWillLayout(rootView view: KCView){		}
 	open func viewDidLayout(rootView view: KCView){			}
+	#endif
 	/* Disappear */
 	open func viewWillDisappear(rootView view: KCView){		}
 	open func viewDidDisappear(rootView view: KCView){		}
@@ -46,7 +48,7 @@ public class KCViewController : KCViewControllerBase
 			let controllers = nib.instantiate(withOwner: nil, options: nil)
 			for i in 0..<controllers.count {
 				if let controller = controllers[i] as? KCViewController {
-					controller.delegate = delgateref
+					controller.delegate = delegateref
 					return controller ;
 				}
 			}
@@ -75,19 +77,37 @@ public class KCViewController : KCViewControllerBase
 		}
 	}
 
+	#if os(iOS)
+	public override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if let dlgt = delegate, let view = self.view as? KCView {
+			dlgt.viewWillAppear(rootView: view)
+		}
+	}
+	#else
 	public override func viewWillAppear() {
 		super.viewWillAppear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewWillAppear(rootView: view)
 		}
 	}
+	#endif
 
+	#if os(iOS)
+	public override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if let dlgt = delegate, let view = self.view as? KCView {
+			dlgt.viewDidAppear(rootView: view)
+		}
+	}
+	#else
 	public override func viewDidAppear() {
 		super.viewDidAppear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewDidAppear(rootView: view)
 		}
 	}
+	#endif
 
 	public override func updateViewConstraints() {
 		super.updateViewConstraints()
@@ -96,6 +116,7 @@ public class KCViewController : KCViewControllerBase
 		}
 	}
 
+	#if false
 	public override func viewWillLayout() {
 		super.viewWillLayout()
 		if let dlgt = delegate, let view = self.view as? KCView {
@@ -109,19 +130,38 @@ public class KCViewController : KCViewControllerBase
 			dlgt.viewDidLayout(rootView: view)
 		}
 	}
+	#endif
 
+	#if os(iOS)
+	public override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		if let dlgt = delegate, let view = self.view as? KCView {
+			dlgt.viewWillDisappear(rootView: view)
+		}
+	}
+	#else
 	public override func viewWillDisappear() {
 		super.viewWillDisappear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewWillDisappear(rootView: view)
 		}
 	}
+	#endif
 
+	#if os(iOS)
+	public override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		if let dlgt = delegate, let view = self.view as? KCView {
+			dlgt.viewDidDisappear(rootView: view)
+		}
+	}
+	#else
 	public override func viewDidDisappear() {
 		super.viewDidDisappear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewDidDisappear(rootView: view)
 		}
 	}
+	#endif
 }
 
