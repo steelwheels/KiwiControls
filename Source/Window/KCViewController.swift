@@ -20,6 +20,7 @@ import Canary
 
 open class KCViewControllerDelegate
 {
+	public init(){ }
 	/* Appear */
 	open func viewDidLoad(rootView view: KCView){			}
 	open func viewWillAppear(rootView view: KCView){		}
@@ -35,7 +36,7 @@ open class KCViewControllerDelegate
 	open func viewDidDisappear(rootView view: KCView){		}
 }
 
-public class KCViewController : KCViewControllerBase
+open class KCViewController : KCViewControllerBase
 {
 	public var delegate: KCViewControllerDelegate? = nil
 
@@ -70,7 +71,7 @@ public class KCViewController : KCViewControllerBase
 		fatalError("Failed to load " + nibname)
 	}
 	
-	public override func viewDidLoad(){
+	open override func viewDidLoad(){
 		super.viewDidLoad()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewDidLoad(rootView: view)
@@ -78,14 +79,14 @@ public class KCViewController : KCViewControllerBase
 	}
 
 	#if os(iOS)
-	public override func viewWillAppear(_ animated: Bool) {
+	open override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewWillAppear(rootView: view)
 		}
 	}
 	#else
-	public override func viewWillAppear() {
+	open override func viewWillAppear() {
 		super.viewWillAppear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewWillAppear(rootView: view)
@@ -94,14 +95,14 @@ public class KCViewController : KCViewControllerBase
 	#endif
 
 	#if os(iOS)
-	public override func viewDidAppear(_ animated: Bool) {
+	open override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewDidAppear(rootView: view)
 		}
 	}
 	#else
-	public override func viewDidAppear() {
+	open override func viewDidAppear() {
 		super.viewDidAppear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewDidAppear(rootView: view)
@@ -109,7 +110,7 @@ public class KCViewController : KCViewControllerBase
 	}
 	#endif
 
-	public override func updateViewConstraints() {
+	open override func updateViewConstraints() {
 		super.updateViewConstraints()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.updateViewConstraints(rootView: view)
@@ -133,14 +134,14 @@ public class KCViewController : KCViewControllerBase
 	#endif
 
 	#if os(iOS)
-	public override func viewWillDisappear(_ animated: Bool) {
+	open override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewWillDisappear(rootView: view)
 		}
 	}
 	#else
-	public override func viewWillDisappear() {
+	open override func viewWillDisappear() {
 		super.viewWillDisappear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewWillDisappear(rootView: view)
@@ -149,14 +150,14 @@ public class KCViewController : KCViewControllerBase
 	#endif
 
 	#if os(iOS)
-	public override func viewDidDisappear(_ animated: Bool) {
+	open override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewDidDisappear(rootView: view)
 		}
 	}
 	#else
-	public override func viewDidDisappear() {
+	open override func viewDidDisappear() {
 		super.viewDidDisappear()
 		if let dlgt = delegate, let view = self.view as? KCView {
 			dlgt.viewDidDisappear(rootView: view)
