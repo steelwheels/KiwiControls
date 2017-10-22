@@ -40,7 +40,7 @@ open class KCViewController : KCViewControllerBase
 {
 	public var delegate: KCViewControllerDelegate? = nil
 
-	public class func loadViewController(delegate delegateref: KCViewControllerDelegate?) -> KCViewController
+	public class func loadViewController(delegate dlgt: KCViewControllerDelegate) -> KCViewController
 	{
 		let bundle : Bundle = Bundle(for: KCViewController.self) ;
 		let nibname: String = "KCViewController"
@@ -49,7 +49,7 @@ open class KCViewController : KCViewControllerBase
 			let controllers = nib.instantiate(withOwner: nil, options: nil)
 			for i in 0..<controllers.count {
 				if let controller = controllers[i] as? KCViewController {
-					controller.delegate = delegateref
+					controller.delegate = dlgt
 					return controller ;
 				}
 			}
@@ -60,7 +60,7 @@ open class KCViewController : KCViewControllerBase
 					if let controllers = controllersp {
 						for i in 0..<controllers.count {
 							if let controller = controllers[i] as? KCViewController {
-								controller.delegate = delegateref
+								controller.delegate = dlgt
 								return controller
 							}
 						}

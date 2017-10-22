@@ -349,8 +349,8 @@
 			isa = PBXGroup;
 			children = (
 				0532F2B11F77B3120024A1EA /* OSX */,
-				05988DAE1F8BB1CA00A3991E /* KCWindow.swift */,
 				05386D451D8570A4004B8DDF /* KCViewController.swift */,
+				05988DAE1F8BB1CA00A3991E /* KCWindow.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";

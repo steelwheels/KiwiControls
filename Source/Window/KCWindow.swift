@@ -12,7 +12,8 @@ import Foundation
 
 public class KCWindow: NSWindow
 {
-	public class func loadWindow(delegate delegateref: KCViewControllerDelegate?) -> KCWindow {
+	public class func loadWindow(delegate delegateref: KCViewControllerDelegate) -> KCWindow?
+	{
 		let viewcont = KCViewController.loadViewController(delegate: delegateref)
 		return KCWindow(contentViewController: viewcont)
 	}
