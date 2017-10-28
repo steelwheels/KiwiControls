@@ -55,7 +55,6 @@
 		057853721F46725100BBB2BA /* KCConsoleViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057853711F46725100BBB2BA /* KCConsoleViewCore.xib */; };
 		057853751F46732C00BBB2BA /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057853731F46732C00BBB2BA /* KCConsoleView.swift */; };
 		057853761F46732C00BBB2BA /* KCConsoleViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057853741F46732C00BBB2BA /* KCConsoleViewCore.swift */; };
-		057A349A1E0C29900071F20A /* KCStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A34991E0C29900071F20A /* KCStateObserver.swift */; };
 		0580219E1E102766001457C8 /* KCStepperCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0580219D1E102766001457C8 /* KCStepperCore.xib */; };
 		058021A01E102882001457C8 /* KCStepperCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580219F1E102882001457C8 /* KCStepperCore.swift */; };
 		058021A21E102D9A001457C8 /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058021A11E102D9A001457C8 /* KCStepper.swift */; };
@@ -171,7 +170,6 @@
 		057853711F46725100BBB2BA /* KCConsoleViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCConsoleViewCore.xib; sourceTree = "<group>"; };
 		057853731F46732C00BBB2BA /* KCConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsoleView.swift; sourceTree = "<group>"; };
 		057853741F46732C00BBB2BA /* KCConsoleViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsoleViewCore.swift; sourceTree = "<group>"; };
-		057A34991E0C29900071F20A /* KCStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStateObserver.swift; sourceTree = "<group>"; };
 		0580219D1E102766001457C8 /* KCStepperCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStepperCore.xib; sourceTree = "<group>"; };
 		0580219F1E102882001457C8 /* KCStepperCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepperCore.swift; sourceTree = "<group>"; };
 		058021A11E102D9A001457C8 /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
@@ -393,7 +391,6 @@
 				05841E971D8F7B950092C2C6 /* KCTextFieldDelegate.swift */,
 				05841E981D8F7B950092C2C6 /* KCView.swift */,
 				055112611EB6006700CC75E8 /* KCCoreView.swift */,
-				057A34991E0C29900071F20A /* KCStateObserver.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -782,7 +779,6 @@
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
 				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
-				057A349A1E0C29900071F20A /* KCStateObserver.swift in Sources */,
 				059570451F7659D6007898FB /* KCType.swift in Sources */,
 				051E34E41E42370000620E1C /* KCStrokeDrawerLayer.swift in Sources */,
 				058021A01E102882001457C8 /* KCStepperCore.swift in Sources */,
