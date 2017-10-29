@@ -76,6 +76,7 @@
 		05BA2D991DEB10CE00A8EB62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BA2D971DEB10CE00A8EB62 /* LaunchScreen.storyboard */; };
 		05CEE1951D8F97A000D3593C /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE1931D8F87A900D3593C /* Canary.framework */; };
 		05CEE1961D8F97A400D3593C /* KiwiGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */; };
+		05DB36C71FA4D48E00E3E535 /* KCViewTraverser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB36C61FA4D48E00E3E535 /* KCViewTraverser.swift */; };
 		05E75DF61E13F3E100287756 /* KCCheckBoxCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */; };
 		05E75DF91E13F4C000287756 /* KCCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75DF71E13F4C000287756 /* KCCheckBox.swift */; };
 		05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */; };
@@ -193,6 +194,7 @@
 		05BB23AA1D8FBCB600C44B3F /* install_ios.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_ios.mk; path = ../Script/install_ios.mk; sourceTree = "<group>"; };
 		05CEE18F1D8F858000D3593C /* KiwiGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiwiGraphics.framework; path = /Users/tomoo/local/Frameworks/KiwiGraphics.framework; sourceTree = "<absolute>"; };
 		05CEE1931D8F87A900D3593C /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = /Users/tomoo/local/Frameworks/Canary.framework; sourceTree = "<absolute>"; };
+		05DB36C61FA4D48E00E3E535 /* KCViewTraverser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewTraverser.swift; sourceTree = "<group>"; };
 		05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCCheckBoxCore.xib; sourceTree = "<group>"; };
 		05E75DF71E13F4C000287756 /* KCCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBox.swift; sourceTree = "<group>"; };
 		05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBoxCore.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				05841E971D8F7B950092C2C6 /* KCTextFieldDelegate.swift */,
 				05841E981D8F7B950092C2C6 /* KCView.swift */,
 				055112611EB6006700CC75E8 /* KCCoreView.swift */,
+				05DB36C61FA4D48E00E3E535 /* KCViewTraverser.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058265A31DE536B600C3BE27 /* KCRepetitiveLayer.swift in Sources */,
+				05DB36C71FA4D48E00E3E535 /* KCViewTraverser.swift in Sources */,
 				0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */,
 				05841E9D1D8F7B950092C2C6 /* KCView.swift in Sources */,
 				05841E9C1D8F7B950092C2C6 /* KCTextFieldDelegate.swift in Sources */,
