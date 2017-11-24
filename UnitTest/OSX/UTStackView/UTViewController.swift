@@ -1,15 +1,14 @@
-//
-//  ViewController.swift
-//  UTStackView
-//
-//  Created by Tomoo Hamada on 2017/04/23.
-//  Copyright © 2017年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	ViewController.swift
+ * @brief	ViewController class for UTStackView
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import KiwiControls
 import Cocoa
 
-class ViewController: KCViewController
+class UTViewController: NSViewController
 {
 	@IBOutlet weak var mStackView: KCStackView!
 
@@ -23,8 +22,10 @@ class ViewController: KCViewController
 			addSubviews_0()
 		case 1:
 			addSubviews_1()
+		default:
+			break
 		}
-
+		
 		Swift.print("[ViewDidLoad]")
 		mStackView.printDebugInfo(indent: 0)
 	}

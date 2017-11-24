@@ -50,6 +50,11 @@ open class KCViewController : KCViewControllerBase
 			for i in 0..<controllers.count {
 				if let controller = controllers[i] as? KCViewController {
 					controller.delegate = dlgt
+					if let rootview = controller.view as? KCView {
+						dlgt.viewDidLoad(rootView: rootview)
+					} else {
+						NSLog("No root view")
+					}
 					return controller ;
 				}
 			}
@@ -61,6 +66,11 @@ open class KCViewController : KCViewControllerBase
 						for i in 0..<controllers.count {
 							if let controller = controllers[i] as? KCViewController {
 								controller.delegate = dlgt
+								if let rootview = controller.view as? KCView {
+									dlgt.viewDidLoad(rootView: rootview)
+								} else {
+									NSLog("No root view")
+								}
 								return controller
 							}
 						}

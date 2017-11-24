@@ -10,7 +10,7 @@ import Canary
 import KiwiControls
 import KiwiGraphics
 
-class ViewController: NSViewController
+class UTViewController: NSViewController
 {
 	@IBOutlet weak var mButton: KCButton!
 	@IBOutlet weak var mStepper: KCStepper!

@@ -1,6 +1,6 @@
 /**
- * @file	KCConsoleViewCore.swift
- * @brief Define KCConsoleViewCore class
+ * @file	 KCTerminalViewCore.swift
+ * @brief Define KCTerminalViewCore class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
@@ -12,13 +12,9 @@
 #endif
 import Canary
 
-open class KCConsoleViewCore : KCView
+open class KCTerminalViewCore : KCView
 {
-	#if os(OSX)
-		@IBOutlet var mTextView: NSTextView!
-	#else
-		@IBOutlet weak var mTextView: UITextView!
-	#endif
+	@IBOutlet weak var mTextView: NSTextView!
 
 	public func setup(frame frm: CGRect) {
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
@@ -27,24 +23,17 @@ open class KCConsoleViewCore : KCView
 	}
 
 	public func appendText(string str: NSAttributedString){
-		#if os(OSX)
-			if let storage = mTextView.textStorage {
-				appendText(destinationStorage: storage, string: str)
-			}
-		#else
-			let storage = mTextView.textStorage
-			appendText(destinationStorage: storage, string: str)
-		#endif
-		scrollToBottom()
+		editStorage(editor: { (_ storage: NSTextStorage) -> Void in
+			storage.append(str)
+		})
 	}
 
-	private func appendText(destinationStorage storage: NSTextStorage, string str: NSAttributedString){
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
+	private func editStorage(editor edit: (_ storage: NSTextStorage) -> Void) {
+		if let storage = mTextView.textStorage {
 			storage.beginEditing()
-			storage.append(str)
+				edit(storage)
 			storage.endEditing()
-		})
+		}
 	}
 
 	public func scrollToBottom(){
@@ -75,6 +64,5 @@ open class KCConsoleViewCore : KCView
 		super.printDebugInfo(indent: idt)
 		KCPrintDebugInfo(view: mTextView,indent: idt+1)
 	}
-
 }
 

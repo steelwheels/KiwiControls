@@ -27,7 +27,7 @@ private class UTVertexDrawer
 	}
 }
 
-class ViewController: KCViewController {
+class ViewController: NSViewController {
 
 	@IBOutlet weak var mGraphicsView: KCLayerView!
 	@IBOutlet weak var mSymbol0View: KCLayerView!

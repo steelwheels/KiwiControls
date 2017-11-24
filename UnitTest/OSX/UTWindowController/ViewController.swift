@@ -1,10 +1,9 @@
-//
-//  ViewController.swift
-//  UTWindowController
-//
-//  Created by Tomoo Hamada on 2017/09/24.
-//  Copyright © 2017年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	ViewController.swift
+ * @brief	ViewController class for UTWindowController
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import KiwiControls
 import Cocoa
@@ -14,13 +13,13 @@ private class UTWindowController: NSWindowController
 	open override func windowDidLoad() {
 		super.windowDidLoad()
 		Swift.print("windowDidLoad")
-	}
+    }
 }
 
 class ViewController: NSViewController {
 
 @	IBOutlet weak var mStackView: KCStackView!
-
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

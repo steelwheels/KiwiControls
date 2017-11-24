@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,11 +11,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="UTControl" id="1Xt-HY-uBw">
+                            <menuItem title="UTTerminalView" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="UTControl" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="UTTerminalView" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About UTControl" id="5kV-Vb-QxS">
+                                        <menuItem title="About UTTerminalView" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -30,7 +29,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide UTControl" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide UTTerminalView" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -48,7 +47,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit UTControl" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit UTTerminalView" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -346,17 +345,37 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Font" systemMenu="font" id="aXa-aM-Jaq">
                                                 <items>
-                                                    <menuItem title="Show Fonts" keyEquivalent="t" id="Q5e-8K-NDq"/>
-                                                    <menuItem title="Bold" tag="2" keyEquivalent="b" id="GB9-OM-e27"/>
-                                                    <menuItem title="Italic" tag="1" keyEquivalent="i" id="Vjx-xi-njq"/>
+                                                    <menuItem title="Show Fonts" keyEquivalent="t" id="Q5e-8K-NDq">
+                                                        <connections>
+                                                            <action selector="orderFrontFontPanel:" target="YLy-65-1bz" id="WHr-nq-2xA"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Bold" tag="2" keyEquivalent="b" id="GB9-OM-e27">
+                                                        <connections>
+                                                            <action selector="addFontTrait:" target="YLy-65-1bz" id="hqk-hr-sYV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Italic" tag="1" keyEquivalent="i" id="Vjx-xi-njq">
+                                                        <connections>
+                                                            <action selector="addFontTrait:" target="YLy-65-1bz" id="IHV-OB-c03"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem title="Underline" keyEquivalent="u" id="WRG-CD-K1S">
                                                         <connections>
                                                             <action selector="underline:" target="Ady-hI-5gd" id="FYS-2b-JAY"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="5gT-KC-WSO"/>
-                                                    <menuItem title="Bigger" tag="3" keyEquivalent="+" id="Ptp-SP-VEL"/>
-                                                    <menuItem title="Smaller" tag="4" keyEquivalent="-" id="i1d-Er-qST"/>
+                                                    <menuItem title="Bigger" tag="3" keyEquivalent="+" id="Ptp-SP-VEL">
+                                                        <connections>
+                                                            <action selector="modifyFont:" target="YLy-65-1bz" id="Uc7-di-UnL"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Smaller" tag="4" keyEquivalent="-" id="i1d-Er-qST">
+                                                        <connections>
+                                                            <action selector="modifyFont:" target="YLy-65-1bz" id="HcX-Lf-eNd"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="kx3-Dk-x3B"/>
                                                     <menuItem title="Kern" id="jBQ-r6-VK2">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -641,7 +660,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="UTControl Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="UTTerminalView Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -655,7 +674,8 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="UTControl" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="UTTerminalView" customModuleProvider="target"/>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -666,10 +686,11 @@
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="626" height="455"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
-                            <outlet property="delegate" destination="B8D-0N-5wS" id="ev5-2f-hWk"/>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
                     <connections>
@@ -683,90 +704,29 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="UTViewController" customModule="UTControl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="UTTerminalView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="626" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="H5A-TS-4S9" customClass="KCStepper" customModule="KiwiControls">
-                                <rect key="frame" x="191" y="349" width="156" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="156" id="oJI-2V-IcL"/>
-                                    <constraint firstAttribute="height" constant="34" id="yj7-JN-gze"/>
-                                </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="KnZ-6t-CHT" customClass="KCButton" customModule="KiwiControls">
-                                <rect key="frame" x="0.0" y="0.0" width="626" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="iIs-Dz-PsZ"/>
-                                </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="GX2-US-REo" customClass="KCTextField" customModule="KiwiControls">
-                                <rect key="frame" x="191" y="391" width="415" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="TEA-Aa-0Nh"/>
-                                </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="xbw-DX-dGN" customClass="KCIconView" customModule="KiwiControls">
-                                <rect key="frame" x="465" y="242" width="141" height="141"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="141" id="Hx0-RX-ojo"/>
-                                    <constraint firstAttribute="height" constant="141" id="c1Y-0U-0xc"/>
-                                </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="jXX-v8-soY" customClass="KCTableView" customModule="KiwiControls">
-                                <rect key="frame" x="20" y="57" width="163" height="378"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="163" id="GHk-fI-MYP"/>
-                                    <constraint firstAttribute="height" constant="378" id="Rmo-s9-eoR"/>
-                                </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-4W-thl" customClass="KCCheckBox" customModule="KiwiControls">
-                                <rect key="frame" x="191" y="301" width="156" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="156" id="3f3-h6-MH7"/>
-                                    <constraint firstAttribute="height" constant="40" id="IcR-8b-cBc"/>
-                                </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="jgk-fV-gsg" customClass="KCConsoleView" customModule="KiwiControls">
-                                <rect key="frame" x="191" y="57" width="415" height="177"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="415" id="auP-8H-12D"/>
-                                    <constraint firstAttribute="height" constant="177" id="hXx-qK-btx"/>
-                                </constraints>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7Le-3z-IvG" customClass="KCTerminalView" customModule="KiwiControls">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="jgk-fV-gsg" firstAttribute="top" secondItem="xbw-DX-dGN" secondAttribute="bottom" constant="8" id="3hJ-r0-NYJ"/>
-                            <constraint firstItem="xbw-DX-dGN" firstAttribute="top" secondItem="GX2-US-REo" secondAttribute="bottom" constant="8" id="7ot-0D-Z2Q"/>
-                            <constraint firstItem="jXX-v8-soY" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="GMK-yh-2lE"/>
-                            <constraint firstItem="jXX-v8-soY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="GqB-pw-QIy"/>
-                            <constraint firstItem="H5A-TS-4S9" firstAttribute="top" secondItem="GX2-US-REo" secondAttribute="bottom" constant="8" id="IEA-1Y-Pw5"/>
-                            <constraint firstItem="KnZ-6t-CHT" firstAttribute="top" secondItem="jgk-fV-gsg" secondAttribute="bottom" constant="8" id="JrK-J3-U6f"/>
-                            <constraint firstItem="1Ag-4W-thl" firstAttribute="leading" secondItem="jXX-v8-soY" secondAttribute="trailing" constant="8" id="OUY-fH-zeA"/>
-                            <constraint firstItem="KnZ-6t-CHT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="XMe-0a-bQ1"/>
-                            <constraint firstAttribute="trailing" secondItem="KnZ-6t-CHT" secondAttribute="trailing" id="dPN-vl-0wd"/>
-                            <constraint firstItem="GX2-US-REo" firstAttribute="leading" secondItem="jXX-v8-soY" secondAttribute="trailing" constant="8" id="iOa-Yw-ACP"/>
-                            <constraint firstItem="xbw-DX-dGN" firstAttribute="leading" secondItem="1Ag-4W-thl" secondAttribute="trailing" constant="118" id="nHe-Sr-jzN"/>
-                            <constraint firstItem="H5A-TS-4S9" firstAttribute="leading" secondItem="jXX-v8-soY" secondAttribute="trailing" constant="8" id="pdp-HT-gBq"/>
-                            <constraint firstAttribute="trailing" secondItem="GX2-US-REo" secondAttribute="trailing" constant="20" id="qoe-0n-OIS"/>
-                            <constraint firstItem="jgk-fV-gsg" firstAttribute="leading" secondItem="jXX-v8-soY" secondAttribute="trailing" constant="8" id="sJh-xU-0Rd"/>
-                            <constraint firstItem="GX2-US-REo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="uIR-6O-qUD"/>
-                            <constraint firstItem="1Ag-4W-thl" firstAttribute="top" secondItem="H5A-TS-4S9" secondAttribute="bottom" constant="8" id="yAt-LA-jSI"/>
+                            <constraint firstItem="7Le-3z-IvG" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="CWE-vK-yaD"/>
+                            <constraint firstAttribute="trailing" secondItem="7Le-3z-IvG" secondAttribute="trailing" id="DPx-Zh-GWH"/>
+                            <constraint firstAttribute="bottom" secondItem="7Le-3z-IvG" secondAttribute="bottom" id="fDr-NN-nQU"/>
+                            <constraint firstItem="7Le-3z-IvG" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="iuk-Ab-SZu"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mButton" destination="KnZ-6t-CHT" id="aIO-jh-qdh"/>
-                        <outlet property="mCheckBox" destination="1Ag-4W-thl" id="ddf-lc-1ab"/>
-                        <outlet property="mConsoleView" destination="jgk-fV-gsg" id="ipt-l6-MlA"/>
-                        <outlet property="mIconView" destination="xbw-DX-dGN" id="bcg-xu-e58"/>
-                        <outlet property="mStepper" destination="H5A-TS-4S9" id="VVw-Db-HY0"/>
-                        <outlet property="mTextField" destination="GX2-US-REo" id="exI-4v-cmM"/>
+                        <outlet property="mTerminalView" destination="7Le-3z-IvG" id="v7K-UI-RUu"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="747.5"/>
+            <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
 </document>
