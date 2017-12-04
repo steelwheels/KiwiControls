@@ -709,7 +709,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7Le-3z-IvG" customClass="KCTerminalView" customModule="KiwiControls">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7Le-3z-IvG" customClass="KCCLITerminalView" customModule="KiwiControls">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             </customView>
                         </subviews>
@@ -721,7 +721,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mTerminalView" destination="7Le-3z-IvG" id="v7K-UI-RUu"/>
+                        <outlet property="mTerminalView" destination="7Le-3z-IvG" id="X7h-8Q-ndO"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

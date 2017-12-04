@@ -19,13 +19,17 @@
                         <rect key="frame" x="1" y="1" width="478" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Loz-5e-2r9">
+                            <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="panel" allowsCharacterPickerTouchBarItem="NO" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" textCompletion="NO" smartInsertDelete="YES" id="Loz-5e-2r9" customClass="KCTextView" customModule="KiwiControls" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="478" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="minSize" width="478" height="270"/>
-                                <size key="maxSize" width="478" height="10000000"/>
-                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="maxSize" width="480" height="10000000"/>
+                                <color key="insertionPointColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <allowedInputSourceLocales>
+                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                </allowedInputSourceLocales>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,13 +45,13 @@
                 </scrollView>
             </subviews>
             <constraints>
-                <constraint firstItem="7Tm-vy-31e" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ElF-uW-VUN"/>
-                <constraint firstAttribute="bottom" secondItem="7Tm-vy-31e" secondAttribute="bottom" id="cj5-ra-Xbu"/>
-                <constraint firstItem="7Tm-vy-31e" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="toi-TO-fCh"/>
-                <constraint firstAttribute="trailing" secondItem="7Tm-vy-31e" secondAttribute="trailing" id="xoV-NH-Rdv"/>
+                <constraint firstAttribute="trailing" secondItem="7Tm-vy-31e" secondAttribute="trailing" id="CYZ-1U-rEb"/>
+                <constraint firstItem="7Tm-vy-31e" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="H5H-Tm-AL6"/>
+                <constraint firstItem="7Tm-vy-31e" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="RaP-si-Irb"/>
+                <constraint firstAttribute="bottom" secondItem="7Tm-vy-31e" secondAttribute="bottom" id="XLu-Sx-mNk"/>
             </constraints>
             <connections>
-                <outlet property="mTextView" destination="Loz-5e-2r9" id="8h7-v4-u3y"/>
+                <outlet property="mTextView" destination="Loz-5e-2r9" id="lV6-JF-lRt"/>
             </connections>
         </customView>
     </objects>

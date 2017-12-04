@@ -29,7 +29,7 @@ class ViewController: NSViewController
 		let stroke = KCStrokeEditorLayer(frame: bounds)
 		stroke.backgroundColor = KGColorTable.blue.cgColor
 		mGraphicsView.rootLayer.addSublayer(stroke)
-	}
+    }
 
 	override var representedObject: Any? {
 		didSet {

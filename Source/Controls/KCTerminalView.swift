@@ -51,11 +51,30 @@ open class KCTerminalView : KCCoreView
 		}
 	}
 
-	public func appendText(string str: NSAttributedString){
-		coreView.appendText(string: str)
+	public var editor: KCTextViewDelegate? {
+		get { return coreView.editor}
+		set(editor) { return coreView.editor = editor }
 	}
 
+	public func editStorage(editor edit: (_ storage: NSTextStorage) -> Void) {
+		coreView.editStorage(editor: edit)
+	}
+
+	public var size: KCTerminalSize {
+		get { return coreView.size }
+	}
+	
 	private var coreView: KCTerminalViewCore {
 		get { return getCoreView() }
+	}
+
+	open override func insertText(_ obj: Any) {
+		if let str = obj as? NSString {
+			Swift.print("intertText1: \(str)")
+		} else if let astr = obj as? NSAttributedString {
+			Swift.print("intertText2: \(astr.string)")
+		} else {
+			NSLog("Unknown object: \(obj)")
+		}
 	}
 }
