@@ -15,12 +15,17 @@ import Foundation
 
 public protocol KCTextViewDelegate
 {
+	func moveForward(count cnt: Int)
+	func moveBackward(count cnt: Int)
+
 	func insert(text txt: String, replaceRange range: NSRange)
 	func insertTab()
 	func insertNewline()
 
 	func deleteForward()
 	func deleteBackward()
+	func deleteToEndOfLine()
+	func deleteToBeginningOfLine()
 }
 
 open class KCTextView: NSTextView
@@ -39,6 +44,22 @@ open class KCTextView: NSTextView
 		}
 	}
 
+	open override func moveForward(_ sender: Any?) {
+		editor?.moveForward(count: 1)
+	}
+
+	open override func moveRight(_ sender: Any?) {
+		editor?.moveForward(count: 1)
+	}
+
+	open override func moveBackward(_ sender: Any?) {
+		editor?.moveBackward(count: 1)
+	}
+
+	open override func moveLeft(_ sender: Any?){
+		editor?.moveBackward(count: 1)
+	}
+
 	open override func insertTab(_ sender: Any?) {
 		editor?.insertTab()
 	}
@@ -53,5 +74,13 @@ open class KCTextView: NSTextView
 
 	open override func deleteBackward(_ sender: Any?) {
 		editor?.deleteBackward()
+	}
+
+	open override func deleteToEndOfLine(_ sender: Any?) {
+		editor?.deleteToEndOfLine()
+	}
+
+	open override func deleteToBeginningOfLine(_ sender: Any?) {
+		editor?.deleteToBeginningOfLine()
 	}
 }

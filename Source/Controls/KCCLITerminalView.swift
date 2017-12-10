@@ -52,6 +52,10 @@ private class KCCursor
 		return mStartPosition
 	}
 
+	public func inputPosition() -> Int {
+		return mStartPosition + mPromptLength
+	}
+
 	public func cursorPosition() -> Int {
 		return mStartPosition + mPromptLength + mInputOffset
 	}
@@ -77,6 +81,10 @@ private class KCCursor
 		if mInputOffset < 0 {
 			mInputOffset = 0
 		}
+	}
+
+	public func rewindInputPosition(){
+		mInputOffset = 0
 	}
 
 	public func deleteInput(number num: Int) {
@@ -194,6 +202,38 @@ public class KCCLITerminalView: KCTerminalView, KCTextViewDelegate
 		mCursor.movePromptPosition(offset: str.count)
 	}
 
+	public func moveForward(count cnt: Int) {
+		editStorage(editor: {
+			(_ storage: NSTextStorage) -> Void in
+			moveForward(count: cnt, in: storage)
+		})
+	}
+
+	private func moveForward(count cnt: Int, in storage: NSTextStorage){
+		let n = min(mCursor.countAfterCursor(storage: storage), cnt)
+		if n > 0 {
+			mCursor.hide(storage: storage)
+			mCursor.moveInputPosition(offset: n)
+			mCursor.show(storage: storage)
+		}
+	}
+
+	public func moveBackward(count cnt: Int) {
+		editStorage(editor: {
+			(_ storage: NSTextStorage) -> Void in
+			moveBackward(count: cnt, in: storage)
+		})
+	}
+
+	private func moveBackward(count cnt: Int, in storage: NSTextStorage){
+		let n = min(mCursor.countBeforeCursor(), cnt)
+		if n > 0 {
+			mCursor.hide(storage: storage)
+			mCursor.moveInputPosition(offset: -n)
+			mCursor.show(storage: storage)
+		}
+	}
+
 	public func insert(text txt: String, replaceRange range: NSRange) {
 		editStorage(editor: {
 			(storage: NSTextStorage) -> Void in
@@ -247,6 +287,38 @@ public class KCCLITerminalView: KCTerminalView, KCTextViewDelegate
 			(storage: NSTextStorage) -> Void in
 			deleteBackward(number: 1, in: storage)
 		})
+	}
+
+	public func deleteToBeginningOfLine() {
+		editStorage(editor: {
+			(storage: NSTextStorage) -> Void in
+			deleteToBeginningOfLine(in: storage)
+		})
+	}
+
+	private func deleteToBeginningOfLine(in storage: NSTextStorage) {
+		let count = mCursor.countBeforeCursor()
+		if count > 0 {
+			let range = NSMakeRange(mCursor.inputPosition(), count)
+			storage.deleteCharacters(in: range)
+			mCursor.rewindInputPosition()
+		}
+	}
+
+	public func deleteToEndOfLine() {
+		editStorage(editor: {
+			(storage: NSTextStorage) -> Void in
+			deleteToEndOfLine(in: storage)
+		})
+	}
+
+	private func deleteToEndOfLine(in storage: NSTextStorage) {
+		let count = mCursor.countAfterCursor(storage: storage)
+		if count > 0 {
+			let range = NSMakeRange(mCursor.cursorPosition(), count)
+			storage.deleteCharacters(in: range)
+			mCursor.show(storage: storage)
+		}
 	}
 
 	private func deleteBackward(number num:Int, in storage: NSTextStorage) {
