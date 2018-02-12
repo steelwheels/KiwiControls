@@ -1,10 +1,9 @@
-//
-//  AppDelegate.swift
-//  UTStackView
-//
-//  Created by Tomoo Hamada on 2017/04/23.
-//  Copyright © 2017年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	AppDelegate.swift
+ * @brief	Define AppDelegate class
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Cocoa
 

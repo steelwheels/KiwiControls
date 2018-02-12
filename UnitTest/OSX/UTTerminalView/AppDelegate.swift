@@ -1,18 +1,15 @@
-//
-//  AppDelegate.swift
-//  UTTerminalView
-//
-//  Created by Tomoo Hamada on 2017/11/24.
-//  Copyright © 2017年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	AppDelegate.swift
+ * @brief	Define AppDelegate class
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-
-
-
+class AppDelegate: NSObject, NSApplicationDelegate
+{
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Insert code here to initialize your application
 	}
@@ -20,7 +17,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
-
-
 }
 

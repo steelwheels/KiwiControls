@@ -28,10 +28,14 @@ public enum Axis {
 }
 
 #if os(iOS)
+	public typealias KCColor		= UIColor
+	public typealias KCFont			= UIFont
 	public typealias KCLayoutAttribute	= NSLayoutAttribute
 	public typealias KCLayoutRelation	= NSLayoutRelation
 	public typealias KCLineBreakMode	= NSLineBreakMode
 #else
+	public typealias KCColor		= NSColor
+	public typealias KCFont			= NSFont
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLineBreakMode	= NSParagraphStyle.LineBreakMode

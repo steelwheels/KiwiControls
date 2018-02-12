@@ -37,16 +37,16 @@ public class KCPreference
 
 public class KCTerminalPreference
 {
-	public var	font:			NSFont
-	public var	standardTextColor:	NSColor
-	public var	errorTextColor:		NSColor
-	public var	backgroundColor:	NSColor
+	public var	font:			KCFont
+	public var	standardTextColor:	KCColor
+	public var	errorTextColor:		KCColor
+	public var	backgroundColor:	KCColor
 
 	public init() {
-		font			= NSFont(name: "Menlo", size: 12.0)!
-		standardTextColor	= NSColor.green
-		errorTextColor		= NSColor.red
-		backgroundColor		= NSColor.black
+		font			= KCFont(name: "Menlo", size: 12.0)!
+		standardTextColor	= KCColor.green
+		errorTextColor		= KCColor.red
+		backgroundColor		= KCColor.black
 	}
 
 	public var cursorAttributes: Dictionary<NSAttributedStringKey, Any> {

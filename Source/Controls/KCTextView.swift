@@ -28,10 +28,17 @@ public protocol KCTextViewDelegate
 	func deleteToBeginningOfLine()
 }
 
-open class KCTextView: NSTextView
+#if os(iOS)
+	public typealias KCTextViewBase = UITextView
+#else
+	public typealias KCTextViewBase = NSTextView
+#endif
+
+open class KCTextView: KCTextViewBase
 {
 	public var editor: KCTextViewDelegate? = nil
 
+#if os(OSX)
 	open override func keyDown(with event: NSEvent) {
 		super.interpretKeyEvents([event])
 	}
@@ -83,4 +90,5 @@ open class KCTextView: NSTextView
 	open override func deleteToBeginningOfLine(_ sender: Any?) {
 		editor?.deleteToBeginningOfLine()
 	}
+#endif /* os(OSX) */
 }
