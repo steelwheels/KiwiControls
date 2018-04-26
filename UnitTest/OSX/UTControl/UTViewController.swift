@@ -6,7 +6,7 @@
  */
 
 import Cocoa
-import Canary
+import CoconutData
 import KiwiControls
 import KiwiGraphics
 

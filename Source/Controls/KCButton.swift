@@ -10,7 +10,7 @@
 #else
 	import Cocoa
 #endif
-import Canary
+import CoconutData
 import KiwiGraphics
 
 open class KCButton: KCCoreView

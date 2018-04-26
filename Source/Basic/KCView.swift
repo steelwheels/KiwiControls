@@ -13,7 +13,7 @@
 	public typealias KCSize = NSSize
 #endif
 import KiwiGraphics
-import Canary
+import CoconutData
 
 #if os(iOS)
 	public typealias KCViewBase 		= UIView

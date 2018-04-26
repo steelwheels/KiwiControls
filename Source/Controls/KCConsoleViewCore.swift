@@ -10,7 +10,7 @@
 #else
 	import UIKit
 #endif
-import Canary
+import CoconutData
 
 open class KCConsoleViewCore : KCView
 {

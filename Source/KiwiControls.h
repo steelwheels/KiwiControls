@@ -19,7 +19,5 @@ FOUNDATION_EXPORT double KiwiControlsVersionNumber;
 FOUNDATION_EXPORT const unsigned char KiwiControlsVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KiwiControls/PublicHeader.h>
-
-#import <KiwiGraphics/KiwiGraphics.h>
-#import <Canary/Canary.h>
+//#import <KiwiGraphics/KiwiGraphics.h>
 

@@ -7,7 +7,7 @@
 
 import Foundation
 import KiwiGraphics
-import Canary
+import CoconutData
 import CoreGraphics
 #if os(iOS)
 	import UIKit

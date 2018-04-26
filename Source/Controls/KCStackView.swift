@@ -11,7 +11,7 @@
 	import UIKit
 #endif
 import KiwiGraphics
-import Canary
+import CoconutData
 
 open class KCStackView : KCCoreView
 {

@@ -10,7 +10,7 @@
 #else
 	import UIKit
 #endif
-import Canary
+import CoconutData
 import KiwiGraphics
 
 open class KCTextField : KCCoreView

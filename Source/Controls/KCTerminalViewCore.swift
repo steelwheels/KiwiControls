@@ -10,7 +10,7 @@
 #else
 	import UIKit
 #endif
-import Canary
+import CoconutData
 
 public struct KCTerminalSize {
 	public var width:	Int

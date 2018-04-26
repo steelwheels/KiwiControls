@@ -10,7 +10,7 @@
 #else
 	import Cocoa
 #endif
-import Canary
+import CoconutData
 
 open class KCCheckBox: KCCoreView
 {

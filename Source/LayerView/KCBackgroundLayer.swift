@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 import KiwiGraphics
-import Canary
+import CoconutData
 
 public class KCBackgroundLayer: KCLayer
 {

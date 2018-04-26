@@ -7,7 +7,7 @@
 
 import Foundation
 import KiwiGraphics
-import Canary
+import CoconutData
 
 open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 {

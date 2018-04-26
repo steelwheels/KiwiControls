@@ -6,7 +6,7 @@
  */
 
 import Foundation
-import Canary
+import CoconutData
 #if os(OSX)
 	import Cocoa
 #else
