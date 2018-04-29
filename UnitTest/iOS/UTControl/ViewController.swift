@@ -27,9 +27,9 @@ class ViewController: UIViewController
 
 		// Do any additional setup after loading the view, typically from a nib.
 		let state     = UTState()
-		let fonttable = KGFontTable.sharedFontTable
+		let fonttable = KCFontTable.sharedFontTable
 
-		let textcolor = KGColorPreference.TextColors(foreground: KGColorTable.black, background: KGColorTable.gold)
+		let textcolor = KCColorPreference.TextColors(foreground: KCColorTable.black, background: KCColorTable.gold)
 		mTextField.text = "KCTextField"
 		mTextField.font = fonttable.font(withStyle: .Title)
 		mTextField.alignment = .left
@@ -42,8 +42,8 @@ class ViewController: UIViewController
 			() -> Void in
 			Swift.print("buttonPressedCallback")
 		}
-		let background = KGColorPreference.BackgroundColors(highlight: UIColor.lightGray, normal: UIColor.darkGray)
-		mButton.setColors(colors: KGColorPreference.ButtonColors.init(title: UIColor.cyan, background: background))
+		let background = KCColorPreference.BackgroundColors(highlight: UIColor.lightGray, normal: UIColor.darkGray)
+		mButton.setColors(colors: KCColorPreference.ButtonColors.init(title: UIColor.cyan, background: background))
 
 		mStepper.maxValue		= 5.0
 		mStepper.minValue		= 2.0
@@ -69,7 +69,7 @@ class ViewController: UIViewController
 		mIconView.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
 			Swift.print("Draw Icon")
-			let hexagon = KGHexagon(bounds: bounds, lineWidth: 2.0)
+			let hexagon = KCHexagon(bounds: bounds, lineWidth: 2.0)
 			context.draw(hexagon: hexagon, withGradient: nil)
 		}
 
@@ -77,7 +77,7 @@ class ViewController: UIViewController
 		mIconView.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
 			Swift.print("Draw Icon in \(bounds.description)")
-			let hexagon = KGHexagon(bounds: bounds, lineWidth: 2.0)
+			let hexagon = KCHexagon(bounds: bounds, lineWidth: 2.0)
 			Swift.print(" -> hexagon \(hexagon.description)")
 			context.draw(hexagon: hexagon, withGradient: nil)
 			//context.fillEllipse(in: bounds)

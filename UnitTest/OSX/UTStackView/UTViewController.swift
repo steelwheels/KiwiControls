@@ -42,7 +42,7 @@ class UTViewController: NSViewController
 		let button0 = KCButton()
 		button0.title = "Button-0"
 
-		mStackView.setViews(views: [text0, button0])
+		mStackView.addArrangedSubViews(subViews: [text0, button0])
 	}
 
 	private func addSubviews_1()
@@ -65,7 +65,7 @@ class UTViewController: NSViewController
 		let box0 = KCStackView(frame: NSRect(origin: origin, size: halfsize))
 		box0.axis = .Holizontal
 		//box0.alignment = .Trailing
-		box0.setViews(views: [text0, button0, button1])
+		box0.addArrangedSubViews(subViews:  [text0, button0, button1])
 
 		let button2 = KCButton()
 		button2.title = "Button-2"
@@ -74,7 +74,7 @@ class UTViewController: NSViewController
 		let console1 = text1.console
 		console1.print(string: "Hello, world !!")
 
-		mStackView.setViews(views: [box0, text1, button2])
+		mStackView.addArrangedSubViews(subViews: [box0, text1, button2])
 	}
 
 	override func viewDidLayout() {

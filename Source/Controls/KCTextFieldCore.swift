@@ -10,7 +10,6 @@
 #else
 	import UIKit
 #endif
-import KiwiGraphics
 import CoconutData
 
 open class KCTextFieldCore : KCView
@@ -79,7 +78,7 @@ open class KCTextFieldCore : KCView
 		})
 	}
 
-	public var font: KGFont? {
+	public var font: KCFont? {
 		get {
 			#if os(iOS)
 				return mLabel.font
@@ -135,7 +134,7 @@ open class KCTextFieldCore : KCView
 		}
 	}
 
-	public func setColors(colors cols: KGColorPreference.TextColors){
+	public func setColors(colors cols: KCColorPreference.TextColors){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(OSX)
 				self.mTextField.textColor       = cols.foreground

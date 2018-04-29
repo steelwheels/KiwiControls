@@ -11,7 +11,6 @@
 	import UIKit
 #endif
 import CoconutData
-import KiwiGraphics
 
 open class KCTextField : KCCoreView
 {
@@ -62,7 +61,7 @@ open class KCTextField : KCCoreView
 		set(newval){ coreView.text = newval }
 	}
 
-	public var font: KGFont? {
+	public var font: KCFont? {
 		get		{ return coreView.font }
 		set(font)	{ coreView.font = font }
 	}
@@ -77,7 +76,7 @@ open class KCTextField : KCCoreView
 		set(mode) { coreView.lineBreak = mode	}
 	}
 
-	public func setColors(colors cols: KGColorPreference.TextColors){
+	public func setColors(colors cols: KCColorPreference.TextColors){
 		coreView.setColors(colors: cols)
 		#if os(iOS)
 			self.backgroundColor = cols.background

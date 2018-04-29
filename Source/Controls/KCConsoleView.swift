@@ -12,8 +12,33 @@
 #endif
 import CoconutData
 
+public class KCConsole: CNConsole
+{
+	private var mOwnerView:	KCConsoleView
+
+	public init(ownerView owner: KCConsoleView){
+		mOwnerView = owner
+	}
+
+	public override func print(string str: String){
+		let astr = NSAttributedString(string: str)
+		mOwnerView.appendText(string: astr)
+	}
+
+	public override  func error(string str: String){
+		let astr = NSAttributedString(string: str)
+		mOwnerView.appendText(string: astr)
+	}
+
+	public override  func scan() -> String? {
+		return nil
+	}
+}
+
 open class KCConsoleView : KCCoreView
 {
+	private var mConsole: KCConsole? = nil
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -42,6 +67,7 @@ open class KCConsoleView : KCCoreView
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCConsoleViewCore") as? KCConsoleViewCore {
+			mConsole = KCConsole(ownerView: self)
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
@@ -51,6 +77,10 @@ open class KCConsoleView : KCCoreView
 		}
 	}
 
+	public var console: CNConsole {
+		get { return mConsole! }
+	}
+	
 	public func appendText(string str: NSAttributedString){
 		coreView.appendText(string: str)
 	}

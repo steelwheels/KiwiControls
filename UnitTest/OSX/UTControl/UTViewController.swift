@@ -8,7 +8,6 @@
 import Cocoa
 import CoconutData
 import KiwiControls
-import KiwiGraphics
 
 class UTViewController: NSViewController
 {
@@ -26,8 +25,8 @@ class UTViewController: NSViewController
 
 		// Do any additional setup after loading the view.
 		let state = UTState()
-		let buttonback = KGColorPreference.BackgroundColors(highlight: NSColor.lightGray, normal: NSColor.black)
-		mButton.setColors(colors: KGColorPreference.ButtonColors(title: NSColor.cyan, background: buttonback))
+		let buttonback = KCColorPreference.BackgroundColors(highlight: NSColor.lightGray, normal: NSColor.black)
+		mButton.setColors(colors: KCColorPreference.ButtonColors(title: NSColor.cyan, background: buttonback))
 		mButton.buttonPressedCallback = {
 			() -> Void in
 			Swift.print("buttonPressedCallback")
@@ -49,8 +48,8 @@ class UTViewController: NSViewController
 			Swift.print("update check box value: \(value)")
 		}
 
-		let textcolor = KGColorPreference.TextColors(foreground: KGColorTable.gold4, background: KGColorTable.gold)
-		let table = KGFontTable.sharedFontTable
+		let textcolor = KCColorPreference.TextColors(foreground: KCColorTable.gold4, background: KCColorTable.gold)
+		let table = KCFontTable.sharedFontTable
 		mTextField.font = table.font(withStyle: .Title)
 		mTextField.text = "Hello, World !!"
 		mTextField.alignment = .center

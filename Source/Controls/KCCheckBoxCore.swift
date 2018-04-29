@@ -10,7 +10,6 @@
 #else
 	import Cocoa
 #endif
-import KiwiGraphics
 import CoconutData
 
 public class KCCheckBoxCore: KCView

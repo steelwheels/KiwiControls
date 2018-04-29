@@ -6,7 +6,6 @@
  */
 
 import Foundation
-import KiwiGraphics
 import CoconutData
 
 open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
@@ -14,7 +13,7 @@ open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 	private var mStrokes	: Array<CGPoint>	= []
 	private var mDoClear	: Bool			= true
 	public var lineWidth	: CGFloat		= 10.0
-	public var lineColor	: CGColor		= KGColorTable.black.cgColor
+	public var lineColor	: CGColor		= KCColorTable.black.cgColor
 
 	public override init(frame f: CGRect) {
 		super.init(frame: f)

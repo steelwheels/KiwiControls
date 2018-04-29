@@ -10,7 +10,6 @@
 #else
 	import UIKit
 #endif
-import KiwiGraphics
 import CoconutData
 
 open class KCStackView : KCCoreView

@@ -10,7 +10,6 @@
 #else
 	import UIKit
 #endif
-import KiwiGraphics
 import CoconutData
 
 open class KCIconViewCore : KCView
@@ -48,7 +47,7 @@ open class KCIconViewCore : KCView
 		return CGRect(origin: layerorigin, size: layersize)
 	}
 
-	public var imageDrawer: KGImageDrawer? {
+	public var imageDrawer: KCImageDrawer? {
 		get {
 			if let icondrawer = mIconDrawer {
 				return icondrawer.imageDrawer

@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreGraphics
-import KiwiGraphics
 import CoconutData
 
 public class KCBackgroundLayer: KCLayer

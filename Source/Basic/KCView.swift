@@ -7,12 +7,9 @@
 
 #if os(iOS)
 	import UIKit
-	public typealias KCSize = CGSize
 #else
 	import Cocoa
-	public typealias KCSize = NSSize
 #endif
-import KiwiGraphics
 import CoconutData
 
 #if os(iOS)
@@ -129,7 +126,7 @@ open class KCView : KCViewBase
 	}
 	#endif
 
-	open override func setNeedsDisplay(_ invalidRect: KGRect)
+	open override func setNeedsDisplay(_ invalidRect: KCRect)
 	{
 		if areaToBeDisplay.isEmpty {
 			areaToBeDisplay = invalidRect

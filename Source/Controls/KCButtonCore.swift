@@ -10,7 +10,6 @@
 #else
 	import Cocoa
 #endif
-import KiwiGraphics
 import CoconutData
 
 public class KCButtonCore: KCView
@@ -77,7 +76,7 @@ public class KCButtonCore: KCView
 		}
 	}
 
-	public func setColors(colors cols: KGColorPreference.ButtonColors){
+	public func setColors(colors cols: KCColorPreference.ButtonColors){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(iOS)
 				self.mButton.setTitleColor(cols.title, for: .normal)

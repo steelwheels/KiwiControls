@@ -7,7 +7,6 @@
 
 import Cocoa
 import KiwiControls
-import KiwiGraphics
 
 class ViewController: NSViewController
 {
@@ -27,7 +26,7 @@ class ViewController: NSViewController
 		let frame  = mGraphicsView.frame
 		Swift.print("mGraphicsView: frame=\(frame.description), bounds=\(bounds.description)")
 		let stroke = KCStrokeEditorLayer(frame: bounds)
-		stroke.backgroundColor = KGColorTable.blue.cgColor
+		stroke.backgroundColor = KCColorTable.blue.cgColor
 		mGraphicsView.rootLayer.addSublayer(stroke)
     }
 

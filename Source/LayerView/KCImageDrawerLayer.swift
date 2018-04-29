@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreGraphics
-import KiwiGraphics
 #if os(iOS)
   import UIKit
 #else
@@ -17,7 +16,7 @@ import KiwiGraphics
 open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 {
 	private var mContentRect:	CGRect
-	private var mImageDrawer:	KGImageDrawer? = nil
+	private var mImageDrawer:	KCImageDrawer? = nil
 	private var mDrawnSize:		CGSize
 
 	public init(frame frm: CGRect, contentRect crect: CGRect){
@@ -32,7 +31,7 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public var imageDrawer: KGImageDrawer? {
+	public var imageDrawer: KCImageDrawer? {
 		get { return mImageDrawer }
 		set(drawer) { mImageDrawer = drawer }
 	}
@@ -67,8 +66,8 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 	public func draw(_ layer: CALayer, in ctx: CGContext) {
 		if let drawer = mImageDrawer {
 			let contentsize = mContentRect.size
-			var image: KGImage
-			if let imgp = layer.contents as? KGImage {
+			var image: KCImage
+			if let imgp = layer.contents as? KCImage {
 				if contentsize != mDrawnSize {
 					layer.contents = image = drawImage(context: ctx, bounds: mContentRect, drawer: drawer)
 					mDrawnSize = contentsize
@@ -84,16 +83,16 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 		}
 	}
 
-	private func drawImage(context ctx:CGContext, bounds bnds:CGRect, drawer drw: KGImageDrawer) -> KGImage {
-		let image: KGImage
+	private func drawImage(context ctx:CGContext, bounds bnds:CGRect, drawer drw: KCImageDrawer) -> KCImage {
+		let image: KCImage
 		#if os(iOS)
 			ctx.saveGState()
 			ctx.translateBy(x: 0.0, y: bounds.size.height)
 			ctx.scaleBy(x: 1.0, y: -1.0)
-			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
+			image = KCImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
 			ctx.restoreGState()
 		#else
-			image = KGImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
+			image = KCImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
 		#endif
 		return image
 	}

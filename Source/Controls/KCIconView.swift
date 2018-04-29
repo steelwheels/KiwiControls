@@ -10,7 +10,6 @@
 #else
 	import UIKit
 #endif
-import KiwiGraphics
 
 open class KCIconView: KCCoreView
 {
@@ -51,7 +50,7 @@ open class KCIconView: KCCoreView
 		}
 	}
 
-	public var imageDrawer: KGImageDrawer? {
+	public var imageDrawer: KCImageDrawer? {
 		get { return coreView.imageDrawer }
 		set(drawer){ coreView.imageDrawer = drawer }
 	}

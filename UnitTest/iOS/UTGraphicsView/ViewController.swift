@@ -22,7 +22,7 @@ private class UTVertexDrawer
 	}
 
 	public func drawContent(context ctxt:CGContext){
-		ctxt.setStrokeColor(KGColorTable.white.cgColor)
+		ctxt.setStrokeColor(KCColorTable.white.cgColor)
 		ctxt.draw(eclipse: mEclipse, withGradient: mGradient)
 	}
 }
@@ -57,7 +57,7 @@ class ViewController: UIViewController
 		let bounds     = mGraphicsView.bounds
 
 		/* Background layer */
-		let background = KCBackgroundLayer(frame: bounds, color: KGColorTable.black.cgColor)
+		let background = KCBackgroundLayer(frame: bounds, color: KCColorTable.black.cgColor)
 		mGraphicsView.rootLayer.addSublayer(background)
 
 		/* Image drawer */
@@ -67,7 +67,7 @@ class ViewController: UIViewController
 		drawer.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
 			Swift.print("Graphics Layer: draw in content:\(contentrect.description) bounds:\(bounds.description)")
-			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.blue.cgColor)
+			let vertex = UTVertexDrawer(bounds: bounds, color: KCColorTable.blue.cgColor)
 			vertex.drawContent(context: context)
 		}
 		background.addSublayer(drawer)
@@ -82,7 +82,7 @@ class ViewController: UIViewController
 		let repetitive = KCRepetitiveLayer(frame: bounds, elementSize: elmsize, elementOrigins: elmorigin, elementDrawer: {
 			(context: CGContext, bounds: CGRect) -> Void in
 			Swift.print("Graphics Layer: draw in bounds:\(bounds.description)")
-			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.yellow.cgColor)
+			let vertex = UTVertexDrawer(bounds: bounds, color: KCColorTable.yellow.cgColor)
 			vertex.drawContent(context: context)
 		})
 		drawer.addSublayer(repetitive)
@@ -102,7 +102,7 @@ class ViewController: UIViewController
 			}
 
 			let bounds     = view.bounds
-			let background = KCBackgroundLayer(frame: bounds, color: KGColorTable.black.cgColor)
+			let background = KCBackgroundLayer(frame: bounds, color: KCColorTable.black.cgColor)
 
 			view.rootLayer.addSublayer(background)
 			let symbounds = view.bounds
@@ -118,7 +118,7 @@ class ViewController: UIViewController
 	{
 		let selbounds	= mSelectionView.bounds
 
-		let background = KCBackgroundLayer(frame: selbounds, color: KGColorTable.black.cgColor)
+		let background = KCBackgroundLayer(frame: selbounds, color: KCColorTable.black.cgColor)
 		mSelectionView.rootLayer.addSublayer(background)
 
 		let sellayer	= KCSelectionLayer(frame: selbounds)

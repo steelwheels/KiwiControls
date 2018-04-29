@@ -6,16 +6,15 @@
  */
 
 import Cocoa
-import KiwiGraphics
 
 /**
  * Reference: http://qiita.com/hanamiju/items/ca695aa343a32017ed3f (Japanese)
  */
 public class KCButtonBody: NSButton
 {
-	private var mColors		: KGColorPreference.ButtonColors? = nil
+	private var mColors		: KCColorPreference.ButtonColors? = nil
 
-	public var colors: KGColorPreference.ButtonColors? {
+	public var colors: KCColorPreference.ButtonColors? {
 		get {
 			return mColors
 		}
@@ -46,7 +45,7 @@ public class KCButtonBody: NSButton
 
 	override public func updateLayer() {
 		if let cols = mColors {
-			let backcolor	: KGColor
+			let backcolor	: KCColor
 			if self.cell!.isHighlighted {
 				backcolor = cols.background.highlight
 			} else {

@@ -5,8 +5,12 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
+#if os(OSX)
+import AppKit
+#else
+import UIKit
+#endif
 import Foundation
-import KiwiGraphics
 
 open class KCSelectionLayer: KCLayer, KCDrawerLayerProtocol
 {

@@ -5,18 +5,22 @@
  *   Copyright (C) 2016-2017 Steel Wheels Project
  */
 
+#if os(OSX)
+import AppKit
+#else
+import UIKit
+#endif
 import Foundation
-import KiwiGraphics
 
 let DO_DEBUG = false
 
 open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 {
-	private var mCurrentStroke	: KGStroke?		= nil
-	private var mStrokes		: Array<KGStroke>	= []
+	private var mCurrentStroke	: KCStroke?		= nil
+	private var mStrokes		: Array<KCStroke>	= []
 
 	public var lineWidth		: CGFloat		= 10.0
-	public var lineColor		: CGColor		= KGColorTable.black.cgColor
+	public var lineColor		: CGColor		= KCColorTable.black.cgColor
 
 	public override init(frame f:CGRect) {
 		super.init(frame: f)
@@ -33,14 +37,14 @@ open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 
 		switch evt {
 		case .down:
-			mCurrentStroke = KGStroke(firstPoint: point)
+			mCurrentStroke = KCStroke(firstPoint: point)
 			didadded = false
 		case .drag:
 			if let stroke = mCurrentStroke {
 				didadded = stroke.addPoint(point: point)
 				result   = expandByLineWidth(source: stroke.lastUpdatedArea())
 			} else {
-				mCurrentStroke = KGStroke(firstPoint: point)
+				mCurrentStroke = KCStroke(firstPoint: point)
 				didadded = false
 			}
 		case .up:
@@ -94,7 +98,7 @@ open class KCStrokeEditorLayer: KCLayer, CALayerDelegate
 		context.restoreGState()
 	}
 
-	private func drawStroke(in context:CGContext, stroke strk: KGStroke){
+	private func drawStroke(in context:CGContext, stroke strk: KCStroke){
 		//Swift.print("drawStroke")
 		let points = strk.points
 		let count  = points.count

@@ -7,11 +7,10 @@
 
 import Foundation
 import KiwiControls
-import KiwiGraphics
 
 public func UTAllocateSymbol(symbolId sid: Int, frame frm: CGRect, contentRect crect: CGRect) -> KCImageDrawerLayer
 {
-	let gtable	= KGGradientTable.sharedGradientTable
+	let gtable	= KCGradientTable.sharedGradientTable
 
 	var symbolLayer: KCImageDrawerLayer
 	switch sid {
@@ -19,32 +18,32 @@ public func UTAllocateSymbol(symbolId sid: Int, frame frm: CGRect, contentRect c
 		symbolLayer = KCImageDrawerLayer(frame: frm, contentRect: crect)
 		symbolLayer.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
-			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
-			context.setStrokeColor(KGColorTable.cyan.cgColor)
+			let hexagon = KCHexagon(bounds: bounds, lineWidth: 4.0)
+			context.setStrokeColor(KCColorTable.cyan.cgColor)
 			context.draw(hexagon: hexagon, withGradient: nil)
 		}
 	case 1:
-		let cyangrad = gtable.gradient(forColor: KGColorTable.cyan.cgColor)
+		let cyangrad = gtable.gradient(forColor: KCColorTable.cyan.cgColor)
 		symbolLayer = KCImageDrawerLayer(frame: frm, contentRect: crect)
 		symbolLayer.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
-			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
+			let hexagon = KCHexagon(bounds: bounds, lineWidth: 4.0)
 			context.draw(hexagon: hexagon, withGradient: cyangrad)
 		}
 	case 2:
 		symbolLayer = KCImageDrawerLayer(frame: frm, contentRect: crect)
 		symbolLayer.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
-			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
-			context.setStrokeColor(KGColorTable.goldenrod.cgColor)
+			let hexagon = KCHexagon(bounds: bounds, lineWidth: 4.0)
+			context.setStrokeColor(KCColorTable.goldenrod.cgColor)
 			context.draw(hexagon: hexagon, withGradient: nil)
 		}
 	default:
-		let goldgrad	= gtable.gradient(forColor: KGColorTable.goldenrod.cgColor)
+		let goldgrad	= gtable.gradient(forColor: KCColorTable.goldenrod.cgColor)
 		symbolLayer = KCImageDrawerLayer(frame: frm, contentRect: crect)
 		symbolLayer.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
-			let hexagon = KGHexagon(bounds: bounds, lineWidth: 4.0)
+			let hexagon = KCHexagon(bounds: bounds, lineWidth: 4.0)
 			context.draw(hexagon: hexagon, withGradient: goldgrad)
 		}
 	}

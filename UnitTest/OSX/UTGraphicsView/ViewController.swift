@@ -6,23 +6,22 @@
  */
 
 import KiwiControls
-import KiwiGraphics
 import Cocoa
 
 private class UTVertexDrawer
 {
-	private var mEclipse:	KGEclipse
+	private var mEclipse:	KCEclipse
 	private var mGradient:	CGGradient
 
 	public init(bounds b: CGRect, color c: CGColor){
 		let center = b.center
 		let radius = min(b.size.width, b.size.height)/2.0
-		mEclipse  = KGEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
-		mGradient = KGGradientTable.sharedGradientTable.gradient(forColor: c)
+		mEclipse  = KCEclipse(center: center, innerRadius: radius*0.5, outerRadius: radius)
+		mGradient = KCGradientTable.sharedGradientTable.gradient(forColor: c)
 	}
 
 	public func drawContent(context ctxt:CGContext){
-		ctxt.setStrokeColor(KGColorTable.black.cgColor)
+		ctxt.setStrokeColor(KCColorTable.black.cgColor)
 		ctxt.draw(eclipse: mEclipse, withGradient: mGradient)
 	}
 }
@@ -61,7 +60,7 @@ class ViewController: NSViewController {
 
 		/* Background layer */
 		let symbolbounds = lview.bounds
-		let background = KCBackgroundLayer(frame: symbolbounds, color: KGColorTable.black.cgColor)
+		let background = KCBackgroundLayer(frame: symbolbounds, color: KCColorTable.black.cgColor)
 		lview.rootLayer.addSublayer(background)
 
 		let contentrect = CGRect(origin: CGPoint.zero, size: symbolbounds.size)
@@ -75,7 +74,7 @@ class ViewController: NSViewController {
 	{
 		/* Background layer */
 		let symbolbounds = lview.bounds
-		let background = KCBackgroundLayer(frame: symbolbounds, color: KGColorTable.black.cgColor)
+		let background = KCBackgroundLayer(frame: symbolbounds, color: KCColorTable.black.cgColor)
 		lview.rootLayer.addSublayer(background)
 
 		/* Selection layer */
@@ -98,7 +97,7 @@ class ViewController: NSViewController {
 		let bounds     = mGraphicsView.bounds
 
 		/* Background layer */
-		let background = KCBackgroundLayer(frame: bounds, color: KGColorTable.black.cgColor)
+		let background = KCBackgroundLayer(frame: bounds, color: KCColorTable.black.cgColor)
 		mGraphicsView.rootLayer.addSublayer(background)
 
 		/* Image layer */
@@ -107,7 +106,7 @@ class ViewController: NSViewController {
 		idrawer.imageDrawer = {
 			(context: CGContext, bounds: CGRect) -> Void in
 			//Swift.print("KCImageDrawerLayer: bounds:\(size.description)")
-			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.white.cgColor)
+			let vertex = UTVertexDrawer(bounds: bounds, color: KCColorTable.white.cgColor)
 			vertex.drawContent(context: context)
 		}
 		background.addSublayer(idrawer)
@@ -126,7 +125,7 @@ class ViewController: NSViewController {
 						   elementDrawer: {
 			(context: CGContext, bounds: CGRect) -> Void in
 			//Swift.print("KRepetitiverLayer: bounds:\(size.description)")
-			let vertex = UTVertexDrawer(bounds: bounds, color: KGColorTable.gray.cgColor)
+			let vertex = UTVertexDrawer(bounds: bounds, color: KCColorTable.gray.cgColor)
 			vertex.drawContent(context: context)
 		})
 		idrawer.addSublayer(repetitive)
@@ -134,7 +133,7 @@ class ViewController: NSViewController {
 		/* Stroke drawer */
 		let sdrawer = KCStrokeDrawerLayer(frame: bounds)
 		sdrawer.lineWidth = 10.0
-		sdrawer.lineColor = KGColorTable.yellow.cgColor
+		sdrawer.lineColor = KCColorTable.yellow.cgColor
 		sdrawer.strokes = [CGPoint(x:0.0, y:0.0), CGPoint(x:100, y:100), CGPoint(x:150, y:100), CGPoint(x:200, y:200)]
 		repetitive.addSublayer(sdrawer)
 		mStrokeDrawer = sdrawer

@@ -12,7 +12,6 @@ import Foundation
 #else
 	import Cocoa
 #endif
-import KiwiGraphics
 
 public class KCGraphicsView: KCView
 {

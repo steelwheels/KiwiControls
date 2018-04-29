@@ -10,7 +10,6 @@
 #else
 	import UIKit
 #endif
-import KiwiGraphics
 
 open class KCTableViewCore : KCView
 {
@@ -77,7 +76,7 @@ open class KCTableViewCore : KCView
 		#endif
 	}
 
-	public var font: KGFont? {
+	public var font: KCFont? {
 		get {
 			#if os(iOS)
 				return mLabel.font
@@ -111,7 +110,7 @@ open class KCTableViewCore : KCView
 		}
 	}
 
-	public func setColors(colors cols: KGColorPreference.TextColors){
+	public func setColors(colors cols: KCColorPreference.TextColors){
 		#if os(OSX)
 			mTextField.textColor       = cols.foreground
 			mTextField.drawsBackground = true

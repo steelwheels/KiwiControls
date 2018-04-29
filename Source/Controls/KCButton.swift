@@ -11,7 +11,6 @@
 	import Cocoa
 #endif
 import CoconutData
-import KiwiGraphics
 
 open class KCButton: KCCoreView
 {
@@ -67,7 +66,7 @@ open class KCButton: KCCoreView
 		set(newstr){ coreView.title = newstr }
 	}
 
-	public func setColors(colors cols: KGColorPreference.ButtonColors){
+	public func setColors(colors cols: KCColorPreference.ButtonColors){
 		coreView.setColors(colors: cols)
 		#if os(iOS)
 			self.backgroundColor = cols.background.normal

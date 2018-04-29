@@ -5,8 +5,8 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
-import Canary
 
 public enum UTProgress {
 	case Init

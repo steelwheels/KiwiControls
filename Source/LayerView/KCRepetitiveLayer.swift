@@ -6,7 +6,6 @@
  */
 
 import Foundation
-import KiwiGraphics
 import CoconutData
 
 open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
@@ -17,14 +16,14 @@ open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 	public init(frame f: CGRect,
 	            elementSize es: CGSize,
 	            elementOrigins eo: Array<CGPoint>,
-	            elementDrawer ed: @escaping KGImageDrawer)
+	            elementDrawer ed: @escaping KCImageDrawer)
 	{
 		mElementSize	= es
 		mElementOrigins	= eo
 		super.init(frame: f)
 		for origin in eo {
 			//Swift.print("repetitive: allocate layers")
-			let suborigin = KGOrigin(origin: origin, size: es, frame: f)
+			let suborigin = KCOrigin(origin: origin, size: es, frame: f)
 			let subrect   = CGRect(origin: suborigin, size: es)
 			let sublayer  = KCImageDrawerLayer(frame: f, contentRect: subrect)
 			sublayer.imageDrawer = ed

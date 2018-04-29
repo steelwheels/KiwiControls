@@ -6,7 +6,6 @@
  */
 
 import Foundation
-import KiwiGraphics
 import CoconutData
 import CoreGraphics
 #if os(iOS)
@@ -42,9 +41,9 @@ open class KCLayer: CALayer
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public var image: KGImage? {
+	public var image: KCImage? {
 		get {
-			if let img = self.contents as? KGImage {
+			if let img = self.contents as? KCImage {
 				return img
 			} else {
 				return nil
