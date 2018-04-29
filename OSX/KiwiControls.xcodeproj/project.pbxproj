@@ -31,14 +31,10 @@
 		05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D441D8570A4004B8DDF /* KCView.swift */; };
 		05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D451D8570A4004B8DDF /* KCViewController.swift */; };
 		05386D591D858603004B8DDF /* KCLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D581D858603004B8DDF /* KCLayerView.swift */; };
-		0539C0691FC7FDC400A28240 /* KCTerminalViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0539C0681FC7FDC400A28240 /* KCTerminalViewCore.xib */; };
-		0539C06B1FC805E400A28240 /* KCTerminalViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539C06A1FC805E400A28240 /* KCTerminalViewCore.swift */; };
-		0539C06D1FC81CA300A28240 /* KCTerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539C06C1FC81CA300A28240 /* KCTerminalView.swift */; };
 		0539C0A51FC81E7400A28240 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539C0A41FC81E7400A28240 /* AppDelegate.swift */; };
 		0539C0A71FC81E7400A28240 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539C0A61FC81E7400A28240 /* ViewController.swift */; };
 		0539C0A91FC81E7400A28240 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0539C0A81FC81E7400A28240 /* Assets.xcassets */; };
 		0539C0AC1FC81E7400A28240 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0539C0AA1FC81E7400A28240 /* Main.storyboard */; };
-		053D11991FD1BB7500050165 /* KCCLITerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D11981FD1BB7500050165 /* KCCLITerminalView.swift */; };
 		054278031EACB495009CB6C7 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
 		055674CB1DFB963B00794510 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055674CA1DFB963B00794510 /* KCGraphicsView.swift */; };
 		0558C9E71F8A018E00F3F9A6 /* KCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0558C9E61F8A018E00F3F9A6 /* KCViewController.xib */; };
@@ -186,9 +182,6 @@
 		05386D441D8570A4004B8DDF /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
 		05386D451D8570A4004B8DDF /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
 		05386D581D858603004B8DDF /* KCLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
-		0539C0681FC7FDC400A28240 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
-		0539C06A1FC805E400A28240 /* KCTerminalViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTerminalViewCore.swift; sourceTree = "<group>"; };
-		0539C06C1FC81CA300A28240 /* KCTerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTerminalView.swift; sourceTree = "<group>"; };
 		0539C0A21FC81E7400A28240 /* UTTerminalView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTerminalView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0539C0A41FC81E7400A28240 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0539C0A61FC81E7400A28240 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +189,6 @@
 		0539C0AB1FC81E7400A28240 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0539C0AD1FC81E7400A28240 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0539C0AE1FC81E7400A28240 /* UTTerminalView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTTerminalView.entitlements; sourceTree = "<group>"; };
-		053D11981FD1BB7500050165 /* KCCLITerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCLITerminalView.swift; sourceTree = "<group>"; };
 		055674CA1DFB963B00794510 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
 		0558C9E61F8A018E00F3F9A6 /* KCViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCViewController.xib; sourceTree = "<group>"; };
 		055DA41C1F7651DE00005FD4 /* KCType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCType.swift; sourceTree = "<group>"; };
@@ -381,7 +373,6 @@
 				055FBC361E6A441200A7A640 /* KCIconViewCore.xib */,
 				0584B13E1EACA26F00A5E9B8 /* KCStackViewCore.xib */,
 				05F66D2E1F45C50F004786FE /* KCConsoleViewCore.xib */,
-				0539C0681FC7FDC400A28240 /* KCTerminalViewCore.xib */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -525,9 +516,6 @@
 				0584B1401EACA29500A5E9B8 /* KCStackViewCore.swift */,
 				05F66D321F45C8B4004786FE /* KCConsoleView.swift */,
 				05F66D301F45C5A1004786FE /* KCConsoleViewCore.swift */,
-				053D11981FD1BB7500050165 /* KCCLITerminalView.swift */,
-				0539C06C1FC81CA300A28240 /* KCTerminalView.swift */,
-				0539C06A1FC805E400A28240 /* KCTerminalViewCore.swift */,
 				05E8524B1FCF21060077C35F /* KCTextView.swift */,
 			);
 			path = Controls;
@@ -828,7 +816,6 @@
 			files = (
 				05978CC11E2228380023640E /* KCTextFieldCore.xib in Resources */,
 				055FBC371E6A441200A7A640 /* KCIconViewCore.xib in Resources */,
-				0539C0691FC7FDC400A28240 /* KCTerminalViewCore.xib in Resources */,
 				057E16B01E11886100EC4DF6 /* KCButtonCore.xib in Resources */,
 				0558C9E71F8A018E00F3F9A6 /* KCViewController.xib in Resources */,
 				05F66D2F1F45C50F004786FE /* KCConsoleViewCore.xib in Resources */,
@@ -900,7 +887,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053D11991FD1BB7500050165 /* KCCLITerminalView.swift in Sources */,
 				0598D57B1DE180D50098C5B8 /* KCRepetitiveLayer.swift in Sources */,
 				05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */,
 				05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */,
@@ -913,7 +899,6 @@
 				0531C92D1FD404570020AD7D /* KCPreference.swift in Sources */,
 				05B03B7F1E223194001656A0 /* KCTextFieldCore.swift in Sources */,
 				05978CC41E2228510023640E /* KCTextField.swift in Sources */,
-				0539C06D1FC81CA300A28240 /* KCTerminalView.swift in Sources */,
 				051847C71E0DD53E00671A2D /* KCStepperCore.swift in Sources */,
 				0598D57C1DE180D50098C5B8 /* KCStrokeEditorLayer.swift in Sources */,
 				05ACEF591E0C2C3C009F10A7 /* KCButton.swift in Sources */,
@@ -929,7 +914,6 @@
 				0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,
 				0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */,
-				0539C06B1FC805E400A28240 /* KCTerminalViewCore.swift in Sources */,
 				05F66D311F45C5A1004786FE /* KCConsoleViewCore.swift in Sources */,
 				057E16B21E1189D900EC4DF6 /* KCButtonCore.swift in Sources */,
 				05FB742B1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift in Sources */,

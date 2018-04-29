@@ -38,7 +38,6 @@ public class KCAlert : NSObject
 		case NSApplication.ModalResponse.continue:
 			result = .Continue
 		default:
-			NSLog("Unknown result")
 			result = .Abort
 		}
 		return result

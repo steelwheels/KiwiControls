@@ -907,6 +907,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -924,6 +925,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -976,6 +978,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTStackView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTStackView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -995,6 +998,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/local/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTStackView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTStackView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1014,6 +1018,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsEditor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsEditor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1031,6 +1036,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTGraphicsEditor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTGraphicsEditor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
