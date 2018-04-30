@@ -10,6 +10,7 @@
 #else
 	import Cocoa
 #endif
+import CoconutData
 
 public class KCAlert : NSObject
 {
@@ -26,10 +27,11 @@ public class KCAlert : NSObject
 	}
 
 	#if os(OSX)
-	public class func runModal(error err: NSError) -> AlertResponce
+	public class func runModal(error err: NSError, in viewcont: KCViewController) -> AlertResponce
 	{
 		var result: AlertResponce
 		let alert = NSAlert(error: err)
+		alert.alertStyle = codeToStyle(error: err)
 		switch alert.runModal() {
 		case NSApplication.ModalResponse.stop:
 			result = .Stop
@@ -42,8 +44,20 @@ public class KCAlert : NSObject
 		}
 		return result
 	}
+
+	private class func codeToStyle(error err: NSError) -> NSAlert.Style {
+		let style: NSAlert.Style
+		switch err.errorCode {
+		case .Information:
+			style = .informational
+		case .InternalError, .ParseError, .FileError, .SerializeError, .UnknownError:
+			style = .critical
+		}
+		return style
+	}
+
 	#else
-	public class func runModal(error err: NSError, in viewcont: UIViewController) -> AlertResponce
+	public class func runModal(error err: NSError, in viewcont: KCViewController) -> AlertResponce
 	{
 		let title   = "Error"
 		let message = err.toString()
@@ -56,7 +70,6 @@ public class KCAlert : NSObject
 		return .Stop
 	}
 	#endif
-
 
 	#if os(OSX)
 	public class func recommendSaveModal(fileName fname: String) -> SaveResponce

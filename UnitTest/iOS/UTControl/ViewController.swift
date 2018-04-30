@@ -8,7 +8,7 @@
 import UIKit
 import KiwiControls
 
-class ViewController: UIViewController
+class ViewController: KCViewController
 {
 
 	@IBOutlet weak var mTextField: KCTextField!
