@@ -36,6 +36,7 @@
 		0550C6141E48DD670000DD46 /* UTSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550C6121E48DD1A0000DD46 /* UTSymbol.swift */; };
 		055112621EB6006700CC75E8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055112611EB6006700CC75E8 /* KCCoreView.swift */; };
 		0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */; };
+		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
 		056248DD1E0DCF8600EE0F2F /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056248DC1E0DCF8600EE0F2F /* UTState.swift */; };
 		056F4CB01E734E74008BF572 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */; };
 		056F4CB31E734EE5008BF572 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F4CB11E734EE5008BF572 /* KCIconView.swift */; };
@@ -166,6 +167,7 @@
 		0550C6121E48DD1A0000DD46 /* UTSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTSymbol.swift; sourceTree = "<group>"; };
 		055112611EB6006700CC75E8 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
+		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
 		056248DC1E0DCF8600EE0F2F /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
 		056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		056F4CB11E734EE5008BF572 /* KCIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				0580219C1E102740001457C8 /* iOS */,
+				0558A70E209D9CFD005905A1 /* KCRootView.swift */,
 				05353FFA1E0D5A340031812D /* KCButton.swift */,
 				058AE0501E12C3A800116D89 /* KCButtonCore.swift */,
 				056F4CB11E734EE5008BF572 /* KCIconView.swift */,
@@ -837,6 +840,7 @@
 				056F4CB41E734EE5008BF572 /* KCIconViewCore.swift in Sources */,
 				0571B63220956D3200603B95 /* KCCoodinate.swift in Sources */,
 				05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */,
+				0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */,
 				056F4CB81E735017008BF572 /* KCTableViewCore.swift in Sources */,
 				05706B5B1F8A50BF008BE096 /* KCViewController.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,

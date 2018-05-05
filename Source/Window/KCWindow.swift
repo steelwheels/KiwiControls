@@ -10,7 +10,7 @@
 import AppKit
 import Foundation
 
-public class KCWindow: NSWindow
+open class KCWindow: NSWindow
 {
 	public class func loadWindow(delegate delegateref: KCViewControllerDelegate) -> KCWindow?
 	{

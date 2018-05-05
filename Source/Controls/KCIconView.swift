@@ -2,7 +2,7 @@
  * @file	KCIconView.swift
  * @brief	Define KCIconView class
  * @par Copyright
- *   Copyright (C) 017 Steel Wheels Project
+ *   Copyright (C) 2017 Steel Wheels Project
  */
 
 #if os(OSX)
