@@ -37,6 +37,11 @@
 		055112621EB6006700CC75E8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055112611EB6006700CC75E8 /* KCCoreView.swift */; };
 		0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */; };
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
+		05607B3B209DB16C00B5EDF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05607B3A209DB16C00B5EDF4 /* AppDelegate.swift */; };
+		05607B3D209DB16C00B5EDF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05607B3C209DB16C00B5EDF4 /* ViewController.swift */; };
+		05607B40209DB16C00B5EDF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05607B3E209DB16C00B5EDF4 /* Main.storyboard */; };
+		05607B42209DB16C00B5EDF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05607B41209DB16C00B5EDF4 /* Assets.xcassets */; };
+		05607B45209DB16C00B5EDF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05607B43209DB16C00B5EDF4 /* LaunchScreen.storyboard */; };
 		056248DD1E0DCF8600EE0F2F /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056248DC1E0DCF8600EE0F2F /* UTState.swift */; };
 		056F4CB01E734E74008BF572 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */; };
 		056F4CB31E734EE5008BF572 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F4CB11E734EE5008BF572 /* KCIconView.swift */; };
@@ -168,6 +173,13 @@
 		055112611EB6006700CC75E8 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
+		05607B38209DB16C00B5EDF4 /* UTRootView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRootView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05607B3A209DB16C00B5EDF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05607B3C209DB16C00B5EDF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05607B3F209DB16C00B5EDF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05607B41209DB16C00B5EDF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05607B44209DB16C00B5EDF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		05607B46209DB16C00B5EDF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056248DC1E0DCF8600EE0F2F /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
 		056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		056F4CB11E734EE5008BF572 /* KCIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
@@ -251,6 +263,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0544C7881EAF974700AD0609 /* KiwiControls.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05607B35209DB16C00B5EDF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +371,19 @@
 				0544C7821EAF955B00AD0609 /* Info.plist */,
 			);
 			path = UTStackView;
+			sourceTree = "<group>";
+		};
+		05607B39209DB16C00B5EDF4 /* UTRootView */ = {
+			isa = PBXGroup;
+			children = (
+				05607B3A209DB16C00B5EDF4 /* AppDelegate.swift */,
+				05607B3C209DB16C00B5EDF4 /* ViewController.swift */,
+				05607B3E209DB16C00B5EDF4 /* Main.storyboard */,
+				05607B41209DB16C00B5EDF4 /* Assets.xcassets */,
+				05607B43209DB16C00B5EDF4 /* LaunchScreen.storyboard */,
+				05607B46209DB16C00B5EDF4 /* Info.plist */,
+			);
+			path = UTRootView;
 			sourceTree = "<group>";
 		};
 		05706B571F8A5080008BE096 /* Window */ = {
@@ -499,6 +531,7 @@
 				053540011E0D5BD20031812D /* UTControl */,
 				05BA2D8D1DEB10CE00A8EB62 /* UTGraphicsEditor */,
 				05021D001DE59F35003D4F20 /* UTGraphicsView */,
+				05607B39209DB16C00B5EDF4 /* UTRootView */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -521,6 +554,7 @@
 				05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */,
 				053540001E0D5BD20031812D /* UTControl.app */,
 				0544C7741EAF955B00AD0609 /* UTStackView.app */,
+				05607B38209DB16C00B5EDF4 /* UTRootView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -620,6 +654,23 @@
 			productReference = 0544C7741EAF955B00AD0609 /* UTStackView.app */;
 			productType = "com.apple.product-type.application";
 		};
+		05607B37209DB16C00B5EDF4 /* UTRootView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05607B49209DB16C00B5EDF4 /* Build configuration list for PBXNativeTarget "UTRootView" */;
+			buildPhases = (
+				05607B34209DB16C00B5EDF4 /* Sources */,
+				05607B35209DB16C00B5EDF4 /* Frameworks */,
+				05607B36209DB16C00B5EDF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UTRootView;
+			productName = UTRootView;
+			productReference = 05607B38209DB16C00B5EDF4 /* UTRootView.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05BA2D8B1DEB10CE00A8EB62 /* UTGraphicsEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05BA2D9D1DEB10CE00A8EB62 /* Build configuration list for PBXNativeTarget "UTGraphicsEditor" */;
@@ -662,7 +713,7 @@
 		05EDB7F11D8F792C00443B08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
@@ -680,6 +731,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = TR2DNF3P93;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					05607B37209DB16C00B5EDF4 = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
 					};
 					05BA2D8B1DEB10CE00A8EB62 = {
@@ -719,6 +775,7 @@
 				05BA2D8B1DEB10CE00A8EB62 /* UTGraphicsEditor */,
 				05353FFF1E0D5BD20031812D /* UTControl */,
 				0544C7731EAF955B00AD0609 /* UTStackView */,
+				05607B37209DB16C00B5EDF4 /* UTRootView */,
 			);
 		};
 /* End PBXProject section */
@@ -751,6 +808,16 @@
 				0544C7811EAF955B00AD0609 /* LaunchScreen.storyboard in Resources */,
 				0544C77E1EAF955B00AD0609 /* Assets.xcassets in Resources */,
 				0544C77C1EAF955B00AD0609 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05607B36209DB16C00B5EDF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05607B45209DB16C00B5EDF4 /* LaunchScreen.storyboard in Resources */,
+				05607B42209DB16C00B5EDF4 /* Assets.xcassets in Resources */,
+				05607B40209DB16C00B5EDF4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,6 +876,15 @@
 			files = (
 				0544C7791EAF955B00AD0609 /* ViewController.swift in Sources */,
 				0544C7771EAF955B00AD0609 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05607B34209DB16C00B5EDF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05607B3D209DB16C00B5EDF4 /* ViewController.swift in Sources */,
+				05607B3B209DB16C00B5EDF4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,6 +1034,22 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		05607B3E209DB16C00B5EDF4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05607B3F209DB16C00B5EDF4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05607B43209DB16C00B5EDF4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05607B44209DB16C00B5EDF4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		05BA2D921DEB10CE00A8EB62 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1086,6 +1178,50 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		05607B47209DB16C00B5EDF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTRootView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTRootView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		05607B48209DB16C00B5EDF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTRootView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTRootView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1350,6 +1486,15 @@
 			buildConfigurations = (
 				0544C7831EAF955B00AD0609 /* Debug */,
 				0544C7841EAF955B00AD0609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05607B49209DB16C00B5EDF4 /* Build configuration list for PBXNativeTarget "UTRootView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05607B47209DB16C00B5EDF4 /* Debug */,
+				05607B48209DB16C00B5EDF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
