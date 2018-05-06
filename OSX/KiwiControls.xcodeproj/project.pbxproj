@@ -73,6 +73,7 @@
 		0588EA0D209E7B4E00C6D5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0588EA0B209E7B4E00C6D5E8 /* Main.storyboard */; };
 		0588EA16209E7F9F00C6D5E8 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
 		0588EA18209E7FC400C6D5E8 /* KiwiControls.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0588EA1A209E918E00C6D5E8 /* KCLogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0588EA19209E918E00C6D5E8 /* KCLogWindowController.swift */; };
 		05929FCF209D9DF200A3F4E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929FCE209D9DF200A3F4E9 /* AppDelegate.swift */; };
 		05929FD1209D9DF300A3F4E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929FD0209D9DF300A3F4E9 /* ViewController.swift */; };
 		05929FD3209D9DF400A3F4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05929FD2209D9DF400A3F4E9 /* Assets.xcassets */; };
@@ -254,6 +255,7 @@
 		0588EA0C209E7B4E00C6D5E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0588EA0E209E7B4E00C6D5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0588EA0F209E7B4E00C6D5E8 /* UTLogWindow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTLogWindow.entitlements; sourceTree = "<group>"; };
+		0588EA19209E918E00C6D5E8 /* KCLogWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLogWindowController.swift; sourceTree = "<group>"; };
 		05929FCC209D9DF200A3F4E9 /* UTRootView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRootView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05929FCE209D9DF200A3F4E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05929FD0209D9DF300A3F4E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				0532F2B11F77B3120024A1EA /* OSX */,
 				05386D451D8570A4004B8DDF /* KCViewController.swift */,
 				05988DAE1F8BB1CA00A3991E /* KCWindow.swift */,
+				0588EA19209E918E00C6D5E8 /* KCLogWindowController.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -1075,6 +1078,7 @@
 				05386D591D858603004B8DDF /* KCLayerView.swift in Sources */,
 				0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,
+				0588EA1A209E918E00C6D5E8 /* KCLogWindowController.swift in Sources */,
 				0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */,
 				0580439C20958AE3009E20A9 /* KCVertices.swift in Sources */,
 				05F66D311F45C5A1004786FE /* KCConsoleViewCore.swift in Sources */,

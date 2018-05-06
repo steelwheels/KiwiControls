@@ -15,6 +15,7 @@
 		0506F2EB1DFB12690028D1E2 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506F2EA1DFB12690028D1E2 /* KCGraphicsView.swift */; };
 		050955F81E3F84F4007D3641 /* KCImageDrawerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050955F71E3F84F4007D3641 /* KCImageDrawerLayer.swift */; };
 		050E5E111DEF2C42006DC247 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5E101DEF2C42006DC247 /* KCTimer.swift */; };
+		0516DEF8209E922100D57430 /* KCLogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0516DEF7209E922100D57430 /* KCLogWindowController.swift */; };
 		051E34E41E42370000620E1C /* KCStrokeDrawerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E34E21E42370000620E1C /* KCStrokeDrawerLayer.swift */; };
 		051E34E51E42370000620E1C /* KCStrokeEditorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E34E31E42370000620E1C /* KCStrokeEditorLayer.swift */; };
 		052237B31E2234370073E4C9 /* KCTextFieldCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052237B21E2234370073E4C9 /* KCTextFieldCore.xib */; };
@@ -149,6 +150,7 @@
 		0506F2EA1DFB12690028D1E2 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCGraphicsView.swift; path = GraphicsView/KCGraphicsView.swift; sourceTree = "<group>"; };
 		050955F71E3F84F4007D3641 /* KCImageDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImageDrawerLayer.swift; sourceTree = "<group>"; };
 		050E5E101DEF2C42006DC247 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimer.swift; path = Timer/KCTimer.swift; sourceTree = "<group>"; };
+		0516DEF7209E922100D57430 /* KCLogWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogWindowController.swift; sourceTree = "<group>"; };
 		051E34E21E42370000620E1C /* KCStrokeDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeDrawerLayer.swift; sourceTree = "<group>"; };
 		051E34E31E42370000620E1C /* KCStrokeEditorLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeEditorLayer.swift; sourceTree = "<group>"; };
 		052237B21E2234370073E4C9 /* KCTextFieldCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTextFieldCore.xib; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				05706B5C1F8A50C4008BE096 /* iOS */,
 				05706B591F8A50BF008BE096 /* KCViewController.swift */,
 				05706B581F8A50BF008BE096 /* KCWindow.swift */,
+				0516DEF7209E922100D57430 /* KCLogWindowController.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				052237B71E2234480073E4C9 /* KCTextFieldCore.swift in Sources */,
 				056F4CB41E734EE5008BF572 /* KCIconViewCore.swift in Sources */,
 				0571B63220956D3200603B95 /* KCCoodinate.swift in Sources */,
+				0516DEF8209E922100D57430 /* KCLogWindowController.swift in Sources */,
 				05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */,
 				0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */,
 				056F4CB81E735017008BF572 /* KCTableViewCore.swift in Sources */,
