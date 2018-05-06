@@ -5,8 +5,6 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
-#if os(OSX)
-
 import AppKit
 import Foundation
 
@@ -26,5 +24,4 @@ open class KCWindow: NSWindow
 	}
 }
 
-#endif
 

@@ -5,72 +5,22 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
-#if os(OSX)
-
 import CoconutData
 import Foundation
 
-public class KCLogConsole: CNConsole
+public class KCLogWindowController: NSWindowController
 {
-	public var 		enable: Bool = true
-	private weak var	mWindowController: KCLogWindowController? = nil
-
-	private var windowController: KCLogWindowController {
-		get {
-			if let cont = mWindowController {
-				return cont
-			} else {
-				let newcont = KCLogWindowController.allocateController()
-				mWindowController = newcont
-				return newcont
-			}
-		}
-	}
-
-	public func show() {
-		windowController.show()
-	}
-
-	public func hide() {
-		windowController.hide()
-	}
-
-	open override func print(string str: String){
-		if enable {
-			return windowController.print(string: str)
-		}
-	}
-
-	open override func error(string str: String){
-		if enable {
-			return windowController.error(string: str)
-		}
-	}
-
-	open override func scan() -> String? {
-		if enable {
-			return windowController.scan()
-		} else {
-			return nil
-		}
-	}
-}
-
-fileprivate class KCLogWindowController: NSWindowController
-{
-	private var mViewController:	KCLogViewController
 	private var mConsoleView:	KCConsoleView
 	private var mConsole:		KCConsole
 	private var mButton:		KCButton
 
 	public class func allocateController() -> KCLogWindowController {
-		let viewcont	              = KCLogViewController()
+		let viewcont = KCLogViewController()
 		let (window, console, button) = KCLogWindowController.loadWindow(delegate: viewcont)
-		return KCLogWindowController(viewController: viewcont, window: window, consoleView: console, button: button)
+		return KCLogWindowController(window: window, consoleView: console, button: button)
 	}
 
-	public init(viewController viewcont: KCLogViewController, window win: KCWindow, consoleView consview: KCConsoleView, button btn: KCButton){
-		mViewController		= viewcont
+	public init(window win: KCWindow, consoleView consview: KCConsoleView, button btn: KCButton){
 		mConsoleView		= consview
 		mConsole		= KCConsole(ownerView: consview)
 		mButton			= btn
@@ -82,7 +32,7 @@ fileprivate class KCLogWindowController: NSWindowController
 		}
 	}
 
-	required init?(coder: NSCoder) {
+	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
@@ -123,8 +73,7 @@ fileprivate class KCLogWindowController: NSWindowController
 	}
 }
 
-fileprivate class KCLogViewController: KCViewControllerDelegate
+private class KCLogViewController: KCViewControllerDelegate
 {
 }
 
-#endif // os(OSX)
