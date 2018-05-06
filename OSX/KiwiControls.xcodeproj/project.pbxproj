@@ -67,6 +67,12 @@
 		0584B1411EACA29500A5E9B8 /* KCStackViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584B1401EACA29500A5E9B8 /* KCStackViewCore.swift */; };
 		0584B1431EACAF9E00A5E9B8 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584B1421EACAF9E00A5E9B8 /* KCStackView.swift */; };
 		0584E7601DEADFDE007E33C3 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
+		0588EA06209E7B4C00C6D5E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0588EA05209E7B4C00C6D5E8 /* AppDelegate.swift */; };
+		0588EA08209E7B4C00C6D5E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0588EA07209E7B4C00C6D5E8 /* ViewController.swift */; };
+		0588EA0A209E7B4E00C6D5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0588EA09209E7B4E00C6D5E8 /* Assets.xcassets */; };
+		0588EA0D209E7B4E00C6D5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0588EA0B209E7B4E00C6D5E8 /* Main.storyboard */; };
+		0588EA16209E7F9F00C6D5E8 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
+		0588EA18209E7FC400C6D5E8 /* KiwiControls.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05929FCF209D9DF200A3F4E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929FCE209D9DF200A3F4E9 /* AppDelegate.swift */; };
 		05929FD1209D9DF300A3F4E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05929FD0209D9DF300A3F4E9 /* ViewController.swift */; };
 		05929FD3209D9DF400A3F4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05929FD2209D9DF400A3F4E9 /* Assets.xcassets */; };
@@ -140,6 +146,13 @@
 			remoteGlobalIDString = 05386D4F1D857F77004B8DDF;
 			remoteInfo = Install;
 		};
+		0588EA13209E7B5900C6D5E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05386D4F1D857F77004B8DDF;
+			remoteInfo = Install;
+		};
 		05ACEF6D1E0C3320009F10A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
@@ -156,6 +169,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0588EA17209E7FB100C6D5E8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0588EA18209E7FC400C6D5E8 /* KiwiControls.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +247,13 @@
 		0584B13E1EACA26F00A5E9B8 /* KCStackViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStackViewCore.xib; sourceTree = "<group>"; };
 		0584B1401EACA29500A5E9B8 /* KCStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackViewCore.swift; sourceTree = "<group>"; };
 		0584B1421EACAF9E00A5E9B8 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
+		0588EA03209E7B4C00C6D5E8 /* UTLogWindow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTLogWindow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0588EA05209E7B4C00C6D5E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0588EA07209E7B4C00C6D5E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0588EA09209E7B4E00C6D5E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0588EA0C209E7B4E00C6D5E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0588EA0E209E7B4E00C6D5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0588EA0F209E7B4E00C6D5E8 /* UTLogWindow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTLogWindow.entitlements; sourceTree = "<group>"; };
 		05929FCC209D9DF200A3F4E9 /* UTRootView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRootView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05929FCE209D9DF200A3F4E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05929FD0209D9DF300A3F4E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +325,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0588EA00209E7B4C00C6D5E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0588EA16209E7F9F00C6D5E8 /* KiwiControls.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05929FC9209D9DF200A3F4E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,11 +372,11 @@
 		05043C121D856F910033FEC6 = {
 			isa = PBXGroup;
 			children = (
-				05BCEEF9208A4A700010C424 /* UTGraphicsView.entitlements */,
 				05386D3F1D857009004B8DDF /* Source */,
 				0569CCDC1D85CCA2005412C7 /* UnitTest */,
 				05043C1E1D856F910033FEC6 /* KiwiControls */,
 				05043C1D1D856F910033FEC6 /* Products */,
+				0588EA15209E7F9F00C6D5E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -352,6 +390,7 @@
 				0515CD531EACB37F00B4736D /* UTStackView.app */,
 				05674B8D1F77D1CD006CB20F /* UTWindowController.app */,
 				05929FCC209D9DF200A3F4E9 /* UTRootView.app */,
+				0588EA03209E7B4C00C6D5E8 /* UTLogWindow.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -500,6 +539,7 @@
 		05674B9D1F77D1E6006CB20F /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				0588EA04209E7B4C00C6D5E8 /* UTLogWindow */,
 				05929FCD209D9DF200A3F4E9 /* UTRootView */,
 				05674B8E1F77D1CD006CB20F /* UTWindowController */,
 				0515CD541EACB37F00B4736D /* UTStackView */,
@@ -535,6 +575,26 @@
 				0580438B209570B7009E20A9 /* KCFontTable.swift */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		0588EA04209E7B4C00C6D5E8 /* UTLogWindow */ = {
+			isa = PBXGroup;
+			children = (
+				0588EA05209E7B4C00C6D5E8 /* AppDelegate.swift */,
+				0588EA07209E7B4C00C6D5E8 /* ViewController.swift */,
+				0588EA09209E7B4E00C6D5E8 /* Assets.xcassets */,
+				0588EA0B209E7B4E00C6D5E8 /* Main.storyboard */,
+				0588EA0E209E7B4E00C6D5E8 /* Info.plist */,
+				0588EA0F209E7B4E00C6D5E8 /* UTLogWindow.entitlements */,
+			);
+			path = UTLogWindow;
+			sourceTree = "<group>";
+		};
+		0588EA15209E7F9F00C6D5E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		05929FCD209D9DF200A3F4E9 /* UTRootView */ = {
@@ -592,6 +652,7 @@
 		05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */ = {
 			isa = PBXGroup;
 			children = (
+				05BCEEF9208A4A700010C424 /* UTGraphicsView.entitlements */,
 				05648A6A1D8EB1B100EABCD0 /* Main.storyboard */,
 				05648A681D8EB1A500EABCD0 /* ViewController.swift */,
 				058354281E4A218E00468914 /* UTSymbol.swift */,
@@ -707,6 +768,25 @@
 			productReference = 05674B8D1F77D1CD006CB20F /* UTWindowController.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0588EA02209E7B4C00C6D5E8 /* UTLogWindow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0588EA10209E7B4E00C6D5E8 /* Build configuration list for PBXNativeTarget "UTLogWindow" */;
+			buildPhases = (
+				0588E9FF209E7B4C00C6D5E8 /* Sources */,
+				0588EA00209E7B4C00C6D5E8 /* Frameworks */,
+				0588EA01209E7B4C00C6D5E8 /* Resources */,
+				0588EA17209E7FB100C6D5E8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0588EA14209E7B5900C6D5E8 /* PBXTargetDependency */,
+			);
+			name = UTLogWindow;
+			productName = UTLogWindow;
+			productReference = 0588EA03209E7B4C00C6D5E8 /* UTLogWindow.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05929FCB209D9DF200A3F4E9 /* UTRootView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05929FDB209D9DF400A3F4E9 /* Build configuration list for PBXNativeTarget "UTRootView" */;
@@ -811,6 +891,11 @@
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
 					};
+					0588EA02209E7B4C00C6D5E8 = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 					05929FCB209D9DF200A3F4E9 = {
 						CreatedOnToolsVersion = 9.3;
 						DevelopmentTeam = TR2DNF3P93;
@@ -860,6 +945,7 @@
 				0515CD521EACB37F00B4736D /* UTStackView */,
 				05674B8C1F77D1CD006CB20F /* UTWindowController */,
 				05929FCB209D9DF200A3F4E9 /* UTRootView */,
+				0588EA02209E7B4C00C6D5E8 /* UTLogWindow */,
 			);
 		};
 /* End PBXProject section */
@@ -896,6 +982,15 @@
 			files = (
 				05674B941F77D1CD006CB20F /* Assets.xcassets in Resources */,
 				05674B971F77D1CD006CB20F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0588EA01209E7B4C00C6D5E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0588EA0A209E7B4E00C6D5E8 /* Assets.xcassets in Resources */,
+				0588EA0D209E7B4E00C6D5E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1111,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0588E9FF209E7B4C00C6D5E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0588EA08209E7B4C00C6D5E8 /* ViewController.swift in Sources */,
+				0588EA06209E7B4C00C6D5E8 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05929FC8209D9DF200A3F4E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1082,6 +1186,11 @@
 			target = 05386D4F1D857F77004B8DDF /* Install */;
 			targetProxy = 0584E75E1DEADF4B007E33C3 /* PBXContainerItemProxy */;
 		};
+		0588EA14209E7B5900C6D5E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05386D4F1D857F77004B8DDF /* Install */;
+			targetProxy = 0588EA13209E7B5900C6D5E8 /* PBXContainerItemProxy */;
+		};
 		05ACEF6E1E0C3320009F10A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05386D4F1D857F77004B8DDF /* Install */;
@@ -1110,6 +1219,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				05674B961F77D1CD006CB20F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0588EA0B209E7B4E00C6D5E8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0588EA0C209E7B4E00C6D5E8 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1430,6 +1547,50 @@
 			};
 			name = Release;
 		};
+		0588EA11209E7B4E00C6D5E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTLogWindow/UTLogWindow.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTLogWindow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTLogWindow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0588EA12209E7B4E00C6D5E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTLogWindow/UTLogWindow.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTLogWindow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTLogWindow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		05929FD9209D9DF400A3F4E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1521,7 +1682,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = UTGraphicsView.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTGraphicsView/UTGraphicsView.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1545,7 +1706,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = UTGraphicsView.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTGraphicsView/UTGraphicsView.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1643,6 +1804,15 @@
 			buildConfigurations = (
 				05674B9B1F77D1CD006CB20F /* Debug */,
 				05674B9C1F77D1CD006CB20F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0588EA10209E7B4E00C6D5E8 /* Build configuration list for PBXNativeTarget "UTLogWindow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0588EA11209E7B4E00C6D5E8 /* Debug */,
+				0588EA12209E7B4E00C6D5E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
