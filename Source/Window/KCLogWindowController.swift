@@ -28,8 +28,11 @@ public class KCLogConsole: CNConsole
 	}
 
 	public func show() {
-		let cont = windowController
-		cont.showWindow(cont)
+		windowController.show()
+	}
+
+	public func hide() {
+		windowController.hide()
 	}
 
 	open override func print(string str: String){
@@ -58,18 +61,25 @@ fileprivate class KCLogWindowController: NSWindowController
 	private var mViewController:	KCLogViewController
 	private var mConsoleView:	KCConsoleView
 	private var mConsole:		KCConsole
+	private var mButton:		KCButton
 
 	public class func allocateController() -> KCLogWindowController {
-		let viewcont	      = KCLogViewController()
-		let (window, console) = KCLogWindowController.loadWindow(delegate: viewcont)
-		return KCLogWindowController(viewController: viewcont, window: window, consoleView: console)
+		let viewcont	              = KCLogViewController()
+		let (window, console, button) = KCLogWindowController.loadWindow(delegate: viewcont)
+		return KCLogWindowController(viewController: viewcont, window: window, consoleView: console, button: button)
 	}
 
-	public init(viewController viewcont: KCLogViewController, window win: KCWindow, consoleView consview: KCConsoleView){
+	public init(viewController viewcont: KCLogViewController, window win: KCWindow, consoleView consview: KCConsoleView, button btn: KCButton){
 		mViewController		= viewcont
 		mConsoleView		= consview
 		mConsole		= KCConsole(ownerView: consview)
+		mButton			= btn
 		super.init(window: win)
+
+		btn.buttonPressedCallback = {
+			() -> Void in
+			self.hide()
+		}
 	}
 
 	required init?(coder: NSCoder) {
@@ -88,16 +98,25 @@ fileprivate class KCLogWindowController: NSWindowController
 		return mConsole.scan()
 	}
 
-	private class func loadWindow(delegate dlg: KCViewControllerDelegate) -> (KCWindow, KCConsoleView) {
+	public func show() {
+		self.window?.orderFront(self.window)
+	}
+
+	public func hide() {
+		self.window?.orderOut(self.window)
+	}
+
+	private class func loadWindow(delegate dlg: KCViewControllerDelegate) -> (KCWindow, KCConsoleView, KCButton) {
 		if let newwin = KCWindow.loadWindow(delegate: dlg) {
 			newwin.title = "Log"
 			let box = KCStackView(frame: newwin.frame)
 			newwin.setRootView(view: box)
 			let button  = KCButton()
+			button.title = "Close"
 			let console = KCConsoleView()
 			let children: Array<KCView> = [console, button]
 			box.addArrangedSubViews(subViews: children)
-			return (newwin, console)
+			return (newwin, console, button)
 		} else {
 			fatalError("Failed to allocate window")
 		}
@@ -107,57 +126,5 @@ fileprivate class KCLogWindowController: NSWindowController
 fileprivate class KCLogViewController: KCViewControllerDelegate
 {
 }
-
-/*
-
-public class KCLogWindowController: KCViewControllerDelegate
-{
-	private var mLogWindow: 	KCWindow?	= nil
-	private var mConsoleView:	KCConsoleView?	= nil
-	private var mConsole:		KCConsole?	= nil
-
-	public func print(string str: String) {
-		let (_, _, console) = openWindow()
-		console.print(string: str)
-	}
-
-	public func error(string str: String) {
-		let (_, _, console) = openWindow()
-		console.error(string: str)
-	}
-
-	public func scan() -> String? {
-		let (_, _, console) = openWindow()
-		return console.scan()
-	}
-
-	private func openWindow() -> (KCWindow, KCConsoleView, KCConsole) {
-		if let win = mLogWindow, let cview = mConsoleView, let cons = mConsole {
-			return (win, cview, cons)
-		} else {
-			let (newwin, newcview) = loadWindow()
-			mLogWindow   = newwin
-			mConsoleView = newcview
-			let newcons  = KCConsole(ownerView: newcview)
-			mConsole     = newcons
-			return (newwin, newcview, newcons)
-		}
-	}
-
-	private func loadWindow() -> (KCWindow, KCConsoleView) {
-		if let newwin = KCWindow.loadWindow(delegate: self) {
-			let box = KCStackView(frame: newwin.frame)
-			newwin.setRootView(view: box)
-			let button  = KCButton()
-			let console = KCConsoleView()
-			let children: Array<KCView> = [console, button]
-			box.addArrangedSubViews(subViews: children)
-			return (newwin, console)
-		} else {
-			fatalError("Failed to allocate window")
-		}
-	}
-}
-*/
 
 #endif // os(OSX)

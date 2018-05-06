@@ -21,7 +21,10 @@ class ViewController: NSViewController {
 		// Do any additional setup after loading the view.
 		let cons = KCLogConsole()
 		cons.show()
-		cons.print(string: "Hello, world !!\nGood morning !!")
+		cons.print(string: "Hello, world !!\nGood morning !!\n\n")
+		cons.hide()
+		cons.print(string: "Good night ...\n")
+		cons.show()
 	}
 
 	override var representedObject: Any? {
