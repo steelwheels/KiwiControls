@@ -46,9 +46,8 @@ public class KCLogConsole: CNConsole
 			#if os(OSX)
 				return windowController.print(string: str)
 			#else
-				if let console = KCLogViewController.shared.console {
-					console.print(string: str)
-				}
+				let console = KCLogViewController.shared.inputConsole
+				console.print(string: str)
 			#endif
 		}
 	}
@@ -58,9 +57,8 @@ public class KCLogConsole: CNConsole
 			#if os(OSX)
 				return windowController.error(string: str)
 			#else
-				if let console = KCLogViewController.shared.console {
-					console.error(string: str)
-				}
+				let console = KCLogViewController.shared.inputConsole
+				console.error(string: str)
 			#endif
 		}
 	}
@@ -70,11 +68,8 @@ public class KCLogConsole: CNConsole
 			#if os(OSX)
 				return windowController.scan()
 			#else
-				if let console = KCLogViewController.shared.console {
-					return console.scan()
-				} else {
-					return nil
-				}
+				let console = KCLogViewController.shared.inputConsole
+				return console.scan()
 			#endif
 		} else {
 			return nil

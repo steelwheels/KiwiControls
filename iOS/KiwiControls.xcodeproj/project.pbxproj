@@ -78,11 +78,12 @@
 		05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05910BF220958D9D00535E2A /* KCTriangle.swift */; };
 		05910BF620958D9D00535E2A /* KCVertices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05910BF320958D9D00535E2A /* KCVertices.swift */; };
 		059570451F7659D6007898FB /* KCType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059570441F7659D6007898FB /* KCType.swift */; };
+		0595D3FF20A085D200C1079C /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0595D3FE20A085D200C1079C /* LogViewController.swift */; };
 		0597E8691FEFCB5C000D8442 /* KCPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597E8681FEFCB5C000D8442 /* KCPreference.swift */; };
 		05B70CDC209F0BD900BAE1EB /* KCLogConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */; };
 		05B70CE0209F2C6F00BAE1EB /* KCLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */; };
 		05B70CE8209F526E00BAE1EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE7209F526E00BAE1EB /* AppDelegate.swift */; };
-		05B70CEA209F526E00BAE1EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE9209F526E00BAE1EB /* ViewController.swift */; };
+		05B70CEA209F526E00BAE1EB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE9209F526E00BAE1EB /* MainViewController.swift */; };
 		05B70CED209F526E00BAE1EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B70CEB209F526E00BAE1EB /* Main.storyboard */; };
 		05B70CEF209F527000BAE1EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B70CEE209F527000BAE1EB /* Assets.xcassets */; };
 		05B70CF2209F527000BAE1EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B70CF0209F527000BAE1EB /* LaunchScreen.storyboard */; };
@@ -236,12 +237,13 @@
 		05910BF220958D9D00535E2A /* KCTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTriangle.swift; sourceTree = "<group>"; };
 		05910BF320958D9D00535E2A /* KCVertices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCVertices.swift; sourceTree = "<group>"; };
 		059570441F7659D6007898FB /* KCType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCType.swift; sourceTree = "<group>"; };
+		0595D3FE20A085D200C1079C /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		0597E8681FEFCB5C000D8442 /* KCPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreference.swift; sourceTree = "<group>"; };
 		05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogConsole.swift; sourceTree = "<group>"; };
 		05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLogViewController.swift; sourceTree = "<group>"; };
 		05B70CE5209F526E00BAE1EB /* UTRootView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRootView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B70CE7209F526E00BAE1EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05B70CE9209F526E00BAE1EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05B70CE9209F526E00BAE1EB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		05B70CEC209F526E00BAE1EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05B70CEE209F527000BAE1EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05B70CF1209F527000BAE1EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -519,7 +521,8 @@
 			isa = PBXGroup;
 			children = (
 				05B70CE7209F526E00BAE1EB /* AppDelegate.swift */,
-				05B70CE9209F526E00BAE1EB /* ViewController.swift */,
+				05B70CE9209F526E00BAE1EB /* MainViewController.swift */,
+				0595D3FE20A085D200C1079C /* LogViewController.swift */,
 				05B70CEB209F526E00BAE1EB /* Main.storyboard */,
 				05B70CEE209F527000BAE1EB /* Assets.xcassets */,
 				05B70CF0209F527000BAE1EB /* LaunchScreen.storyboard */,
@@ -919,7 +922,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B70CEA209F526E00BAE1EB /* ViewController.swift in Sources */,
+				0595D3FF20A085D200C1079C /* LogViewController.swift in Sources */,
+				05B70CEA209F526E00BAE1EB /* MainViewController.swift in Sources */,
 				05B70CE8209F526E00BAE1EB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

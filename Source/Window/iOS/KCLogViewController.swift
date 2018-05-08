@@ -2,37 +2,27 @@
  * @file	KCLogViewController.swift
  * @brief	Define KCLogViewController class
  * @par Copyright
- *   Copyright (C) 2015 Steel Wheels Project
+ *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public class KCLogViewController
 {
-	static let shared = KCLogViewController()
+	public static let shared = KCLogViewController()
 
-	private var mConsoleView: KCConsoleView? = nil
-	private var mConsole:	  KCConsole?     = nil
+	private var mConsoleView: 	KCConsoleView?    = nil
+	private var mBufferConsole:	CNBufferedConsole = CNBufferedConsole()
 
-	public var consoleView: KCConsoleView? {
-		set(view) {
-			mConsoleView = view
-			if let v = view {
-				mConsole = KCConsole(ownerView: v)
-			} else {
-				mConsole = nil
-			}
-		}
-		get {
-			return mConsoleView
-		}
-	}
-
-	public var console: KCConsole? {
-		get { return mConsole }
-	}
-	
 	private init(){
+	}
 
+	public var inputConsole: CNConsole {
+		get { return mBufferConsole }
+	}
+
+	public func setLogViewConsole(console cons: CNConsole){
+		mBufferConsole.receiverConsole = cons
 	}
 }
