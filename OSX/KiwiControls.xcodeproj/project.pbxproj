@@ -49,6 +49,7 @@
 		05674B941F77D1CD006CB20F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05674B931F77D1CD006CB20F /* Assets.xcassets */; };
 		05674B971F77D1CD006CB20F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05674B951F77D1CD006CB20F /* Main.storyboard */; };
 		05674BA01F77D45A006CB20F /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
+		0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */; };
 		057C42CE1E4390D3001BD954 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C42CD1E4390D3001BD954 /* KCSelectionLayer.swift */; };
 		057E16B01E11886100EC4DF6 /* KCButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */; };
 		057E16B21E1189D900EC4DF6 /* KCButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */; };
@@ -232,6 +233,7 @@
 		05674B961F77D1CD006CB20F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05674B981F77D1CD006CB20F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05674B991F77D1CD006CB20F /* UTWindowController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTWindowController.entitlements; sourceTree = "<group>"; };
+		0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		057C42CD1E4390D3001BD954 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonCore.xib; sourceTree = "<group>"; };
 		057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButtonCore.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				059CFFA51EB5E9A30005F3C0 /* KCCoreView.swift */,
 				051F63721FA4D1C000DD18A5 /* KCViewTraverser.swift */,
 				0531C92C1FD404570020AD7D /* KCPreference.swift */,
+				0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -1094,6 +1097,7 @@
 				05988DAF1F8BB1CA00A3991E /* KCWindow.swift in Sources */,
 				055FBC391E6A442F00A7A640 /* KCIconViewCore.swift in Sources */,
 				05A03C0A1E1EAB5300156321 /* KCButtonBody.swift in Sources */,
+				0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */,
 				057C42CE1E4390D3001BD954 /* KCSelectionLayer.swift in Sources */,
 				0501F7A31E12D84300B68A98 /* KCCheckBoxCore.swift in Sources */,
 				0598D5781DE180D50098C5B8 /* KCBackgroundLayer.swift in Sources */,

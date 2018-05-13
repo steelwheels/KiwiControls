@@ -102,6 +102,7 @@
 		05EE31F61EACB214007164F4 /* KCStackViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EE31F51EACB214007164F4 /* KCStackViewCore.xib */; };
 		05EE31F91EACB2B8007164F4 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F71EACB2B8007164F4 /* KCStackView.swift */; };
 		05EE31FA1EACB2B8007164F4 /* KCStackViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */; };
+		05F7A11820A7C90B00A395AB /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +267,7 @@
 		05EE31F51EACB214007164F4 /* KCStackViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStackViewCore.xib; sourceTree = "<group>"; };
 		05EE31F71EACB2B8007164F4 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
 		05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackViewCore.swift; sourceTree = "<group>"; };
+		05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +484,7 @@
 		05841E931D8F7B670092C2C6 /* Basic */ = {
 			isa = PBXGroup;
 			children = (
+				05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */,
 				059570441F7659D6007898FB /* KCType.swift */,
 				05841E951D8F7B950092C2C6 /* KCAlert.swift */,
 				0597E8681FEFCB5C000D8442 /* KCPreference.swift */,
@@ -602,7 +605,7 @@
 				05BB23AA1D8FBCB600C44B3F /* install_ios.mk */,
 				05EDB7FE1D8F792C00443B08 /* Info.plist */,
 			);
-			path = KiwiControls;
+			name = KiwiControls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -973,6 +976,7 @@
 				05910BEF20958D9400535E2A /* KCImage.swift in Sources */,
 				0506F2EB1DFB12690028D1E2 /* KCGraphicsView.swift in Sources */,
 				0571B63020956D3200603B95 /* KCRect.swift in Sources */,
+				05F7A11820A7C90B00A395AB /* KCApplicationDelegate.swift in Sources */,
 				05E75DF91E13F4C000287756 /* KCCheckBox.swift in Sources */,
 				056F4CB31E734EE5008BF572 /* KCIconView.swift in Sources */,
 				051E34E51E42370000620E1C /* KCStrokeEditorLayer.swift in Sources */,
