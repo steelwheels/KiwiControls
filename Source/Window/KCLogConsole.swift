@@ -21,6 +21,7 @@ public class KCLogConsole: CNConsole
 			} else {
 				let newcont = KCLogWindowController.allocateController()
 				mWindowController = newcont
+				newcont.show()
 				return newcont
 			}
 		}
