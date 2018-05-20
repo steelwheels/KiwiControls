@@ -11,22 +11,6 @@
 	import AppKit
 #endif
 
-public enum Axis {
-	case Holizontal
-	case Vertical
-
-	public var description: String {
-		get {
-			let result: String
-			switch self {
-			case .Holizontal: result = "holizontal"
-			case .Vertical:   result = "vertical"
-			}
-			return result
-		}
-	}
-}
-
 #if os(iOS)
 	public typealias KCPoint		= CGPoint
 	public typealias KCSize			= CGSize

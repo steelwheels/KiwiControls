@@ -26,16 +26,16 @@ open class KCStackViewCore : KCView
 		self.frame  = bounds
 	}
 	
-	public var axis: Axis {
+	public var orientation: CNOrientation {
 		get {
 			#if os(OSX)
 				switch mStackView.orientation {
-				case .horizontal: return .Holizontal
+				case .horizontal: return .Horizontal
 				case .vertical:   return .Vertical
 				}
 			#else
 				switch mStackView.axis {
-				case .horizontal: return .Holizontal
+				case .horizontal: return .Horizontal
 				case .vertical:   return .Vertical
 				}
 			#endif
@@ -45,12 +45,12 @@ open class KCStackViewCore : KCView
 				#if os(OSX)
 					switch newval {
 					case .Vertical:   self.mStackView.orientation = .vertical
-					case .Holizontal: self.mStackView.orientation = .horizontal
+					case .Horizontal: self.mStackView.orientation = .horizontal
 					}
 				#else
 					switch newval {
 					case .Vertical:   self.mStackView.axis = .vertical
-					case .Holizontal: self.mStackView.axis = .horizontal
+					case .Horizontal: self.mStackView.axis = .horizontal
 					}
 				#endif
 			})
@@ -82,7 +82,7 @@ open class KCStackViewCore : KCView
 					case .Leading:
 						self.mStackView.alignment = .leading
 					case .Center:
-						if self.axis == .Vertical {
+						if self.orientation == .Vertical {
 							self.mStackView.alignment = .centerY
 						} else {
 							self.mStackView.alignment = .centerX
@@ -137,12 +137,11 @@ open class KCStackViewCore : KCView
 	{
 		var result = KCSize(width: 0.0, height: 0.0)
 		let subviews = arrangedSubviews()
-		let ax       = axis
 		for subview in subviews {
 			let size = subview.intrinsicContentSize
 			if size.width > 0.0 && size.height > 0.0 {
-				switch ax {
-				case .Holizontal:
+				switch orientation {
+				case .Horizontal:
 					result = KCView.unionHolizontalIntrinsicSizes(left: result, right: size)
 				case .Vertical:
 					result = KCView.unionVerticalIntrinsicSizes(top: result, bottom: size)
@@ -159,10 +158,10 @@ open class KCStackViewCore : KCView
 		if let v = mStackView {
 			KCPrintDebugInfo(view: v, indent: idt+1)
 
-			let algstr  = alignment.description
-			KCPrintIndent(indent: idt+1) ; Swift.print("- alignment: \(algstr)")
-			let axisstr = axis.description
-			KCPrintIndent(indent: idt+1) ; Swift.print("- axis:      \(axisstr)")
+			let algstr = alignment.description
+			KCPrintIndent(indent: idt+1) ; Swift.print("- alignment:   \(algstr)")
+			let orstr = orientation.description
+			KCPrintIndent(indent: idt+1) ; Swift.print("- orientation: \(orstr)")
 		}
 		var viewid = 0
 		for v in mStackView.arrangedSubviews {

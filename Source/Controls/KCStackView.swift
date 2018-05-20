@@ -69,9 +69,9 @@ open class KCStackView : KCCoreView
 		}
 	}
 
-	public var axis: Axis {
-		get		{ return coreView.axis }
-		set(newval)	{ coreView.axis = newval }
+	public var orientation: CNOrientation {
+		get		{ return coreView.orientation }
+		set(newval)	{ coreView.orientation = newval }
 	}
 
 	public var alignment: Alignment {
