@@ -26,7 +26,7 @@ open class KCStackViewCore : KCView
 		self.frame  = bounds
 	}
 	
-	public var orientation: CNOrientation {
+	public var orientation: KCOrientation {
 		get {
 			#if os(OSX)
 				switch mStackView.orientation {

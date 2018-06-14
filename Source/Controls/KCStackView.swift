@@ -69,7 +69,7 @@ open class KCStackView : KCCoreView
 		}
 	}
 
-	public var orientation: CNOrientation {
+	public var orientation: KCOrientation {
 		get		{ return coreView.orientation }
 		set(newval)	{ coreView.orientation = newval }
 	}
