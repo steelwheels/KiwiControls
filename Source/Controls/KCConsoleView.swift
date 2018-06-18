@@ -71,7 +71,7 @@ open class KCConsoleView : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setPriorityToResistAutoResize(holizontalPriority: .LowPriority, verticalPriority: .LowPriority)
+			setPriorityToResistAutoResize(horizontalPriority: .LowPriority, verticalPriority: .LowPriority)
 		} else {
 			fatalError("Can not load KCConsoleViewCore")
 		}

@@ -15,17 +15,17 @@ import CoconutData
 open class KCStackView : KCCoreView
 {
 	public enum Alignment {
-		case Leading
-		case Center
-		case Trailing
+		case horizontal(align: KCHorizontalAlignment)
+		case vertical(align: KCVerticalAlignment)
 
 		public var description: String {
 			get {
-				let result: String
+				var result: String
 				switch self {
-				case .Center:   result  = "center"
-				case .Leading:  result = "leading"
-				case .Trailing: result = "trailing"
+				case .horizontal(let align):
+					result = ".horizontal(" + align.description + ")"
+				case .vertical(let align):
+					result = ".vertical(" + align.description + ")"
 				}
 				return result
 			}
@@ -63,15 +63,10 @@ open class KCStackView : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setPriorityToResistAutoResize(holizontalPriority: .LowPriority, verticalPriority: .LowPriority)
+			setPriorityToResistAutoResize(horizontalPriority: .LowPriority, verticalPriority: .LowPriority)
 		} else {
 			fatalError("Can not load KCStackCore")
 		}
-	}
-
-	public var orientation: KCOrientation {
-		get		{ return coreView.orientation }
-		set(newval)	{ coreView.orientation = newval }
 	}
 
 	public var alignment: Alignment {

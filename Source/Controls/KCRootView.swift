@@ -40,7 +40,7 @@ open class KCRootView: KCCoreView
 		self.addSubview(child)
 		setCoreView(view: child)
 		allocateSubviewLayout(subView: child)
-		setPriorityToResistAutoResize(holizontalPriority: .HighPriority, verticalPriority: .HighPriority)
+		setPriorityToResistAutoResize(horizontalPriority: .HighPriority, verticalPriority: .HighPriority)
 	}
 
 	private var coreView: KCView {

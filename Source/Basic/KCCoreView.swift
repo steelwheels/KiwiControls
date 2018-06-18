@@ -118,7 +118,7 @@ open class KCCoreView: KCView
 		}
 	}
 
-	public func setPriorityToResistAutoResize(holizontalPriority hval: LayoutPriority, verticalPriority vval: LayoutPriority)
+	public func setPriorityToResistAutoResize(horizontalPriority hval: LayoutPriority, verticalPriority vval: LayoutPriority)
 	{
 		let hparam = decodePriority(priority: hval)
 		let vparam = decodePriority(priority: vval)

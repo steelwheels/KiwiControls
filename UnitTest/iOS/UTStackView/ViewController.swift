@@ -29,14 +29,14 @@ class ViewController: UIViewController
 
 		let box0 = KCStackView()
 		box0.addArrangedSubViews(subViews: [field0, button0, button1])
-		box0.axis = .Holizontal
+		box0.alignment = .horizontal(align: .middle)
 
 		let text1 = KCConsoleView()
 		let astr = NSAttributedString(string: "welcome to ViewController")
 		text1.appendText(string: astr)
 
 		mStackView.addArrangedSubViews(subViews: [text1, box0])
-		mStackView.axis = .Vertical
+		mStackView.alignment = .vertical(align: .trailing)
 	}
 
 	override func didReceiveMemoryWarning() {

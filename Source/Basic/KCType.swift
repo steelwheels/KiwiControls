@@ -33,19 +33,40 @@
 	public typealias KCLineBreakMode	= NSParagraphStyle.LineBreakMode
 #endif
 
-public enum KCOrientation: Int32 {
-	case Horizontal			= 0
-	case Vertical			= 1
+public enum KCHorizontalAlignment {
+	case top
+	case middle
+	case bottom
 
 	public var description: String {
 		get {
 			let result: String
 			switch self {
-			case .Horizontal: result = "horizontal"
-			case .Vertical:   result = "vertical"
+			case .top:	result = "top"
+			case .middle:	result = "middle"
+			case .bottom:	result = "bottom"
 			}
 			return result
 		}
 	}
 }
+
+public enum KCVerticalAlignment {
+	case leading
+	case center
+	case trailing
+
+	public var description: String {
+		get {
+			let result: String
+			switch self {
+			case .leading:	result = "leading"
+			case .center:	result = "center"
+			case .trailing:	result = "right"
+			}
+			return result
+		}
+	}
+}
+
 

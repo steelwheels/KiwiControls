@@ -7,18 +7,6 @@
 
 import Foundation
 
-public enum KCHolizontalAlignment {
-	case left
-	case center
-	case right
-}
-
-public enum KCVerticalAlignment {
-	case top
-	case middle
-	case bottom
-}
-
 extension CGRect
 {
 	public var center: CGPoint {
@@ -43,7 +31,7 @@ extension CGRect
 		return CGRect(origin: neworigin, size: self.size)
 	}
 
-	public func splitByHolizontally() -> (CGRect, CGRect) {
+	public func splitByHorizontally() -> (CGRect, CGRect) {
 		let width   = self.size.width
 		let height  = self.size.height / 2.0
 		let origin0 = self.origin
@@ -87,19 +75,19 @@ extension CGRect
 	}
 }
 
-public func KCAlignRect(holizontalAlignment halign: KCHolizontalAlignment,
+public func KCAlignRect(horizontalAlignment halign: KCHorizontalAlignment,
                         verticalAlignment   valign: KCVerticalAlignment,
                         targetSize	    target: CGSize,
                         in		    bounds: CGRect) -> CGRect
 {
 	let offx: CGFloat
-	switch halign {
-	case .left:	offx = bounds.origin.x
+	switch valign {
+	case .leading:	offx = bounds.origin.x
 	case .center:	offx = bounds.origin.x + (bounds.size.width - target.width) / 2.0
-	case .right:	offx = bounds.origin.x +  bounds.size.width - target.width
+	case .trailing:	offx = bounds.origin.x +  bounds.size.width - target.width
 	}
 	let offy: CGFloat
-	switch valign {
+	switch halign {
 	case .top:	offy = bounds.origin.y +  bounds.size.height - target.height
 	case .middle:	offy = bounds.origin.y + (bounds.size.height - target.height) / 2.0
 	case .bottom:	offy = bounds.origin.y

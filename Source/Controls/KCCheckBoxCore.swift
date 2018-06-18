@@ -115,7 +115,7 @@ public class KCCheckBoxCore: KCView
 		#if os(iOS)
 			let labelsize  = mLabel.intrinsicContentSize
 			let switchsize = mSwitch.intrinsicContentSize
-			return KCView.unionHolizontalIntrinsicSizes(left: labelsize, right: switchsize)
+			return KCView.unionHorizontalIntrinsicSizes(left: labelsize, right: switchsize)
 		#else
 			return mCheckBox.intrinsicContentSize
 		#endif

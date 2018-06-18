@@ -25,82 +25,79 @@ open class KCStackViewCore : KCView
 		self.bounds = bounds
 		self.frame  = bounds
 	}
-	
-	public var orientation: KCOrientation {
-		get {
-			#if os(OSX)
-				switch mStackView.orientation {
-				case .horizontal: return .Horizontal
-				case .vertical:   return .Vertical
-				}
-			#else
-				switch mStackView.axis {
-				case .horizontal: return .Horizontal
-				case .vertical:   return .Vertical
-				}
-			#endif
-		}
-		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(OSX)
-					switch newval {
-					case .Vertical:   self.mStackView.orientation = .vertical
-					case .Horizontal: self.mStackView.orientation = .horizontal
-					}
-				#else
-					switch newval {
-					case .Vertical:   self.mStackView.axis = .vertical
-					case .Horizontal: self.mStackView.axis = .horizontal
-					}
-				#endif
-			})
-		}
-	}
 
 	public var alignment: KCStackView.Alignment {
 		get {
+			let result: KCStackView.Alignment
+
 			#if os(OSX)
-				switch mStackView.alignment {
-				case .leading:			return .Leading
-				case .centerX, .centerY:	return .Center
-				case .trailing:			return .Trailing
-				default:			fatalError("Unknown alignment")
-				}
+				let orientation = self.mStackView.orientation
 			#else
-				switch mStackView.alignment {
-				case .leading:			return .Leading
-				case .center:			return .Center
-				case .trailing:			return .Trailing
-				default:			fatalError("Unknown alignment")
-				}
+				let orientation = self.mStackView.axis
 			#endif
+			switch orientation {
+			case .horizontal:
+				switch self.mStackView.alignment {
+				case .top:	result = .horizontal(align: .top)
+				#if os(OSX)
+				case .centerY:	result = .horizontal(align: .middle)
+				#else
+				case .center:	result = .horizontal(align: .middle)
+				#endif
+				case .bottom:	result = .horizontal(align: .bottom)
+				default:
+					NSLog("Unknown align: \(mStackView.alignment)")
+					result = .horizontal(align: .middle)
+				}
+			case .vertical:
+				switch self.mStackView.alignment {
+				case .leading:	result = .vertical(align: .leading)
+				#if os(OSX)
+				case .centerX:	result = .vertical(align: .center)
+				#else
+				case .center:	result = .vertical(align: .center)
+				#endif
+				case .trailing:	result = .vertical(align: .trailing)
+				default:
+					NSLog("Unknown align: \(mStackView.alignment)")
+					result = .vertical(align: .center)
+				}
+			}
+			return result
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
+			switch newval {
+			case .horizontal(let align):
 				#if os(OSX)
-					switch newval {
-					case .Leading:
-						self.mStackView.alignment = .leading
-					case .Center:
-						if self.orientation == .Vertical {
-							self.mStackView.alignment = .centerY
-						} else {
-							self.mStackView.alignment = .centerX
-						}
-					case .Trailing:
-						self.mStackView.alignment = .trailing
-					}
+					self.mStackView.orientation = .horizontal
 				#else
-					switch newval {
-					case .Leading:
-						self.mStackView.alignment = .leading
-					case .Center:
-						self.mStackView.alignment = .center
-					case .Trailing:
-						self.mStackView.alignment = .trailing
-					}
+					self.mStackView.axis = .horizontal
 				#endif
-			})
+				switch align {
+				case .top:	self.mStackView.alignment = .top
+				#if os(OSX)
+				case .middle:	self.mStackView.alignment = .centerY
+				#else
+				case .middle:	self.mStackView.alignment = .center
+				#endif
+				case .bottom:	self.mStackView.alignment = .bottom
+				}
+			case .vertical(let align):
+				#if os(OSX)
+					self.mStackView.orientation = .vertical
+				#else
+					self.mStackView.axis = .vertical
+				#endif
+				switch align {
+				case .leading:	self.mStackView.alignment = .leading
+				#if os(OSX)
+				case .center:	self.mStackView.alignment = .centerX
+				#else
+				case .center:	self.mStackView.alignment = .center
+				#endif
+				case .trailing:	self.mStackView.alignment = .trailing
+				}
+			}
 		}
 	}
 
@@ -140,10 +137,10 @@ open class KCStackViewCore : KCView
 		for subview in subviews {
 			let size = subview.intrinsicContentSize
 			if size.width > 0.0 && size.height > 0.0 {
-				switch orientation {
-				case .Horizontal:
-					result = KCView.unionHolizontalIntrinsicSizes(left: result, right: size)
-				case .Vertical:
+				switch alignment {
+				case .horizontal(_):
+					result = KCView.unionHorizontalIntrinsicSizes(left: result, right: size)
+				case .vertical(_):
 					result = KCView.unionVerticalIntrinsicSizes(top: result, bottom: size)
 				}
 			} else {
@@ -160,8 +157,6 @@ open class KCStackViewCore : KCView
 
 			let algstr = alignment.description
 			KCPrintIndent(indent: idt+1) ; Swift.print("- alignment:   \(algstr)")
-			let orstr = orientation.description
-			KCPrintIndent(indent: idt+1) ; Swift.print("- orientation: \(orstr)")
 		}
 		var viewid = 0
 		for v in mStackView.arrangedSubviews {

@@ -140,7 +140,7 @@ open class KCView : KCViewBase
 	/*
 	 *
 	 */
-	public class func unionHolizontalIntrinsicSizes(left s0: KCSize, right s1: KCSize) -> KCSize
+	public class func unionHorizontalIntrinsicSizes(left s0: KCSize, right s1: KCSize) -> KCSize
 	{
 		let padding: CGFloat = 8.0
 		let width: CGFloat
