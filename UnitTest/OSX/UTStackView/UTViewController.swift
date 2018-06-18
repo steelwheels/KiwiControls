@@ -32,7 +32,7 @@ class UTViewController: NSViewController
 
 	private func addSubviews_0()
 	{
-		mStackView.axis = .Holizontal
+		mStackView.orientation = .Vertical
 		//mStackView.axis = .Vertical
 		mStackView.alignment = .Trailing
 
@@ -47,7 +47,7 @@ class UTViewController: NSViewController
 
 	private func addSubviews_1()
 	{
-		mStackView.axis = .Vertical
+		mStackView.orientation = .Vertical
 
 		let origin     = NSPoint.zero
 		let size       = mStackView.frame.size
@@ -63,7 +63,8 @@ class UTViewController: NSViewController
 		button1.title = "Button-1"
 
 		let box0 = KCStackView(frame: NSRect(origin: origin, size: halfsize))
-		box0.axis = .Holizontal
+		box0.orientation = .Horizontal
+		//box0.orientation = .Vertical
 		//box0.alignment = .Trailing
 		box0.addArrangedSubViews(subViews:  [text0, button0, button1])
 
