@@ -17,8 +17,17 @@ class ViewController: NSViewController
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
+		let frame    = mRootView.frame
+		var txtframe = frame
+		txtframe.size.height = 20.0
+
 		let button = KCButton()
-		mRootView.setupContext(childView: button)
+		let text   = KCTextEdit(frame: txtframe)
+		let box    = KCStackView(frame: frame)
+		box.addArrangedSubView(subView: text)
+		box.addArrangedSubView(subView: button)
+
+		mRootView.setupContext(childView: box)
 	}
 
 	override func viewDidAppear() {
