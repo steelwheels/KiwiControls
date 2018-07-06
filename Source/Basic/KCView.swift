@@ -44,6 +44,10 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 
 open class KCView : KCViewBase
 {
+	#if os(iOS)
+	public static let noIntrinsicMetric = UIViewNoIntrinsicMetric
+	#endif
+	
 	/*
 	 * Event control
 	 */
@@ -112,19 +116,10 @@ open class KCView : KCViewBase
 
 	private var areaToBeDisplay = CGRect.zero
 
-	#if os(iOS)
-	open override func draw(_ dirtyRect: CGRect){
+	open override func draw(_ dirtyRect: KCRect){
 		super.draw(dirtyRect)
-		//drawContext(dirtyRect: dirtyRect)
 		areaToBeDisplay = CGRect.zero
 	}
-	#else
-	open override func draw(_ dirtyRect: NSRect){
-	super.draw(dirtyRect)
-		//drawContext(dirtyRect: dirtyRect)
-		areaToBeDisplay = CGRect.zero
-	}
-	#endif
 
 	open override func setNeedsDisplay(_ invalidRect: KCRect)
 	{
@@ -135,45 +130,6 @@ open class KCView : KCViewBase
 		}
 		super.setNeedsDisplay(areaToBeDisplay)
 		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
-	}
-
-	/*
-	 *
-	 */
-	public class func unionHorizontalIntrinsicSizes(left s0: KCSize, right s1: KCSize) -> KCSize
-	{
-		let padding: CGFloat = 8.0
-		let width: CGFloat
-		if s0.width > 0.0 && s1.width > 0.0 {
-			width = s0.width + padding + s1.width
-		} else {
-			width = -1.0
-		}
-		let height: CGFloat
-		if s0.height > 0.0 && s1.height > 0.0 {
-			height  = max(s0.height, s1.height)
-		} else {
-			height = -1.0
-		}
-		return KCSize(width: width, height: height)
-	}
-
-	public class func unionVerticalIntrinsicSizes(top s0: KCSize, bottom s1: KCSize) -> KCSize
-	{
-		let padding: CGFloat = 8.0
-		let width: CGFloat
-		if s0.width > 0.0 && s1.width > 0.0 {
-			width = max(s0.width, s1.width)
-		} else {
-			width = -1.0
-		}
-		let height: CGFloat
-		if s0.height > 0.0 && s1.height > 0.0 {
-			height  = s0.height + padding + s1.height
-		} else {
-			height = -1.0
-		}
-		return KCSize(width: width, height: height)
 	}
 	
 	/*
@@ -237,42 +193,6 @@ open class KCView : KCViewBase
 		self.backgroundColor = UIColor.clear
 		self.clearsContextBeforeDrawing = false
 		#endif
-	}
-
-	open func printDebugInfo(indent idt: Int) {
-		KCPrintDebugInfo(view: self, indent: idt)
-	}
-}
-
-/*
- * Debug information
- */
-public func KCPrintDebugInfo(view v: KCViewBase, indent idt: Int){
-	#if os(iOS)
-		let name = NSStringFromClass(type(of: v))
-	#else
-		let name = v.className
-	#endif
-
-	let contentsize = v.intrinsicContentSize
-
-	let hhugging  = v.contentHuggingPriority(for: .horizontal)
-	let vhugging  = v.contentHuggingPriority(for: .vertical)
-	let hcompress = v.contentCompressionResistancePriority(for: .horizontal)
-	let vcompress = v.contentCompressionResistancePriority(for: .vertical)
-
-	KCPrintIndent(indent: idt) ; Swift.print("[\(name)]")
-	KCPrintIndent(indent: idt) ; Swift.print("- frame : \(v.frame.description)")
-	KCPrintIndent(indent: idt) ; Swift.print("- bounds: \(v.bounds.description)")
-	KCPrintIndent(indent: idt) ; Swift.print("- intrinsicContentSize: \(contentsize.description)")
-	KCPrintIndent(indent: idt) ; Swift.print("- translatesAutoresizingMaskIntoConstraints: \(v.translatesAutoresizingMaskIntoConstraints)")
-	KCPrintIndent(indent: idt) ; Swift.print("- contentHuggingPriority: [holiz] \(hhugging), [vert] \(vhugging)")
-	KCPrintIndent(indent: idt) ; Swift.print("- contentCompressionResistancePriority: [holiz] \(hcompress), [vert] \(vcompress)")
-}
-
-public func KCPrintIndent(indent idt: Int){
-	for _ in 0..<idt {
-		Swift.print("  ", terminator:"")
 	}
 }
 

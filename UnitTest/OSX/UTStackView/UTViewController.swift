@@ -27,7 +27,6 @@ class UTViewController: NSViewController
 		}
 		
 		Swift.print("[ViewDidLoad]")
-		mStackView.printDebugInfo(indent: 0)
 	}
 
 	private func addSubviews_0()
@@ -79,9 +78,6 @@ class UTViewController: NSViewController
 
 	override func viewDidLayout() {
 		super.viewDidLayout()
-
-		Swift.print("[ViewDidLayout]")
-		mStackView.printDebugInfo(indent: 0)
 	}
 
 	override var representedObject: Any? {

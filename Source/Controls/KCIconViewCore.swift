@@ -92,17 +92,7 @@ open class KCIconViewCore : KCView
 	{
 		let layersize = mLayerView.intrinsicContentSize
 		let labelsize = mLabelView.intrinsicContentSize
-		return KCView.unionVerticalIntrinsicSizes(top: layersize, bottom: labelsize)
-	}
-
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		if let v = mLayerView {
-			KCPrintDebugInfo(view: v, indent: idt+1)
-		}
-		if let v = mLabelView {
-			KCPrintDebugInfo(view: v, indent: idt+1)
-		}
+		return KCUnionSize(sizeA: layersize, sizeB: labelsize, doVertical: true)
 	}
 }
 

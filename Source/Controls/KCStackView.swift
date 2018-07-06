@@ -31,7 +31,7 @@ open class KCStackView : KCCoreView
 			}
 		}
 	}
-	
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;

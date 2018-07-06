@@ -18,3 +18,17 @@ extension CGSize
 		}
 	}
 }
+
+public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize, doVertical vert: Bool) -> KCSize
+{
+	if vert {
+		let width  = max(a.width, b.width)
+		let height = a.height + b.height
+		return KCSize(width: width, height: height)
+	} else {
+		let width  = a.width + b.width
+		let height = max(a.height, b.height)
+		return KCSize(width: width, height: height)
+	}
+}
+

@@ -115,25 +115,9 @@ public class KCCheckBoxCore: KCView
 		#if os(iOS)
 			let labelsize  = mLabel.intrinsicContentSize
 			let switchsize = mSwitch.intrinsicContentSize
-			return KCView.unionHorizontalIntrinsicSizes(left: labelsize, right: switchsize)
+			return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false)
 		#else
 			return mCheckBox.intrinsicContentSize
-		#endif
-	}
-
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		#if os(iOS)
-			if let v = mSwitch {
-				KCPrintDebugInfo(view: v, indent: idt+1)
-			}
-			if let v = mLabel {
-				KCPrintDebugInfo(view: v, indent: idt+1)
-			}
-		#else
-			if let v = mCheckBox {
-				KCPrintDebugInfo(view: v, indent: idt+1)
-			}
 		#endif
 	}
 }

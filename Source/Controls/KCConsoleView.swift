@@ -80,7 +80,7 @@ open class KCConsoleView : KCCoreView
 	public var console: CNConsole {
 		get { return mConsole! }
 	}
-	
+
 	public func appendText(string str: NSAttributedString){
 		coreView.appendText(string: str)
 	}

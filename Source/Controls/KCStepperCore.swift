@@ -177,18 +177,10 @@ public class KCStepperCore: KCView
 
 	open override var intrinsicContentSize: KCSize
 	{
-		let fieldsize   = mTextField.intrinsicContentSize
-		let steppersize = mStepper.intrinsicContentSize
-		return KCView.unionHorizontalIntrinsicSizes(left: fieldsize, right: steppersize)
-	}
-
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		if let v = mTextField {
-			KCPrintDebugInfo(view: v, indent: idt+1)
-		}
-		if let v = mStepper {
-			KCPrintDebugInfo(view: v, indent: idt+1)
+		get {
+			let fieldsize   = mTextField.intrinsicContentSize
+			let steppersize = mStepper.intrinsicContentSize
+			return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false)
 		}
 	}
 }

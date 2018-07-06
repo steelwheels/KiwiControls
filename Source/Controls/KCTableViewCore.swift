@@ -25,17 +25,9 @@ open class KCTableViewCore : KCView
 		self.frame  = bounds
 	}
 
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		if let v = mTableView {
-			KCPrintDebugInfo(view: v, indent: idt+1)
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize
 	{
-		/* Dont have intrinsic size */
-		return KCSize(width: -1.0, height: -1.0)
+		return mTableView.intrinsicContentSize
 	}
 
 	/*

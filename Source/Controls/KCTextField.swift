@@ -55,7 +55,7 @@ open class KCTextField : KCCoreView
 		get { return coreView.isEnabled }
 		set(v) { coreView.isEnabled = v }
 	}
-	
+
 	public var text: String {
 		get { return coreView.text }
 		set(newval){ coreView.text = newval }

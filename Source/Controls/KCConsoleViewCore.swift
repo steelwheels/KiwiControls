@@ -62,19 +62,7 @@ open class KCConsoleViewCore : KCView
 
 	open override var intrinsicContentSize: KCSize
 	{
-		#if os(OSX)
-			return mTextView.intrinsicContentSize
-		#else
-			let cursize = mTextView.frame.size
-			let maxsize = KCSize(width: cursize.width, height: cursize.height*256)
-			return mTextView.sizeThatFits(maxsize)
-		#endif
+		return mTextView.intrinsicContentSize
 	}
-
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		KCPrintDebugInfo(view: mTextView,indent: idt+1)
-	}
-
 }
 

@@ -34,7 +34,7 @@ public class KCStepper: KCCoreView
 		#endif
 		self.init(frame: frame)
 	}
-	
+
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
 		setupContext() ;

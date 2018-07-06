@@ -150,19 +150,10 @@ open class KCTextFieldCore : KCView
 
 	open override var intrinsicContentSize: KCSize
 	{
-		return KCSize(width: -1.0, height: -1.0)
-	}
-	
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		#if os(iOS)
-			if let v = mLabel {
-				KCPrintDebugInfo(view: v, indent: idt+1)
-			}
+		#if os(OSX)
+			return mTextField.intrinsicContentSize
 		#else
-			if let v = mTextField {
-				KCPrintDebugInfo(view: v, indent: idt+1)
-			}
+			return mLabel.intrinsicContentSize
 		#endif
 	}
 }

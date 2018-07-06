@@ -26,7 +26,7 @@ open class KCCoreView: KCView
 			if let v = mCoreView {
 				return v.intrinsicContentSize
 			} else {
-				return KCSize(width: -1.0, height: -1.0)
+				return KCSize(width: KCView.noIntrinsicMetric, height: KCView.noIntrinsicMetric)
 			}
 		}
 	}
@@ -172,13 +172,6 @@ open class KCCoreView: KCView
 			return v
 		} else {
 			fatalError("No core view")
-		}
-	}
-
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		if let v = mCoreView {
-			v.printDebugInfo(indent: idt+1)
 		}
 	}
 }

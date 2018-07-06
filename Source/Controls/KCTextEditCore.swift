@@ -25,7 +25,7 @@ open class KCTextEditCore : KCView
 		self.frame  = bounds
 		self.bounds = bounds
 	}
-	
+
 	public var isEnabled: Bool {
 		get {
 			return mTextEdit.isEnabled
@@ -125,18 +125,6 @@ open class KCTextEditCore : KCView
 			self.mTextEdit.backgroundColor = cols.background
 			#endif
 		})
-	}
-
-	open override var intrinsicContentSize: KCSize
-	{
-		return KCSize(width: -1.0, height: -1.0)
-	}
-
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		if let v = mTextEdit {
-			KCPrintDebugInfo(view: v, indent: idt+1)
-		}
 	}
 }
 

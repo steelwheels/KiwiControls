@@ -136,33 +136,13 @@ open class KCStackViewCore : KCView
 		let subviews = arrangedSubviews()
 		for subview in subviews {
 			let size = subview.intrinsicContentSize
-			if size.width > 0.0 && size.height > 0.0 {
-				switch alignment {
-				case .horizontal(_):
-					result = KCView.unionHorizontalIntrinsicSizes(left: result, right: size)
-				case .vertical(_):
-					result = KCView.unionVerticalIntrinsicSizes(top: result, bottom: size)
-				}
-			} else {
-				return KCSize(width: -1.0, height: -1.0)
+			switch alignment {
+			case .horizontal(_):
+				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: false)
+			case .vertical(_):
+				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: true)
 			}
 		}
 		return result
-	}
-	
-	open override func printDebugInfo(indent idt: Int){
-		super.printDebugInfo(indent: idt)
-		if let v = mStackView {
-			KCPrintDebugInfo(view: v, indent: idt+1)
-
-			let algstr = alignment.description
-			KCPrintIndent(indent: idt+1) ; Swift.print("- alignment:   \(algstr)")
-		}
-		var viewid = 0
-		for v in mStackView.arrangedSubviews {
-			KCPrintIndent(indent: idt+2) ; Swift.print("[\(viewid)] ")
-			KCPrintDebugInfo(view: v, indent: idt+2)
-			viewid = viewid + 1
-		}
 	}
 }
