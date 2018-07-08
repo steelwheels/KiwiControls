@@ -15,32 +15,27 @@ import CoconutData
 
 open class KCCoreView: KCView
 {
-	private var mCoreView: KCView? = nil
+	private var mCoreView:	KCView? = nil
+	private var mFixedSize:	KCSize?	= nil
 
 	public func setCoreView(view v: KCView) {
 		mCoreView = v
 	}
 
-	/* Default intrinsic contents size */
-	open override var intrinsicContentArea: KCSize? {
+	public var fixedSize: KCSize? {
 		get {
-			if let v = mCoreView {
-				return v.intrinsicContentArea
-			} else {
-				return nil
-			}
+			return mFixedSize
 		}
-		set(newarea){
-			if let v = mCoreView {
-				v.intrinsicContentArea = newarea
-			}
-			super.intrinsicContentArea = newarea
+		set(newsize){
+			mFixedSize = newsize
 		}
 	}
-	
+
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if let v = mCoreView {
+			if let s = mFixedSize {
+				return s
+			} else if let v = mCoreView {
 				return v.intrinsicContentSize
 			} else {
 				return KCSize(width: KCView.noIntrinsicMetric, height: KCView.noIntrinsicMetric)

@@ -48,9 +48,6 @@ open class KCView : KCViewBase
 	public static let noIntrinsicMetric = UIViewNoIntrinsicMetric
 	#endif
 
-	/* Default intrinsic contents size */
-	open var intrinsicContentArea: KCSize? = nil
-
 	/*
 	 * Event control
 	 */

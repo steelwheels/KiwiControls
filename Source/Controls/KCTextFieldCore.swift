@@ -150,14 +150,10 @@ open class KCTextFieldCore : KCView
 
 	open override var intrinsicContentSize: KCSize
 	{
-		if let area = intrinsicContentArea {
-			return area
-		} else {
-			#if os(OSX)
-				return mTextField.intrinsicContentSize
-			#else
-				return mLabel.intrinsicContentSize
-			#endif
-		}
+		#if os(OSX)
+			return mTextField.intrinsicContentSize
+		#else
+			return mLabel.intrinsicContentSize
+		#endif
 	}
 }

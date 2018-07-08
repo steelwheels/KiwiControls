@@ -126,14 +126,5 @@ open class KCTextEditCore : KCView
 			#endif
 		})
 	}
-
-	open override var intrinsicContentSize: KCSize
-	{
-		if let area = intrinsicContentArea {
-			return area
-		} else {
-			return mTextEdit.intrinsicContentSize
-		}
-	}
 }
 

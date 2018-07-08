@@ -13,8 +13,6 @@ import UIKit
 
 open class KCRootView: KCCoreView
 {
-	public var rootSize: KCSize? = nil
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -45,13 +43,15 @@ open class KCRootView: KCCoreView
 		setPriorityToResistAutoResize(horizontalPriority: .HighPriority, verticalPriority: .HighPriority)
 	}
 
-	open override var intrinsicContentSize: KCSize {
+	public override var fixedSize: KCSize? {
 		get {
-			if let size = rootSize {
-				return size
-			} else {
-				return super.intrinsicContentSize
+			return super.fixedSize
+		}
+		set(newval){
+			if let core: KCCoreView = super.getCoreView() {
+				core.fixedSize = newval
 			}
+			super.fixedSize = newval
 		}
 	}
 
