@@ -22,6 +22,39 @@ open class KCWindow: NSWindow
 			root.allocateSubviewLayout(subView: v)
 		}
 	}
+
+	public var titleBarHeight: CGFloat {
+		get {
+			let contentHeight = contentRect(forFrameRect: frame).height
+			return frame.height - contentHeight
+		}
+	}
+
+	public var rootFrame: KCRect {
+		get {
+			let preference = KCPreference.shared
+			let spacing    = preference.layoutPreference.spacing
+
+			var height    = self.frame.size.height
+			var yoff      = CGFloat(0.0)
+			let barheight = titleBarHeight
+			if height > barheight {
+				height -= barheight
+			}
+			if height > spacing * 2.0 {
+				height -= spacing * 2.0
+				yoff   = spacing
+			}
+
+			var width     = self.frame.size.width
+			var xoff      = CGFloat(0.0)
+			if width > spacing {
+				width  -= spacing
+				xoff   =   spacing
+			}
+			return KCRect(x: xoff, y: yoff, width: width, height: height)
+		}
+	}
 }
 
 

@@ -28,11 +28,18 @@ public class KCPreference
 		}
 	}
 
+	public var layoutPreference:	KCLayoutPreference
 	public var terminalPreference:	KCTerminalPreference
 
 	public init(){
+		layoutPreference   = KCLayoutPreference()
 		terminalPreference = KCTerminalPreference()
 	}
+}
+
+public class KCLayoutPreference
+{
+	public var spacing: CGFloat		= 8.0
 }
 
 public class KCTerminalPreference
