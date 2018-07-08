@@ -47,7 +47,10 @@ open class KCView : KCViewBase
 	#if os(iOS)
 	public static let noIntrinsicMetric = UIViewNoIntrinsicMetric
 	#endif
-	
+
+	/* Default intrinsic contents size */
+	open var intrinsicContentArea: KCSize? = nil
+
 	/*
 	 * Event control
 	 */
@@ -193,6 +196,13 @@ open class KCView : KCViewBase
 		self.backgroundColor = UIColor.clear
 		self.clearsContextBeforeDrawing = false
 		#endif
+	}
+
+	/*
+	 * Visitor
+	 */
+	open func accept(visitor vis: KCViewVisitor){
+		NSLog("Unaccepted visitor in KCViewVisitor: \(vis)")
 	}
 }
 

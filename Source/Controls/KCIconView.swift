@@ -60,6 +60,10 @@ open class KCIconView: KCCoreView
 		set(str){ coreView.label = str }
 	}
 
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(iconView: self)
+	}
+
 	private var coreView: KCIconViewCore {
 		get { return super.getCoreView() }
 	}

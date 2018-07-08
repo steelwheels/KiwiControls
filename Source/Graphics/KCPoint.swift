@@ -8,7 +8,7 @@
 import CoreGraphics
 import Foundation
 
-extension CGPoint
+extension KCPoint
 {
 	public func move(dx x: CGFloat, dy y: CGFloat) -> CGPoint {
 		let newx = self.x + x

@@ -53,6 +53,10 @@ open class KCTableView : KCCoreView
 		}
 	}
 
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(tableView: self)
+	}
+
 	private var coreView: KCTableViewCore {
 		get { return getCoreView() }
 	}

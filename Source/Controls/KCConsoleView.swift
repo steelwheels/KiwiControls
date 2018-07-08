@@ -85,6 +85,10 @@ open class KCConsoleView : KCCoreView
 		coreView.appendText(string: str)
 	}
 
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(consoleView: self)
+	}
+
 	private var coreView: KCConsoleViewCore {
 		get { return getCoreView() }
 	}

@@ -73,6 +73,10 @@ open class KCButton: KCCoreView
 		#endif
 	}
 
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(button: self)
+	}
+
 	private var coreView : KCButtonCore {
 		get { return getCoreView() }
 	}

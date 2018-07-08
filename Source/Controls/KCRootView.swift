@@ -54,5 +54,9 @@ open class KCRootView: KCCoreView
 			}
 		}
 	}
+
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(rootView: self)
+	}
 }
 

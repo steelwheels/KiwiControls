@@ -32,6 +32,22 @@ open class KCStackView : KCCoreView
 		}
 	}
 
+	public enum Distribution {
+		case fill
+		case fillEqually
+
+		public var description: String {
+			get {
+				let result: String
+				switch self {
+				case .fill:		result = "fill"
+				case .fillEqually:	result = "fillEqually"
+				}
+				return result
+			}
+		}
+	}
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -74,6 +90,11 @@ open class KCStackView : KCCoreView
 		set(newval)	{ coreView.alignment = newval }
 	}
 
+	public var distribution: Distribution {
+		get 		{ return coreView.distributtion }
+		set(newval)	{ coreView.distributtion = newval }
+	}
+
 	open func addArrangedSubViews(subViews vs:Array<KCView>){
 		coreView.addArrangedSubViews(subViews: vs)
 	}
@@ -84,6 +105,10 @@ open class KCStackView : KCCoreView
 
 	open func arrangedSubviews() -> Array<KCView> {
 		return coreView.arrangedSubviews()
+	}
+
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(stackView: self)
 	}
 
 	private var coreView: KCStackViewCore {

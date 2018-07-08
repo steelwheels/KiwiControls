@@ -89,6 +89,10 @@ open class KCTextField : KCCoreView
 		text = valstr
 	}
 
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(textField: self)
+	}
+
 	private var coreView: KCTextFieldCore {
 		get { return getCoreView() }
 	}

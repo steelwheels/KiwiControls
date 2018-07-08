@@ -101,6 +101,30 @@ open class KCStackViewCore : KCView
 		}
 	}
 
+	public var distributtion: KCStackView.Distribution {
+		get {
+			let result: KCStackView.Distribution
+			switch mStackView.distribution {
+			case .fill:		result = .fill
+			case .fillEqually:	result = .fillEqually
+			default:		result = .fill
+			}
+			return result
+		}
+		set(newval){
+			#if os(OSX)
+				let newdist: NSStackView.Distribution
+			#else
+				let newdist: UIStackViewDistribution
+			#endif
+			switch newval {
+			case .fill: 		newdist = .fill
+			case .fillEqually:	newdist = .fillEqually
+			}
+			mStackView.distribution = newdist
+		}
+	}
+
 	public func addArrangedSubViews(subViews views:Array<KCView>){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(iOS)

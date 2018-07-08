@@ -21,6 +21,23 @@ open class KCCoreView: KCView
 		mCoreView = v
 	}
 
+	/* Default intrinsic contents size */
+	open override var intrinsicContentArea: KCSize? {
+		get {
+			if let v = mCoreView {
+				return v.intrinsicContentArea
+			} else {
+				return nil
+			}
+		}
+		set(newarea){
+			if let v = mCoreView {
+				v.intrinsicContentArea = newarea
+			}
+			super.intrinsicContentArea = newarea
+		}
+	}
+	
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if let v = mCoreView {

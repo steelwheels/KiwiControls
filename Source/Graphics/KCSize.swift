@@ -8,7 +8,7 @@
 import CoreGraphics
 import Foundation
 
-extension CGSize
+extension KCSize
 {	
 	public var description: String {
 		get {

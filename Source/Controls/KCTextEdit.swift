@@ -89,6 +89,10 @@ open class KCTextEdit : KCCoreView
 		text = valstr
 	}
 
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(textEdit: self)
+	}
+
 	private var coreView: KCTextEditCore {
 		get { return getCoreView() }
 	}

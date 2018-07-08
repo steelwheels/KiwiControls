@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CGRect
+extension KCRect
 {
 	public var center: CGPoint {
 		let x = self.origin.x + (self.size.width  / 2)
