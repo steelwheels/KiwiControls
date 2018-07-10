@@ -43,124 +43,23 @@ open class KCCoreView: KCView
 		}
 	}
 
-	#if os(OSX)
-	open override func contentCompressionResistancePriority(for orientation: NSLayoutConstraint.Orientation) -> NSLayoutConstraint.Priority
-	{
-		if let core = mCoreView {
-			return core.contentCompressionResistancePriority(for: orientation)
-		} else {
-			return super.contentCompressionResistancePriority(for: orientation)
-		}
-	}
-	#else
-	open override func contentCompressionResistancePriority(for axis: UILayoutConstraintAxis) -> UILayoutPriority {
-		if let core = mCoreView {
-			return core.contentCompressionResistancePriority(for:axis)
-		} else {
-			return super.contentCompressionResistancePriority(for: axis)
-		}
-	}
-	#endif
-
-	#if os(OSX)
-	open override func setContentCompressionResistancePriority(_ priority: NSLayoutConstraint.Priority, for orientation: NSLayoutConstraint.Orientation)
-	{
+	public func setResizePriority(doGrowHolizontally holiz: Bool, doGrowVertically vert: Bool){
 		if let core = mCoreView	 {
-			core.setContentCompressionResistancePriority(priority, for: orientation)
-		}
-		super.setContentCompressionResistancePriority(priority, for: orientation)
-	}
-	#else
-	open override func setContentCompressionResistancePriority(_ priority: UILayoutPriority, for axis: UILayoutConstraintAxis) {
-		if let core = mCoreView {
-			core.setContentCompressionResistancePriority(priority, for: axis)
-		}
-		super.setContentCompressionResistancePriority(priority, for: axis)
-	}
-	#endif
-
-	#if os(OSX)
-	open override func contentHuggingPriority(for orientation: NSLayoutConstraint.Orientation) -> NSLayoutConstraint.Priority
-	{
-		if let core = mCoreView {
-			return core.contentHuggingPriority(for: orientation)
-		} else {
-			return super.contentHuggingPriority(for: orientation)
-		}
-	}
-	#else
-	open override func contentHuggingPriority(for axis: UILayoutConstraintAxis) -> UILayoutPriority {
-		if let core = mCoreView {
-			return core.contentHuggingPriority(for: axis)
-		} else {
-			return super.contentHuggingPriority(for: axis)
-		}
-	}
-	#endif
-
-	#if os(OSX)
-	open override func setContentHuggingPriority(_ priority: NSLayoutConstraint.Priority, for orientation: NSLayoutConstraint.Orientation) {
-		if let core = mCoreView {
-			core.setContentHuggingPriority(priority, for: orientation)
-		}
-		super.setContentHuggingPriority(priority, for: orientation)
-	}
-	#else
-	open override func setContentHuggingPriority(_ priority: UILayoutPriority, for axis: UILayoutConstraintAxis) {
-		if let core = mCoreView {
-			core.setContentHuggingPriority(priority, for: axis)
-		}
-		super.setContentHuggingPriority(priority, for: axis)
-	}
-	#endif
-
-	public enum LayoutPriority {
-		case HighPriority
-		case LowPriority
-
-		public var description: String {
-			get {
-				var result: String
-				switch self {
-				case .HighPriority: result = "high"
-				case .LowPriority:  result = "low"
-				}
-				return result
+			if holiz {
+				core.setContentHuggingPriority(.defaultLow, for: .horizontal)
+			} else {
+				core.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 			}
-		}
-	}
+			core.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
 
-	public func setPriorityToResistAutoResize(horizontalPriority hval: LayoutPriority, verticalPriority vval: LayoutPriority)
-	{
-		let hparam = decodePriority(priority: hval)
-		let vparam = decodePriority(priority: vval)
-		setContentCompressionResistancePriority(hparam, for: .horizontal)
-		setContentCompressionResistancePriority(vparam, for: .vertical)
-		setContentHuggingPriority(hparam, for: .horizontal)
-		setContentHuggingPriority(vparam, for: .vertical)
-	}
-
-	#if os(OSX)
-	private func decodePriority(priority value: LayoutPriority) -> NSLayoutConstraint.Priority
-	{
-		let parameter: NSLayoutConstraint.Priority
-		switch value {
-		case .HighPriority:	parameter = NSLayoutConstraint.Priority.defaultHigh
-		case .LowPriority:	parameter = NSLayoutConstraint.Priority.defaultLow
+			if vert {
+				core.setContentHuggingPriority(.defaultLow, for: .vertical)
+			} else {
+				core.setContentHuggingPriority(.defaultHigh, for: .vertical)
+			}
+			core.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
 		}
-		return parameter
 	}
-	#else
-	private func decodePriority(priority value: LayoutPriority) -> UILayoutPriority
-	{
-		let parameter: UILayoutPriority
-		switch value {
-		case .HighPriority:	parameter = .defaultHigh
-		case .LowPriority:	parameter = .defaultLow
-		}
-		return parameter
-	}
-	#endif
 
 	public var isVisible: Bool {
 		get {

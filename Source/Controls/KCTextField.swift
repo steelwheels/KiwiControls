@@ -45,7 +45,7 @@ open class KCTextField : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setPriorityToResistAutoResize(horizontalPriority: .LowPriority, verticalPriority: .LowPriority)
+			setResizePriority(doGrowHolizontally: true, doGrowVertically: true)
 		} else {
 			fatalError("Can not load KCTextFieldCore")
 		}

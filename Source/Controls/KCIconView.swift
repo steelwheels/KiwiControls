@@ -44,7 +44,7 @@ open class KCIconView: KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setPriorityToResistAutoResize(horizontalPriority: .HighPriority, verticalPriority: .HighPriority)
+			setResizePriority(doGrowHolizontally: false, doGrowVertically: false)
 		} else {
 			fatalError("Can not load KCIconViewCore")
 		}

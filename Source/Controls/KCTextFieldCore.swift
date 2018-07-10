@@ -24,6 +24,10 @@ open class KCTextFieldCore : KCView
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		self.frame  = bounds
 		self.bounds = bounds
+		#if os(OSX)
+			mTextField.isBezeled		= false
+			mTextField.maximumNumberOfLines	= 1
+		#endif
 	}
 
 	public var isEnabled: Bool {

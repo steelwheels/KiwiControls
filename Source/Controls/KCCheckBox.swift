@@ -45,7 +45,7 @@ open class KCCheckBox: KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setPriorityToResistAutoResize(horizontalPriority: .HighPriority, verticalPriority: .HighPriority)
+			setResizePriority(doGrowHolizontally: true, doGrowVertically: false)
 		} else {
 			fatalError("Can not load KCCheckBoxCore")
 		}
