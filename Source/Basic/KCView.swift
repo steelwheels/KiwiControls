@@ -147,6 +147,16 @@ open class KCView : KCViewBase
 		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.right)) ;
 	}
 
+	public func allocateSubviewLayout(subView sview: KCViewBase, forVerical vert: Bool){
+		if vert {
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.top)) ;
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.bottom)) ;
+		} else {
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.left)) ;
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.right)) ;
+		}
+	}
+
 	public func loadChildXib(thisClass tc: AnyClass, nibName nn: String) -> KCView {
 		let bundle : Bundle = Bundle(for: tc) ;
 		#if os(iOS)
