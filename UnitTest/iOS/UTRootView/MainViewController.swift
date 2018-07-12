@@ -6,11 +6,12 @@
  */
 
 import KiwiControls
+import CoconutData
 
 class MainViewController: KCViewController
 {
 	@IBOutlet weak var mRootView: KCRootView!
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -27,6 +28,15 @@ class MainViewController: KCViewController
 		box.addArrangedSubView(subView: button)
 
 		mRootView.setupContext(childView: box)
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		let size = self.preferredContentSize
+		let console  = KCLogConsole()
+		let layouter = KCLayouter(console: console)
+		layouter.layout(rootView: mRootView, rootSize: size)
 	}
 
 	override func didReceiveMemoryWarning() {

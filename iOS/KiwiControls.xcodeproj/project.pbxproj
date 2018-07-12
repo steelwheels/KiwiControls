@@ -83,6 +83,7 @@
 		0595D3FF20A085D200C1079C /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0595D3FE20A085D200C1079C /* LogViewController.swift */; };
 		0596308B20D7C8ED003D5657 /* KCTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596308A20D7C8ED003D5657 /* KCTextEdit.swift */; };
 		0597E8691FEFCB5C000D8442 /* KCPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597E8681FEFCB5C000D8442 /* KCPreference.swift */; };
+		059AFECE20F7BFAD00F58FC7 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */; };
 		05B70CDC209F0BD900BAE1EB /* KCLogConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */; };
 		05B70CE0209F2C6F00BAE1EB /* KCLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */; };
 		05B70CE8209F526E00BAE1EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE7209F526E00BAE1EB /* AppDelegate.swift */; };
@@ -247,6 +248,8 @@
 		0595D3FE20A085D200C1079C /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		0596308A20D7C8ED003D5657 /* KCTextEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextEdit.swift; sourceTree = "<group>"; };
 		0597E8681FEFCB5C000D8442 /* KCPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreference.swift; sourceTree = "<group>"; };
+		059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayouter.swift; sourceTree = "<group>"; };
+		059AFECF20F7C10800F58FC7 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../local/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogConsole.swift; sourceTree = "<group>"; };
 		05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLogViewController.swift; sourceTree = "<group>"; };
 		05B70CE5209F526E00BAE1EB /* UTRootView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRootView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -479,6 +482,7 @@
 			children = (
 				05EDB7FD1D8F792C00443B08 /* KiwiControls.h */,
 				05841E931D8F7B670092C2C6 /* Basic */,
+				059AFECC20F7BF8500F58FC7 /* Layout */,
 				058EC0352095701D00C3F36E /* Color */,
 				0571B63320956DE600603B95 /* Font */,
 				05706B571F8A5080008BE096 /* Window */,
@@ -532,6 +536,14 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		059AFECC20F7BF8500F58FC7 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		05B70CE6209F526E00BAE1EB /* UTRootView */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +561,7 @@
 		05B70CF9209F538E00BAE1EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				059AFECF20F7C10800F58FC7 /* CoconutData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -975,6 +988,7 @@
 				0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */,
 				056F4CB81E735017008BF572 /* KCTableViewCore.swift in Sources */,
 				05706B5B1F8A50BF008BE096 /* KCViewController.swift in Sources */,
+				059AFECE20F7BFAD00F58FC7 /* KCLayouter.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
 				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
 				05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */,
@@ -1218,6 +1232,7 @@
 				INFOPLIST_FILE = ../UnitTest/iOS/UTStackView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTStackView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1238,6 +1253,7 @@
 				INFOPLIST_FILE = ../UnitTest/iOS/UTStackView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTStackView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
