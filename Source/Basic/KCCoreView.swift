@@ -46,18 +46,18 @@ open class KCCoreView: KCView
 	public func setResizePriority(doGrowHolizontally holiz: Bool, doGrowVertically vert: Bool){
 		if let core = mCoreView	 {
 			if holiz {
-				core.setContentHuggingPriority(.defaultLow, for: .horizontal)
+				core.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
 			} else {
-				core.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+				core.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 			}
-			core.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+			core.setContentHuggingPriority(.defaultLow, for: .horizontal)
 
 			if vert {
-				core.setContentHuggingPriority(.defaultLow, for: .vertical)
+				core.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
 			} else {
-				core.setContentHuggingPriority(.defaultHigh, for: .vertical)
+				core.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
 			}
-			core.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+			core.setContentHuggingPriority(.defaultLow, for: .vertical)
 		}
 	}
 
