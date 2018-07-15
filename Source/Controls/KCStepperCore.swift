@@ -175,8 +175,7 @@ public class KCStepperCore: KCView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize
-	{
+	open override var intrinsicContentSize: KCSize {
 		get {
 			let fieldsize   = mTextField.intrinsicContentSize
 			let steppersize = mStepper.intrinsicContentSize

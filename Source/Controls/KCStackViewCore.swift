@@ -107,6 +107,7 @@ open class KCStackViewCore : KCView
 			switch mStackView.distribution {
 			case .fill:		result = .fill
 			case .fillEqually:	result = .fillEqually
+			case .equalSpacing:	result = .equalSpacing
 			default:		result = .fill
 			}
 			return result
@@ -120,6 +121,7 @@ open class KCStackViewCore : KCView
 			switch newval {
 			case .fill: 		newdist = .fill
 			case .fillEqually:	newdist = .fillEqually
+			case .equalSpacing:	newdist = .equalSpacing
 			}
 			mStackView.distribution = newdist
 		}
@@ -154,19 +156,30 @@ open class KCStackViewCore : KCView
 		return mStackView.arrangedSubviews as! Array<KCView>
 	}
 
-	open override var intrinsicContentSize: KCSize
-	{
-		var result = KCSize(width: 0.0, height: 0.0)
-		let subviews = arrangedSubviews()
-		for subview in subviews {
-			let size = subview.intrinsicContentSize
+	open override var intrinsicContentSize: KCSize {
+		get {
+			let dovert: Bool
 			switch alignment {
-			case .horizontal(_):
-				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: false)
-			case .vertical(_):
-				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: true)
+			case .vertical(_):	dovert = true
+			case .horizontal(_):	dovert = false
 			}
+			var result = KCSize(width: 0.0, height: 0.0)
+			let subviews = arrangedSubviews()
+			for subview in subviews {
+				let size = subview.intrinsicContentSize
+				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert)
+			}
+			/* Add spaces for each items */
+			if subviews.count > 0 {
+				let spacenum = subviews.count - 1
+				let spaces   = KCPreference.shared.layoutPreference.spacing * CGFloat(spacenum)
+				if dovert {
+					result.height += spaces
+				} else {
+					result.width  += spaces
+				}
+			}
+			return result
 		}
-		return result
 	}
 }

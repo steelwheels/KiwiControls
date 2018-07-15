@@ -40,7 +40,7 @@ open class KCRootView: KCCoreView
 		self.addSubview(child)
 		setCoreView(view: child)
 		allocateSubviewLayout(subView: child)
-		setResizePriority(doGrowHolizontally: true, doGrowVertically: true)
+		setResizePriority(doGrowHorizontally: true, doGrowVertically: true)
 	}
 
 	public override var fixedSize: KCSize? {

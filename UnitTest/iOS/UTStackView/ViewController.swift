@@ -45,7 +45,9 @@ class ViewController: UIViewController
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
-		mStackView.printDebugInfo(indent: 0)
+		let console = KCLogConsole()
+		let dumper  = KCViewDumper(console: console)
+		dumper.dump(view: mStackView)
 	}
 }
 

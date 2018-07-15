@@ -88,9 +88,10 @@ public class KCButtonCore: KCView
 		})
 	}
 
-	open override var intrinsicContentSize: KCSize
-	{
-		return mButton.intrinsicContentSize
+	open override var intrinsicContentSize: KCSize {
+		get {
+			return mButton.intrinsicContentSize
+		}
 	}
 }
 

@@ -88,11 +88,12 @@ open class KCIconViewCore : KCView
 		}
 	}
 
-	open override var intrinsicContentSize: KCSize
-	{
-		let layersize = mLayerView.intrinsicContentSize
-		let labelsize = mLabelView.intrinsicContentSize
-		return KCUnionSize(sizeA: layersize, sizeB: labelsize, doVertical: true)
+	open override var intrinsicContentSize: KCSize {
+		get {
+			let layersize = mLayerView.intrinsicContentSize
+			let labelsize = mLabelView.intrinsicContentSize
+			return KCUnionSize(sizeA: layersize, sizeB: labelsize, doVertical: true)
+		}
 	}
 }
 

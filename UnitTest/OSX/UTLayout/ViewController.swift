@@ -13,6 +13,8 @@ class ViewController: NSViewController
 {
 	@IBOutlet weak var mRootView: KCRootView!
 
+	private var mConsole: CNConsole? = nil
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
@@ -20,32 +22,46 @@ class ViewController: NSViewController
 
 	public override func viewWillAppear() {
 		super.viewWillAppear()
-		allocateComponents(rootView: mRootView)
-		compile(rootView: mRootView)
+		let cons = KCLogConsole()
+		allocateComponents(rootView: mRootView, console: cons)
+		compile(rootView: mRootView, console: cons)
+
+		mConsole = cons
 	}
 
-	private func allocateComponents(rootView root: KCRootView) {
+	public override func viewDidAppear() {
+		mConsole!.print(string: "// viewDidAppear\n")
+		let dumper = KCViewDumper(console: mConsole!)
+		dumper.dump(view: mRootView)
+	}
+
+	private func allocateComponents(rootView root: KCRootView, console cons: CNConsole) {
 		if let window = self.view.window {
 			let box    = KCStackView(frame: window.frame)
-			let label  = KCTextEdit()
-			label.text = ""
-			label.isEditable = false
+			box.distribution = .fill
+
+			let label = KCTextField()
+			label.text = "Label"
+
+			let text  = KCTextEdit()
+			text.text = ""
+			text.isEditable = false
+
 			let button = KCButton()
 			button.title = "Press me"
-			box.addArrangedSubViews(subViews: [label, button])
+			box.addArrangedSubViews(subViews: [label, text, button])
 			root.setupContext(childView: box)
 		} else {
-			NSLog("Failed to get window (1)")
+			cons.error(string: "Failed to get window (1)")
 		}
 	}
 
-	private func compile(rootView root: KCRootView){
+	private func compile(rootView root: KCRootView, console cons: CNConsole){
 		if let window = self.view.window {
-			let console  = CNFileConsole()
-			let layouter = KCLayouter(console: console)
+			let layouter = KCLayouter(console: cons)
 			layouter.layout(rootView: root, rootSize: window.frame.size)
 		} else {
-			NSLog("Failed to get window (2)")
+			cons.error(string: "Failed to get window (2)")
 		}
 	}
 

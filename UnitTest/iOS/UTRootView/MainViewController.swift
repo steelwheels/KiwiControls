@@ -12,8 +12,8 @@ class MainViewController: KCViewController
 {
 	@IBOutlet weak var mRootView: KCRootView!
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
 
 		// Do any additional setup after loading the view, typically from a nib.
 		let console = KCLogConsole()
@@ -22,21 +22,17 @@ class MainViewController: KCViewController
 		// Do any additional setup after loading the view.
 		let frame  = mRootView.frame
 		let button = KCButton()
+		let label  = KCTextField()
+		label.text = "Label"
 		let text   = KCTextEdit()
 		let box    = KCStackView(frame: frame)
-		box.addArrangedSubView(subView: text)
-		box.addArrangedSubView(subView: button)
+		box.addArrangedSubViews(subViews: [label, text, button])
 
 		mRootView.setupContext(childView: box)
-	}
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-
-		let size = self.preferredContentSize
-		let console  = KCLogConsole()
+		//let size = self.preferredContentSize
 		let layouter = KCLayouter(console: console)
-		layouter.layout(rootView: mRootView, rootSize: size)
+		layouter.layout(rootView: mRootView, rootSize: self.preferredContentSize)
 	}
 
 	override func didReceiveMemoryWarning() {

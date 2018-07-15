@@ -110,15 +110,16 @@ public class KCCheckBoxCore: KCView
 		}
 	}
 
-	open override var intrinsicContentSize: KCSize
-	{
-		#if os(iOS)
-			let labelsize  = mLabel.intrinsicContentSize
-			let switchsize = mSwitch.intrinsicContentSize
-			return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false)
-		#else
-			return mCheckBox.intrinsicContentSize
-		#endif
+	open override var intrinsicContentSize: KCSize {
+		get {
+			#if os(iOS)
+				let labelsize  = mLabel.intrinsicContentSize
+				let switchsize = mSwitch.intrinsicContentSize
+				return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false)
+			#else
+				return mCheckBox.intrinsicContentSize
+			#endif
+		}
 	}
 }
 

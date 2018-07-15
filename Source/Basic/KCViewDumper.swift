@@ -40,6 +40,9 @@ public class KCViewDumper: KCViewVisitor
 	open override func visit(stackView view: KCStackView){
 		/* Allocate section for stack */
 		visit(coreView: view)
+		let distdesc = view.distribution.description
+		mSection.add(text: CNTextLine(string: "distribution:  " + distdesc))
+
 		let section = mSection
 		/* Allocate sections for children */
 		for subview in view.arrangedSubviews() {
@@ -57,6 +60,7 @@ public class KCViewDumper: KCViewVisitor
 
 		let framedesc  = view.frame.description
 		section.add(text: CNTextLine(string: "frame:         " + framedesc))
+
 		let boundsdesc = view.bounds.description
 		section.add(text: CNTextLine(string: "bounds:        " + boundsdesc))
 		let sizedesc   = view.intrinsicContentSize.description

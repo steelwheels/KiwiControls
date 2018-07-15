@@ -43,22 +43,11 @@ open class KCCoreView: KCView
 		}
 	}
 
-	public func setResizePriority(doGrowHolizontally holiz: Bool, doGrowVertically vert: Bool){
-		if let core = mCoreView	 {
-			if holiz {
-				core.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-			} else {
-				core.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-			}
-			core.setContentHuggingPriority(.defaultLow, for: .horizontal)
-
-			if vert {
-				core.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-			} else {
-				core.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-			}
-			core.setContentHuggingPriority(.defaultLow, for: .vertical)
+	public override func setResizePriority(doGrowHorizontally horiz: Bool, doGrowVertically vert: Bool){
+		if let core = mCoreView	{
+			core.setResizePriority(doGrowHorizontally: horiz, doGrowVertically: vert)
 		}
+		super.setResizePriority(doGrowHorizontally: horiz, doGrowVertically: vert)
 	}
 
 	public var isVisible: Bool {

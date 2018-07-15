@@ -17,7 +17,7 @@ open class KCTextFieldCore : KCView
 	#if os(OSX)
 	@IBOutlet weak var mTextField: NSTextField!
 	#else
-	@IBOutlet weak var mLabel: UILabel!
+	@IBOutlet weak var mTextField: UILabel!
 	#endif
 
 	public func setup(frame frm: CGRect){
@@ -32,19 +32,11 @@ open class KCTextFieldCore : KCView
 
 	public var isEnabled: Bool {
 		get {
-			#if os(OSX)
-				return mTextField.isEnabled
-			#else
-				return mLabel.isEnabled
-			#endif
+			return mTextField.isEnabled
 		}
 		set(newval){
 			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(OSX)
-					self.mTextField.isEnabled   = newval
-				#else
-					self.mLabel.isEnabled   = newval
-				#endif
+				self.mTextField.isEnabled   = newval
 			})
 		}
 	}
@@ -64,7 +56,7 @@ open class KCTextFieldCore : KCView
 		#if os(OSX)
 			return mTextField.stringValue
 		#else
-			if let t = mLabel.text {
+			if let t = mTextField.text {
 				return t
 			} else {
 				return ""
@@ -77,26 +69,18 @@ open class KCTextFieldCore : KCView
 			#if os(OSX)
 				self.mTextField.stringValue = str
 			#else
-				self.mLabel.text = str
+				self.mTextField.text = str
 			#endif
 		})
 	}
 
 	public var font: KCFont? {
 		get {
-			#if os(iOS)
-				return mLabel.font
-			#else
-				return mTextField.font
-			#endif
+			return mTextField.font
 		}
 		set(font){
 			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(iOS)
-					self.mLabel.font = font
-				#else
-					self.mTextField.font = font
-				#endif
+				self.mTextField.font = font
 			})
 		}
 	}
@@ -104,7 +88,7 @@ open class KCTextFieldCore : KCView
 	public var alignment: NSTextAlignment {
 		get {
 			#if os(iOS)
-				return mLabel.textAlignment
+				return mTextField.textAlignment
 			#else
 				return mTextField.alignment
 			#endif
@@ -112,7 +96,7 @@ open class KCTextFieldCore : KCView
 		set(align){
 			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 				#if os(iOS)
-					self.mLabel.textAlignment = align
+					self.mTextField.textAlignment = align
 				#else
 					self.mTextField.alignment = align
 				#endif
@@ -122,19 +106,10 @@ open class KCTextFieldCore : KCView
 
 	public var lineBreak: KCLineBreakMode {
 		get {
-			#if os(iOS)
-				return mLabel.lineBreakMode
-
-			#else
-				return mTextField.lineBreakMode
-			#endif
+			return mTextField.lineBreakMode
 		}
 		set(mode) {
-			#if os(iOS)
-				mLabel.lineBreakMode = mode
-			#else
-				mTextField.lineBreakMode = mode
-			#endif
+			mTextField.lineBreakMode = mode
 		}
 	}
 
@@ -145,19 +120,16 @@ open class KCTextFieldCore : KCView
 				self.mTextField.drawsBackground = true
 				self.mTextField.backgroundColor = cols.background
 			#else
-				self.mLabel.tintColor = cols.foreground
-				self.mLabel.textColor = cols.foreground
-				self.mLabel.backgroundColor = cols.background
+				self.mTextField.tintColor = cols.foreground
+				self.mTextField.textColor = cols.foreground
+				self.mTextField.backgroundColor = cols.background
 			#endif
 		})
 	}
 
-	open override var intrinsicContentSize: KCSize
-	{
-		#if os(OSX)
+	open override var intrinsicContentSize: KCSize {
+		get {
 			return mTextField.intrinsicContentSize
-		#else
-			return mLabel.intrinsicContentSize
-		#endif
+		}
 	}
 }

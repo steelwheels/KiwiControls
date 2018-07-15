@@ -117,6 +117,12 @@ open class KCTextEditCore : KCView
 		}
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			return mTextEdit.intrinsicContentSize
+		}
+	}
+
 	public func setColors(colors cols: KCColorPreference.TextColors){
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
 			#if os(OSX)

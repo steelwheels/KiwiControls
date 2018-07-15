@@ -35,6 +35,7 @@ open class KCStackView : KCCoreView
 	public enum Distribution {
 		case fill
 		case fillEqually
+		case equalSpacing
 
 		public var description: String {
 			get {
@@ -42,6 +43,7 @@ open class KCStackView : KCCoreView
 				switch self {
 				case .fill:		result = "fill"
 				case .fillEqually:	result = "fillEqually"
+				case .equalSpacing:	result = "equalSpacing"
 				}
 				return result
 			}
@@ -51,12 +53,14 @@ open class KCStackView : KCCoreView
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
-		setupContext() ;
+		setupContext()
+		setupLayout()
 	}
 	#else
 	public override init(frame: CGRect){
-		super.init(frame: frame) ;
+		super.init(frame: frame)
 		setupContext()
+		setupLayout()
 	}
 	#endif
 
@@ -72,6 +76,7 @@ open class KCStackView : KCCoreView
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
 		setupContext() ;
+		setupLayout()
 	}
 
 	private func setupContext(){
@@ -79,10 +84,14 @@ open class KCStackView : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setResizePriority(doGrowHolizontally: true, doGrowVertically: true)
+			setResizePriority(doGrowHorizontally: true, doGrowVertically: true)
 		} else {
 			fatalError("Can not load KCStackCore")
 		}
+	}
+
+	private func setupLayout(){
+		self.distribution = .fill
 	}
 
 	public var alignment: Alignment {
