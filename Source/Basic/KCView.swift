@@ -207,18 +207,18 @@ open class KCView : KCViewBase
 
 	public func setResizePriority(doGrowHorizontally horiz: Bool, doGrowVertically vert: Bool){
 		if horiz {
-			setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+			setContentHuggingPriority(.defaultLow, for: .horizontal)
 		} else {
-			setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+			setContentHuggingPriority(.defaultHigh, for: .horizontal)
 		}
-		setContentHuggingPriority(.defaultLow, for: .horizontal)
+		setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
 
 		if vert {
-			setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+			setContentHuggingPriority(.defaultLow, for: .vertical)
 		} else {
-			setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+			setContentHuggingPriority(.defaultHigh, for: .vertical)
 		}
-		setContentHuggingPriority(.defaultLow, for: .vertical)
+		setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
 	}
 
 	/*

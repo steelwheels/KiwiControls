@@ -169,16 +169,6 @@ open class KCStackViewCore : KCView
 				let size = subview.intrinsicContentSize
 				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert)
 			}
-			/* Add spaces for each items */
-			if subviews.count > 0 {
-				let spacenum = subviews.count - 1
-				let spaces   = KCPreference.shared.layoutPreference.spacing * CGFloat(spacenum)
-				if dovert {
-					result.height += spaces
-				} else {
-					result.width  += spaces
-				}
-			}
 			return result
 		}
 	}

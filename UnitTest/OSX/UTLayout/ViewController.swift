@@ -59,7 +59,7 @@ class ViewController: NSViewController
 	private func compile(rootView root: KCRootView, console cons: CNConsole){
 		if let window = self.view.window {
 			let layouter = KCLayouter(console: cons)
-			layouter.layout(rootView: root, rootSize: window.frame.size)
+			layouter.layout(rootView: root, rootSize: root.frame.size)
 		} else {
 			cons.error(string: "Failed to get window (2)")
 		}
