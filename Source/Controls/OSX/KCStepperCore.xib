@@ -21,9 +21,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-45-Akg">
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-45-Akg">
                     <rect key="frame" x="58" y="0.0" width="13" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oUe-ml-Tt3">
                             <rect key="frame" x="-3" y="-2" width="19" height="27"/>
@@ -46,9 +45,12 @@
                 </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="zJ2-EY-bka" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="CBR-mZ-bKo"/>
-                <constraint firstAttribute="bottom" secondItem="zJ2-EY-bka" secondAttribute="bottom" constant="2" id="Cpl-0t-hEj"/>
-                <constraint firstItem="zJ2-EY-bka" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="3" id="hS7-qx-nsx"/>
+                <constraint firstItem="5hD-45-Akg" firstAttribute="centerY" secondItem="zJ2-EY-bka" secondAttribute="centerY" id="AMV-Ji-ZYC"/>
+                <constraint firstItem="5hD-45-Akg" firstAttribute="leading" secondItem="zJ2-EY-bka" secondAttribute="trailing" constant="16" id="Ddj-Ug-MgX"/>
+                <constraint firstItem="zJ2-EY-bka" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="3" id="Pp9-Lt-E6E"/>
+                <constraint firstAttribute="trailing" secondItem="5hD-45-Akg" secondAttribute="trailing" id="hF9-2t-iJA"/>
+                <constraint firstItem="zJ2-EY-bka" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="k0e-OU-Vot"/>
+                <constraint firstAttribute="bottom" secondItem="zJ2-EY-bka" secondAttribute="bottom" constant="2" id="xg4-Q4-KXy"/>
             </constraints>
             <connections>
                 <outlet property="mStepper" destination="oUe-ml-Tt3" id="IBj-No-jFf"/>
