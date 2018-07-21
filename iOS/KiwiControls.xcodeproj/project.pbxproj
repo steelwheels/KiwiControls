@@ -36,6 +36,11 @@
 		055112621EB6006700CC75E8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055112611EB6006700CC75E8 /* KCCoreView.swift */; };
 		0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */; };
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
+		055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */; };
+		055DAEF320FCD0AE00C8C4E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */; };
+		055DAEF620FCD0AE00C8C4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF420FCD0AE00C8C4E3 /* Main.storyboard */; };
+		055DAEF820FCD0B000C8C4E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */; };
+		055DAEFB20FCD0B000C8C4E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF920FCD0B000C8C4E3 /* LaunchScreen.storyboard */; };
 		056248DD1E0DCF8600EE0F2F /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056248DC1E0DCF8600EE0F2F /* UTState.swift */; };
 		056F4CB01E734E74008BF572 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */; };
 		056F4CB31E734EE5008BF572 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F4CB11E734EE5008BF572 /* KCIconView.swift */; };
@@ -125,6 +130,13 @@
 			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
 			remoteInfo = Install;
 		};
+		055DAF0020FCD0BA00C8C4E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
+			remoteInfo = Install;
+		};
 		0571679E1E0D5C110061F193 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
@@ -202,6 +214,14 @@
 		055112611EB6006700CC75E8 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
+		055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		055DAEF520FCD0AE00C8C4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		055DAEFA20FCD0B000C8C4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		055DAEFC20FCD0B000C8C4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055DAF0220FCD26C00C8C4E3 /* UTPickerView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTPickerView.entitlements; sourceTree = "<group>"; };
 		056248DC1E0DCF8600EE0F2F /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
 		056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		056F4CB11E734EE5008BF572 /* KCIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
@@ -302,6 +322,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0544C7881EAF974700AD0609 /* KiwiControls.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		055DAEEB20FCD0AE00C8C4E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +440,20 @@
 				0544C7821EAF955B00AD0609 /* Info.plist */,
 			);
 			path = UTStackView;
+			sourceTree = "<group>";
+		};
+		055DAEEF20FCD0AE00C8C4E3 /* UTPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */,
+				055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */,
+				055DAEF420FCD0AE00C8C4E3 /* Main.storyboard */,
+				055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */,
+				055DAEF920FCD0B000C8C4E3 /* LaunchScreen.storyboard */,
+				055DAEFC20FCD0B000C8C4E3 /* Info.plist */,
+				055DAF0220FCD26C00C8C4E3 /* UTPickerView.entitlements */,
+			);
+			path = UTPickerView;
 			sourceTree = "<group>";
 		};
 		05706B571F8A5080008BE096 /* Window */ = {
@@ -591,6 +632,7 @@
 		05CEEB941D8FBE3F00CF2514 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				055DAEEF20FCD0AE00C8C4E3 /* UTPickerView */,
 				05B70CE6209F526E00BAE1EB /* UTRootView */,
 				0544C7751EAF955B00AD0609 /* UTStackView */,
 				053540011E0D5BD20031812D /* UTControl */,
@@ -620,6 +662,7 @@
 				053540001E0D5BD20031812D /* UTControl.app */,
 				0544C7741EAF955B00AD0609 /* UTStackView.app */,
 				05B70CE5209F526E00BAE1EB /* UTRootView.app */,
+				055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -719,6 +762,24 @@
 			productReference = 0544C7741EAF955B00AD0609 /* UTStackView.app */;
 			productType = "com.apple.product-type.application";
 		};
+		055DAEED20FCD0AE00C8C4E3 /* UTPickerView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 055DAEFF20FCD0B000C8C4E3 /* Build configuration list for PBXNativeTarget "UTPickerView" */;
+			buildPhases = (
+				055DAEEA20FCD0AE00C8C4E3 /* Sources */,
+				055DAEEB20FCD0AE00C8C4E3 /* Frameworks */,
+				055DAEEC20FCD0AE00C8C4E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				055DAF0120FCD0BA00C8C4E3 /* PBXTargetDependency */,
+			);
+			name = UTPickerView;
+			productName = UTPickerView;
+			productReference = 055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05B70CE4209F526E00BAE1EB /* UTRootView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05B70CF4209F527000BAE1EB /* Build configuration list for PBXNativeTarget "UTRootView" */;
@@ -780,7 +841,7 @@
 		05EDB7F11D8F792C00443B08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
@@ -799,6 +860,16 @@
 						DevelopmentTeam = TR2DNF3P93;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+					};
+					055DAEED20FCD0AE00C8C4E3 = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					05B70CE4209F526E00BAE1EB = {
 						CreatedOnToolsVersion = 9.3;
@@ -843,6 +914,7 @@
 				05353FFF1E0D5BD20031812D /* UTControl */,
 				0544C7731EAF955B00AD0609 /* UTStackView */,
 				05B70CE4209F526E00BAE1EB /* UTRootView */,
+				055DAEED20FCD0AE00C8C4E3 /* UTPickerView */,
 			);
 		};
 /* End PBXProject section */
@@ -875,6 +947,16 @@
 				0544C7811EAF955B00AD0609 /* LaunchScreen.storyboard in Resources */,
 				0544C77E1EAF955B00AD0609 /* Assets.xcassets in Resources */,
 				0544C77C1EAF955B00AD0609 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		055DAEEC20FCD0AE00C8C4E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055DAEFB20FCD0B000C8C4E3 /* LaunchScreen.storyboard in Resources */,
+				055DAEF820FCD0B000C8C4E3 /* Assets.xcassets in Resources */,
+				055DAEF620FCD0AE00C8C4E3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +1026,15 @@
 			files = (
 				0544C7791EAF955B00AD0609 /* ViewController.swift in Sources */,
 				0544C7771EAF955B00AD0609 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		055DAEEA20FCD0AE00C8C4E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				055DAEF320FCD0AE00C8C4E3 /* MainViewController.swift in Sources */,
+				055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,6 +1134,11 @@
 			target = 05BB23A41D8FBC8800C44B3F /* Install */;
 			targetProxy = 0544C7861EAF957500AD0609 /* PBXContainerItemProxy */;
 		};
+		055DAF0120FCD0BA00C8C4E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BB23A41D8FBC8800C44B3F /* Install */;
+			targetProxy = 055DAF0020FCD0BA00C8C4E3 /* PBXContainerItemProxy */;
+		};
 		0571679F1E0D5C110061F193 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05BB23A41D8FBC8800C44B3F /* Install */;
@@ -1110,6 +1206,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				0544C7801EAF955B00AD0609 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		055DAEF420FCD0AE00C8C4E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055DAEF520FCD0AE00C8C4E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		055DAEF920FCD0B000C8C4E3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055DAEFA20FCD0B000C8C4E3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1260,6 +1372,56 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		055DAEFD20FCD0B000C8C4E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/iOS/UTPickerView/UTPickerView.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 1;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTPickerView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTPickerView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		055DAEFE20FCD0B000C8C4E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/iOS/UTPickerView/UTPickerView.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 1;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTPickerView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTPickerView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1569,6 +1731,15 @@
 			buildConfigurations = (
 				0544C7831EAF955B00AD0609 /* Debug */,
 				0544C7841EAF955B00AD0609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		055DAEFF20FCD0B000C8C4E3 /* Build configuration list for PBXNativeTarget "UTPickerView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				055DAEFD20FCD0B000C8C4E3 /* Debug */,
+				055DAEFE20FCD0B000C8C4E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
