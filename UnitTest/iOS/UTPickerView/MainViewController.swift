@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UIDocumentPickerDelegate
 		super.viewDidAppear(animated)
 
 		// Do any additional setup after loading the view, typically from a nib.
-		let picker = UIDocumentPickerViewController(documentTypes: ["com.apple.iwork.keynote.keynote"], in: .open)
+		let picker = UIDocumentPickerViewController(documentTypes: ["com.github.steelwheels.amber.script"], in: .open)
 		picker.delegate = self
 		present(picker, animated: true, completion: {
 			() -> Void in

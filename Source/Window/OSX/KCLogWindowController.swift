@@ -15,12 +15,11 @@ public class KCLogWindowController: NSWindowController
 	private var mButton:		KCButton
 
 	public class func allocateController() -> KCLogWindowController {
-		let viewcont = KCLogViewController()
-		let (window, console, button) = KCLogWindowController.loadWindow(delegate: viewcont)
+		let (window, console, button) = KCLogWindowController.loadWindow()
 		return KCLogWindowController(window: window, consoleView: console, button: button)
 	}
 
-	public init(window win: KCWindow, consoleView consview: KCConsoleView, button btn: KCButton){
+	public init(window win: NSWindow, consoleView consview: KCConsoleView, button btn: KCButton){
 		mConsoleView		= consview
 		mConsole		= KCConsole(ownerView: consview)
 		mButton			= btn
@@ -56,8 +55,8 @@ public class KCLogWindowController: NSWindowController
 		self.window?.orderOut(self.window)
 	}
 
-	private class func loadWindow(delegate dlg: KCViewControllerDelegate) -> (KCWindow, KCConsoleView, KCButton) {
-		if let newwin = KCWindow.loadWindow(delegate: dlg) {
+	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton) {
+		if let newwin = NSWindow.loadWindow() {
 			newwin.title = "Log"
 			let box = KCStackView(frame: newwin.frame)
 			newwin.setRootView(view: box)
@@ -73,7 +72,4 @@ public class KCLogWindowController: NSWindowController
 	}
 }
 
-private class KCLogViewController: KCViewControllerDelegate
-{
-}
 

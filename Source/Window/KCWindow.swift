@@ -5,17 +5,22 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+#if os(OSX)
 import AppKit
+#else
+import UIKit
+#endif
 import Foundation
 
-open class KCWindow: NSWindow
+#if os(OSX)
+extension NSWindow
 {
-	public class func loadWindow(delegate delegateref: KCViewControllerDelegate) -> KCWindow?
+	public class func loadWindow() -> NSWindow?
 	{
-		let viewcont = KCViewController.loadViewController(delegate: delegateref)
-		return KCWindow(contentViewController: viewcont)
+		let viewcont = KCViewController.loadViewController()
+		return NSWindow(contentViewController: viewcont)
 	}
-	
+
 	public func setRootView(view v: KCView){
 		if let root = self.contentView as? KCView {
 			root.addSubview(v)
@@ -53,5 +58,7 @@ open class KCWindow: NSWindow
 		}
 	}
 }
+#endif
+
 
 

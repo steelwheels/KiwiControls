@@ -7,10 +7,6 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>amb</string>
-			</array>
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
@@ -64,21 +60,37 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.source-code</string>
+				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Amber Script</string>
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>public.script</string>
+			<string>com.github.steelwheels.amber.script</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<string>amb</string>
 			</dict>
 		</dict>
-		<dict/>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Amber Script</string>
+			<key>UTTypeIconFiles</key>
+			<array/>
+			<key>UTTypeIdentifier</key>
+			<string>com.github.steelwheels.amber.script</string>
+			<key>public.filename-extension</key>
+			<string>amb</string>
+		</dict>
 	</array>
 </dict>
 </plist>
