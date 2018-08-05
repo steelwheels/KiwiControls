@@ -20,10 +20,9 @@ import CoconutData
 
 open class KCViewController : KCViewControllerBase
 {
-	public class func loadViewController() -> KCViewController
+	public class func loadViewController(name nibname: String) -> KCViewController
 	{
 		let bundle : Bundle = Bundle(for: KCViewController.self) ;
-		let nibname: String = "KCViewController"
 		#if os(iOS)
 			let nib = UINib(nibName: nibname, bundle: bundle)
 			let controllers = nib.instantiate(withOwner: nil, options: nil)
@@ -47,6 +46,21 @@ open class KCViewController : KCViewControllerBase
 			}
 		#endif
 		fatalError("Failed to load " + nibname)
+	}
+
+	public func contentsSize() -> KCSize {
+		#if os(OSX)
+		let contentsize: KCSize
+		if let window = self.view.window {
+			contentsize = window.rootFrame.size
+		} else {
+			NSLog("[Error] No window")
+			contentsize = KCSize(width: 720.0, height: 480.0)
+		}
+		#else
+		let contentsize = self.preferredContentSize
+		#endif
+		return contentsize
 	}
 }
 

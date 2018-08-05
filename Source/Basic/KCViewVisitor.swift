@@ -48,7 +48,7 @@ public class KCViewVisitor
 	open func visit(consoleView view: KCConsoleView){
 		visit(coreView: view)
 	}
-
+	
 	open func visit(coreView view: KCCoreView){
 	}
 }

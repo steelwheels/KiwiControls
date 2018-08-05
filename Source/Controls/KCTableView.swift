@@ -47,7 +47,7 @@ open class KCTableView : KCCoreView
 			allocateSubviewLayout(subView: newview)
 			setResizePriority(doGrowHorizontally: true, doGrowVertically: true)
 		} else {
-			fatalError("Can not load KCTabkeViewCore")
+			fatalError("Can not load KCTableViewCore")
 		}
 	}
 

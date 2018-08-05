@@ -17,7 +17,7 @@ extension NSWindow
 {
 	public class func loadWindow() -> NSWindow?
 	{
-		let viewcont = KCViewController.loadViewController()
+		let viewcont = KCViewController.loadViewController(name: "KCEmptyViewController")
 		return NSWindow(contentViewController: viewcont)
 	}
 
