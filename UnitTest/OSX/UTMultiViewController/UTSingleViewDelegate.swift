@@ -23,7 +23,7 @@ public class UTSingleViewDelegate: KCSingleViewDelegate
 
 	public override func viewWillAppear(viewController vcont: KCViewController, rootView root: KCRootView) {
 		NSLog("UTSingleViewDelegate.viewWillAppear: 0")
-		root.setupContext(childView: mContentView)
+		root.setup(childView: mContentView)
 	}
 }
 

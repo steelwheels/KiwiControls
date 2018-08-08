@@ -7,10 +7,16 @@
 
 #if os(OSX)
 	import Cocoa
-	public typealias KCApplicationDelegate = NSApplicationDelegate
 #else
 	import UIKit
-	public typealias KCApplicationDelegate = UIApplicationDelegate
 #endif
 import Foundation
+
+#if os(OSX)
+open class KCApplicationDelegage: NSObject, NSApplicationDelegate {
+}
+#else
+open class AppDelegate: UIResponder, UIApplicationDelegate {
+}
+#endif
 

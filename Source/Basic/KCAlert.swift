@@ -27,7 +27,7 @@ public class KCAlert : NSObject
 	}
 
 	#if os(OSX)
-	public class func runModal(error err: NSError, in viewcont: KCViewController) -> AlertResponce
+	public class func runModal(error err: NSError, in viewcont: NSViewController) -> AlertResponce
 	{
 		var result: AlertResponce
 		let alert = NSAlert(error: err)
@@ -57,7 +57,7 @@ public class KCAlert : NSObject
 	}
 
 	#else
-	public class func runModal(error err: NSError, in viewcont: KCViewController) -> AlertResponce
+	public class func runModal(error err: NSError, in viewcont: UIViewController) -> AlertResponce
 	{
 		let title   = "Error"
 		let message = err.toString()

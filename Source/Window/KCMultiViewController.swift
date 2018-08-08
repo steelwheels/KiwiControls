@@ -67,6 +67,10 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			self.tabBar.isHidden = !vis
 		#endif
 	}
+
+	public func alert(error err: NSError){
+		let _ = KCAlert.runModal(error: err, in: self)
+	}
 }
 
 

@@ -62,5 +62,9 @@ open class KCViewController : KCViewControllerBase
 		#endif
 		return contentsize
 	}
+
+	public func alert(error err: NSError){
+		let _ = KCAlert.runModal(error: err, in: self)
+	}
 }
 
