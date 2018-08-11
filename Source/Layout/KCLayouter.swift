@@ -25,11 +25,10 @@ public class KCLayouter: KCViewVisitor
 		/* Set size of window to root view
 		 * The size of root view is NOT changed at the auto layout
 		 */
-		view.autoresizingMask = []
-		view.translatesAutoresizingMaskIntoConstraints = false
 		view.frame.size  = mRootSize
 		view.bounds.size = mRootSize
 		view.fixedSize   = mRootSize
+		view.setFixedSizeForLayout(size: mRootSize)
 
 		/* Visit sub view */
 		if let core: KCView = view.getCoreView() {

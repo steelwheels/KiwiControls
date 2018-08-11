@@ -36,12 +36,9 @@ open class KCRootView: KCCoreView
 		super.init(coder: coder) ;
 	}
 
-	public func setup(/*contentSize size: KCSize,*/ childView child: KCView){
+	public func setup(childView child: KCView){
 		/* Layout for self */
-		/*
-		setFixedSizeForLayout(size: size)
 		setResizePriority(doGrowHorizontally: false, doGrowVertically: false)
-		*/
 
 		/* Layout for subview */
 		self.addSubview(child)
