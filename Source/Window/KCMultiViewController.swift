@@ -34,24 +34,18 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		showTabBar(visible: false)
 	}
 
-	public func add(name nm: String, delegate dlg: KCSingleViewDelegate){
-		if let vcont = KCViewController.loadViewController(name: "KCSingleViewController") as? KCSingleViewController {
-			/* Setup root view. This must be done before adding view controller */
-			vcont.setup(delegate: dlg, console: console)
-			/* Add the view to index table */
-			mIndexTable[nm] = mContentViewControllers.count
-			mContentViewControllers.append(vcont)
-			/* Add view to controller */
-			#if os(OSX)
-				let item = NSTabViewItem(identifier: nm)
-				item.viewController = vcont
-				self.addTabViewItem(item)
-			#else
-				self.setViewControllers(mContentViewControllers, animated: false)
-			#endif
-		} else {
-			NSLog("No XIB for KCSingleViewController")
-		}
+	public func add(name nm: String, viewController vcont: KCSingleViewController){
+		/* Add the view to index table */
+		mIndexTable[nm] = mContentViewControllers.count
+		mContentViewControllers.append(vcont)
+		/* Add view to controller */
+		#if os(OSX)
+			let item = NSTabViewItem(identifier: nm)
+			item.viewController = vcont
+			self.addTabViewItem(item)
+		#else
+			self.setViewControllers(mContentViewControllers, animated: false)
+		#endif
 	}
 
 	public func showTabBar(visible vis: Bool){
@@ -66,6 +60,10 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		#else
 			self.tabBar.isHidden = !vis
 		#endif
+	}
+
+	public func contentSize() -> KCSize {
+		return KCViewController.contentSize(viewController: self)
 	}
 
 	public func alert(error err: NSError){

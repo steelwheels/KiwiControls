@@ -8,22 +8,41 @@
 import KiwiControls
 import Foundation
 
-public class UTSingleViewDelegate: KCSingleViewDelegate
+public class UTSingleViewController: KCSingleViewController
 {
-	private var mContentView:	KCView
-
-	public init(contentView cview: KCView){
-		mContentView = cview
-		super.init()
+	public override func loadView() {
+		NSLog("\(#function): load view (init root view)")
+		super.loadView()
+		let label0    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+		label0.text   = "Hello, world. This is label0"
+		if let root = super.rootView {
+			NSLog("\(#function): setup root view")
+			root.setup(childView: label0)
+		} else {
+			fatalError("No root view")
+		}
 	}
 
-	public override func viewDidLoad(viewController vcont: KCViewController, rootView root: KCRootView) {
-		NSLog("UTSingleViewDelegate.viewDidLoad: 0")
+	public override func viewDidLoad() {
+		super.viewDidLoad()
+		NSLog("\(#function): viewDidLoad")
+
 	}
 
-	public override func viewWillAppear(viewController vcont: KCViewController, rootView root: KCRootView) {
-		NSLog("UTSingleViewDelegate.viewWillAppear: 0")
-		root.setup(childView: mContentView)
+	#if os(OSX)
+	public override func viewWillAppear() {
+		NSLog("\(#function): viewWillAppear")
+		if let root = super.rootView {
+			NSLog("viewWillAppear: size=\(root.frame.size)")
+		}
 	}
+	#else
+	public override func viewWillAppear(_ animated: Bool) {
+		NSLog("\(#function): viewWillAppear")
+		if let root = super.rootView {
+			NSLog("viewWillAppear: size=\(root.frame.size)")
+		}
+	}
+	#endif
 }
 

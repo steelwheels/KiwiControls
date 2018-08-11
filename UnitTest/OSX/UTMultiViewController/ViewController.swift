@@ -6,6 +6,7 @@
  */
 
 import KiwiControls
+import CoconutData
 import Cocoa
 
 class ViewController: KCMultiViewController
@@ -14,10 +15,10 @@ class ViewController: KCMultiViewController
 		super.viewDidLoad()
 
 		/* Load 1st view */
-		let label0    = KCTextField(frame: NSRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
-		label0.text   = "Hello, world. This is label0"
-		let delegate0 = UTSingleViewDelegate(contentView: label0)
-		self.add(name: "label0", delegate: delegate0)
+		let size       = contentSize()
+		let console    = CNFileConsole()
+		let controller = UTSingleViewController(size: size, console: console)
+		self.add(name: "label0", viewController: controller)
 	}
 
 	override var representedObject: Any? {

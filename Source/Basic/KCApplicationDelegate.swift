@@ -13,10 +13,10 @@
 import Foundation
 
 #if os(OSX)
-open class KCApplicationDelegage: NSObject, NSApplicationDelegate {
+open class KCApplicationDelegate: NSObject, NSApplicationDelegate {
 }
 #else
-open class AppDelegate: UIResponder, UIApplicationDelegate {
+open class KCApplicationDelegate: UIResponder, UIApplicationDelegate {
 }
 #endif
 

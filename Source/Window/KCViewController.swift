@@ -19,7 +19,7 @@ import CoconutData
 #endif
 
 open class KCViewController : KCViewControllerBase
-{
+{	
 	public class func loadViewController(name nibname: String) -> KCViewController
 	{
 		let bundle : Bundle = Bundle(for: KCViewController.self) ;
@@ -49,22 +49,26 @@ open class KCViewController : KCViewControllerBase
 	}
 
 	public func contentsSize() -> KCSize {
+		return KCViewController.contentSize(viewController: self)
+	}
+
+	public func alert(error err: NSError){
+		let _ = KCAlert.runModal(error: err, in: self)
+	}
+
+	public class func contentSize(viewController vcont: KCViewControllerBase) -> KCSize {
 		#if os(OSX)
 		let contentsize: KCSize
-		if let window = self.view.window {
+		if let window = vcont.view.window {
 			contentsize = window.rootFrame.size
 		} else {
 			NSLog("[Error] No window")
 			contentsize = KCSize(width: 720.0, height: 480.0)
 		}
 		#else
-		let contentsize = self.preferredContentSize
+		let contentsize = vcont.preferredContentSize
 		#endif
 		return contentsize
-	}
-
-	public func alert(error err: NSError){
-		let _ = KCAlert.runModal(error: err, in: self)
 	}
 }
 

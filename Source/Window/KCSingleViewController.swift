@@ -12,35 +12,31 @@ import Cocoa
 #endif
 import CoconutData
 
-open class KCSingleViewDelegate
+open class KCSingleViewController: KCViewController
 {
-	public init(){
+	private var mSize:	KCSize
+	private var mConsole:	CNConsole
+	private var mRootView:	KCRootView? = nil
+
+	public init(size sz: KCSize, console cons: CNConsole){
+		mSize 	     = sz
+		mConsole     = cons
+		super.init(nibName: nil, bundle: nil)
 	}
 	
-	open func viewDidLoad(viewController vcont: KCViewController, rootView rview: KCRootView){
+	required public init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
 	}
-
-	open func viewWillAppear(viewController vcont: KCViewController, rootView rview: KCRootView){
+	
+	public var rootView: KCRootView? {
+		get { return mRootView }
 	}
-}
-
-public class KCSingleViewController : KCViewController
-{
-	private var mDelegate: KCSingleViewDelegate? = nil
-	private var mConsole:  CNConsole? = nil
-
-	@IBOutlet weak var mRootView: KCRootView!
-
-	public func setup(delegate dlg: KCSingleViewDelegate, console cons: CNConsole) {
-		mDelegate	= dlg
-		mConsole	= cons
-	}
-
-	open override func viewDidLoad() {
-		super.viewDidLoad()
-		if let d = mDelegate {
-			d.viewDidLoad(viewController: self, rootView: mRootView)
-		}
+	
+	open override func loadView() {
+		let frame = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: mSize)
+		let root  = KCRootView(frame: frame)
+		mRootView = root
+		self.view = root
 	}
 
 	#if os(OSX)
@@ -56,16 +52,19 @@ public class KCSingleViewController : KCViewController
 	#endif
 
 	private func doViewWillAppear() {
-		if let dlg = mDelegate, let cons = mConsole {
-			/* Call delegate */
-			dlg.viewWillAppear(viewController: self, rootView: mRootView)
+		if let root = mRootView {
+			if root.hasCoreView {
+				/* Adjust size */
+				let layouter = KCLayouter(console: mConsole)
+				layouter.layout(rootView: root, rootSize: mSize)
+			} else {
+				NSLog("\(#function): Error no core view")
+			}
 
-			/* Adjust size */
-			let size     = contentsSize()
-			let layouter = KCLayouter(console: cons)
-			layouter.layout(rootView: mRootView, rootSize: size)
 		} else {
-			NSLog("KCSingleViewController: [Error] No delegate or console")
+			fatalError("No root view")
 		}
 	}
 }
+
+

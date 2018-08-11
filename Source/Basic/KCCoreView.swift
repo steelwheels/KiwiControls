@@ -67,6 +67,14 @@ open class KCCoreView: KCView
 		}
 	}
 
+	public var hasCoreView: Bool {
+		if let _ = mCoreView {
+			return true
+		} else {
+			return false
+		}
+	}
+
 	public func getCoreView<T>() -> T {
 		if let v = mCoreView as? T {
 			return v

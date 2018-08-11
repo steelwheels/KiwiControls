@@ -28,7 +28,7 @@ class MainViewController: KCViewController
 		let box    = KCStackView(frame: frame)
 		box.addArrangedSubViews(subViews: [label, text, button])
 
-		mRootView.setupContext(childView: box)
+		mRootView.setup(childView: box)
 
 		//let size = self.preferredContentSize
 		let layouter = KCLayouter(console: console)
