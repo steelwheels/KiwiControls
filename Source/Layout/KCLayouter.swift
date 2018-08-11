@@ -13,12 +13,11 @@ public class KCLayouter: KCViewVisitor
 	private var mConsole:		CNConsole
 	private var mRootSize:		KCSize
 
-	public init(console cons: CNConsole){
-		mConsole  = cons
-		mRootSize = KCSize(width: 0.0, height: 0.0)
-	}
-	public func layout(rootView view: KCRootView, rootSize size: KCSize){
+	public init(rootSize size: KCSize, console cons: CNConsole){
 		mRootSize = size
+		mConsole  = cons
+	}
+	public func layout(rootView view: KCRootView){
 		view.accept(visitor: self)
 	}
 
@@ -26,6 +25,7 @@ public class KCLayouter: KCViewVisitor
 		/* Set size of window to root view
 		 * The size of root view is NOT changed at the auto layout
 		 */
+		view.autoresizingMask = []
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.frame.size  = mRootSize
 		view.bounds.size = mRootSize

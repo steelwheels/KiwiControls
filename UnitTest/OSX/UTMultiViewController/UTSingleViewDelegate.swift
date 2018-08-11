@@ -31,6 +31,7 @@ public class UTSingleViewController: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewWillAppear() {
+		super.viewWillAppear()
 		NSLog("\(#function): viewWillAppear")
 		if let root = super.rootView {
 			NSLog("viewWillAppear: size=\(root.frame.size)")
@@ -38,6 +39,7 @@ public class UTSingleViewController: KCSingleViewController
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
 		NSLog("\(#function): viewWillAppear")
 		if let root = super.rootView {
 			NSLog("viewWillAppear: size=\(root.frame.size)")

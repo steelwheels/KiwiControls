@@ -20,7 +20,7 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase
 {
-	private var mIndexTable: Dictionary<String, Int> = [:]
+	private var mIndexTable: Dictionary<String, Int> = [:]	/* name -> index */
 	private var mContentViewControllers: Array<KCSingleViewController> = []
 
 	public var console = CNFileConsole()
@@ -34,9 +34,10 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		showTabBar(visible: false)
 	}
 
-	public func add(name nm: String, viewController vcont: KCSingleViewController){
+	public func add(name nm: String, viewController vcont: KCSingleViewController) -> Int {
 		/* Add the view to index table */
-		mIndexTable[nm] = mContentViewControllers.count
+		let index = mContentViewControllers.count
+		mIndexTable[nm] = index
 		mContentViewControllers.append(vcont)
 		/* Add view to controller */
 		#if os(OSX)
@@ -46,6 +47,19 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		#else
 			self.setViewControllers(mContentViewControllers, animated: false)
 		#endif
+		return index
+	}
+
+	public func select(byIndex index: Int) {
+		if 0<=index && index<mContentViewControllers.count {
+			#if os(OSX)
+				self.selectedTabViewItemIndex = index
+			#else
+				self.selectedIndex = index
+			#endif
+		} else {
+			NSLog("\(#function) [Error] Invalid index: \(index)")
+		}
 	}
 
 	public func showTabBar(visible vis: Bool){

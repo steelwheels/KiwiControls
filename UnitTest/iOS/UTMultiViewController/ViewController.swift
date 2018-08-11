@@ -23,7 +23,8 @@ class ViewController: KCMultiViewController
 		let size       = contentSize()
 		let console    = CNFileConsole()
 		let controller = UTSingleViewController(size: size, console: console)
-		self.add(name: "label0", viewController: controller)
+		let idx = self.add(name: "label0", viewController: controller)
+		self.select(byIndex: idx)
 	}
 	
 	override func didReceiveMemoryWarning() {

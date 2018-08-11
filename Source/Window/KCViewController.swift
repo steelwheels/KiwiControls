@@ -66,7 +66,7 @@ open class KCViewController : KCViewControllerBase
 			contentsize = KCSize(width: 720.0, height: 480.0)
 		}
 		#else
-		let contentsize = vcont.preferredContentSize
+		let contentsize = UIScreen.main.bounds.size
 		#endif
 		return contentsize
 	}

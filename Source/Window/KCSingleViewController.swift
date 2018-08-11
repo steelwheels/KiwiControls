@@ -37,6 +37,9 @@ open class KCSingleViewController: KCViewController
 		let root  = KCRootView(frame: frame)
 		mRootView = root
 		self.view = root
+		#if os(iOS)
+		self.preferredContentSize = mSize
+		#endif
 	}
 
 	#if os(OSX)
@@ -55,8 +58,8 @@ open class KCSingleViewController: KCViewController
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Adjust size */
-				let layouter = KCLayouter(console: mConsole)
-				layouter.layout(rootView: root, rootSize: mSize)
+				let layouter = KCLayouter(rootSize: mSize, console: mConsole)
+				layouter.layout(rootView: root)
 			} else {
 				NSLog("\(#function): Error no core view")
 			}

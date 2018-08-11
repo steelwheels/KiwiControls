@@ -99,10 +99,10 @@ open class KCView : KCViewBase
 	}
 	#else
 	private func eventLocation(event evt: NSEvent) -> CGPoint {
-	let pos = convert(evt.locationInWindow, from: self)
-	//Swift.print(" -> event:\(pos.description)")
-	let diffpos = pos - self.frame.origin
-	return diffpos
+		let pos = convert(evt.locationInWindow, from: self)
+		//Swift.print(" -> event:\(pos.description)")
+		let diffpos = pos - self.frame.origin
+		return diffpos
 	}
 	#endif
 
@@ -130,6 +130,29 @@ open class KCView : KCViewBase
 		}
 		super.setNeedsDisplay(areaToBeDisplay)
 		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
+	}
+
+	/*
+	 * layout
+	 */
+	public func setFixedSizeForLayout(size sz: KCSize) {
+		self.translatesAutoresizingMaskIntoConstraints = false
+		let vconst = NSLayoutConstraint(item: self,
+						attribute: .height,
+						relatedBy: .equal,
+						toItem: nil,
+						attribute: .height,
+						multiplier: 1.0,
+						constant: sz.height)
+		let hconst = NSLayoutConstraint(item: self,
+						attribute: .width,
+						relatedBy: .equal,
+						toItem: nil,
+						attribute: .width,
+						multiplier: 1.0,
+						constant: sz.width)
+		addConstraint(vconst)
+		addConstraint(hconst)
 	}
 	
 	/*
