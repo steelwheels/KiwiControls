@@ -18,7 +18,7 @@ class ViewController: KCMultiViewController
 		let size       = contentSize()
 		let console    = CNFileConsole()
 		let controller = UTSingleViewController(size: size, console: console)
-		self.add(name: "label0", viewController: controller)
+		let _          = self.add(name: "label0", viewController: controller)
 	}
 
 	override var representedObject: Any? {

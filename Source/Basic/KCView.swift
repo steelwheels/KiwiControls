@@ -135,7 +135,8 @@ open class KCView : KCViewBase
 	/*
 	 * layout
 	 */
-	public func setFixedSizeForLayout(size sz: KCSize) {
+	public func setFixedSizeForLayout(size sz: KCSize, spacing space: CGFloat)
+	{
 		self.translatesAutoresizingMaskIntoConstraints = false
 		let vconst = NSLayoutConstraint(item: self,
 						attribute: .height,
@@ -153,13 +154,6 @@ open class KCView : KCViewBase
 						constant: sz.width)
 		addConstraint(vconst)
 		addConstraint(hconst)
-	}
-	
-	/*
-	 * XIB load support 
-	 */
-	private func allocateLayout(subView sview : KCViewBase, attribute attr: KCLayoutAttribute) -> NSLayoutConstraint {
-		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
 	}
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
@@ -180,6 +174,13 @@ open class KCView : KCViewBase
 		}
 	}
 
+	private func allocateLayout(subView sview : KCViewBase, attribute attr: KCLayoutAttribute) -> NSLayoutConstraint {
+		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
+	}
+
+	/*
+	 * XIB load support
+	 */
 	public func loadChildXib(thisClass tc: AnyClass, nibName nn: String) -> KCView {
 		let bundle : Bundle = Bundle(for: tc) ;
 		#if os(iOS)

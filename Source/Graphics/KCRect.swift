@@ -49,6 +49,19 @@ extension KCRect
 		return (CGRect(origin: origin0, size: size), CGRect(origin: origin1, size: size))
 	}
 
+	public static func insideRect(rect rct: KCRect, spacing space: CGFloat) -> KCRect {
+		let margin = space * 2.0
+		if rct.size.width < margin || rct.size.height < margin {
+			return rct
+		} else {
+			let x	   = rct.origin.x + space
+			let y	   = rct.origin.y + space
+			let width  = rct.size.width  - margin
+			let height = rct.size.height - margin
+			return KCRect(x: x, y: y, width: width, height: height)
+		}
+	}
+
 	public static func pointsToRect(fromPoint fp:CGPoint, toPoint tp:CGPoint) -> CGRect {
 		var x, y, width, height: CGFloat
 		if fp.x >= tp.x {
