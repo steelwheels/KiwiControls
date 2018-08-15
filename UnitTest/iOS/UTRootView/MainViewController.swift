@@ -25,14 +25,26 @@ class MainViewController: KCViewController
 		let label  = KCTextField()
 		label.text = "Label"
 		let text   = KCTextEdit()
+
+		// allocate image view
+		let image  = KCImageView()
+		if let url = CNFilePath.URLForResourceFile(fileName: "SampleImage0", fileExtension: "jpeg", subdirectory: "Images") {
+			if let err = image.load(URL: url) {
+				NSLog("[Error] err = " + err.description)
+			}
+		} else {
+			NSLog("[Error] Failed to load SampleImage0.jpeg")
+		}
+
+		// allocate stack view
 		let box    = KCStackView(frame: frame)
-		box.addArrangedSubViews(subViews: [label, text, button])
+		box.addArrangedSubViews(subViews: [label, image, text, button])
 
 		mRootView.setup(childView: box)
 
 		//let size = self.preferredContentSize
-		let layouter = KCLayouter(console: console)
-		layouter.layout(rootView: mRootView, rootSize: self.preferredContentSize)
+		let layouter = KCLayouter(rootSize: contentsSize(), console: console)
+		layouter.layout(rootView: mRootView)
 	}
 
 	override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 //
 
 import KiwiControls
+import CoconutData
 import Cocoa
 
 class ViewController: NSViewController
@@ -23,11 +24,21 @@ class ViewController: NSViewController
 
 		let button = KCButton()
 		let text   = KCTextEdit(frame: txtframe)
+		let image  = KCImageView()
+		if let url = CNFilePath.URLForResourceFile(fileName: "SampleImage0", fileExtension: "jpeg", subdirectory: "Images") {
+			if let err = image.load(URL: url) {
+				NSLog("[Error] err = " + err.description)
+			}
+		} else {
+			NSLog("[Error] Failed to load SampleImage0.jpeg")
+		}
+
 		let box    = KCStackView(frame: frame)
+		box.addArrangedSubView(subView: image)
 		box.addArrangedSubView(subView: text)
 		box.addArrangedSubView(subView: button)
 
-		mRootView.setupContext(childView: box)
+		mRootView.setup(childView: box)
 	}
 
 	override func viewDidAppear() {

@@ -45,6 +45,9 @@
 		055DAEF820FCD0B000C8C4E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */; };
 		055DAEFB20FCD0B000C8C4E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF920FCD0B000C8C4E3 /* LaunchScreen.storyboard */; };
 		056248DD1E0DCF8600EE0F2F /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056248DC1E0DCF8600EE0F2F /* UTState.swift */; };
+		05686CAF21245D11000CEA6C /* KCImageViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05686CAE21245D11000CEA6C /* KCImageViewCore.xib */; };
+		05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05686CB021245D7C000CEA6C /* KCImageViewCore.swift */; };
+		05686CB32124656D000CEA6C /* KCImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05686CB22124656D000CEA6C /* KCImageView.swift */; };
 		056F4CB01E734E74008BF572 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */; };
 		056F4CB31E734EE5008BF572 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F4CB11E734EE5008BF572 /* KCIconView.swift */; };
 		056F4CB41E734EE5008BF572 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F4CB21E734EE5008BF572 /* KCIconViewCore.swift */; };
@@ -92,6 +95,8 @@
 		0596308B20D7C8ED003D5657 /* KCTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596308A20D7C8ED003D5657 /* KCTextEdit.swift */; };
 		0597E8691FEFCB5C000D8442 /* KCPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597E8681FEFCB5C000D8442 /* KCPreference.swift */; };
 		059AFECE20F7BFAD00F58FC7 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */; };
+		059C6AAB2124EE7F000F87CC /* SampleImage0.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059C6AA82124EE1B000F87CC /* SampleImage0.jpeg */; };
+		059C6AAC2124EF80000F87CC /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
 		05A5CEF420FAD6C100DBED51 /* KCTextFieldCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A5CEF320FAD6C100DBED51 /* KCTextFieldCore.xib */; };
 		05B70CDC209F0BD900BAE1EB /* KCLogConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */; };
 		05B70CE0209F2C6F00BAE1EB /* KCLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */; };
@@ -102,6 +107,7 @@
 		05B70CF2209F527000BAE1EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B70CF0209F527000BAE1EB /* LaunchScreen.storyboard */; };
 		05B70CFA209F538E00BAE1EB /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
 		05B70CFC209F53A400BAE1EB /* KiwiControls.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05B75DF32124F0BE00D58B12 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
 		05B8662520D7A67D006CF515 /* KCTextEditCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B8662420D7A67D006CF515 /* KCTextEditCore.xib */; };
 		05B8662720D7A6F6006CF515 /* KCTextEditCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8662620D7A6F6006CF515 /* KCTextEditCore.swift */; };
 		05BA2D8F1DEB10CE00A8EB62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA2D8E1DEB10CE00A8EB62 /* AppDelegate.swift */; };
@@ -186,6 +192,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		059C6AAA2124EE37000F87CC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Images;
+			dstSubfolderSpec = 7;
+			files = (
+				059C6AAB2124EE7F000F87CC /* SampleImage0.jpeg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05B70CFB209F539400BAE1EB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,6 +258,9 @@
 		055DAEFC20FCD0B000C8C4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055DAF0220FCD26C00C8C4E3 /* UTPickerView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTPickerView.entitlements; sourceTree = "<group>"; };
 		056248DC1E0DCF8600EE0F2F /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
+		05686CAE21245D11000CEA6C /* KCImageViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCImageViewCore.xib; sourceTree = "<group>"; };
+		05686CB021245D7C000CEA6C /* KCImageViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImageViewCore.swift; sourceTree = "<group>"; };
+		05686CB22124656D000CEA6C /* KCImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCImageView.swift; sourceTree = "<group>"; };
 		056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		056F4CB11E734EE5008BF572 /* KCIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
 		056F4CB21E734EE5008BF572 /* KCIconViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
@@ -289,6 +308,7 @@
 		0597E8681FEFCB5C000D8442 /* KCPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreference.swift; sourceTree = "<group>"; };
 		059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayouter.swift; sourceTree = "<group>"; };
 		059AFECF20F7C10800F58FC7 /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../local/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
+		059C6AA82124EE1B000F87CC /* SampleImage0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleImage0.jpeg; sourceTree = "<group>"; };
 		05A5CEF320FAD6C100DBED51 /* KCTextFieldCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTextFieldCore.xib; sourceTree = "<group>"; };
 		05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogConsole.swift; sourceTree = "<group>"; };
 		05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLogViewController.swift; sourceTree = "<group>"; };
@@ -365,6 +385,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059C6AAC2124EF80000F87CC /* CoconutData.framework in Frameworks */,
 				05B70CFA209F538E00BAE1EB /* KiwiControls.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +411,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B75DF32124F0BE00D58B12 /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +471,8 @@
 				05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */,
 				057853731F46732C00BBB2BA /* KCConsoleView.swift */,
 				057853741F46732C00BBB2BA /* KCConsoleViewCore.swift */,
+				05686CB22124656D000CEA6C /* KCImageView.swift */,
+				05686CB021245D7C000CEA6C /* KCImageViewCore.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -555,6 +579,7 @@
 				056F4CB91E735129008BF572 /* KCTableViewCore.xib */,
 				05EE31F51EACB214007164F4 /* KCStackViewCore.xib */,
 				057853711F46725100BBB2BA /* KCConsoleViewCore.xib */,
+				05686CAE21245D11000CEA6C /* KCImageViewCore.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -626,6 +651,14 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
+		059C6AA72124EDFA000F87CC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				059C6AA82124EE1B000F87CC /* SampleImage0.jpeg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		05B70CE6209F526E00BAE1EB /* UTRootView */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,6 +698,7 @@
 			isa = PBXGroup;
 			children = (
 				05CEEB941D8FBE3F00CF2514 /* iOS */,
+				059C6AA72124EDFA000F87CC /* Images */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -845,6 +879,7 @@
 				05B70CE2209F526E00BAE1EB /* Frameworks */,
 				05B70CE3209F526E00BAE1EB /* Resources */,
 				05B70CFB209F539400BAE1EB /* CopyFiles */,
+				059C6AAA2124EE37000F87CC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1077,6 +1112,7 @@
 			files = (
 				056F4CB01E734E74008BF572 /* KCIconViewCore.xib in Resources */,
 				056F4CBA1E735129008BF572 /* KCTableViewCore.xib in Resources */,
+				05686CAF21245D11000CEA6C /* KCImageViewCore.xib in Resources */,
 				05A5CEF420FAD6C100DBED51 /* KCTextFieldCore.xib in Resources */,
 				057853721F46725100BBB2BA /* KCConsoleViewCore.xib in Resources */,
 				058AE0531E12C3BF00116D89 /* KCButtonCore.xib in Resources */,
@@ -1209,8 +1245,10 @@
 				05910BEE20958D9400535E2A /* KCGradientTable.swift in Sources */,
 				05795BAA20F0FD2300EB504D /* KCViewVisitor.swift in Sources */,
 				05910BE820958D8900535E2A /* KCContext.swift in Sources */,
+				05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */,
 				058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */,
 				05B70CE0209F2C6F00BAE1EB /* KCLogViewController.swift in Sources */,
+				05686CB32124656D000CEA6C /* KCImageView.swift in Sources */,
 				05B70CDC209F0BD900BAE1EB /* KCLogConsole.swift in Sources */,
 				058AE0511E12C3A800116D89 /* KCButtonCore.swift in Sources */,
 				05B8662720D7A6F6006CF515 /* KCTextEditCore.swift in Sources */,
@@ -1564,7 +1602,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTRootView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTRootView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1586,7 +1624,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTRootView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTRootView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
