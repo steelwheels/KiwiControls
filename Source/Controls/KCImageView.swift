@@ -12,8 +12,10 @@ import UIKit
 #endif
 import CoconutData
 
-public class KCImageView: KCCoreView
+open class KCImageView: KCCoreView
 {
+	private var mResource: URL? = nil
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -51,10 +53,19 @@ public class KCImageView: KCCoreView
 		}
 	}
 
-	public func load(URL file: URL) -> NSError? {
-		return coreView.load(URL: file)
+	public var resource: URL? {
+		get {
+			return mResource
+		}
+		set(res){
+			mResource = res
+			if let url = res {
+				if let err = coreView.load(URL: url) {
+					NSLog("[Error] Can not load image: \"\(err.description)\"")
+				}
+			}
+		}
 	}
-
 
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(imageView: self)

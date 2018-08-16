@@ -26,9 +26,7 @@ class ViewController: NSViewController
 		let text   = KCTextEdit(frame: txtframe)
 		let image  = KCImageView()
 		if let url = CNFilePath.URLForResourceFile(fileName: "SampleImage0", fileExtension: "jpeg", subdirectory: "Images") {
-			if let err = image.load(URL: url) {
-				NSLog("[Error] err = " + err.description)
-			}
+			image.resource = url
 		} else {
 			NSLog("[Error] Failed to load SampleImage0.jpeg")
 		}
