@@ -13,12 +13,12 @@
 import CoconutData
 
 #if os(iOS)
-	public typealias KCViewControllerBase = UIViewController
+	public typealias KCViewController = UIViewController
 #else
-	public typealias KCViewControllerBase = NSViewController
+	public typealias KCViewController = NSViewController
 #endif
 
-open class KCViewController : KCViewControllerBase
+public extension KCViewController
 {	
 	public class func loadViewController(name nibname: String) -> KCViewController
 	{
@@ -56,7 +56,7 @@ open class KCViewController : KCViewControllerBase
 		let _ = KCAlert.runModal(error: err, in: self)
 	}
 
-	public class func contentSize(viewController vcont: KCViewControllerBase) -> KCSize {
+	public class func contentSize(viewController vcont: KCViewController) -> KCSize {
 		#if os(OSX)
 		let contentsize: KCSize
 		if let window = vcont.view.window {

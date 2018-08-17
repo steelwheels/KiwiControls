@@ -36,7 +36,7 @@ class ViewController: NSViewController
 		box.addArrangedSubView(subView: text)
 		box.addArrangedSubView(subView: button)
 
-		mRootView.setup(childView: box)
+		mRootView.setup(viewController: self, childView: box)
 	}
 
 	override func viewDidAppear() {

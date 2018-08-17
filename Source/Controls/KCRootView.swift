@@ -13,6 +13,8 @@ import UIKit
 
 open class KCRootView: KCCoreView
 {
+	private weak var mViewController: KCViewController? = nil
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -36,7 +38,10 @@ open class KCRootView: KCCoreView
 		super.init(coder: coder) ;
 	}
 
-	public func setup(childView child: KCView){
+	public func setup(viewController vcont: KCViewController, childView child: KCView){
+		/* Keep view controller reference */
+		mViewController = vcont
+
 		/* Layout for self */
 		setResizePriority(doGrowHorizontally: false, doGrowVertically: false)
 

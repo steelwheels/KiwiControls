@@ -79,10 +79,6 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	public func contentSize() -> KCSize {
 		return KCViewController.contentSize(viewController: self)
 	}
-
-	public func alert(error err: NSError){
-		let _ = KCAlert.runModal(error: err, in: self)
-	}
 }
 
 
