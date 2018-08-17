@@ -44,6 +44,7 @@ open class KCImageViewCore : KCView
 				if let image = UIImage(data: data) {
 					mImageView.image = image
 				}
+				return nil
 			} catch _ {
 				/* Do next */
 			}
