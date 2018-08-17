@@ -55,7 +55,7 @@ open class KCCoreView: KCView
 			if let core = mCoreView {
 				return !(core.isHidden)
 			} else {
-				fatalError("No core view")
+				fatalError("\(#function) [Error] No core view")
 			}
 		}
 		set(newval){

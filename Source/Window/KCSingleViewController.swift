@@ -34,12 +34,16 @@ open class KCSingleViewController: KCViewController
 	
 	open override func loadView() {
 		let frame = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: mSize)
-		let root  = KCRootView(frame: frame)
+		let root  = allocateRootView(frame: frame)
 		mRootView = root
 		self.view = root
 		#if os(iOS)
 		self.preferredContentSize = mSize
 		#endif
+	}
+
+	open func allocateRootView(frame frm: KCRect) -> KCRootView {
+		return KCRootView(frame: frm)
 	}
 
 	#if os(OSX)
