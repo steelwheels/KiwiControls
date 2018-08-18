@@ -81,11 +81,31 @@ open class KCRootView: KCCoreView
 				let picker = KCDocumentPickerViewController(documentTypes: allowedUTIs, in: .import)
 				vcont.present(picker, animated: true, completion: {
 					() -> Void in
-					NSLog("Finished\n")
 				})
-				let urls = picker.result
-				NSLog("Result : \(urls)")
+				return picker.result
 			}
+		#endif
+		return nil
+	}
+
+	public func selectInputFile(title ttext: String, fileExtensions exts: [String]) -> URL?
+	{
+		#if os(OSX)
+		if exts.count > 0 {
+			if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
+				return url
+			}
+		}
+		#else
+		if let vcont = mViewController {
+			let pref = KCPreference.shared.documentTypePreference
+			let utis = pref.UTIs(forExtensions: exts)
+			let picker = KCDocumentPickerViewController(documentTypes: utis, in: .import)
+			vcont.present(picker, animated: true, completion: {
+				() -> Void in
+			})
+			return picker.result
+		}
 		#endif
 		return nil
 	}

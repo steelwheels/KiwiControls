@@ -99,6 +99,20 @@ public class KCDocumentTypePreference
 		}
 		return result
 	}
+
+	public func UTIs(forExtensions exts: [String]) -> [String] {
+		var result: [String] = []
+		for ext in exts {
+			for uti in mDocumentTypes.keys {
+				if let val = mDocumentTypes[uti] {
+					if val.contains(ext) {
+						result.append(uti)
+					}
+				}
+			}
+		}
+		return result
+	}
 }
 
 public class KCLayoutPreference

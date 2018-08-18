@@ -12,7 +12,7 @@ import Foundation
 
 public class KCDocumentPickerViewController: UIDocumentPickerViewController, UIDocumentPickerDelegate
 {
-	private var mResultURLs: [URL] = []
+	private var mResultURL: URL? = nil
 
 	public override init(documentTypes allowedUTIs: [String], in mode: UIDocumentPickerMode) {
 		super.init(documentTypes: allowedUTIs, in: mode)
@@ -32,16 +32,20 @@ public class KCDocumentPickerViewController: UIDocumentPickerViewController, UID
 		self.delegate = self
 	}
 
-	public var result: [URL] {
-		get { return mResultURLs }
+	public var result: URL? {
+		get { return mResultURL }
 	}
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		mResultURLs = urls
+		if urls.count == 1 {
+			mResultURL = urls[0]
+		} else {
+			mResultURL = nil
+		}
 	}
 
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		mResultURLs = []
+		mResultURL = nil
 	}
 }
 

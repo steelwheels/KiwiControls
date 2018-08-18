@@ -92,6 +92,10 @@ public class KCLayouter: KCViewVisitor
 		/* Do nothing */
 	}
 
+	open override func visit(imageView view: KCImageView){
+		/* Do nothing */
+	}
+
 	open override func visit(coreView view: KCCoreView){
 		mConsole.error(string: "Unknown component: \(view) in KCLayouter")
 	}
