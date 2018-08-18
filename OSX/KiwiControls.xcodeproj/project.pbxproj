@@ -1082,6 +1082,11 @@
 						CreatedOnToolsVersion = 9.4.1;
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					0588EA02209E7B4C00C6D5E8 = {
 						CreatedOnToolsVersion = 9.3;

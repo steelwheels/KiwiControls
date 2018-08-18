@@ -28,5 +28,27 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Amber Script</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.github.steelwheels.amber.script</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://github.com/steelwheels/Amber/blob/master/Document/AmberDocumentType.md</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>amb</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

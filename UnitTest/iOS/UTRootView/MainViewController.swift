@@ -22,6 +22,11 @@ class MainViewController: KCViewController
 		// Do any additional setup after loading the view.
 		let frame  = mRootView.frame
 		let button = KCButton()
+		button.buttonPressedCallback = {
+			() -> Void in
+			self.selectFile()
+		}
+
 		let label  = KCTextField()
 		label.text = "Label"
 		let text   = KCTextEdit()
@@ -37,12 +42,18 @@ class MainViewController: KCViewController
 		// allocate stack view
 		let box    = KCStackView(frame: frame)
 		box.addArrangedSubViews(subViews: [label, image, text, button])
-
 		mRootView.setup(viewController: self, childView: box)
 
 		//let size = self.preferredContentSize
 		let layouter = KCLayouter(rootSize: contentsSize(), console: console)
 		layouter.layout(rootView: mRootView)
+	}
+
+	private func selectFile() {
+		NSLog("Select file")
+		let pref = KCPreference.shared.documentTypePreference
+		let utis = pref.UTIs
+		let _ = mRootView.selectInputFile(title: "Select Amber Script", documentTypes: utis)
 	}
 
 	override func didReceiveMemoryWarning() {

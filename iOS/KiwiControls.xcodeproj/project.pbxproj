@@ -130,6 +130,7 @@
 		05EE31F91EACB2B8007164F4 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F71EACB2B8007164F4 /* KCStackView.swift */; };
 		05EE31FA1EACB2B8007164F4 /* KCStackViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */; };
 		05F7A11820A7C90B00A395AB /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */; };
+		05FE54B62127C8E7009709C4 /* KCDocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE54B52127C8E7009709C4 /* KCDocumentPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -338,6 +339,7 @@
 		05DB04C02113566C0060CCA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05DB04C22113566C0060CCA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05E32F492111FDE000EDEC31 /* KCMultiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCMultiViewController.swift; sourceTree = "<group>"; };
+		05E3428E2128056B00B9BA11 /* UTRootView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTRootView.entitlements; sourceTree = "<group>"; };
 		05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCCheckBoxCore.xib; sourceTree = "<group>"; };
 		05E75DF71E13F4C000287756 /* KCCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBox.swift; sourceTree = "<group>"; };
 		05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBoxCore.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 		05EE31F71EACB2B8007164F4 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
 		05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackViewCore.swift; sourceTree = "<group>"; };
 		05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
+		05FE54B52127C8E7009709C4 /* KCDocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCDocumentPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -525,6 +528,7 @@
 				05706B591F8A50BF008BE096 /* KCViewController.swift */,
 				05E32F492111FDE000EDEC31 /* KCMultiViewController.swift */,
 				05DB04AE2113542F0060CCA8 /* KCSingleViewController.swift */,
+				05FE54B52127C8E7009709C4 /* KCDocumentPickerViewController.swift */,
 				0584F514210DFE9800492366 /* KCWindow.swift */,
 				05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */,
 			);
@@ -735,6 +739,7 @@
 		05EDB7F01D8F792C00443B08 = {
 			isa = PBXGroup;
 			children = (
+				05E3428E2128056B00B9BA11 /* UTRootView.entitlements */,
 				05841E921D8F7B320092C2C6 /* Source */,
 				05CEEB931D8FBE2800CF2514 /* UnitTest */,
 				05EDB7FC1D8F792C00443B08 /* KiwiControls */,
@@ -985,6 +990,11 @@
 						CreatedOnToolsVersion = 9.3;
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					05BA2D8B1DEB10CE00A8EB62 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1216,6 +1226,7 @@
 				05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */,
 				0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */,
 				056F4CB81E735017008BF572 /* KCTableViewCore.swift in Sources */,
+				05FE54B62127C8E7009709C4 /* KCDocumentPickerViewController.swift in Sources */,
 				05706B5B1F8A50BF008BE096 /* KCViewController.swift in Sources */,
 				059AFECE20F7BFAD00F58FC7 /* KCLayouter.swift in Sources */,
 				0584F515210DFE9900492366 /* KCWindow.swift in Sources */,
@@ -1596,6 +1607,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = UTRootView.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -1618,6 +1630,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = UTRootView.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;

@@ -10,7 +10,7 @@ import KiwiControls
 import CoconutData
 import Cocoa
 
-class ViewController: NSViewController
+class ViewController: KCViewController
 {
 	@IBOutlet weak var mRootView: KCRootView!
 

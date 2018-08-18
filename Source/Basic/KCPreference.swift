@@ -28,12 +28,76 @@ public class KCPreference
 		}
 	}
 
-	public var layoutPreference:	KCLayoutPreference
-	public var terminalPreference:	KCTerminalPreference
+	public var documentTypePreference:	KCDocumentTypePreference
+	public var layoutPreference:		KCLayoutPreference
+	public var terminalPreference:		KCTerminalPreference
 
 	public init(){
-		layoutPreference   = KCLayoutPreference()
-		terminalPreference = KCTerminalPreference()
+		documentTypePreference	= KCDocumentTypePreference()
+		layoutPreference   	= KCLayoutPreference()
+		terminalPreference 	= KCTerminalPreference()
+	}
+}
+
+public class KCDocumentTypePreference
+{
+	private var mDocumentTypes: Dictionary<String, Array<String>>	// UTI, extension
+
+	public init() {
+		mDocumentTypes = [:]
+
+		if let infodict = Bundle.main.infoDictionary {
+			/* Import document types */
+			if let imports = infodict["UTImportedTypeDeclarations"] as? Array<AnyObject> {
+				collectTypeDeclarations(typeDeclarations: imports)
+			}
+		}
+	}
+
+	private func collectTypeDeclarations(typeDeclarations decls: Array<AnyObject>){
+		for decl in decls {
+			if let dict = decl as? Dictionary<String, AnyObject> {
+				if dict.count > 0 {
+					collectTypeDeclaration(typeDeclaration: dict)
+				}
+			} else {
+				NSLog("\(#function) [Error] Invalid description: \(decl)")
+			}
+		}
+	}
+
+	private func collectTypeDeclaration(typeDeclaration decl: Dictionary<String, AnyObject>){
+		guard let uti = decl["UTTypeIdentifier"] as? String else {
+			NSLog("\(#function) [Error] No UTTypeIdentifier")
+			return
+		}
+		guard let tags = decl["UTTypeTagSpecification"] as? Dictionary<String, AnyObject> else {
+			NSLog("\(#function) [Error] No UTTypeTagSpecification")
+			return
+		}
+		guard let exts = tags["public.filename-extension"] as? Array<String> else {
+			NSLog("\(#function) [Error] No public.filename-extension")
+			return
+		}
+		mDocumentTypes[uti] = exts
+	}
+
+	public var UTIs: Array<String> {
+		get {
+			return Array(mDocumentTypes.keys)
+		}
+	}
+
+	public func fileExtensions(forUTIs utis: [String]) -> [String] {
+		var result: [String] = []
+		for uti in utis {
+			if let exts = mDocumentTypes[uti] {
+				result.append(contentsOf: exts)
+			} else {
+				NSLog("\(#function) [Error] Unknown UTI: \(uti)")
+			}
+		}
+		return result
 	}
 }
 

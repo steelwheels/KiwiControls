@@ -5,6 +5,7 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 #if os(OSX)
 import Cocoa
 #else
@@ -61,6 +62,32 @@ open class KCRootView: KCCoreView
 			}
 			super.fixedSize = newval
 		}
+	}
+
+	public func selectInputFile(title ttext: String, documentTypes allowedUTIs: [String]) -> URL?
+	{
+		#if os(OSX)
+			/* get preference and collect extensions for given UTIs */
+			let pref = KCPreference.shared.documentTypePreference
+			let exts = pref.fileExtensions(forUTIs: allowedUTIs)
+			if exts.count > 0 {
+				if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
+					return url
+				}
+			}
+		#else
+			if let vcont = mViewController {
+				// Do any additional setup after loading the view, typically from a nib.
+				let picker = KCDocumentPickerViewController(documentTypes: allowedUTIs, in: .import)
+				vcont.present(picker, animated: true, completion: {
+					() -> Void in
+					NSLog("Finished\n")
+				})
+				let urls = picker.result
+				NSLog("Result : \(urls)")
+			}
+		#endif
+		return nil
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

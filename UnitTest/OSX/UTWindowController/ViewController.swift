@@ -16,7 +16,7 @@ private class UTWindowController: NSWindowController
     }
 }
 
-class ViewController: NSViewController {
+class ViewController: KCViewController {
 
 @	IBOutlet weak var mStackView: KCStackView!
     
@@ -37,7 +37,14 @@ class ViewController: NSViewController {
 
 	private func openWindow() {
 		Swift.print("*** open window")
+
+		let pref = KCPreference.shared.documentTypePreference
+		let utis = pref.UTIs
+		Swift.print(" UTI: \(utis)")
+
+
 		if mWindowController == nil {
+			/*
 			Swift.print("*** load view controller")
 			let delegate = UTViewControllerDelegate()
 			let vcont    = KCViewController.loadViewController(delegate: delegate)
@@ -47,6 +54,7 @@ class ViewController: NSViewController {
 			Swift.print("*** show window")
 			wcont.showWindow(nil)
 			mWindowController = wcont
+			*/
 		}
 	}
 
@@ -57,54 +65,5 @@ class ViewController: NSViewController {
 	}
 }
 
-private class UTViewControllerDelegate: KCViewControllerDelegate
-{
-	private var mDidAlreadyLoaded = false
-
-	open override func viewDidLoad(rootView view: KCView){
-		Swift.print("== UTViewControllerDelegate.viewDidLoad")
-		/*
-		let button0 = KCButton()
-		button0.title = "Close"
-		button0.buttonPressedCallback = {
-			() -> Void in
-			Swift.print("Close button pressed")
-		}
-		view.addSubview(button0)
-		view.allocateSubviewLayout(subView: button0)*/
-		//window.setRootView(view: button0)
-	}
-
-	open override func viewWillAppear(rootView view: KCView){
-		Swift.print("== UTViewControllerDelegate.viewWillAppear")
-		if !mDidAlreadyLoaded {
-			let button0 = KCButton()
-			button0.title = "Close"
-			button0.buttonPressedCallback = {
-				() -> Void in
-				Swift.print("Close button pressed")
-			}
-			view.addSubview(button0)
-			view.allocateSubviewLayout(subView: button0)
-
-			mDidAlreadyLoaded = true
-		}
-	}
-
-	open override func viewDidAppear(rootView view: KCView){
-		Swift.print("== UTViewControllerDelegate.viewDidAppear")
-	}
-	/* Resize */
-	open override func updateViewConstraints(rootView view: KCView){
-		Swift.print("== UTViewControllerDelegate.updateViewConstraints")
-	}
-	/* Disappear */
-	open override func viewWillDisappear(rootView view: KCView){
-		Swift.print("== UTViewControllerDelegate.viewWillDisAppear")
-	}
-	open override func viewDidDisappear(rootView view: KCView){
-		Swift.print("== UTViewControllerDelegate.viewDidDisAppear")
-	}
-}
 
 
