@@ -22,7 +22,7 @@ public extension KCViewController
 {	
 	public class func loadViewController(name nibname: String) -> KCViewController
 	{
-		let bundle : Bundle = Bundle(for: KCViewController.self) ;
+		let bundle : Bundle = Bundle(for: KCView.self) ;
 		#if os(iOS)
 			let nib = UINib(nibName: nibname, bundle: bundle)
 			let controllers = nib.instantiate(withOwner: nil, options: nil)
