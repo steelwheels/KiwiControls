@@ -14,16 +14,16 @@ import CoconutData
 
 open class KCSingleViewController: KCViewController
 {
-	private var mSize:	KCSize
-	private var mConsole:	CNConsole
-	private var mRootView:	KCRootView? = nil
+	private weak var mParentController:	KCMultiViewController?
+	private var mConsole:			CNConsole
+	private var mRootView:			KCRootView? = nil
 
-	public init(size sz: KCSize, console cons: CNConsole){
-		mSize 	     = sz
-		mConsole     = cons
+	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole){
+		mParentController	= parent
+		mConsole     		= cons
 		super.init(nibName: nil, bundle: nil)
 	}
-	
+
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -33,13 +33,11 @@ open class KCSingleViewController: KCViewController
 	}
 	
 	open override func loadView() {
-		let frame = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: mSize)
-		let root  = allocateRootView(frame: frame)
-		mRootView = root
-		self.view = root
-		#if os(iOS)
-		self.preferredContentSize = mSize
-		#endif
+		/* Allocate root view */
+		let safearea = safeArea()
+		let root     = allocateRootView(frame: safearea)
+		self.view    = root
+		mRootView    = root
 	}
 
 	open func allocateRootView(frame frm: KCRect) -> KCRootView {
@@ -62,15 +60,25 @@ open class KCSingleViewController: KCViewController
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Adjust size */
-				let layouter = KCLayouter(rootSize: mSize, console: mConsole)
+				let savearea = safeArea()
+				let layouter = KCLayouter(rootFrame: savearea, console: mConsole)
 				layouter.layout(rootView: root)
 			} else {
 				NSLog("\(#function): Error no core view")
 			}
-
 		} else {
 			fatalError("No root view")
 		}
+	}
+
+	public func safeArea() -> KCRect {
+		let result: KCRect
+		if let parent = mParentController {
+			result = KCViewController.safeArea(viewController: parent)
+		} else {
+			result = KCViewController.safeArea(viewController: self)
+		}
+		return result
 	}
 }
 

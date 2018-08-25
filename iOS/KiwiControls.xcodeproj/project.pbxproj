@@ -91,22 +91,12 @@
 		05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05910BF220958D9D00535E2A /* KCTriangle.swift */; };
 		05910BF620958D9D00535E2A /* KCVertices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05910BF320958D9D00535E2A /* KCVertices.swift */; };
 		059570451F7659D6007898FB /* KCType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059570441F7659D6007898FB /* KCType.swift */; };
-		0595D3FF20A085D200C1079C /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0595D3FE20A085D200C1079C /* LogViewController.swift */; };
 		0596308B20D7C8ED003D5657 /* KCTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596308A20D7C8ED003D5657 /* KCTextEdit.swift */; };
 		0597E8691FEFCB5C000D8442 /* KCPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597E8681FEFCB5C000D8442 /* KCPreference.swift */; };
 		059AFECE20F7BFAD00F58FC7 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */; };
-		059C6AAB2124EE7F000F87CC /* SampleImage0.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059C6AA82124EE1B000F87CC /* SampleImage0.jpeg */; };
-		059C6AAC2124EF80000F87CC /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
 		05A5CEF420FAD6C100DBED51 /* KCTextFieldCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A5CEF320FAD6C100DBED51 /* KCTextFieldCore.xib */; };
 		05B70CDC209F0BD900BAE1EB /* KCLogConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */; };
 		05B70CE0209F2C6F00BAE1EB /* KCLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */; };
-		05B70CE8209F526E00BAE1EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE7209F526E00BAE1EB /* AppDelegate.swift */; };
-		05B70CEA209F526E00BAE1EB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE9209F526E00BAE1EB /* MainViewController.swift */; };
-		05B70CED209F526E00BAE1EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B70CEB209F526E00BAE1EB /* Main.storyboard */; };
-		05B70CEF209F527000BAE1EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B70CEE209F527000BAE1EB /* Assets.xcassets */; };
-		05B70CF2209F527000BAE1EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B70CF0209F527000BAE1EB /* LaunchScreen.storyboard */; };
-		05B70CFA209F538E00BAE1EB /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
-		05B70CFC209F53A400BAE1EB /* KiwiControls.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05B75DF32124F0BE00D58B12 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
 		05B8662520D7A67D006CF515 /* KCTextEditCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B8662420D7A67D006CF515 /* KCTextEditCore.xib */; };
 		05B8662720D7A6F6006CF515 /* KCTextEditCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8662620D7A6F6006CF515 /* KCTextEditCore.swift */; };
@@ -162,13 +152,6 @@
 			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
 			remoteInfo = Install;
 		};
-		05B70CF7209F527A00BAE1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05BB23A41D8FBC8800C44B3F;
-			remoteInfo = Install;
-		};
 		05BA2D9E1DEB10D700A8EB62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05EDB7F11D8F792C00443B08 /* Project object */;
@@ -191,29 +174,6 @@
 			remoteInfo = Install;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		059C6AAA2124EE37000F87CC /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Images;
-			dstSubfolderSpec = 7;
-			files = (
-				059C6AAB2124EE7F000F87CC /* SampleImage0.jpeg in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05B70CFB209F539400BAE1EB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				05B70CFC209F53A400BAE1EB /* KiwiControls.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05021CFF1DE59F35003D4F20 /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,7 +264,6 @@
 		05910BF220958D9D00535E2A /* KCTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTriangle.swift; sourceTree = "<group>"; };
 		05910BF320958D9D00535E2A /* KCVertices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCVertices.swift; sourceTree = "<group>"; };
 		059570441F7659D6007898FB /* KCType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCType.swift; sourceTree = "<group>"; };
-		0595D3FE20A085D200C1079C /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		0596308A20D7C8ED003D5657 /* KCTextEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextEdit.swift; sourceTree = "<group>"; };
 		0597E8681FEFCB5C000D8442 /* KCPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreference.swift; sourceTree = "<group>"; };
 		059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayouter.swift; sourceTree = "<group>"; };
@@ -313,13 +272,6 @@
 		05A5CEF320FAD6C100DBED51 /* KCTextFieldCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTextFieldCore.xib; sourceTree = "<group>"; };
 		05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogConsole.swift; sourceTree = "<group>"; };
 		05B70CDF209F2C6F00BAE1EB /* KCLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLogViewController.swift; sourceTree = "<group>"; };
-		05B70CE5209F526E00BAE1EB /* UTRootView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTRootView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		05B70CE7209F526E00BAE1EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05B70CE9209F526E00BAE1EB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		05B70CEC209F526E00BAE1EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		05B70CEE209F527000BAE1EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		05B70CF1209F527000BAE1EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		05B70CF3209F527000BAE1EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B8662420D7A67D006CF515 /* KCTextEditCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTextEditCore.xib; sourceTree = "<group>"; };
 		05B8662620D7A6F6006CF515 /* KCTextEditCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextEditCore.swift; sourceTree = "<group>"; };
 		05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -381,15 +333,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05B70CE2209F526E00BAE1EB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				059C6AAC2124EF80000F87CC /* CoconutData.framework in Frameworks */,
-				05B70CFA209F538E00BAE1EB /* KiwiControls.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,20 +606,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		05B70CE6209F526E00BAE1EB /* UTRootView */ = {
-			isa = PBXGroup;
-			children = (
-				05B70CE7209F526E00BAE1EB /* AppDelegate.swift */,
-				05B70CE9209F526E00BAE1EB /* MainViewController.swift */,
-				0595D3FE20A085D200C1079C /* LogViewController.swift */,
-				05B70CEB209F526E00BAE1EB /* Main.storyboard */,
-				05B70CEE209F527000BAE1EB /* Assets.xcassets */,
-				05B70CF0209F527000BAE1EB /* LaunchScreen.storyboard */,
-				05B70CF3209F527000BAE1EB /* Info.plist */,
-			);
-			path = UTRootView;
-			sourceTree = "<group>";
-		};
 		05B70CF9209F538E00BAE1EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,7 +641,6 @@
 			isa = PBXGroup;
 			children = (
 				055DAEEF20FCD0AE00C8C4E3 /* UTPickerView */,
-				05B70CE6209F526E00BAE1EB /* UTRootView */,
 				0544C7751EAF955B00AD0609 /* UTStackView */,
 				053540011E0D5BD20031812D /* UTControl */,
 				05BA2D8D1DEB10CE00A8EB62 /* UTGraphicsEditor */,
@@ -756,7 +684,6 @@
 				05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */,
 				053540001E0D5BD20031812D /* UTControl.app */,
 				0544C7741EAF955B00AD0609 /* UTStackView.app */,
-				05B70CE5209F526E00BAE1EB /* UTRootView.app */,
 				055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */,
 				05DB04B42113566B0060CCA8 /* UTMultiViewController.app */,
 			);
@@ -876,26 +803,6 @@
 			productReference = 055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		05B70CE4209F526E00BAE1EB /* UTRootView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 05B70CF4209F527000BAE1EB /* Build configuration list for PBXNativeTarget "UTRootView" */;
-			buildPhases = (
-				05B70CE1209F526E00BAE1EB /* Sources */,
-				05B70CE2209F526E00BAE1EB /* Frameworks */,
-				05B70CE3209F526E00BAE1EB /* Resources */,
-				05B70CFB209F539400BAE1EB /* CopyFiles */,
-				059C6AAA2124EE37000F87CC /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				05B70CF8209F527A00BAE1EB /* PBXTargetDependency */,
-			);
-			name = UTRootView;
-			productName = UTRootView;
-			productReference = 05B70CE5209F526E00BAE1EB /* UTRootView.app */;
-			productType = "com.apple.product-type.application";
-		};
 		05BA2D8B1DEB10CE00A8EB62 /* UTGraphicsEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05BA2D9D1DEB10CE00A8EB62 /* Build configuration list for PBXNativeTarget "UTGraphicsEditor" */;
@@ -986,16 +893,6 @@
 							};
 						};
 					};
-					05B70CE4209F526E00BAE1EB = {
-						CreatedOnToolsVersion = 9.3;
-						DevelopmentTeam = TR2DNF3P93;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.iCloud = {
-								enabled = 1;
-							};
-						};
-					};
 					05BA2D8B1DEB10CE00A8EB62 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = TR2DNF3P93;
@@ -1038,7 +935,6 @@
 				05BA2D8B1DEB10CE00A8EB62 /* UTGraphicsEditor */,
 				05353FFF1E0D5BD20031812D /* UTControl */,
 				0544C7731EAF955B00AD0609 /* UTStackView */,
-				05B70CE4209F526E00BAE1EB /* UTRootView */,
 				055DAEED20FCD0AE00C8C4E3 /* UTPickerView */,
 				05DB04B32113566B0060CCA8 /* UTMultiViewController */,
 			);
@@ -1083,16 +979,6 @@
 				055DAEFB20FCD0B000C8C4E3 /* LaunchScreen.storyboard in Resources */,
 				055DAEF820FCD0B000C8C4E3 /* Assets.xcassets in Resources */,
 				055DAEF620FCD0AE00C8C4E3 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05B70CE3209F526E00BAE1EB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05B70CF2209F527000BAE1EB /* LaunchScreen.storyboard in Resources */,
-				05B70CEF209F527000BAE1EB /* Assets.xcassets in Resources */,
-				05B70CED209F526E00BAE1EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,16 +1058,6 @@
 			files = (
 				055DAEF320FCD0AE00C8C4E3 /* MainViewController.swift in Sources */,
 				055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05B70CE1209F526E00BAE1EB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0595D3FF20A085D200C1079C /* LogViewController.swift in Sources */,
-				05B70CEA209F526E00BAE1EB /* MainViewController.swift in Sources */,
-				05B70CE8209F526E00BAE1EB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1297,11 +1173,6 @@
 			target = 05BB23A41D8FBC8800C44B3F /* Install */;
 			targetProxy = 0571679E1E0D5C110061F193 /* PBXContainerItemProxy */;
 		};
-		05B70CF8209F527A00BAE1EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05BB23A41D8FBC8800C44B3F /* Install */;
-			targetProxy = 05B70CF7209F527A00BAE1EB /* PBXContainerItemProxy */;
-		};
 		05BA2D9F1DEB10D700A8EB62 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05BB23A41D8FBC8800C44B3F /* Install */;
@@ -1380,22 +1251,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				055DAEFA20FCD0B000C8C4E3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		05B70CEB209F526E00BAE1EB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05B70CEC209F526E00BAE1EB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		05B70CF0209F527000BAE1EB /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05B70CF1209F527000BAE1EB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1594,52 +1449,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		05B70CF5209F527000BAE1EB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = UTRootView.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ../UnitTest/iOS/UTRootView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTRootView;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		05B70CF6209F527000BAE1EB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = UTRootView.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ../UnitTest/iOS/UTRootView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(HOME)/local/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTRootView;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1966,15 +1775,6 @@
 			buildConfigurations = (
 				055DAEFD20FCD0B000C8C4E3 /* Debug */,
 				055DAEFE20FCD0B000C8C4E3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		05B70CF4209F527000BAE1EB /* Build configuration list for PBXNativeTarget "UTRootView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05B70CF5209F527000BAE1EB /* Debug */,
-				05B70CF6209F527000BAE1EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

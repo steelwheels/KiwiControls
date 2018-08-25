@@ -69,4 +69,41 @@ public enum KCVerticalAlignment {
 	}
 }
 
+#if os(iOS)
+	public typealias KCEdgeInsets		= UIEdgeInsets
+#else
+	public struct KCEdgeInsets {
+		public var top		: CGFloat
+		public var left		: CGFloat
+		public var bottom	: CGFloat
+		public var right	: CGFloat
+
+		public init(top t: CGFloat, left l: CGFloat, bottom b: CGFloat, right r: CGFloat){
+			top 	= t
+			left	= l
+			bottom	= b
+			right	= r
+		}
+	}
+#endif
+
+public extension KCRect {
+	public func points() -> (CGFloat, CGFloat, CGFloat, CGFloat) { // left, top, right, bottom
+		let left   = self.origin.x
+		let top    = self.origin.y
+		let right  = left + self.size.width
+		let bottom = top  + self.size.height
+		return (left, top, right, bottom)
+	}
+
+	public static func inset(source src: KCRect, in inside: KCRect) -> KCEdgeInsets {
+		let (sl, st, sr, sb) = src.points()
+		let (il, it, ir, ib) = inside.points()
+		let dl = max(il - sl, 0.0)
+		let dt = max(it - st, 0.0)
+		let dr = max(sr - ir, 0.0)
+		let db = max(sb - ib, 0.0)
+		return KCEdgeInsets(top: dt, left: dl, bottom: db, right: dr)
+	}
+}
 

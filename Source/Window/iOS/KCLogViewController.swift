@@ -8,21 +8,29 @@
 import CoconutData
 import Foundation
 
-public class KCLogViewController
+public class KCLogViewController: KCSingleViewController
 {
-	public static let shared = KCLogViewController()
+	private var mConsoleView: KCConsoleView?    = nil
+	private var mConsole:	  CNBufferedConsole = CNBufferedConsole()
 
-	private var mConsoleView: 	KCConsoleView?    = nil
-	private var mBufferConsole:	CNBufferedConsole = CNBufferedConsole()
-
-	private init(){
+	public override func loadView() {
+		/* Setup root view */
+		super.loadView()
+		
+		/* Add text field */
+		let console = KCConsoleView(frame: safeArea())
+		if let root = super.rootView {
+			root.setup(viewController: self, childView: console)
+			mConsoleView = console
+			mConsole.outputConsole = console.console
+		} else {
+			NSLog("\(#function) [Error] Can not allocate console view")
+		}
 	}
 
-	public var inputConsole: CNConsole {
-		get { return mBufferConsole }
-	}
-
-	public func setLogViewConsole(console cons: CNConsole){
-		mBufferConsole.receiverConsole = cons
+	public var console: CNConsole {
+		get { return mConsole }
 	}
 }
+
+

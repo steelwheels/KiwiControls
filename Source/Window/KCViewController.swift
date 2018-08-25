@@ -48,27 +48,29 @@ public extension KCViewController
 		fatalError("Failed to load " + nibname)
 	}
 
-	public func contentsSize() -> KCSize {
-		return KCViewController.contentSize(viewController: self)
-	}
-
 	public func alert(error err: NSError){
 		let _ = KCAlert.runModal(error: err, in: self)
 	}
 
-	public class func contentSize(viewController vcont: KCViewController) -> KCSize {
+	/* This must be called after viewWillAppear */
+	public class func safeArea(viewController vcont: KCViewController) -> KCRect {
+		var result: KCRect
 		#if os(OSX)
-		let contentsize: KCSize
-		if let window = vcont.view.window {
-			contentsize = window.rootFrame.size
-		} else {
-			NSLog("[Error] No window")
-			contentsize = KCSize(width: 720.0, height: 480.0)
-		}
+			if let window = vcont.view.window {
+				result = window.rootFrame
+			} else {
+				NSLog("[Error] No window")
+				let org  = KCPoint(x: 0.0, y: 0.0)
+				let size = KCSize(width: 720.0, height: 480.0)
+				result = KCRect(origin: org, size: size)
+			}
 		#else
-		let contentsize = UIScreen.main.bounds.size
+			let entine  = vcont.view.frame
+			let inset   = vcont.view.safeAreaInsets
+			result = UIEdgeInsetsInsetRect(entine, inset)
+			NSLog("safeArea = \(result)")
 		#endif
-		return contentsize
+		return result
 	}
 }
 

@@ -26,6 +26,12 @@ public class KCLogConsole: CNConsole
 			}
 		}
 	}
+	#else
+	private weak var	mViewController: KCLogViewController? = nil
+	private var viewController: KCLogViewController? {
+		get { return mViewController }
+		set(newview) { mViewController = newview }
+	}
 	#endif // os(OSX)
 
 	public func show() {
@@ -47,8 +53,9 @@ public class KCLogConsole: CNConsole
 			#if os(OSX)
 				return windowController.print(string: str)
 			#else
-				let console = KCLogViewController.shared.inputConsole
-				console.print(string: str)
+				if let console = mViewController?.console {
+					console.print(string: str)
+				}
 			#endif
 		}
 	}
@@ -58,8 +65,9 @@ public class KCLogConsole: CNConsole
 			#if os(OSX)
 				return windowController.error(string: str)
 			#else
-				let console = KCLogViewController.shared.inputConsole
-				console.error(string: str)
+				if let console = mViewController?.console {
+					console.error(string: str)
+				}
 			#endif
 		}
 	}
@@ -69,8 +77,11 @@ public class KCLogConsole: CNConsole
 			#if os(OSX)
 				return windowController.scan()
 			#else
-				let console = KCLogViewController.shared.inputConsole
-				return console.scan()
+				if let console = mViewController?.console {
+					return console.scan()
+				} else {
+					return nil
+				}
 			#endif
 		} else {
 			return nil

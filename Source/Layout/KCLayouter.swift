@@ -11,11 +11,11 @@ import Foundation
 public class KCLayouter: KCViewVisitor
 {
 	private var mConsole:		CNConsole
-	private var mRootSize:		KCSize
+	private var mRootFrame:		KCRect
 
-	public init(rootSize size: KCSize, console cons: CNConsole){
-		mRootSize = size
-		mConsole  = cons
+	public init(rootFrame rframe: KCRect, console cons: CNConsole){
+		mRootFrame = rframe
+		mConsole   = cons
 	}
 	public func layout(rootView view: KCRootView){
 		view.accept(visitor: self)
@@ -26,8 +26,7 @@ public class KCLayouter: KCViewVisitor
 		 * The size of root view is NOT changed at the auto layout
 		 */
 		let space  = KCPreference.shared.layoutPreference.spacing
-		let entire = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: mRootSize)
-		let frame  = KCRect.insideRect(rect: entire, spacing: space)
+		let frame  = KCRect.insideRect(rect: mRootFrame, spacing: space)
 		let bounds = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: frame.size)
 
 		view.frame     = frame

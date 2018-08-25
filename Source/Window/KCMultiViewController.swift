@@ -75,10 +75,6 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			self.tabBar.isHidden = !vis
 		#endif
 	}
-
-	public func contentSize() -> KCSize {
-		return KCViewController.contentSize(viewController: self)
-	}
 }
 
 

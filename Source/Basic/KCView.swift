@@ -135,6 +135,7 @@ open class KCView : KCViewBase
 	/*
 	 * layout
 	 */
+
 	public func setFixedSizeForLayout(size sz: KCSize, spacing space: CGFloat)
 	{
 		self.translatesAutoresizingMaskIntoConstraints = false
@@ -158,24 +159,32 @@ open class KCView : KCViewBase
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
-		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.top)) ;
-		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.left)) ;
-		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.bottom)) ;
-		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.right)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.top, length: 0.0)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.left, length: 0.0)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.bottom, length: 0.0)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.right, length: 0.0)) ;
+	}
+
+	public func allocateSubviewLayout(subView sview: KCViewBase, in inset: KCEdgeInsets){
+		sview.translatesAutoresizingMaskIntoConstraints = false
+		addConstraint(allocateLayout(subView: sview, attribute: .top,    length: inset.top)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: .left,   length: inset.left)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: .bottom, length: inset.bottom)) ;
+		addConstraint(allocateLayout(subView: sview, attribute: .right,  length: inset.right)) ;
 	}
 
 	public func allocateSubviewLayout(subView sview: KCViewBase, forVerical vert: Bool){
 		if vert {
-			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.top)) ;
-			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.bottom)) ;
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.top, length: 0.0)) ;
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.bottom, length: 0.0)) ;
 		} else {
-			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.left)) ;
-			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.right)) ;
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.left, length: 0.0)) ;
+			addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.right, length: 0.0)) ;
 		}
 	}
 
-	private func allocateLayout(subView sview : KCViewBase, attribute attr: KCLayoutAttribute) -> NSLayoutConstraint {
-		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: 0.0) ;
+	private func allocateLayout(subView sview : KCViewBase, attribute attr: KCLayoutAttribute, length len: CGFloat) -> NSLayoutConstraint {
+		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: len) ;
 	}
 
 	/*
