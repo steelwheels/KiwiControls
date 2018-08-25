@@ -25,14 +25,14 @@ public class KCLayouter: KCViewVisitor
 		/* Set size of window to root view
 		 * The size of root view is NOT changed at the auto layout
 		 */
-		let space  = KCPreference.shared.layoutPreference.spacing
-		let frame  = KCRect.insideRect(rect: mRootFrame, spacing: space)
-		let bounds = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: frame.size)
+		//let space  = KCPreference.shared.layoutPreference.spacing
+		//let frame  = KCRect.insideRect(rect: mRootFrame, spacing: space)
+		let bounds = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: mRootFrame.size)
 
-		view.frame     = frame
+		view.frame     = mRootFrame
 		view.bounds    = bounds
 		view.fixedSize = bounds.size
-		view.setFixedSizeForLayout(size: bounds.size, spacing: space)
+		view.setFixedSizeForLayout(size: bounds.size, spacing: 0.0)
 
 		/* Visit sub view */
 		if let core: KCView = view.getCoreView() {
