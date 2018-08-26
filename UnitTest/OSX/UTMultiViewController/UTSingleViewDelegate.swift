@@ -13,6 +13,7 @@ public class UTSingleViewController: KCSingleViewController
 	public override func loadView() {
 		NSLog("\(#function): load view (init root view)")
 		super.loadView()
+		
 		let label0    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 		label0.text   = "Hello, world. This is label0"
 		if let root = super.rootView {

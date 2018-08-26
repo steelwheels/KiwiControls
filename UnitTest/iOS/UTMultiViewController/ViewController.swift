@@ -10,6 +10,8 @@ import KiwiControls
 
 class ViewController: KCMultiViewController
 {
+	@IBOutlet weak var mBackgroundView: UIView!
+
 	override func viewDidLoad() {
 		NSLog("ViewController: viewDidLoad")
 		super.viewDidLoad()
@@ -18,7 +20,6 @@ class ViewController: KCMultiViewController
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-
 		let console	= CNFileConsole()
 
 		/* Load log view */
@@ -30,6 +31,7 @@ class ViewController: KCMultiViewController
 		let labid    = self.add(name: "label0", viewController: labcont)
 
 		self.select(byIndex: logid)
+		//self.select(byIndex: labid)
 
 		logcont.console.print(string: "View id \(logid) \(labid)\n")
 		logcont.console.print(string: "2nd line\n")

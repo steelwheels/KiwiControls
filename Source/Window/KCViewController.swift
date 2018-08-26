@@ -67,7 +67,7 @@ public extension KCViewController
 		#else
 			let entine  = vcont.view.frame
 			let inset   = vcont.view.safeAreaInsets
-			result = UIEdgeInsetsInsetRect(entine, inset)
+			result = UIEdgeInsetsInsetRect(entine, inset)		
 			//NSLog("safeArea = \(result)")
 		#endif
 		return result
