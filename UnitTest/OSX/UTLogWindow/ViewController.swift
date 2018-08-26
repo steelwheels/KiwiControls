@@ -2,8 +2,6 @@
 //  ViewController.swift
 //  UTLogWindow
 //
-//  Created by Tomoo Hamada on 2018/05/06.
-//  Copyright © 2018年 Steel Wheels Project. All rights reserved.
 //
 
 import KiwiControls

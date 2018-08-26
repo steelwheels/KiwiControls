@@ -27,7 +27,11 @@ open class KCSingleViewController: KCViewController
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
+	public var parentController: KCMultiViewController? {
+		get { return mParentController }
+	}
+
 	public var rootView: KCRootView? {
 		get { return mRootView }
 	}

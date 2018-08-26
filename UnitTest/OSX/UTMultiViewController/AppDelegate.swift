@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  UTMultiViewController
 //
-//  Created by Tomoo Hamada on 2018/08/05.
-//  Copyright © 2018年 Steel Wheels Project. All rights reserved.
-//
 
 import Cocoa
 

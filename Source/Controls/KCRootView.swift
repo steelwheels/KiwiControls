@@ -52,6 +52,10 @@ open class KCRootView: KCCoreView
 		allocateSubviewLayout(subView: child)
 	}
 
+	public var viewController: KCViewController? {
+		get { return mViewController }
+	}
+
 	public override var fixedSize: KCSize? {
 		get {
 			return super.fixedSize

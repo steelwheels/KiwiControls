@@ -50,15 +50,21 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		return index
 	}
 
-	public func select(byIndex index: Int) {
+	public func search(byName name: String) -> Int? {
+		return mIndexTable[name]
+	}
+
+	public func select(byIndex index: Int) -> Bool {
 		if 0<=index && index<mContentViewControllers.count {
 			#if os(OSX)
 				self.selectedTabViewItemIndex = index
 			#else
 				self.selectedIndex = index
 			#endif
+			return true
 		} else {
 			NSLog("\(#function) [Error] Invalid index: \(index)")
+			return false
 		}
 	}
 
