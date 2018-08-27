@@ -86,7 +86,7 @@ open class KCRootView: KCCoreView
 				vcont.present(picker, animated: true, completion: {
 					() -> Void in
 				})
-				return picker.result
+				return picker.waitResult()
 			}
 		#endif
 		return nil
@@ -108,7 +108,7 @@ open class KCRootView: KCCoreView
 			vcont.present(picker, animated: true, completion: {
 				() -> Void in
 			})
-			return picker.result
+			return picker.waitResult()
 		}
 		#endif
 		return nil
