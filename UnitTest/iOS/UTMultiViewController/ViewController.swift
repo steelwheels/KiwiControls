@@ -10,8 +10,6 @@ import KiwiControls
 
 class ViewController: KCMultiViewController
 {
-	@IBOutlet weak var mBackgroundView: UIView!
-
 	override func viewDidLoad() {
 		NSLog("ViewController: viewDidLoad")
 		super.viewDidLoad()
@@ -20,19 +18,28 @@ class ViewController: KCMultiViewController
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		
 		let console	= CNFileConsole()
 
 		/* Load log view */
-		let logcont  = KCLogViewController(parentViewController: self, console: console)
+		let logcont  = UTLogViewController(parentViewController: self, console: console)
 		let logid    = self.add(name: "log0", viewController: logcont)
 
 		/* Load 1st view */
 		let labcont  = UTSingleViewController(parentViewController: self, console: logcont.console)
 		let labid    = self.add(name: "label0", viewController: labcont)
 
-		self.select(byIndex: logid)
-		//self.select(byIndex: labid)
+		if self.select(byIndex: logid) {
+			logcont.console.print(string: "Select \(logid) ... OK\n")
+		} else {
+			logcont.console.print(string: "Select \(logid) ... NG\n")
+		}
 
+		//let _ = self.select(byIndex: labid)
+		let _ = self.select(byIndex: logid)
+
+		logcont.entireView?.backgroundColor? = KCColor.yellow
+		
 		logcont.console.print(string: "View id \(logid) \(labid)\n")
 		logcont.console.print(string: "2nd line\n")
 		logcont.console.print(string: "3rd line\n")

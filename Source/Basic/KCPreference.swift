@@ -118,6 +118,14 @@ public class KCDocumentTypePreference
 public class KCLayoutPreference
 {
 	public var spacing: CGFloat		= 8.0
+
+	#if os(iOS)
+	public var isPortrait: Bool {
+		get {
+			return UIApplication.shared.statusBarOrientation.isPortrait
+		}
+	}
+	#endif
 }
 
 public class KCTerminalPreference

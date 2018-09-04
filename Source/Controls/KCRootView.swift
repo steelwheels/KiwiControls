@@ -39,17 +39,15 @@ open class KCRootView: KCCoreView
 		super.init(coder: coder) ;
 	}
 
-	public func setup(viewController vcont: KCViewController, childView child: KCView){
+	public func setup(viewController vcont: KCViewController, childView child: KCView, in inset: KCEdgeInsets){
 		/* Keep view controller reference */
 		mViewController = vcont
 
 		/* Layout for self */
 		setResizePriority(doGrowHorizontally: false, doGrowVertically: false)
 
-		/* Layout for subview */
 		self.addSubview(child)
 		setCoreView(view: child)
-		allocateSubviewLayout(subView: child)
 	}
 
 	public var viewController: KCViewController? {

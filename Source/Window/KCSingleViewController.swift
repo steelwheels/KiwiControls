@@ -16,6 +16,7 @@ open class KCSingleViewController: KCViewController
 {
 	private weak var mParentController:	KCMultiViewController?
 	private var mConsole:			CNConsole
+	private var mEntireView:		KCView? = nil
 	private var mRootView:			KCRootView? = nil
 
 	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole){
@@ -32,20 +33,50 @@ open class KCSingleViewController: KCViewController
 		get { return mParentController }
 	}
 
+	public var entireView: KCView? {
+		get { return mEntireView }
+	}
+
 	public var rootView: KCRootView? {
 		get { return mRootView }
 	}
+
+	public var safeAreaInset: KCEdgeInsets {
+		if let parent = mParentController {
+			return KCViewController.safeAreaInsets(viewController: parent)
+		} else {
+			return KCViewController.safeAreaInsets(viewController: self)
+		}
+	}
 	
-	open override func loadView() {
-		/* Allocate root view */
-		let safearea = safeArea()
-		let root     = allocateRootView(frame: safearea)
-		self.view    = root
-		mRootView    = root
+	public var safeFrame: KCRect {
+		if let parent = mParentController {
+			return KCViewController.safeFrame(viewController: parent)
+		} else {
+			return KCViewController.safeFrame(viewController: self)
+		}
 	}
 
-	open func allocateRootView(frame frm: KCRect) -> KCRootView {
-		return KCRootView(frame: frm)
+	public var entireFrame: KCRect {
+		if let parent = mParentController {
+			return KCViewController.entireFrame(viewController: parent)
+		} else {
+			return KCViewController.entireFrame(viewController: self)
+		}
+	}
+
+	open override func loadView() {
+		let entire = KCView(frame: KCRect(origin: KCPoint.zero, size: KCSize(width: 100.0, height: 100.0)))
+		self.view = entire
+		mEntireView = entire
+
+		let root = allocateRootView()
+		entire.addSubview(root)
+		mRootView = root
+	}
+
+	open func allocateRootView() -> KCRootView {
+		return KCRootView()
 	}
 
 	#if os(OSX)
@@ -64,8 +95,7 @@ open class KCSingleViewController: KCViewController
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Adjust size */
-				let savearea = safeArea()
-				let layouter = KCLayouter(rootFrame: savearea, console: mConsole)
+				let layouter = KCLayouter(viewController: self, console: mConsole)
 				layouter.layout(rootView: root)
 			} else {
 				NSLog("\(#function): Error no core view")
@@ -73,16 +103,6 @@ open class KCSingleViewController: KCViewController
 		} else {
 			fatalError("No root view")
 		}
-	}
-
-	public func safeArea() -> KCRect {
-		let result: KCRect
-		if let parent = mParentController {
-			result = KCViewController.safeArea(viewController: parent)
-		} else {
-			result = KCViewController.safeArea(viewController: self)
-		}
-		return result
 	}
 }
 

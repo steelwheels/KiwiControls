@@ -8,19 +8,20 @@
 import CoconutData
 import Foundation
 
-public class KCLogViewController: KCSingleViewController
+open class KCLogViewController: KCSingleViewController
 {
 	private var mConsoleView: KCConsoleView?    = nil
 	private var mConsole:	  CNBufferedConsole = CNBufferedConsole()
 
-	public override func loadView() {
+	open override func loadView() {
 		/* Setup root view */
 		super.loadView()
 		
 		/* Add text field */
-		let console = KCConsoleView(frame: safeArea())
+		let console = KCConsoleView(frame: safeFrame)
 		if let root = super.rootView {
-			root.setup(viewController: self, childView: console)
+			let inset = self.safeAreaInset
+			root.setup(viewController: self, childView: console, in: inset)
 			mConsoleView = console
 			mConsole.outputConsole = console.console
 		} else {

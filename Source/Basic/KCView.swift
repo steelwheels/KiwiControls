@@ -135,8 +135,7 @@ open class KCView : KCViewBase
 	/*
 	 * layout
 	 */
-
-	public func setFixedSizeForLayout(size sz: KCSize, spacing space: CGFloat)
+	public func setFixedSizeForLayout(size sz: KCSize)
 	{
 		self.translatesAutoresizingMaskIntoConstraints = false
 		let vconst = NSLayoutConstraint(item: self,
@@ -156,7 +155,7 @@ open class KCView : KCViewBase
 		addConstraint(vconst)
 		addConstraint(hconst)
 	}
-
+	
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
 		addConstraint(allocateLayout(subView: sview, attribute: KCLayoutAttribute.top, length: 0.0)) ;
@@ -184,7 +183,7 @@ open class KCView : KCViewBase
 	}
 
 	private func allocateLayout(subView sview : KCViewBase, attribute attr: KCLayoutAttribute, length len: CGFloat) -> NSLayoutConstraint {
-		return NSLayoutConstraint(item: self, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: sview, attribute: attr, multiplier: 1.0, constant: len) ;
+		return NSLayoutConstraint(item: sview, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: self, attribute: attr, multiplier: 1.0, constant: len) ;
 	}
 
 	/*

@@ -10,93 +10,136 @@ import Foundation
 
 public class KCLayouter: KCViewVisitor
 {
+	private var mViewController:	KCSingleViewController
+	private var mCurrentFrames:	CNStack<KCRect>
 	private var mConsole:		CNConsole
-	private var mRootFrame:		KCRect
 
-	public init(rootFrame rframe: KCRect, console cons: CNConsole){
-		mRootFrame = rframe
-		mConsole   = cons
+	public init(viewController vcont: KCSingleViewController, console cons: CNConsole){
+		mViewController	= vcont
+		mCurrentFrames  = CNStack<KCRect>()
+		mConsole	= cons
+
+		/* Setup entire frame */
+		let entiresize  = mViewController.entireFrame.size
+		let entireframe = KCRect(origin: KCPoint.zero, size: entiresize)
+		mCurrentFrames.push(entireframe)
+		if let entireview = vcont.entireView, let rootview = vcont.rootView {
+			entireview.frame  = entireframe
+			entireview.bounds = entireframe
+			entireview.setFixedSizeForLayout(size: entireframe.size)
+
+			entireview.allocateSubviewLayout(subView: rootview)
+		} else {
+			fatalError("No entire frame")
+		}
 	}
+
 	public func layout(rootView view: KCRootView){
 		view.accept(visitor: self)
 	}
 
 	open override func visit(rootView view: KCRootView){
-		/* Set size of window to root view
-		 * The size of root view is NOT changed at the auto layout
-		 */
-		//let space  = KCPreference.shared.layoutPreference.spacing
-		//let frame  = KCRect.insideRect(rect: mRootFrame, spacing: space)
-		let bounds = KCRect(origin: KCPoint(x: 0.0, y: 0.0), size: mRootFrame.size)
+		if let frame = mCurrentFrames.peek() {
+			view.frame     = frame
+			view.bounds    = KCRect(origin: KCPoint.zero, size: frame.size)
+			/* Fix the root to the window size (OSX) */
+			view.fixedSize = frame.size
+			/* Visit sub view */
+			if let core: KCView = view.getCoreView() {
+				let cinset  = mViewController.safeAreaInset
+				let cbounds = KCEdgeInsetsInsetRect(view.bounds, cinset)
+				view.allocateSubviewLayout(subView: core, in: cinset)
 
-		view.frame     = mRootFrame
-		view.bounds    = bounds
-		view.fixedSize = bounds.size
-		view.setFixedSizeForLayout(size: bounds.size, spacing: 0.0)
-
-		/* Visit sub view */
-		if let core: KCView = view.getCoreView() {
-			core.accept(visitor: self)
+				mCurrentFrames.push(cbounds)
+				core.accept(visitor: self)
+				let _ = mCurrentFrames.pop()
+			}
+		} else {
+			fatalError("\(#function): Can not happen")
 		}
 	}
 
 	open override func visit(iconView view: KCIconView){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(button view: KCButton){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(checkBox view: KCCheckBox){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(stepper view: KCStepper){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(textField view: KCTextField){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(textEdit view: KCTextEdit){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(tableView view: KCTableView){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(stackView view: KCStackView){
-		/* Give constraint for each subviews */
-		let dovert: Bool
-		switch view.alignment {
-		case .horizontal(_):
-			dovert = true
-		case .vertical(_):
-			dovert = false
-		}
-		for subview in view.arrangedSubviews() {
-			view.allocateSubviewLayout(subView: subview, forVerical: dovert)
-		}
+		self.visit(coreView: view)
 
-		/* Visit subviews */
-		for subview in view.arrangedSubviews() {
-			subview.accept(visitor: self)
+		if let frame = mCurrentFrames.peek() {
+			/* Decide size of children */
+			var cframe: KCRect
+			switch view.alignment {
+			case .horizontal(_):
+				let newx      = KCView.noIntrinsicMetric
+				let newy      = frame.origin.y
+				let newwidth  = KCView.noIntrinsicMetric
+				let newheight = frame.size.height
+				cframe = KCRect(x: newx, y: newy, width: newwidth, height: newheight)
+			case .vertical(_):
+				let newx      = frame.origin.x
+				let newy      = KCView.noIntrinsicMetric
+				let newwidth  = frame.size.width
+				let newheight = KCView.noIntrinsicMetric
+				cframe = KCRect(x: newx, y: newy, width: newwidth, height: newheight)
+			}
+			/* Visit subviews */
+			mCurrentFrames.push(cframe)
+			for subview in view.arrangedSubviews() {
+				subview.accept(visitor: self)
+			}
+			let _ = mCurrentFrames.pop()
 		}
 	}
 
 	open override func visit(consoleView view: KCConsoleView){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(imageView view: KCImageView){
-		/* Do nothing */
+		self.visit(coreView: view)
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		mConsole.error(string: "Unknown component: \(view) in KCLayouter")
+		if let frame = mCurrentFrames.peek() {
+			view.fixedSize   = frame.size
+
+			let width = frame.size.width
+			if width > 0.0 {
+				view.frame.size.width   = width
+				view.bounds.size.width  = width
+			}
+
+			let height = frame.size.height
+			if height > 0.0 {
+				view.frame.size.height  = height
+				view.bounds.size.height = height
+			}
+		}
 	}
 }
 

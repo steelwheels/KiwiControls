@@ -39,6 +39,7 @@
 		055112621EB6006700CC75E8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055112611EB6006700CC75E8 /* KCCoreView.swift */; };
 		0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */; };
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
+		055D8089213E075E00100601 /* UTLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D8088213E075E00100601 /* UTLogViewController.swift */; };
 		055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */; };
 		055DAEF320FCD0AE00C8C4E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */; };
 		055DAEF620FCD0AE00C8C4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF420FCD0AE00C8C4E3 /* Main.storyboard */; };
@@ -210,6 +211,7 @@
 		055112611EB6006700CC75E8 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
+		055D8088213E075E00100601 /* UTLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTLogViewController.swift; sourceTree = "<group>"; };
 		055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 				05DB04B62113566B0060CCA8 /* AppDelegate.swift */,
 				05DB04B82113566B0060CCA8 /* ViewController.swift */,
 				0506CD37211E6452009BFF55 /* UTSingleViewDelegate.swift */,
+				055D8088213E075E00100601 /* UTLogViewController.swift */,
 				05DB04BA2113566B0060CCA8 /* Main.storyboard */,
 				05DB04BD2113566C0060CCA8 /* Assets.xcassets */,
 				05DB04BF2113566C0060CCA8 /* LaunchScreen.storyboard */,
@@ -1076,6 +1079,7 @@
 			files = (
 				05DB04B92113566B0060CCA8 /* ViewController.swift in Sources */,
 				05DB04B72113566B0060CCA8 /* AppDelegate.swift in Sources */,
+				055D8089213E075E00100601 /* UTLogViewController.swift in Sources */,
 				0506CD39211E6483009BFF55 /* UTSingleViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

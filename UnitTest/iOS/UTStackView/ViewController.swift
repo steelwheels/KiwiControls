@@ -6,12 +6,14 @@
  */
 
 import KiwiControls
+import CoconutData
 import CoreGraphics
 import UIKit
 
 class ViewController: UIViewController
 {
 	@IBOutlet weak var mStackView: KCStackView!
+	private var mConsoleView: KCConsoleView? = nil
 
 	override func viewDidLoad()
 	{
@@ -34,9 +36,11 @@ class ViewController: UIViewController
 		let text1 = KCConsoleView()
 		let astr = NSAttributedString(string: "welcome to ViewController")
 		text1.appendText(string: astr)
+		text1.backgroundColor = UIColor.cyan
+		mConsoleView = text1
 
-		mStackView.addArrangedSubViews(subViews: [text1, box0])
-		mStackView.alignment = .vertical(align: .trailing)
+		mStackView.addArrangedSubViews(subViews: [box0, text1])
+		mStackView.alignment = .vertical(align: .center)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -45,9 +49,15 @@ class ViewController: UIViewController
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
-		let console = KCLogConsole()
-		let dumper  = KCViewDumper(console: console)
-		dumper.dump(view: mStackView)
+		NSLog("\(#function): viewDidAppear")
+		if let consview = mConsoleView {
+			NSLog(" consoleView.frame = \(consview.frame)")
+			let console = consview.console
+			let dumper  = KCViewDumper(console: console)
+			dumper.dump(view: mStackView)
+		} else {
+			NSLog("\(#function): No console view")
+		}
 	}
 }
 

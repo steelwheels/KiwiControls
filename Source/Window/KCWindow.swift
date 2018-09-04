@@ -27,7 +27,7 @@ extension NSWindow
 			root.allocateSubviewLayout(subView: v)
 		}
 	}
-
+	
 	public var titleBarHeight: CGFloat {
 		get {
 			let contentHeight = contentRect(forFrameRect: frame).height
@@ -35,29 +35,13 @@ extension NSWindow
 		}
 	}
 
-	public var rootFrame: KCRect {
+	public var entireFrame: KCRect {
 		get {
-			let preference = KCPreference.shared
-			let spacing    = preference.layoutPreference.spacing
-			let content    = contentRect(forFrameRect: self.frame)
-
-			var height    = content.size.height
-			var yoff      = CGFloat(0.0)
-			if height > spacing * 2.0 {
-				height -= spacing * 2.0
-				yoff   =  spacing
-			}
-
-			var width     = content.size.width
-			var xoff      = CGFloat(0.0)
-			if width > spacing {
-				width  -= spacing
-				xoff   =  spacing
-			}
-			return KCRect(x: xoff, y: yoff, width: width, height: height)
+			return contentRect(forFrameRect: frame)
 		}
 	}
 }
+
 #endif
 
 

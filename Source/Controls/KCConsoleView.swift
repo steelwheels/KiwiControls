@@ -58,6 +58,7 @@ open class KCConsoleView : KCCoreView
 			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 22)
 		#endif
 		self.init(frame: frame)
+		setupContext()
 	}
 
 	public required init?(coder: NSCoder) {

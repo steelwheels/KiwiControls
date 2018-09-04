@@ -687,7 +687,7 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="640" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -706,15 +706,19 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="UTLayout" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="v9g-jO-bIH" customClass="KCRootView" customModule="KiwiControls">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="640" height="300"/>
                             </customView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="v9g-jO-bIH" secondAttribute="trailing" id="4de-n7-PJE"/>
+                            <constraint firstItem="v9g-jO-bIH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="BqX-vQ-k3w"/>
+                            <constraint firstAttribute="bottom" secondItem="v9g-jO-bIH" secondAttribute="bottom" id="Eke-Kj-nN6"/>
+                            <constraint firstAttribute="trailing" secondItem="v9g-jO-bIH" secondAttribute="trailing" id="RPa-Tk-0Jd"/>
+                            <constraint firstItem="v9g-jO-bIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="bpF-XQ-Uhm"/>
                             <constraint firstItem="v9g-jO-bIH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="h4n-e9-qXt"/>
                             <constraint firstAttribute="bottom" secondItem="v9g-jO-bIH" secondAttribute="bottom" id="nPY-3x-apP"/>
                             <constraint firstItem="v9g-jO-bIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ug4-gl-9V8"/>

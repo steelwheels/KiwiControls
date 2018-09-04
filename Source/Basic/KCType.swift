@@ -71,6 +71,10 @@ public enum KCVerticalAlignment {
 
 #if os(iOS)
 	public typealias KCEdgeInsets		= UIEdgeInsets
+
+	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> KCRect {
+		return UIEdgeInsetsInsetRect(rect, inset)
+	}
 #else
 	public struct KCEdgeInsets {
 		public var top		: CGFloat
@@ -85,25 +89,31 @@ public enum KCVerticalAlignment {
 			right	= r
 		}
 	}
+
+	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> KCRect {
+		let inseth:  CGFloat = inset.left + inset.right
+		let originx: CGFloat
+		let width:   CGFloat
+		if inseth <= rect.size.width {
+			originx = rect.origin.x + inset.left
+			width   = rect.size.width - inseth
+		} else {
+			originx = rect.origin.x
+			width   = rect.size.width
+		}
+
+		let insetv:  CGFloat = inset.top + inset.bottom
+		let originy: CGFloat
+		let height:  CGFloat
+		if insetv <= rect.size.height {
+			originy = rect.origin.y + inset.top
+			height  = rect.size.height - insetv
+		} else {
+			originy = rect.origin.y
+			height  = rect.size.height
+		}
+		return KCRect(x: originx, y: originy, width: width, height: height)
+	}
 #endif
 
-public extension KCRect {
-	public func points() -> (CGFloat, CGFloat, CGFloat, CGFloat) { // left, top, right, bottom
-		let left   = self.origin.x
-		let top    = self.origin.y
-		let right  = left + self.size.width
-		let bottom = top  + self.size.height
-		return (left, top, right, bottom)
-	}
-
-	public static func inset(source src: KCRect, in inside: KCRect) -> KCEdgeInsets {
-		let (sl, st, sr, sb) = src.points()
-		let (il, it, ir, ib) = inside.points()
-		let dl = max(il - sl, 0.0)
-		let dt = max(it - st, 0.0)
-		let dr = max(sr - ir, 0.0)
-		let db = max(sb - ib, 0.0)
-		return KCEdgeInsets(top: dt, left: dl, bottom: db, right: dr)
-	}
-}
 

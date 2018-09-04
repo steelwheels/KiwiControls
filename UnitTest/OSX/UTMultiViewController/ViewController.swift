@@ -15,9 +15,9 @@ class ViewController: KCMultiViewController
 		super.viewDidLoad()
 
 		/* Load 1st view */
-		let size       = contentSize()
+		//let size     = KCViewController.rootFrame(viewController: self)
 		let console    = CNFileConsole()
-		let controller = UTSingleViewController(size: size, console: console)
+		let controller = UTSingleViewController(parentViewController: self, console: console)
 		let _          = self.add(name: "label0", viewController: controller)
 	}
 

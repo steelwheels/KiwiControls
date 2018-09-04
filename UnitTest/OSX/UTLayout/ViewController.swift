@@ -9,7 +9,7 @@ import KiwiControls
 import CoconutData
 import Cocoa
 
-class ViewController: NSViewController
+class ViewController: KCViewController
 {
 	@IBOutlet weak var mRootView: KCRootView!
 
@@ -35,31 +35,32 @@ class ViewController: NSViewController
 		dumper.dump(view: mRootView)
 	}
 
-	private func allocateComponents(rootView root: KCRootView, console cons: CNConsole) {
-		if let window = self.view.window {
-			let box    = KCStackView(frame: window.frame)
-			box.distribution = .fill
+	private func allocateComponents(rootView root: KCRootView, console cons: CNConsole)
+	{
+		let frame  = KCViewController.rootFrame(viewController: self)
+		let box    = KCStackView(frame: frame)
+		box.distribution = .fill
 
-			let label = KCTextField()
-			label.text = "Label"
+		let label = KCTextField()
+		label.text = "Label"
 
-			let text  = KCTextEdit()
-			text.text = ""
-			text.isEditable = false
+		let text  = KCTextEdit()
+		text.text = ""
+		text.isEditable = false
 
-			let button = KCButton()
-			button.title = "Press me"
-			box.addArrangedSubViews(subViews: [label, text, button])
-			root.setupContext(childView: box)
-		} else {
-			cons.error(string: "Failed to get window (1)")
-		}
+		let button = KCButton()
+		button.title = "Press me"
+		box.addArrangedSubViews(subViews: [label, text, button])
+
+		let inset = KCViewController.safeAreaInsets(viewController: self)
+		root.setup(viewController: self, childView: box, in: inset)
 	}
 
 	private func compile(rootView root: KCRootView, console cons: CNConsole){
-		if let window = self.view.window {
-			let layouter = KCLayouter(console: cons)
-			layouter.layout(rootView: root, rootSize: root.frame.size)
+		if let _ = self.view.window {
+			let rootframe = KCViewController.rootFrame(viewController: self)
+			let layouter  = KCLayouter(rootFrame: rootframe, console: cons)
+			layouter.layout(rootView: root)
 		} else {
 			cons.error(string: "Failed to get window (2)")
 		}

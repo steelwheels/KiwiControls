@@ -5,11 +5,14 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 import KiwiControls
 import Foundation
 
 public class UTSingleViewController: KCSingleViewController
 {
+	private var mConsole = CNFileConsole()
+
 	public override func loadView() {
 		NSLog("\(#function): load view (init root view)")
 		super.loadView()
@@ -18,39 +21,57 @@ public class UTSingleViewController: KCSingleViewController
 		label0.text   = "Hello, world. This is label0"
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")
-			root.setup(viewController: self, childView: label0)
+			root.setup(viewController: self, childView: label0, in: self.safeAreaInset)
 
 			/* Select input file */
-			let pref = KCPreference.shared.documentTypePreference
-			let utis = pref.UTIs
-			let _    = root.selectInputFile(title: "Select Amber Script", documentTypes: utis)
+			//let pref = KCPreference.shared.documentTypePreference
+			//let utis = pref.UTIs
+			//let _    = root.selectInputFile(title: "Select Amber Script", documentTypes: utis)
 		} else {
 			fatalError("No root view")
 		}
 	}
 
 	public override func viewDidLoad() {
-		super.viewDidLoad()
 		NSLog("\(#function): viewDidLoad")
-
+		super.viewDidLoad()
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		super.viewWillAppear()
 		NSLog("\(#function): viewWillAppear")
-		if let root = super.rootView {
-			NSLog("viewWillAppear: size=\(root.frame.size)")
-		}
+		super.viewWillAppear()
+		doDumpView()
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
 		NSLog("\(#function): viewWillAppear")
-		if let root = super.rootView {
-			NSLog("viewWillAppear: size=\(root.frame.size)")
-		}
+		super.viewWillAppear(animated)
+		doDumpView()
 	}
 	#endif
+
+	#if os(OSX)
+	public override func viewDidAppear() {
+		NSLog("\(#function): viewDidAppear")
+		super.viewDidAppear()
+		doDumpView()
+	}
+	#else
+	public override func viewDidAppear(_ animated: Bool) {
+		NSLog("\(#function): viewDidAppear")
+		super.viewDidAppear(animated)
+		doDumpView()
+	}
+	#endif
+
+	private func doDumpView(){
+		if let view = self.rootView {
+			let dumper = KCViewDumper(console: mConsole)
+			dumper.dump(view: view)
+		} else {
+			fatalError("No root view")
+		}
+	}
 }
 
