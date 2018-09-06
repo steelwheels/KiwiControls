@@ -35,10 +35,10 @@ class ViewController: KCMultiViewController
 			logcont.console.print(string: "Select \(logid) ... NG\n")
 		}
 
-		//let _ = self.select(byIndex: labid)
-		let _ = self.select(byIndex: logid)
+		let _ = self.select(byIndex: labid)
+		//let _ = self.select(byIndex: logid)
 
-		logcont.entireView?.backgroundColor? = KCColor.yellow
+		//logcont.entireView?.backgroundColor? = KCColor.yellow
 		
 		logcont.console.print(string: "View id \(logid) \(labid)\n")
 		logcont.console.print(string: "2nd line\n")

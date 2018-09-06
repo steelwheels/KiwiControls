@@ -66,6 +66,14 @@ public class KCViewDumper: KCViewVisitor
 		let sizedesc   = view.intrinsicContentSize.description
 		section.add(text: CNTextLine(string: "intrinsicSize: " + sizedesc))
 
+		let doauto: String
+		if view.translatesAutoresizingMaskIntoConstraints {
+			doauto = "No"
+		} else {
+			doauto = "Yes"
+		}
+		section.add(text: CNTextLine(string: "do-autolayout: " + doauto))
+
 		mSection = section
 	}
 }

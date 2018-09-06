@@ -21,7 +21,7 @@ public class UTSingleViewController: KCSingleViewController
 		label0.text   = "Hello, world. This is label0"
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")
-			root.setup(viewController: self, childView: label0, in: self.safeAreaInset)
+			root.setup(viewController: self, childView: label0)
 
 			/* Select input file */
 			//let pref = KCPreference.shared.documentTypePreference

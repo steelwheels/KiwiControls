@@ -19,19 +19,9 @@ public class KCLayouter: KCViewVisitor
 		mCurrentFrames  = CNStack<KCRect>()
 		mConsole	= cons
 
-		/* Setup entire frame */
-		let entiresize  = mViewController.entireFrame.size
-		let entireframe = KCRect(origin: KCPoint.zero, size: entiresize)
-		mCurrentFrames.push(entireframe)
-		if let entireview = vcont.entireView, let rootview = vcont.rootView {
-			entireview.frame  = entireframe
-			entireview.bounds = entireframe
-			entireview.setFixedSizeForLayout(size: entireframe.size)
-
-			entireview.allocateSubviewLayout(subView: rootview)
-		} else {
-			fatalError("No entire frame")
-		}
+		/* Push screen size */
+		let winsize = KCLayouter.windowSize(viewController: vcont)
+		mCurrentFrames.push(KCRect(origin: KCPoint.zero, size: winsize))
 	}
 
 	public func layout(rootView view: KCRootView){
@@ -40,17 +30,20 @@ public class KCLayouter: KCViewVisitor
 
 	open override func visit(rootView view: KCRootView){
 		if let frame = mCurrentFrames.peek() {
+			/* Setup root view */
 			view.frame     = frame
-			view.bounds    = KCRect(origin: KCPoint.zero, size: frame.size)
-			/* Fix the root to the window size (OSX) */
+			view.bounds    = frame
 			view.fixedSize = frame.size
-			/* Visit sub view */
+			view.setFixedSizeForLayout(size: frame.size)
+			view.translatesAutoresizingMaskIntoConstraints = true
+
+			/* Setup content view */
 			if let core: KCView = view.getCoreView() {
-				let cinset  = mViewController.safeAreaInset
-				let cbounds = KCEdgeInsetsInsetRect(view.bounds, cinset)
+				let cinset = KCLayouter.safeAreaInset(viewController: mViewController)
 				view.allocateSubviewLayout(subView: core, in: cinset)
 
-				mCurrentFrames.push(cbounds)
+				let cframe = KCEdgeInsetsInsetRect(frame, cinset)
+				mCurrentFrames.push(cframe)
 				core.accept(visitor: self)
 				let _ = mCurrentFrames.pop()
 			}
@@ -140,6 +133,46 @@ public class KCLayouter: KCViewVisitor
 				view.bounds.size.height = height
 			}
 		}
+	}
+
+	private class func windowSize(viewController vcont: KCViewController) -> KCSize {
+		let result: KCSize
+		#if os(OSX)
+			if let window = vcont.view.window {
+				result = window.entireFrame.size
+			} else {
+				NSLog("\(#function) [Error] No window")
+				result = KCSize(width: 100.0, height: 100.0)
+			}
+		#else
+			result = UIScreen.main.bounds.size
+		#endif
+		return result
+	}
+
+	private class func safeAreaInset(viewController vcont: KCViewController) -> KCEdgeInsets {
+		if let singlecont = vcont as? KCSingleViewController {
+			if let parentcont = singlecont.parentController {
+				return KCLayouter.safeAreaInset(viewController: parentcont)
+			}
+		}
+		let space = KCPreference.shared.layoutPreference.spacing
+		#if os(OSX)
+			let result = KCEdgeInsets(top: space, left: space, bottom: space, right: space)
+		#else
+			let topmargin: CGFloat
+			if KCPreference.shared.layoutPreference.isPortrait {
+				topmargin =  16.0 - space
+			} else {
+				topmargin =  0.0
+			}
+			let insets = vcont.view.safeAreaInsets
+			let result = KCEdgeInsets(top:    insets.top    + topmargin + space,
+						  left:   insets.left   + space,
+						  bottom: insets.bottom + space,
+						  right:  insets.right  + space)
+		#endif
+		return result
 	}
 }
 

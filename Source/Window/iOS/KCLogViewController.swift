@@ -18,10 +18,9 @@ open class KCLogViewController: KCSingleViewController
 		super.loadView()
 		
 		/* Add text field */
-		let console = KCConsoleView(frame: safeFrame)
+		let console = KCConsoleView()
 		if let root = super.rootView {
-			let inset = self.safeAreaInset
-			root.setup(viewController: self, childView: console, in: inset)
+			root.setup(viewController: self, childView: console)
 			mConsoleView = console
 			mConsole.outputConsole = console.console
 		} else {

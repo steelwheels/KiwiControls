@@ -16,7 +16,6 @@ open class KCSingleViewController: KCViewController
 {
 	private weak var mParentController:	KCMultiViewController?
 	private var mConsole:			CNConsole
-	private var mEntireView:		KCView? = nil
 	private var mRootView:			KCRootView? = nil
 
 	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole){
@@ -33,45 +32,13 @@ open class KCSingleViewController: KCViewController
 		get { return mParentController }
 	}
 
-	public var entireView: KCView? {
-		get { return mEntireView }
-	}
-
 	public var rootView: KCRootView? {
 		get { return mRootView }
 	}
 
-	public var safeAreaInset: KCEdgeInsets {
-		if let parent = mParentController {
-			return KCViewController.safeAreaInsets(viewController: parent)
-		} else {
-			return KCViewController.safeAreaInsets(viewController: self)
-		}
-	}
-	
-	public var safeFrame: KCRect {
-		if let parent = mParentController {
-			return KCViewController.safeFrame(viewController: parent)
-		} else {
-			return KCViewController.safeFrame(viewController: self)
-		}
-	}
-
-	public var entireFrame: KCRect {
-		if let parent = mParentController {
-			return KCViewController.entireFrame(viewController: parent)
-		} else {
-			return KCViewController.entireFrame(viewController: self)
-		}
-	}
-
 	open override func loadView() {
-		let entire = KCView(frame: KCRect(origin: KCPoint.zero, size: KCSize(width: 100.0, height: 100.0)))
-		self.view = entire
-		mEntireView = entire
-
-		let root = allocateRootView()
-		entire.addSubview(root)
+		let root  = allocateRootView()
+		self.view = root
 		mRootView = root
 	}
 

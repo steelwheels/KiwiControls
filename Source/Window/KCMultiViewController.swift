@@ -31,7 +31,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 
 	open override func viewDidLoad() {
 		super.viewDidLoad()
-		showTabBar(visible: false)
+		showTabBar(visible:false)
 	}
 
 	public func add(name nm: String, viewController vcont: KCSingleViewController) -> Int {
@@ -80,6 +80,21 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		#else
 			self.tabBar.isHidden = !vis
 		#endif
+	}
+
+	private class func windowSize(viewController vcont: KCViewController) -> KCSize {
+		let result: KCSize
+		#if os(OSX)
+		if let window = vcont.view.window {
+			result = window.entireFrame.size
+		} else {
+			NSLog("\(#function) [Error] No window")
+			result = KCSize(width: 100.0, height: 100.0)
+		}
+		#else
+		result = UIScreen.main.bounds.size
+		#endif
+		return result
 	}
 }
 
