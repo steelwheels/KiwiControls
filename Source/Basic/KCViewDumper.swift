@@ -74,6 +74,16 @@ public class KCViewDumper: KCViewVisitor
 		}
 		section.add(text: CNTextLine(string: "do-autolayout: " + doauto))
 
+		#if false
+		let constsect = CNTextSection()
+		constsect.header = "constraints {"
+		constsect.footer = "}"
+		for constraint in view.constraints {
+			constsect.add(text: CNTextLine(string: "\(constraint)"))
+		}
+		section.add(text: constsect)
+		#endif
+
 		mSection = section
 	}
 }

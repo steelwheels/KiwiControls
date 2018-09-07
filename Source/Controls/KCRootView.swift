@@ -43,14 +43,11 @@ open class KCRootView: KCCoreView
 		/* Keep view controller reference */
 		mViewController = vcont
 
-		/* Layout for self */
-		setResizePriority(doGrowHorizontally: false, doGrowVertically: false)
-
 		self.addSubview(child)
 		setCoreView(view: child)
 
 		#if os(iOS)
-			self.backgroundColor = KCColor.white
+			self.backgroundColor = KCPreference.shared.layoutPreference.backgroundColor
 		#endif
 	}
 

@@ -43,13 +43,6 @@ open class KCCoreView: KCView
 		}
 	}
 
-	public override func setResizePriority(doGrowHorizontally horiz: Bool, doGrowVertically vert: Bool){
-		if let core = mCoreView	{
-			core.setResizePriority(doGrowHorizontally: horiz, doGrowVertically: vert)
-		}
-		super.setResizePriority(doGrowHorizontally: horiz, doGrowVertically: vert)
-	}
-
 	public var isVisible: Bool {
 		get {
 			if let core = mCoreView {

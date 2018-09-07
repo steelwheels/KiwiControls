@@ -45,7 +45,6 @@ open class KCTextEdit : KCCoreView
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
-			setResizePriority(doGrowHorizontally: true, doGrowVertically: true)
 		} else {
 			fatalError("Can not load KCTextEditCore")
 		}

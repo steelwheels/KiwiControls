@@ -119,6 +119,8 @@ public class KCLayoutPreference
 {
 	public var spacing: CGFloat		= 8.0
 
+	public var backgroundColor: KCColor	= KCColor.white
+
 	#if os(iOS)
 	public var isPortrait: Bool {
 		get {
