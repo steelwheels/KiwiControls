@@ -57,11 +57,12 @@
 		0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */; };
 		0568FDE421247B370048EA92 /* SampleImage0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0568FDE321247B370048EA92 /* SampleImage0.jpeg */; };
 		0568FDE621247B7A0048EA92 /* SampleImage0.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0568FDE321247B370048EA92 /* SampleImage0.jpeg */; };
+		05774D5F214368950073FCBA /* SingleView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05774D5E214368950073FCBA /* SingleView1Controller.swift */; };
 		057B0CD02116DAB2007885F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CCF2116DAB2007885F3 /* AppDelegate.swift */; };
 		057B0CD22116DAB2007885F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CD12116DAB2007885F3 /* ViewController.swift */; };
 		057B0CD42116DAB4007885F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057B0CD32116DAB4007885F3 /* Assets.xcassets */; };
 		057B0CD72116DAB4007885F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057B0CD52116DAB4007885F3 /* Main.storyboard */; };
-		057B0CE32116F595007885F3 /* UTSingleViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CE12116F518007885F3 /* UTSingleViewDelegate.swift */; };
+		057B0CE32116F595007885F3 /* SingleView0Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CE12116F518007885F3 /* SingleView0Controller.swift */; };
 		057C42CE1E4390D3001BD954 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C42CD1E4390D3001BD954 /* KCSelectionLayer.swift */; };
 		057E16B01E11886100EC4DF6 /* KCButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */; };
 		057E16B21E1189D900EC4DF6 /* KCButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */; };
@@ -287,6 +288,7 @@
 		05674B991F77D1CD006CB20F /* UTWindowController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTWindowController.entitlements; sourceTree = "<group>"; };
 		0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		0568FDE321247B370048EA92 /* SampleImage0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleImage0.jpeg; sourceTree = "<group>"; };
+		05774D5E214368950073FCBA /* SingleView1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
 		057B0CCD2116DAB2007885F3 /* UTMultiViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		057B0CCF2116DAB2007885F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		057B0CD12116DAB2007885F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -294,7 +296,7 @@
 		057B0CD62116DAB4007885F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		057B0CD82116DAB4007885F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057B0CD92116DAB4007885F3 /* UTMultiViewController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiViewController.entitlements; sourceTree = "<group>"; };
-		057B0CE12116F518007885F3 /* UTSingleViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTSingleViewDelegate.swift; sourceTree = "<group>"; };
+		057B0CE12116F518007885F3 /* SingleView0Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleView0Controller.swift; sourceTree = "<group>"; };
 		057C42CD1E4390D3001BD954 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonCore.xib; sourceTree = "<group>"; };
 		057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButtonCore.swift; sourceTree = "<group>"; };
@@ -667,7 +669,8 @@
 			children = (
 				057B0CCF2116DAB2007885F3 /* AppDelegate.swift */,
 				057B0CD12116DAB2007885F3 /* ViewController.swift */,
-				057B0CE12116F518007885F3 /* UTSingleViewDelegate.swift */,
+				057B0CE12116F518007885F3 /* SingleView0Controller.swift */,
+				05774D5E214368950073FCBA /* SingleView1Controller.swift */,
 				057B0CD32116DAB4007885F3 /* Assets.xcassets */,
 				057B0CD52116DAB4007885F3 /* Main.storyboard */,
 				057B0CD82116DAB4007885F3 /* Info.plist */,
@@ -1351,9 +1354,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05774D5F214368950073FCBA /* SingleView1Controller.swift in Sources */,
 				057B0CD22116DAB2007885F3 /* ViewController.swift in Sources */,
 				057B0CD02116DAB2007885F3 /* AppDelegate.swift in Sources */,
-				057B0CE32116F595007885F3 /* UTSingleViewDelegate.swift in Sources */,
+				057B0CE32116F595007885F3 /* SingleView0Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

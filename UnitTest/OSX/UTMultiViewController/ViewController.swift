@@ -13,12 +13,15 @@ class ViewController: KCMultiViewController
 {
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		/* Load 1st view */
-		//let size     = KCViewController.rootFrame(viewController: self)
 		let console    = CNFileConsole()
-		let controller = UTSingleViewController(parentViewController: self, console: console)
-		let _          = self.add(name: "label0", viewController: controller)
+
+		let cont0      = SingleView0Controller(parentViewController: self, console: console)
+		let idx0       = self.add(name: "cont0", viewController: cont0)
+
+		let cont1      = SingleView1Controller(parentViewController: self, console: console)
+		let idx1       = self.add(name: "cont1", viewController: cont1)
+
+		self.select(byIndex: idx1)
 	}
 
 	override var representedObject: Any? {
