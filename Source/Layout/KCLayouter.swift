@@ -34,7 +34,7 @@ public class KCLayouter: KCViewVisitor
 			view.frame     = frame
 			view.bounds    = frame
 			view.fixedSize = frame.size
-			view.setFixedSizeForLayout(size: frame.size)
+			//view.setFixedSizeForLayout(size: frame.size)
 			view.translatesAutoresizingMaskIntoConstraints = true
 
 			/* Setup content view */
@@ -121,12 +121,11 @@ public class KCLayouter: KCViewVisitor
 		if let frame = mCurrentFrames.peek() {
 			view.fixedSize   = frame.size
 
-			let width = frame.size.width
+			let width  = frame.size.width
 			if width > 0.0 {
 				view.frame.size.width   = width
 				view.bounds.size.width  = width
 			}
-
 			let height = frame.size.height
 			if height > 0.0 {
 				view.frame.size.height  = height
