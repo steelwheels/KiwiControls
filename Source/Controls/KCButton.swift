@@ -72,6 +72,10 @@ open class KCButton: KCCoreView
 		#endif
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Low, .Fixed)
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(button: self)
 	}

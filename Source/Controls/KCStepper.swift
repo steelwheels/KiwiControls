@@ -90,6 +90,10 @@ public class KCStepper: KCCoreView
 		set(newval) { coreView.numberOfDecimalPlaces = newval }
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Low, .Fixed)
+	}
+	
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(stepper: self)
 	}

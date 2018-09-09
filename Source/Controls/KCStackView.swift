@@ -115,6 +115,10 @@ open class KCStackView : KCCoreView
 		return coreView.arrangedSubviews()
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.High, .High)
+	}
+	
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(stackView: self)
 	}

@@ -74,6 +74,10 @@ public class KCViewDumper: KCViewVisitor
 		}
 		section.add(text: CNTextLine(string: "do-autolayout: " + doauto))
 
+		let (hexp, vexp) = view.expansionPriorities()
+		section.add(text: CNTextLine(string: "expansion-priority: h:\(hexp.description()) "
+								       + "v:\(vexp.description())"))
+
 		#if false
 		let constsect = CNTextSection()
 		constsect.header = "constraints {"

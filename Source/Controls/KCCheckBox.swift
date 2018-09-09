@@ -65,6 +65,10 @@ open class KCCheckBox: KCCoreView
 		set(v) { coreView.isEnabled = v }
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Low, .Fixed)
+	}
+	
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(checkBox: self)
 	}

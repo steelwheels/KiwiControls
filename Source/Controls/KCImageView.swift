@@ -66,6 +66,10 @@ open class KCImageView: KCCoreView
 		}
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.High, .High)
+	}
+	
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(imageView: self)
 	}

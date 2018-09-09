@@ -22,6 +22,22 @@ open class KCCoreView: KCView
 		mCoreView = v
 	}
 
+	/* for autolayout */
+	public enum ExpansionPriority {
+		case High
+		case Low
+		case Fixed
+		public func description() -> String {
+			let result: String
+			switch self {
+			case .High:	result = "high"
+			case .Low:	result = "low"
+			case .Fixed:	result = "fixed"
+			}
+			return result
+		}
+	}
+
 	public var fixedSize: KCSize? {
 		get {
 			return mFixedSize
@@ -29,6 +45,10 @@ open class KCCoreView: KCView
 		set(newsize){
 			mFixedSize = newsize
 		}
+	}
+
+	open func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Fixed, .Fixed)
 	}
 
 	open override var intrinsicContentSize: KCSize {
