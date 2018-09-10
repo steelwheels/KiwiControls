@@ -57,6 +57,8 @@ public class KCLayouter: KCViewVisitor
 	}
 
 	open override func visit(button view: KCButton){
+		/* Minimize the size */
+		let _ = view.sizeToFit()
 		self.visit(coreView: view)
 	}
 
@@ -121,15 +123,32 @@ public class KCLayouter: KCViewVisitor
 		if let frame = mCurrentFrames.peek() {
 			view.fixedSize   = frame.size
 
+			let (hexp, vexp) = view.expansionPriorities()
+
 			let width  = frame.size.width
 			if width > 0.0 {
 				view.frame.size.width   = width
 				view.bounds.size.width  = width
+				view.setContentHuggingPriority(.defaultLow-1.0, for: .horizontal)
+			} else {
+				switch hexp {
+				case .High:	view.setContentHuggingPriority(.defaultLow,     for: .horizontal)
+				case .Low:	view.setContentHuggingPriority(.defaultHigh,    for: .horizontal)
+				case .Fixed:	view.setContentHuggingPriority(.defaultLow-1.0, for: .horizontal)
+				}
 			}
+
 			let height = frame.size.height
 			if height > 0.0 {
 				view.frame.size.height  = height
 				view.bounds.size.height = height
+				view.setContentHuggingPriority(.defaultLow-1.0, for: .vertical)
+			} else {
+				switch vexp {
+				case .High:	view.setContentHuggingPriority(.defaultLow,     for: .vertical)
+				case .Low:	view.setContentHuggingPriority(.defaultHigh,    for: .vertical)
+				case .Fixed:	view.setContentHuggingPriority(.defaultLow-1.0, for: .vertical)
+				}
 			}
 		}
 	}

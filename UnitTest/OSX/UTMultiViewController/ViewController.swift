@@ -21,7 +21,12 @@ class ViewController: KCMultiViewController
 		let cont1      = SingleView1Controller(parentViewController: self, console: console)
 		let idx1       = self.add(name: "cont1", viewController: cont1)
 
-		self.select(byIndex: idx1)
+		let cont2      = SingleView2Controller(parentViewController: self, console: console)
+		let idx2       = self.add(name: "cont2", viewController: cont2)
+
+		let _ = self.select(byIndex: idx2)
+
+		Swift.print("Select \(idx0) from [\(idx0). \(idx1), \(idx2)]")
 	}
 
 	override var representedObject: Any? {

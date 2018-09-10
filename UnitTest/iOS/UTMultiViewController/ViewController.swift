@@ -26,7 +26,7 @@ class ViewController: KCMultiViewController
 		let logid    = self.add(name: "log0", viewController: logcont)
 
 		/* Load 1st view */
-		let labcont  = UTSingleViewController(parentViewController: self, console: logcont.console)
+		let labcont  = SingleView0Controller(parentViewController: self, console: logcont.console)
 		let labid    = self.add(name: "label0", viewController: labcont)
 
 		if self.select(byIndex: logid) {

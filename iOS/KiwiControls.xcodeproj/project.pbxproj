@@ -12,7 +12,7 @@
 		05021D071DE59F35003D4F20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05021D051DE59F35003D4F20 /* Main.storyboard */; };
 		05021D091DE59F35003D4F20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05021D081DE59F35003D4F20 /* Assets.xcassets */; };
 		05021D0C1DE59F35003D4F20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05021D0A1DE59F35003D4F20 /* LaunchScreen.storyboard */; };
-		0506CD39211E6483009BFF55 /* UTSingleViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506CD37211E6452009BFF55 /* UTSingleViewDelegate.swift */; };
+		0506CD39211E6483009BFF55 /* SingleView0Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506CD37211E6452009BFF55 /* SingleView0Controller.swift */; };
 		0506CD3B211E67BB009BFF55 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
 		0506CD3C211E67D1009BFF55 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
 		0506F2EB1DFB12690028D1E2 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506F2EA1DFB12690028D1E2 /* KCGraphicsView.swift */; };
@@ -184,7 +184,7 @@
 		05021D081DE59F35003D4F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05021D0B1DE59F35003D4F20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05021D0D1DE59F35003D4F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0506CD37211E6452009BFF55 /* UTSingleViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UTSingleViewDelegate.swift; path = ../../OSX/UTMultiViewController/UTSingleViewDelegate.swift; sourceTree = "<group>"; };
+		0506CD37211E6452009BFF55 /* SingleView0Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleView0Controller.swift; path = ../../OSX/UTMultiViewController/SingleView0Controller.swift; sourceTree = "<group>"; };
 		0506F2EA1DFB12690028D1E2 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCGraphicsView.swift; path = GraphicsView/KCGraphicsView.swift; sourceTree = "<group>"; };
 		050955F71E3F84F4007D3641 /* KCImageDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImageDrawerLayer.swift; sourceTree = "<group>"; };
 		050E5E101DEF2C42006DC247 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimer.swift; path = Timer/KCTimer.swift; sourceTree = "<group>"; };
@@ -657,7 +657,7 @@
 			children = (
 				05DB04B62113566B0060CCA8 /* AppDelegate.swift */,
 				05DB04B82113566B0060CCA8 /* ViewController.swift */,
-				0506CD37211E6452009BFF55 /* UTSingleViewDelegate.swift */,
+				0506CD37211E6452009BFF55 /* SingleView0Controller.swift */,
 				055D8088213E075E00100601 /* UTLogViewController.swift */,
 				05DB04BA2113566B0060CCA8 /* Main.storyboard */,
 				05DB04BD2113566C0060CCA8 /* Assets.xcassets */,
@@ -1080,7 +1080,7 @@
 				05DB04B92113566B0060CCA8 /* ViewController.swift in Sources */,
 				05DB04B72113566B0060CCA8 /* AppDelegate.swift in Sources */,
 				055D8089213E075E00100601 /* UTLogViewController.swift in Sources */,
-				0506CD39211E6483009BFF55 /* UTSingleViewDelegate.swift in Sources */,
+				0506CD39211E6483009BFF55 /* SingleView0Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

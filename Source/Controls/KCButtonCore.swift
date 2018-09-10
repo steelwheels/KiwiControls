@@ -28,6 +28,23 @@ public class KCButtonCore: KCView
 		self.bounds = bounds
 	}
 
+	#if os(OSX)
+	open func sizeToFit() {
+		doSizeToFit()
+	}
+	#else
+	open override func sizeToFit() {
+		doSizeToFit()
+	}
+	#endif
+
+	private func doSizeToFit() {
+		mButton.sizeToFit()
+		let newsize = mButton.frame.size
+		self.frame.size  = newsize
+		self.bounds.size = newsize
+	}
+
 	#if os(iOS)
 	@IBAction func buttonPressed(_ sender: UIButton) {
 		if let callback = buttonPressedCallback {
