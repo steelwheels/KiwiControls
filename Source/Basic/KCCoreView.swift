@@ -51,6 +51,12 @@ open class KCCoreView: KCView
 		return (.Fixed, .Fixed)
 	}
 
+	open override func sizeToFit() {
+		let coreview: KCView = getCoreView()
+		coreview.sizeToFit()
+		resize(newSize: coreview.frame.size)
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if let s = mFixedSize {

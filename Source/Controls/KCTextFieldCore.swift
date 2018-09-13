@@ -30,6 +30,11 @@ open class KCTextFieldCore : KCView
 		#endif
 	}
 
+	open override func sizeToFit() {
+		mTextField.sizeToFit()
+		resize(newSize: mTextField.frame.size)
+	}
+
 	public var isEnabled: Bool {
 		get {
 			return mTextField.isEnabled

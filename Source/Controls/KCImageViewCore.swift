@@ -19,7 +19,7 @@ open class KCImageViewCore : KCView
 	#else
 	@IBOutlet weak var mImageView: UIImageView!
 	#endif
-	
+
 	public func setup(frame frm: CGRect){
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		self.frame  = bounds
@@ -30,6 +30,11 @@ open class KCImageViewCore : KCView
 		#else
 			mImageView.contentMode = .scaleAspectFit
 		#endif
+	}
+
+	open override func sizeToFit() {
+		mImageView.sizeToFit()
+		resize(newSize: mImageView.frame.size)
 	}
 
 	public func load(URL file: URL) -> NSError? {
@@ -53,7 +58,7 @@ open class KCImageViewCore : KCView
 		let fname = file.absoluteString
 		return NSError.fileError(message: "Image file \"\(fname)\" is NOT found")
 	}
-	
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			return mImageView.intrinsicContentSize

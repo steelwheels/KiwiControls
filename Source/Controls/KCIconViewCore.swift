@@ -47,6 +47,13 @@ open class KCIconViewCore : KCView
 		return CGRect(origin: layerorigin, size: layersize)
 	}
 
+	open override func sizeToFit() {
+		mLayerView.sizeToFit()
+		mLabelView.sizeToFit()
+		let coresize = KCUnionSize(sizeA: mLayerView.frame.size, sizeB: mLabelView.frame.size, doVertical: true)
+		resize(newSize: coresize)
+	}
+
 	public var imageDrawer: KCImageDrawer? {
 		get {
 			if let icondrawer = mIconDrawer {

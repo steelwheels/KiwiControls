@@ -38,6 +38,12 @@ public class KCStepperCore: KCView
 		#endif
 	}
 
+	open override func sizeToFit() {
+		mTextField.sizeToFit()
+		mStepper.sizeToFit()
+		resize(newSize: KCUnionSize(sizeA: mTextField.frame.size, sizeB: mStepper.frame.size, doVertical: false))
+	}
+
 	private func updateTextField(value: Double){
 		let str = String(format: "%.*lf", numberOfDecimalPlaces, value)
 		CNExecuteInMainThread(doSync: false, execute: { () -> Void in

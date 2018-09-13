@@ -23,26 +23,13 @@ public class KCButtonCore: KCView
 	public var buttonPressedCallback: (() -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
-		let bounds     = CGRect(origin: CGPoint.zero, size: frm.size)
-		self.frame  = bounds
-		self.bounds = bounds
+		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
+		resize(newSize: bounds.size)
 	}
 
-	#if os(OSX)
-	open func sizeToFit() {
-		doSizeToFit()
-	}
-	#else
 	open override func sizeToFit() {
-		doSizeToFit()
-	}
-	#endif
-
-	private func doSizeToFit() {
 		mButton.sizeToFit()
-		let newsize = mButton.frame.size
-		self.frame.size  = newsize
-		self.bounds.size = newsize
+		resize(newSize: mButton.frame.size)
 	}
 
 	#if os(iOS)

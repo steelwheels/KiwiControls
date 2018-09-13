@@ -135,6 +135,17 @@ open class KCView : KCViewBase
 	/*
 	 * layout
 	 */
+	public func resize(newSize size: KCSize){
+		self.frame.size  = size
+		self.bounds.size = size
+	}
+
+	#if os(OSX)
+	open func sizeToFit() {
+
+	}
+	#endif
+
 	public func setFixedSizeForLayout(size sz: KCSize)
 	{
 		self.translatesAutoresizingMaskIntoConstraints = false
@@ -155,7 +166,7 @@ open class KCView : KCViewBase
 		addConstraint(vconst)
 		addConstraint(hconst)
 	}
-	
+
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
 		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self, attribute: .top,    length: 0.0)) ;

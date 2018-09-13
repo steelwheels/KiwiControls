@@ -30,6 +30,18 @@ public class KCCheckBoxCore: KCView
 		self.bounds = bounds
 	}
 
+	open override func sizeToFit() {
+		#if os(OSX)
+			mCheckBox.sizeToFit()
+			let coresize = mCheckBox.frame.size
+		#else
+			mSwitch.sizeToFit()
+			mLabel.sizeToFit()
+			let coresize = KCUnionSize(sizeA: mSwitch.frame.size, sizeB: mLabel.frame.size, doVertical: false)
+		#endif
+		resize(newSize: coresize)
+	}
+
 	#if os(iOS)
 	@IBAction func checkUpdated(_ sender: UISwitch) {
 		if let updatecallback = checkUpdatedCallback {

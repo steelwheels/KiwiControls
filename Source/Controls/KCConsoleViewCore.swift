@@ -26,6 +26,11 @@ open class KCConsoleViewCore : KCView
 		self.frame  = bounds
 	}
 
+	open override func sizeToFit() {
+		mTextView.sizeToFit()
+		resize(newSize: mTextView.frame.size)
+	}
+
 	public func appendText(string str: NSAttributedString){
 		#if os(OSX)
 			if let storage = mTextView.textStorage {

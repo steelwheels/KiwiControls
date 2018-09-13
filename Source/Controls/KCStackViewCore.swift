@@ -26,6 +26,19 @@ open class KCStackViewCore : KCView
 		self.frame  = bounds
 	}
 
+	open override func sizeToFit() {
+		let dovert: Bool
+		switch alignment {
+		case .vertical(_):	dovert = true
+		case .horizontal(_):	dovert = false
+		}
+		var entiresize = KCSize.zero
+		for subview in mStackView.arrangedSubviews {
+			entiresize = KCUnionSize(sizeA: entiresize, sizeB: subview.frame.size, doVertical: dovert)
+		}
+		resize(newSize: entiresize)
+	}
+
 	public var alignment: KCStackView.Alignment {
 		get {
 			let result: KCStackView.Alignment

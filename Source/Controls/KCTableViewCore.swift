@@ -30,6 +30,11 @@ open class KCTableViewCore : KCView
 		return mTableView.intrinsicContentSize
 	}
 
+	open override func sizeToFit() {
+		mTableView.sizeToFit()
+		resize(newSize: mTableView.frame.size)
+	}
+
 	/*
 	#if os(OSX)
 	@IBOutlet weak var mTextField: NSTextField!

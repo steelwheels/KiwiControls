@@ -50,23 +50,6 @@ open class KCButton: KCCoreView
 		}
 	}
 
-	#if os(OSX)
-	open func sizeToFit() {
-		doSizeFit()
-	}
-	#else
-	open override func sizeToFit() {
-		doSizeFit()
-	}
-	#endif
-
-	private func doSizeFit() {
-		coreView.sizeToFit()
-		let newsize      = coreView.frame.size
-		self.frame.size  = newsize
-		self.bounds.size = newsize
-	}
-
 	public var buttonPressedCallback: (() -> Void)? {
 		get { return coreView.buttonPressedCallback }
 		set(callback){ coreView.buttonPressedCallback = callback }
