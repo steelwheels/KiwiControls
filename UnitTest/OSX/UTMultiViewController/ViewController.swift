@@ -15,13 +15,13 @@ class ViewController: KCMultiViewController
 		super.viewDidLoad()
 		let console    = CNFileConsole()
 
-		let cont0      = SingleView0Controller(parentViewController: self, console: console)
+		let cont0      = SingleView0Controller(parentViewController: self, console: console, doVerbose: true)
 		let idx0       = self.add(name: "cont0", viewController: cont0)
 
-		let cont1      = SingleView1Controller(parentViewController: self, console: console)
+		let cont1      = SingleView1Controller(parentViewController: self, console: console, doVerbose: true)
 		let idx1       = self.add(name: "cont1", viewController: cont1)
 
-		let cont2      = SingleView2Controller(parentViewController: self, console: console)
+		let cont2      = SingleView2Controller(parentViewController: self, console: console, doVerbose: true)
 		let idx2       = self.add(name: "cont2", viewController: cont2)
 
 		let _ = self.select(byIndex: idx2)

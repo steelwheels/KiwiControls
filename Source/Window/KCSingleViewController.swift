@@ -16,11 +16,13 @@ open class KCSingleViewController: KCViewController
 {
 	private weak var mParentController:	KCMultiViewController?
 	private var mConsole:			CNConsole
+	private var mDoVerbose:			Bool
 	private var mRootView:			KCRootView? = nil
 
-	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole){
+	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole, doVerbose doverb: Bool){
 		mParentController	= parent
 		mConsole     		= cons
+		mDoVerbose		= doverb
 		super.init(nibName: nil, bundle: nil)
 	}
 
@@ -62,7 +64,7 @@ open class KCSingleViewController: KCViewController
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Adjust size */
-				let layouter = KCLayouter(viewController: self, console: mConsole)
+				let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: mDoVerbose)
 				layouter.layout(rootView: root)
 			} else {
 				NSLog("\(#function): Error no core view")

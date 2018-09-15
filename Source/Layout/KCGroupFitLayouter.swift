@@ -29,14 +29,19 @@ public class KCGroupFitLayouter: KCViewVisitor
 
 	private func fitForGroup(stackView view: KCStackView){
 		if hasSameContents(stackView: view) {
-			#if false
-			let subviews  = view.arrangedSubviews()
-			if let _ = subviews[0] as? KCStackView {
-				fitForSubSubViews(in: view)
-			} else {
-				fitForSubviews(in: view)
+			let contents  = view.arrangedSubviews()
+			let firstitem = contents[0]
+
+			/* Adjust contents in the elements */
+			if let _ = firstitem as? KCStackView {
+				adjustUnionSubviewSizes(stackView: view)
 			}
-			#endif
+
+			/* Adjust subviews */
+			adjustUnionComponentSizes(components: contents)
+
+			/* resize */
+			view.sizeToFit()
 		}
 	}
 
@@ -65,43 +70,70 @@ public class KCGroupFitLayouter: KCViewVisitor
 
 	private func isSameComponent(componentA compa: KCView, componentB compb: KCView) -> Bool {
 		var result: Bool = false
-		if type(of: compa) == type(of: compb) {
-			if let stacka = compa as? KCStackView, let stackb = compb as? KCStackView {
-				let childrena = stacka.arrangedSubviews()
-				let childrenb = stackb.arrangedSubviews()
-				if childrena.count == childrenb.count {
-					var issame = true
-					for i in 0..<childrena.count {
-						if !isSameComponent(componentA: childrena[i], componentB: childrenb[i]) {
-							issame = false
-							break
-						}
+		if let stacka = compa as? KCStackView, let stackb = compb as? KCStackView {
+			let childrena = stacka.arrangedSubviews()
+			let childrenb = stackb.arrangedSubviews()
+			if childrena.count == childrenb.count {
+				var issame = true
+				for i in 0..<childrena.count {
+					if !isSameComponent(componentA: childrena[i], componentB: childrenb[i]) {
+						issame = false
+						break
 					}
-					result = issame
 				}
-			} else {
-				result = true
+				result = issame
 			}
+		} else {
+			result = (type(of: compa) == type(of: compb))
 		}
 		return result
 	}
 
-	#if false
-	private func fitForSubSubViews(in stack: KCStackView) {
+	private func adjustUnionSubviewSizes(stackView view: KCStackView){
+		let contents = view.arrangedSubviews()
 
+		/* Collect all subviews in stack as KCStackView */
+		var subviews: Array<KCStackView> = []
+		for subview in contents {
+			if let stack = subview as? KCStackView {
+				subviews.append(stack)
+			} else {
+				NSLog("\(#function) [Error] Not stack view")
+			}
+		}
+		guard subviews.count > 0 else {
+			NSLog("\(#function) [Error] Empty stack view")
+			return
+		}
+
+		/* Resize items in subviews */
+		let itemnum = subviews[0].arrangedSubviews().count
+		for itemidx in 0..<itemnum {
+			var subsubviews: Array<KCView> = []
+			for subview in subviews {
+				let subsubview = subview.arrangedSubviews()[itemidx]
+				subsubviews.append(subsubview)
+			}
+			adjustUnionComponentSizes(components: subsubviews)
+		}
+
+		/* Resize subviews and it self */
+		for subview in contents {
+			subview.sizeToFit()
+		}
+		view.sizeToFit()
 	}
 
-	private func fitForSubviews(in stack: KCStackView) {
-		/* Get union size for all elements */
-		let elms  = stack.arrangedSubviews()
+	private func adjustUnionComponentSizes(components views: Array<KCView>){
+		/* Get unioned size */
 		var usize = KCSize(width: 0.0, height: 0.0)
-		for elm in elms {
-			usize = KCUnionSize(sizeA: usize, sizeB: elm.frame.size)
+		for subview in views {
+			usize = KCUnionSize(sizeA: usize, sizeB: subview.frame.size)
 		}
-		/* Assign unipn sizes */
-		for elm in elms {
+		/* Resize them */
+		for subview in views {
+			subview.resize(usize)
 		}
 	}
-	#endif
 }
 
