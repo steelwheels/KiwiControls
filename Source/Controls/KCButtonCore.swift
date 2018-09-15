@@ -24,12 +24,12 @@ public class KCButtonCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void {
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		resize(newSize: bounds.size)
+		super.resize(bounds.size)
 	}
 
 	open override func sizeToFit() {
 		mButton.sizeToFit()
-		resize(newSize: mButton.frame.size)
+		super.resize(mButton.frame.size)
 	}
 
 	#if os(iOS)

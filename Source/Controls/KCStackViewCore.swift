@@ -36,7 +36,7 @@ open class KCStackViewCore : KCView
 		for subview in mStackView.arrangedSubviews {
 			entiresize = KCUnionSize(sizeA: entiresize, sizeB: subview.frame.size, doVertical: dovert)
 		}
-		resize(newSize: entiresize)
+		super.resize(entiresize)
 	}
 
 	public var alignment: KCStackView.Alignment {

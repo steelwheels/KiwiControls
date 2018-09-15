@@ -39,7 +39,7 @@ public class KCCheckBoxCore: KCView
 			mLabel.sizeToFit()
 			let coresize = KCUnionSize(sizeA: mSwitch.frame.size, sizeB: mLabel.frame.size, doVertical: false)
 		#endif
-		resize(newSize: coresize)
+		super.resize(coresize)
 	}
 
 	#if os(iOS)

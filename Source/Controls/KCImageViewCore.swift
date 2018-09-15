@@ -34,7 +34,7 @@ open class KCImageViewCore : KCView
 
 	open override func sizeToFit() {
 		mImageView.sizeToFit()
-		resize(newSize: mImageView.frame.size)
+		super.resize(mImageView.frame.size)
 	}
 
 	public func load(URL file: URL) -> NSError? {

@@ -135,7 +135,7 @@ open class KCView : KCViewBase
 	/*
 	 * layout
 	 */
-	public func resize(newSize size: KCSize){
+	open func resize(_ size: KCSize){
 		self.frame.size  = size
 		self.bounds.size = size
 	}

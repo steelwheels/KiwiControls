@@ -41,7 +41,7 @@ public class KCStepperCore: KCView
 	open override func sizeToFit() {
 		mTextField.sizeToFit()
 		mStepper.sizeToFit()
-		resize(newSize: KCUnionSize(sizeA: mTextField.frame.size, sizeB: mStepper.frame.size, doVertical: false))
+		super.resize(KCUnionSize(sizeA: mTextField.frame.size, sizeB: mStepper.frame.size, doVertical: false))
 	}
 
 	private func updateTextField(value: Double){

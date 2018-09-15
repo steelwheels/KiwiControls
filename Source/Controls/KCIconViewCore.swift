@@ -51,7 +51,7 @@ open class KCIconViewCore : KCView
 		mLayerView.sizeToFit()
 		mLabelView.sizeToFit()
 		let coresize = KCUnionSize(sizeA: mLayerView.frame.size, sizeB: mLabelView.frame.size, doVertical: true)
-		resize(newSize: coresize)
+		super.resize(coresize)
 	}
 
 	public var imageDrawer: KCImageDrawer? {

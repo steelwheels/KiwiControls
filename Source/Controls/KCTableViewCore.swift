@@ -32,7 +32,7 @@ open class KCTableViewCore : KCView
 
 	open override func sizeToFit() {
 		mTableView.sizeToFit()
-		resize(newSize: mTableView.frame.size)
+		super.resize(mTableView.frame.size)
 	}
 
 	/*
