@@ -28,23 +28,51 @@ public class KCGroupFitLayouter: KCViewVisitor
 	}
 
 	private func fitForGroup(stackView view: KCStackView){
-		if hasSameContents(stackView: view) {
-			let contents  = view.arrangedSubviews()
-			let firstitem = contents[0]
+		let grouplist = getSameContents(stackView: view)
+		for group in grouplist {
+			let firstitem = group[0]
 
 			/* Adjust contents in the elements */
 			if let _ = firstitem as? KCStackView {
-				adjustUnionSubviewSizes(stackView: view)
+				adjustUnionSubviewSizes(group: group)
 			}
 
 			/* Adjust subviews */
-			adjustUnionComponentSizes(components: contents)
-
-			/* resize */
-			view.sizeToFit()
+			adjustUnionComponentSizes(components: group)
 		}
+		/* resize */
+		view.sizeToFit()
 	}
 
+	private func getSameContents(stackView view: KCStackView) -> Array<Array<KCView>> {
+		var result: Array<Array<KCView>> = []
+
+		let contents = view.arrangedSubviews()
+		if contents.count >= 2 {
+			var srcs: Array<KCView> = contents
+			while srcs.count > 0 {
+				let src     			= srcs[0]
+				let rests   			= srcs.dropFirst()
+				var unusedsrcs: Array<KCView> 	= []
+				var usedsrcs: Array<KCView> 	= [src]
+				for rest in rests {
+					if isSameComponent(componentA: src, componentB: rest) {
+						usedsrcs.append(rest)
+					} else {
+						unusedsrcs.append(rest)
+					}
+				}
+				if usedsrcs.count > 1 {
+					result.append(usedsrcs)
+				}
+				srcs = unusedsrcs
+			}
+		}
+
+		return result
+	}
+
+	/*
 	private func hasSameContents(stackView stack: KCStackView) -> Bool {
 		let count = stack.arrangedSubviews().count
 		var result: Bool
@@ -67,6 +95,7 @@ public class KCGroupFitLayouter: KCViewVisitor
 		}
 		return result
 	}
+*/
 
 	private func isSameComponent(componentA compa: KCView, componentB compb: KCView) -> Bool {
 		var result: Bool = false
@@ -89,9 +118,7 @@ public class KCGroupFitLayouter: KCViewVisitor
 		return result
 	}
 
-	private func adjustUnionSubviewSizes(stackView view: KCStackView){
-		let contents = view.arrangedSubviews()
-
+	private func adjustUnionSubviewSizes(group contents: Array<KCView>){
 		/* Collect all subviews in stack as KCStackView */
 		var subviews: Array<KCStackView> = []
 		for subview in contents {
@@ -121,7 +148,6 @@ public class KCGroupFitLayouter: KCViewVisitor
 		for subview in contents {
 			subview.sizeToFit()
 		}
-		view.sizeToFit()
 	}
 
 	private func adjustUnionComponentSizes(components views: Array<KCView>){
