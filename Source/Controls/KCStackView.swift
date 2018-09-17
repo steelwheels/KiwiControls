@@ -89,6 +89,20 @@ open class KCStackView : KCCoreView
 		}
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		let prih 	: ExpansionPriority
+		let priv	: ExpansionPriority
+		switch alignment {
+		case .horizontal(_):
+			prih = .High
+			priv = .Low
+		case .vertical(_):
+			prih = .Low
+			priv = .High
+		}
+		return (prih, priv)
+	}
+
 	private func setupLayout(){
 		self.distribution = .fill
 	}
@@ -115,10 +129,6 @@ open class KCStackView : KCCoreView
 		return coreView.arrangedSubviews()
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .High)
-	}
-	
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(stackView: self)
 	}

@@ -50,6 +50,10 @@ open class KCButton: KCCoreView
 		}
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Low, .Fixed)
+	}
+
 	public var buttonPressedCallback: (() -> Void)? {
 		get { return coreView.buttonPressedCallback }
 		set(callback){ coreView.buttonPressedCallback = callback }
@@ -70,10 +74,6 @@ open class KCButton: KCCoreView
 		#if os(iOS)
 			self.backgroundColor = cols.background.normal
 		#endif
-	}
-
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Fixed)
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

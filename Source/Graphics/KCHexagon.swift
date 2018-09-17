@@ -26,7 +26,7 @@ public struct KCHexagon
 	public var lineWidth: CGFloat {
 		get { return mLineWidth }
 	}
-	
+
 	public var vertexes: Array<CGPoint> {
 		get { return mVertexes }
 	}
@@ -34,7 +34,7 @@ public struct KCHexagon
 	public var bounds: CGRect {
 		get { return mBounds }
 	}
-	
+
 	public init(center c:CGPoint, lineWidth l: CGFloat, radius r: CGFloat){
 		mCenter		= c
 		mLineWidth	= l

@@ -52,7 +52,7 @@ public class KCViewVisitor
 	open func visit(imageView view: KCImageView){
 		visit(coreView: view)
 	}
-	
+
 	open func visit(coreView view: KCCoreView){
 	}
 }

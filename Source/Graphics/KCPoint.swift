@@ -56,7 +56,7 @@ extension KCPoint
 		}
 		return CGPoint(x:CGFloat(x), y:CGFloat(y))
 	}
-	
+
 	public var description: String {
 		get {
 			let xstr = NSString(format: "%.2lf", Double(self.x))

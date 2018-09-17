@@ -72,31 +72,6 @@ public class KCGroupFitLayouter: KCViewVisitor
 		return result
 	}
 
-	/*
-	private func hasSameContents(stackView stack: KCStackView) -> Bool {
-		let count = stack.arrangedSubviews().count
-		var result: Bool
-		switch count {
-		case 0:
-			result = false
-		case 1:
-			result = true
-		default: // count > 1
-			var issame = true
-			let subviews  = stack.arrangedSubviews()
-			let firstview = subviews[0]
-			for subidx in 1..<count {
-				if !isSameComponent(componentA: firstview, componentB: subviews[subidx]) {
-					issame = false
-					break
-				}
-			}
-			result = issame
-		}
-		return result
-	}
-*/
-
 	private func isSameComponent(componentA compa: KCView, componentB compb: KCView) -> Bool {
 		var result: Bool = false
 		if let stacka = compa as? KCStackView, let stackb = compb as? KCStackView {
@@ -145,7 +120,7 @@ public class KCGroupFitLayouter: KCViewVisitor
 		}
 
 		/* Resize subviews and it self */
-		for subview in contents {
+		for subview in subviews {
 			subview.sizeToFit()
 		}
 	}

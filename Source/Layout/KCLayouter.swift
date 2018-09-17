@@ -22,8 +22,8 @@ public class KCLayouter
 
 	public func layout(rootView view: KCRootView){
 		doDump(message: "Before size fitting", view: view)
-		let sizefitter = KCSizeFitLayouter()
-		view.accept(visitor: sizefitter)
+		let minimizer = KCSizeMinimizer()
+		view.accept(visitor: minimizer)
 
 		doDump(message: "Before group fitting", view: view)
 		let groupfitter = KCGroupFitLayouter()
@@ -32,6 +32,12 @@ public class KCLayouter
 		doDump(message: "Before frame allocation", view: view)
 		let frmallocator = KCFrameAllocLayouter(viewController: mViewController, console: mConsole)
 		view.accept(visitor: frmallocator)
+
+		doDump(message: "Before updating intrinsic contents size", view: view)
+		let sizeupdater = KCIntrisicSizeUpdater(viewController: mViewController)
+		view.accept(visitor: sizeupdater)
+
+		doDump(message: "Result of layout passes", view: view)
 	}
 
 	private func doDump(message msg: String, view v: KCView){

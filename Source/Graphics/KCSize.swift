@@ -9,7 +9,7 @@ import CoreGraphics
 import Foundation
 
 extension KCSize
-{	
+{
 	public var description: String {
 		get {
 			let wstr = NSString(format: "%.2lf", self.width)

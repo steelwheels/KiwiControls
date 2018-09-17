@@ -27,7 +27,7 @@ extension NSWindow
 			root.allocateSubviewLayout(subView: v)
 		}
 	}
-	
+
 	public var titleBarHeight: CGFloat {
 		get {
 			let contentHeight = contentRect(forFrameRect: frame).height

@@ -50,6 +50,10 @@ open class KCTextEdit : KCCoreView
 		}
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.High, .High)
+	}
+
 	public var isEnabled: Bool {
 		get { return coreView.isEnabled }
 		set(v) { coreView.isEnabled = v }
@@ -86,10 +90,6 @@ open class KCTextEdit : KCCoreView
 		let rval   = round(value: val, atPoint: 2)
 		let valstr = String(format: "%4.2lf", rval)
 		text = valstr
-	}
-
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .High)
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

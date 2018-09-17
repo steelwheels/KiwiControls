@@ -1,6 +1,6 @@
 /**
- * @file	KCSizeFitLayouter.swift
- * @brief	Define KCSizeFitLayouter class
+ * @file	KCSizeMinimizer.swift
+ * @brief	Define KCSizeMinimizer class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */
@@ -8,7 +8,7 @@
 import CoconutData
 import Foundation
 
-public class KCSizeFitLayouter: KCViewVisitor
+public class KCSizeMinimizer: KCViewVisitor
 {
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCCoreView = view.getCoreView()

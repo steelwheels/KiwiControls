@@ -38,7 +38,7 @@ public struct KCEclipse
 	public var bounds: CGRect {
 		get { return mBounds }
 	}
-	
+
 	static private func calcBounds(center c: CGPoint, outerRadius or: CGFloat) -> CGRect {
 		let outdiameter = or * 2
 		let origin      = CGPoint(x: c.x - or, y: c.y - or)

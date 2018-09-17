@@ -22,11 +22,11 @@ class ViewController: KCMultiViewController
 		let console	= CNFileConsole()
 
 		/* Load log view */
-		let logcont  = UTLogViewController(parentViewController: self, console: console)
+		let logcont  = UTLogViewController(parentViewController: self, console: console, doVerbose: true)
 		let logid    = self.add(name: "log0", viewController: logcont)
 
 		/* Load 1st view */
-		let labcont  = SingleView0Controller(parentViewController: self, console: logcont.console)
+		let labcont  = SingleView0Controller(parentViewController: self, console: logcont.console, doVerbose: true)
 		let labid    = self.add(name: "label0", viewController: labcont)
 
 		if self.select(byIndex: logid) {

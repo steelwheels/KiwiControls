@@ -76,7 +76,7 @@ extension CGContext
 	}
 
 	public typealias KGDrawEdgeCallback = (_ context: CGContext, _ from: CGPoint, _ to: CGPoint) -> Void
-	
+
 	public func draw(vertices vs: KCVertices, edgeDrawer drawer: KGDrawEdgeCallback, edges: Array<(Int, Int)>){
 		let vertices = vs.vertices
 		let count = vertices.count

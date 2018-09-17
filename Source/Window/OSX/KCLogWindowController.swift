@@ -34,7 +34,7 @@ public class KCLogWindowController: NSWindowController
 	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	public func print(string str: String){
 		mConsole.print(string: str)
 	}

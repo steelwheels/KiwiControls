@@ -16,7 +16,7 @@ open class KCLogViewController: KCSingleViewController
 	open override func loadView() {
 		/* Setup root view */
 		super.loadView()
-		
+
 		/* Add text field */
 		let console = KCConsoleView()
 		if let root = super.rootView {

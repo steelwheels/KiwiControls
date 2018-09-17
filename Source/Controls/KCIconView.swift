@@ -49,6 +49,10 @@ open class KCIconView: KCCoreView
 		}
 	}
 
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Low, .Fixed)
+	}
+
 	public var imageDrawer: KCImageDrawer? {
 		get { return coreView.imageDrawer }
 		set(drawer){ coreView.imageDrawer = drawer }
