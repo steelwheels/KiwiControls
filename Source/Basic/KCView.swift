@@ -44,9 +44,15 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 
 open class KCView : KCViewBase
 {
-	#if os(iOS)
-	public static let noIntrinsicMetric = UIViewNoIntrinsicMetric
-	#endif
+	public static var noIntrinsicValue: CGFloat {
+		get {
+			#if os(OSX)
+				return noIntrinsicMetric
+			#else
+				return UIViewNoIntrinsicMetric
+			#endif
+		}
+	}
 
 	/*
 	 * Event control

@@ -70,7 +70,7 @@ open class KCCoreView: KCView
 			} else if let v = mCoreView {
 				return v.intrinsicContentSize
 			} else {
-				return KCSize(width: KCView.noIntrinsicMetric, height: KCView.noIntrinsicMetric)
+				return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
 			}
 		}
 	}

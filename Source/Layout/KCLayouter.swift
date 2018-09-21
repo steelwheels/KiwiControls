@@ -21,25 +21,73 @@ public class KCLayouter
 	}
 
 	public func layout(rootView view: KCRootView){
-		doDump(message: "Before size fitting", view: view)
+		let windowsize = KCLayouter.windowSize(viewController: mViewController)
+		let insets     = KCLayouter.safeAreaInset(viewController: mViewController)
+
+		doDump(message: "Before size minimizer", view: view)
 		let minimizer = KCSizeMinimizer()
 		view.accept(visitor: minimizer)
 
-		doDump(message: "Before group fitting", view: view)
-		let groupfitter = KCGroupFitLayouter()
+		doDump(message: "Before group size allocator", view: view)
+		let groupfitter = KCGroupSizeAllocator()
 		view.accept(visitor: groupfitter)
 
 		doDump(message: "Before frame allocation", view: view)
-		let frmallocator = KCFrameAllocLayouter(viewController: mViewController, console: mConsole)
+		let frmallocator = KCFrameSizeAllocator(windowSize: windowsize, windowInset: insets)
 		view.accept(visitor: frmallocator)
 
 		doDump(message: "Before updating intrinsic contents size", view: view)
-		let sizeupdater = KCIntrisicSizeUpdater(viewController: mViewController)
+		let sizeupdater = KCIntrisicSizeAllocator()
 		view.accept(visitor: sizeupdater)
 
 		doDump(message: "Result of layout passes", view: view)
 	}
 
+	private class func windowSize(viewController vcont: KCSingleViewController) -> KCSize {
+		if let parent = vcont.parentController {
+			let result: KCSize
+			#if os(OSX)
+			if let window = parent.view.window {
+				result = window.entireFrame.size
+			} else {
+				NSLog("\(#function) [Error] No window")
+				result = KCSize(width: 100.0, height: 100.0)
+			}
+			#else
+			result = UIScreen.main.bounds.size
+			#endif
+			return result
+		} else {
+			NSLog("\(#function) [Error] No parent controller")
+			return KCSize(width: 0.0, height: 0.0)
+		}
+	}
+
+	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {
+		if let parent = vcont.parentController {
+			let space = KCPreference.shared.layoutPreference.spacing
+			#if os(OSX)
+			let result = KCEdgeInsets(top: space, left: space, bottom: space, right: space)
+			#else
+			let topmargin: CGFloat
+			if KCPreference.shared.layoutPreference.isPortrait {
+				topmargin =  16.0 - space
+			} else {
+				topmargin =  0.0
+			}
+			let insets = parent.view.safeAreaInsets
+			let result = KCEdgeInsets(top:    insets.top    + topmargin + space,
+						  left:   insets.left   + space,
+						  bottom: insets.bottom + space,
+						  right:  insets.right  + space)
+			#endif
+			return result
+		} else {
+			NSLog("\(#function) [Error] No parent controller")
+			return KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+		}
+	}
+	
 	private func doDump(message msg: String, view v: KCView){
 		if mDoVerbose {
 			mConsole.print(string: "//////// \(msg)\n")

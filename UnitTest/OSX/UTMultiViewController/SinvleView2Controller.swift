@@ -46,13 +46,13 @@ public class SingleView2Controller: KCSingleViewController
 	public override func viewWillAppear() {
 		NSLog("\(#function): viewWillAppear")
 		super.viewWillAppear()
-		doDumpView()
+		doDumpView(message: "Adter viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
 		NSLog("\(#function): viewWillAppear")
 		super.viewWillAppear(animated)
-		doDumpView()
+		doDumpView(message: "Adter viewWillAppear")
 	}
 	#endif
 
@@ -60,18 +60,18 @@ public class SingleView2Controller: KCSingleViewController
 	public override func viewDidAppear() {
 		NSLog("\(#function): viewDidAppear")
 		super.viewDidAppear()
-		doDumpView()
+		doDumpView(message: "Adter viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		NSLog("\(#function): viewDidAppear")
 		super.viewDidAppear(animated)
-		doDumpView()
+		doDumpView(message: "Adter viewDidAppear")
 	}
 	#endif
 
-	private func doDumpView(){
+	private func doDumpView(message msg: String){
 		if let view = self.rootView {
+			mConsole.print(string: "///// \(msg)\n")
 			let dumper = KCViewDumper(console: mConsole)
 			dumper.dump(view: view)
 		} else {

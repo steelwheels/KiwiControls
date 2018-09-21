@@ -1,13 +1,13 @@
 /**
- * @file	KCGroupFitLayouter.swift
- * @brief	Define KCGroupFitLayouter class
+ * @file	KCGroupSizeAllocator.swift
+ * @brief	Define KCGroupSizeAllocator class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
 import Foundation
 
-public class KCGroupFitLayouter: KCViewVisitor
+public class KCGroupSizeAllocator: KCViewVisitor
 {
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCCoreView = view.getCoreView()

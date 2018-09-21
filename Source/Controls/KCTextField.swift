@@ -51,7 +51,7 @@ open class KCTextField : KCCoreView
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Fixed)
+		return (.High, .Fixed)
 	}
 
 	public var isEnabled: Bool {

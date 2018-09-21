@@ -39,34 +39,31 @@ public class SingleView0Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		NSLog("\(#function): viewWillAppear")
 		super.viewWillAppear()
-		doDumpView()
+		doDumpView(message: "Last viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		NSLog("\(#function): viewWillAppear")
 		super.viewWillAppear(animated)
-		doDumpView()
+		doDumpView(message: "Last viewWillAppear")
 	}
 	#endif
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		NSLog("\(#function): viewDidAppear")
 		super.viewDidAppear()
-		doDumpView()
+		doDumpView(message: "Last viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		NSLog("\(#function): viewDidAppear")
 		super.viewDidAppear(animated)
-		doDumpView()
+		doDumpView(message: "Last viewDidAppear")
 	}
 	#endif
 
-	private func doDumpView(){
+	private func doDumpView(message msg: String){
 		if let view = self.rootView {
+			mConsole.print(string: "///// \(msg)\n")
 			let dumper = KCViewDumper(console: mConsole)
 			dumper.dump(view: view)
 		} else {
