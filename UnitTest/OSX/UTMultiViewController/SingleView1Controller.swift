@@ -29,7 +29,7 @@ public class SingleView1Controller: KCSingleViewController
 
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")
-			root.setup(viewController: self, childView: box0)
+			root.setup(childView: box0)
 		} else {
 			fatalError("No root view")
 		}

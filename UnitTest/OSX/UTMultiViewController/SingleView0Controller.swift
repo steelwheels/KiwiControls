@@ -21,12 +21,7 @@ public class SingleView0Controller: KCSingleViewController
 		label0.text   = "Hello, world. This is label0"
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")
-			root.setup(viewController: self, childView: label0)
-
-			/* Select input file */
-			//let pref = KCPreference.shared.documentTypePreference
-			//let utis = pref.UTIs
-			//let _    = root.selectInputFile(title: "Select Amber Script", documentTypes: utis)
+			root.setup(childView: label0)
 		} else {
 			fatalError("No root view")
 		}

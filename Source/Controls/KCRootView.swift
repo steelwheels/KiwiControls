@@ -14,8 +14,6 @@ import UIKit
 
 open class KCRootView: KCCoreView
 {
-	private weak var mViewController: KCViewController? = nil
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -39,20 +37,12 @@ open class KCRootView: KCCoreView
 		super.init(coder: coder) ;
 	}
 
-	public func setup(viewController vcont: KCViewController, childView child: KCView){
-		/* Keep view controller reference */
-		mViewController = vcont
-
+	public func setup(childView child: KCView){
 		self.addSubview(child)
 		setCoreView(view: child)
-
 		#if os(iOS)
 			self.backgroundColor = KCPreference.shared.layoutPreference.backgroundColor
 		#endif
-	}
-
-	public var viewController: KCViewController? {
-		get { return mViewController }
 	}
 
 	public override var fixedSize: KCSize? {
@@ -65,62 +55,6 @@ open class KCRootView: KCCoreView
 			}
 			super.fixedSize = newval
 		}
-	}
-
-	public func selectInputFile(title ttext: String, documentTypes allowedUTIs: [String]) -> URL?
-	{
-		#if os(OSX)
-			/* get preference and collect extensions for given UTIs */
-			let pref = KCPreference.shared.documentTypePreference
-			let exts = pref.fileExtensions(forUTIs: allowedUTIs)
-			if exts.count > 0 {
-				if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
-					return url
-				}
-			}
-		#else
-			if let vcont = mViewController {
-				// Do any additional setup after loading the view, typically from a nib.
-				let picker = KCDocumentPickerViewController(documentTypes: allowedUTIs, in: .import)
-				vcont.present(picker, animated: true, completion: {
-					() -> Void in
-				})
-				return picker.waitResult()
-			}
-		#endif
-		return nil
-	}
-
-	public func selectInputFile(title ttext: String, fileExtensions exts: [String]) -> URL?
-	{
-		#if os(OSX)
-		if exts.count > 0 {
-			if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
-				return url
-			}
-		}
-		#else
-		if let vcont = mViewController {
-			let pref = KCPreference.shared.documentTypePreference
-			let utis = pref.UTIs(forExtensions: exts)
-			let picker = KCDocumentPickerViewController(documentTypes: utis, in: .import)
-			vcont.present(picker, animated: true, completion: {
-				() -> Void in
-			})
-			return picker.waitResult()
-		}
-		#endif
-		return nil
-	}
-
-	public func selectInputDirectory(title ttext: String) -> URL?
-	{
-		#if os(OSX)
-		if let url = URL.openPanel(title: ttext, selection: .SelectDirectory, fileTypes: []) {
-			return url
-		}
-		#endif
-		return nil
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

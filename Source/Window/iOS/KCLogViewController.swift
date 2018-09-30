@@ -20,7 +20,7 @@ open class KCLogViewController: KCSingleViewController
 		/* Add text field */
 		let console = KCConsoleView()
 		if let root = super.rootView {
-			root.setup(viewController: self, childView: console)
+			root.setup(childView: console)
 			mConsoleView = console
 			mConsole.outputConsole = console.console
 		} else {
