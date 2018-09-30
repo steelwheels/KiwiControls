@@ -59,7 +59,7 @@ public class KCButtonBody: NSButton
 		if let cols = mColors  {
 			let colorAttributeTitle = NSMutableAttributedString(attributedString: self.attributedTitle)
 			let range = NSMakeRange(0, colorAttributeTitle.length)
-			colorAttributeTitle.addAttribute(NSAttributedStringKey.foregroundColor, value: cols.title, range: range)
+			colorAttributeTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: cols.title, range: range)
 			self.attributedTitle = colorAttributeTitle
 		}
 	}

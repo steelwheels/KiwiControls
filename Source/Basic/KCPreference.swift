@@ -144,7 +144,7 @@ public class KCTerminalPreference
 		backgroundColor		= KCColor.black
 	}
 
-	public var cursorAttributes: Dictionary<NSAttributedStringKey, Any> {
+	public var cursorAttributes: Dictionary<NSAttributedString.Key, Any> {
 		get {
 			return [
 				.font		: font,
@@ -154,7 +154,7 @@ public class KCTerminalPreference
 		}
 	}
 
-	public var standardAttribute: Dictionary<NSAttributedStringKey, Any> {
+	public var standardAttribute: Dictionary<NSAttributedString.Key, Any> {
 		get {
 			return [
 				.font		: font,
@@ -164,7 +164,7 @@ public class KCTerminalPreference
 		}
 	}
 
-	public var errorAttribute: Dictionary<NSAttributedStringKey, Any> {
+	public var errorAttribute: Dictionary<NSAttributedString.Key, Any> {
 		get {
 			return [
 				.font		: font,

@@ -18,8 +18,8 @@
 	public typealias KCColor		= UIColor
 	public typealias KCFont			= UIFont
 	public typealias KCImage		= UIImage
-	public typealias KCLayoutAttribute	= NSLayoutAttribute
-	public typealias KCLayoutRelation	= NSLayoutRelation
+	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
+	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLineBreakMode	= NSLineBreakMode
 #else
 	public typealias KCPoint		= NSPoint
@@ -30,7 +30,7 @@
 	public typealias KCImage		= NSImage
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
-	public typealias KCLineBreakMode	= NSParagraphStyle.LineBreakMode
+	public typealias KCLineBreakMode	= NSLineBreakMode
 #endif
 
 public enum KCHorizontalAlignment {
@@ -73,7 +73,7 @@ public enum KCVerticalAlignment {
 	public typealias KCEdgeInsets		= UIEdgeInsets
 
 	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> KCRect {
-		return UIEdgeInsetsInsetRect(rect, inset)
+		return rect.inset(by: inset)
 	}
 #else
 	public struct KCEdgeInsets {

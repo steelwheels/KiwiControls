@@ -40,10 +40,10 @@ public class KCFontTable
 		#else
 			var result: KCFont
 			switch style {
-			case .Title:	result = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
-			case .Headline:	result = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
-			case .Caption:	result = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
-			case .Body:	result = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+			case .Title:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title1)
+			case .Headline:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
+			case .Caption:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
+			case .Body:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
 			}
 			return result
 		#endif

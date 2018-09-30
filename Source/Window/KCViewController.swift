@@ -32,7 +32,7 @@ public extension KCViewController
 				}
 			}
 		#else
-			if let nib = NSNib(nibNamed: NSNib.Name(rawValue: nibname), bundle: bundle) {
+			if let nib = NSNib(nibNamed: nibname, bundle: bundle) {
 				var controllersp : NSArray? = NSArray()
 				if(nib.instantiate(withOwner: nil, topLevelObjects: &controllersp)){
 					if let controllers = controllersp {

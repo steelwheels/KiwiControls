@@ -49,7 +49,7 @@ open class KCView : KCViewBase
 			#if os(OSX)
 				return noIntrinsicMetric
 			#else
-				return UIViewNoIntrinsicMetric
+				return UIView.noIntrinsicMetric
 			#endif
 		}
 	}
@@ -209,7 +209,7 @@ open class KCView : KCViewBase
 				}
 			}
 		#else
-			if let nib = NSNib(nibNamed: NSNib.Name(rawValue: nn), bundle: bundle) {
+			if let nib = NSNib(nibNamed: nn, bundle: bundle) {
 				var viewsp : NSArray? = NSArray()
 				if(nib.instantiate(withOwner: nil, topLevelObjects: &viewsp)){
 					if let views = viewsp {

@@ -83,7 +83,7 @@ public class KCTimer
 
 		let interval = abs(mStepValue)
 		let timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(KCTimer.update(_:)), userInfo: nil, repeats: true)
-		RunLoop.current.add(timer, forMode: .commonModes)
+		RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
 	}
 
 	@objc func update(_ timer: Timer){

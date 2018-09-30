@@ -129,7 +129,7 @@ open class KCStackViewCore : KCView
 			#if os(OSX)
 				let newdist: NSStackView.Distribution
 			#else
-				let newdist: UIStackViewDistribution
+				let newdist: UIStackView.Distribution
 			#endif
 			switch newval {
 			case .fill: 		newdist = .fill

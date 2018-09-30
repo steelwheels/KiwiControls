@@ -113,6 +113,16 @@ open class KCRootView: KCCoreView
 		return nil
 	}
 
+	public func selectInputDirectory(title ttext: String) -> URL?
+	{
+		#if os(OSX)
+		if let url = URL.openPanel(title: ttext, selection: .SelectDirectory, fileTypes: []) {
+			return url
+		}
+		#endif
+		return nil
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(rootView: self)
 	}
