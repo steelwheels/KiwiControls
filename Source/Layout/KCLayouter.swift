@@ -13,11 +13,13 @@ public class KCLayouter
 	private var mViewController:	KCSingleViewController
 	private var mConsole:		CNConsole
 	private var mDoVerbose:		Bool
+	private var mDebug:		Bool
 
 	public init(viewController vcont: KCSingleViewController, console cons: CNConsole, doVerbose doverb: Bool){
 		mViewController = vcont
 		mConsole	= cons
 		mDoVerbose	= doverb
+		mDebug		= false
 	}
 
 	public func layout(rootView view: KCRootView){
@@ -89,7 +91,7 @@ public class KCLayouter
 	}
 	
 	private func doDump(message msg: String, view v: KCView){
-		if mDoVerbose {
+		if mDebug {
 			mConsole.print(string: "//////// \(msg)\n")
 			let dumper = KCViewDumper(console: mConsole)
 			dumper.dump(view: v)
