@@ -21,13 +21,19 @@ public class KCConsole: CNConsole
 	}
 
 	public override func print(string str: String){
-		let astr = NSAttributedString(string: str)
-		mOwnerView.appendText(string: astr)
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			let astr = NSAttributedString(string: str)
+			self.mOwnerView.appendText(string: astr)
+		})
 	}
 
 	public override  func error(string str: String){
-		let astr = NSAttributedString(string: str)
-		mOwnerView.appendText(string: astr)
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			let astr = NSAttributedString(string: str)
+			self.mOwnerView.appendText(string: astr)
+		})
 	}
 
 	public override  func scan() -> String? {
