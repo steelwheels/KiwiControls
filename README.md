@@ -8,6 +8,10 @@ used by macOS and iOS. The purpose of this framework is definition and implement
 This software is produced by [Steel Wheels Project](http://steelwheels.github.io) and distributed under
 [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
+## Target system
+* OS version:   macOS 10.14 or iOS 12
+* Xcode:        Xcode10
+
 ## Related documents
 ### Specification
 * [RGB Color Chart](http://lowlife.jp/yasusii/static/color_chart.html)
