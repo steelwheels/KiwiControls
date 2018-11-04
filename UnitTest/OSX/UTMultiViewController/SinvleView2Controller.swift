@@ -27,7 +27,7 @@ public class SingleView2Controller: KCSingleViewController
 
 		let box0 = KCStackView(frame: dummyrect)
 		box0.addArrangedSubViews(subViews: [label0, button0])
-		box0.alignment = .horizontal(align: .middle)
+		box0.alignment = .Center
 
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")

@@ -59,12 +59,7 @@ public class KCFrameSizeAllocator: KCViewVisitor
 	}
 
 	open override func visit(stackView view: KCStackView){
-		switch view.alignment {
-		case .horizontal(_):
-			allocateFrameSize(stackView: view, doVertical: false)
-		case .vertical(_):
-			allocateFrameSize(stackView: view, doVertical: true)
-		}
+		allocateFrameSize(stackView: view, doVertical: view.alignment.isVertical)
 	}
 
 	open override func visit(coreView view: KCCoreView) {

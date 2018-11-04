@@ -27,11 +27,7 @@ open class KCStackViewCore : KCView
 	}
 
 	open override func sizeToFit() {
-		let dovert: Bool
-		switch alignment {
-		case .vertical(_):	dovert = true
-		case .horizontal(_):	dovert = false
-		}
+		let dovert     = alignment.isVertical
 		var entiresize = KCSize.zero
 		for subview in mStackView.arrangedSubviews {
 			entiresize = KCUnionSize(sizeA: entiresize, sizeB: subview.frame.size, doVertical: dovert)
@@ -39,78 +35,53 @@ open class KCStackViewCore : KCView
 		super.resize(entiresize)
 	}
 
-	public var alignment: KCStackView.Alignment {
+	public var alignment: CNAlignment {
 		get {
-			let result: KCStackView.Alignment
+			let alignment = self.mStackView.alignment
 
-			#if os(OSX)
-				let orientation = self.mStackView.orientation
-			#else
-				let orientation = self.mStackView.axis
-			#endif
-			switch orientation {
-			case .horizontal:
-				switch self.mStackView.alignment {
-				case .top:	result = .horizontal(align: .top)
-				#if os(OSX)
-				case .centerY:	result = .horizontal(align: .middle)
-				#else
-				case .center:	result = .horizontal(align: .middle)
-				#endif
-				case .bottom:	result = .horizontal(align: .bottom)
-				default:
-					NSLog("Unknown align: \(mStackView.alignment)")
-					result = .horizontal(align: .middle)
-				}
-			case .vertical:
-				switch self.mStackView.alignment {
-				case .leading:	result = .vertical(align: .leading)
-				#if os(OSX)
-				case .centerX:	result = .vertical(align: .center)
-				#else
-				case .center:	result = .vertical(align: .center)
-				#endif
-				case .trailing:	result = .vertical(align: .trailing)
-				default:
-					NSLog("Unknown align: \(mStackView.alignment)")
-					result = .vertical(align: .center)
-				}
+			let result: CNAlignment
+			switch alignment {
+			case .leading:		result = .Left
+			case .centerX:		result = .Center
+			case .trailing:		result = .Right
+			case .top:		result = .Top
+			case .centerY:		result = .Middle
+			case .bottom:		result = .Bottom
+			default:		result = .Left
 			}
 			return result
+
 		}
 		set(newval){
+			let orientation: NSUserInterfaceLayoutOrientation
+			let alignment:   NSLayoutConstraint.Attribute
 			switch newval {
-			case .horizontal(let align):
-				#if os(OSX)
-					self.mStackView.orientation = .horizontal
-				#else
-					self.mStackView.axis = .horizontal
-				#endif
-				switch align {
-				case .top:	self.mStackView.alignment = .top
-				#if os(OSX)
-				case .middle:	self.mStackView.alignment = .centerY
-				#else
-				case .middle:	self.mStackView.alignment = .center
-				#endif
-				case .bottom:	self.mStackView.alignment = .bottom
-				}
-			case .vertical(let align):
-				#if os(OSX)
-					self.mStackView.orientation = .vertical
-				#else
-					self.mStackView.axis = .vertical
-				#endif
-				switch align {
-				case .leading:	self.mStackView.alignment = .leading
-				#if os(OSX)
-				case .center:	self.mStackView.alignment = .centerX
-				#else
-				case .center:	self.mStackView.alignment = .center
-				#endif
-				case .trailing:	self.mStackView.alignment = .trailing
-				}
+			case .Left:
+				orientation = .vertical
+				alignment   = .leading
+			case .Center:
+				orientation = .vertical
+				alignment   = .centerX
+			case .Right:
+				orientation = .vertical
+				alignment   = .trailing
+			case .Top:
+				orientation = .horizontal
+				alignment   = .top
+			case .Middle:
+				orientation = .horizontal
+				alignment   = .centerY
+			case .Bottom:
+				orientation = .horizontal
+				alignment   = .bottom
 			}
+			#if os(OSX)
+				self.mStackView.orientation = orientation
+				self.mStackView.alignment   = alignment
+			#else
+				self.mStackView.axis        = orientation
+				self.mStackView.alignment   = alignment
+			#endif
 		}
 	}
 
@@ -171,11 +142,7 @@ open class KCStackViewCore : KCView
 
 	open override var intrinsicContentSize: KCSize {
 		get {
-			let dovert: Bool
-			switch alignment {
-			case .vertical(_):	dovert = true
-			case .horizontal(_):	dovert = false
-			}
+			let dovert = alignment.isVertical
 			var result = KCSize(width: 0.0, height: 0.0)
 			let subviews = arrangedSubviews()
 			for subview in subviews {

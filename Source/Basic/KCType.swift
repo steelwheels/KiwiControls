@@ -44,42 +44,6 @@ public extension NSResponder {
 
 #endif
 
-public enum KCHorizontalAlignment {
-	case top
-	case middle
-	case bottom
-
-	public var description: String {
-		get {
-			let result: String
-			switch self {
-			case .top:	result = "top"
-			case .middle:	result = "middle"
-			case .bottom:	result = "bottom"
-			}
-			return result
-		}
-	}
-}
-
-public enum KCVerticalAlignment {
-	case leading
-	case center
-	case trailing
-
-	public var description: String {
-		get {
-			let result: String
-			switch self {
-			case .leading:	result = "leading"
-			case .center:	result = "center"
-			case .trailing:	result = "right"
-			}
-			return result
-		}
-	}
-}
-
 #if os(iOS)
 	public typealias KCEdgeInsets		= UIEdgeInsets
 
