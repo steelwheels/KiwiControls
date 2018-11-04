@@ -38,30 +38,62 @@ open class KCStackViewCore : KCView
 	public var alignment: CNAlignment {
 		get {
 			let alignment = self.mStackView.alignment
+			#if os(OSX)
+				let axis      = self.mStackView.orientation
+			#else
+				let axis      = self.mStackView.axis
+			#endif
 
 			let result: CNAlignment
-			switch alignment {
-			case .leading:		result = .Left
-			case .centerX:		result = .Center
-			case .trailing:		result = .Right
-			case .top:		result = .Top
-			case .centerY:		result = .Middle
-			case .bottom:		result = .Bottom
-			default:		result = .Left
+			switch axis {
+			case .horizontal:
+				switch alignment {
+				case .leading:	result = .Left
+				#if os(OSX)
+					case .centerX, .centerY: result = .Center
+				#else
+					case .center:		 result = .Center
+				#endif
+				case .trailing:	result = .Right
+				default:	result = .Left
+				}
+			case .vertical:
+				switch alignment {
+				case .leading:	result = .Top
+				#if os(OSX)
+					case .centerX, .centerY: result = .Middle
+				#else
+					case .center:		 result = .Middle
+				#endif
+				case .trailing:	result = .Bottom
+				default:	result = .Top
+				}
 			}
 			return result
 
 		}
 		set(newval){
-			let orientation: NSUserInterfaceLayoutOrientation
-			let alignment:   NSLayoutConstraint.Attribute
+			#if os(OSX)
+				let orientation: NSUserInterfaceLayoutOrientation
+			#else
+				let orientation: NSLayoutConstraint.Axis
+			#endif
+			#if os(OSX)
+				let alignment:   NSLayoutConstraint.Attribute
+			#else
+				let alignment: UIStackView.Alignment
+			#endif
 			switch newval {
 			case .Left:
 				orientation = .vertical
 				alignment   = .leading
 			case .Center:
 				orientation = .vertical
-				alignment   = .centerX
+				#if os(OSX)
+					alignment   = .centerX
+				#else
+					alignment   = .center
+				#endif
 			case .Right:
 				orientation = .vertical
 				alignment   = .trailing
@@ -70,7 +102,11 @@ open class KCStackViewCore : KCView
 				alignment   = .top
 			case .Middle:
 				orientation = .horizontal
-				alignment   = .centerY
+				#if os(OSX)
+					alignment   = .centerY
+				#else
+					alignment   = .center
+				#endif
 			case .Bottom:
 				orientation = .horizontal
 				alignment   = .bottom
