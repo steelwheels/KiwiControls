@@ -59,13 +59,21 @@ open class KCSpriteView: KCCoreView
 	}
 	#endif
 
+	public func addNode(name nm: String, imageNamed iname: String, status stat: KCNodeStatus) {
+		coreView.addNode(name: nm, imageNamed: iname, status: stat)
+	}
+
+	public func set(nodeName name: String, status stat: KCNodeStatus, durationTime dtime: TimeInterval) {
+		coreView.set(nodeName: name, status: stat, durationTime: dtime)
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(spriteView: self)
 	}
 
-	public var backgroundColor: KCColor {
-		get 		{ return coreView.backgroundColor	}
-		set(color) 	{ coreView.backgroundColor = color	}
+	public var backgroundColorOfScene: KCColor {
+		get 		{ return coreView.backgroundColorOfScene	}
+		set(color) 	{ coreView.backgroundColorOfScene = color	}
 	}
 
 	private var coreView : KCSpriteViewCore {

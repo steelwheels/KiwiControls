@@ -126,6 +126,8 @@
 		05ACEF681E0C3317009F10A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF661E0C3317009F10A7 /* Main.storyboard */; };
 		05B03B7F1E223194001656A0 /* KCTextFieldCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05978CC31E2228510023640E /* KCTextFieldCore.swift */; };
 		05B300FD2124E84F00D9990E /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
+		05B371B121AA37A500D31809 /* green-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B371AF21AA37A500D31809 /* green-machine.png */; };
+		05B371B221AA37A500D31809 /* blue-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B371B021AA37A500D31809 /* blue-machine.png */; };
 		05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */; };
 		05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BCED131D8E67FE00EBEA0B /* Assets.xcassets */; };
 		05BD996B20956B9000E468B7 /* KCRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD996A20956B9000E468B7 /* KCRect.swift */; };
@@ -386,6 +388,8 @@
 		05ACEF641E0C3317009F10A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05ACEF671E0C3317009F10A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05ACEF691E0C3317009F10A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B371AF21AA37A500D31809 /* green-machine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-machine.png"; sourceTree = "<group>"; };
+		05B371B021AA37A500D31809 /* blue-machine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-machine.png"; sourceTree = "<group>"; };
 		05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BCED131D8E67FE00EBEA0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -638,6 +642,7 @@
 		0536FFBB21A5C06F0069A6F0 /* UTSpriteView */ = {
 			isa = PBXGroup;
 			children = (
+				05B371AD21AA377A00D31809 /* Resource */,
 				0536FFBC21A5C06F0069A6F0 /* AppDelegate.swift */,
 				0536FFBE21A5C06F0069A6F0 /* ViewController.swift */,
 				0536FFC021A5C06F0069A6F0 /* Assets.xcassets */,
@@ -863,6 +868,24 @@
 				05ACEF691E0C3317009F10A7 /* Info.plist */,
 			);
 			path = UTControl;
+			sourceTree = "<group>";
+		};
+		05B371AD21AA377A00D31809 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				05B371AE21AA379000D31809 /* Images */,
+			);
+			name = Resource;
+			path = ../../Resource;
+			sourceTree = "<group>";
+		};
+		05B371AE21AA379000D31809 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				05B371B021AA37A500D31809 /* blue-machine.png */,
+				05B371AF21AA37A500D31809 /* green-machine.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */ = {
@@ -1304,7 +1327,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0536FFC121A5C06F0069A6F0 /* Assets.xcassets in Resources */,
+				05B371B221AA37A500D31809 /* blue-machine.png in Resources */,
 				0536FFC421A5C06F0069A6F0 /* Main.storyboard in Resources */,
+				05B371B121AA37A500D31809 /* green-machine.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

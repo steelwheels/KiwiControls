@@ -66,12 +66,20 @@ extension KCPoint
 	}
 }
 
-public func + (left: CGPoint, right: CGPoint) -> CGPoint {
-	return CGPoint(x: left.x + right.x, y: left.y + right.y)
+public func == (left: KCPoint, right: KCPoint) -> Bool {
+	return (left.x == right.x) && (left.y == right.y)
 }
 
-public func - (left: CGPoint, right: CGPoint) -> CGPoint {
-	return CGPoint(x: left.x - right.x, y: left.y - right.y)
+public func != (left: KCPoint, right: KCPoint) -> Bool {
+	return (left.x != right.x) || (left.y != right.y)
+}
+
+public func + (left: KCPoint, right: KCPoint) -> KCPoint {
+	return KCPoint(x: left.x + right.x, y: left.y + right.y)
+}
+
+public func - (left: KCPoint, right: KCPoint) -> KCPoint {
+	return KCPoint(x: left.x - right.x, y: left.y - right.y)
 }
 
 public func * (left: CGPoint, right: CGFloat) -> CGPoint {
