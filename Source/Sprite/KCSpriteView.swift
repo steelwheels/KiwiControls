@@ -59,12 +59,8 @@ open class KCSpriteView: KCCoreView
 	}
 	#endif
 
-	public func addNode(name nm: String, imageNamed iname: String, status stat: KCNodeStatus) {
-		coreView.addNode(name: nm, imageNamed: iname, status: stat)
-	}
-
-	public func set(nodeName name: String, status stat: KCNodeStatus, durationTime dtime: TimeInterval) {
-		coreView.set(nodeName: name, status: stat, durationTime: dtime)
+	public var database: KCSpriteViewDatabase {
+		get { return coreView.database }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
