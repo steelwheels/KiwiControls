@@ -48,21 +48,25 @@ public class KCSpriteViewDatabase: CNDatabase
 					alpha alval: Double,
 					position posval: CGPoint,
 					rotation rotval: Double,
-					duration durval: Double) -> CNValue {
-		let params: Dictionary<String, CNValue> = [
-			ImageFileItem:		CNValue(stringValue: ifile),
-			ScaleItem:		CNValue(doubleValue: scaval),
-			AlphaItem:		CNValue(doubleValue: alval),
-			PositionItem:		CNValue(pointValue: posval),
-			RotationItem:		CNValue(doubleValue: rotval),
-			DurationItem:		CNValue(doubleValue: durval)
+					duration durval: Double) -> CNNativeValue {
+		let scanum = NSNumber(value: scaval)
+		let alnum  = NSNumber(value: alval)
+		let rotnum = NSNumber(value: rotval)
+		let durnum = NSNumber(value: durval)
+		let params: Dictionary<String, CNNativeValue> = [
+			ImageFileItem:		.stringValue(ifile),
+			ScaleItem:		.numberValue(scanum),
+			AlphaItem:		.numberValue(alnum),
+			PositionItem:		.pointValue(posval),
+			RotationItem:		.numberValue(rotnum),
+			DurationItem:		.numberValue(durnum)
 		]
-		return CNValue(dictionaryValue: params)
+		return .dictionaryValue(params)
 	}
 
-	public override func create(identifier ident: String, value val: CNValue) -> Bool {
+	public override func create(identifier ident: String, value val: CNNativeValue) -> Bool {
 		/* Get property */
-		guard let imgfile = stringElement(inValue: val, member: KCSpriteViewDatabase.ImageFileItem) else {
+		guard let imgfile = val.stringElement(identifier: KCSpriteViewDatabase.ImageFileItem) else {
 			NSLog("No imageFile property in \(#function)")
 			return false
 		}
@@ -80,11 +84,11 @@ public class KCSpriteViewDatabase: CNDatabase
 		return super.create(identifier: ident, value: val)
 	}
 
-	public override func read(identifier ident: String) -> CNValue? {
+	public override func read(identifier ident: String) -> CNNativeValue? {
 		return super.read(identifier: ident)
 	}
 
-	public override func write(identifier ident: String, value val: CNValue) -> Bool {
+	public override func write(identifier ident: String, value val: CNNativeValue) -> Bool {
 		if super.write(identifier: ident, value: val) {
 			if let node = mAllNodes[ident] {
 				let actions = allocateActions(forNode: node, value: val)
@@ -99,7 +103,7 @@ public class KCSpriteViewDatabase: CNDatabase
 		return false
 	}
 
-	public override func delete(identifier ident: String) -> CNValue? {
+	public override func delete(identifier ident: String) -> CNNativeValue? {
 		return super.delete(identifier: ident)
 	}
 
@@ -119,57 +123,62 @@ public class KCSpriteViewDatabase: CNDatabase
 		super.commit()
 	}
 
-	private func assignNodeProperty(node nod: SKNode, value val: CNValue) -> Bool {
-		guard let alpha = doubleElement(inValue: val, member: KCSpriteViewDatabase.AlphaItem) else {
+	private func assignNodeProperty(node nod: SKNode, value val: CNNativeValue) -> Bool {
+		guard let alpha = val.numberElement(identifier: KCSpriteViewDatabase.AlphaItem) else {
 			NSLog("No alpha property in \(#function)")
 			return false
 		}
-		guard let position = pointElement(inValue: val, member: KCSpriteViewDatabase.PositionItem) else {
+		guard let position = val.pointElement(identifier: KCSpriteViewDatabase.PositionItem) else {
 			NSLog("No position property in \(#function)")
 			return false
 		}
-		guard let scale = doubleElement(inValue: val, member: KCSpriteViewDatabase.ScaleItem) else {
+		guard let scale = val.numberElement(identifier: KCSpriteViewDatabase.ScaleItem) else {
 			NSLog("No scale property in \(#function)")
 			return false
 		}
-		guard let rotation = doubleElement(inValue: val, member: KCSpriteViewDatabase.RotationItem) else {
+		guard let rotation = val.numberElement(identifier: KCSpriteViewDatabase.RotationItem) else {
 			NSLog("No rotation property in \(#function)")
 			return false
 		}
 
-		nod.alpha	= CGFloat(alpha)
+		nod.alpha	= CGFloat(alpha.doubleValue)
 		nod.position 	= position
-		nod.xScale	= CGFloat(scale)
-		nod.yScale	= CGFloat(scale)
-		nod.zRotation	= CGFloat(rotation)
+		nod.xScale	= CGFloat(scale.doubleValue)
+		nod.yScale	= CGFloat(scale.doubleValue)
+		nod.zRotation	= CGFloat(rotation.doubleValue)
 		
 		return true
 	}
 
-	private func allocateActions(forNode node: SKNode, value val: CNValue) -> Array<SKAction> {
+	private func allocateActions(forNode node: SKNode, value val: CNNativeValue) -> Array<SKAction> {
 		var actions: Array<SKAction> = []
 
-		guard let duration = doubleElement(inValue: val, member: KCSpriteViewDatabase.DurationItem) else {
+		guard let durationnum = val.numberElement(identifier: KCSpriteViewDatabase.DurationItem) else {
 			NSLog("No duration property at \(#function)")
 			return []
 		}
-		guard let alpha = doubleElement(inValue: val, member: KCSpriteViewDatabase.AlphaItem) else {
+		guard let alphanum = val.numberElement(identifier: KCSpriteViewDatabase.AlphaItem) else {
 			NSLog("No alpha property at \(#function)")
 			return []
 		}
-		guard let position = pointElement(inValue: val, member: KCSpriteViewDatabase.PositionItem) else {
+		guard let position = val.pointElement(identifier: KCSpriteViewDatabase.PositionItem) else {
 			NSLog("No position property at \(#function)")
 			return []
 		}
-		guard let scale = doubleElement(inValue: val, member: KCSpriteViewDatabase.ScaleItem) else {
+		guard let scalenum = val.numberElement(identifier: KCSpriteViewDatabase.ScaleItem) else {
 			NSLog("No scale property at \(#function)")
 			return []
 		}
-		guard let rotation = doubleElement(inValue: val, member: KCSpriteViewDatabase.RotationItem) else {
+		guard let rotationnum = val.numberElement(identifier: KCSpriteViewDatabase.RotationItem) else {
 			NSLog("No rotation property at \(#function)")
 			return []
 		}
 
+		let duration = durationnum.doubleValue
+		let alpha    = alphanum.doubleValue
+		let scale    = scalenum.doubleValue
+		let rotation = rotationnum.doubleValue
+		
 		if node.position != position {
 			let act = SKAction.move(to: position, duration: duration)
 			actions.append(act)
@@ -198,41 +207,6 @@ public class KCSpriteViewDatabase: CNDatabase
 			}
 		}
 		return actions
-	}
-
-	private func stringElement(inValue value: CNValue, member memb: String) -> String? {
-		if let elmval = dictionaryElement(inValue: value, member: memb) {
-			if let imgstr = elmval.stringValue {
-				return imgstr
-			}
-		}
-		return nil
-	}
-
-	private func doubleElement(inValue value: CNValue, member memb: String) -> Double? {
-		if let elmval = dictionaryElement(inValue: value, member: memb) {
-			if let dblval = elmval.doubleValue {
-				return dblval
-			}
-		}
-		return nil
-	}
-
-	private func pointElement(inValue value: CNValue, member memb: String) -> CGPoint? {
-		if let elmval = dictionaryElement(inValue: value, member: memb) {
-			if let ptval = elmval.pointValue {
-				return ptval
-			}
-		}
-		return nil
-	}
-
-	private func dictionaryElement(inValue value: CNValue, member memb: String) -> CNValue? {
-		if let dict = value.dictionaryValue {
-			return dict[memb]
-		} else {
-			return nil
-		}
 	}
 }
 
