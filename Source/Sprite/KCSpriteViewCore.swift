@@ -14,7 +14,7 @@ public class KCSpriteViewDatabase: CNDatabase
 	private static let	ImageFileItem		= "imageFile"
 	private static let	ScaleItem		= "scale"
 	private static let	AlphaItem		= "alpha"
-	private static let	PositionItem		= "positon"
+	private static let	PositionItem		= "position"
 	private static let	RotationItem		= "rotation"
 	private static let	DurationItem		= "duration"
 
@@ -66,7 +66,7 @@ public class KCSpriteViewDatabase: CNDatabase
 
 	public override func create(identifier ident: String, value val: CNNativeValue) -> Bool {
 		/* Get property */
-		guard let imgfile = val.stringElement(identifier: KCSpriteViewDatabase.ImageFileItem) else {
+		guard let imgfile = val.stringProperty(identifier: KCSpriteViewDatabase.ImageFileItem) else {
 			NSLog("No imageFile property in \(#function)")
 			return false
 		}
@@ -124,19 +124,19 @@ public class KCSpriteViewDatabase: CNDatabase
 	}
 
 	private func assignNodeProperty(node nod: SKNode, value val: CNNativeValue) -> Bool {
-		guard let alpha = val.numberElement(identifier: KCSpriteViewDatabase.AlphaItem) else {
+		guard let alpha = val.numberProperty(identifier: KCSpriteViewDatabase.AlphaItem) else {
 			NSLog("No alpha property in \(#function)")
 			return false
 		}
-		guard let position = val.pointElement(identifier: KCSpriteViewDatabase.PositionItem) else {
+		guard let position = val.pointProperty(identifier: KCSpriteViewDatabase.PositionItem) else {
 			NSLog("No position property in \(#function)")
 			return false
 		}
-		guard let scale = val.numberElement(identifier: KCSpriteViewDatabase.ScaleItem) else {
+		guard let scale = val.numberProperty(identifier: KCSpriteViewDatabase.ScaleItem) else {
 			NSLog("No scale property in \(#function)")
 			return false
 		}
-		guard let rotation = val.numberElement(identifier: KCSpriteViewDatabase.RotationItem) else {
+		guard let rotation = val.numberProperty(identifier: KCSpriteViewDatabase.RotationItem) else {
 			NSLog("No rotation property in \(#function)")
 			return false
 		}
@@ -153,23 +153,23 @@ public class KCSpriteViewDatabase: CNDatabase
 	private func allocateActions(forNode node: SKNode, value val: CNNativeValue) -> Array<SKAction> {
 		var actions: Array<SKAction> = []
 
-		guard let durationnum = val.numberElement(identifier: KCSpriteViewDatabase.DurationItem) else {
+		guard let durationnum = val.numberProperty(identifier: KCSpriteViewDatabase.DurationItem) else {
 			NSLog("No duration property at \(#function)")
 			return []
 		}
-		guard let alphanum = val.numberElement(identifier: KCSpriteViewDatabase.AlphaItem) else {
+		guard let alphanum = val.numberProperty(identifier: KCSpriteViewDatabase.AlphaItem) else {
 			NSLog("No alpha property at \(#function)")
 			return []
 		}
-		guard let position = val.pointElement(identifier: KCSpriteViewDatabase.PositionItem) else {
+		guard let position = val.pointProperty(identifier: KCSpriteViewDatabase.PositionItem) else {
 			NSLog("No position property at \(#function)")
 			return []
 		}
-		guard let scalenum = val.numberElement(identifier: KCSpriteViewDatabase.ScaleItem) else {
+		guard let scalenum = val.numberProperty(identifier: KCSpriteViewDatabase.ScaleItem) else {
 			NSLog("No scale property at \(#function)")
 			return []
 		}
-		guard let rotationnum = val.numberElement(identifier: KCSpriteViewDatabase.RotationItem) else {
+		guard let rotationnum = val.numberProperty(identifier: KCSpriteViewDatabase.RotationItem) else {
 			NSLog("No rotation property at \(#function)")
 			return []
 		}
