@@ -33,34 +33,36 @@ public class SingleView1Controller: KCSingleViewController
 		} else {
 			fatalError("No root view")
 		}
+		doDumpView(message: "After loadView")
 	}
 
 	public override func viewDidLoad() {
 		NSLog("\(#function): viewDidLoad")
 		super.viewDidLoad()
+		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
 		super.viewWillAppear()
-		doDumpView(message: "Adter viewWillAppear")
+		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		doDumpView(message: "Adter viewWillAppear")
+		doDumpView(message: "After viewWillAppear")
 	}
 	#endif
 
 	#if os(OSX)
 	public override func viewDidAppear() {
 		super.viewDidAppear()
-		doDumpView(message: "Adter viewDidAppear")
+		doDumpView(message: "After viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		doDumpView(message: "Adter viewDidAppear")
+		doDumpView(message: "After viewDidAppear")
 	}
 	#endif
 
