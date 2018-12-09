@@ -78,17 +78,47 @@ public class KCViewDumper: KCViewVisitor
 		section.add(text: CNTextLine(string: "expansion-priority: h:\(hexp.description()) "
 								       + "v:\(vexp.description())"))
 
-		#if false
 		let constsect = CNTextSection()
 		constsect.header = "constraints {"
 		constsect.footer = "}"
 		for constraint in view.constraints {
-			constsect.add(text: CNTextLine(string: "\(constraint)"))
+			let consttxt = constraintDescription(constraint: constraint, ownerView: view, coreView: view.getCoreView())
+			constsect.add(text: consttxt)
 		}
 		section.add(text: constsect)
-		#endif
 
 		mSection = section
+	}
+
+	private func constraintDescription(constraint constr: NSLayoutConstraint, ownerView owner: KCCoreView, coreView core: KCView) -> CNText {
+		var result = "{"
+		if constr.isActive {
+			if let item = constr.firstItem as? KCView {
+				result += "from-item:" + constraintItemDescription(item: item, attribute: constr.firstAttribute, ownerView: owner, coreView: core) + " "
+			}
+			if let item = constr.secondItem as? KCView {
+				result += "to-item:" + constraintItemDescription(item: item, attribute: constr.secondAttribute, ownerView: owner, coreView: core) + " "
+			}
+			result += "multiplier:\(constr.multiplier) "
+			result += "constant:\(constr.constant)"
+		} else {
+			result += "inactive"
+		}
+		result += "}"
+		return CNTextLine(string: result)
+	}
+
+	private func constraintItemDescription(item view: KCView, attribute attr: NSLayoutConstraint.Attribute, ownerView owner: KCCoreView, coreView core: KCView) -> String {
+		let ident: String
+		if view == owner {
+			ident = "self"
+		} else if view == core {
+			ident = "core"
+		} else {
+			ident = view.description
+		}
+		let attrstr = NSLayoutConstraint.attributeDescription(attribute: attr)
+		return ident + "." + attrstr
 	}
 }
 

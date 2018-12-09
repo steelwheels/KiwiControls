@@ -51,6 +51,8 @@
 		055DAEF620FCD0AE00C8C4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF420FCD0AE00C8C4E3 /* Main.storyboard */; };
 		055DAEF820FCD0B000C8C4E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */; };
 		055DAEFB20FCD0B000C8C4E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF920FCD0B000C8C4E3 /* LaunchScreen.storyboard */; };
+		055FACC821BD5714000EF34F /* KCConstraintAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FACC621BD5714000EF34F /* KCConstraintAllocator.swift */; };
+		055FACC921BD5714000EF34F /* KCLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FACC721BD5714000EF34F /* KCLayoutConstraint.swift */; };
 		056248DD1E0DCF8600EE0F2F /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056248DC1E0DCF8600EE0F2F /* UTState.swift */; };
 		05686CAF21245D11000CEA6C /* KCImageViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05686CAE21245D11000CEA6C /* KCImageViewCore.xib */; };
 		05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05686CB021245D7C000CEA6C /* KCImageViewCore.swift */; };
@@ -253,6 +255,8 @@
 		055DAEFA20FCD0B000C8C4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		055DAEFC20FCD0B000C8C4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055DAF0220FCD26C00C8C4E3 /* UTPickerView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTPickerView.entitlements; sourceTree = "<group>"; };
+		055FACC621BD5714000EF34F /* KCConstraintAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConstraintAllocator.swift; sourceTree = "<group>"; };
+		055FACC721BD5714000EF34F /* KCLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutConstraint.swift; sourceTree = "<group>"; };
 		056248DC1E0DCF8600EE0F2F /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
 		05686CAE21245D11000CEA6C /* KCImageViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCImageViewCore.xib; sourceTree = "<group>"; };
 		05686CB021245D7C000CEA6C /* KCImageViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImageViewCore.swift; sourceTree = "<group>"; };
@@ -693,6 +697,8 @@
 				0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */,
 				0557686E2155506A000AB421 /* KCFrameSizeAllocator.swift */,
 				0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */,
+				055FACC621BD5714000EF34F /* KCConstraintAllocator.swift */,
+				055FACC721BD5714000EF34F /* KCLayoutConstraint.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1254,6 +1260,7 @@
 				0571B62F20956D3200603B95 /* KCSize.swift in Sources */,
 				05841E9D1D8F7B950092C2C6 /* KCView.swift in Sources */,
 				05910BF620958D9D00535E2A /* KCVertices.swift in Sources */,
+				055FACC921BD5714000EF34F /* KCLayoutConstraint.swift in Sources */,
 				052237B71E2234480073E4C9 /* KCTextFieldCore.swift in Sources */,
 				055768702155506A000AB421 /* KCIntrinsicSizeAllocator.swift in Sources */,
 				056F4CB41E734EE5008BF572 /* KCIconViewCore.swift in Sources */,
@@ -1308,6 +1315,7 @@
 				058EC0392095703800C3F36E /* KCColorTable.swift in Sources */,
 				05E32F4A2111FDE000EDEC31 /* KCMultiViewController.swift in Sources */,
 				051DBFD921A5B2730010C8A2 /* KCSpriteViewCore.swift in Sources */,
+				055FACC821BD5714000EF34F /* KCConstraintAllocator.swift in Sources */,
 				05795BAB20F0FD2300EB504D /* KCViewDumper.swift in Sources */,
 				055112621EB6006700CC75E8 /* KCCoreView.swift in Sources */,
 				058265A01DE536B600C3BE27 /* KCBackgroundLayer.swift in Sources */,
