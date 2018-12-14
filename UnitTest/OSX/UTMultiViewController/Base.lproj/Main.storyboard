@@ -708,6 +708,12 @@
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXN-qc-oAw" customClass="KCRootView" customModule="KiwiControls">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                        </subviews>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

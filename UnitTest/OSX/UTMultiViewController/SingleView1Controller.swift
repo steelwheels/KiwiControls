@@ -25,11 +25,16 @@ public class SingleView1Controller: KCSingleViewController
 
 		let box0 = KCStackView(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 		box0.addArrangedSubViews(subViews: [label0, label1])
-		box0.alignment = .Center
+		box0.axis = .vertical
+		box0.distribution = .fill
+		box0.alignment = .center
 
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")
 			root.setup(childView: box0)
+
+			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
+			layouter.layout(rootView: root)
 		} else {
 			fatalError("No root view")
 		}

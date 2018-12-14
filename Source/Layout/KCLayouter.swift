@@ -36,12 +36,12 @@ public class KCLayouter
 
 		doDump(message: "Before frame allocation", view: view)
 		let frmallocator = KCFrameSizeAllocator(windowSize: windowsize, windowInset: insets)
-		view.accept(visitor: frmallocator)
+		frmallocator.setRootFrame(rootView: view)
 
-		doDump(message: "Before updating intrinsic contents size", view: view)
-		let sizeupdater = KCIntrisicSizeAllocator()
-		view.accept(visitor: sizeupdater)
-
+		doDump(message: "Before distribution decider", view: view)
+		let distdecider = KCDistributionDecider()
+		view.accept(visitor: distdecider)
+		
 		doDump(message: "Result of layout passes", view: view)
 	}
 

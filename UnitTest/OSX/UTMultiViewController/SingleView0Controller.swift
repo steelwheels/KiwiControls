@@ -16,12 +16,34 @@ public class SingleView0Controller: KCSingleViewController
 	public override func loadView() {
 		NSLog("\(#function): load view (init root view)")
 		super.loadView()
-		
-		let label0    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+
+		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+
+		let label0    = KCTextField(frame: dmyrect)
 		label0.text   = "Hello, world. This is label0"
+
+		let button0   = KCButton(frame: dmyrect)
+		button0.title = "OK"
+
+		let box0 = KCStackView(frame: dmyrect)
+		//box0.addArrangedSubViews(subViews: [label0, button0])
+		if false {
+			box0.axis    	= .vertical //  .horizontal
+			box0.alignment  = .fill
+		} else {
+			box0.axis	= .horizontal
+			box0.alignment	= .fill
+		}
+		box0.distribution = .fill // .fillEqually
+
+		box0.addArrangedSubViews(subViews: [label0, button0])
+
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")
-			root.setup(childView: label0)
+			root.setup(childView: box0)
+
+			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
+			layouter.layout(rootView: root)
 		} else {
 			fatalError("No root view")
 		}

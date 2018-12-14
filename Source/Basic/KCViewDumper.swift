@@ -40,6 +40,13 @@ public class KCViewDumper: KCViewVisitor
 	open override func visit(stackView view: KCStackView){
 		/* Allocate section for stack */
 		visit(coreView: view)
+
+		let axisdesc = view.axis.description
+		mSection.add(text: CNTextLine(string: "axis:  " + axisdesc))
+
+		let algndesc = view.alignment.description
+		mSection.add(text: CNTextLine(string: "alignment:  " + algndesc))
+
 		let distdesc = view.distribution.description
 		mSection.add(text: CNTextLine(string: "distribution:  " + distdesc))
 

@@ -29,7 +29,7 @@ extension NSLayoutConstraint {
 		case .centerY:			result = "centerY"
 		case .lastBaseline:		result = "lastBaseline"
 		case .firstBaseline:		result = "firstBaseline"
-		case .notAnAttribute:		result = "nil"
+		//case .notAnAttribute:		result = "nil"
 		#if os(iOS)
 		case .leftMargin:		result = "leftMargin"
 		case .rightMargin:		result = "rightMargin"
@@ -40,6 +40,7 @@ extension NSLayoutConstraint {
 		case .centerXWithinMargins:	result = "centerXWithinMargines"
 		case .centerYWithinMargins:	result = "centerYWithinMargines"
 		#endif
+		default:			result = "unknown"
 		}
 		return result
 	}

@@ -41,7 +41,6 @@ public extension NSResponder {
 		return self.nextResponder
 	}
 }
-
 #endif
 
 #if os(iOS)

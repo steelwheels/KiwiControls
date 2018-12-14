@@ -26,7 +26,7 @@ class ViewController: KCMultiViewController
 
 		let _ = self.select(byIndex: idx2)
 
-		Swift.print("Select \(idx0) from [\(idx0). \(idx1), \(idx2)]")
+		Swift.print("Select \(idx2) from [\(idx0). \(idx1), \(idx2)]")
 	}
 
 	override var representedObject: Any? {

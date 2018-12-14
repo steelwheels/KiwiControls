@@ -22,15 +22,26 @@ public class SingleView2Controller: KCSingleViewController
 		let label0    = KCTextField(frame: dummyrect)
 		label0.text   = "Hello, world. This is label0"
 
+		let text0     = KCTextEdit(frame: dummyrect)
+		text0.text    = ""
+
 		let button0   = KCButton(frame: dummyrect)
 		button0.title = "Press me"
 
 		let box0 = KCStackView(frame: dummyrect)
-		box0.addArrangedSubViews(subViews: [label0, button0])
-		box0.alignment = .Center
+		if false {
+			box0.axis = .vertical
+			box0.alignment = .left
+		} else {
+			box0.axis = .horizontal
+			box0.alignment = .top
+		}
+		mConsole.print(string: "box0.alignment = " + box0.axis.description + "\n")
+		box0.distribution = .fillEqually
+		box0.addArrangedSubViews(subViews: [label0, text0, button0])
 
 		if let root = super.rootView {
-			NSLog("\(#function): setup root view")
+			mConsole.print(string: "\(#function): setup root view\n")
 			root.setup(childView: box0)
 		} else {
 			fatalError("No root view")

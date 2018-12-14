@@ -14,23 +14,9 @@ import CoconutData
 
 open class KCStackView : KCCoreView
 {
-	public enum Distribution {
-		case fill
-		case fillEqually
-		case equalSpacing
-
-		public var description: String {
-			get {
-				let result: String
-				switch self {
-				case .fill:		result = "fill"
-				case .fillEqually:	result = "fillEqually"
-				case .equalSpacing:	result = "equalSpacing"
-				}
-				return result
-			}
-		}
-	}
+	public typealias Axis		= KCStackViewCore.Axis
+	public typealias Alignment	= KCStackViewCore.Alignment
+	public typealias Distribution	= KCStackViewCore.Distribution
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -74,10 +60,11 @@ open class KCStackView : KCCoreView
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
 		let prih 	: ExpansionPriority
 		let priv	: ExpansionPriority
-		if alignment.isVertical {
+		switch axis {
+		case .vertical:
 			prih = .Low
 			priv = .High
-		} else {
+		case .horizontal:
 			prih = .High
 			priv = .Low
 		}
@@ -88,7 +75,12 @@ open class KCStackView : KCCoreView
 		self.distribution = .fill
 	}
 
-	public var alignment: CNAlignment {
+	public var axis: Axis {
+		get 		{ return coreView.axis 		}
+		set(newval)	{ coreView.axis = newval	}
+	}
+
+	public var alignment: Alignment {
 		get		{ return coreView.alignment }
 		set(newval)	{ coreView.alignment = newval }
 	}
