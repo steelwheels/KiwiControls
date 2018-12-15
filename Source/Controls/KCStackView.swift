@@ -14,10 +14,6 @@ import CoconutData
 
 open class KCStackView : KCCoreView
 {
-	public typealias Axis		= KCStackViewCore.Axis
-	public typealias Alignment	= KCStackViewCore.Alignment
-	public typealias Distribution	= KCStackViewCore.Distribution
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -75,17 +71,17 @@ open class KCStackView : KCCoreView
 		self.distribution = .fill
 	}
 
-	public var axis: Axis {
+	public var axis: CNAxis {
 		get 		{ return coreView.axis 		}
 		set(newval)	{ coreView.axis = newval	}
 	}
 
-	public var alignment: Alignment {
+	public var alignment: CNAlignment {
 		get		{ return coreView.alignment }
 		set(newval)	{ coreView.alignment = newval }
 	}
 
-	public var distribution: Distribution {
+	public var distribution: CNDistribution {
 		get 		{ return coreView.distributtion }
 		set(newval)	{ coreView.distributtion = newval }
 	}

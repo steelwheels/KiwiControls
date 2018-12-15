@@ -14,64 +14,6 @@ import CoconutData
 
 open class KCStackViewCore : KCView
 {
-	public enum Axis {
-		case vertical
-		case horizontal
-
-		public var description: String {
-			get {
-				let result: String
-				switch self {
-				case .vertical:	  result = "vertical"
-				case .horizontal: result = "horizontal"
-				}
-				return result
-			}
-		}
-	}
-
-	public enum Alignment {
-		case left
-		case right
-		case top
-		case bottom
-		case center
-		case fill
-
-		public var description: String {
-			get {
-				let result: String
-				switch self {
-				case .left:		result = "left"
-				case .right:		result = "right"
-				case .top:		result = "top"
-				case .bottom:		result = "bottom"
-				case .center:		result = "center"
-				case .fill:		result = "fill"
-				}
-				return result
-			}
-		}
-	}
-
-	public enum Distribution {
-		case fill
-		case fillEqually
-		case equalSpacing
-
-		public var description: String {
-			get {
-				let result: String
-				switch self {
-				case .fill:		result = "fill"
-				case .fillEqually:	result = "fillEqually"
-				case .equalSpacing:	result = "equalSpacing"
-				}
-				return result
-			}
-		}
-	}
-
 	#if os(OSX)
 	@IBOutlet weak var mStackView: NSStackView!
 	#else
@@ -93,96 +35,114 @@ open class KCStackViewCore : KCView
 		self.frame  = bounds
 	}
 
-	public var axis: Axis {
-		get {
-			#if os(OSX)
-				let result: Axis
-				switch mStackView.orientation {
-				case .vertical:   result = Axis.vertical
-				case .horizontal: result = Axis.horizontal
-				}
-				return result
-			#else
-				let result: Axis
-				switch mStackView.axis {
-				case .vertical:	  result = Axis.vertical
-				case .horizontal: result = Axis.horizontal
-				}
-				return result
-			#endif
-		}
-		set(newval){
-			#if os(OSX)
-				switch newval {
-				case .vertical:	  mStackView.orientation = NSUserInterfaceLayoutOrientation.vertical
-				case .horizontal: mStackView.orientation = NSUserInterfaceLayoutOrientation.horizontal
-				}
-			#else
-				switch newval {
-				case .vertical:   mStackView.axis = NSLayoutConstraint.Axis.vertical
-				case .horizontal: mStackView.axis = NSLayoutConstraint.Axis.horizontal
-				}
-			#endif
-		}
+	public var axis: CNAxis {
+		get 		{ return getAxis()					}
+		set(newval)	{ set(axis: newval, alignment: getAlignment())		}
 	}
 
-	public var alignment: Alignment {
-		get {
-			let result: Alignment
-			let isvert = axis == .vertical
-			switch mStackView.alignment {
-			#if os(OSX)
-				case .left:	result = mIsFillAlignmentMode ? .fill : .left
-				case .right:	result = .right
-				case .top:	result = .top
-				case .bottom:	result = .bottom
-				case .centerX:	result = .center
-				case .centerY:	result = .center
-			#else
-				case .leading:	result = isvert ? .left  : .top
-				case .trailing:	result = isvert ? .right : .bottom
-				case .center:	result = .center
-				case .fill:	result = .fill
-			#endif
-			default:
-				NSLog("Unsupported alignment at \(#function)")
-				result = .left
+	public var alignment: CNAlignment {
+		get		{ return getAlignment() 				}
+		set(newval)	{ set(axis: getAxis(), alignment: newval)		}
+	}
+
+	private func getAxis() -> CNAxis {
+		#if os(OSX)
+			let result: CNAxis
+			switch mStackView.orientation {
+			case .vertical:   result = CNAxis.vertical
+			case .horizontal: result = CNAxis.horizontal
 			}
 			return result
-		}
-		set(newval){
-			let isvert = axis == .vertical
-			var dofill = false
-			switch newval {
-			#if os(OSX)
-				case .left:	mStackView.alignment = .left
-				case .right:	mStackView.alignment = .right
-				case .top:	mStackView.alignment = .top
-				case .bottom:	mStackView.alignment = .bottom
-				case .center:	mStackView.alignment = isvert ? .centerY : .centerX
-				case .fill:	mStackView.alignment = isvert ? .left : .top
-						dofill = true
-			#else
-				case .left:	mStackView.alignment = .leading
-				case .right:	mStackView.alignment = .trailing
-				case .top:	mStackView.alignment = .leading
-				case .bottom:	mStackView.alignment = .trailing
-				case .center:	mStackView.alignment = .center
-				case .fill: 	mStackView.alignment = .fill
-			#endif
+		#else
+			let result: CNAxis
+			switch mStackView.axis {
+			case .vertical:	  result = CNAxis.vertical
+			case .horizontal: result = CNAxis.horizontal
 			}
-			#if os(OSX)
-				if dofill != mIsFillAlignmentMode {
-					activateConstraints(doActivate: dofill)
-					mIsFillAlignmentMode = dofill
-				}
-			#endif
-		}
+			return result
+		#endif
 	}
 
-	public var distributtion: Distribution {
+	private func getAlignment() -> CNAlignment {
+		#if os(OSX)
+			if mIsFillAlignmentMode {
+				return .fill
+			}
+			let result: CNAlignment
+			switch mStackView.alignment {
+			case .left, .top:		result = .leading
+			case .right, .bottom:		result = .trailing
+			case .centerX, .centerY:	result = .center
+			default:
+				NSLog("Unsupported alignment at \(#function)")
+				result = .leading
+			}
+			return result
+		#else
+			let result: CNAlignment
+			switch mStackView.alignment {
+			case .leading:			result = .leading
+			case .trailing:			result = .trailing
+			case .center:			result = .center
+			case .fill:			result = .fill
+			default:
+				NSLog("Unsupported alignment at \(#function)")
+				result = .leading
+			}
+			return result
+		#endif
+	}
+
+	private func set(axis axs: CNAxis, alignment align: CNAlignment) {
+		/* Set axis */
+		#if os(OSX)
+			switch axs {
+			case .vertical:	  mStackView.orientation = NSUserInterfaceLayoutOrientation.vertical
+			case .horizontal: mStackView.orientation = NSUserInterfaceLayoutOrientation.horizontal
+			}
+		#else
+			switch axs {
+			case .vertical:   mStackView.axis = NSLayoutConstraint.Axis.vertical
+			case .horizontal: mStackView.axis = NSLayoutConstraint.Axis.horizontal
+			}
+		#endif
+		/* Set alignment */
+		#if os(OSX)
+			switch align {
+			case .leading, .fill:
+				switch axs {
+				case .horizontal:	mStackView.alignment = .left
+				case .vertical:		mStackView.alignment = .top
+				}
+				mIsFillAlignmentMode = (align == .fill)
+			case .trailing:
+				switch axs {
+				case .horizontal:	mStackView.alignment = .right
+				case .vertical:		mStackView.alignment = .bottom
+				}
+			case .center:
+				switch axs {
+				case .horizontal:	mStackView.alignment = .centerX
+				case .vertical:		mStackView.alignment = .centerY
+				}
+			}
+		#else
+			switch align {
+			case .leading:
+				mStackView.alignment = .leading
+			case .trailing:
+				mStackView.alignment = .trailing
+			case .fill:
+				mStackView.alignment = .fill
+			case .center:
+				mStackView.alignment = .center
+			}
+		#endif
+	}
+
+	public var distributtion: CNDistribution {
 		get {
-			let result: Distribution
+			let result: CNDistribution
 			switch mStackView.distribution {
 			case .fill:		result = .fill
 			case .fillEqually:	result = .fillEqually

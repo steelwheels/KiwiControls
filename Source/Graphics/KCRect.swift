@@ -89,21 +89,5 @@ extension KCRect
 	}
 }
 
-public func KCAlignRect(alignment 	align: CNAlignment,
-                        targetSize	target: CGSize,
-                        in		bounds: CGRect) -> CGRect
-{
-	var offx: CGFloat = bounds.origin.x
-	var offy: CGFloat = bounds.origin.y
-	switch align {
-	case .Left:	offx = bounds.origin.x
-	case .Center:	offx = bounds.origin.x + (bounds.size.width - target.width) / 2.0
-	case .Right:	offx = bounds.origin.x +  bounds.size.width - target.width
-	case .Top:	offy = bounds.origin.y +  bounds.size.height - target.height
-	case .Middle:	offy = bounds.origin.y + (bounds.size.height - target.height) / 2.0
-	case .Bottom:	offy = bounds.origin.y
-	}
-	return CGRect(x: offx, y: offy, width: target.width, height: target.height)
-}
 
 

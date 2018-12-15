@@ -31,11 +31,10 @@ public class SingleView2Controller: KCSingleViewController
 		let box0 = KCStackView(frame: dummyrect)
 		if false {
 			box0.axis = .vertical
-			box0.alignment = .left
 		} else {
 			box0.axis = .horizontal
-			box0.alignment = .top
 		}
+		box0.alignment = .leading
 		mConsole.print(string: "box0.alignment = " + box0.axis.description + "\n")
 		box0.distribution = .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, text0, button0])
