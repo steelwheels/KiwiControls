@@ -20,7 +20,6 @@ open class KCStackViewCore : KCView
 	@IBOutlet weak var mStackView: UIStackView!
 	#endif
 
-
 	/* macOS does not support "fill" alignment mode.
 	 * This flag presents the "fill" mode supported by this class is
 	 * active or not.
@@ -33,6 +32,16 @@ open class KCStackViewCore : KCView
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		self.bounds = bounds
 		self.frame  = bounds
+
+		#if os(OSX)
+			mStackView.orientation  = .vertical
+			mStackView.alignment    = .centerX
+			mStackView.distribution = .fill
+		#else
+			mStackView.axis		= .vertical
+			mStackView.alignment	= .center
+			mStackView.distribution = .fill
+		#endif
 	}
 
 	public var axis: CNAxis {
@@ -122,8 +131,8 @@ open class KCStackViewCore : KCView
 				}
 			case .center:
 				switch axs {
-				case .horizontal:	mStackView.alignment = .centerX
-				case .vertical:		mStackView.alignment = .centerY
+				case .horizontal:	mStackView.alignment = .centerY
+				case .vertical:		mStackView.alignment = .centerX
 				}
 			}
 		#else

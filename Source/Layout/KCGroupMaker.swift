@@ -13,25 +13,21 @@ public class KCGroupMaker
 		var result: Array<Array<KCView>> = []
 
 		let contents = view.arrangedSubviews()
-		if contents.count >= 2 {
-			var srcs: Array<KCView> = contents
-			while srcs.count > 0 {
-				let src     			= srcs[0]
-				let rests   			= srcs.dropFirst()
-				var unusedsrcs: Array<KCView> 	= []
-				var usedsrcs: Array<KCView> 	= [src]
-				for rest in rests {
-					if isSameComponent(componentA: src, componentB: rest) {
-						usedsrcs.append(rest)
-					} else {
-						unusedsrcs.append(rest)
-					}
+		var srcs: Array<KCView> = contents
+		while srcs.count > 0 {
+			let src     			= srcs[0]
+			let rests   			= srcs.dropFirst()
+			var unusedsrcs: Array<KCView> 	= []
+			var usedsrcs: Array<KCView> 	= [src]
+			for rest in rests {
+				if isSameComponent(componentA: src, componentB: rest) {
+					usedsrcs.append(rest)
+				} else {
+					unusedsrcs.append(rest)
 				}
-				if usedsrcs.count > 1 {
-					result.append(usedsrcs)
-				}
-				srcs = unusedsrcs
 			}
+			result.append(usedsrcs)
+			srcs = unusedsrcs
 		}
 
 		return result
