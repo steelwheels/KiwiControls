@@ -9,7 +9,7 @@ import CoconutData
 import SpriteKit
 import Foundation
 
-public class KCSpriteViewDatabase: CNDatabase
+public struct KCSpriteNode
 {
 	private static let	ImageFileItem		= "imageFile"
 	private static let	ScaleItem		= "scale"
@@ -18,191 +18,148 @@ public class KCSpriteViewDatabase: CNDatabase
 	private static let	RotationItem		= "rotation"
 	private static let	DurationItem		= "duration"
 
-	private var	mScene:		SKScene?
-	private var	mNewNodes:	Dictionary<String, SKNode>
-	private var	mAllNodes:	Dictionary<String, SKNode>
-	private var 	mNewActions:	Dictionary<String, SKAction>
+	public var imageFile:		String
+	public var scale:		Double
+	public var alpha:		Double
+	public var position:		KCPoint
+	public var rotation:		Double
+	public var duration:		Double
 
-	public override init(){
-		mScene		= nil
-		mNewNodes	= [:]
-		mAllNodes	= [:]
-		mNewActions	= [:]
+	public init(imageFile ifile: String, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double){
+		imageFile	= ifile
+		scale		= scl
+		alpha		= alp
+		position	= pos
+		rotation	= rot
+		duration	= dur
+	}
+
+	public static func valueToNode(value val: CNNativeValue) -> KCSpriteNode? {
+		if let record = val.toDictionary() {
+			if let imgval = record[ImageFileItem], let sclval = record[ScaleItem],
+			   let alpval = record[AlphaItem],     let posval = record[PositionItem],
+			   let rotval = record[RotationItem],  let durval = record[DurationItem] {
+				if let imgstr = imgval.toString(), let sclnum = sclval.toNumber(),
+				   let alpnum = alpval.toNumber(), let pospt = posval.toPoint(),
+				   let rotnum = rotval.toNumber(), let durnum = durval.toNumber() {
+					return KCSpriteNode(imageFile: imgstr, scale: sclnum.doubleValue,
+							    alpha: alpnum.doubleValue, position: pospt,
+							    rotation: rotnum.doubleValue, duration: durnum.doubleValue)
+				}
+			}
+		}
+		return nil
+	}
+
+	public func toValue() -> CNNativeValue {
+		let scanum = NSNumber(value: scale)
+		let alnum  = NSNumber(value: alpha)
+		let rotnum = NSNumber(value: rotation)
+		let durnum = NSNumber(value: duration)
+		let params: Dictionary<String, CNNativeValue> = [
+			KCSpriteNode.ImageFileItem:	.stringValue(imageFile),
+			KCSpriteNode.ScaleItem:		.numberValue(scanum),
+			KCSpriteNode.AlphaItem:		.numberValue(alnum),
+			KCSpriteNode.PositionItem:	.pointValue(position),
+			KCSpriteNode.RotationItem:	.numberValue(rotnum),
+			KCSpriteNode.DurationItem:	.numberValue(durnum)
+		]
+		return .dictionaryValue(params)
+	}
+}
+
+public class KCSpriteViewDatabase: CNMainDatabase
+{
+	private var mScene:		SKScene?
+	private var mNodes:		Dictionary<String, SKNode>
+
+	public override init() {
+		//mScene	 = nil
+		mNodes   = [:]
 	}
 
 	public var scene: SKScene {
 		get {
-			if let scene = mScene {
-				return scene
+			if let scn = mScene {
+				return scn
 			} else {
 				fatalError("No scene")
 			}
 		}
-		set(scene){
-			mScene = scene
+		set(newscene){
+			mScene = newscene
 		}
 	}
 
-	public class func makeParameter(imageFile ifile: String,
-					scale scaval: Double,
-					alpha alval: Double,
-					position posval: CGPoint,
-					rotation rotval: Double,
-					duration durval: Double) -> CNNativeValue {
-		let scanum = NSNumber(value: scaval)
-		let alnum  = NSNumber(value: alval)
-		let rotnum = NSNumber(value: rotval)
-		let durnum = NSNumber(value: durval)
-		let params: Dictionary<String, CNNativeValue> = [
-			ImageFileItem:		.stringValue(ifile),
-			ScaleItem:		.numberValue(scanum),
-			AlphaItem:		.numberValue(alnum),
-			PositionItem:		.pointValue(posval),
-			RotationItem:		.numberValue(rotnum),
-			DurationItem:		.numberValue(durnum)
-		]
-		return .dictionaryValue(params)
-	}
-
-	public override func create(identifier ident: String, value val: CNNativeValue) -> Bool {
-		/* Get property */
-		guard let imgfile = val.stringProperty(identifier: KCSpriteViewDatabase.ImageFileItem) else {
-			NSLog("No imageFile property in \(#function)")
-			return false
-		}
-		/* Allocate SKNode */
-		let node  = SKSpriteNode(imageNamed: imgfile)
-		node.name = ident
-		/* Apply node property */
-		guard assignNodeProperty(node: node, value: val) else {
-			NSLog("Failed to assign property at \(#function)")
-			return false
-		}
-		/* Add as new node */
-		mNewNodes[ident] = node
-		mAllNodes[ident] = node
-		return super.create(identifier: ident, value: val)
-	}
-
-	public override func read(identifier ident: String) -> CNNativeValue? {
-		return super.read(identifier: ident)
-	}
-
-	public override func write(identifier ident: String, value val: CNNativeValue) -> Bool {
-		if super.write(identifier: ident, value: val) {
-			if let node = mAllNodes[ident] {
-				let actions = allocateActions(forNode: node, value: val)
-				if actions.count > 0 {
-					mNewActions[ident] = SKAction.group(actions)
+	open override func updateUncached(cache cdata: Dictionary<String, CNNativeValue>, deletedItems deleted: Set<String>){
+		/* Allocate nodes */
+		for ident in cdata.keys {
+			if deleted.contains(ident) {
+				continue
+			}
+			if let value = cdata[ident] {
+				if let ninfo = KCSpriteNode.valueToNode(value: value) {
+					if let node = mNodes[ident] {
+						/* Allocate actions */
+						let actions = allocateActions(forNode: node, nodeInfo: ninfo)
+						if actions.count > 0 {
+							let newact = SKAction.group(actions)
+							node.run(newact)
+						}
+					} else {
+						/* Allocate node */
+						allocateNode(identifier: ident, nodeInfo: ninfo)
+					}
+				} else {
+					NSLog("Failed to decode value at \(#function)")
 				}
-				return true
-			} else {
-				NSLog("Node \(ident) is not found in \(#function)")
 			}
 		}
-		return false
+		/* Call super class */
+		super.updateUncached(cache: cdata, deletedItems: deleted)
 	}
 
-	public override func delete(identifier ident: String) -> CNNativeValue? {
-		return super.delete(identifier: ident)
+	private func allocateNode(identifier ident: String, nodeInfo ninfo: KCSpriteNode) {
+		/* Allocate node */
+		let node  = SKSpriteNode(imageNamed: ninfo.imageFile)
+		node.name = ident
+		mNodes[ident] = node
+		scene.addChild(node)
+		/* Update action */
+		node.alpha	= CGFloat(ninfo.alpha)
+		node.position 	= ninfo.position
+		node.xScale	= CGFloat(ninfo.scale)
+		node.yScale	= CGFloat(ninfo.scale)
+		node.zRotation	= CGFloat(ninfo.rotation)
 	}
 
-	public override func commit() {
-		/* Append new node to scene */
-		for (_, node) in mNewNodes {
-			scene.addChild(node)
-		}
-		/* Run action */
-		for (ident, action) in mNewActions {
-			if let node = mAllNodes[ident] {
-				node.run(action)
-			} else {
-				NSLog("No node in \(#function)")
-			}
-		}
-		super.commit()
-	}
-
-	private func assignNodeProperty(node nod: SKNode, value val: CNNativeValue) -> Bool {
-		guard let alpha = val.numberProperty(identifier: KCSpriteViewDatabase.AlphaItem) else {
-			NSLog("No alpha property in \(#function)")
-			return false
-		}
-		guard let position = val.pointProperty(identifier: KCSpriteViewDatabase.PositionItem) else {
-			NSLog("No position property in \(#function)")
-			return false
-		}
-		guard let scale = val.numberProperty(identifier: KCSpriteViewDatabase.ScaleItem) else {
-			NSLog("No scale property in \(#function)")
-			return false
-		}
-		guard let rotation = val.numberProperty(identifier: KCSpriteViewDatabase.RotationItem) else {
-			NSLog("No rotation property in \(#function)")
-			return false
-		}
-
-		nod.alpha	= CGFloat(alpha.doubleValue)
-		nod.position 	= position
-		nod.xScale	= CGFloat(scale.doubleValue)
-		nod.yScale	= CGFloat(scale.doubleValue)
-		nod.zRotation	= CGFloat(rotation.doubleValue)
-		
-		return true
-	}
-
-	private func allocateActions(forNode node: SKNode, value val: CNNativeValue) -> Array<SKAction> {
+	private func allocateActions(forNode node: SKNode, nodeInfo ninfo: KCSpriteNode) -> Array<SKAction> {
 		var actions: Array<SKAction> = []
 
-		guard let durationnum = val.numberProperty(identifier: KCSpriteViewDatabase.DurationItem) else {
-			NSLog("No duration property at \(#function)")
-			return []
-		}
-		guard let alphanum = val.numberProperty(identifier: KCSpriteViewDatabase.AlphaItem) else {
-			NSLog("No alpha property at \(#function)")
-			return []
-		}
-		guard let position = val.pointProperty(identifier: KCSpriteViewDatabase.PositionItem) else {
-			NSLog("No position property at \(#function)")
-			return []
-		}
-		guard let scalenum = val.numberProperty(identifier: KCSpriteViewDatabase.ScaleItem) else {
-			NSLog("No scale property at \(#function)")
-			return []
-		}
-		guard let rotationnum = val.numberProperty(identifier: KCSpriteViewDatabase.RotationItem) else {
-			NSLog("No rotation property at \(#function)")
-			return []
-		}
-
-		let duration = durationnum.doubleValue
-		let alpha    = alphanum.doubleValue
-		let scale    = scalenum.doubleValue
-		let rotation = rotationnum.doubleValue
-		
-		if node.position != position {
-			let act = SKAction.move(to: position, duration: duration)
+		if node.position != ninfo.position {
+			let act = SKAction.move(to: ninfo.position, duration: ninfo.duration)
 			actions.append(act)
 		}
-		if node.xScale != CGFloat(scale) {
-			let act = SKAction.scale(to: CGFloat(scale), duration: duration)
+		if node.xScale != CGFloat(ninfo.scale) {
+			let act = SKAction.scale(to: CGFloat(ninfo.scale), duration: ninfo.duration)
 			actions.append(act)
 		}
-		if node.zRotation != CGFloat(rotation) {
-			let act = SKAction.rotate(toAngle: CGFloat(rotation), duration: duration)
+		if node.zRotation != CGFloat(ninfo.rotation) {
+			let act = SKAction.rotate(toAngle: CGFloat(ninfo.rotation), duration: ninfo.duration)
 			actions.append(act)
 		}
 		if node.alpha >= 0.5 {
 			/* Visible */
-			if alpha < 0.5 {
+			if ninfo.alpha < 0.5 {
 				/* Visible -> Invisible */
-				let act = SKAction.fadeOut(withDuration: duration)
+				let act = SKAction.fadeOut(withDuration: ninfo.duration)
 				actions.append(act)
 			}
 		} else {
 			/* Invisible */
-			if alpha >= 0.5 {
+			if ninfo.alpha >= 0.5 {
 				/* Invisible -> Visible */
-				let act = SKAction.fadeIn(withDuration: duration)
+				let act = SKAction.fadeIn(withDuration: ninfo.duration)
 				actions.append(act)
 			}
 		}
@@ -241,7 +198,7 @@ open class KCSpriteViewCore: KCView
 		}
 	}
 
-	public var database: KCSpriteViewDatabase {
+	public var database: CNDatabaseProtocol {
 		get { return mNodeDatabase }
 	}
 

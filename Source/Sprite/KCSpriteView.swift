@@ -5,6 +5,7 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 import SpriteKit
 import Foundation
 
@@ -59,7 +60,7 @@ open class KCSpriteView: KCCoreView
 	}
 	#endif
 
-	public var database: KCSpriteViewDatabase {
+	public var database: CNDatabaseProtocol {
 		get { return coreView.database }
 	}
 

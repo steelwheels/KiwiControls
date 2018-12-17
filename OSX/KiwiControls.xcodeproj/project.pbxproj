@@ -60,6 +60,7 @@
 		055FBC391E6A442F00A7A640 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FBC381E6A442F00A7A640 /* KCIconViewCore.swift */; };
 		05648A691D8EB1A500EABCD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05648A681D8EB1A500EABCD0 /* ViewController.swift */; };
 		05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05648A6A1D8EB1B100EABCD0 /* Main.storyboard */; };
+		0565DC2D21C7FC0100929B04 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
 		0566C5B41E69B50B001F6FD7 /* KCTableViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0566C5B31E69B50B001F6FD7 /* KCTableViewCore.xib */; };
 		0566C5B81E69BE9B001F6FD7 /* KCTableViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566C5B71E69BE9B001F6FD7 /* KCTableViewCore.swift */; };
 		05674B901F77D1CD006CB20F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05674B8F1F77D1CD006CB20F /* AppDelegate.swift */; };
@@ -452,6 +453,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0565DC2D21C7FC0100929B04 /* CoconutData.framework in Frameworks */,
 				0536FFCE21A5C4550069A6F0 /* KiwiControls.framework in Frameworks */,
 				0536FFCD21A5C3830069A6F0 /* SpriteKit.framework in Frameworks */,
 			);
@@ -1951,6 +1953,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTSpriteView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1975,6 +1981,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTSpriteView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
