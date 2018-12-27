@@ -22,6 +22,8 @@
 		051E34E51E42370000620E1C /* KCStrokeEditorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E34E31E42370000620E1C /* KCStrokeEditorLayer.swift */; };
 		052237B61E2234480073E4C9 /* KCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052237B41E2234480073E4C9 /* KCTextField.swift */; };
 		052237B71E2234480073E4C9 /* KCTextFieldCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052237B51E2234480073E4C9 /* KCTextFieldCore.swift */; };
+		05259DB121D3C6FB0058ADC8 /* blue-machine.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05996A2B21AAA3FA00C7BBC7 /* blue-machine.png */; };
+		05259DB221D3C6FF0058ADC8 /* green-machine.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05996A2A21AAA3FA00C7BBC7 /* green-machine.png */; };
 		05353FFB1E0D5A340031812D /* KCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05353FFA1E0D5A340031812D /* KCButton.swift */; };
 		053540031E0D5BD20031812D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053540021E0D5BD20031812D /* AppDelegate.swift */; };
 		053540051E0D5BD20031812D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053540041E0D5BD20031812D /* ViewController.swift */; };
@@ -102,9 +104,7 @@
 		05970B632160B385004C5C52 /* KCPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05970B622160B385004C5C52 /* KCPanel.swift */; };
 		0597E8691FEFCB5C000D8442 /* KCPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597E8681FEFCB5C000D8442 /* KCPreference.swift */; };
 		05996A2C21AAA3FA00C7BBC7 /* green-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05996A2A21AAA3FA00C7BBC7 /* green-machine.png */; };
-		05996A2D21AAA3FA00C7BBC7 /* green-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05996A2A21AAA3FA00C7BBC7 /* green-machine.png */; };
 		05996A2E21AAA3FA00C7BBC7 /* blue-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05996A2B21AAA3FA00C7BBC7 /* blue-machine.png */; };
-		05996A2F21AAA3FA00C7BBC7 /* blue-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05996A2B21AAA3FA00C7BBC7 /* blue-machine.png */; };
 		059AFECE20F7BFAD00F58FC7 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AFECD20F7BFAD00F58FC7 /* KCLayouter.swift */; };
 		05A5CEF420FAD6C100DBED51 /* KCTextFieldCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A5CEF320FAD6C100DBED51 /* KCTextFieldCore.xib */; };
 		05B70CDC209F0BD900BAE1EB /* KCLogConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CDB209F0BD900BAE1EB /* KCLogConsole.swift */; };
@@ -205,6 +205,20 @@
 			remoteInfo = Install;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05259DB021D3C6D20058ADC8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				05259DB121D3C6FB0058ADC8 /* blue-machine.png in CopyFiles */,
+				05259DB221D3C6FF0058ADC8 /* green-machine.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05021CFF1DE59F35003D4F20 /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -976,6 +990,7 @@
 				05FAEB0721A5C76300FE9130 /* Sources */,
 				05FAEB0821A5C76300FE9130 /* Frameworks */,
 				05FAEB0921A5C76300FE9130 /* Resources */,
+				05259DB021D3C6D20058ADC8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1166,9 +1181,7 @@
 			files = (
 				05FAEB1821A5C76400FE9130 /* LaunchScreen.storyboard in Resources */,
 				05FAEB1521A5C76400FE9130 /* Assets.xcassets in Resources */,
-				05996A2F21AAA3FA00C7BBC7 /* blue-machine.png in Resources */,
 				05FAEB1321A5C76300FE9130 /* Main.storyboard in Resources */,
-				05996A2D21AAA3FA00C7BBC7 /* green-machine.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

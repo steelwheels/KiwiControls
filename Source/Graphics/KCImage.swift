@@ -50,6 +50,15 @@ extension NSImage
 
 extension UIImage
 {
+	public convenience init?(contentsOf url: URL){
+		do {
+			let data = try Data(contentsOf: url)
+			self.init(data: data)
+		} catch {
+			return nil
+		}
+	}
+
 	public class func generate(context: CGContext, bounds bnds:CGRect, drawFunc: KCImageDrawer) -> UIImage {
 		var newimage: UIImage? = nil
 

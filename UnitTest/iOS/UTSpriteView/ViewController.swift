@@ -6,6 +6,7 @@
 //  Copyright © 2018 Steel Wheels Project. All rights reserved.
 //
 
+import CoconutData
 import KiwiControls
 import UIKit
 
@@ -16,10 +17,28 @@ class ViewController: UIViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		guard let blueurl = CNFilePath.URLForResourceFile(fileName: "blue-machine", fileExtension: "png") else {
+			NSLog("Can not decide URL for blue-machine")
+			return
+		}
+		guard let blueimage = KCImage(contentsOf: blueurl) else {
+			NSLog("Can not load blue-machine")
+			return
+		}
+
+		guard let greenurl = CNFilePath.URLForResourceFile(fileName: "green-machine", fileExtension: "png") else {
+			NSLog("Can not decide URL for green-machine")
+			return
+		}
+		guard let greenimage = KCImage(contentsOf: greenurl) else {
+			NSLog("Can not load green-machine")
+			return
+		}
+
 		// Do any additional setup after loading the view.
 		mSpriteView.backgroundColorOfScene = .yellow
 
-		let b0init = KCSpriteNode(imageFile: "blue-machine",
+		let b0init = KCSpriteNode(image: blueimage,
 					  scale: 0.5,
 					  alpha: 1.0,
 					  position: CGPoint(x: 10.0, y: 10.0),
@@ -27,7 +46,7 @@ class ViewController: UIViewController
 					  duration: 1.0)
 		mSpriteView.database.write(identifier: "b0", value: b0init.toValue())
 
-		let g0init = KCSpriteNode(imageFile: "green-machine",
+		let g0init = KCSpriteNode(image: greenimage,
 					  scale: 0.5,
 					  alpha: 1.0,
 					  position: CGPoint(x: 370.0, y: 650.0),
@@ -37,7 +56,7 @@ class ViewController: UIViewController
 
 		mSpriteView.database.commit()
 
-		let b0param = KCSpriteNode(imageFile: "blue-machine",
+		let b0param = KCSpriteNode(image: blueimage,
 					  scale: 0.5,
 					  alpha: 1.0,
 					  position: CGPoint(x: 190.0, y: 320.0),
@@ -45,7 +64,7 @@ class ViewController: UIViewController
 					  duration: 1.0)
 		mSpriteView.database.write(identifier: "b0", value: b0param.toValue())
 
-		let g0param = KCSpriteNode(imageFile: "green-machine",
+		let g0param = KCSpriteNode(image: greenimage,
 					  scale: 0.5,
 					  alpha: 1.0,
 					  position: CGPoint(x: 170.0, y: 340.0),

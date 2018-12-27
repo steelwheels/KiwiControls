@@ -18,15 +18,15 @@ public struct KCSpriteNode
 	private static let	RotationItem		= "rotation"
 	private static let	DurationItem		= "duration"
 
-	public var imageFile:		String
+	public var image:		KCImage
 	public var scale:		Double
 	public var alpha:		Double
 	public var position:		KCPoint
 	public var rotation:		Double
 	public var duration:		Double
 
-	public init(imageFile ifile: String, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double){
-		imageFile	= ifile
+	public init(image img: KCImage, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double){
+		image		= img
 		scale		= scl
 		alpha		= alp
 		position	= pos
@@ -39,10 +39,10 @@ public struct KCSpriteNode
 			if let imgval = record[ImageFileItem], let sclval = record[ScaleItem],
 			   let alpval = record[AlphaItem],     let posval = record[PositionItem],
 			   let rotval = record[RotationItem],  let durval = record[DurationItem] {
-				if let imgstr = imgval.toString(), let sclnum = sclval.toNumber(),
+				if let img = imageInValue(value: imgval), let sclnum = sclval.toNumber(),
 				   let alpnum = alpval.toNumber(), let pospt = posval.toPoint(),
-				   let rotnum = rotval.toNumber(), let durnum = durval.toNumber() {
-					return KCSpriteNode(imageFile: imgstr, scale: sclnum.doubleValue,
+		 		   let rotnum = rotval.toNumber(), let durnum = durval.toNumber() {
+					return KCSpriteNode(image: img, scale: sclnum.doubleValue,
 							    alpha: alpnum.doubleValue, position: pospt,
 							    rotation: rotnum.doubleValue, duration: durnum.doubleValue)
 				}
@@ -51,13 +51,22 @@ public struct KCSpriteNode
 		return nil
 	}
 
+	private static func imageInValue(value val: CNNativeValue) -> KCImage? {
+		if let image = val.toObject() as? KCImage {
+			return image
+		} else {
+			NSLog("No image at \(#function)")
+			return nil
+		}
+	}
+
 	public func toValue() -> CNNativeValue {
 		let scanum = NSNumber(value: scale)
 		let alnum  = NSNumber(value: alpha)
 		let rotnum = NSNumber(value: rotation)
 		let durnum = NSNumber(value: duration)
 		let params: Dictionary<String, CNNativeValue> = [
-			KCSpriteNode.ImageFileItem:	.stringValue(imageFile),
+			KCSpriteNode.ImageFileItem:	.objectValue(image),
 			KCSpriteNode.ScaleItem:		.numberValue(scanum),
 			KCSpriteNode.AlphaItem:		.numberValue(alnum),
 			KCSpriteNode.PositionItem:	.pointValue(position),
@@ -121,7 +130,8 @@ public class KCSpriteViewDatabase: CNMainDatabase
 
 	private func allocateNode(identifier ident: String, nodeInfo ninfo: KCSpriteNode) {
 		/* Allocate node */
-		let node  = SKSpriteNode(imageNamed: ninfo.imageFile)
+		let texture = SKTexture(image: ninfo.image)
+		let node    = SKSpriteNode(texture: texture)
 		node.name = ident
 		mNodes[ident] = node
 		scene.addChild(node)
