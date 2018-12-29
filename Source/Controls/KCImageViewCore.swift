@@ -37,26 +37,8 @@ open class KCImageViewCore : KCView
 		super.resize(mImageView.frame.size)
 	}
 
-	public func load(URL file: URL) -> NSError? {
-		#if os(OSX)
-			if let image = NSImage(contentsOf: file) {
-				mImageView.image = image
-				return nil
-			}
-		#else
-			do {
-				let data = try Data(contentsOf: file)
-				if let image = UIImage(data: data) {
-					mImageView.image = image
-				}
-				return nil
-			} catch _ {
-				/* Do next */
-			}
-		#endif
-		/* Can not load image */
-		let fname = file.absoluteString
-		return NSError.fileError(message: "Image file \"\(fname)\" is NOT found")
+	public func set(image img: KCImage) {
+		mImageView.image = img
 	}
 
 	open override var intrinsicContentSize: KCSize {
