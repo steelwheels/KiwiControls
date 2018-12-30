@@ -11,7 +11,7 @@ import Foundation
 
 public struct KCSpriteNode
 {
-	private static let	ImageFileItem		= "imageFile"
+	private static let	ImageItem		= "image"
 	private static let	ScaleItem		= "scale"
 	private static let	AlphaItem		= "alpha"
 	private static let	PositionItem		= "position"
@@ -36,8 +36,8 @@ public struct KCSpriteNode
 
 	public static func valueToNode(value val: CNNativeValue) -> KCSpriteNode? {
 		if let record = val.toDictionary() {
-			if let imgval = record[ImageFileItem], let sclval = record[ScaleItem],
-			   let alpval = record[AlphaItem],     let posval = record[PositionItem],
+			if let imgval = record[ImageItem], let sclval = record[ScaleItem],
+			   let alpval = record[AlphaItem], let posval = record[PositionItem],
 			   let rotval = record[RotationItem],  let durval = record[DurationItem] {
 				if let img = imageInValue(value: imgval), let sclnum = sclval.toNumber(),
 				   let alpnum = alpval.toNumber(), let pospt = posval.toPoint(),
@@ -66,7 +66,7 @@ public struct KCSpriteNode
 		let rotnum = NSNumber(value: rotation)
 		let durnum = NSNumber(value: duration)
 		let params: Dictionary<String, CNNativeValue> = [
-			KCSpriteNode.ImageFileItem:	.objectValue(image),
+			KCSpriteNode.ImageItem:		.objectValue(image),
 			KCSpriteNode.ScaleItem:		.numberValue(scanum),
 			KCSpriteNode.AlphaItem:		.numberValue(alnum),
 			KCSpriteNode.PositionItem:	.pointValue(position),
