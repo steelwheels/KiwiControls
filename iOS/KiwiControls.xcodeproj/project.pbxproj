@@ -46,7 +46,7 @@
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
 		055D8089213E075E00100601 /* UTLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D8088213E075E00100601 /* UTLogViewController.swift */; };
 		055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */; };
-		055DAEF320FCD0AE00C8C4E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */; };
+		055DAEF320FCD0AE00C8C4E3 /* MultiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF220FCD0AE00C8C4E3 /* MultiViewController.swift */; };
 		055DAEF620FCD0AE00C8C4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF420FCD0AE00C8C4E3 /* Main.storyboard */; };
 		055DAEF820FCD0B000C8C4E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */; };
 		055DAEFB20FCD0B000C8C4E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055DAEF920FCD0B000C8C4E3 /* LaunchScreen.storyboard */; };
@@ -54,6 +54,9 @@
 		05686CAF21245D11000CEA6C /* KCImageViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05686CAE21245D11000CEA6C /* KCImageViewCore.xib */; };
 		05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05686CB021245D7C000CEA6C /* KCImageViewCore.swift */; };
 		05686CB32124656D000CEA6C /* KCImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05686CB22124656D000CEA6C /* KCImageView.swift */; };
+		056C8F9221E9BC5100C7F0C6 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
+		056C8F9321E9BC5100C7F0C6 /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		056C8F9621E9BF5800C7F0C6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C8F9521E9BF5800C7F0C6 /* FirstViewController.swift */; };
 		056F4CB01E734E74008BF572 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */; };
 		056F4CB31E734EE5008BF572 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F4CB11E734EE5008BF572 /* KCIconView.swift */; };
 		056F4CB41E734EE5008BF572 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F4CB21E734EE5008BF572 /* KCIconViewCore.swift */; };
@@ -218,6 +221,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		056C8F9421E9BC5100C7F0C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				056C8F9321E9BC5100C7F0C6 /* CoconutData.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -261,7 +275,7 @@
 		055D8088213E075E00100601 /* UTLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTLogViewController.swift; sourceTree = "<group>"; };
 		055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		055DAEF220FCD0AE00C8C4E3 /* MultiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiViewController.swift; sourceTree = "<group>"; };
 		055DAEF520FCD0AE00C8C4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		055DAEFA20FCD0B000C8C4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -271,6 +285,7 @@
 		05686CAE21245D11000CEA6C /* KCImageViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCImageViewCore.xib; sourceTree = "<group>"; };
 		05686CB021245D7C000CEA6C /* KCImageViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImageViewCore.swift; sourceTree = "<group>"; };
 		05686CB22124656D000CEA6C /* KCImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCImageView.swift; sourceTree = "<group>"; };
+		056C8F9521E9BF5800C7F0C6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		056F4CAF1E734E74008BF572 /* KCIconViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		056F4CB11E734EE5008BF572 /* KCIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
 		056F4CB21E734EE5008BF572 /* KCIconViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
@@ -401,6 +416,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				056C8F9221E9BC5100C7F0C6 /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +551,8 @@
 			isa = PBXGroup;
 			children = (
 				055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */,
-				055DAEF220FCD0AE00C8C4E3 /* MainViewController.swift */,
+				055DAEF220FCD0AE00C8C4E3 /* MultiViewController.swift */,
+				056C8F9521E9BF5800C7F0C6 /* FirstViewController.swift */,
 				055DAEF420FCD0AE00C8C4E3 /* Main.storyboard */,
 				055DAEF720FCD0B000C8C4E3 /* Assets.xcassets */,
 				055DAEF920FCD0B000C8C4E3 /* LaunchScreen.storyboard */,
@@ -918,6 +935,7 @@
 				055DAEEA20FCD0AE00C8C4E3 /* Sources */,
 				055DAEEB20FCD0AE00C8C4E3 /* Frameworks */,
 				055DAEEC20FCD0AE00C8C4E3 /* Resources */,
+				056C8F9421E9BC5100C7F0C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1031,6 +1049,7 @@
 					055DAEED20FCD0AE00C8C4E3 = {
 						CreatedOnToolsVersion = 9.4.1;
 						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -1221,7 +1240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				055DAEF320FCD0AE00C8C4E3 /* MainViewController.swift in Sources */,
+				056C8F9621E9BF5800C7F0C6 /* FirstViewController.swift in Sources */,
+				055DAEF320FCD0AE00C8C4E3 /* MultiViewController.swift in Sources */,
 				055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1624,12 +1644,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTPickerView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1649,12 +1669,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTPickerView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

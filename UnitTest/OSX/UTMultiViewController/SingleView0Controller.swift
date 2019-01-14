@@ -26,16 +26,9 @@ public class SingleView0Controller: KCSingleViewController
 		button0.title = "OK"
 
 		let box0 = KCStackView(frame: dmyrect)
-		//box0.addArrangedSubViews(subViews: [label0, button0])
-		if false {
-			box0.axis    	= .vertical //  .horizontal
-			box0.alignment  = .fill
-		} else {
-			box0.axis	= .horizontal
-			box0.alignment	= .fill
-		}
-		box0.distribution = .fill // .fillEqually
-
+		box0.axis		= .horizontal
+		box0.alignment		= .fill
+		box0.distribution	= .fill // .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, button0])
 
 		if let root = super.rootView {

@@ -16,17 +16,15 @@ class ViewController: KCMultiViewController
 		let console    = CNFileConsole()
 
 		let cont0      = SingleView0Controller(parentViewController: self, console: console, doVerbose: true)
-		let idx0       = self.add(name: "cont0", viewController: cont0)
+		self.add(name: "cont0", viewController: cont0)
 
 		let cont1      = SingleView1Controller(parentViewController: self, console: console, doVerbose: true)
-		let idx1       = self.add(name: "cont1", viewController: cont1)
+		self.add(name: "cont1", viewController: cont1)
 
 		let cont2      = SingleView2Controller(parentViewController: self, console: console, doVerbose: true)
-		let idx2       = self.add(name: "cont2", viewController: cont2)
+		self.add(name: "cont2", viewController: cont2)
 
-		let _ = self.select(byIndex: idx2)
-
-		Swift.print("Select \(idx2) from [\(idx0). \(idx1), \(idx2)]")
+		let _ = self.pushViewController(byName: "cont0")
 	}
 
 	override var representedObject: Any? {

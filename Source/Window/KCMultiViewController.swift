@@ -20,10 +20,11 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase
 {
-	private var mIndexTable: Dictionary<String, Int> = [:]	/* name -> index */
-	private var mContentViewControllers: Array<KCSingleViewController> = []
+	private var mIndexTable:		Dictionary<String, Int> = [:]	/* name -> index */
+	private var mContentViewControllers:	Array<KCSingleViewController> = [] /* index -> view */
+	private var mViewStack:			CNStack = CNStack<Int>()
 
-	public var console = CNFileConsole()
+	public var console 			= CNFileConsole()
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -34,11 +35,24 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		showTabBar(visible:false)
 	}
 
-	public func add(name nm: String, viewController vcont: KCSingleViewController) -> Int {
-		/* Add the view to index table */
-		let index = mContentViewControllers.count
-		mIndexTable[nm] = index
-		mContentViewControllers.append(vcont)
+	public func check(name nm: String) -> Bool {
+		if let _ = mIndexTable[nm] {
+			return true
+		} else {
+			return false
+		}
+	}
+
+	public func add(name nm: String, viewController vcont: KCSingleViewController) {
+		if let curidx = mIndexTable[nm] {
+			/* Overeite index table */
+			mContentViewControllers[curidx] = vcont
+		} else {
+			/* Add the view to index table */
+			let index = mContentViewControllers.count
+			mIndexTable[nm] = index
+			mContentViewControllers.append(vcont)
+		}
 		/* Add view to controller */
 		#if os(OSX)
 			let item = NSTabViewItem(identifier: nm)
@@ -47,25 +61,39 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		#else
 			self.setViewControllers(mContentViewControllers, animated: false)
 		#endif
-		return index
 	}
 
-	public func search(byName name: String) -> Int? {
-		return mIndexTable[name]
-	}
-
-	public func select(byIndex index: Int) -> Bool {
-		if 0<=index && index<mContentViewControllers.count {
-			#if os(OSX)
-				self.selectedTabViewItemIndex = index
-			#else
-				self.selectedIndex = index
-			#endif
+	public func pushViewController(byName name: String) -> Bool {
+		if let index = mIndexTable[name] {
+			/* Push current index */
+			mViewStack.push(index)
+			/* Switch view */
+			switchView(index: index)
 			return true
 		} else {
-			NSLog("\(#function) [Error] Invalid index: \(index)")
+			NSLog("\(#function) [Error] No view controller named \(name) at \(#function)")
 			return false
 		}
+	}
+	
+	public func popViewController() {
+		if let _ = mViewStack.pop() {
+			if let index = mViewStack.peek() {
+				/* Switch view */
+				switchView(index: index)
+				return
+			}
+		}
+		NSLog("Failed to pop view at \(#function)")
+	}
+
+	private func switchView(index idx: Int){
+		//NSLog("Switch view controller at \(#function)")
+		#if os(OSX)
+			self.selectedTabViewItemIndex = idx
+		#else
+			self.selectedIndex = idx
+		#endif
 	}
 
 	public func showTabBar(visible vis: Bool){

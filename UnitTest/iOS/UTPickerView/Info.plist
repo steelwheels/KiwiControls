@@ -13,7 +13,7 @@
 			<string>Amber script</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.github.steelwheels.amber.script</string>
+				<string>com.github.steelwheels.amber.application-package</string>
 			</array>
 		</dict>
 		<dict/>
@@ -32,6 +32,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -55,6 +57,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -80,16 +84,21 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.script</string>
+				<string>com.apple.package</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Amber Script</string>
+			<string>Amber Application Package</string>
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>com.github.steelwheels.amber.script</string>
-			<key>public.filename-extension</key>
-			<string>amb</string>
+			<string>com.github.steelwheels.amber.application-package</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>ambpkg</string>
+				</array>
+			</dict>
 		</dict>
 	</array>
 </dict>

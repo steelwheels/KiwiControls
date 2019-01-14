@@ -66,8 +66,6 @@ open class KCSingleViewController: KCViewController
 				/* Adjust size */
 				let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: mDoVerbose)
 				layouter.layout(rootView: root)
-			} else {
-				NSLog("\(#function): Error no core view")
 			}
 		} else {
 			fatalError("No root view")

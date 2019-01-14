@@ -33,12 +33,10 @@ public class KCPanel
 			}
 			return nil
 		#else
-			// Do any additional setup after loading the view, typically from a nib.
+			/* open file-selector view */
 			let picker = KCDocumentPickerViewController(documentTypes: allowedUTIs, in: .import)
-			mViewController.present(picker, animated: true, completion: {
-				() -> Void in
-			})
-			return picker.waitResult()
+			picker.present(in: mViewController)
+			return picker.waitReturnValue()
 		#endif
 	}
 
@@ -55,10 +53,8 @@ public class KCPanel
 			let pref = KCPreference.shared.documentTypePreference
 			let utis = pref.UTIs(forExtensions: exts)
 			let picker = KCDocumentPickerViewController(documentTypes: utis, in: .import)
-			mViewController.present(picker, animated: true, completion: {
-				() -> Void in
-			})
-			return picker.waitResult()
+			picker.present(in: mViewController)
+			return picker.waitReturnValue()
 		#endif
 	}
 

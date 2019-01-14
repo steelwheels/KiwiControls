@@ -22,25 +22,22 @@ class ViewController: KCMultiViewController
 		let console	= CNFileConsole()
 
 		/* Load log view */
-		let logcont  = UTLogViewController(parentViewController: self, console: console, doVerbose: true)
-		let logid    = self.add(name: "log0", viewController: logcont)
+		let logname = "log0"
+		let logcont = UTLogViewController(parentViewController: self, console: console, doVerbose: true)
+		self.add(name: logname, viewController: logcont)
 
 		/* Load 1st view */
-		let labcont  = SingleView0Controller(parentViewController: self, console: logcont.console, doVerbose: true)
-		let labid    = self.add(name: "label0", viewController: labcont)
+		let labname = "label0"
+		let labcont = SingleView0Controller(parentViewController: self, console: logcont.console, doVerbose: true)
+		self.add(name: labname, viewController: labcont)
 
-		if self.select(byIndex: logid) {
-			logcont.console.print(string: "Select \(logid) ... OK\n")
+		if self.selectViewController(byName: labname) {
+			logcont.console.print(string: "Select ... OK\n")
 		} else {
-			logcont.console.print(string: "Select \(logid) ... NG\n")
+			logcont.console.print(string: "Select ... NG\n")
 		}
-
-		let _ = self.select(byIndex: labid)
-		//let _ = self.select(byIndex: logid)
-
-		//logcont.entireView?.backgroundColor? = KCColor.yellow
 		
-		logcont.console.print(string: "View id \(logid) \(labid)\n")
+		logcont.console.print(string: "View id \(logname) \(labname)\n")
 		logcont.console.print(string: "2nd line\n")
 		logcont.console.print(string: "3rd line\n")
 	}
