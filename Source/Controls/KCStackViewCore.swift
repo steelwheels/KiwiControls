@@ -120,14 +120,14 @@ open class KCStackViewCore : KCView
 			switch align {
 			case .leading, .fill:
 				switch axs {
-				case .horizontal:	mStackView.alignment = .left
-				case .vertical:		mStackView.alignment = .top
+				case .horizontal:	mStackView.alignment = .top
+				case .vertical:		mStackView.alignment = .left
 				}
 				mIsFillAlignmentMode = (align == .fill)
 			case .trailing:
 				switch axs {
-				case .horizontal:	mStackView.alignment = .right
-				case .vertical:		mStackView.alignment = .bottom
+				case .horizontal:	mStackView.alignment = .bottom
+				case .vertical:		mStackView.alignment = .right
 				}
 			case .center:
 				switch axs {
