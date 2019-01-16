@@ -31,7 +31,7 @@ class ViewController: KCMultiViewController
 		let labcont = SingleView0Controller(parentViewController: self, console: logcont.console, doVerbose: true)
 		self.add(name: labname, viewController: labcont)
 
-		if self.selectViewController(byName: labname) {
+		if self.pushViewController(byName: labname) {
 			logcont.console.print(string: "Select ... OK\n")
 		} else {
 			logcont.console.print(string: "Select ... NG\n")

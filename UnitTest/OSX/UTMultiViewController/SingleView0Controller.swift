@@ -31,9 +31,16 @@ public class SingleView0Controller: KCSingleViewController
 		box0.distribution	= .fill // .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, button0])
 
+		let edit1 = KCTextEdit(frame: dmyrect)
+		let box1  = KCStackView(frame: dmyrect)
+		box1.axis		= .vertical
+		box1.alignment		= .fill
+		box1.distribution	= .fill
+		box1.addArrangedSubViews(subViews: [box0, edit1])
+
 		if let root = super.rootView {
 			NSLog("\(#function): setup root view")
-			root.setup(childView: box0)
+			root.setup(childView: box1)
 
 			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
 			layouter.layout(rootView: root)
