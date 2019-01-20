@@ -52,7 +52,7 @@ public class KCLayouter
 			if let window = parent.view.window {
 				result = window.entireFrame.size
 			} else {
-				NSLog("\(#function) [Error] No window")
+				CNLog(type: .Error, message: "No window", place: #file)
 				result = KCSize(width: 100.0, height: 100.0)
 			}
 			#else
@@ -60,7 +60,7 @@ public class KCLayouter
 			#endif
 			return result
 		} else {
-			NSLog("\(#function) [Error] No parent controller")
+			CNLog(type: .Error, message: "No parent controller", place: #file)
 			return KCSize(width: 0.0, height: 0.0)
 		}
 	}
@@ -85,7 +85,7 @@ public class KCLayouter
 			#endif
 			return result
 		} else {
-			NSLog("\(#function) [Error] No parent controller")
+			CNLog(type: .Error, message: "No parent controller", place: #file)
 			return KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 		}
 	}

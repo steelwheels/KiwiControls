@@ -83,7 +83,7 @@ open class KCStackViewCore : KCView
 			case .right, .bottom:		result = .trailing
 			case .centerX, .centerY:	result = .center
 			default:
-				NSLog("Unsupported alignment at \(#function)")
+				CNLog(type: .Error, message: "Unsupported alignment", place: #file)
 				result = .leading
 			}
 			return result
@@ -95,7 +95,7 @@ open class KCStackViewCore : KCView
 			case .center:			result = .center
 			case .fill:			result = .fill
 			default:
-				NSLog("Unsupported alignment at \(#function)")
+				CNLog(type: .Error, message: "Unsupported alignment", place: #file)
 				result = .leading
 			}
 			return result

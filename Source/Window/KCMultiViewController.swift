@@ -71,7 +71,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			switchView(index: index)
 			return true
 		} else {
-			NSLog("\(#function) [Error] No view controller named \(name) at \(#function)")
+			CNLog(type: .Error, message: "No view controller named \(name)", place: #file)
 			return false
 		}
 	}
@@ -84,11 +84,10 @@ open class KCMultiViewController : KCMultiViewControllerBase
 				return
 			}
 		}
-		NSLog("Failed to pop view at \(#function)")
+		CNLog(type: .Error, message: "Failed to pop view", place: #file)
 	}
 
 	private func switchView(index idx: Int){
-		//NSLog("Switch view controller at \(#function)")
 		#if os(OSX)
 			self.selectedTabViewItemIndex = idx
 		#else

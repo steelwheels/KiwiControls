@@ -5,6 +5,7 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public class KCGroupSizeAllocator: KCViewVisitor
@@ -100,11 +101,11 @@ public class KCGroupSizeAllocator: KCViewVisitor
 			if let stack = subview as? KCStackView {
 				subviews.append(stack)
 			} else {
-				NSLog("\(#function) [Error] Not stack view")
+				CNLog(type: .Error, message: "Not stack view", place: #file)
 			}
 		}
 		guard subviews.count > 0 else {
-			NSLog("\(#function) [Error] Empty stack view")
+			CNLog(type: .Error, message: "Empty stack view", place: #file)
 			return
 		}
 

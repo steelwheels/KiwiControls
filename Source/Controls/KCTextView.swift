@@ -47,7 +47,7 @@ open class KCTextView: KCTextViewBase
 		if let str = string as? String {
 			editor?.insert(text: str, replaceRange: replacementRange)
 		} else {
-			NSLog("Not string")
+			CNLog(type: .Error, message: "Not string", place: #file)
 		}
 	}
 

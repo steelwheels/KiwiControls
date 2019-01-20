@@ -26,7 +26,7 @@ class ViewController: KCViewController
 		if let url = CNFilePath.URLForResourceFile(fileName: "SampleImage0", fileExtension: "jpeg", subdirectory: "Images") {
 			image.resource = url
 		} else {
-			NSLog("[Error] Failed to load SampleImage0.jpeg")
+			CNLog(type: .Error, .message: "Failed to load SampleImage0.jpeg", place: #file)
 		}
 
 		let box    = KCStackView(frame: frame)

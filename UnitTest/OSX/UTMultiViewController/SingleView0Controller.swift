@@ -14,7 +14,7 @@ public class SingleView0Controller: KCSingleViewController
 	private var mConsole = CNFileConsole()
 
 	public override func loadView() {
-		NSLog("\(#function): load view (init root view)")
+		CNLog(type: .Normal, message: "load view (start)", place: #file)
 		super.loadView()
 
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
@@ -39,7 +39,7 @@ public class SingleView0Controller: KCSingleViewController
 		box1.addArrangedSubViews(subViews: [box0, edit1])
 
 		if let root = super.rootView {
-			NSLog("\(#function): setup root view")
+			CNLog(type: .Normal, message: "setup root view", place: #file)
 			root.setup(childView: box1)
 
 			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
@@ -50,17 +50,19 @@ public class SingleView0Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		NSLog("\(#function): viewDidLoad")
+		CNLog(type: .Normal, message: "viewDidLoad", place: #file)
 		super.viewDidLoad()
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
+		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
 		super.viewWillAppear()
 		doDumpView(message: "Last viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
+		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
 		super.viewWillAppear(animated)
 		doDumpView(message: "Last viewWillAppear")
 	}
@@ -68,11 +70,13 @@ public class SingleView0Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
+		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear()
 		doDumpView(message: "Last viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
+		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear(animated)
 		doDumpView(message: "Last viewDidAppear")
 	}

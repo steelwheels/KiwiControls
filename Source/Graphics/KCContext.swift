@@ -10,6 +10,7 @@ import AppKit
 #else
 import UIKit
 #endif
+import CoconutData
 import CoreGraphics
 import Foundation
 
@@ -84,7 +85,7 @@ extension CGContext
 			if f < count && t < count {
 				drawer(self, vertices[f], vertices[t])
 			} else {
-				NSLog("Invalid vertex index")
+				CNLog(type: .Error, message: "Invalid vertex index", place: #file)
 			}
 		}
 		self.strokePath()

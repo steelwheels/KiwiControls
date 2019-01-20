@@ -14,7 +14,7 @@ public class SingleView1Controller: KCSingleViewController
 	private var mConsole = CNFileConsole()
 
 	public override func loadView() {
-		NSLog("\(#function): load view (init root view)")
+		CNLog(type: .Normal, message: "loadView", place: #file)
 		super.loadView()
 
 		let label0    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
@@ -30,7 +30,7 @@ public class SingleView1Controller: KCSingleViewController
 		box0.alignment = .center
 
 		if let root = super.rootView {
-			NSLog("\(#function): setup root view")
+			CNLog(type: .Normal, message: "setup root view", place: #file)
 			root.setup(childView: box0)
 
 			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
@@ -42,18 +42,20 @@ public class SingleView1Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		NSLog("\(#function): viewDidLoad")
+		CNLog(type: .Normal, message: "viewDidLoad", place: #file)
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
+		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
+		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -61,11 +63,13 @@ public class SingleView1Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
+		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
+		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear(animated)
 		doDumpView(message: "After viewDidAppear")
 	}

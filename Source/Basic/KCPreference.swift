@@ -61,22 +61,22 @@ public class KCDocumentTypePreference
 					collectTypeDeclaration(typeDeclaration: dict)
 				}
 			} else {
-				NSLog("\(#function) [Error] Invalid description: \(decl)")
+				CNLog(type: .Error, message: "[Error] Invalid description: \(decl)", place: #file)
 			}
 		}
 	}
 
 	private func collectTypeDeclaration(typeDeclaration decl: Dictionary<String, AnyObject>){
 		guard let uti = decl["UTTypeIdentifier"] as? String else {
-			NSLog("\(#function) [Error] No UTTypeIdentifier")
+			CNLog(type: .Error, message: "No UTTypeIdentifier", place: #file)
 			return
 		}
 		guard let tags = decl["UTTypeTagSpecification"] as? Dictionary<String, AnyObject> else {
-			NSLog("\(#function) [Error] No UTTypeTagSpecification")
+			CNLog(type: .Error, message: "No UTTypeTagSpecification", place: #file)
 			return
 		}
 		guard let exts = tags["public.filename-extension"] as? Array<String> else {
-			NSLog("\(#function) [Error] No public.filename-extension")
+			CNLog(type: .Error, message: "No public.filename-extension", place: #file)
 			return
 		}
 		mDocumentTypes[uti] = exts
@@ -94,7 +94,7 @@ public class KCDocumentTypePreference
 			if let exts = mDocumentTypes[uti] {
 				result.append(contentsOf: exts)
 			} else {
-				NSLog("\(#function) [Error] Unknown UTI: \(uti)")
+				CNLog(type: .Error, message: "Unknown UTI: \(uti)", place: #file)
 			}
 		}
 		return result

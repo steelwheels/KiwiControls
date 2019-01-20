@@ -14,8 +14,9 @@ public class SingleView2Controller: KCSingleViewController
 	private var mConsole = CNFileConsole()
 
 	public override func loadView() {
-		NSLog("\(#function): load view (init root view)")
 		super.loadView()
+
+		CNLog(type: .Normal, message: "loadView", place: #file)
 
 		let dummyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
@@ -49,20 +50,20 @@ public class SingleView2Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		NSLog("\(#function): viewDidLoad")
+		CNLog(type: .Normal, message: "viewDidLoad", place: #file)
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		NSLog("\(#function): viewWillAppear")
+		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		NSLog("\(#function): viewWillAppear")
+		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -70,12 +71,13 @@ public class SingleView2Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		NSLog("\(#function): viewDidAppear")
+		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
+		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear(animated)
 		doDumpView(message: "After viewDidAppear")
 	}
