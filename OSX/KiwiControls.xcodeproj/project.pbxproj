@@ -68,6 +68,15 @@
 		0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */; };
 		0568FDE421247B370048EA92 /* SampleImage0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0568FDE321247B370048EA92 /* SampleImage0.jpeg */; };
 		0568FDE621247B7A0048EA92 /* SampleImage0.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0568FDE321247B370048EA92 /* SampleImage0.jpeg */; };
+		056E4A1C21F765AF00ED7AD2 /* KCNavigationBarCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A1A21F765AF00ED7AD2 /* KCNavigationBarCore.swift */; };
+		056E4A1D21F765AF00ED7AD2 /* KCNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A1B21F765AF00ED7AD2 /* KCNavigationBar.swift */; };
+		056E4A1F21F7662A00ED7AD2 /* KCNavigationBarCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A1E21F7662A00ED7AD2 /* KCNavigationBarCore.xib */; };
+		056E4A2721F779F900ED7AD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A2621F779F900ED7AD2 /* AppDelegate.swift */; };
+		056E4A2921F779F900ED7AD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A2821F779F900ED7AD2 /* ViewController.swift */; };
+		056E4A2B21F779FB00ED7AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A2A21F779FB00ED7AD2 /* Assets.xcassets */; };
+		056E4A2E21F779FB00ED7AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A2C21F779FB00ED7AD2 /* Main.storyboard */; };
+		056E4A3621F77A7A00ED7AD2 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
+		056E4A3721F77B4D00ED7AD2 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504EE381D8E9D3900D20B55 /* KiwiControls.framework */; };
 		05774D5F214368950073FCBA /* SingleView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05774D5E214368950073FCBA /* SingleView1Controller.swift */; };
 		057B0CD02116DAB2007885F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CCF2116DAB2007885F3 /* AppDelegate.swift */; };
 		057B0CD22116DAB2007885F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CD12116DAB2007885F3 /* ViewController.swift */; };
@@ -184,6 +193,13 @@
 			remoteInfo = KiwiControls;
 		};
 		05674B9E1F77D220006CB20F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05386D4F1D857F77004B8DDF;
+			remoteInfo = Install;
+		};
+		056E4A3421F77A0400ED7AD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05043C131D856F910033FEC6 /* Project object */;
 			proxyType = 1;
@@ -314,6 +330,16 @@
 		05674B991F77D1CD006CB20F /* UTWindowController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTWindowController.entitlements; sourceTree = "<group>"; };
 		0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		0568FDE321247B370048EA92 /* SampleImage0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleImage0.jpeg; sourceTree = "<group>"; };
+		056E4A1A21F765AF00ED7AD2 /* KCNavigationBarCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCNavigationBarCore.swift; sourceTree = "<group>"; };
+		056E4A1B21F765AF00ED7AD2 /* KCNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCNavigationBar.swift; sourceTree = "<group>"; };
+		056E4A1E21F7662A00ED7AD2 /* KCNavigationBarCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCNavigationBarCore.xib; sourceTree = "<group>"; };
+		056E4A2421F779F900ED7AD2 /* UTNavigationBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTNavigationBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		056E4A2621F779F900ED7AD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		056E4A2821F779F900ED7AD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		056E4A2A21F779FB00ED7AD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		056E4A2D21F779FB00ED7AD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		056E4A2F21F779FB00ED7AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		056E4A3021F779FB00ED7AD2 /* UTNavigationBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTNavigationBar.entitlements; sourceTree = "<group>"; };
 		05774D5E214368950073FCBA /* SingleView1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
 		057B0CCD2116DAB2007885F3 /* UTMultiViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		057B0CCF2116DAB2007885F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -447,6 +473,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		056E4A2121F779F900ED7AD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056E4A3621F77A7A00ED7AD2 /* CoconutData.framework in Frameworks */,
+				056E4A3721F77B4D00ED7AD2 /* KiwiControls.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		057B0CCA2116DAB2007885F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -523,6 +558,7 @@
 				0588EA03209E7B4C00C6D5E8 /* UTLogWindow.app */,
 				057B0CCD2116DAB2007885F3 /* UTMultiViewController.app */,
 				0536FFBA21A5C06E0069A6F0 /* UTSpriteView.app */,
+				056E4A2421F779F900ED7AD2 /* UTNavigationBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,6 +590,7 @@
 				0584B13E1EACA26F00A5E9B8 /* KCStackViewCore.xib */,
 				05F66D2E1F45C50F004786FE /* KCConsoleViewCore.xib */,
 				0598D9B5212459710018AA1D /* KCImageViewCore.xib */,
+				056E4A1E21F7662A00ED7AD2 /* KCNavigationBarCore.xib */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -687,6 +724,7 @@
 		05674B9D1F77D1E6006CB20F /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				056E4A2521F779F900ED7AD2 /* UTNavigationBar */,
 				057B0CCE2116DAB2007885F3 /* UTMultiViewController */,
 				0588EA04209E7B4C00C6D5E8 /* UTLogWindow */,
 				05929FCD209D9DF200A3F4E9 /* UTRootView */,
@@ -709,6 +747,19 @@
 			);
 			name = UnitTest;
 			path = ../UnitTest;
+			sourceTree = "<group>";
+		};
+		056E4A2521F779F900ED7AD2 /* UTNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				056E4A2621F779F900ED7AD2 /* AppDelegate.swift */,
+				056E4A2821F779F900ED7AD2 /* ViewController.swift */,
+				056E4A2A21F779FB00ED7AD2 /* Assets.xcassets */,
+				056E4A2C21F779FB00ED7AD2 /* Main.storyboard */,
+				056E4A2F21F779FB00ED7AD2 /* Info.plist */,
+				056E4A3021F779FB00ED7AD2 /* UTNavigationBar.entitlements */,
+			);
+			path = UTNavigationBar;
 			sourceTree = "<group>";
 		};
 		057B0CCE2116DAB2007885F3 /* UTMultiViewController */ = {
@@ -815,6 +866,8 @@
 				0598D9B7212459A80018AA1D /* KCImageViewCore.swift */,
 				05A4711C21D2877200E7C446 /* KCSpriteView.swift */,
 				05A4711D21D2877200E7C446 /* KCSpriteViewCore.swift */,
+				056E4A1B21F765AF00ED7AD2 /* KCNavigationBar.swift */,
+				056E4A1A21F765AF00ED7AD2 /* KCNavigationBarCore.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -1001,6 +1054,24 @@
 			productReference = 05674B8D1F77D1CD006CB20F /* UTWindowController.app */;
 			productType = "com.apple.product-type.application";
 		};
+		056E4A2321F779F900ED7AD2 /* UTNavigationBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 056E4A3121F779FB00ED7AD2 /* Build configuration list for PBXNativeTarget "UTNavigationBar" */;
+			buildPhases = (
+				056E4A2021F779F900ED7AD2 /* Sources */,
+				056E4A2121F779F900ED7AD2 /* Frameworks */,
+				056E4A2221F779F900ED7AD2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				056E4A3521F77A0400ED7AD2 /* PBXTargetDependency */,
+			);
+			name = UTNavigationBar;
+			productName = UTNavigationBar;
+			productReference = 056E4A2421F779F900ED7AD2 /* UTNavigationBar.app */;
+			productType = "com.apple.product-type.application";
+		};
 		057B0CCC2116DAB2007885F3 /* UTMultiViewController */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 057B0CDC2116DAB4007885F3 /* Build configuration list for PBXNativeTarget "UTMultiViewController" */;
@@ -1148,6 +1219,11 @@
 						DevelopmentTeam = TR2DNF3P93;
 						ProvisioningStyle = Automatic;
 					};
+					056E4A2321F779F900ED7AD2 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 					057B0CCC2116DAB2007885F3 = {
 						CreatedOnToolsVersion = 9.4.1;
 						DevelopmentTeam = TR2DNF3P93;
@@ -1217,6 +1293,7 @@
 				0588EA02209E7B4C00C6D5E8 /* UTLogWindow */,
 				057B0CCC2116DAB2007885F3 /* UTMultiViewController */,
 				0536FFB921A5C06E0069A6F0 /* UTSpriteView */,
+				056E4A2321F779F900ED7AD2 /* UTNavigationBar */,
 			);
 		};
 /* End PBXProject section */
@@ -1232,6 +1309,7 @@
 				0598D9B6212459710018AA1D /* KCImageViewCore.xib in Resources */,
 				057E16B01E11886100EC4DF6 /* KCButtonCore.xib in Resources */,
 				0558C9E71F8A018E00F3F9A6 /* KCEmptyViewController.xib in Resources */,
+				056E4A1F21F7662A00ED7AD2 /* KCNavigationBarCore.xib in Resources */,
 				05F66D2F1F45C50F004786FE /* KCConsoleViewCore.xib in Resources */,
 				052CDEF820D7AEFA00CC184D /* KCTextEditCore.xib in Resources */,
 				0584B13F1EACA26F00A5E9B8 /* KCStackViewCore.xib in Resources */,
@@ -1267,6 +1345,15 @@
 			files = (
 				05674B941F77D1CD006CB20F /* Assets.xcassets in Resources */,
 				05674B971F77D1CD006CB20F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056E4A2221F779F900ED7AD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056E4A2B21F779FB00ED7AD2 /* Assets.xcassets in Resources */,
+				056E4A2E21F779FB00ED7AD2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1376,6 +1463,7 @@
 				0526C47021C017E600EDC4E3 /* KCLayoutConstraint.swift in Sources */,
 				055FBC351E6A30F600A7A640 /* KCTableView.swift in Sources */,
 				0566C5B81E69BE9B001F6FD7 /* KCTableViewCore.swift in Sources */,
+				056E4A1C21F765AF00ED7AD2 /* KCNavigationBarCore.swift in Sources */,
 				05BD996D20956C2A00E468B7 /* KCPoint.swift in Sources */,
 				0529608B2115B26D00D9D739 /* KCSingleViewController.swift in Sources */,
 				05C93F4520F0E5220057217F /* KCViewVisitor.swift in Sources */,
@@ -1403,6 +1491,7 @@
 				0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */,
 				057C42CE1E4390D3001BD954 /* KCSelectionLayer.swift in Sources */,
 				0501F7A31E12D84300B68A98 /* KCCheckBoxCore.swift in Sources */,
+				056E4A1D21F765AF00ED7AD2 /* KCNavigationBar.swift in Sources */,
 				0598D5781DE180D50098C5B8 /* KCBackgroundLayer.swift in Sources */,
 				0584B1411EACA29500A5E9B8 /* KCStackViewCore.swift in Sources */,
 			);
@@ -1432,6 +1521,15 @@
 			files = (
 				05674B921F77D1CD006CB20F /* ViewController.swift in Sources */,
 				05674B901F77D1CD006CB20F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056E4A2021F779F900ED7AD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056E4A2921F779F900ED7AD2 /* ViewController.swift in Sources */,
+				056E4A2721F779F900ED7AD2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1522,6 +1620,11 @@
 			target = 05386D4F1D857F77004B8DDF /* Install */;
 			targetProxy = 05674B9E1F77D220006CB20F /* PBXContainerItemProxy */;
 		};
+		056E4A3521F77A0400ED7AD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05386D4F1D857F77004B8DDF /* Install */;
+			targetProxy = 056E4A3421F77A0400ED7AD2 /* PBXContainerItemProxy */;
+		};
 		057B0CDE2116DAC1007885F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05386D4F1D857F77004B8DDF /* Install */;
@@ -1573,6 +1676,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				05674B961F77D1CD006CB20F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		056E4A2C21F779FB00ED7AD2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				056E4A2D21F779FB00ED7AD2 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1962,6 +2073,61 @@
 			};
 			name = Release;
 		};
+		056E4A3221F779FB00ED7AD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTNavigationBar/UTNavigationBar.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTNavigationBar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTNavigationBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		056E4A3321F779FB00ED7AD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTNavigationBar/UTNavigationBar.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTNavigationBar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTNavigationBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 		057B0CDA2116DAB4007885F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2288,6 +2454,15 @@
 			buildConfigurations = (
 				05674B9B1F77D1CD006CB20F /* Debug */,
 				05674B9C1F77D1CD006CB20F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		056E4A3121F779FB00ED7AD2 /* Build configuration list for PBXNativeTarget "UTNavigationBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056E4A3221F779FB00ED7AD2 /* Debug */,
+				056E4A3321F779FB00ED7AD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

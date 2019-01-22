@@ -1,0 +1,100 @@
+/**
+ * @file KCNavigationBar.swift
+ * @brief Define KCNavigationBar class
+ * @par Copyright
+ *   Copyright (C) 2019 Steel Wheels Project
+ */
+
+#if os(OSX)
+import Cocoa
+#else
+import UIKit
+#endif
+import CoconutData
+
+open class KCNavigationBar : KCCoreView
+{
+	#if os(OSX)
+	public override init(frame : NSRect){
+		super.init(frame: frame) ;
+		setupContext() ;
+	}
+	#else
+	public override init(frame: CGRect){
+		super.init(frame: frame) ;
+		setupContext()
+	}
+	#endif
+
+	public convenience init(){
+		#if os(OSX)
+		let frame = NSRect(x: 0.0, y: 0.0, width: 160, height: 60)
+		#else
+		let frame = CGRect(x: 0.0, y: 0.0, width: 160, height: 60)
+		#endif
+		self.init(frame: frame)
+	}
+
+	public required init?(coder: NSCoder) {
+		super.init(coder: coder) ;
+		setupContext() ;
+	}
+
+	private func setupContext(){
+		if let newview = loadChildXib(thisClass: KCNavigationBar.self, nibName: "KCNavigationBarCore") as? KCNavigationBarCore {
+			setCoreView(view: newview)
+			newview.setup(frame: self.frame)
+			allocateSubviewLayout(subView: newview)
+		} else {
+			fatalError("Can not load KCNavigationBarCore")
+		}
+	}
+
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Fixed, .Fixed)
+	}
+
+	public var title: String {
+		get { return coreView.title }
+		set(str) { coreView.title = str }
+	}
+
+	public var isLeftButtonEnabled: Bool {
+		get { return coreView.isLeftButtonEnabled }
+		set(enable) { coreView.isLeftButtonEnabled = enable }
+	}
+	
+	public var leftButtonTitle: String {
+		get { return coreView.leftButtonTitle }
+		set(str) { coreView.leftButtonTitle = str }
+	}
+
+	public var leftButtonCallback: (() -> Void)? {
+		get { return coreView.leftButtonCallback }
+		set(cbfunc) { coreView.leftButtonCallback = cbfunc }
+	}
+
+	public var isRightButtonEnabled: Bool {
+		get { return coreView.isRightButtonEnabled }
+		set(enable) { coreView.isRightButtonEnabled = enable }
+	}
+
+	public var rightButtonTitle: String {
+		get { return coreView.rightButtonTitle }
+		set(str) { coreView.rightButtonTitle = str }
+	}
+
+	public var rightButtonCallback: (() -> Void)? {
+		get { return coreView.rightButtonCallback }
+		set(cbfunc) { coreView.rightButtonCallback = cbfunc }
+	}
+
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(navigationBar: self)
+	}
+
+	private var coreView: KCNavigationBarCore {
+		get { return getCoreView() }
+	}
+}
+

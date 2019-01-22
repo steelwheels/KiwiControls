@@ -1,0 +1,160 @@
+/**
+ * @file KCNavigationBarCore.swift
+ * @brief Define KCNavigationBarCore class
+ * @par Copyright
+ *   Copyright (C) 2019 Steel Wheels Project
+ */
+
+import CoconutData
+import SpriteKit
+import Foundation
+
+open class KCNavigationBarCore: KCView
+{
+	public var leftBarButtonPressedCallback		: (() -> Void)? = nil
+	public var rightBarButtonPressedCallback	: (() -> Void)? = nil
+
+	#if os(OSX)
+	@IBOutlet weak var mNavigationBar	: KCView!
+	@IBOutlet weak var mNavigationItem	: NSTextField!
+	@IBOutlet weak var leftBarButton	: NSButton!
+	@IBOutlet weak var rightBarButton	: NSButton!
+	#else
+	@IBOutlet weak var mNavigationBar	: UINavigationBar!
+	@IBOutlet weak var mNavigationItem	: UINavigationItem!
+	@IBOutlet weak var leftBarButton	: UIBarButtonItem!
+	@IBOutlet weak var rightBarButton	: UIBarButtonItem!
+	#endif
+
+
+	public func setup(frame frm: CGRect){
+		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
+		self.frame  = bounds
+		self.bounds = bounds
+
+		self.title = ""
+
+		self.isLeftButtonEnabled		= false
+		self.leftButtonTitle			= ""
+		self.leftBarButtonPressedCallback	= nil
+
+		self.isRightButtonEnabled		= false
+		self.rightButtonTitle			= ""
+		self.rightBarButtonPressedCallback	= nil
+	}
+
+	public var title: String {
+		get {
+			#if os(OSX)
+				return mNavigationItem.stringValue
+			#else
+				if let str = mNavigationItem.title {
+					return str
+				} else {
+					return ""
+				}
+			#endif
+		}
+		set(str) {
+			#if os(OSX)
+				mNavigationItem.stringValue = str
+			#else
+				mNavigationItem.title = str
+			#endif
+		}
+	}
+
+	public var isLeftButtonEnabled: Bool {
+		get {
+			return leftBarButton.isEnabled
+		}
+		set(enable){
+			leftBarButton.isEnabled = enable
+		}
+	}
+
+	public var leftButtonTitle: String {
+		get {
+			#if os(OSX)
+				return leftBarButton.title
+			#else
+				if let title = leftBarButton.title {
+					return title
+				} else {
+					return ""
+				}
+			#endif
+		}
+		set(str){
+			leftBarButton.title = str
+		}
+	}
+
+	public var leftButtonCallback: (() -> Void)? {
+		get {
+			return leftBarButtonPressedCallback
+		}
+		set(cbfunc) {
+			leftBarButtonPressedCallback = cbfunc
+		}
+	}
+
+	public var isRightButtonEnabled: Bool {
+		get {
+			return rightBarButton.isEnabled
+		}
+		set(enable){
+			rightBarButton.isEnabled = enable
+		}
+	}
+	
+	public var rightButtonTitle: String {
+		get {
+			#if os(OSX)
+				return rightBarButton.title
+			#else
+				if let title = rightBarButton.title {
+					return title
+				} else {
+					return ""
+				}
+			#endif
+		}
+		set(str){
+			rightBarButton.title = str
+		}
+	}
+
+	public var rightButtonCallback: (() -> Void)? {
+		get {
+			return rightBarButtonPressedCallback
+		}
+		set(cbfunc) {
+			rightBarButtonPressedCallback = cbfunc
+		}
+	}
+
+	@IBAction func leftButtonPressed(_ sender: Any) {
+		if let cbfunc = leftBarButtonPressedCallback {
+			cbfunc()
+		}
+	}
+
+	@IBAction func rightButtonPressed(_ sender: Any) {
+		if let cbfunc = rightBarButtonPressedCallback {
+			cbfunc()
+		}
+	}
+	
+	open override func sizeToFit() {
+		mNavigationBar.sizeToFit()
+		super.resize(mNavigationBar.frame.size)
+	}
+
+	open override var intrinsicContentSize: KCSize {
+		get {
+			return mNavigationBar.intrinsicContentSize
+		}
+	}
+}
+

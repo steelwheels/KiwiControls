@@ -57,6 +57,10 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
+	open func visit(navigationBar view: KCNavigationBar){
+		visit(coreView: view)
+	}
+
 	open func visit(coreView view: KCCoreView){
 	}
 }
