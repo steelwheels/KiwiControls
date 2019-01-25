@@ -69,9 +69,9 @@ open class KCNavigationBar : KCCoreView
 		set(str) { coreView.leftButtonTitle = str }
 	}
 
-	public var leftButtonCallback: (() -> Void)? {
-		get { return coreView.leftButtonCallback }
-		set(cbfunc) { coreView.leftButtonCallback = cbfunc }
+	public var leftButtonPressedCallback: (() -> Void)? {
+		get { return coreView.leftButtonPressedCallback }
+		set(cbfunc) { coreView.leftButtonPressedCallback = cbfunc }
 	}
 
 	public var isRightButtonEnabled: Bool {
@@ -84,9 +84,9 @@ open class KCNavigationBar : KCCoreView
 		set(str) { coreView.rightButtonTitle = str }
 	}
 
-	public var rightButtonCallback: (() -> Void)? {
-		get { return coreView.rightButtonCallback }
-		set(cbfunc) { coreView.rightButtonCallback = cbfunc }
+	public var rightButtonPressedCallback: (() -> Void)? {
+		get { return coreView.rightButtonPressedCallback }
+		set(cbfunc) { coreView.rightButtonPressedCallback = cbfunc }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

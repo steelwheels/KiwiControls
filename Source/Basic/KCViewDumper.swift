@@ -59,6 +59,24 @@ public class KCViewDumper: KCViewVisitor
 		mSection = section
 	}
 
+	open override func visit(navigationBar view: KCNavigationBar) {
+		let section = CNTextSection()
+
+		section.header = "class :" + String(describing: type(of: view)) + " {"
+		section.footer = "}"
+
+		let title = view.title
+		section.add(string: "title: " + title)
+
+		let lefttitle = view.leftButtonTitle
+		section.add(string: "leftButtonTitle : " + lefttitle)
+
+		let righttitle = view.rightButtonTitle
+		section.add(string: "rightButtonTitle : " + righttitle)
+		
+		mSection = section
+	}
+
 	open override func visit(coreView view: KCCoreView){
 		let section = CNTextSection()
 

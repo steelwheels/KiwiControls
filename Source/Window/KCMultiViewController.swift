@@ -76,15 +76,15 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		}
 	}
 	
-	public func popViewController() {
+	public func popViewController() -> Bool {
 		if let _ = mViewStack.pop() {
 			if let index = mViewStack.peek() {
 				/* Switch view */
 				switchView(index: index)
-				return
+				return true
 			}
 		}
-		CNLog(type: .Error, message: "Failed to pop view", place: #file)
+		return false
 	}
 
 	private func switchView(index idx: Int){

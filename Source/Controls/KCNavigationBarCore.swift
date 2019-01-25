@@ -90,7 +90,7 @@ open class KCNavigationBarCore: KCView
 		}
 	}
 
-	public var leftButtonCallback: (() -> Void)? {
+	public var leftButtonPressedCallback: (() -> Void)? {
 		get {
 			return leftBarButtonPressedCallback
 		}
@@ -125,7 +125,7 @@ open class KCNavigationBarCore: KCView
 		}
 	}
 
-	public var rightButtonCallback: (() -> Void)? {
+	public var rightButtonPressedCallback: (() -> Void)? {
 		get {
 			return rightBarButtonPressedCallback
 		}

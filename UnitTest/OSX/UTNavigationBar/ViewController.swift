@@ -21,14 +21,14 @@ class ViewController: NSViewController
 
 		mNavigationBar.isLeftButtonEnabled	= true
 		mNavigationBar.leftButtonTitle		= "Left"
-		mNavigationBar.leftButtonCallback = {
+		mNavigationBar.leftButtonPressedCallback = {
 			() -> Void in
 			NSLog("Left button pressed")
 		}
 
 		mNavigationBar.isRightButtonEnabled	= true
 		mNavigationBar.rightButtonTitle		= "Right"
-		mNavigationBar.rightButtonCallback = {
+		mNavigationBar.rightButtonPressedCallback = {
 			() -> Void in
 			NSLog("Right button pressed")
 		}
