@@ -60,21 +60,16 @@ public class KCViewDumper: KCViewVisitor
 	}
 
 	open override func visit(navigationBar view: KCNavigationBar) {
-		let section = CNTextSection()
-
-		section.header = "class :" + String(describing: type(of: view)) + " {"
-		section.footer = "}"
+		visit(coreView: view)
 
 		let title = view.title
-		section.add(string: "title: " + title)
+		mSection.add(string: "title: " + title)
 
 		let lefttitle = view.leftButtonTitle
-		section.add(string: "leftButtonTitle : " + lefttitle)
+		mSection.add(string: "leftButtonTitle : " + lefttitle)
 
 		let righttitle = view.rightButtonTitle
-		section.add(string: "rightButtonTitle : " + righttitle)
-		
-		mSection = section
+		mSection.add(string: "rightButtonTitle : " + righttitle)
 	}
 
 	open override func visit(coreView view: KCCoreView){
@@ -88,6 +83,7 @@ public class KCViewDumper: KCViewVisitor
 
 		let boundsdesc = view.bounds.description
 		section.add(text: CNTextLine(string: "bounds:        " + boundsdesc))
+
 		let sizedesc   = view.intrinsicContentSize.description
 		section.add(text: CNTextLine(string: "intrinsicSize: " + sizedesc))
 

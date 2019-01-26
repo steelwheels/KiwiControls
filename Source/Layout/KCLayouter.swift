@@ -26,6 +26,12 @@ public class KCLayouter
 		let windowsize = KCLayouter.windowSize(viewController: mViewController)
 		let insets     = KCLayouter.safeAreaInset(viewController: mViewController)
 
+		doLog(message: "///// Lauout")
+
+		doDump(message: "/* Get content size */", view: view)
+		let content = KCLayouter.contentRect(size: windowsize, inset: insets)
+		doLog(message: "//  windowsize:" + windowsize.description + " -> contextsize:" + content.size.description)
+
 		doDump(message: "Before size minimizer", view: view)
 		let minimizer = KCSizeMinimizer()
 		view.accept(visitor: minimizer)
@@ -34,9 +40,9 @@ public class KCLayouter
 		let groupfitter = KCGroupSizeAllocator()
 		view.accept(visitor: groupfitter)
 
-		doDump(message: "Before frame allocation", view: view)
+		doDump(message: "Allocate frame size", view: view)
 		let frmallocator = KCFrameSizeAllocator(windowSize: windowsize, windowInset: insets)
-		frmallocator.setRootFrame(rootView: view)
+		frmallocator.setRootFrame(rootView: view, contentRect: content)
 
 		doDump(message: "Before distribution decider", view: view)
 		let distdecider = KCDistributionDecider()
@@ -89,7 +95,21 @@ public class KCLayouter
 			return KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 		}
 	}
-	
+
+	private class func contentRect(size sz: KCSize, inset ist: KCEdgeInsets) -> KCRect {
+		let x      = ist.left
+		let y      = ist.top
+		let width  = max(0.0, sz.width  - (x + ist.right))
+		let height = max(0.0, sz.height - (y + ist.bottom))
+		return KCRect(x: x, y: y, width: width, height: height)
+	}
+
+	private func doLog(message msg: String) {
+		if mDoVerbose {
+			mConsole.print(string: msg + "\n")
+		}
+	}
+
 	private func doDump(message msg: String, view v: KCView){
 		if mDebug {
 			mConsole.print(string: "//////// \(msg)\n")

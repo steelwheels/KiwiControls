@@ -18,13 +18,11 @@ public class KCFrameSizeAllocator
 		mWindowInset	= inset
 	}
 
-	public func setRootFrame(rootView view: KCRootView){
+	public func setRootFrame(rootView view: KCRootView, contentRect content: KCRect){
 		/* Allocate root frame */
-		let frame	= KCRect(origin: KCPoint.zero, size: mWindowSize)
-		view.frame	= frame
-		view.bounds	= frame
-		view.fixedSize	= frame.size
-		//view.translatesAutoresizingMaskIntoConstraints = false
+		view.frame	= content
+		view.bounds	= KCRect(origin: KCPoint.zero, size: content.size)
+		view.fixedSize	= content.size
 
 		/* Setup content view */
 		if let core: KCView = view.getCoreView() {

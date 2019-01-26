@@ -90,4 +90,14 @@ public extension NSResponder {
 	}
 #endif
 
-
+public extension KCEdgeInsets {
+	public var description: String {
+		get {
+			let l = self.left
+			let t = self.top
+			let b = self.bottom
+			let r = self.right
+			return "(left:\(l), top:\(t), bottom:\(b), right:\(r))"
+		}
+	}
+}
