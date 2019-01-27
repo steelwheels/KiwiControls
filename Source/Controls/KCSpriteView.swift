@@ -60,6 +60,10 @@ open class KCSpriteView: KCCoreView
 	}
 	#endif
 
+	public var sceneSize: CGSize {
+		get { return coreView.sceneSize }
+	}
+
 	public var database: CNDatabaseProtocol {
 		get { return coreView.database }
 	}

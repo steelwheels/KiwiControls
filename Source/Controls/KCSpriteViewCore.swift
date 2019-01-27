@@ -208,6 +208,10 @@ open class KCSpriteViewCore: KCView
 		}
 	}
 
+	public var sceneSize: CGSize {
+		get { return scene.size }
+	}
+
 	public var database: CNDatabaseProtocol {
 		get { return mNodeDatabase }
 	}
