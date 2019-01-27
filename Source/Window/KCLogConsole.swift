@@ -28,7 +28,7 @@ public class KCLogConsole: CNConsole
 	}
 	#else
 	private weak var	mViewController: KCLogViewController? = nil
-	private var viewController: KCLogViewController? {
+	public var viewController: KCLogViewController? {
 		get { return mViewController }
 		set(newview) { mViewController = newview }
 	}

@@ -24,7 +24,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	private var mContentViewControllers:	Array<KCSingleViewController> = [] /* index -> view */
 	private var mViewStack:			CNStack = CNStack<Int>()
 
-	public var console 			= CNFileConsole()
+	public var console : CNConsole		= CNFileConsole()
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)

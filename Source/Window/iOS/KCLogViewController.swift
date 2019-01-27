@@ -17,10 +17,34 @@ open class KCLogViewController: KCSingleViewController
 		/* Setup root view */
 		super.loadView()
 
+		/* allocate stack */
+		let dmyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+		let stack   = KCStackView(frame: dmyrect)
+		stack.axis         = .vertical
+		stack.alignment    = .fill
+		stack.distribution = .fill
+
+		/* Allocate navigation bar to stack */
+		let navigation = KCNavigationBar(frame: dmyrect)
+		navigation.title			= "Log console"
+		navigation.isRightButtonEnabled		= true
+		navigation.rightButtonTitle		= "Back"
+		navigation.rightButtonPressedCallback	= {
+			() -> Void in
+			if let parent = self.parentController {
+				if !parent.popViewController() {
+					CNLog(type: .Error, message: "Can not pop previous view", place: #function)
+				}
+			}
+		}
+		stack.addArrangedSubView(subView: navigation)
+
 		/* Add text field */
 		let console = KCConsoleView()
+		stack.addArrangedSubView(subView: console)
+
 		if let root = super.rootView {
-			root.setup(childView: console)
+			root.setup(childView: stack)
 			mConsoleView = console
 			mConsole.outputConsole = console.console
 		} else {
