@@ -42,8 +42,9 @@ public class SingleView0Controller: KCSingleViewController
 			CNLog(type: .Normal, message: "setup root view", place: #file)
 			root.setup(childView: box1)
 
+			let winsize  = KCLayouter.windowSize(viewController: self)
 			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
-			layouter.layout(rootView: root)
+			layouter.layout(rootView: root, windowSize: winsize)
 		} else {
 			fatalError("No root view")
 		}

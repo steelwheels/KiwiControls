@@ -20,11 +20,8 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase
 {
-	private var mIndexTable:		Dictionary<String, Int> = [:]	/* name -> index */
-	private var mContentViewControllers:	Array<KCSingleViewController> = [] /* index -> view */
-	private var mViewStack:			CNStack = CNStack<Int>()
-
-	public var console : CNConsole		= CNFileConsole()
+	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
+	private var mViewStack:		CNStack = CNStack<String>()	/* name */
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -35,7 +32,21 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		showTabBar(visible:false)
 	}
 
-	public func check(name nm: String) -> Bool {
+	public func showTabBar(visible vis: Bool){
+		#if os(OSX)
+		let style: NSTabViewController.TabStyle
+		if vis {
+			style = .segmentedControlOnTop
+		} else {
+			style = .unspecified
+		}
+		self.tabStyle = style
+		#else
+		self.tabBar.isHidden = !vis
+		#endif
+	}
+
+	public func hasViewController(name nm: String) -> Bool {
 		if let _ = mIndexTable[nm] {
 			return true
 		} else {
@@ -44,45 +55,57 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	}
 
 	public func add(name nm: String, viewController vcont: KCSingleViewController) {
-		if let curidx = mIndexTable[nm] {
-			/* Overeite index table */
-			mContentViewControllers[curidx] = vcont
-		} else {
-			/* Add the view to index table */
-			let index = mContentViewControllers.count
-			mIndexTable[nm] = index
-			mContentViewControllers.append(vcont)
-		}
-		/* Add view to controller */
+		let index = numberOfViewControllers()
 		#if os(OSX)
 			let item = NSTabViewItem(identifier: nm)
 			item.viewController = vcont
 			self.addTabViewItem(item)
 		#else
-			self.setViewControllers(mContentViewControllers, animated: false)
+			var ctrls: Array<KCViewController>
+			if let orgctrls = viewControllers {
+				ctrls = orgctrls
+				ctrls.append(vcont)
+			} else {
+				ctrls = [vcont]
+				setViewControllers(ctrls, animated: false)
+			}
+		#endif
+		mIndexTable[nm] = index
+	}
+
+	private func numberOfViewControllers() -> Int {
+		#if os(OSX)
+			return tabViewItems.count
+		#else
+			var result: Int
+			if let ctrls = viewControllers {
+				result = ctrls.count
+			} else {
+				result = 0
+			}
+			return result
 		#endif
 	}
 
 	public func pushViewController(byName name: String) -> Bool {
-		if let index = mIndexTable[name] {
-			/* Push current index */
-			mViewStack.push(index)
-			/* Switch view */
-			switchView(index: index)
+		if let idx = mIndexTable[name] {
+			mViewStack.push(name)
+			switchView(index: idx)
 			return true
-		} else {
-			CNLog(type: .Error, message: "No view controller named \(name)", place: #file)
-			return false
 		}
+		return false
 	}
-	
+
 	public func popViewController() -> Bool {
-		if let _ = mViewStack.pop() {
-			if let index = mViewStack.peek() {
-				/* Switch view */
-				switchView(index: index)
-				return true
+		if mViewStack.count > 1 {
+			let _ = mViewStack.pop()
+			if let name = mViewStack.peek() {
+				if let idx = mIndexTable[name] {
+					switchView(index: idx)
+					return true
+				}
 			}
+			CNLog(type: .Error, message: "Can not happen (2)", place: #function)
 		}
 		return false
 	}
@@ -94,20 +117,5 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			self.selectedIndex = idx
 		#endif
 	}
-
-	public func showTabBar(visible vis: Bool){
-		#if os(OSX)
-			let style: NSTabViewController.TabStyle
-			if vis {
-				style = .segmentedControlOnTop
-			} else {
-				style = .unspecified
-			}
-			self.tabStyle = style
-		#else
-			self.tabBar.isHidden = !vis
-		#endif
-	}
 }
-
 

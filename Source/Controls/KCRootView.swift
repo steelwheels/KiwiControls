@@ -45,18 +45,6 @@ open class KCRootView: KCCoreView
 		#endif
 	}
 
-	public override var fixedSize: KCSize? {
-		get {
-			return super.fixedSize
-		}
-		set(newval){
-			if let core: KCCoreView = super.getCoreView() {
-				core.fixedSize = newval
-			}
-			super.fixedSize = newval
-		}
-	}
-
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(rootView: self)
 	}

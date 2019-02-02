@@ -18,11 +18,13 @@ open class KCSingleViewController: KCViewController
 	private var mConsole:			CNConsole
 	private var mDoVerbose:			Bool
 	private var mRootView:			KCRootView? = nil
+	private var mLayoutedSize:		KCSize
 
 	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole, doVerbose doverb: Bool){
 		mParentController	= parent
 		mConsole     		= cons
 		mDoVerbose		= doverb
+		mLayoutedSize		= KCSize.zero
 		super.init(nibName: nil, bundle: nil)
 	}
 
@@ -63,12 +65,26 @@ open class KCSingleViewController: KCViewController
 	private func doViewWillAppear() {
 		if let root = mRootView {
 			if root.hasCoreView {
-				/* Adjust size */
-				let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: mDoVerbose)
-				layouter.layout(rootView: root)
+				let winsize = KCLayouter.windowSize(viewController: self)
+				if winsize != mLayoutedSize {
+					/* Layout components */
+					log(type: .Normal, message: "// Execute Layout", place: #function)
+					let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: mDoVerbose)
+					layouter.layout(rootView: root, windowSize: winsize)
+					/* This size is layouted */
+					mLayoutedSize = winsize
+				} else {
+					log(type: .Normal, message: "// Skip layout", place: #function)
+				}
 			}
 		} else {
 			fatalError("No root view")
+		}
+	}
+
+	private func log(type typ: CNLogType, message msg: String, place plc: String){
+		if mDoVerbose {
+			CNLog(type: typ, message: msg, place: plc)
 		}
 	}
 }

@@ -22,36 +22,7 @@ public class KCLayouter
 		mDebug		= false
 	}
 
-	public func layout(rootView view: KCRootView){
-		let windowsize = KCLayouter.windowSize(viewController: mViewController)
-		let insets     = KCLayouter.safeAreaInset(viewController: mViewController)
-
-		doLog(message: "///// Lauout")
-
-		doDump(message: "/* Get content size */", view: view)
-		let content = KCLayouter.contentRect(size: windowsize, inset: insets)
-		doLog(message: "//  windowsize:" + windowsize.description + " -> contextsize:" + content.size.description)
-
-		doDump(message: "Before size minimizer", view: view)
-		let minimizer = KCSizeMinimizer()
-		view.accept(visitor: minimizer)
-
-		doDump(message: "Before group size allocator", view: view)
-		let groupfitter = KCGroupSizeAllocator()
-		view.accept(visitor: groupfitter)
-
-		doDump(message: "Allocate frame size", view: view)
-		let frmallocator = KCFrameSizeAllocator(windowSize: windowsize, windowInset: insets)
-		frmallocator.setRootFrame(rootView: view, contentRect: content)
-
-		doDump(message: "Before distribution decider", view: view)
-		let distdecider = KCDistributionDecider()
-		view.accept(visitor: distdecider)
-		
-		doDump(message: "Result of layout passes", view: view)
-	}
-
-	private class func windowSize(viewController vcont: KCSingleViewController) -> KCSize {
+	public class func windowSize(viewController vcont: KCSingleViewController) -> KCSize {
 		if let parent = vcont.parentController {
 			let result: KCSize
 			#if os(OSX)
@@ -69,6 +40,31 @@ public class KCLayouter
 			CNLog(type: .Error, message: "No parent controller", place: #file)
 			return KCSize(width: 0.0, height: 0.0)
 		}
+	}
+
+	public func layout(rootView view: KCRootView, windowSize winsize: KCSize){
+		doDump(message: "/* Get content size */", view: view)
+		let windowrect = KCRect(origin: CGPoint.zero, size: winsize)
+		doLog(message: "//  windowsize:" + winsize.description)
+
+		doDump(message: "Before size minimizer", view: view)
+		let minimizer = KCSizeMinimizer()
+		view.accept(visitor: minimizer)
+
+		doDump(message: "Before group size allocator", view: view)
+		let groupfitter = KCGroupSizeAllocator()
+		view.accept(visitor: groupfitter)
+
+		doDump(message: "Allocate frame size", view: view)
+		let insets       = KCLayouter.safeAreaInset(viewController: mViewController)
+		let frmallocator = KCFrameSizeAllocator(windowSize: winsize, windowInset: insets)
+		frmallocator.setRootFrame(rootView: view, contentRect: windowrect)
+
+		doDump(message: "Before distribution decider", view: view)
+		let distdecider = KCDistributionDecider()
+		view.accept(visitor: distdecider)
+		
+		doDump(message: "Result of layout passes", view: view)
 	}
 
 	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {

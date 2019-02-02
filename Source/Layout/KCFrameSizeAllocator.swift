@@ -22,10 +22,12 @@ public class KCFrameSizeAllocator
 		/* Allocate root frame */
 		view.frame	= content
 		view.bounds	= KCRect(origin: KCPoint.zero, size: content.size)
-		view.fixedSize	= content.size
+		view.fixedSize  = content.size
 
 		/* Setup content view */
-		if let core: KCView = view.getCoreView() {
+		if let core: KCCoreView = view.getCoreView() {
+			/* Fix the size */
+			core.fixedSize = content.size.inset(by: mWindowInset)
 			/* Allocate constraint */
 			view.allocateSubviewLayout(subView: core, in: mWindowInset)
 		}

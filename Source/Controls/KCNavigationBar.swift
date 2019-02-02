@@ -50,10 +50,6 @@ open class KCNavigationBar : KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Fixed, .Fixed)
-	}
-
 	public var title: String {
 		get { return coreView.title }
 		set(str) { coreView.title = str }
@@ -87,6 +83,10 @@ open class KCNavigationBar : KCCoreView
 	public var rightButtonPressedCallback: (() -> Void)? {
 		get { return coreView.rightButtonPressedCallback }
 		set(cbfunc) { coreView.rightButtonPressedCallback = cbfunc }
+	}
+
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.High, .Fixed)
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

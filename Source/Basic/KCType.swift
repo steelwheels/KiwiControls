@@ -101,3 +101,11 @@ public extension KCEdgeInsets {
 		}
 	}
 }
+
+public extension KCSize {
+	public func inset(by inset: KCEdgeInsets) -> KCSize {
+		let width  = max(0.0, self.width  - (inset.left + inset.right))
+		let height = max(0.0, self.height - (inset.top  + inset.bottom))
+		return KCSize(width: width, height: height)
+	}
+}
