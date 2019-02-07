@@ -93,6 +93,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			switchView(index: idx)
 			return true
 		}
+		CNLog(type: .Error, message: "No matched view", place: #function)
 		return false
 	}
 

@@ -55,6 +55,8 @@ public class KCLogConsole: CNConsole
 			#else
 				if let console = mViewController?.console {
 					console.print(string: str)
+				} else {
+					Swift.print(str, terminator: "")
 				}
 			#endif
 		}
@@ -67,6 +69,8 @@ public class KCLogConsole: CNConsole
 			#else
 				if let console = mViewController?.console {
 					console.error(string: str)
+				} else {
+					Swift.print(str, terminator: "")
 				}
 			#endif
 		}
