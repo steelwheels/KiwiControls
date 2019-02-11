@@ -5,6 +5,7 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 #if os(OSX)
 import AppKit
 #else
@@ -14,13 +15,17 @@ import Foundation
 
 public class KCPanel
 {
-	private var mViewController: KCViewController
+	private var mViewController:	KCViewController
+	private var mConsole:		CNConsole
+	private var mDoVerbose:		Bool
 
-	public init(viewController vcont: KCViewController){
+	public init(viewController vcont: KCViewController, console cons: CNConsole, doVerbose doverb: Bool){
 		mViewController = vcont
+		mConsole	= cons
+		mDoVerbose	= doverb
 	}
 	
-	public func selectInputFile(title ttext: String, documentTypes allowedUTIs: [String]) -> URL?
+	public func selectInputFile(title ttext: String, documentTypes allowedUTIs: [String], completion complfunc: @escaping (_ url: URL?) -> Void)
 	{
 		#if os(OSX)
 			/* get preference and collect extensions for given UTIs */
@@ -28,33 +33,29 @@ public class KCPanel
 			let exts = pref.fileExtensions(forUTIs: allowedUTIs)
 			if exts.count > 0 {
 				if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
-					return url
+					complfunc(url)
+					return
 				}
 			}
-			return nil
+			complfunc(nil)
 		#else
-			/* open file-selector view */
-			let picker = KCDocumentPickerViewController(documentTypes: allowedUTIs, in: .import)
-			picker.present(in: mViewController)
-			return picker.waitReturnValue()
+			KCDocumentPickerViewController.selectInputFile(parentViewController: mViewController, documentTypes: allowedUTIs, in: .import, completion: complfunc)
 		#endif
 	}
 
-	public func selectInputFile(title ttext: String, fileExtensions exts: [String]) -> URL?
+	public func selectInputFile(title ttext: String, fileExtensions exts: [String], completion complfunc: @escaping (_ url: URL?) -> Void)
 	{
 		#if os(OSX)
 			if exts.count > 0 {
 				if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
-					return url
+					complfunc(url)
 				}
 			}
-			return nil
+			complfunc(nil)
 		#else
 			let pref = KCPreference.shared.documentTypePreference
 			let utis = pref.UTIs(forExtensions: exts)
-			let picker = KCDocumentPickerViewController(documentTypes: utis, in: .import)
-			picker.present(in: mViewController)
-			return picker.waitReturnValue()
+			KCDocumentPickerViewController.selectInputFile(parentViewController: mViewController, documentTypes: utis, in: .import, completion: complfunc)
 		#endif
 	}
 

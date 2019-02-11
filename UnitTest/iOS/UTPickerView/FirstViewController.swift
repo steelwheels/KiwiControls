@@ -11,13 +11,15 @@ import UIKit
 
 public class FirstViewController: KCSingleViewController
 {
-	public var mConsole = CNFileConsole()
+	public var mConsole = CNConsole()
 
 	private var mURLLabel	: KCTextField?	= nil
 
 	public override func loadView() {
 		NSLog("FirstView: load view (init root view) at \(#function)")
 		super.loadView()
+
+		CNLogSetup(console: mConsole, doVerbose: true)
 
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
@@ -49,11 +51,12 @@ public class FirstViewController: KCSingleViewController
 		box1.addArrangedSubViews(subViews: [box0, label1])
 
 		if let root = super.rootView {
-			NSLog("FirstView: setup root view")
+			mConsole.print(string: "FirstView: setup root view")
 			root.setup(childView: box1)
 
+			let winsize  = KCLayouter.windowSize(viewController: self)
 			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
-			layouter.layout(rootView: root)
+			layouter.layout(rootView: root, windowSize: winsize)
 		} else {
 			fatalError("FirstView: No root view")
 		}
@@ -61,17 +64,20 @@ public class FirstViewController: KCSingleViewController
 
 	public func selectInputFile() {
 		let utis  = ["com.github.steelwheels.amber.application-package"]
-		let panel = KCPanel(viewController: self)
-		if let url = panel.selectInputFile(title: "Hello", documentTypes: utis) {
-			NSLog("FirstView: Open file selector ... OK \(url.absoluteString)")
-			if let label = mURLLabel {
-				label.text = url.absoluteString
-				label.setNeedsDisplay()
-				NSLog("FirstView: Update label by the URL")
+		let panel = KCPanel(viewController: self, console: mConsole, doVerbose: true)
+		panel.selectInputFile(title: "Hello", documentTypes: utis, completion: {
+			(_ urlp: URL?) in
+			if let url = urlp {
+				self.mConsole.print(string: "FirstView: Open file selector ... OK \(url.absoluteString)")
+				if let label = self.mURLLabel {
+					label.text = url.absoluteString
+					label.setNeedsDisplay()
+					NSLog("FirstView: Update label by the URL")
+				}
+			} else {
+				self.mConsole.print(string: "FirstView: Open file selector ... Cancelled")
 			}
-		} else {
-			NSLog("FirstView: Open file selector ... Cancelled")
-		}
+		})
 	}
 
 	public override func viewWillAppear(_ animated: Bool) {

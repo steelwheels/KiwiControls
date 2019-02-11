@@ -78,7 +78,7 @@ open class KCSingleViewController: KCViewController
 				}
 			}
 		} else {
-			fatalError("No root view")
+			CNLog(type: .Error, message: "No root view", place: #function)
 		}
 	}
 

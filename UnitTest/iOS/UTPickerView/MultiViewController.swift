@@ -23,7 +23,7 @@ class MultiViewController: KCMultiViewController
 		/* Add first view */
 		let firstcont = FirstViewController(parentViewController:self, console: console, doVerbose: true)
 		self.add(name: "firstView", viewController: firstcont)
-		
+
 		/* Push first view */
 		guard self.pushViewController(byName: "firstView") else {
 			NSLog("Failed to select")

@@ -67,8 +67,8 @@ open class KCMultiViewController : KCMultiViewControllerBase
 				ctrls.append(vcont)
 			} else {
 				ctrls = [vcont]
-				setViewControllers(ctrls, animated: false)
 			}
+			setViewControllers(ctrls, animated: false)
 		#endif
 		mIndexTable[nm] = index
 	}
@@ -88,6 +88,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	}
 
 	public func pushViewController(byName name: String) -> Bool {
+		CNLog(type: .Normal, message: "pushViewController named: \"\(name)\"", place: #function)
 		if let idx = mIndexTable[name] {
 			mViewStack.push(name)
 			switchView(index: idx)
@@ -111,7 +112,19 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		return false
 	}
 
+	public func replaceTopViewController(byName name: String) -> Bool {
+		var oldname: String
+		if let oname = mViewStack.pop() {
+			oldname = oname
+		} else {
+			oldname = "<none>"
+		}
+		CNLog(type: .Normal, message: "replaceTopViewController named: \"\(oldname)\" -> \"\(name)\"", place: #function)
+		return pushViewController(byName: name)
+	}
+
 	private func switchView(index idx: Int){
+		CNLog(type: .Normal, message: "switchView: to \(idx)", place: #function)
 		#if os(OSX)
 			self.selectedTabViewItemIndex = idx
 		#else
