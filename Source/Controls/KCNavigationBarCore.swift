@@ -70,6 +70,9 @@ open class KCNavigationBarCore: KCView
 		}
 		set(enable){
 			leftBarButton.isEnabled = enable
+			#if os(OSX)
+				leftBarButton.isHidden  = !enable
+			#endif
 		}
 	}
 
@@ -105,6 +108,9 @@ open class KCNavigationBarCore: KCView
 		}
 		set(enable){
 			rightBarButton.isEnabled = enable
+			#if os(OSX)
+				rightBarButton.isHidden  = !enable
+			#endif
 		}
 	}
 	
