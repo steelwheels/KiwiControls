@@ -51,10 +51,6 @@ open class KCLogViewController: KCSingleViewController
 			NSLog("\(#function) [Error] Can not allocate console view")
 		}
 	}
-
-	public var console: CNConsole {
-		get { return mConsole }
-	}
 }
 
 

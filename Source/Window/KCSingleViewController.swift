@@ -36,6 +36,10 @@ open class KCSingleViewController: KCViewController
 		get { return mParentController }
 	}
 
+	public var console: CNConsole {
+		get { return mConsole }
+	}
+
 	public var rootView: KCRootView? {
 		get { return mRootView }
 	}

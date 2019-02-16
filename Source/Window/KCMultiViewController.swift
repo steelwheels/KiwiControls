@@ -22,12 +22,16 @@ open class KCMultiViewController : KCMultiViewControllerBase
 {
 	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
 	private var mViewStack:		CNStack = CNStack<String>()	/* name */
+	#if os(iOS)
+	private var mPickerView:	KCDocumentPickerViewController? = nil
+	#endif
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
 	open override func viewDidLoad() {
+		CNLog(type: .Normal, message: "viewDidLoad", place: #function)
 		super.viewDidLoad()
 		showTabBar(visible:false)
 	}
@@ -43,6 +47,31 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		self.tabStyle = style
 		#else
 		self.tabBar.isHidden = !vis
+		#endif
+	}
+
+	public func selectViewFile(title ttext: String, fileExtensions exts: [String], loaderFunction loader: @escaping (_ url: URL) -> String?) {
+		#if os(OSX)
+			if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
+				if let viewname = loader(url) {
+					let _ = self.pushViewController(byName: viewname)
+				}
+			}
+		#else
+			let pref = KCPreference.shared.documentTypePreference
+			let utis = pref.UTIs(forExtensions: exts)
+			let picker: KCDocumentPickerViewController
+			if let p = mPickerView {
+				picker = p
+			} else {
+				picker = KCDocumentPickerViewController(parentViewController: self)
+				picker.nextViewFunction = {
+					(_ url: URL) -> String? in
+					return loader(url)
+				}
+				mPickerView = picker
+			}
+			picker.openPicker(UTIs: utis)
 		#endif
 	}
 
@@ -130,6 +159,21 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		#else
 			self.selectedIndex = idx
 		#endif
+	}
+
+	public func dump(to console: CNConsole){
+		console.print(string: "multi-view: {\n")
+
+		let stackdesc = "[" + mViewStack.peekAll().joined(separator: ",") + "]"
+		console.print(string: " stack: " + stackdesc + "\n")
+
+		var indices: Array<String> = []
+		for (key, value) in mIndexTable {
+			indices.append("\(key):\(value)")
+		}
+		console.print(string: " index: " + indices.joined(separator: ",") + "\n")
+
+		console.print(string: "}\n")
 	}
 }
 

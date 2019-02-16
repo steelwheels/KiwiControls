@@ -11,21 +11,28 @@ import UIKit
 
 class MultiViewController: KCMultiViewController
 {
+	private var mIsFirstAppearing = true
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		if mIsFirstAppearing {
+			viewDidFirstAppear()
+		}
 	}
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-
-		let console	= CNFileConsole()
-
+	private func viewDidFirstAppear() {
+		let console	= CNConsole()
+		CNLogSetup(console: console, doVerbose: true)
+		
 		/* Add first view */
-		let firstcont = FirstViewController(parentViewController:self, console: console, doVerbose: true)
-		self.add(name: "firstView", viewController: firstcont)
+		let firstcont = SingleViewController(viewType: .firstView, parentViewController:self, console: console, doVerbose: true)
+		self.add(name: "first_view", viewController: firstcont)
+
+		let secondcont = SingleViewController(viewType: .secondView, parentViewController:self, console: console, doVerbose: true)
+		self.add(name: "second_view", viewController: secondcont)
 
 		/* Push first view */
-		guard self.pushViewController(byName: "firstView") else {
+		guard self.pushViewController(byName: "first_view") else {
 			NSLog("Failed to select")
 			return
 		}
