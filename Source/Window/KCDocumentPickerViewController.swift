@@ -13,19 +13,28 @@ import Foundation
 
 @objc public class KCDocumentPickerViewController: NSObject, UIDocumentPickerDelegate
 {
+	public enum LoaderFunction {
+		case none
+		case view(_ loader: (_ url: URL) -> String?)
+		case url(_ loader: (_ url: URL) -> Void)
+	}
+
 	private var mParentViewController:	KCMultiViewController
 	private var mPickerView:		UIDocumentPickerViewController?
-
-	public var nextViewFunction: 		((_ url: URL) -> String?)?
+	private var mLoaderFunction:		LoaderFunction
 
 	public init(parentViewController parent: KCMultiViewController) {
 		mParentViewController	= parent
 		mPickerView		= nil
-		nextViewFunction	= nil
+		mLoaderFunction		= .none
 	}
 
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	public func setLoaderFunction(loader ldr: LoaderFunction){
+		mLoaderFunction = ldr
 	}
 
 	public func openPicker(UTIs utis: Array<String>) {
@@ -45,11 +54,18 @@ import Foundation
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
 		CNLog(type: .Normal, message: "Selected", place: #function)
-		if urls.count >= 1, let nextfunc = nextViewFunction {
-			if let viewname = nextfunc(urls[0]) {
-				if !mParentViewController.pushViewController(byName: viewname) {
-					CNLog(type: .Error, message: "Failed to push view \"\(viewname)\"", place: #function)
+		if urls.count >= 1 {
+			switch mLoaderFunction {
+			case .none:
+				break
+			case .view(let ldrfunc):
+				if let viewname = ldrfunc(urls[0]) {
+					if !mParentViewController.pushViewController(byName: viewname) {
+						CNLog(type: .Error, message: "Failed to push view \"\(viewname)\"", place: #function)
+					}
 				}
+			case .url(let ldrfunc):
+				ldrfunc(urls[0])
 			}
 		}
 	}

@@ -50,6 +50,29 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		#endif
 	}
 
+	public func selectFile(title ttext: String, fileExtensions exts: [String], loaderFunction loader: @escaping (_ url: URL) -> Void) {
+		#if os(OSX)
+			if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
+				loader(url)
+			}
+		#else
+			let picker: KCDocumentPickerViewController
+			if let p = mPickerView {
+				picker = p
+			} else {
+				picker = KCDocumentPickerViewController(parentViewController: self)
+				mPickerView = picker
+			}
+			picker.setLoaderFunction(loader: .url({
+				(_ url: URL) -> Void in
+				loader(url)
+			}))
+			let pref = KCPreference.shared.documentTypePreference
+			let utis = pref.UTIs(forExtensions: exts)
+			picker.openPicker(UTIs: utis)
+		#endif
+	}
+
 	public func selectViewFile(title ttext: String, fileExtensions exts: [String], loaderFunction loader: @escaping (_ url: URL) -> String?) {
 		#if os(OSX)
 			if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
@@ -58,19 +81,19 @@ open class KCMultiViewController : KCMultiViewControllerBase
 				}
 			}
 		#else
-			let pref = KCPreference.shared.documentTypePreference
-			let utis = pref.UTIs(forExtensions: exts)
 			let picker: KCDocumentPickerViewController
 			if let p = mPickerView {
 				picker = p
 			} else {
 				picker = KCDocumentPickerViewController(parentViewController: self)
-				picker.nextViewFunction = {
-					(_ url: URL) -> String? in
-					return loader(url)
-				}
 				mPickerView = picker
 			}
+			picker.setLoaderFunction(loader: .view({
+				(_ url: URL) -> String? in
+				return loader(url)
+			}))
+			let pref = KCPreference.shared.documentTypePreference
+			let utis = pref.UTIs(forExtensions: exts)
 			picker.openPicker(UTIs: utis)
 		#endif
 	}
