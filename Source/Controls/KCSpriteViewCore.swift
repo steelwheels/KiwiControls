@@ -55,7 +55,7 @@ public struct KCSpriteNode
 		if let image = val.toObject() as? KCImage {
 			return image
 		} else {
-			CNLog(type: .Error, message: "No image", place: #file)
+			CNLog(type: .Error, message: "No image", file: #file, line: #line, function: #function)
 			return nil
 		}
 	}
@@ -120,7 +120,7 @@ public class KCSpriteViewDatabase: CNMainDatabase
 						allocateNode(identifier: ident, nodeInfo: ninfo)
 					}
 				} else {
-					CNLog(type: .Error, message: "Failed to decode value", place: #file)
+					CNLog(type: .Error, message: "Failed to decode value", file: #file, line: #line, function: #function)
 				}
 			}
 		}

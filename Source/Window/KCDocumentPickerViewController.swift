@@ -53,7 +53,7 @@ import Foundation
 	}
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		CNLog(type: .Normal, message: "Selected", place: #function)
+		CNLog(type: .Flow, message: "Selected", file: #file, line: #line, function: #function)
 		if urls.count >= 1 {
 			switch mLoaderFunction {
 			case .none:
@@ -61,7 +61,7 @@ import Foundation
 			case .view(let ldrfunc):
 				if let viewname = ldrfunc(urls[0]) {
 					if !mParentViewController.pushViewController(byName: viewname) {
-						CNLog(type: .Error, message: "Failed to push view \"\(viewname)\"", place: #function)
+						CNLog(type: .Error, message: "Failed to push view \"\(viewname)\"", file: #file, line: #line, function: #function)
 					}
 				}
 			case .url(let ldrfunc):
@@ -71,7 +71,7 @@ import Foundation
 	}
 
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		CNLog(type: .Normal, message: "Canceled", place: #function)
+		CNLog(type: .Flow, message: "Canceled", file: #file, line: #line, function: #function)
 	}
 }
 

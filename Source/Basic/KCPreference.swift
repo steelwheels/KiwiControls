@@ -61,22 +61,22 @@ public class KCDocumentTypePreference
 					collectTypeDeclaration(typeDeclaration: dict)
 				}
 			} else {
-				CNLog(type: .Error, message: "[Error] Invalid description: \(decl)", place: #file)
+				CNLog(type: .Error, message: "[Error] Invalid description: \(decl)", file: #file, line: #line, function: #function)
 			}
 		}
 	}
 
 	private func collectTypeDeclaration(typeDeclaration decl: Dictionary<String, AnyObject>){
 		guard let uti = decl["UTTypeIdentifier"] as? String else {
-			CNLog(type: .Error, message: "No UTTypeIdentifier", place: #file)
+			CNLog(type: .Error, message: "No UTTypeIdentifier", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let tags = decl["UTTypeTagSpecification"] as? Dictionary<String, AnyObject> else {
-			CNLog(type: .Error, message: "No UTTypeTagSpecification", place: #file)
+			CNLog(type: .Error, message: "No UTTypeTagSpecification", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let exts = tags["public.filename-extension"] as? Array<String> else {
-			CNLog(type: .Error, message: "No public.filename-extension", place: #file)
+			CNLog(type: .Error, message: "No public.filename-extension", file: #file, line: #line, function: #function)
 			return
 		}
 		mDocumentTypes[uti] = exts
@@ -94,7 +94,7 @@ public class KCDocumentTypePreference
 			if let exts = mDocumentTypes[uti] {
 				result.append(contentsOf: exts)
 			} else {
-				CNLog(type: .Error, message: "Unknown UTI: \(uti)", place: #file)
+				CNLog(type: .Error, message: "Unknown UTI: \(uti)", file: #file, line: #line, function: #function)
 			}
 		}
 		return result

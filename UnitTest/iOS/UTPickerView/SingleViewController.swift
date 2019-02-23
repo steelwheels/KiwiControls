@@ -96,10 +96,10 @@ public class SingleViewController: KCSingleViewController
 	private var mPicker: KCDocumentPickerViewController? = nil
 
 	private func selectInputURL() {
-		CNLog(type: .Normal, message: "selctInputFile", place: #function)
+		CNLog(type: .Flow, message: "selctInputFile", file: #file, line: #line, function: #function)
 		
 		guard let parent = parentController else {
-			CNLog(type: .Error, message: "No parent controller", place: #function)
+			CNLog(type: .Error, message: "No parent controller", file: #file, line: #line, function: #function)
 			return
 		}
 		#if true

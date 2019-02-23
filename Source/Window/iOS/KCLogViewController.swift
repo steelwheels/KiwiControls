@@ -33,7 +33,7 @@ open class KCLogViewController: KCSingleViewController
 			() -> Void in
 			if let parent = self.parentController {
 				if !parent.popViewController() {
-					CNLog(type: .Error, message: "Can not pop previous view", place: #function)
+					CNLog(type: .Error, message: "Can not pop previous view", file: #file, line: #line, function: #function)
 				}
 			}
 		}

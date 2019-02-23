@@ -85,7 +85,7 @@ extension CGContext
 			if f < count && t < count {
 				drawer(self, vertices[f], vertices[t])
 			} else {
-				CNLog(type: .Error, message: "Invalid vertex index", place: #file)
+				CNLog(type: .Error, message: "Invalid vertex index", file: #file, line: #line, function: #function)
 			}
 		}
 		self.strokePath()

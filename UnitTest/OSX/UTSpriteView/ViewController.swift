@@ -18,20 +18,20 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 
 		guard let blueurl = CNFilePath.URLForResourceFile(fileName: "blue-machine", fileExtension: "png") else {
-			CNLog(type: .Error, message: "Can not decide URL for blue-machine", place: #file)
+			CNLog(type: .Error, message: "Can not decide URL for blue-machine", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let blueimage = KCImage(contentsOf: blueurl) else {
-			CNLog(type: .Error, message: "Can not load blue-machine", place: #file)
+			CNLog(type: .Error, message: "Can not load blue-machine", file: #file, line: #line, function: #function)
 			return
 		}
 
 		guard let greenurl = CNFilePath.URLForResourceFile(fileName: "green-machine", fileExtension: "png") else {
-			CNLog(type: .Error, message: "Can not decide URL for green-machine", place: #file)
+			CNLog(type: .Error, message: "Can not decide URL for green-machine", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let greenimage = KCImage(contentsOf: greenurl) else {
-			CNLog(type: .Error, message: "Can not load green-machine", place: #file)
+			CNLog(type: .Error, message: "Can not load green-machine", file: #file, line: #line, function: #function)
 			return
 		}
 

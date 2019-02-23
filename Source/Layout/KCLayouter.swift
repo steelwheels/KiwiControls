@@ -13,13 +13,11 @@ public class KCLayouter
 	private var mViewController:	KCSingleViewController
 	private var mConsole:		CNConsole
 	private var mDoVerbose:		Bool
-	private var mDebug:		Bool
 
 	public init(viewController vcont: KCSingleViewController, console cons: CNConsole, doVerbose doverb: Bool){
 		mViewController = vcont
 		mConsole	= cons
 		mDoVerbose	= doverb
-		mDebug		= false
 	}
 
 	public class func windowSize(viewController vcont: KCSingleViewController) -> KCSize {
@@ -29,7 +27,7 @@ public class KCLayouter
 			if let window = parent.view.window {
 				result = window.entireFrame.size
 			} else {
-				CNLog(type: .Error, message: "No window", place: #file)
+				CNLog(type: .Error, message: "No window", file: #file, line: #line, function: #function)
 				result = KCSize(width: 100.0, height: 100.0)
 			}
 			#else
@@ -37,7 +35,7 @@ public class KCLayouter
 			#endif
 			return result
 		} else {
-			CNLog(type: .Error, message: "No parent controller", place: #file)
+			CNLog(type: .Error, message: "No parent controller", file: #file, line: #line, function: #function)
 			return KCSize(width: 0.0, height: 0.0)
 		}
 	}
@@ -45,7 +43,7 @@ public class KCLayouter
 	public func layout(rootView view: KCRootView, windowSize winsize: KCSize){
 		doDump(message: "/* Get content size */", view: view)
 		let windowrect = KCRect(origin: CGPoint.zero, size: winsize)
-		doLog(message: "//  windowsize:" + winsize.description)
+		CNLog(type: .Debug, message: "windowsize:" + winsize.description, file: #file, line: #line, function: #function)
 
 		doDump(message: "Before size minimizer", view: view)
 		let minimizer = KCSizeMinimizer()
@@ -87,7 +85,7 @@ public class KCLayouter
 			#endif
 			return result
 		} else {
-			CNLog(type: .Error, message: "No parent controller", place: #file)
+			CNLog(type: .Error, message: "No parent controller", file: #file, line: #line, function: #function)
 			return KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 		}
 	}
@@ -100,17 +98,12 @@ public class KCLayouter
 		return KCRect(x: x, y: y, width: width, height: height)
 	}
 
-	private func doLog(message msg: String) {
-		if mDoVerbose {
-			mConsole.print(string: msg + "\n")
-		}
-	}
-
 	private func doDump(message msg: String, view v: KCView){
-		if mDebug {
+		let logtype = CNLogType.Debug
+		if CNDoPrintLog(logLevel: logtype) {
 			mConsole.print(string: "//////// \(msg)\n")
-			let dumper = KCViewDumper(console: mConsole)
-			dumper.dump(view: v)
+			let dumper = KCViewDumper()
+			dumper.dump(logType: logtype, view: v)
 		}
 	}
 }

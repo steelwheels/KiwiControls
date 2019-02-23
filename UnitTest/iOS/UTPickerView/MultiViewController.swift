@@ -22,7 +22,7 @@ class MultiViewController: KCMultiViewController
 
 	private func viewDidFirstAppear() {
 		let console	= CNConsole()
-		CNLogSetup(console: console, doVerbose: true)
+		CNLogSetup(console: console, logLevel: .Debug)
 		
 		/* Add first view */
 		let firstcont = SingleViewController(viewType: .firstView, parentViewController:self, console: console, doVerbose: true)

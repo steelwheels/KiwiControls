@@ -72,23 +72,17 @@ open class KCSingleViewController: KCViewController
 				let winsize = KCLayouter.windowSize(viewController: self)
 				if winsize != mLayoutedSize {
 					/* Layout components */
-					log(type: .Normal, message: "// Execute Layout", place: #function)
+					CNLog(type: .Flow, message: "// Execute Layout", file: #file, line: #line, function: #function)
 					let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: mDoVerbose)
 					layouter.layout(rootView: root, windowSize: winsize)
 					/* This size is layouted */
 					mLayoutedSize = winsize
 				} else {
-					log(type: .Normal, message: "// Skip layout", place: #function)
+					CNLog(type: .Flow, message: "// Skip layout", file: #file, line: #line, function: #function)
 				}
 			}
 		} else {
-			CNLog(type: .Error, message: "No root view", place: #function)
-		}
-	}
-
-	private func log(type typ: CNLogType, message msg: String, place plc: String){
-		if mDoVerbose {
-			CNLog(type: typ, message: msg, place: plc)
+			CNLog(type: .Error, message: "No root view", file: #file, line: #line, function: #function)
 		}
 	}
 }

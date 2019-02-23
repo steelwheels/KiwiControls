@@ -227,7 +227,7 @@ open class KCView : KCViewBase
 	 * Visitor
 	 */
 	open func accept(visitor vis: KCViewVisitor){
-		CNLog(type: .Error, message: "Unaccepted visitor in KCViewVisitor: \(vis)", place: #file)
+		CNLog(type: .Error, message: "Unaccepted visitor in KCViewVisitor: \(vis)", file: #file, line: #line, function: #function)
 	}
 }
 

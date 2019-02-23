@@ -31,7 +31,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	}
 
 	open override func viewDidLoad() {
-		CNLog(type: .Normal, message: "viewDidLoad", place: #function)
+		CNLog(type: .Debug, message: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		showTabBar(visible:false)
 	}
@@ -140,27 +140,29 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	}
 
 	public func pushViewController(byName name: String) -> Bool {
-		CNLog(type: .Normal, message: "pushViewController named: \"\(name)\"", place: #function)
+		CNLog(type: .Flow, message: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 		if let idx = mIndexTable[name] {
 			mViewStack.push(name)
 			switchView(index: idx)
 			return true
+		} else {
+			CNLog(type: .Error, message: "No matched view", file: #file, line: #line, function: #function)
+			return false
 		}
-		CNLog(type: .Error, message: "No matched view", place: #function)
-		return false
 	}
 
 	public func popViewController() -> Bool {
 		if mViewStack.count > 1 {
 			let _ = mViewStack.pop()
 			if let name = mViewStack.peek() {
+				CNLog(type: .Flow, message: "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 				if let idx = mIndexTable[name] {
 					switchView(index: idx)
 					return true
 				}
 			}
-			CNLog(type: .Error, message: "Can not happen (2)", place: #function)
 		}
+		CNLog(type: .Error, message: "Can not happen", file: #file, line: #line, function: #function)
 		return false
 	}
 
@@ -171,12 +173,11 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		} else {
 			oldname = "<none>"
 		}
-		CNLog(type: .Normal, message: "replaceTopViewController named: \"\(oldname)\" -> \"\(name)\"", place: #function)
+		CNLog(type: .Flow, message: "replaceViewController origin: \(oldname) -> named: \"\(name)\"", file: #file, line: #line, function: #function)
 		return pushViewController(byName: name)
 	}
 
 	private func switchView(index idx: Int){
-		CNLog(type: .Normal, message: "switchView: to \(idx)", place: #function)
 		#if os(OSX)
 			self.selectedTabViewItemIndex = idx
 		#else

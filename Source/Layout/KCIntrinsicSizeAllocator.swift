@@ -21,7 +21,7 @@ public class KCIntrisicSizeAllocator: KCViewVisitor
 			if let view = subview as? KCCoreView {
 				view.accept(visitor: self)
 			} else {
-				CNLog(type: .Error, message: "Unexpected view", place: #file)
+				CNLog(type: .Error, message: "Unexpected view", file: #file, line: #line, function: #function)
 			}
 		}
 	}

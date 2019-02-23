@@ -83,7 +83,7 @@ open class KCStackViewCore : KCView
 			case .right, .bottom:		result = .trailing
 			case .centerX, .centerY:	result = .center
 			default:
-				CNLog(type: .Error, message: "Unsupported alignment", place: #file)
+				CNLog(type: .Error, message: "Unsupported alignment", file: #file, line: #line, function: #function)
 				result = .leading
 			}
 			return result
@@ -95,7 +95,7 @@ open class KCStackViewCore : KCView
 			case .center:			result = .center
 			case .fill:			result = .fill
 			default:
-				CNLog(type: .Error, message: "Unsupported alignment", place: #file)
+				CNLog(type: .Error, message: "Unsupported alignment", file: #file, line: #line, function: #function)
 				result = .leading
 			}
 			return result
