@@ -23,7 +23,8 @@ public class KCConsole: CNConsole
 	public override func print(string str: String){
 		CNExecuteInMainThread(doSync: false, execute: {
 			() -> Void in
-			let astr = NSAttributedString(string: str)
+			let col  = self.mOwnerView.color.normalColor
+			let astr = self.attributedString(string: str, foregroundColor: col)
 			self.mOwnerView.appendText(string: astr)
 		})
 	}
@@ -31,9 +32,16 @@ public class KCConsole: CNConsole
 	public override  func error(string str: String){
 		CNExecuteInMainThread(doSync: false, execute: {
 			() -> Void in
-			let astr = NSAttributedString(string: str)
+			let col  = self.mOwnerView.color.errorColor
+			let astr = self.attributedString(string: str, foregroundColor: col)
 			self.mOwnerView.appendText(string: astr)
 		})
+	}
+
+	private func attributedString(string str: String, foregroundColor fgcolor: KCColor) -> NSAttributedString {
+		let bgcolor = mOwnerView.color.backgroundColor
+		let attrs: [KCStringAttribute] = [.foregroundColor(fgcolor), .backgroundColor(bgcolor)]
+		return NSAttributedString(string: str, stringAttributes: attrs)
 	}
 
 	public override  func scan() -> String? {
@@ -93,6 +101,11 @@ open class KCConsoleView : KCCoreView
 
 	public func appendText(string str: NSAttributedString){
 		coreView.appendText(string: str)
+	}
+
+	public var color: KCTextColor {
+		get	 { return coreView.color }
+		set(col) { coreView.color = col}
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

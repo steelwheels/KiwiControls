@@ -24,7 +24,10 @@ public class KCLogWindowController: NSWindowController
 		mConsole		= KCConsole(ownerView: consview)
 		mButton			= btn
 		super.init(window: win)
-
+		/* Set console color */
+		mConsoleView.color = KCTextColor(normal:     KCColorTable.green,
+						 error:      KCColorTable.red,
+						 background: KCColorTable.black)
 		btn.buttonPressedCallback = {
 			() -> Void in
 			self.hide()

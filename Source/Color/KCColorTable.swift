@@ -7,6 +7,7 @@
  *   <a href="http://lowlife.jp/yasusii/static/color_chart.html">RGB Color Chart</a>
  */
 
+import CoconutData
 #if os(OSX)
 import AppKit
 #else
@@ -24,6 +25,21 @@ public class KCColorTable
 		#else
 		return NSColor(red: r, green: g, blue: b, alpha: 1.0)
 		#endif
+	}
+
+	public class func codeToColor(color code: CNColor) -> KCColor {
+		let result: KCColor
+		switch code {
+		case .Black:		result = KCColorTable.black
+		case .Red:		result = KCColorTable.red
+		case .Green:		result = KCColorTable.green
+		case .Yellow:		result = KCColorTable.yellow
+		case .Blue:		result = KCColorTable.blue
+		case .Magenta:		result = KCColorTable.magenta
+		case .Cyan:		result = KCColorTable.cyan
+		case .White:		result = KCColorTable.white
+		}
+		return result
 	}
 
 	public static let snow			= rgb(1.00, 0.98, 0.98)

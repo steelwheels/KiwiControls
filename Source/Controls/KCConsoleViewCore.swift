@@ -20,6 +20,10 @@ open class KCConsoleViewCore : KCView
 		@IBOutlet weak var mTextView: UITextView!
 	#endif
 
+	private var mColor: KCTextColor = KCTextColor(normal:     KCColorTable.black,
+						      error:      KCColorTable.red,
+						      background: KCColorTable.white)
+
 	public func setup(frame frm: CGRect) {
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		self.bounds = bounds
@@ -63,6 +67,14 @@ open class KCConsoleViewCore : KCView
 			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
 			mTextView.setContentOffset(scrollPoint, animated: true)
 		#endif
+	}
+
+	public var color: KCTextColor {
+		get	 { return mColor }
+		set(col) {
+			mColor = col
+			mTextView.backgroundColor = col.backgroundColor
+		}
 	}
 
 	open override var intrinsicContentSize: KCSize
