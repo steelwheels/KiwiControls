@@ -13,10 +13,10 @@ open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 	private var mElementSize	: CGSize
 	private var mElementOrigins	: Array<CGPoint>
 
-	public init(frame f: CGRect,
-	            elementSize es: CGSize,
-	            elementOrigins eo: Array<CGPoint>,
-	            elementDrawer ed: @escaping KCImageDrawer)
+	public required init(frame f: CGRect,
+			     elementSize es: CGSize,
+			     elementOrigins eo: Array<CGPoint>,
+			     elementDrawer ed: @escaping KCImageDrawer)
 	{
 		mElementSize	= es
 		mElementOrigins	= eo

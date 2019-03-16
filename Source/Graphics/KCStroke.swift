@@ -12,7 +12,7 @@ public class KCStroke
 {
 	private var mStrokePoints: Array<CGPoint>
 
-	public init(firstPoint pt: CGPoint){
+	public required init(firstPoint pt: CGPoint){
 		mStrokePoints = [pt]
 	}
 

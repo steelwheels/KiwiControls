@@ -14,7 +14,7 @@ public class KCLayouter
 	private var mConsole:		CNConsole
 	private var mDoVerbose:		Bool
 
-	public init(viewController vcont: KCSingleViewController, console cons: CNConsole, doVerbose doverb: Bool){
+	public required init(viewController vcont: KCSingleViewController, console cons: CNConsole, doVerbose doverb: Bool){
 		mViewController = vcont
 		mConsole	= cons
 		mDoVerbose	= doverb

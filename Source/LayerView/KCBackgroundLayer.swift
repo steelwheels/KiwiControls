@@ -11,7 +11,7 @@ import CoconutData
 
 public class KCBackgroundLayer: KCLayer
 {
-	public init(frame f: CGRect, color c: CGColor){
+	public required init(frame f: CGRect, color c: CGColor){
 		super.init(frame: f)
 		self.backgroundColor = c
 		#if os(OSX)

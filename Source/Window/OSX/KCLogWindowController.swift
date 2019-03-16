@@ -19,7 +19,7 @@ public class KCLogWindowController: NSWindowController
 		return KCLogWindowController(window: window, consoleView: console, button: button)
 	}
 
-	public init(window win: NSWindow, consoleView consview: KCConsoleView, button btn: KCButton){
+	public required init(window win: NSWindow, consoleView consview: KCConsoleView, button btn: KCButton){
 		mConsoleView		= consview
 		mConsole		= KCConsole(ownerView: consview)
 		mButton			= btn

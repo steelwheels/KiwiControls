@@ -13,7 +13,7 @@ public class KCFrameSizeAllocator
 	private var mWindowSize		: KCSize
 	private var mWindowInset	: KCEdgeInsets
 
-	public init(windowSize winsize: KCSize, windowInset inset: KCEdgeInsets){
+	public required init(windowSize winsize: KCSize, windowInset inset: KCEdgeInsets){
 		mWindowSize 	= winsize
 		mWindowInset	= inset
 	}
