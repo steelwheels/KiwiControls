@@ -37,7 +37,7 @@
 
 #if os(OSX)
 public extension NSResponder {
-	public var next: NSResponder? {
+	var next: NSResponder? {
 		return self.nextResponder
 	}
 }
@@ -103,7 +103,7 @@ public struct KCTextColor {
 #endif
 
 public extension KCEdgeInsets {
-	public var description: String {
+	var description: String {
 		get {
 			let l = self.left
 			let t = self.top
@@ -115,7 +115,7 @@ public extension KCEdgeInsets {
 }
 
 public extension KCSize {
-	public func inset(by inset: KCEdgeInsets) -> KCSize {
+	func inset(by inset: KCEdgeInsets) -> KCSize {
 		let width  = max(0.0, self.width  - (inset.left + inset.right))
 		let height = max(0.0, self.height - (inset.top  + inset.bottom))
 		return KCSize(width: width, height: height)

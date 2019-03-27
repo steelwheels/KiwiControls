@@ -41,7 +41,6 @@
 		05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D451D8570A4004B8DDF /* KCViewController.swift */; };
 		05386D591D858603004B8DDF /* KCLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05386D581D858603004B8DDF /* KCLayerView.swift */; };
 		053CDD44222A8E4C00CAB136 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
-		053CDD46222A8EA900CAB136 /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		053CDD61222A983300CAB136 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
 		053CDD62222A983300CAB136 /* KiwiControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		053CDD64222A983900CAB136 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
@@ -50,8 +49,8 @@
 		053CDD67222A986000CAB136 /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		053CDD68222A986300CAB136 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
 		053CDD69222A986300CAB136 /* KiwiControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		053CDD6A222A988F00CAB136 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
-		053CDD6B222A988F00CAB136 /* KiwiControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		053E6F09224BB29900C755B9 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
+		053E6F0A224BB29C00C755B9 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
 		0542C0E7209F09BB00F2A028 /* KCLogConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542C0E6209F09BB00F2A028 /* KCLogConsole.swift */; };
 		05462E68222B5A07002BD57E /* KCAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05462E67222B5A07002BD57E /* KCAttributedString.swift */; };
 		0549A1A620F6639F002EB823 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0549A1A520F6639F002EB823 /* KCLayouter.swift */; };
@@ -64,7 +63,6 @@
 		055FBC391E6A442F00A7A640 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FBC381E6A442F00A7A640 /* KCIconViewCore.swift */; };
 		05648A691D8EB1A500EABCD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05648A681D8EB1A500EABCD0 /* ViewController.swift */; };
 		05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05648A6A1D8EB1B100EABCD0 /* Main.storyboard */; };
-		0565DC2D21C7FC0100929B04 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
 		0566C5B41E69B50B001F6FD7 /* KCTableViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0566C5B31E69B50B001F6FD7 /* KCTableViewCore.xib */; };
 		0566C5B81E69BE9B001F6FD7 /* KCTableViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566C5B71E69BE9B001F6FD7 /* KCTableViewCore.swift */; };
 		05674B901F77D1CD006CB20F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05674B8F1F77D1CD006CB20F /* AppDelegate.swift */; };
@@ -245,18 +243,6 @@
 			dstSubfolderSpec = 7;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		053CDD47222A8EA900CAB136 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				053CDD6B222A988F00CAB136 /* KiwiControls.framework in Embed Frameworks */,
-				053CDD46222A8EA900CAB136 /* CoconutData.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		053CDD50222A8FA500CAB136 /* Embed Frameworks */ = {
@@ -493,8 +479,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053CDD6A222A988F00CAB136 /* KiwiControls.framework in Frameworks */,
-				0565DC2D21C7FC0100929B04 /* CoconutData.framework in Frameworks */,
+				053E6F0A224BB29C00C755B9 /* CoconutData.framework in Frameworks */,
+				053E6F09224BB29900C755B9 /* KiwiControls.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1055,7 +1041,6 @@
 				0536FFB621A5C06E0069A6F0 /* Sources */,
 				0536FFB721A5C06E0069A6F0 /* Frameworks */,
 				0536FFB821A5C06E0069A6F0 /* Resources */,
-				053CDD47222A8EA900CAB136 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1222,13 +1207,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					05043C1B1D856F910033FEC6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TR2DNF3P93;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					0515CD521EACB37F00B4736D = {
@@ -1243,7 +1228,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1318,7 +1303,7 @@
 			};
 			buildConfigurationList = 05043C161D856F910033FEC6 /* Build configuration list for PBXProject "KiwiControls" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1920,7 +1905,7 @@
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1952,7 +1937,7 @@
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2003,7 +1988,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -2033,7 +2017,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",

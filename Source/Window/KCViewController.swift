@@ -20,7 +20,7 @@ import CoconutData
 
 public extension KCViewController
 {
-	public class func loadViewController(name nibname: String) -> KCViewController
+	class func loadViewController(name nibname: String) -> KCViewController
 	{
 		let bundle : Bundle = Bundle(for: KCView.self) ;
 		#if os(iOS)
@@ -48,7 +48,7 @@ public extension KCViewController
 		fatalError("Failed to load " + nibname)
 	}
 
-	public func alert(error err: NSError){
+	func alert(error err: NSError){
 		let _ = KCAlert.runModal(error: err, in: self)
 	}
 }

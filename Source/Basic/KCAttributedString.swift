@@ -43,7 +43,7 @@ private class KCStringAttributes {
 }
 
 public extension NSAttributedString {
-	public convenience init(string str: String, stringAttributes attrs: [KCStringAttribute]){
+	convenience init(string str: String, stringAttributes attrs: [KCStringAttribute]){
 		let attrobj = KCStringAttributes()
 		attrobj.set(attributes: attrs)
 		self.init(string: str, attributes: attrobj.attributes)
