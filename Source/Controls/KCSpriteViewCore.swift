@@ -52,7 +52,7 @@ public struct KCSpriteNode
 	}
 
 	private static func imageInValue(value val: CNNativeValue) -> CNImage? {
-		if let image = val.toObject() as? CNImage {
+		if let image = val.toImage() {
 			return image
 		} else {
 			CNLog(type: .Error, message: "No image", file: #file, line: #line, function: #function)
@@ -66,7 +66,7 @@ public struct KCSpriteNode
 		let rotnum = NSNumber(value: rotation)
 		let durnum = NSNumber(value: duration)
 		let params: Dictionary<String, CNNativeValue> = [
-			KCSpriteNode.ImageItem:		.objectValue(image),
+			KCSpriteNode.ImageItem:		.imageValue(image),
 			KCSpriteNode.ScaleItem:		.numberValue(scanum),
 			KCSpriteNode.AlphaItem:		.numberValue(alnum),
 			KCSpriteNode.PositionItem:	.pointValue(position),
