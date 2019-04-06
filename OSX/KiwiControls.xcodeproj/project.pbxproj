@@ -1225,6 +1225,7 @@
 					0536FFB921A5C06E0069A6F0 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = TR2DNF3P93;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
@@ -2000,7 +2001,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTSpriteView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2028,7 +2029,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTSpriteView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

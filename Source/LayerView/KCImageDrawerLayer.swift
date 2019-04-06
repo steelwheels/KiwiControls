@@ -5,13 +5,15 @@
  *   Copyright (C) 2016-2017 Steel Wheels Project
  */
 
-import Foundation
-import CoreGraphics
+
+import CoconutData
 #if os(iOS)
   import UIKit
 #else
   import Cocoa
 #endif
+import Foundation
+import CoreGraphics
 
 open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 {
@@ -66,8 +68,8 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 	public func draw(_ layer: CALayer, in ctx: CGContext) {
 		if let drawer = mImageDrawer {
 			let contentsize = mContentRect.size
-			var image: KCImage
-			if let imgp = layer.contents as? KCImage {
+			var image: CNImage
+			if let imgp = layer.contents as? CNImage {
 				if contentsize != mDrawnSize {
 					layer.contents = image = drawImage(context: ctx, bounds: mContentRect, drawer: drawer)
 					mDrawnSize = contentsize
@@ -83,16 +85,16 @@ open class KCImageDrawerLayer: KCLayer, KCDrawerLayerProtocol, CALayerDelegate
 		}
 	}
 
-	private func drawImage(context ctx:CGContext, bounds bnds:CGRect, drawer drw: KCImageDrawer) -> KCImage {
-		let image: KCImage
+	private func drawImage(context ctx:CGContext, bounds bnds:CGRect, drawer drw: KCImageDrawer) -> CNImage {
+		let image: CNImage
 		#if os(iOS)
 			ctx.saveGState()
 			ctx.translateBy(x: 0.0, y: bounds.size.height)
 			ctx.scaleBy(x: 1.0, y: -1.0)
-			image = KCImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
+			image = CNImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
 			ctx.restoreGState()
 		#else
-			image = KCImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
+			image = CNImage.generate(context: ctx, bounds: bnds, drawFunc: drw)
 		#endif
 		return image
 	}

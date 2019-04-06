@@ -60,8 +60,7 @@ open class KCStackViewCore : KCView
 			switch mStackView.orientation {
 			case .vertical:   result = CNAxis.vertical
 			case .horizontal: result = CNAxis.horizontal
-			@unknown default:
-				fatalError()
+			@unknown default: result = CNAxis.vertical
 		}
 			return result
 		#else
@@ -69,6 +68,7 @@ open class KCStackViewCore : KCView
 			switch mStackView.axis {
 			case .vertical:	  result = CNAxis.vertical
 			case .horizontal: result = CNAxis.horizontal
+			@unknown default: result = CNAxis.vertical
 			}
 			return result
 		#endif

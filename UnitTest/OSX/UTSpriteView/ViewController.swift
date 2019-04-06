@@ -21,7 +21,7 @@ class ViewController: NSViewController {
 			CNLog(type: .Error, message: "Can not decide URL for blue-machine", file: #file, line: #line, function: #function)
 			return
 		}
-		guard let blueimage = KCImage(contentsOf: blueurl) else {
+		guard let blueimage = CNImage(contentsOf: blueurl) else {
 			CNLog(type: .Error, message: "Can not load blue-machine", file: #file, line: #line, function: #function)
 			return
 		}
@@ -30,7 +30,7 @@ class ViewController: NSViewController {
 			CNLog(type: .Error, message: "Can not decide URL for green-machine", file: #file, line: #line, function: #function)
 			return
 		}
-		guard let greenimage = KCImage(contentsOf: greenurl) else {
+		guard let greenimage = CNImage(contentsOf: greenurl) else {
 			CNLog(type: .Error, message: "Can not load green-machine", file: #file, line: #line, function: #function)
 			return
 		}

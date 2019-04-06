@@ -18,14 +18,14 @@ public struct KCSpriteNode
 	private static let	RotationItem		= "rotation"
 	private static let	DurationItem		= "duration"
 
-	public var image:		KCImage
+	public var image:		CNImage
 	public var scale:		Double
 	public var alpha:		Double
 	public var position:		KCPoint
 	public var rotation:		Double
 	public var duration:		Double
 
-	public init(image img: KCImage, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double){
+	public init(image img: CNImage, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double){
 		image		= img
 		scale		= scl
 		alpha		= alp
@@ -51,8 +51,8 @@ public struct KCSpriteNode
 		return nil
 	}
 
-	private static func imageInValue(value val: CNNativeValue) -> KCImage? {
-		if let image = val.toObject() as? KCImage {
+	private static func imageInValue(value val: CNNativeValue) -> CNImage? {
+		if let image = val.toObject() as? CNImage {
 			return image
 		} else {
 			CNLog(type: .Error, message: "No image", file: #file, line: #line, function: #function)

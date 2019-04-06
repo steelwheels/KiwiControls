@@ -54,7 +54,7 @@ open class KCImageView: KCCoreView
 		return (.High, .High)
 	}
 
-	public func set(image img: KCImage) {
+	public func set(image img: CNImage) {
 		coreView.set(image: img)
 	}
 

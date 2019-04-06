@@ -41,9 +41,9 @@ open class KCLayer: CALayer
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public var image: KCImage? {
+	public var image: CNImage? {
 		get {
-			if let img = self.contents as? KCImage {
+			if let img = self.contents as? CNImage {
 				return img
 			} else {
 				return nil

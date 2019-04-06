@@ -17,7 +17,6 @@
 	public typealias KCRect			= CGRect
 	public typealias KCColor		= UIColor
 	public typealias KCFont			= UIFont
-	public typealias KCImage		= UIImage
 	public typealias KCResponder		= UIResponder
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
@@ -28,7 +27,6 @@
 	public typealias KCRect			= NSRect
 	public typealias KCColor		= NSColor
 	public typealias KCFont			= NSFont
-	public typealias KCImage		= NSImage
 	public typealias KCResponder		= NSResponder
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation

@@ -37,7 +37,7 @@ open class KCImageViewCore : KCView
 		super.resize(mImageView.frame.size)
 	}
 
-	public func set(image img: KCImage) {
+	public func set(image img: CNImage) {
 		mImageView.image = img
 	}
 
