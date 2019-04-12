@@ -64,6 +64,7 @@ public class KCAlert : NSObject
 		let alert   = UIAlertController(title: title, message: message, preferredStyle: .alert)
 		let acttion = UIAlertAction(title: "OK", style: .default, handler: {
 			(action:UIAlertAction!) -> Void in
+			/* Do nothing */
 		})
 		alert.addAction(acttion)
 		viewcont.present(alert, animated: false, completion: nil)

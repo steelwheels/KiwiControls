@@ -74,12 +74,15 @@ open class KCIconViewCore : KCView
 
 	public var label: String {
 		set(str){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(OSX)
-					self.mLabelView.stringValue = str
-				#elseif os(iOS)
-					self.mLabelView.text = str
-				#endif
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(OSX)
+						myself.mLabelView.stringValue = str
+					#elseif os(iOS)
+						myself.mLabelView.text = str
+					#endif
+				}
 			})
 		}
 		get {

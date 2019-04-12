@@ -27,8 +27,10 @@ class ViewController: KCViewController {
 		let button0 = KCButton()
 		button0.title = "Button-0"
 		button0.buttonPressedCallback = {
-			() -> Void in
-			self.openWindow()
+			[weak self] () -> Void in
+			if let myself = self {
+				myself.openWindow()
+			}
 		}
 		mStackView.addArrangedSubView(subView: button0)
 	}

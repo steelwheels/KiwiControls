@@ -40,8 +40,11 @@ open class KCTextFieldCore : KCView
 			return mTextField.isEnabled
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.mTextField.isEnabled   = newval
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.mTextField.isEnabled   = newval
+				}
 			})
 		}
 	}
@@ -51,8 +54,11 @@ open class KCTextFieldCore : KCView
 			return getText()
 		}
 		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.setText(label: newval)
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.setText(label: newval)
+				}
 			})
 		}
 	}
@@ -70,12 +76,15 @@ open class KCTextFieldCore : KCView
 	}
 
 	private func setText(label str:String){
-		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-			#if os(OSX)
-				self.mTextField.stringValue = str
-			#else
-				self.mTextField.text = str
-			#endif
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+					myself.mTextField.stringValue = str
+				#else
+					myself.mTextField.text = str
+				#endif
+			}
 		})
 	}
 
@@ -84,8 +93,11 @@ open class KCTextFieldCore : KCView
 			return mTextField.font
 		}
 		set(font){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.mTextField.font = font
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.mTextField.font = font
+				}
 			})
 		}
 	}
@@ -99,12 +111,15 @@ open class KCTextFieldCore : KCView
 			#endif
 		}
 		set(align){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(iOS)
-					self.mTextField.textAlignment = align
-				#else
-					self.mTextField.alignment = align
-				#endif
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(iOS)
+						myself.mTextField.textAlignment = align
+					#else
+						myself.mTextField.alignment = align
+					#endif
+				}
 			})
 		}
 	}
@@ -119,16 +134,19 @@ open class KCTextFieldCore : KCView
 	}
 
 	public func setColors(colors cols: KCColorPreference.TextColors){
-		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-			#if os(OSX)
-				self.mTextField.textColor       = cols.foreground
-				self.mTextField.drawsBackground = true
-				self.mTextField.backgroundColor = cols.background
-			#else
-				self.mTextField.tintColor = cols.foreground
-				self.mTextField.textColor = cols.foreground
-				self.mTextField.backgroundColor = cols.background
-			#endif
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+					myself.mTextField.textColor       = cols.foreground
+					myself.mTextField.drawsBackground = true
+					myself.mTextField.backgroundColor = cols.background
+				#else
+					myself.mTextField.tintColor = cols.foreground
+					myself.mTextField.textColor = cols.foreground
+					myself.mTextField.backgroundColor = cols.background
+				#endif
+			}
 		})
 	}
 

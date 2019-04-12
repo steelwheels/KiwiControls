@@ -46,12 +46,15 @@ public class KCStepperCore: KCView
 
 	private func updateTextField(value: Double){
 		let str = String(format: "%.*lf", numberOfDecimalPlaces, value)
-		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-			#if os(iOS)
-				self.mTextField.text = str
-			#else
-				self.mTextField.stringValue = str
-			#endif
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(iOS)
+					myself.mTextField.text = str
+				#else
+					myself.mTextField.stringValue = str
+				#endif
+			}
 		})
 	}
 
@@ -64,12 +67,15 @@ public class KCStepperCore: KCView
 			#endif
 		}
 		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(iOS)
-					self.mStepper.maximumValue = newval
-				#else
-					self.mStepper.maxValue = newval
-				#endif
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(iOS)
+						myself.mStepper.maximumValue = newval
+					#else
+						myself.mStepper.maxValue = newval
+					#endif
+				}
 			})
 		}
 	}
@@ -83,12 +89,15 @@ public class KCStepperCore: KCView
 			#endif
 		}
 		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(iOS)
-					self.mStepper.minimumValue = newval
-				#else
-					self.mStepper.minValue = newval
-				#endif
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(iOS)
+						myself.mStepper.minimumValue = newval
+					#else
+						myself.mStepper.minValue = newval
+					#endif
+				}
 			})
 		}
 	}
@@ -108,13 +117,16 @@ public class KCStepperCore: KCView
 			} else if v > maxValue {
 				v = maxValue
 			}
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(iOS)
-					self.mStepper.value = v
-				#else
-					self.mStepper.doubleValue = v
-				#endif
-				self.updateTextField(value: v)
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(iOS)
+						myself.mStepper.value = v
+					#else
+						myself.mStepper.doubleValue = v
+					#endif
+					myself.updateTextField(value: v)
+				}
 			})
 		}
 	}
@@ -128,12 +140,15 @@ public class KCStepperCore: KCView
 			#endif
 		}
 		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(iOS)
-					self.mStepper.stepValue = newval
-				#else
-					self.mStepper.increment = newval
-				#endif
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(iOS)
+						myself.mStepper.stepValue = newval
+					#else
+						myself.mStepper.increment = newval
+					#endif
+				}
 			})
 		}
 	}
@@ -143,9 +158,12 @@ public class KCStepperCore: KCView
 			return mStepper.isEnabled
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.mStepper.isEnabled   = newval
-				self.mTextField.isEnabled = newval
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.mStepper.isEnabled   = newval
+					myself.mTextField.isEnabled = newval
+				}
 			})
 		}
 	}
@@ -155,10 +173,13 @@ public class KCStepperCore: KCView
 			return !(mStepper.isHidden)
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.mStepper.isHidden   = !newval
-				self.mTextField.isHidden = !newval
-				super.isHidden      = !newval
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.mStepper.isHidden   = !newval
+					myself.mTextField.isHidden = !newval
+					myself.isHidden      = !newval
+				}
 			})
 		}
 	}

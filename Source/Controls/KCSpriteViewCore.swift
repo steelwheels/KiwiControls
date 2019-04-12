@@ -102,8 +102,10 @@ public class KCSpriteViewDatabase: CNMainDatabase
 
 	open override func updateUncached(cache cdata: Dictionary<String, CNNativeValue>, deletedItems deleted: Set<String>){
 		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			self.updateUncachedInSync(cache: cdata, deletedItems: deleted)
+			[weak self] () -> Void in
+			if let myself = self {
+				myself.updateUncachedInSync(cache: cdata, deletedItems: deleted)
+			}
 		})
 	}
 

@@ -21,21 +21,15 @@ public class KCConsole: CNConsole
 	}
 
 	public override func print(string str: String){
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			let col  = self.mOwnerView.color.normalColor
-			let astr = self.attributedString(string: str, foregroundColor: col)
-			self.mOwnerView.appendText(string: astr)
-		})
+		let col  = mOwnerView.color.normalColor
+		let astr = attributedString(string: str, foregroundColor: col)
+		mOwnerView.appendText(string: astr)
 	}
 
 	public override  func error(string str: String){
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			let col  = self.mOwnerView.color.errorColor
-			let astr = self.attributedString(string: str, foregroundColor: col)
-			self.mOwnerView.appendText(string: astr)
-		})
+		let col  = mOwnerView.color.errorColor
+		let astr = attributedString(string: str, foregroundColor: col)
+		mOwnerView.appendText(string: astr)
 	}
 
 	private func attributedString(string str: String, foregroundColor fgcolor: KCColor) -> NSAttributedString {

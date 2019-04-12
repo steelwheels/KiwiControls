@@ -29,8 +29,10 @@ public class KCLogWindowController: NSWindowController
 						 error:      KCColorTable.red,
 						 background: KCColorTable.black)
 		btn.buttonPressedCallback = {
-			() -> Void in
-			self.hide()
+			[weak self] () -> Void in
+			if let myself = self {
+				myself.hide()
+			}
 		}
 	}
 

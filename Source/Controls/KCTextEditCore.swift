@@ -64,8 +64,11 @@ open class KCTextEditCore : KCView
 			return getText()
 		}
 		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.setText(label: newval)
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.setText(label: newval)
+				}
 			})
 		}
 	}
@@ -83,12 +86,15 @@ open class KCTextEditCore : KCView
 	}
 
 	private func setText(label str:String){
-		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-			#if os(OSX)
-			self.mTextEdit.stringValue = str
-			#else
-			self.mTextEdit.text = str
-			#endif
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+					myself.mTextEdit.stringValue = str
+				#else
+					myself.mTextEdit.text = str
+				#endif
+			}
 		})
 	}
 
@@ -97,8 +103,11 @@ open class KCTextEditCore : KCView
 			return mTextEdit.font
 		}
 		set(font){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.mTextEdit.font = font
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.mTextEdit.font = font
+				}
 			})
 		}
 	}
@@ -112,12 +121,15 @@ open class KCTextEditCore : KCView
 			#endif
 		}
 		set(align){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(OSX)
-					self.mTextEdit.alignment = align
-				#else
-					self.mTextEdit.textAlignment = align
-				#endif
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(OSX)
+						myself.mTextEdit.alignment = align
+					#else
+						myself.mTextEdit.textAlignment = align
+					#endif
+				}
 			})
 		}
 	}
@@ -129,16 +141,19 @@ open class KCTextEditCore : KCView
 	}
 
 	public func setColors(colors cols: KCColorPreference.TextColors){
-		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-			#if os(OSX)
-			self.mTextEdit.textColor       = cols.foreground
-			self.mTextEdit.drawsBackground = true
-			self.mTextEdit.backgroundColor = cols.background
-			#else
-			self.mTextEdit.tintColor = cols.foreground
-			self.mTextEdit.textColor = cols.foreground
-			self.mTextEdit.backgroundColor = cols.background
-			#endif
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+					myself.mTextEdit.textColor       = cols.foreground
+					myself.mTextEdit.drawsBackground = true
+					myself.mTextEdit.backgroundColor = cols.background
+				#else
+					myself.mTextEdit.tintColor = cols.foreground
+					myself.mTextEdit.textColor = cols.foreground
+					myself.mTextEdit.backgroundColor = cols.background
+				#endif
+			}
 		})
 	}
 }

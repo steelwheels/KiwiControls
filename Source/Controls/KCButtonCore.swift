@@ -59,12 +59,15 @@ public class KCButtonCore: KCView
 			#endif
 		}
 		set(newstr){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				#if os(iOS)
-					self.mButton.setTitle(newstr, for: .normal)
-				#else
-					self.mButton.title = newstr
-				#endif
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(iOS)
+						myself.mButton.setTitle(newstr, for: .normal)
+					#else
+						myself.mButton.title = newstr
+					#endif
+				}
 			})
 		}
 	}
@@ -74,21 +77,27 @@ public class KCButtonCore: KCView
 			return mButton.isEnabled
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-				self.mButton.isEnabled   = newval
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					myself.mButton.isEnabled   = newval
+				}
 			})
 		}
 	}
 
 	public func setColors(colors cols: KCColorPreference.ButtonColors){
-		CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-			#if os(iOS)
-				self.mButton.setTitleColor(cols.title, for: .normal)
-				self.mButton.backgroundColor = cols.background.normal
-				self.backgroundColor = cols.background.normal
-			#else
-				self.mButton.colors = cols
-			#endif
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(iOS)
+					myself.mButton.setTitleColor(cols.title, for: .normal)
+					myself.mButton.backgroundColor = cols.background.normal
+					myself.backgroundColor = cols.background.normal
+				#else
+					myself.mButton.colors = cols
+				#endif
+			}
 		})
 	}
 
