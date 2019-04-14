@@ -5,10 +5,17 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
-public class KCViewVisitor
+public class KCViewVisitor: CNLogging
 {
+	public var console: CNLogConsole?
+
+	public init(console cons: CNLogConsole?){
+		console = cons
+	}
+
 	open func visit(rootView view: KCRootView){
 		visit(coreView: view)
 	}

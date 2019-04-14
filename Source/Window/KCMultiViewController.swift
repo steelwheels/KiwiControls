@@ -18,8 +18,10 @@ import CoconutData
 	public typealias KCMultiViewControllerBase = NSTabViewController
 #endif
 
-open class KCMultiViewController : KCMultiViewControllerBase
+open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 {
+	public var console: CNLogConsole? = nil
+
 	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
 	private var mViewStack:		CNStack = CNStack<String>()	/* name */
 	#if os(iOS)
@@ -31,7 +33,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	}
 
 	open override func viewDidLoad() {
-		CNLog(type: .Debug, message: "viewDidLoad", file: #file, line: #line, function: #function)
+		log(type: .Flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		showTabBar(visible:false)
 	}
@@ -60,7 +62,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			if let p = mPickerView {
 				picker = p
 			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self)
+				picker = KCDocumentPickerViewController(parentViewController: self, console: console)
 				mPickerView = picker
 			}
 			picker.setLoaderFunction(loader: .url({
@@ -85,7 +87,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			if let p = mPickerView {
 				picker = p
 			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self)
+				picker = KCDocumentPickerViewController(parentViewController: self, console: console)
 				mPickerView = picker
 			}
 			picker.setLoaderFunction(loader: .view({
@@ -122,6 +124,8 @@ open class KCMultiViewController : KCMultiViewControllerBase
 			}
 			setViewControllers(ctrls, animated: false)
 		#endif
+		/* Update console */
+		vcont.console = self.console
 		mIndexTable[nm] = index
 	}
 
@@ -140,13 +144,13 @@ open class KCMultiViewController : KCMultiViewControllerBase
 	}
 
 	public func pushViewController(byName name: String) -> Bool {
-		CNLog(type: .Flow, message: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+		log(type: .Flow, string: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 		if let idx = mIndexTable[name] {
 			mViewStack.push(name)
 			switchView(index: idx)
 			return true
 		} else {
-			CNLog(type: .Error, message: "No matched view", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "No matched view", file: #file, line: #line, function: #function)
 			return false
 		}
 	}
@@ -155,14 +159,14 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		if mViewStack.count > 1 {
 			let _ = mViewStack.pop()
 			if let name = mViewStack.peek() {
-				CNLog(type: .Flow, message: "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+				log(type: .Flow, string:  "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 				if let idx = mIndexTable[name] {
 					switchView(index: idx)
 					return true
 				}
 			}
 		}
-		CNLog(type: .Error, message: "Can not happen", file: #file, line: #line, function: #function)
+		log(type: .Error, string: "Can not happen", file: #file, line: #line, function: #function)
 		return false
 	}
 
@@ -173,7 +177,7 @@ open class KCMultiViewController : KCMultiViewControllerBase
 		} else {
 			oldname = "<none>"
 		}
-		CNLog(type: .Flow, message: "replaceViewController origin: \(oldname) -> named: \"\(name)\"", file: #file, line: #line, function: #function)
+		log(type: .Error, string: "replaceViewController origin: \(oldname) -> named: \"\(name)\"", file: #file, line: #line, function: #function)
 		return pushViewController(byName: name)
 	}
 

@@ -11,12 +11,13 @@ import Foundation
 
 public class SingleView1Controller: KCSingleViewController
 {
-	private var mConsole = CNFileConsole()
-
 	public override func loadView() {
-		CNLog(type: .Normal, message: "loadView", place: #file)
 		super.loadView()
 
+		let viewcons  = KCLogConsole.shared
+		let logcons   = CNLogConsole(debugLevel: .Flow, toConsole: viewcons)
+		console = logcons
+		
 		let label0    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 		label0.text   = "Hello, world. This is label0"
 
@@ -30,11 +31,12 @@ public class SingleView1Controller: KCSingleViewController
 		box0.alignment = .center
 
 		if let root = super.rootView {
-			CNLog(type: .Normal, message: "setup root view", place: #file)
+			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: box0)
 
-			let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: true)
-			layouter.layout(rootView: root)
+			let winsize  = KCLayouter.windowSize(viewController: self, console: console)
+			let layouter = KCLayouter(viewController: self, console: console, doVerbose: true)
+			layouter.layout(rootView: root, windowSize: winsize)
 		} else {
 			fatalError("No root view")
 		}
@@ -42,20 +44,20 @@ public class SingleView1Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		CNLog(type: .Normal, message: "viewDidLoad", place: #file)
+		log(type: .Flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
+		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
+		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -63,13 +65,13 @@ public class SingleView1Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
+		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
+		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear(animated)
 		doDumpView(message: "After viewDidAppear")
 	}
@@ -77,9 +79,9 @@ public class SingleView1Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			mConsole.print(string: "///// \(msg)\n")
-			let dumper = KCViewDumper(console: mConsole)
-			dumper.dump(view: view)
+			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
+			let dumper = KCViewDumper(console: console)
+			dumper.dump(type: .Flow, view: view)
 		} else {
 			fatalError("No root view")
 		}

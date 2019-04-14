@@ -19,7 +19,7 @@ class ViewController: KCMultiViewController
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		let console	= CNFileConsole()
+		let console	= CNLogConsole(debugLevel: .Flow, toConsole: KCLogConsole.shared)
 
 		/* Load log view */
 		let logname = "log0"
@@ -28,18 +28,15 @@ class ViewController: KCMultiViewController
 
 		/* Load 1st view */
 		let labname = "label0"
-		let labcont = SingleView0Controller(parentViewController: self, console: logcont.console, doVerbose: true)
+		let labcont = SingleView0Controller(parentViewController: self, console: console, doVerbose: true)
 		self.add(name: labname, viewController: labcont)
 
 		if self.pushViewController(byName: logname) {
-			logcont.console.print(string: "Select ... OK\n")
+			log(type: .Flow, string: "Select ... OK", file: #file, line: #line, function: #function)
 		} else {
-			logcont.console.print(string: "Select ... NG\n")
+			log(type: .Flow, string: "Select ... NG", file: #file, line: #line, function: #function)
 		}
-		
-		logcont.console.print(string: "View id \(logname) \(labname)\n")
-		logcont.console.print(string: "2nd line\n")
-		logcont.console.print(string: "3rd line\n")
+		log(type: .Flow, string: "View id \(logname) \(labname)\n", file: #file, line: #line, function: #function)
 	}
 	
 	override func didReceiveMemoryWarning() {

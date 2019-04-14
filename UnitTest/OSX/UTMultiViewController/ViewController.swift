@@ -13,15 +13,19 @@ class ViewController: KCMultiViewController
 {
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let console    = CNFileConsole()
 
-		let cont0      = SingleView0Controller(parentViewController: self, console: console, doVerbose: true)
+		/* Allocate console */
+		let logcons  = KCLogConsole.shared
+		let newcons  = CNLogConsole(debugLevel: .Flow, toConsole: logcons)
+		console = newcons
+
+		let cont0      = SingleView0Controller(parentViewController: self, console: newcons, doVerbose: true)
 		self.add(name: "cont0", viewController: cont0)
 
-		let cont1      = SingleView1Controller(parentViewController: self, console: console, doVerbose: true)
+		let cont1      = SingleView1Controller(parentViewController: self, console: newcons, doVerbose: true)
 		self.add(name: "cont1", viewController: cont1)
 
-		let cont2      = SingleView2Controller(parentViewController: self, console: console, doVerbose: true)
+		let cont2      = SingleView2Controller(parentViewController: self, console: newcons, doVerbose: true)
 		self.add(name: "cont2", viewController: cont2)
 
 		let _ = self.pushViewController(byName: "cont0")

@@ -17,11 +17,13 @@ class ViewController: UIViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		let logcons = CNLogConsole(debugLevel: .Flow, toConsole: KCLogConsole.shared)
+
 		guard let blueurl = CNFilePath.URLForResourceFile(fileName: "blue-machine", fileExtension: "png") else {
 			NSLog("Can not decide URL for blue-machine")
 			return
 		}
-		guard let blueimage = KCImage(contentsOf: blueurl) else {
+		guard let blueimage = CNImage(contentsOf: blueurl) else {
 			NSLog("Can not load blue-machine")
 			return
 		}
@@ -30,7 +32,7 @@ class ViewController: UIViewController
 			NSLog("Can not decide URL for green-machine")
 			return
 		}
-		guard let greenimage = KCImage(contentsOf: greenurl) else {
+		guard let greenimage = CNImage(contentsOf: greenurl) else {
 			NSLog("Can not load green-machine")
 			return
 		}
@@ -43,7 +45,8 @@ class ViewController: UIViewController
 					  alpha: 1.0,
 					  position: CGPoint(x: 10.0, y: 10.0),
 					  rotation: 0.0,
-					  duration: 1.0)
+					  duration: 1.0,
+					  console:  logcons)
 		mSpriteView.database.write(identifier: "b0", value: b0init.toValue())
 
 		let g0init = KCSpriteNode(image: greenimage,
@@ -51,7 +54,8 @@ class ViewController: UIViewController
 					  alpha: 1.0,
 					  position: CGPoint(x: 370.0, y: 650.0),
 					  rotation: 0.0,
-					  duration: 1.0)
+					  duration: 1.0,
+					  console:  logcons)
 		mSpriteView.database.write(identifier: "g0", value: g0init.toValue())
 
 		mSpriteView.database.commit()
@@ -61,7 +65,8 @@ class ViewController: UIViewController
 					  alpha: 1.0,
 					  position: CGPoint(x: 190.0, y: 320.0),
 					  rotation: 0.0,
-					  duration: 1.0)
+					  duration: 1.0,
+					  console:  logcons)
 		mSpriteView.database.write(identifier: "b0", value: b0param.toValue())
 
 		let g0param = KCSpriteNode(image: greenimage,
@@ -69,7 +74,8 @@ class ViewController: UIViewController
 					  alpha: 1.0,
 					  position: CGPoint(x: 170.0, y: 340.0),
 					  rotation: 0.0,
-					  duration: 1.0)
+					  duration: 1.0,
+					  console:  logcons)
 		mSpriteView.database.write(identifier: "g0", value: g0param.toValue())
 
 		mSpriteView.database.commit()

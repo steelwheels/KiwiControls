@@ -32,6 +32,15 @@ public class KCPreference
 	public var layoutPreference:		KCLayoutPreference
 	public var terminalPreference:		KCTerminalPreference
 
+	public var console: CNLogConsole? {
+		get {
+			return documentTypePreference.console
+		}
+		set(cons){
+			documentTypePreference.console = cons
+		}
+	}
+
 	public init(){
 		documentTypePreference	= KCDocumentTypePreference()
 		layoutPreference   	= KCLayoutPreference()
@@ -39,12 +48,14 @@ public class KCPreference
 	}
 }
 
-public class KCDocumentTypePreference
+public class KCDocumentTypePreference: CNLogging
 {
-	private var mDocumentTypes: Dictionary<String, Array<String>>	// UTI, extension
+	public var console:		CNLogConsole?
+	private var mDocumentTypes:	Dictionary<String, Array<String>>	// UTI, extension
 
 	public init() {
-		mDocumentTypes = [:]
+		console         = nil
+		mDocumentTypes  = [:]
 
 		if let infodict = Bundle.main.infoDictionary {
 			/* Import document types */
@@ -61,22 +72,22 @@ public class KCDocumentTypePreference
 					collectTypeDeclaration(typeDeclaration: dict)
 				}
 			} else {
-				CNLog(type: .Error, message: "[Error] Invalid description: \(decl)", file: #file, line: #line, function: #function)
+				log(type: .Error, string:  "Invalid description: \(decl)", file: #file, line: #line, function: #function)
 			}
 		}
 	}
 
 	private func collectTypeDeclaration(typeDeclaration decl: Dictionary<String, AnyObject>){
 		guard let uti = decl["UTTypeIdentifier"] as? String else {
-			CNLog(type: .Error, message: "No UTTypeIdentifier", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "No UTTypeIdentifier", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let tags = decl["UTTypeTagSpecification"] as? Dictionary<String, AnyObject> else {
-			CNLog(type: .Error, message: "No UTTypeTagSpecification", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "No UTTypeTagSpecification", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let exts = tags["public.filename-extension"] as? Array<String> else {
-			CNLog(type: .Error, message: "No public.filename-extension", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "No public.filename-extension", file: #file, line: #line, function: #function)
 			return
 		}
 		mDocumentTypes[uti] = exts
@@ -94,7 +105,7 @@ public class KCDocumentTypePreference
 			if let exts = mDocumentTypes[uti] {
 				result.append(contentsOf: exts)
 			} else {
-				CNLog(type: .Error, message: "Unknown UTI: \(uti)", file: #file, line: #line, function: #function)
+				log(type: .Error, string: "Unknown UTI: \(uti)", file: #file, line: #line, function: #function)
 			}
 		}
 		return result

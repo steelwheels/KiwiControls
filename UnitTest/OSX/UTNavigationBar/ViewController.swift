@@ -6,15 +6,23 @@
 //  Copyright © 2019 Steel Wheels Project. All rights reserved.
 //
 
+import CoconutData
 import KiwiControls
 import Cocoa
 
-class ViewController: NSViewController
+class ViewController: NSViewController, CNLogging
 {
+	public var console: CNLogConsole? = nil
+
 	@IBOutlet weak var mNavigationBar: KCNavigationBar!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		/* Allocate console */
+		let wincons = KCLogConsole.shared
+		let newcons = CNLogConsole(debugLevel: .Flow, toConsole: wincons)
+		console = newcons
 
 		// Do any additional setup after loading the view.
 		mNavigationBar.title = "Hello, World !!"
@@ -23,14 +31,14 @@ class ViewController: NSViewController
 		mNavigationBar.leftButtonTitle		= "Left"
 		mNavigationBar.leftButtonPressedCallback = {
 			() -> Void in
-			NSLog("Left button pressed")
+			wincons.print(string: "Left button pressed\n")
 		}
 
 		mNavigationBar.isRightButtonEnabled	= true
 		mNavigationBar.rightButtonTitle		= "Right"
 		mNavigationBar.rightButtonPressedCallback = {
 			() -> Void in
-			NSLog("Right button pressed")
+			wincons.print(string: "Right button pressed\n")
 		}
 	}
 

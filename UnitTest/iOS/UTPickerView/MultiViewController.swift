@@ -21,14 +21,14 @@ class MultiViewController: KCMultiViewController
 	}
 
 	private func viewDidFirstAppear() {
-		let console	= CNConsole()
-		CNLogSetup(console: console, logLevel: .Debug)
-		
+		let logcons   = CNLogConsole(debugLevel: .Flow, toConsole: KCLogConsole.shared)
+		console = logcons
+
 		/* Add first view */
-		let firstcont = SingleViewController(viewType: .firstView, parentViewController:self, console: console, doVerbose: true)
+		let firstcont = SingleViewController(viewType: .firstView, parentViewController:self, console: logcons, doVerbose: true)
 		self.add(name: "first_view", viewController: firstcont)
 
-		let secondcont = SingleViewController(viewType: .secondView, parentViewController:self, console: console, doVerbose: true)
+		let secondcont = SingleViewController(viewType: .secondView, parentViewController:self, console: logcons, doVerbose: true)
 		self.add(name: "second_view", viewController: secondcont)
 
 		/* Push first view */

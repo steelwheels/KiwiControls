@@ -101,11 +101,11 @@ public class KCGroupSizeAllocator: KCViewVisitor
 			if let stack = subview as? KCStackView {
 				subviews.append(stack)
 			} else {
-				CNLog(type: .Error, message: "Not stack view", file: #file, line: #line, function: #function)
+				log(type: .Error, string: "Not stack view", file: #file, line: #line, function: #function)
 			}
 		}
 		guard subviews.count > 0 else {
-			CNLog(type: .Error, message: "Empty stack view", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "Empty stack view", file: #file, line: #line, function: #function)
 			return
 		}
 

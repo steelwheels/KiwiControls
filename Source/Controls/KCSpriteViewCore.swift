@@ -9,7 +9,7 @@ import CoconutData
 import SpriteKit
 import Foundation
 
-public struct KCSpriteNode
+public struct KCSpriteNode: CNLogging
 {
 	private static let	ImageItem		= "image"
 	private static let	ScaleItem		= "scale"
@@ -18,6 +18,7 @@ public struct KCSpriteNode
 	private static let	RotationItem		= "rotation"
 	private static let	DurationItem		= "duration"
 
+	public var console:		CNLogConsole?
 	public var image:		CNImage
 	public var scale:		Double
 	public var alpha:		Double
@@ -25,37 +26,48 @@ public struct KCSpriteNode
 	public var rotation:		Double
 	public var duration:		Double
 
-	public init(image img: CNImage, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double){
+	public init(image img: CNImage, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double, console cons: CNLogConsole?){
 		image		= img
 		scale		= scl
 		alpha		= alp
 		position	= pos
 		rotation	= rot
 		duration	= dur
+		console		= cons
 	}
 
-	public static func valueToNode(value val: CNNativeValue) -> KCSpriteNode? {
+	public static func valueToNode(value val: CNNativeValue, console cons: CNLogConsole?) -> KCSpriteNode? {
 		if let record = val.toDictionary() {
 			if let imgval = record[ImageItem], let sclval = record[ScaleItem],
 			   let alpval = record[AlphaItem], let posval = record[PositionItem],
 			   let rotval = record[RotationItem],  let durval = record[DurationItem] {
-				if let img = imageInValue(value: imgval), let sclnum = sclval.toNumber(),
+				if let img = imageInValue(value: imgval, console: cons),
+				   let sclnum = sclval.toNumber(),
 				   let alpnum = alpval.toNumber(), let pospt = posval.toPoint(),
 		 		   let rotnum = rotval.toNumber(), let durnum = durval.toNumber() {
 					return KCSpriteNode(image: img, scale: sclnum.doubleValue,
 							    alpha: alpnum.doubleValue, position: pospt,
-							    rotation: rotnum.doubleValue, duration: durnum.doubleValue)
+							    rotation: rotnum.doubleValue, duration: durnum.doubleValue,
+							    console: cons)
 				}
 			}
 		}
 		return nil
 	}
 
-	private static func imageInValue(value val: CNNativeValue) -> CNImage? {
+	private static func imageInValue(value val: CNNativeValue, console consp: CNLogConsole?) -> CNImage? {
 		if let image = val.toImage() {
 			return image
 		} else {
-			CNLog(type: .Error, message: "No image", file: #file, line: #line, function: #function)
+			let desc: String
+			if let str = val.toString(){
+				desc = str
+			} else {
+				desc = "<unknown>"
+			}
+			if let cons = consp {
+				cons.print(type: .Error, string: "No image value=\(desc)", file: #file, line: #line, function: #function)
+			}
 			return nil
 		}
 	}
@@ -77,14 +89,16 @@ public struct KCSpriteNode
 	}
 }
 
-public class KCSpriteViewDatabase: CNMainDatabase
+public class KCSpriteViewDatabase: CNMainDatabase, CNLogging
 {
+	public var console:		CNLogConsole?
+
 	private var mScene:		SKScene?
 	private var mNodes:		Dictionary<String, SKNode>
 
 	public override init() {
-		//mScene	 = nil
-		mNodes   = [:]
+		console	= nil
+		mNodes  = [:]
 	}
 
 	public var scene: SKScene {
@@ -116,7 +130,7 @@ public class KCSpriteViewDatabase: CNMainDatabase
 				continue
 			}
 			if let value = cdata[ident] {
-				if let ninfo = KCSpriteNode.valueToNode(value: value) {
+				if let ninfo = KCSpriteNode.valueToNode(value: value, console: console) {
 					if let node = mNodes[ident] {
 						/* Allocate actions */
 						let actions = allocateActions(forNode: node, nodeInfo: ninfo)
@@ -129,7 +143,7 @@ public class KCSpriteViewDatabase: CNMainDatabase
 						allocateNode(identifier: ident, nodeInfo: ninfo)
 					}
 				} else {
-					CNLog(type: .Error, message: "Failed to decode value", file: #file, line: #line, function: #function)
+					log(type: .Error, string: "Failed to decode value", file: #file, line: #line, function: #function)
 				}
 			}
 		}
@@ -205,6 +219,16 @@ open class KCSpriteViewCore: KCView
 		mScene = scene
 		mNodeDatabase.scene = scene
 		mSpriteView.presentScene(mScene)
+	}
+
+	public override var console: CNLogConsole? {
+		get {
+			return super.console
+		}
+		set(cons){
+			mNodeDatabase.console = cons
+			super.console = cons
+		}
 	}
 
 	private var scene: SKScene {

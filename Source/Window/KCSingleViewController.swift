@@ -12,19 +12,20 @@ import Cocoa
 #endif
 import CoconutData
 
-open class KCSingleViewController: KCViewController
+open class KCSingleViewController: KCViewController, CNLogging
 {
+	public var console:			CNLogConsole?
+
 	private weak var mParentController:	KCMultiViewController?
-	private var mConsole:			CNConsole
 	private var mDoVerbose:			Bool
 	private var mRootView:			KCRootView? = nil
 	private var mLayoutedSize:		KCSize
 
-	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole, doVerbose doverb: Bool){
+	public init(parentViewController parent: KCMultiViewController, console cons: CNLogConsole, doVerbose doverb: Bool){
 		mParentController	= parent
-		mConsole     		= cons
 		mDoVerbose		= doverb
 		mLayoutedSize		= KCSize.zero
+		console     		= cons
 		super.init(nibName: nil, bundle: nil)
 	}
 
@@ -34,10 +35,6 @@ open class KCSingleViewController: KCViewController
 
 	public var parentController: KCMultiViewController? {
 		get { return mParentController }
-	}
-
-	public var console: CNConsole {
-		get { return mConsole }
 	}
 
 	public var rootView: KCRootView? {
@@ -69,20 +66,20 @@ open class KCSingleViewController: KCViewController
 	private func doViewWillAppear() {
 		if let root = mRootView {
 			if root.hasCoreView {
-				let winsize = KCLayouter.windowSize(viewController: self)
+				let winsize = KCLayouter.windowSize(viewController: self, console: console)
 				if winsize != mLayoutedSize {
 					/* Layout components */
-					CNLog(type: .Flow, message: "// Execute Layout", file: #file, line: #line, function: #function)
-					let layouter = KCLayouter(viewController: self, console: mConsole, doVerbose: mDoVerbose)
+					log(type: .Flow, string: "// Execute Layout", file: #file, line: #line, function: #function)
+					let layouter = KCLayouter(viewController: self, console: console, doVerbose: mDoVerbose)
 					layouter.layout(rootView: root, windowSize: winsize)
 					/* This size is layouted */
 					mLayoutedSize = winsize
 				} else {
-					CNLog(type: .Flow, message: "// Skip layout", file: #file, line: #line, function: #function)
+					log(type: .Flow, string: "// Skip layout", file: #file, line: #line, function: #function)
 				}
 			}
 		} else {
-			CNLog(type: .Error, message: "No root view", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "No root view", file: #file, line: #line, function: #function)
 		}
 	}
 }

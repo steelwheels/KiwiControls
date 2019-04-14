@@ -11,7 +11,7 @@ import CoconutData
 import UIKit
 import Foundation
 
-@objc public class KCDocumentPickerViewController: NSObject, UIDocumentPickerDelegate
+@objc public class KCDocumentPickerViewController: NSObject, CNLogging, UIDocumentPickerDelegate
 {
 	public enum LoaderFunction {
 		case none
@@ -19,12 +19,14 @@ import Foundation
 		case url(_ loader: (_ url: URL) -> Void)
 	}
 
+	public var  console:			CNLogConsole?
 	private var mParentViewController:	KCMultiViewController
 	private var mPickerView:		UIDocumentPickerViewController?
 	private var mLoaderFunction:		LoaderFunction
 
-	public init(parentViewController parent: KCMultiViewController) {
+	public init(parentViewController parent: KCMultiViewController, console cons: CNLogConsole?) {
 		mParentViewController	= parent
+		console			= cons
 		mPickerView		= nil
 		mLoaderFunction		= .none
 	}
@@ -53,7 +55,7 @@ import Foundation
 	}
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		CNLog(type: .Flow, message: "Selected", file: #file, line: #line, function: #function)
+		log(type: .Flow, string: "Selected", file: #file, line: #line, function: #function)
 		if urls.count >= 1 {
 			switch mLoaderFunction {
 			case .none:
@@ -61,7 +63,7 @@ import Foundation
 			case .view(let ldrfunc):
 				if let viewname = ldrfunc(urls[0]) {
 					if !mParentViewController.pushViewController(byName: viewname) {
-						CNLog(type: .Error, message: "Failed to push view \"\(viewname)\"", file: #file, line: #line, function: #function)
+						log(type: .Error, string: "Failed to push view \"\(viewname)\"", file: #file, line: #line, function: #function)
 					}
 				}
 			case .url(let ldrfunc):
@@ -71,7 +73,7 @@ import Foundation
 	}
 
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		CNLog(type: .Flow, message: "Canceled", file: #file, line: #line, function: #function)
+		log(type: .Flow, string: "Canceled", file: #file, line: #line, function: #function)
 	}
 }
 

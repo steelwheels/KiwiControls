@@ -42,7 +42,7 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 	return CGPoint(x: p.x, y: y)
 }
 
-open class KCView : KCViewBase
+open class KCView : KCViewBase, CNLogging
 {
 	public static var noIntrinsicValue: CGFloat {
 		get {
@@ -53,6 +53,11 @@ open class KCView : KCViewBase
 			#endif
 		}
 	}
+
+	/*
+	 * Logging
+	 */
+	public var console: CNLogConsole? = nil
 
 	/*
 	 * Event control
@@ -227,7 +232,7 @@ open class KCView : KCViewBase
 	 * Visitor
 	 */
 	open func accept(visitor vis: KCViewVisitor){
-		CNLog(type: .Error, message: "Unaccepted visitor in KCViewVisitor: \(vis)", file: #file, line: #line, function: #function)
+		NSLog("Unaccepted visitor in KCViewVisitor: \(vis)")
 	}
 }
 

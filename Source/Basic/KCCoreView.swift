@@ -22,6 +22,16 @@ open class KCCoreView: KCView
 		mCoreView = v
 	}
 
+	public override var console: CNLogConsole? {
+		get {
+			return super.console
+		}
+		set(cons){
+			mCoreView?.console = cons
+			super.console = cons
+		}
+	}
+
 	/* for autolayout */
 	public enum ExpansionPriority {
 		case High

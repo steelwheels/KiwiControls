@@ -40,9 +40,24 @@ open class KCRootView: KCCoreView
 	public func setup(childView child: KCView){
 		self.addSubview(child)
 		setCoreView(view: child)
+		child.console = self.console
 		#if os(iOS)
 			self.backgroundColor = KCPreference.shared.layoutPreference.backgroundColor
 		#endif
+	}
+
+	public override var console: CNLogConsole? {
+		get {
+			return super.console
+		}
+		set(cons){
+			for subview in self.subviews {
+				if var cview = subview as? CNLogging {
+					cview.console = cons
+				}
+			}
+			super.console = cons
+		}
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

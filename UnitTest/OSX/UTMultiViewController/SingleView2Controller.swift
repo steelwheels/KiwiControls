@@ -16,7 +16,7 @@ public class SingleView2Controller: KCSingleViewController
 	public override func loadView() {
 		super.loadView()
 
-		CNLog(type: .Normal, message: "loadView", place: #file)
+		log(type: .Flow, string: "loadView", file: #file, line: #line, function: #function)
 
 		let dummyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
@@ -50,20 +50,20 @@ public class SingleView2Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		CNLog(type: .Normal, message: "viewDidLoad", place: #file)
+		log(type: .Flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
+		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		CNLog(type: .Normal, message: "viewWillAppear", place: #file)
+		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -71,12 +71,13 @@ public class SingleView2Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
+		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
+		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear(animated)
 		doDumpView(message: "After viewDidAppear")
@@ -85,9 +86,9 @@ public class SingleView2Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			mConsole.print(string: "///// \(msg)\n")
-			let dumper = KCViewDumper(console: mConsole)
-			dumper.dump(view: view)
+			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
+			let dumper = KCViewDumper(console: console)
+			dumper.dump(type: .Flow, view: view)
 		} else {
 			fatalError("No root view")
 		}

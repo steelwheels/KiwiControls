@@ -34,9 +34,10 @@ public protocol KCTextViewDelegate
 	public typealias KCTextViewBase = NSTextView
 #endif
 
-open class KCTextView: KCTextViewBase
+open class KCTextView: KCTextViewBase, CNLogging
 {
-	public var editor: KCTextViewDelegate? = nil
+	public var console: CNLogConsole?       = nil
+	public var editor:  KCTextViewDelegate? = nil
 
 #if os(OSX)
 	open override func keyDown(with event: NSEvent) {
@@ -47,7 +48,7 @@ open class KCTextView: KCTextViewBase
 		if let str = string as? String {
 			editor?.insert(text: str, replaceRange: replacementRange)
 		} else {
-			CNLog(type: .Error, message: "Not string", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "Not string", file: #file, line: #line, function: #function)
 		}
 	}
 

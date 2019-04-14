@@ -20,13 +20,13 @@ public class KCConsole: CNConsole
 		mOwnerView = owner
 	}
 
-	public override func print(string str: String){
+	public func print(string str: String){
 		let col  = mOwnerView.color.normalColor
 		let astr = attributedString(string: str, foregroundColor: col)
 		mOwnerView.appendText(string: astr)
 	}
 
-	public override  func error(string str: String){
+	public func error(string str: String){
 		let col  = mOwnerView.color.errorColor
 		let astr = attributedString(string: str, foregroundColor: col)
 		mOwnerView.appendText(string: astr)
@@ -38,14 +38,14 @@ public class KCConsole: CNConsole
 		return NSAttributedString(string: str, stringAttributes: attrs)
 	}
 
-	public override  func scan() -> String? {
+	public func scan() -> String? {
 		return nil
 	}
 }
 
 open class KCConsoleView : KCCoreView
 {
-	private var mConsole: KCConsole? = nil
+	private var mConsoleConnection: KCConsole? = nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -76,7 +76,7 @@ open class KCConsoleView : KCCoreView
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCConsoleViewCore") as? KCConsoleViewCore {
-			mConsole = KCConsole(ownerView: self)
+			mConsoleConnection = KCConsole(ownerView: self)
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
@@ -89,8 +89,8 @@ open class KCConsoleView : KCCoreView
 		return (.High, .High)
 	}
 
-	public var console: CNConsole {
-		get { return mConsole! }
+	public var consoleConnection: CNConsole {
+		get { return mConsoleConnection! }
 	}
 
 	public func appendText(string str: NSAttributedString){

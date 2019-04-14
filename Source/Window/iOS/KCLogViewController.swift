@@ -30,26 +30,32 @@ open class KCLogViewController: KCSingleViewController
 		navigation.isRightButtonEnabled		= true
 		navigation.rightButtonTitle		= "Back"
 		navigation.rightButtonPressedCallback	= {
-			() -> Void in
-			if let parent = self.parentController {
-				if !parent.popViewController() {
-					CNLog(type: .Error, message: "Can not pop previous view", file: #file, line: #line, function: #function)
+			[weak self] () -> Void in
+			if let myself = self {
+				if let parent = myself.parentController {
+					if !parent.popViewController() {
+						myself.mConsole.error(string: "Can not pop previous view at \(#file)/\(#line)/\(#function)")
+					}
 				}
 			}
 		}
 		stack.addArrangedSubView(subView: navigation)
 
 		/* Add text field */
-		let console = KCConsoleView()
-		stack.addArrangedSubView(subView: console)
+		let consoleview = KCConsoleView()
+		stack.addArrangedSubView(subView: consoleview)
 
 		if let root = super.rootView {
 			root.setup(childView: stack)
-			mConsoleView = console
-			mConsole.outputConsole = console.console
+			mConsoleView = consoleview
+			mConsole.outputConsole = consoleview.consoleConnection
 		} else {
 			NSLog("\(#function) [Error] Can not allocate console view")
 		}
+	}
+
+	public var consoleConnection: CNConsole {
+		get { return mConsole }
 	}
 }
 

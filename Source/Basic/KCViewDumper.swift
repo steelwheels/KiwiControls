@@ -12,13 +12,14 @@ public class KCViewDumper: KCViewVisitor
 {
 	private var mSection:	CNTextSection
 
-	public override init(){
+	public override init(console cons: CNLogConsole?){
 		mSection	= CNTextSection()
+		super.init(console: cons)
 	}
 
-	public func dump(logType log: CNLogType, view v: KCView){
+	public func dump(type logtype: CNLogConsole.MessageType, view v: KCView){
 		v.accept(visitor: self)
-		CNLog(type: log, text: mSection, file: #file, line: #line, function: #function)
+		log(type: logtype, text: mSection, file: #file, line: #line, function: #function)
 	}
 
 	open override func visit(rootView view: KCRootView){

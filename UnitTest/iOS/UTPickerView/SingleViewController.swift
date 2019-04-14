@@ -30,7 +30,7 @@ public class SingleViewController: KCSingleViewController
 	private var mViewType	: ViewType
 	private var mURLLabel	: KCTextField?	= nil
 
-	public init(viewType type: ViewType, parentViewController parent: KCMultiViewController, console cons: CNConsole, doVerbose doverb: Bool) {
+	public init(viewType type: ViewType, parentViewController parent: KCMultiViewController, console cons: CNLogConsole, doVerbose doverb: Bool) {
 		mViewType = type
 		super.init(parentViewController: parent, console: cons, doVerbose: doverb)
 	}
@@ -82,10 +82,10 @@ public class SingleViewController: KCSingleViewController
 		box1.addArrangedSubViews(subViews: [box0, label1])
 
 		if let root = super.rootView {
-			console.print(string: "\(mViewType.description): setup root view")
+			log(type: .Flow, string: "\(mViewType.description): setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: box1)
 
-			let winsize  = KCLayouter.windowSize(viewController: self)
+			let winsize  = KCLayouter.windowSize(viewController: self, console: console)
 			let layouter = KCLayouter(viewController: self, console: console, doVerbose: true)
 			layouter.layout(rootView: root, windowSize: winsize)
 		} else {
@@ -96,10 +96,10 @@ public class SingleViewController: KCSingleViewController
 	private var mPicker: KCDocumentPickerViewController? = nil
 
 	private func selectInputURL() {
-		CNLog(type: .Flow, message: "selctInputFile", file: #file, line: #line, function: #function)
+		log(type: .Flow, string: "selctInputFile", file: #file, line: #line, function: #function)
 		
 		guard let parent = parentController else {
-			CNLog(type: .Error, message: "No parent controller", file: #file, line: #line, function: #function)
+			log(type: .Error, string: "No parent controller", file: #file, line: #line, function: #function)
 			return
 		}
 		#if true
