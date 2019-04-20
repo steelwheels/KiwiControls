@@ -14,8 +14,8 @@ public class KCLogConsole: CNConsole
 
 	public static var shared: KCLogConsole {
 		get {
-			if let console = mShared {
-				return console
+			if let cons = mShared {
+				return cons
 			} else {
 				let newcons = KCLogConsole()
 				mShared = newcons
@@ -68,8 +68,8 @@ public class KCLogConsole: CNConsole
 			mWindowController.show()
 			return mWindowController.print(string: str)
 			#else
-			if let console = mViewController?.consoleConnection {
-				console.print(string: str)
+			if let cons = mViewController?.consoleConnection {
+				cons.print(string: str)
 			} else {
 				Swift.print(str, terminator: "")
 			}
@@ -84,8 +84,8 @@ public class KCLogConsole: CNConsole
 			mWindowController.show()
 			return mWindowController.error(string: str)
 			#else
-			if let console = mViewController?.consoleConnection {
-				console.error(string: str)
+			if let cons = mViewController?.consoleConnection {
+				cons.error(string: str)
 			} else {
 				Swift.print(str, terminator: "")
 			}
@@ -98,8 +98,8 @@ public class KCLogConsole: CNConsole
 			#if os(OSX)
 			return mWindowController.scan()
 			#else
-			if let console = mViewController?.consoleConnection {
-				return console.scan()
+			if let cons = mViewController?.consoleConnection {
+				return cons.scan()
 			} else {
 				return nil
 			}
@@ -109,116 +109,4 @@ public class KCLogConsole: CNConsole
 		}
 	}
 }
-
-/*
-public class KCLogConsole: CNConsole
-{
-	private static var	mShared:	KCLogConsole? = nil
-
-	public static var shared: KCLogConsole {
-		get {
-			if let console = mShared {
-				return console
-			} else {
-				let newcons = KCLogConsole()
-				mShared = newcons
-				return newcons
-			}
-		}
-	}
-
-	private init(){
-	}
-
-	public var 		enable: Bool = true
-
-	#if os(OSX)
-	private weak var mWindowController: KCLogWindowController? = nil
-	private var windowController: KCLogWindowController {
-		get {
-			if let cont = mWindowController {
-				NSLog("** WinCont: Exist")
-				return cont
-			} else {
-				NSLog("** WinCont: Not exist")
-				let newcont = KCLogWindowController.allocateController()
-				mWindowController = newcont
-				if let _ = mWindowController {
-					NSLog("** WinCont: Not exist -> Non null")
-				} else {
-					NSLog("** WinCont: Not exist -> Null !!")
-				}
-				newcont.show()
-				return newcont
-			}
-		}
-	}
-	#else
-	private weak var	mViewController: KCLogViewController? = nil
-	public var viewController: KCLogViewController? {
-		get { return mViewController }
-		set(newview) { mViewController = newview }
-	}
-	#endif // os(OSX)
-
-	public func show() {
-		#if os(OSX)
-			windowController.show()
-		#else
-		#endif
-	}
-
-	public func hide() {
-		#if os(OSX)
-			windowController.hide()
-		#else
-		#endif
-	}
-
-	open func print(string str: String){
-		if enable {
-			#if os(OSX)
-				return windowController.print(string: str)
-			#else
-				if let console = mViewController?.console {
-					console.print(string: str)
-				} else {
-					Swift.print(str, terminator: "")
-				}
-			#endif
-		}
-	}
-
-	open func error(string str: String){
-		if enable {
-			#if os(OSX)
-				return windowController.error(string: str)
-			#else
-				if let console = mViewController?.console {
-					console.error(string: str)
-				} else {
-					Swift.print(str, terminator: "")
-				}
-			#endif
-		}
-	}
-
-	open func scan() -> String? {
-		if enable {
-			#if os(OSX)
-				return windowController.scan()
-			#else
-				if let console = mViewController?.console {
-					return console.scan()
-				} else {
-					return nil
-				}
-			#endif
-		} else {
-			return nil
-		}
-	}
-}
-
-*/
 

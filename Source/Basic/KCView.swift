@@ -57,7 +57,15 @@ open class KCView : KCViewBase, CNLogging
 	/*
 	 * Logging
 	 */
-	public var console: CNLogConsole? = nil
+	private var mConsole: CNConsole? = nil
+
+	public var console: CNConsole? {
+		get { return mConsole }
+	}
+
+	public func set(console cons: CNConsole?){
+		mConsole = cons
+	}
 
 	/*
 	 * Event control

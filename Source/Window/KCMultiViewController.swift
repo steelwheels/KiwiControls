@@ -20,16 +20,23 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 {
-	public var console: CNLogConsole? = nil
-
 	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
 	private var mViewStack:		CNStack = CNStack<String>()	/* name */
+	private var mConsole:		CNConsole? = nil
 	#if os(iOS)
 	private var mPickerView:	KCDocumentPickerViewController? = nil
 	#endif
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+	}
+
+	public func set(console cons: CNConsole?){
+		mConsole = cons
+	}
+
+	public var console: CNConsole? {
+		get { return mConsole }
 	}
 
 	open override func viewDidLoad() {
@@ -62,14 +69,14 @@ open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 			if let p = mPickerView {
 				picker = p
 			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self, console: console)
+				picker = KCDocumentPickerViewController(parentViewController: self, console: mConsole)
 				mPickerView = picker
 			}
 			picker.setLoaderFunction(loader: .url({
 				(_ url: URL) -> Void in
 				loader(url)
 			}))
-			let pref = KCPreference.shared.documentTypePreference
+			let pref = CNPreference.shared.documentTypePreference
 			let utis = pref.UTIs(forExtensions: exts)
 			picker.openPicker(UTIs: utis)
 		#endif
@@ -87,14 +94,14 @@ open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 			if let p = mPickerView {
 				picker = p
 			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self, console: console)
+				picker = KCDocumentPickerViewController(parentViewController: self, console: mConsole)
 				mPickerView = picker
 			}
 			picker.setLoaderFunction(loader: .view({
 				(_ url: URL) -> String? in
 				return loader(url)
 			}))
-			let pref = KCPreference.shared.documentTypePreference
+			let pref = CNPreference.shared.documentTypePreference
 			let utis = pref.UTIs(forExtensions: exts)
 			picker.openPicker(UTIs: utis)
 		#endif
@@ -106,6 +113,30 @@ open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 		} else {
 			return false
 		}
+	}
+
+	public func subViewControllers() -> Array<KCSingleViewController> {
+		var result: Array<KCSingleViewController> = []
+		#if os(OSX)
+			for item in tabViewItems {
+				if let vcont = item.viewController as? KCSingleViewController {
+					result.append(vcont)
+				} else {
+					log(type: .Error, string: "Unknown object", file: #file, line: #line, function: #function)
+				}
+			}
+		#else
+			if let vconts = viewControllers {
+				for vcont in vconts {
+					if let svcont = vcont as? KCSingleViewController {
+						result.append(svcont)
+					} else {
+						log(type: .Error, string: "Unknown object", file: #file, line: #line, function: #function)
+					}
+				}
+			}
+		#endif
+		return result
 	}
 
 	public func add(name nm: String, viewController vcont: KCSingleViewController) {
@@ -124,8 +155,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 			}
 			setViewControllers(ctrls, animated: false)
 		#endif
-		/* Update console */
-		vcont.console = self.console
 		mIndexTable[nm] = index
 	}
 
@@ -189,19 +218,19 @@ open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 		#endif
 	}
 
-	public func dump(to console: CNConsole){
-		console.print(string: "multi-view: {\n")
+	public func dump(to cons: CNConsole){
+		cons.print(string: "multi-view: {\n")
 
 		let stackdesc = "[" + mViewStack.peekAll().joined(separator: ",") + "]"
-		console.print(string: " stack: " + stackdesc + "\n")
+		cons.print(string: " stack: " + stackdesc + "\n")
 
 		var indices: Array<String> = []
 		for (key, value) in mIndexTable {
 			indices.append("\(key):\(value)")
 		}
-		console.print(string: " index: " + indices.joined(separator: ",") + "\n")
+		cons.print(string: " index: " + indices.joined(separator: ",") + "\n")
 
-		console.print(string: "}\n")
+		cons.print(string: "}\n")
 	}
 }
 

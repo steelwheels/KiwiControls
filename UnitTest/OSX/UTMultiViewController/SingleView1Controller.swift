@@ -13,10 +13,6 @@ public class SingleView1Controller: KCSingleViewController
 {
 	public override func loadView() {
 		super.loadView()
-
-		let viewcons  = KCLogConsole.shared
-		let logcons   = CNLogConsole(debugLevel: .Flow, toConsole: viewcons)
-		console = logcons
 		
 		let label0    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 		label0.text   = "Hello, world. This is label0"
@@ -34,8 +30,8 @@ public class SingleView1Controller: KCSingleViewController
 			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: box0)
 
-			let winsize  = KCLayouter.windowSize(viewController: self, console: console)
-			let layouter = KCLayouter(viewController: self, console: console, doVerbose: true)
+			let winsize  = KCLayouter.windowSize(viewController: self, console: logConsole)
+			let layouter = KCLayouter(viewController: self, console: logConsole, doVerbose: true)
 			layouter.layout(rootView: root, windowSize: winsize)
 		} else {
 			fatalError("No root view")
@@ -80,7 +76,7 @@ public class SingleView1Controller: KCSingleViewController
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
 			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
-			let dumper = KCViewDumper(console: console)
+			let dumper = KCViewDumper(console: logConsole)
 			dumper.dump(type: .Flow, view: view)
 		} else {
 			fatalError("No root view")

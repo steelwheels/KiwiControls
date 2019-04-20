@@ -19,20 +19,24 @@ import Foundation
 		case url(_ loader: (_ url: URL) -> Void)
 	}
 
-	public var  console:			CNLogConsole?
 	private var mParentViewController:	KCMultiViewController
 	private var mPickerView:		UIDocumentPickerViewController?
 	private var mLoaderFunction:		LoaderFunction
+	private var mConsole:			CNConsole?
 
-	public init(parentViewController parent: KCMultiViewController, console cons: CNLogConsole?) {
+	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole?) {
 		mParentViewController	= parent
-		console			= cons
+		mConsole		= cons
 		mPickerView		= nil
 		mLoaderFunction		= .none
 	}
 
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	public var console: CNConsole? {
+		get { return mConsole }
 	}
 
 	public func setLoaderFunction(loader ldr: LoaderFunction){

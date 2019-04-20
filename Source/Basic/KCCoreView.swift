@@ -22,14 +22,11 @@ open class KCCoreView: KCView
 		mCoreView = v
 	}
 
-	public override var console: CNLogConsole? {
-		get {
-			return super.console
+	public override func set(console cons: CNConsole?) {
+		if let core = mCoreView {
+			core.set(console: cons)
 		}
-		set(cons){
-			mCoreView?.console = cons
-			super.console = cons
-		}
+		super.set(console: cons)
 	}
 
 	/* for autolayout */

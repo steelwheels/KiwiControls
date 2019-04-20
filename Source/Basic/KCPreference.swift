@@ -13,117 +13,8 @@
 import CoconutData
 import Foundation
 
-public class KCPreference
-{
-	private static var 	mShared: KCPreference? = nil
-	public static var	shared: KCPreference {
-		get {
-			if let obj = mShared {
-				return obj
-			} else {
-				let newobj = KCPreference()
-				mShared = newobj
-				return newobj
-			}
-		}
-	}
-
-	public var documentTypePreference:	KCDocumentTypePreference
-	public var layoutPreference:		KCLayoutPreference
-	public var terminalPreference:		KCTerminalPreference
-
-	public var console: CNLogConsole? {
-		get {
-			return documentTypePreference.console
-		}
-		set(cons){
-			documentTypePreference.console = cons
-		}
-	}
-
-	public init(){
-		documentTypePreference	= KCDocumentTypePreference()
-		layoutPreference   	= KCLayoutPreference()
-		terminalPreference 	= KCTerminalPreference()
-	}
-}
-
-public class KCDocumentTypePreference: CNLogging
-{
-	public var console:		CNLogConsole?
-	private var mDocumentTypes:	Dictionary<String, Array<String>>	// UTI, extension
-
-	public init() {
-		console         = nil
-		mDocumentTypes  = [:]
-
-		if let infodict = Bundle.main.infoDictionary {
-			/* Import document types */
-			if let imports = infodict["UTImportedTypeDeclarations"] as? Array<AnyObject> {
-				collectTypeDeclarations(typeDeclarations: imports)
-			}
-		}
-	}
-
-	private func collectTypeDeclarations(typeDeclarations decls: Array<AnyObject>){
-		for decl in decls {
-			if let dict = decl as? Dictionary<String, AnyObject> {
-				if dict.count > 0 {
-					collectTypeDeclaration(typeDeclaration: dict)
-				}
-			} else {
-				log(type: .Error, string:  "Invalid description: \(decl)", file: #file, line: #line, function: #function)
-			}
-		}
-	}
-
-	private func collectTypeDeclaration(typeDeclaration decl: Dictionary<String, AnyObject>){
-		guard let uti = decl["UTTypeIdentifier"] as? String else {
-			log(type: .Error, string: "No UTTypeIdentifier", file: #file, line: #line, function: #function)
-			return
-		}
-		guard let tags = decl["UTTypeTagSpecification"] as? Dictionary<String, AnyObject> else {
-			log(type: .Error, string: "No UTTypeTagSpecification", file: #file, line: #line, function: #function)
-			return
-		}
-		guard let exts = tags["public.filename-extension"] as? Array<String> else {
-			log(type: .Error, string: "No public.filename-extension", file: #file, line: #line, function: #function)
-			return
-		}
-		mDocumentTypes[uti] = exts
-	}
-
-	public var UTIs: Array<String> {
-		get {
-			return Array(mDocumentTypes.keys)
-		}
-	}
-
-	public func fileExtensions(forUTIs utis: [String]) -> [String] {
-		var result: [String] = []
-		for uti in utis {
-			if let exts = mDocumentTypes[uti] {
-				result.append(contentsOf: exts)
-			} else {
-				log(type: .Error, string: "Unknown UTI: \(uti)", file: #file, line: #line, function: #function)
-			}
-		}
-		return result
-	}
-
-	public func UTIs(forExtensions exts: [String]) -> [String] {
-		var result: [String] = []
-		for ext in exts {
-			for uti in mDocumentTypes.keys {
-				if let val = mDocumentTypes[uti] {
-					if val.contains(ext) {
-						result.append(uti)
-					}
-				}
-			}
-		}
-		return result
-	}
+public class KCConfig: CNConfig {
+	
 }
 
 public class KCLayoutPreference
@@ -185,4 +76,35 @@ public class KCTerminalPreference
 		}
 	}
 }
+
+extension CNPreference
+{
+	public var layoutPreference: KCLayoutPreference { get {
+		return get(name: "system", allocator: {
+			() -> KCLayoutPreference in return KCLayoutPreference()
+		})
+	}}
+
+	public var terminalPreference: KCTerminalPreference { get {
+		return get(name: "system", allocator: {
+			() -> KCTerminalPreference in return KCTerminalPreference()
+		})
+	}}
+
+}
+
+private var sDidSetupped: Bool = false
+
+public func KCSetupPreference(config conf: KCConfig)
+{
+	/* Skip setup if it already setupped */
+	if sDidSetupped {
+		return
+	} else {
+		sDidSetupped = true
+	}
+	/* Setup super class */
+	CNSetupPreference(config: conf)
+}
+
 

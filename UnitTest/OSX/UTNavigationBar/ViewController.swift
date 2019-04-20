@@ -12,7 +12,7 @@ import Cocoa
 
 class ViewController: NSViewController, CNLogging
 {
-	public var console: CNLogConsole? = nil
+	public var console: CNConsole? = nil
 
 	@IBOutlet weak var mNavigationBar: KCNavigationBar!
 
@@ -21,8 +21,7 @@ class ViewController: NSViewController, CNLogging
 
 		/* Allocate console */
 		let wincons = KCLogConsole.shared
-		let newcons = CNLogConsole(debugLevel: .Flow, toConsole: wincons)
-		console = newcons
+		console = wincons
 
 		// Do any additional setup after loading the view.
 		mNavigationBar.title = "Hello, World !!"

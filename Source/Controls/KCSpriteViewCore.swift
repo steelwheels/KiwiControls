@@ -18,7 +18,6 @@ public struct KCSpriteNode: CNLogging
 	private static let	RotationItem		= "rotation"
 	private static let	DurationItem		= "duration"
 
-	public var console:		CNLogConsole?
 	public var image:		CNImage
 	public var scale:		Double
 	public var alpha:		Double
@@ -26,17 +25,23 @@ public struct KCSpriteNode: CNLogging
 	public var rotation:		Double
 	public var duration:		Double
 
-	public init(image img: CNImage, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double, console cons: CNLogConsole?){
+	private var mConsole:		CNConsole?
+
+	public init(image img: CNImage, scale scl: Double, alpha alp: Double, position pos: KCPoint, rotation rot: Double, duration dur: Double, console cons: CNConsole?){
 		image		= img
 		scale		= scl
 		alpha		= alp
 		position	= pos
 		rotation	= rot
 		duration	= dur
-		console		= cons
+		mConsole	= cons
 	}
 
-	public static func valueToNode(value val: CNNativeValue, console cons: CNLogConsole?) -> KCSpriteNode? {
+	public var console: CNConsole? {
+		get { return mConsole }
+	}
+
+	public static func valueToNode(value val: CNNativeValue, console cons: CNConsole?) -> KCSpriteNode? {
 		if let record = val.toDictionary() {
 			if let imgval = record[ImageItem], let sclval = record[ScaleItem],
 			   let alpval = record[AlphaItem], let posval = record[PositionItem],
@@ -55,7 +60,7 @@ public struct KCSpriteNode: CNLogging
 		return nil
 	}
 
-	private static func imageInValue(value val: CNNativeValue, console consp: CNLogConsole?) -> CNImage? {
+	private static func imageInValue(value val: CNNativeValue, console consp: CNConsole?) -> CNImage? {
 		if let image = val.toImage() {
 			return image
 		} else {
@@ -66,7 +71,7 @@ public struct KCSpriteNode: CNLogging
 				desc = "<unknown>"
 			}
 			if let cons = consp {
-				cons.print(type: .Error, string: "No image value=\(desc)", file: #file, line: #line, function: #function)
+				cons.error(string: "No image value=\(desc) at \(#file)")
 			}
 			return nil
 		}
@@ -91,14 +96,14 @@ public struct KCSpriteNode: CNLogging
 
 public class KCSpriteViewDatabase: CNMainDatabase, CNLogging
 {
-	public var console:		CNLogConsole?
-
 	private var mScene:		SKScene?
 	private var mNodes:		Dictionary<String, SKNode>
+	private var mConsole:		CNConsole?
 
 	public override init() {
-		console	= nil
-		mNodes  = [:]
+		mScene	    = nil
+		mNodes      = [:]
+		mConsole    = nil
 	}
 
 	public var scene: SKScene {
@@ -112,6 +117,14 @@ public class KCSpriteViewDatabase: CNMainDatabase, CNLogging
 		set(newscene){
 			mScene = newscene
 		}
+	}
+
+	public var console: CNConsole? {
+		get { return mConsole }
+	}
+
+	public func set(console cons: CNConsole?){
+		mConsole = cons
 	}
 
 	open override func updateUncached(cache cdata: Dictionary<String, CNNativeValue>, deletedItems deleted: Set<String>){
@@ -130,7 +143,7 @@ public class KCSpriteViewDatabase: CNMainDatabase, CNLogging
 				continue
 			}
 			if let value = cdata[ident] {
-				if let ninfo = KCSpriteNode.valueToNode(value: value, console: console) {
+				if let ninfo = KCSpriteNode.valueToNode(value: value, console: mConsole) {
 					if let node = mNodes[ident] {
 						/* Allocate actions */
 						let actions = allocateActions(forNode: node, nodeInfo: ninfo)
@@ -221,14 +234,9 @@ open class KCSpriteViewCore: KCView
 		mSpriteView.presentScene(mScene)
 	}
 
-	public override var console: CNLogConsole? {
-		get {
-			return super.console
-		}
-		set(cons){
-			mNodeDatabase.console = cons
-			super.console = cons
-		}
+	public override func set(console cons: CNConsole?) {
+		mNodeDatabase.set(console: cons)
+		super.set(console: cons)
 	}
 
 	private var scene: SKScene {

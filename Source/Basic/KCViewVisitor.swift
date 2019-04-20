@@ -10,10 +10,14 @@ import Foundation
 
 public class KCViewVisitor: CNLogging
 {
-	public var console: CNLogConsole?
+	private var mConsole: CNConsole
 
-	public init(console cons: CNLogConsole?){
-		console = cons
+	public init(console cons: CNConsole){
+		mConsole = cons
+	}
+
+	public var console: CNConsole? {
+		get { return mConsole }
 	}
 
 	open func visit(rootView view: KCRootView){

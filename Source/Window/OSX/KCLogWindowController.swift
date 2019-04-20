@@ -67,10 +67,10 @@ public class KCLogWindowController: NSWindowController
 			newwin.setRootView(view: box)
 			let button  = KCButton()
 			button.title = "Close"
-			let console = KCConsoleView()
-			let children: Array<KCView> = [console, button]
+			let cons = KCConsoleView()
+			let children: Array<KCView> = [cons, button]
 			box.addArrangedSubViews(subViews: children)
-			return (newwin, console, button)
+			return (newwin, cons, button)
 		} else {
 			fatalError("Failed to allocate window")
 		}

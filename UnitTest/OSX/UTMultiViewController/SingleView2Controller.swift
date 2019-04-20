@@ -87,7 +87,7 @@ public class SingleView2Controller: KCSingleViewController
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
 			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
-			let dumper = KCViewDumper(console: console)
+			let dumper = KCViewDumper(console: logConsole)
 			dumper.dump(type: .Flow, view: view)
 		} else {
 			fatalError("No root view")

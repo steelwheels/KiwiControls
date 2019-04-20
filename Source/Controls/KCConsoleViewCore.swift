@@ -36,27 +36,29 @@ open class KCConsoleViewCore : KCView
 	}
 
 	public func appendText(string str: NSAttributedString){
-		#if os(OSX)
-			if let storage = mTextView.textStorage {
-				appendText(destinationStorage: storage, string: str)
-			}
-		#else
-			let storage = mTextView.textStorage
-			appendText(destinationStorage: storage, string: str)
-		#endif
-		scrollToBottom()
-	}
-
-	private func appendText(destinationStorage storage: NSTextStorage, string str: NSAttributedString){
 		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			storage.beginEditing()
-			storage.append(str)
-			storage.endEditing()
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+				  if let storage = myself.mTextView.textStorage {
+					myself.appendText(destinationStorage: storage, string: str)
+				  }
+				#else
+				  let storage = myself.mTextView.textStorage
+				  myself.appendText(destinationStorage: storage, string: str)
+				#endif
+				myself.scrollToBottom()
+			}
 		})
 	}
 
-	public func scrollToBottom(){
+	private func appendText(destinationStorage storage: NSTextStorage, string str: NSAttributedString){
+		storage.beginEditing()
+		storage.append(str)
+		storage.endEditing()
+	}
+
+	private func scrollToBottom(){
 		#if os(OSX)
 			mTextView.scrollToEndOfDocument(self)
 		#else

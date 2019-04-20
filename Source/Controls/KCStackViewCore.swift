@@ -44,14 +44,11 @@ open class KCStackViewCore : KCView
 		#endif
 	}
 
-	public override var console: CNLogConsole? {
-		get { return super.console }
-		set(cons){
-			for subview in self.arrangedSubviews() {
-				subview.console = cons
-			}
-			super.console = cons
+	public override func set(console cons: CNConsole?) {
+		for subview in self.arrangedSubviews() {
+			subview.set(console: cons)
 		}
+		super.set(console: cons)
 	}
 
 	public var axis: CNAxis {
@@ -219,7 +216,7 @@ open class KCStackViewCore : KCView
 	private func addArrangedSubViewInMainThread(subView view: KCView){
 		/* Add subview */
 		self.mStackView.addArrangedSubview(view)
-		view.console = self.console
+		view.set(console: self.console)
 		/* Set constraints */
 		#if os(OSX)
 			switch axis {

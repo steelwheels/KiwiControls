@@ -24,13 +24,14 @@ open class KCRootView: KCCoreView
 	}
 	#endif
 
-	public convenience init(){
+	public convenience init(console cons: CNConsole?){
 		#if os(OSX)
 		let frame = NSRect(x: 0.0, y: 0.0, width: 480, height: 272)
 		#else
 		let frame = CGRect(x: 0.0, y: 0.0, width: 256, height: 256)
 		#endif
 		self.init(frame: frame)
+		self.set(console: cons)
 	}
 
 	public required init?(coder: NSCoder) {
@@ -40,24 +41,10 @@ open class KCRootView: KCCoreView
 	public func setup(childView child: KCView){
 		self.addSubview(child)
 		setCoreView(view: child)
-		child.console = self.console
+		child.set(console: self.console)
 		#if os(iOS)
-			self.backgroundColor = KCPreference.shared.layoutPreference.backgroundColor
+			self.backgroundColor = CNPreference.shared.layoutPreference.backgroundColor
 		#endif
-	}
-
-	public override var console: CNLogConsole? {
-		get {
-			return super.console
-		}
-		set(cons){
-			for subview in self.subviews {
-				if var cview = subview as? CNLogging {
-					cview.console = cons
-				}
-			}
-			super.console = cons
-		}
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

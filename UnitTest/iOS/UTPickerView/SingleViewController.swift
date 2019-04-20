@@ -32,7 +32,7 @@ public class SingleViewController: KCSingleViewController
 
 	public init(viewType type: ViewType, parentViewController parent: KCMultiViewController, console cons: CNLogConsole, doVerbose doverb: Bool) {
 		mViewType = type
-		super.init(parentViewController: parent, console: cons, doVerbose: doverb)
+		super.init(parentViewController: parent, logConsole: cons, doVerbose: doverb)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -85,8 +85,8 @@ public class SingleViewController: KCSingleViewController
 			log(type: .Flow, string: "\(mViewType.description): setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: box1)
 
-			let winsize  = KCLayouter.windowSize(viewController: self, console: console)
-			let layouter = KCLayouter(viewController: self, console: console, doVerbose: true)
+			let winsize  = KCLayouter.windowSize(viewController: self, console: logConsole)
+			let layouter = KCLayouter(viewController: self, logConsole: logConsole, doVerbose: true)
 			layouter.layout(rootView: root, windowSize: winsize)
 		} else {
 			fatalError("\(mViewType.description): No root view")

@@ -36,8 +36,16 @@ public protocol KCTextViewDelegate
 
 open class KCTextView: KCTextViewBase, CNLogging
 {
-	public var console: CNLogConsole?       = nil
-	public var editor:  KCTextViewDelegate? = nil
+	public var  editor:  		KCTextViewDelegate?  = nil
+	private var mConsole:		CNConsole?           = nil
+
+	public var console: CNConsole? {
+		get { return mConsole }
+	}
+
+	public func set(console cons: CNConsole){
+		mConsole = cons
+	}
 
 #if os(OSX)
 	open override func keyDown(with event: NSEvent) {

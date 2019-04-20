@@ -14,23 +14,24 @@ import CoconutData
 
 open class KCSingleViewController: KCViewController, CNLogging
 {
-	public var console:			CNLogConsole?
-
 	private weak var mParentController:	KCMultiViewController?
-	private var mDoVerbose:			Bool
 	private var mRootView:			KCRootView? = nil
 	private var mLayoutedSize:		KCSize
+	private var mConsole:			CNConsole
 
-	public init(parentViewController parent: KCMultiViewController, console cons: CNLogConsole, doVerbose doverb: Bool){
+	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole){
 		mParentController	= parent
-		mDoVerbose		= doverb
 		mLayoutedSize		= KCSize.zero
-		console     		= cons
+		mConsole     		= cons
 		super.init(nibName: nil, bundle: nil)
 	}
 
 	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	public var console: CNConsole? {
+		get { return mConsole }
 	}
 
 	public var parentController: KCMultiViewController? {
@@ -48,7 +49,7 @@ open class KCSingleViewController: KCViewController, CNLogging
 	}
 
 	open func allocateRootView() -> KCRootView {
-		return KCRootView()
+		return KCRootView(console: mConsole)
 	}
 
 	#if os(OSX)
@@ -66,11 +67,11 @@ open class KCSingleViewController: KCViewController, CNLogging
 	private func doViewWillAppear() {
 		if let root = mRootView {
 			if root.hasCoreView {
-				let winsize = KCLayouter.windowSize(viewController: self, console: console)
+				let winsize = KCLayouter.windowSize(viewController: self, console: mConsole)
 				if winsize != mLayoutedSize {
 					/* Layout components */
-					log(type: .Flow, string: "// Execute Layout", file: #file, line: #line, function: #function)
-					let layouter = KCLayouter(viewController: self, console: console, doVerbose: mDoVerbose)
+					log(type: .Flow, string: "Execute Layout", file: #file, line: #line, function: #function)
+					let layouter = KCLayouter(viewController: self, console: mConsole)
 					layouter.layout(rootView: root, windowSize: winsize)
 					/* This size is layouted */
 					mLayoutedSize = winsize

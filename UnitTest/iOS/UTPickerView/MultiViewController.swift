@@ -22,7 +22,7 @@ class MultiViewController: KCMultiViewController
 
 	private func viewDidFirstAppear() {
 		let logcons   = CNLogConsole(debugLevel: .Flow, toConsole: KCLogConsole.shared)
-		console = logcons
+		set(logConsole: logcons)
 
 		/* Add first view */
 		let firstcont = SingleViewController(viewType: .firstView, parentViewController:self, console: logcons, doVerbose: true)

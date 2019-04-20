@@ -11,25 +11,25 @@ import Foundation
 public class KCLayouter: CNLogging
 {
 	private var mViewController:	KCSingleViewController
-	private var mDoVerbose:		Bool
-	public var  console:		CNLogConsole?
+	private var mConsole:		CNConsole
 
-	public required init(viewController vcont: KCSingleViewController, console cons: CNLogConsole?, doVerbose doverb: Bool){
+	public required init(viewController vcont: KCSingleViewController, console cons: CNConsole){
 		mViewController = vcont
-		console		= cons
-		mDoVerbose	= doverb
+		mConsole	= cons
 	}
 
-	public class func windowSize(viewController vcont: KCSingleViewController, console consp: CNLogConsole?) -> KCSize {
+	public var console: CNConsole? {
+		get { return mConsole }
+	}
+
+	public class func windowSize(viewController vcont: KCSingleViewController, console cons: CNConsole) -> KCSize {
 		if let parent = vcont.parentController {
 			let result: KCSize
 			#if os(OSX)
 			if let window = parent.view.window {
 				result = window.entireFrame.size
 			} else {
-				if let cons = consp {
-					cons.print(type: .Error, string: "No window", file: #file, line: #line, function: #function)
-				}
+				cons.error(string: "No window at \(#file)/\(#line)/\(#function)")
 				result = KCSize(width: 100.0, height: 100.0)
 			}
 			#else
@@ -37,9 +37,7 @@ public class KCLayouter: CNLogging
 			#endif
 			return result
 		} else {
-			if let cons = consp {
-				cons.print(type: .Error, string: "No parent controller", file: #file, line: #line, function: #function)
-			}
+			cons.error(string: "No parent controller at \(#file)/\(#line)/\(#function)")
 			return KCSize(width: 0.0, height: 0.0)
 		}
 	}
@@ -49,11 +47,11 @@ public class KCLayouter: CNLogging
 		let windowrect = KCRect(origin: CGPoint.zero, size: winsize)
 
 		log(type: .Flow, string: "Minimize window size: " + winsize.description, file: #file, line: #line, function: #function)
-		let minimizer = KCSizeMinimizer(console: console)
+		let minimizer = KCSizeMinimizer(console: mConsole)
 		view.accept(visitor: minimizer)
 
 		log(type: .Flow, string: "Minimize group size", file: #file, line: #line, function: #function)
-		let groupfitter = KCGroupSizeAllocator(console: console)
+		let groupfitter = KCGroupSizeAllocator(console: mConsole)
 		view.accept(visitor: groupfitter)
 
 		log(type: .Flow, string: "Allocate frame size", file: #file, line: #line, function: #function)
@@ -62,18 +60,18 @@ public class KCLayouter: CNLogging
 		frmallocator.setRootFrame(rootView: view, contentRect: windowrect)
 
 		log(type: .Flow, string: "Decide distribution", file: #file, line: #line, function: #function)
-		let distdecider = KCDistributionDecider(console: console)
+		let distdecider = KCDistributionDecider(console: mConsole)
 		view.accept(visitor: distdecider)
 	}
 
 	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {
 		if let parent = vcont.parentController {
-			let space = KCPreference.shared.layoutPreference.spacing
+			let space: CGFloat = CNPreference.shared.layoutPreference.spacing
 			#if os(OSX)
 			let result = KCEdgeInsets(top: space, left: space, bottom: space, right: space)
 			#else
 			let topmargin: CGFloat
-			if KCPreference.shared.layoutPreference.isPortrait {
+			if CNPreference.shared.layoutPreference.isPortrait {
 				topmargin =  16.0 - space
 			} else {
 				topmargin =  0.0

@@ -69,7 +69,7 @@ class UTViewController: NSViewController
 		let button2 = KCButton()
 		button2.title = "Button-2"
 
-		let text1 = KCConsoleView()
+		let text1    = KCConsoleView()
 		let console1 = text1.console
 		console1.print(string: "Hello, world !!")
 
