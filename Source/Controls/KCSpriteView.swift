@@ -47,6 +47,10 @@ open class KCSpriteView: KCCoreView
 		}
 	}
 
+	public var field: KCSpriteField {
+		get { return coreView.field }
+	}
+
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
 		return (.High, .High)
 	}
@@ -60,12 +64,23 @@ open class KCSpriteView: KCCoreView
 	}
 	#endif
 
-	public var sceneSize: CGSize {
-		get { return coreView.sceneSize }
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus) -> KCSpriteNode {
+		return coreView.allocate(nodeName: name, image: img, initStatus: istat)
 	}
 
-	public var database: CNDatabaseProtocol {
-		get { return coreView.database }
+	public var updateHandler: KCSpriteScene.UpdateHandler? {
+		get { return coreView.updateHandler }
+		set(newhdl){ coreView.updateHandler = newhdl }
+	}
+
+	public var contactBeginHandler: KCSpriteScene.ContactHandler? {
+		get { return coreView.contactBeginHandler }
+		set(newhdl){ coreView.contactBeginHandler = newhdl }
+	}
+
+	public var contactEndHandler: KCSpriteScene.ContactHandler? {
+		get { return coreView.contactEndHandler }
+		set(newhdl){ coreView.contactEndHandler = newhdl }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

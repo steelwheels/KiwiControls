@@ -7,6 +7,7 @@
 //
 
 import KiwiControls
+import SpriteKit
 import CoconutData
 import Cocoa
 
@@ -24,8 +25,8 @@ class ViewController: NSViewController, CNLogging
 		super.viewDidLoad()
 
 		/* Allocate cosole */
-		let cons  = KCLogConsole.shared
-		mConsole  = cons
+		let cons = KCLogConsole.shared
+		mConsole = cons
 
 		log(type: .Flow, string: "Message from ViewController", file: #file, line: #line, function: #function)
 		mSpriteView.set(console: cons)
@@ -51,54 +52,57 @@ class ViewController: NSViewController, CNLogging
 		// Do any additional setup after loading the view.
 		mSpriteView.backgroundColorOfScene = .yellow
 
-		let db = mSpriteView.database
-
-		let b0init = KCSpriteNode(image:    blueimage,
-					  scale:    0.5,
-					  alpha:    1.0,
-					  position: CGPoint(x:10.0, y:10.0),
-					  rotation: 0.0,
-					  duration: 1.0,
-					  console:  cons)
-		let _ = db.write(identifier: "b0", value: b0init.toValue())
-
-		let g0init = KCSpriteNode(image:    greenimage,
-					  scale:    0.5,
-					  alpha:    1.0,
-					  position: CGPoint(x:470.0, y:200.0),
-					  rotation: 0.0,
-					  duration: 1.0,
-					  console:  cons)
-		let _ = db.write(identifier: "g0", value: g0init.toValue())
-
-		/* Update the database */
-		db.commit()
+		/* Set actions */
+		mSpriteView.contactEndHandler = {
+			[weak self] (_ point: CGPoint, _ nodeA: KCSpriteNode?, _ nodeB: KCSpriteNode?) -> Void in
+			if let myself = self {
+				myself.updateActions(contactAt: point, nodeA: nodeA, nodeB: nodeB, console: myself.mConsole!)
+			}
+		}
 		
-		let b0param = KCSpriteNode(image:    blueimage,
-					   scale:    0.5,
-					   alpha:    1.0,
-					   position: CGPoint(x:240.0, y:50.0),
-					   rotation: Double.pi * 2.0 / 4.0,
-					   duration: 1.0,
-					   console:  cons)
-		let _ = db.write(identifier: "b0", value: b0param.toValue())
+		/* allocate nodes */
+		let b0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.51))
+		let b0node   = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status)
+		let g0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.49))
+		let g0node   = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status)
 
-		let g0param = KCSpriteNode(image:    greenimage,
-					   scale:    0.5,
-					   alpha:    1.0,
-					   position: CGPoint(x:240.0, y:150.0),
-					   rotation: -Double.pi * 2.0 / 4.0,
-					   duration: 1.0,
-					   console:  cons)
-		let _ = db.write(identifier: "g0", value: g0param.toValue())
+		/* allocate action */
+		let b0action = KCSpriteNodeAction(visible: true, speed: 0.3, angle: CGFloat.pi / 2.0)
+		b0node.action = b0action
 
-		/* Update the database */
-		db.commit()
+		let g0action = KCSpriteNodeAction(visible: true, speed: 0.3, angle: -(CGFloat.pi / 2.0))
+		g0node.action = g0action
 	}
 
-	override var representedObject: Any? {
-		didSet {
-		// Update the view, if already loaded.
+	private func updateActions(contactAt point: CGPoint, nodeA na: KCSpriteNode?, nodeB nb: KCSpriteNode?, console cons: CNConsole) {
+		if let nodeA = na {
+			cons.print(string: "Node-A: ")
+			let text = nodeA.toValue().toText()
+			text.print(console: cons)
+
+			/* Update action */
+			cons.print(string: "Action-A: ")
+			var act = nodeA.action
+			//let txt2 = act.toValue().toText()
+			//txt2.print(console: cons)
+			act.angle += CGFloat.pi / 8.0
+			nodeA.action = act
+		} else {
+			cons.error(string: "No node-A\n")
+		}
+		if let nodeB = nb {
+			cons.print(string: "Node-B: ")
+			let text = nodeB.toValue().toText()
+			text.print(console: mConsole!)
+
+			/* Update action */
+			var act = nodeB.action
+			//let txt2 = act.toValue().toText()
+			//txt2.print(console: cons)
+			act.angle -= CGFloat.pi / 8.0
+			nodeB.action = act
+		} else {
+			cons.error(string: "No node-B\n")
 		}
 	}
 }
