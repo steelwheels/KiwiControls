@@ -11,7 +11,7 @@ import Foundation
 
 public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 {
-	public typealias UpdateHandler  = (_ node: KCSpriteNode) -> Void
+	public typealias UpdateHandler  = (_ node: KCSpriteNode) -> KCSpriteNodeAction?
 	public typealias ContactHandler = (_ point: CGPoint, _ nodeA: KCSpriteNode?, _ nodeB: KCSpriteNode?) -> Void
 
 	private var mNodes:		Dictionary<String, KCSpriteNode>	// node-name, node
@@ -101,7 +101,10 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	open override func update(_ currentTime: TimeInterval) {
 		if let handler = updateHandler {
 			for (_, node) in mNodes {
-				handler(node)
+				if let newact = handler(node) {
+					/* Update action */
+					node.action = newact
+				}
 			}
 		}
 		/* Update node states */
