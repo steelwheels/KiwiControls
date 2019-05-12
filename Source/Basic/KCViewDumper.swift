@@ -71,6 +71,17 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(string: "rightButtonTitle : " + righttitle)
 	}
 
+	open override func visit(spriteView view: KCSpriteView) {
+		visit(coreView: view)
+
+		let field    = view.field
+		let fsection = CNTextSection()
+		fsection.header = "field {" ; fsection.footer = "}"
+		fsection.add(text: CNTextLine(string: "physical_size: \(field.physicalSize.description)"))
+		fsection.add(text: CNTextLine(string: "logical_size:  \(field.logicalSize.description)"))
+		mSection.add(text: fsection)
+	}
+
 	open override func visit(coreView view: KCCoreView){
 		let section = CNTextSection()
 

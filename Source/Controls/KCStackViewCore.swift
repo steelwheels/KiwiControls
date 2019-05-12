@@ -29,9 +29,7 @@ open class KCStackViewCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect) {
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		self.bounds = bounds
-		self.frame  = bounds
+		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		#if os(OSX)
 			mStackView.orientation  = .vertical

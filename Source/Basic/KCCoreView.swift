@@ -59,8 +59,10 @@ open class KCCoreView: KCView
 	}
 
 	open override func resize(_ size: KCSize){
-		let coreview: KCView = getCoreView()
-		coreview.resize(size)
+		if hasCoreView {
+			let coreview: KCView = getCoreView()
+			coreview.resize(size)
+		}
 		super.resize(size)
 	}
 

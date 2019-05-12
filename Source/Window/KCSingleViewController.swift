@@ -83,6 +83,27 @@ open class KCSingleViewController: KCViewController, CNLogging
 			log(type: .Error, string: "No root view", file: #file, line: #line, function: #function)
 		}
 	}
+
+	#if os(OSX)
+	open override func viewDidAppear() {
+		super.viewDidAppear()
+		doViewDidAppear()
+	}
+	#else
+	open override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		doViewDidAppear()
+	}
+	#endif
+
+	private func doViewDidAppear(){
+		if let root = mRootView {
+			if root.hasCoreView {
+				let finalizer = KCLayoutFinalizer(console: mConsole)
+				finalizer.finalizeLayout(rootView: root)
+			}
+		}
+	}
 }
 
 

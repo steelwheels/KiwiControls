@@ -21,9 +21,7 @@ open class KCTextEditCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect){
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		self.frame  = bounds
-		self.bounds = bounds
+		self.rebounds(origin: KCPoint.zero, size: frm.size)
 		#if os(OSX)
 			mTextEdit.isBezeled		= true
 			mTextEdit.maximumNumberOfLines	= 0

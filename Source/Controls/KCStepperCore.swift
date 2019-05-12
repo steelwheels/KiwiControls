@@ -26,9 +26,7 @@ public class KCStepperCore: KCView
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		self.frame  = bounds
-		self.bounds = bounds
+		self.rebounds(origin: KCPoint.zero, size: frm.size)
 		#if os(iOS)
 			mTextField.text = ""
 			mTextField.textAlignment = .center

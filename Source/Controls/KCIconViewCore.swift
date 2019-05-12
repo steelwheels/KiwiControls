@@ -25,9 +25,7 @@ open class KCIconViewCore : KCView
 	private var mIconDrawer: KCImageDrawerLayer? = nil
 
 	public func setup(frame frm: CGRect) {
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		self.frame  = bounds
-		self.bounds = bounds
+		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		let layerframe   = KCIconViewCore.calcLayerFrame(entireFrame: bounds, deltaHeight: mLabelView.frame.size.height)
 		let layercontent = CGRect(origin: CGPoint.zero, size: layerframe.size)

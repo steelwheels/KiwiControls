@@ -25,9 +25,7 @@ open class KCConsoleViewCore : KCView
 						      background: KCColorTable.white)
 
 	public func setup(frame frm: CGRect) {
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		self.bounds = bounds
-		self.frame  = bounds
+		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 
 	open override func sizeToFit() {

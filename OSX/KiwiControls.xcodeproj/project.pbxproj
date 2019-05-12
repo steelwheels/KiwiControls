@@ -76,6 +76,8 @@
 		0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */; };
 		0568FDE421247B370048EA92 /* SampleImage0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0568FDE321247B370048EA92 /* SampleImage0.jpeg */; };
 		0568FDE621247B7A0048EA92 /* SampleImage0.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0568FDE321247B370048EA92 /* SampleImage0.jpeg */; };
+		056C0C4A2288419200C6171E /* KCLayoutFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0C492288419200C6171E /* KCLayoutFinalizer.swift */; };
+		056C0C4C228842CF00C6171E /* KCFrameSizeFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0C4B228842CF00C6171E /* KCFrameSizeFinalizer.swift */; };
 		056E4A1C21F765AF00ED7AD2 /* KCNavigationBarCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A1A21F765AF00ED7AD2 /* KCNavigationBarCore.swift */; };
 		056E4A1D21F765AF00ED7AD2 /* KCNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A1B21F765AF00ED7AD2 /* KCNavigationBar.swift */; };
 		056E4A1F21F7662A00ED7AD2 /* KCNavigationBarCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A1E21F7662A00ED7AD2 /* KCNavigationBarCore.xib */; };
@@ -361,6 +363,8 @@
 		05674B991F77D1CD006CB20F /* UTWindowController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTWindowController.entitlements; sourceTree = "<group>"; };
 		0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		0568FDE321247B370048EA92 /* SampleImage0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleImage0.jpeg; sourceTree = "<group>"; };
+		056C0C492288419200C6171E /* KCLayoutFinalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayoutFinalizer.swift; sourceTree = "<group>"; };
+		056C0C4B228842CF00C6171E /* KCFrameSizeFinalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCFrameSizeFinalizer.swift; sourceTree = "<group>"; };
 		056E4A1A21F765AF00ED7AD2 /* KCNavigationBarCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCNavigationBarCore.swift; sourceTree = "<group>"; };
 		056E4A1B21F765AF00ED7AD2 /* KCNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCNavigationBar.swift; sourceTree = "<group>"; };
 		056E4A1E21F7662A00ED7AD2 /* KCNavigationBarCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCNavigationBarCore.xib; sourceTree = "<group>"; };
@@ -984,6 +988,8 @@
 				05F73B7E214964C500AD02B4 /* KCFrameSizeAllocator.swift */,
 				0587717C214F355D00F90BC1 /* KCIntrinsicSizeAllocator.swift */,
 				0526C46B21C0065F00EDC4E3 /* KCDistributionDecider.swift */,
+				056C0C492288419200C6171E /* KCLayoutFinalizer.swift */,
+				056C0C4B228842CF00C6171E /* KCFrameSizeFinalizer.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1477,6 +1483,7 @@
 				05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */,
 				05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */,
 				05F73B7D21495FB500AD02B4 /* KCSizeMinimizer.swift in Sources */,
+				056C0C4C228842CF00C6171E /* KCFrameSizeFinalizer.swift in Sources */,
 				0584F513210DFE6300492366 /* KCWindow.swift in Sources */,
 				0580438820957098009E20A9 /* KCColorPreference.swift in Sources */,
 				0529608A2115B26D00D9D739 /* KCMultiViewController.swift in Sources */,
@@ -1523,6 +1530,7 @@
 				05BD996D20956C2A00E468B7 /* KCPoint.swift in Sources */,
 				0529608B2115B26D00D9D739 /* KCSingleViewController.swift in Sources */,
 				05C93F4520F0E5220057217F /* KCViewVisitor.swift in Sources */,
+				056C0C4A2288419200C6171E /* KCLayoutFinalizer.swift in Sources */,
 				059CFFA61EB5E9A30005F3C0 /* KCCoreView.swift in Sources */,
 				05386D591D858603004B8DDF /* KCLayerView.swift in Sources */,
 				0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */,

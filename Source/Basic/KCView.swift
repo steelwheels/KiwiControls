@@ -159,6 +159,12 @@ open class KCView : KCViewBase, CNLogging
 		self.bounds.size = size
 	}
 
+	open func rebounds(origin org: KCPoint, size sz: KCSize){
+		self.frame.origin  = org
+		self.bounds.origin = KCPoint.zero
+		resize(sz)
+	}
+
 	#if os(OSX)
 	open func sizeToFit() {
 
@@ -195,7 +201,7 @@ open class KCView : KCViewBase, CNLogging
 			let views = nib.instantiate(withOwner: nil, options: nil)
 			for i in 0..<views.count {
 				if let view = views[i] as? KCView {
-					view.frame = self.bounds ;
+					rebounds(origin: self.bounds.origin, size: self.bounds.size)
 					addSubview(view) ;
 					return view ;
 				}
@@ -207,7 +213,7 @@ open class KCView : KCViewBase, CNLogging
 					if let views = viewsp {
 						for i in 0..<views.count {
 							if let view = views[i] as? KCView {
-								view.frame = self.bounds ;
+								rebounds(origin: self.bounds.origin, size: self.bounds.size)
 								addSubview(view) ;
 								return view ;
 							}

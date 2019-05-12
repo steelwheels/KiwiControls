@@ -20,8 +20,7 @@ public class KCFrameSizeAllocator
 
 	public func setRootFrame(rootView view: KCRootView, contentRect content: KCRect){
 		/* Allocate root frame */
-		view.frame	= content
-		view.bounds	= KCRect(origin: KCPoint.zero, size: content.size)
+		view.rebounds(origin: content.origin, size: content.size)
 		view.fixedSize  = content.size
 
 		/* Setup content view */

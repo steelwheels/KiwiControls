@@ -56,6 +56,8 @@
 		0557686F2155506A000AB421 /* KCGroupSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */; };
 		055768702155506A000AB421 /* KCIntrinsicSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */; };
 		055768712155506A000AB421 /* KCFrameSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686E2155506A000AB421 /* KCFrameSizeAllocator.swift */; };
+		055773DB228848820079E37F /* KCLayoutFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DA228848820079E37F /* KCLayoutFinalizer.swift */; };
+		055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */; };
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
 		055D8089213E075E00100601 /* UTLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D8088213E075E00100601 /* UTLogViewController.swift */; };
 		055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */; };
@@ -317,6 +319,8 @@
 		0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupSizeAllocator.swift; sourceTree = "<group>"; };
 		0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntrinsicSizeAllocator.swift; sourceTree = "<group>"; };
 		0557686E2155506A000AB421 /* KCFrameSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFrameSizeAllocator.swift; sourceTree = "<group>"; };
+		055773DA228848820079E37F /* KCLayoutFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutFinalizer.swift; sourceTree = "<group>"; };
+		055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFrameSizeFinalizer.swift; sourceTree = "<group>"; };
 		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
 		055D8088213E075E00100601 /* UTLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTLogViewController.swift; sourceTree = "<group>"; };
 		055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -803,6 +807,8 @@
 				0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */,
 				0557686E2155506A000AB421 /* KCFrameSizeAllocator.swift */,
 				0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */,
+				055773DA228848820079E37F /* KCLayoutFinalizer.swift */,
+				055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1432,6 +1438,7 @@
 				05FE54B62127C8E7009709C4 /* KCDocumentPickerViewController.swift in Sources */,
 				05706B5B1F8A50BF008BE096 /* KCViewController.swift in Sources */,
 				059AFECE20F7BFAD00F58FC7 /* KCLayouter.swift in Sources */,
+				055773DB228848820079E37F /* KCLayoutFinalizer.swift in Sources */,
 				05DDE5F821C01A8600520631 /* KCGroupMaker.swift in Sources */,
 				0584F515210DFE9900492366 /* KCWindow.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
@@ -1465,6 +1472,7 @@
 				05795BAA20F0FD2300EB504D /* KCViewVisitor.swift in Sources */,
 				05DDE5F421C01A7600520631 /* KCLayoutConstraint.swift in Sources */,
 				05DDE5F721C01A8600520631 /* KCDistributionDecider.swift in Sources */,
+				055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */,
 				05910BE820958D8900535E2A /* KCContext.swift in Sources */,
 				05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */,
 				058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */,

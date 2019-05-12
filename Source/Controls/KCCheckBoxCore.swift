@@ -25,9 +25,7 @@ public class KCCheckBoxCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void
 	{
-		let bounds = CGRect(origin: CGPoint.zero, size: frm.size)
-		self.frame  = bounds
-		self.bounds = bounds
+		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 
 	open override func sizeToFit() {
