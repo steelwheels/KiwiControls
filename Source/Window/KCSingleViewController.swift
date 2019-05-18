@@ -55,12 +55,25 @@ open class KCSingleViewController: KCViewController, CNLogging
 	#if os(OSX)
 	open override func viewWillAppear() {
 		super.viewWillAppear()
+		doViewWill1stAppear()
 		doViewWillAppear()
 	}
 	#else
 	open override func viewWillAppear(_ animated: Bool){
 		super.viewWillAppear(animated)
 		doViewWillAppear()
+	}
+	#endif
+
+	#if os(OSX)
+	private func doViewWill1stAppear(){
+		/* Adjust window size */
+		if let window = self.view.window {
+			let size = CNPreference.shared.windowPreference.mainWindowSize
+			if window.frame.size != size {
+				window.resize(size: size)
+			}
+		}
 	}
 	#endif
 

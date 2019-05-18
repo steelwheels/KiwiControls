@@ -45,6 +45,25 @@ open class KCMultiViewController : KCMultiViewControllerBase, CNLogging
 		showTabBar(visible:false)
 	}
 
+	#if os(OSX)
+	open override func viewWillAppear() {
+		super.viewWillAppear()
+		doViewWill1stAppear()
+	}
+	#endif
+
+	#if os(OSX)
+	private func doViewWill1stAppear(){
+		/* Adjust window size */
+		if let window = self.view.window {
+			let size = CNPreference.shared.windowPreference.mainWindowSize
+			if window.frame.size != size {
+				window.resize(size: size)
+			}
+		}
+	}
+	#endif
+
 	public func showTabBar(visible vis: Bool){
 		#if os(OSX)
 		let style: NSTabViewController.TabStyle

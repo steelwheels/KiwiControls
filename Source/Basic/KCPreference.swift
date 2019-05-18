@@ -29,7 +29,7 @@ public class KCWindowPreference
 		spacing			= 0.0
 		backgroundColor		= KCColor.white
 		#if os(OSX)
-			mainWindowSize	= KCSize(width: 1280, height: 720)
+			mainWindowSize	= KCSize(width: 640, height: 480)
 		#endif
 	}
 
