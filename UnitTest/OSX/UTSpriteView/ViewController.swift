@@ -74,6 +74,17 @@ class ViewController: NSViewController, CNLogging
 		g0node.action = g0action
 	}
 
+	open override func viewWillAppear() {
+		/* Resize window */
+		NSLog("viewWillAppear")
+		if let window = self.view.window {
+			let pref = CNPreference.shared
+			let size = pref.windowPreference.mainWindowSize
+			window.resize(size: size)
+			NSLog("resize window: size=\(size.description)")
+		}
+	}
+
 	private func updateActions(contactAt point: CGPoint, nodeA na: KCSpriteNode?, nodeB nb: KCSpriteNode?, console cons: CNConsole) {
 		if let nodeA = na {
 			cons.print(string: "Node-A: ")

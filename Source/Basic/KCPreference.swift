@@ -17,11 +17,21 @@ public class KCConfig: CNConfig {
 	
 }
 
-public class KCLayoutPreference
+public class KCWindowPreference
 {
-	public var spacing: CGFloat		= 8.0
+	public var spacing			: CGFloat
+	public var backgroundColor		: KCColor
+	#if os(OSX)
+	public var mainWindowSize		: KCSize
+	#endif
 
-	public var backgroundColor: KCColor	= KCColor.white
+	public init(){
+		spacing			= 0.0
+		backgroundColor		= KCColor.white
+		#if os(OSX)
+			mainWindowSize	= KCSize(width: 1280, height: 720)
+		#endif
+	}
 
 	#if os(iOS)
 	public var isPortrait: Bool {
@@ -79,9 +89,9 @@ public class KCTerminalPreference
 
 extension CNPreference
 {
-	public var layoutPreference: KCLayoutPreference { get {
-		return get(name: "system", allocator: {
-			() -> KCLayoutPreference in return KCLayoutPreference()
+	public var windowPreference: KCWindowPreference { get {
+		return get(name: "window", allocator: {
+			() -> KCWindowPreference in return KCWindowPreference()
 		})
 	}}
 

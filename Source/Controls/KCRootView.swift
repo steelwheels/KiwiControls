@@ -43,7 +43,7 @@ open class KCRootView: KCCoreView
 		setCoreView(view: child)
 		child.set(console: self.console)
 		#if os(iOS)
-			self.backgroundColor = CNPreference.shared.layoutPreference.backgroundColor
+			self.backgroundColor = CNPreference.shared.windowPreference.backgroundColor
 		#endif
 	}
 

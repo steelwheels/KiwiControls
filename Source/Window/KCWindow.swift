@@ -28,6 +28,12 @@ extension NSWindow
 		}
 	}
 
+	public func resize(size sz: KCSize){
+		let origin   = self.frame.origin
+		let newframe = KCRect(origin: origin, size: sz)
+		self.setFrame(newframe, display: false)
+	}
+
 	public var titleBarHeight: CGFloat {
 		get {
 			let contentHeight = contentRect(forFrameRect: frame).height

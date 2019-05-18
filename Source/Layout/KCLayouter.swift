@@ -66,12 +66,12 @@ public class KCLayouter: CNLogging
 
 	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {
 		if let parent = vcont.parentController {
-			let space: CGFloat = CNPreference.shared.layoutPreference.spacing
+			let space: CGFloat = CNPreference.shared.windowPreference.spacing
 			#if os(OSX)
 			let result = KCEdgeInsets(top: space, left: space, bottom: space, right: space)
 			#else
 			let topmargin: CGFloat
-			if CNPreference.shared.layoutPreference.isPortrait {
+			if CNPreference.shared.windowPreference.isPortrait {
 				topmargin =  16.0 - space
 			} else {
 				topmargin =  0.0

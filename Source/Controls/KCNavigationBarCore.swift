@@ -162,7 +162,7 @@ open class KCNavigationBarCore: KCView
 			let leftsize  = leftBarButton.frame.size
 			let rightsize = rightBarButton.frame.size
 
-			let space  = CNPreference.shared.layoutPreference.spacing
+			let space  = CNPreference.shared.windowPreference.spacing
 			let height = max(navsize.height, leftsize.height, rightsize.height)
 			let width  = leftsize.width + space + navsize.width + space + rightsize.width
 			super.resize(KCSize(width: width, height: height))
