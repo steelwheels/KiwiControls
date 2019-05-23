@@ -182,6 +182,47 @@ open class KCStackViewCore : KCView
 		}
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		var parent	= size
+		var newsize	= KCSize(width: 0.0, height: 0.0)
+		log(type: .Flow, string: "sizeThatFits(\(size.description))", file: #file, line: #line, function: #function)
+		switch self.axis {
+		case .horizontal:
+			newsize.height = size.height
+			for subview in mStackView.arrangedSubviews {
+				let subsize: KCSize
+				if let view = subview as? KCView {
+					subsize = view.sizeThatFits(parent)
+				} else {
+					subsize = subview.frame.size
+				}
+				newsize.width += subsize.width
+				if parent.width >= subsize.width {
+					parent.width -= subsize.width
+				} else {
+					log(type: .Error, string: "Width underflow (parent: \(parent.width), sub: \(subsize.width))", file: #file, line: #line, function: #function)
+				}
+			}
+		case .vertical:
+			newsize.width  = size.width
+			for subview in mStackView.arrangedSubviews {
+				let subsize: KCSize
+				if let view = subview as? KCView {
+					subsize = view.sizeThatFits(parent)
+				} else {
+					subsize = subview.frame.size
+				}
+				newsize.height += subsize.height
+				if parent.height >= subsize.height {
+					parent.height -= subsize.height
+				} else {
+					log(type: .Error, string: "Height underflow (parent: \(parent.height), sub: \(subsize.height))", file: #file, line: #line, function: #function)
+				}
+			}
+		}
+		return newsize
+	}
+
 	open override func sizeToFit() {
 		let dovert     = (axis == .vertical)
 		var entiresize = KCSize.zero

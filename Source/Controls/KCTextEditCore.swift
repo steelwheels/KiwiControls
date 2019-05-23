@@ -28,6 +28,10 @@ open class KCTextEditCore : KCView
 		#endif
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return mTextEdit.sizeThatFits(size)
+	}
+
 	open override func sizeToFit() {
 		mTextEdit.sizeToFit()
 		super.resize(mTextEdit.frame.size)

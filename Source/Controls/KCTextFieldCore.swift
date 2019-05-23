@@ -28,6 +28,10 @@ open class KCTextFieldCore : KCView
 		#endif
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return mTextField.sizeThatFits(size)
+	}
+
 	open override func sizeToFit() {
 		mTextField.sizeToFit()
 		super.resize(mTextField.frame.size)

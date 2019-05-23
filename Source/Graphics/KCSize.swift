@@ -17,6 +17,12 @@ extension KCSize
 			return "{width:\(wstr), height:\(hstr)}"
 		}
 	}
+
+	func inset(by inset: KCEdgeInsets) -> KCSize {
+		let width  = max(0.0, self.width  - (inset.left + inset.right))
+		let height = max(0.0, self.height - (inset.top  + inset.bottom))
+		return KCSize(width: width, height: height)
+	}
 }
 
 public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize) -> KCSize
@@ -37,5 +43,12 @@ public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize, doVertical vert: Bool)
 		let height = max(a.height, b.height)
 		return KCSize(width: width, height: height)
 	}
+}
+
+public func KCSectSize(sizeA a: KCSize, sizeB b: KCSize) -> KCSize
+{
+	let width  = min(a.width,  b.width)
+	let height = min(a.height, b.height)
+	return KCSize(width: width, height: height)
 }
 

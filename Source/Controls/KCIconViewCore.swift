@@ -45,6 +45,20 @@ open class KCIconViewCore : KCView
 		return CGRect(origin: layerorigin, size: layersize)
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		/* Allocate label size */
+		let labsize = mLabelView.sizeThatFits(size)
+		/* Allocate image size */
+		var restsize = size
+		if restsize.height > labsize.height {
+			restsize.height -= labsize.height
+		} else {
+			log(type: .Error, string: "Too short size", file: #file, line: #line, function: #function)
+		}
+		let imgsize = mLayerView.sizeThatFits(restsize)
+		return KCUnionSize(sizeA: labsize, sizeB: imgsize, doVertical: true)
+	}
+
 	open override func sizeToFit() {
 		mLayerView.sizeToFit()
 		mLabelView.sizeToFit()

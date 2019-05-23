@@ -73,6 +73,8 @@ open class KCSingleViewController: KCViewController, CNLogging
 			if window.frame.size != size {
 				window.resize(size: size)
 			}
+		} else {
+			log(type: .Error, string: "No root view", file: #file, line: #line, function: #function)
 		}
 	}
 	#endif

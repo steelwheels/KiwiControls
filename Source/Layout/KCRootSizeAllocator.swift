@@ -8,7 +8,7 @@
 import CoconutData
 import Foundation
 
-public class KCFrameSizeAllocator
+public class KCRootSizeAllocator
 {
 	private var mWindowSize		: KCSize
 	private var mWindowInset	: KCEdgeInsets

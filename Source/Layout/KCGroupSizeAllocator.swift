@@ -25,7 +25,7 @@ public class KCGroupSizeAllocator: KCViewVisitor
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		view.sizeToFit()
+		/* Do nothing */
 	}
 
 	private func fitForGroup(stackView view: KCStackView){
@@ -41,8 +41,9 @@ public class KCGroupSizeAllocator: KCViewVisitor
 			/* Adjust subviews */
 			adjustUnionComponentSizes(components: group)
 		}
+
 		/* resize */
-		view.sizeToFit()
+		updateStackViewSize(stackView: view)
 	}
 
 	private func getSameContents(stackView view: KCStackView) -> Array<Array<KCView>> {
@@ -122,7 +123,7 @@ public class KCGroupSizeAllocator: KCViewVisitor
 
 		/* Resize subviews and it self */
 		for subview in subviews {
-			subview.sizeToFit()
+			updateStackViewSize(stackView: subview)
 		}
 	}
 
@@ -137,5 +138,15 @@ public class KCGroupSizeAllocator: KCViewVisitor
 			subview.resize(usize)
 		}
 	}
+
+	private func updateStackViewSize(stackView view: KCStackView){
+		var totalsize = KCSize.zero
+		let dovert    = view.axis == .vertical
+		for subview in view.arrangedSubviews() {
+			totalsize = KCUnionSize(sizeA: totalsize, sizeB: subview.frame.size, doVertical: dovert)
+		}
+		view.resize(totalsize)
+	}
 }
+
 

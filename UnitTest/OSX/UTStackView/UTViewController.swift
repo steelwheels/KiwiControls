@@ -31,7 +31,7 @@ class UTViewController: NSViewController
 
 	private func addSubviews_0()
 	{
-		mStackView.alignment = .vertical(align: .trailing)
+		mStackView.alignment = .leading
 
 		let text0 = KCTextField()
 		text0.text = "Hello, Field !!!!!"
@@ -44,7 +44,7 @@ class UTViewController: NSViewController
 
 	private func addSubviews_1()
 	{
-		mStackView.alignment = .vertical(align: .leading)
+		mStackView.alignment = .trailing
 
 		let origin     = NSPoint.zero
 		let size       = mStackView.frame.size
@@ -60,7 +60,7 @@ class UTViewController: NSViewController
 		button1.title = "Button-1"
 
 		let box0 = KCStackView(frame: NSRect(origin: origin, size: halfsize))
-		box0.alignment = .horizontal(align: .middle)
+		box0.alignment = .leading
 
 		//box0.orientation = .Vertical
 		//box0.alignment = .Trailing
@@ -70,9 +70,10 @@ class UTViewController: NSViewController
 		button2.title = "Button-2"
 
 		let text1    = KCConsoleView()
-		let console1 = text1.console
-		console1.print(string: "Hello, world !!")
-
+		if let console1 = text1.console {
+			console1.print(string: "Hello, world !!")
+		}
+		
 		mStackView.addArrangedSubViews(subViews: [box0, text1, button2])
 	}
 

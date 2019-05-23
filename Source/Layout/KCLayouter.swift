@@ -54,10 +54,10 @@ public class KCLayouter: CNLogging
 		let groupfitter = KCGroupSizeAllocator(console: mConsole)
 		view.accept(visitor: groupfitter)
 
-		log(type: .Flow, string: "Allocate frame size", file: #file, line: #line, function: #function)
+		log(type: .Flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
 		let insets       = KCLayouter.safeAreaInset(viewController: mViewController)
-		let frmallocator = KCFrameSizeAllocator(windowSize: winsize, windowInset: insets)
-		frmallocator.setRootFrame(rootView: view, contentRect: windowrect)
+		let rootallocator = KCRootSizeAllocator(windowSize: winsize, windowInset: insets)
+		rootallocator.setRootFrame(rootView: view, contentRect: windowrect)
 
 		log(type: .Flow, string: "Decide distribution", file: #file, line: #line, function: #function)
 		let distdecider = KCDistributionDecider(console: mConsole)

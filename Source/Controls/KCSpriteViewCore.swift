@@ -69,6 +69,10 @@ open class KCSpriteViewCore: KCView
 		scene.resize(sceneSize: size)
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return size
+	}
+
 	open override func sizeToFit() {
 		super.sizeToFit()
 		scene.resize(sceneSize: self.frame.size)

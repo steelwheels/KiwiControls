@@ -66,10 +66,16 @@ open class KCCoreView: KCView
 		super.resize(size)
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let coreview: KCView = getCoreView()
+		return coreview.sizeThatFits(size)
+	}
+
+
 	open override func sizeToFit() {
 		let coreview: KCView = getCoreView()
 		coreview.sizeToFit()
-		super.resize(coreview.frame.size)
+		super.sizeToFit()
 	}
 
 	open override var intrinsicContentSize: KCSize {

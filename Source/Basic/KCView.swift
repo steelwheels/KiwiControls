@@ -166,8 +166,13 @@ open class KCView : KCViewBase, CNLogging
 	}
 
 	#if os(OSX)
-	open func sizeToFit() {
 
+	func sizeThatFits(_ size: CGSize) -> CGSize {
+		return KCSectSize(sizeA: self.frame.size, sizeB: size)
+	}
+
+	open func sizeToFit() {
+		/* Do nothing */
 	}
 	#endif
 

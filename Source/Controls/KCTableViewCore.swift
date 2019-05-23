@@ -28,6 +28,10 @@ open class KCTableViewCore : KCView
 		return mTableView.intrinsicContentSize
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return mTableView.sizeThatFits(size)
+	}
+
 	open override func sizeToFit() {
 		mTableView.sizeToFit()
 		super.resize(mTableView.frame.size)

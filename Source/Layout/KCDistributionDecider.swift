@@ -24,7 +24,7 @@ public class KCDistributionDecider: KCViewVisitor
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		view.sizeToFit()
+		/* Do nothing */
 	}
 
 	private func decideDistribution(stackView view: KCStackView){

@@ -27,6 +27,10 @@ public class KCButtonCore: KCView
 		super.resize(bounds.size)
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return mButton.sizeThatFits(size)
+	}
+
 	open override func sizeToFit() {
 		mButton.sizeToFit()
 		super.resize(mButton.frame.size)

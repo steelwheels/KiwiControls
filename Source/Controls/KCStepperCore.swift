@@ -36,6 +36,18 @@ public class KCStepperCore: KCView
 		#endif
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let stpsize = mStepper.sizeThatFits(size)
+		var txtsize = size
+		if txtsize.width > stpsize.width {
+			txtsize.width -= stpsize.width
+		} else {
+			log(type: .Error, string: "Too short size", file: #file, line: #line, function: #function)
+		}
+		txtsize = mTextField.sizeThatFits(txtsize)
+		return KCUnionSize(sizeA: stpsize, sizeB: txtsize, doVertical: false)
+	}
+
 	open override func sizeToFit() {
 		mTextField.sizeToFit()
 		mStepper.sizeToFit()

@@ -28,6 +28,24 @@ open class KCConsoleViewCore : KCView
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let size: KCSize
+		if let font = mTextView.font {
+			#if os(OSX)
+				size = font.boundingRectForFont.size
+			#else
+				size = KCSize(width: font.lineHeight, height: font.pointSize)
+			#endif
+			NSLog("Use system font: \(size.description)")
+		} else {
+			NSLog("Unknown font")
+			size = KCSize(width: 20.0, height: 20.0)
+		}
+		let conssize = KCSize(width:  min(size.width,  size.width  * 40),
+				      height: min(size.height, size.height *  4))
+		return conssize
+	}
+
 	open override func sizeToFit() {
 		mTextView.sizeToFit()
 		super.resize(mTextView.frame.size)
