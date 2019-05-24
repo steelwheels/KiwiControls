@@ -48,10 +48,19 @@ public class KCStepperCore: KCView
 		return KCUnionSize(sizeA: stpsize, sizeB: txtsize, doVertical: false)
 	}
 
-	open override func sizeToFit() {
-		mTextField.sizeToFit()
-		mStepper.sizeToFit()
-		super.resize(KCUnionSize(sizeA: mTextField.frame.size, sizeB: mStepper.frame.size, doVertical: false))
+	open override func resize(_ size: KCSize) {
+		let stpsize = mStepper.sizeThatFits(size)
+		let txtwidth: CGFloat
+		if size.width > stpsize.width {
+			txtwidth = size.width - stpsize.width
+		} else {
+			log(type: .Error, string: "Too short text", file: #file, line: #line, function: #function)
+			txtwidth = 1.0
+		}
+		let txtsize = KCSize(width: txtwidth, height: stpsize.height)
+		mTextField.frame.size  = txtsize
+		mTextField.bounds.size = txtsize
+		super.resize(size)
 	}
 
 	private func updateTextField(value: Double){

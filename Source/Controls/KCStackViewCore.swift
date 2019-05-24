@@ -223,13 +223,10 @@ open class KCStackViewCore : KCView
 		return newsize
 	}
 
-	open override func sizeToFit() {
-		let dovert     = (axis == .vertical)
-		var entiresize = KCSize.zero
-		for subview in mStackView.arrangedSubviews {
-			entiresize = KCUnionSize(sizeA: entiresize, sizeB: subview.frame.size, doVertical: dovert)
-		}
-		super.resize(entiresize)
+	open override func resize(_ size: KCSize) {
+		mStackView.frame.size  = size
+		mStackView.bounds.size = size
+		super.resize(size)
 	}
 
 	public func addArrangedSubViews(subViews views:Array<KCView>){

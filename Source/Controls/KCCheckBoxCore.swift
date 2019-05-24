@@ -38,16 +38,24 @@ public class KCCheckBoxCore: KCView
 		#endif
 	}
 
-	open override func sizeToFit() {
+	open override func resize(_ size: KCSize) {
 		#if os(OSX)
-			mCheckBox.sizeToFit()
-			let coresize = mCheckBox.frame.size
+			mCheckBox.frame.size  = size
+			mCheckBox.bounds.size = size
 		#else
-			mSwitch.sizeToFit()
-			mLabel.sizeToFit()
-			let coresize = KCUnionSize(sizeA: mSwitch.frame.size, sizeB: mLabel.frame.size, doVertical: false)
+			let swsize = mSwitch.frame.size
+			let labsize: KCSize
+			if size.width > swsize.width {
+				labsize = KCSize(width: size.width - swsize.width, height: size.height)
+			} else {
+				labsize = KCSize(width: 1.0, height: size.height)
+			}
+			mLabel.frame.size          = labsize
+			mLabel.bounds.size         = labsize
+			mSwitch.frame.size.height  = labsize.height
+			mSwitch.bounds.size.height = labsize.height
 		#endif
-		super.resize(coresize)
+		super.resize(size)
 	}
 
 	#if os(iOS)

@@ -154,9 +154,23 @@ open class KCView : KCViewBase, CNLogging
 	/*
 	 * layout
 	 */
+
+	private var mFixedSize:	KCSize?	= nil
+
 	open func resize(_ size: KCSize){
+		mFixedSize       = size
 		self.frame.size  = size
 		self.bounds.size = size
+	}
+
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if let s = mFixedSize {
+				return s
+			} else {
+				return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
+			}
+		}
 	}
 
 	open func rebounds(origin org: KCPoint, size sz: KCSize){
@@ -171,9 +185,6 @@ open class KCView : KCViewBase, CNLogging
 		return KCSectSize(sizeA: self.frame.size, sizeB: size)
 	}
 
-	open func sizeToFit() {
-		/* Do nothing */
-	}
 	#endif
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){

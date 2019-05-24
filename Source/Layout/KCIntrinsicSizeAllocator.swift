@@ -27,7 +27,7 @@ public class KCIntrisicSizeAllocator: KCViewVisitor
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		view.fixedSize = view.frame.size
+		view.resize(view.frame.size)
 	}
 }
 

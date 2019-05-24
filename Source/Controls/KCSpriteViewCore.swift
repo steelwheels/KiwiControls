@@ -64,18 +64,13 @@ open class KCSpriteViewCore: KCView
 		set(newhdl){ scene.contactEndHandler = newhdl }
 	}
 
-	open override func resize(_ size: KCSize){
-		super.resize(size)
-		scene.resize(sceneSize: size)
-	}
-
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return size
 	}
 
-	open override func sizeToFit() {
-		super.sizeToFit()
-		scene.resize(sceneSize: self.frame.size)
+	open override func resize(_ size: KCSize){
+		scene.resize(sceneSize: size)
+		super.resize(size)
 	}
 }
 

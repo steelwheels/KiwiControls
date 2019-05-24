@@ -59,11 +59,20 @@ open class KCIconViewCore : KCView
 		return KCUnionSize(sizeA: labsize, sizeB: imgsize, doVertical: true)
 	}
 
-	open override func sizeToFit() {
-		mLayerView.sizeToFit()
-		mLabelView.sizeToFit()
-		let coresize = KCUnionSize(sizeA: mLayerView.frame.size, sizeB: mLabelView.frame.size, doVertical: true)
-		super.resize(coresize)
+	open override func resize(_ size: KCSize) {
+		let imgsize = mLayerView.frame.size
+		let labsize: KCSize
+		if imgsize.width < size.width {
+			labsize = KCSize(width: size.width - imgsize.width, height: size.height)
+		} else {
+			log(type: .Error, string: "Too short size", file: #file, line: #line, function: #function)
+			labsize = KCSize(width: 1.0, height: size.height)
+		}
+		mLabelView.frame.size         = labsize
+		mLabelView.bounds.size        = labsize
+		mLayerView.frame.size.height  = size.height
+		mLayerView.bounds.size.height = size.height
+		super.resize(size)
 	}
 
 	public var imageDrawer: KCImageDrawer? {

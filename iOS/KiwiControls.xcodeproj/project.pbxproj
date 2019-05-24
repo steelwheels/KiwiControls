@@ -55,7 +55,6 @@
 		0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */; };
 		0557686F2155506A000AB421 /* KCGroupSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */; };
 		055768702155506A000AB421 /* KCIntrinsicSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */; };
-		055768712155506A000AB421 /* KCFrameSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686E2155506A000AB421 /* KCFrameSizeAllocator.swift */; };
 		055773DB228848820079E37F /* KCLayoutFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DA228848820079E37F /* KCLayoutFinalizer.swift */; };
 		055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */; };
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
@@ -92,6 +91,7 @@
 		057B891D21D287D900309B2A /* KCSpriteViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057B891C21D287D800309B2A /* KCSpriteViewCore.xib */; };
 		057B892021D287FA00309B2A /* KCSpriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B891E21D287FA00309B2A /* KCSpriteView.swift */; };
 		057B892121D287FA00309B2A /* KCSpriteViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B891F21D287FA00309B2A /* KCSpriteViewCore.swift */; };
+		057FF5ED22989D5000E81BAB /* KCRootSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FF5EC22989D5000E81BAB /* KCRootSizeAllocator.swift */; };
 		0580219E1E102766001457C8 /* KCStepperCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0580219D1E102766001457C8 /* KCStepperCore.xib */; };
 		058021A01E102882001457C8 /* KCStepperCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580219F1E102882001457C8 /* KCStepperCore.swift */; };
 		058021A21E102D9A001457C8 /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058021A11E102D9A001457C8 /* KCStepper.swift */; };
@@ -318,7 +318,6 @@
 		0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupSizeAllocator.swift; sourceTree = "<group>"; };
 		0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntrinsicSizeAllocator.swift; sourceTree = "<group>"; };
-		0557686E2155506A000AB421 /* KCFrameSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFrameSizeAllocator.swift; sourceTree = "<group>"; };
 		055773DA228848820079E37F /* KCLayoutFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutFinalizer.swift; sourceTree = "<group>"; };
 		055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFrameSizeFinalizer.swift; sourceTree = "<group>"; };
 		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
@@ -356,6 +355,7 @@
 		057B891C21D287D800309B2A /* KCSpriteViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCSpriteViewCore.xib; sourceTree = "<group>"; };
 		057B891E21D287FA00309B2A /* KCSpriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteView.swift; sourceTree = "<group>"; };
 		057B891F21D287FA00309B2A /* KCSpriteViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteViewCore.swift; sourceTree = "<group>"; };
+		057FF5EC22989D5000E81BAB /* KCRootSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootSizeAllocator.swift; sourceTree = "<group>"; };
 		0580219D1E102766001457C8 /* KCStepperCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStepperCore.xib; sourceTree = "<group>"; };
 		0580219F1E102882001457C8 /* KCStepperCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepperCore.swift; sourceTree = "<group>"; };
 		058021A11E102D9A001457C8 /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
@@ -805,7 +805,7 @@
 				05DDE5F521C01A8600520631 /* KCDistributionDecider.swift */,
 				05877180214F699C00F90BC1 /* KCSizeMinimizer.swift */,
 				0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */,
-				0557686E2155506A000AB421 /* KCFrameSizeAllocator.swift */,
+				057FF5EC22989D5000E81BAB /* KCRootSizeAllocator.swift */,
 				0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */,
 				055773DA228848820079E37F /* KCLayoutFinalizer.swift */,
 				055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */,
@@ -1444,8 +1444,8 @@
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
 				053CB5F521F6118A0031711B /* KCNavigationBar.swift in Sources */,
 				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
-				055768712155506A000AB421 /* KCFrameSizeAllocator.swift in Sources */,
 				053CB5F121F609D00031711B /* KCNavigationBarCore.swift in Sources */,
+				057FF5ED22989D5000E81BAB /* KCRootSizeAllocator.swift in Sources */,
 				05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
 				057B892021D287FA00309B2A /* KCSpriteView.swift in Sources */,

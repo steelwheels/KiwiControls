@@ -29,6 +29,11 @@ extension NSImage
 		return newimg
 	}
 
+	public func resize(_ size: KCSize) -> NSImage {
+		self.size = size
+		return self
+	}
+
 	public var toCGImage: CGImage {
 		var imageRect = NSRect(x: 0, y: 0, width: size.width, height: size.height)
 		#if swift(>=3.0)
@@ -74,6 +79,22 @@ extension UIImage
 		} else {
 			fatalError("Can not get current context")
 		}
+	}
+
+	public func resize(_ _size: KCSize) -> UIImage? {
+		/* Copied from https://develop.hateblo.jp/entry/iosapp-uiimage-resize */
+		let widthRatio = _size.width / size.width
+		let heightRatio = _size.height / size.height
+		let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
+
+		let resizedSize = CGSize(width: size.width * ratio, height: size.height * ratio)
+
+		UIGraphicsBeginImageContextWithOptions(resizedSize, false, 0.0) // 変更
+		draw(in: CGRect(origin: .zero, size: resizedSize))
+		let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+
+		return resizedImage
 	}
 
 	public var toCGImage: CGImage {

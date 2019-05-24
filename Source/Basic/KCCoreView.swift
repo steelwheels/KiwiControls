@@ -16,7 +16,6 @@ import CoconutData
 open class KCCoreView: KCView
 {
 	private var mCoreView:	KCView? = nil
-	private var mFixedSize:	KCSize?	= nil
 
 	public func setCoreView(view v: KCView) {
 		mCoreView = v
@@ -34,6 +33,11 @@ open class KCCoreView: KCView
 		case High
 		case Low
 		case Fixed
+
+		public static func sortedPriorities() -> Array<ExpansionPriority> {
+			return [.Fixed, .Low, .High]
+		}
+
 		public func description() -> String {
 			let result: String
 			switch self {
@@ -45,17 +49,19 @@ open class KCCoreView: KCView
 		}
 	}
 
-	public var fixedSize: KCSize? {
+	open override var intrinsicContentSize: KCSize {
 		get {
-			return mFixedSize
-		}
-		set(newsize){
-			mFixedSize = newsize
+			if let core = mCoreView {
+				return core.intrinsicContentSize
+			} else {
+				return super.intrinsicContentSize
+			}
 		}
 	}
 
-	open func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Fixed, .Fixed)
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let coreview: KCView = getCoreView()
+		return coreview.sizeThatFits(size)
 	}
 
 	open override func resize(_ size: KCSize){
@@ -66,28 +72,8 @@ open class KCCoreView: KCView
 		super.resize(size)
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let coreview: KCView = getCoreView()
-		return coreview.sizeThatFits(size)
-	}
-
-
-	open override func sizeToFit() {
-		let coreview: KCView = getCoreView()
-		coreview.sizeToFit()
-		super.sizeToFit()
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			if let s = mFixedSize {
-				return s
-			} else if let v = mCoreView {
-				return v.intrinsicContentSize
-			} else {
-				return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
-			}
-		}
+	open func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Fixed, .Fixed)
 	}
 
 	public var isVisible: Bool {

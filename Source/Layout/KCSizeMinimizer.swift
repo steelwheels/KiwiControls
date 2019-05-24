@@ -28,7 +28,7 @@ public class KCSizeMinimizer: KCViewVisitor
 		case .horizontal:
 			var subparent = mParentSize
 			newparent.height = subparent.height
-			for subview in view.arrangedSubviews() {
+			for subview in sortedSubviews(in: view, axis: .horizontal) {
 				mParentSize = subparent
 				subview.accept(visitor: self)
 				/* Reduce parent size */
@@ -42,7 +42,7 @@ public class KCSizeMinimizer: KCViewVisitor
 		case .vertical:
 			var subparent = mParentSize
 			newparent.width = subparent.width
-			for subview in view.arrangedSubviews() {
+			for subview in sortedSubviews(in: view, axis: .vertical) {
 				mParentSize = subparent
 				subview.accept(visitor: self)
 				/* Reduce parent size */
@@ -64,6 +64,25 @@ public class KCSizeMinimizer: KCViewVisitor
 	open override func visit(coreView view: KCCoreView){
 		mResultSize = view.sizeThatFits(mParentSize)
 		view.resize(mResultSize)
+	}
+
+	private func sortedSubviews(in stackview: KCStackView, axis axs: CNAxis) -> Array<KCView> {
+		var result: Array<KCView> = []
+		for priority in KCCoreView.ExpansionPriority.sortedPriorities() {
+			for subview in stackview.arrangedSubviews() {
+				if let coreview = subview as? KCCoreView {
+					let (hexp, vexp) = coreview.expansionPriorities()
+					if axs == .horizontal && hexp == priority {
+						result.append(coreview)
+					} else if axs == .vertical && vexp == priority {
+						result.append(coreview)
+					}
+				} else {
+					NSLog("[Error] Unknown view")
+				}
+			}
+		}
+		return result
 	}
 }
 

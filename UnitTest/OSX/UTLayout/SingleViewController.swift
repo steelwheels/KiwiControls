@@ -16,7 +16,9 @@ public class SingleViewController: KCSingleViewController
 		super.loadView()
 
 		let topview = KCStackView()
-		allocateContents(topView: topview)
+
+		//allocateContents0(topView: topview)
+		allocateContents1(topView: topview)
 
 		if let root = super.rootView, let cons = console {
 			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
@@ -30,9 +32,10 @@ public class SingleViewController: KCSingleViewController
 		}
 	}
 	
-	private func allocateContents(topView topview: KCStackView){
+	private func allocateContents0(topView topview: KCStackView){
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
+		//let imgname = "WideImage-1"
 		let imgname = "TallImage-1"
 		if let imgurl = CNFilePath.URLForResourceFile(fileName: imgname, fileExtension: "png") {
 			if let imgdata = CNImage(contentsOf: imgurl) {
@@ -46,6 +49,21 @@ public class SingleViewController: KCSingleViewController
 		let button0   = KCButton(frame: dmyrect)
 		button0.title = "OK"
 		topview.addArrangedSubView(subView: button0)
+	}
+
+	private func allocateContents1(topView topview: KCStackView){
+		let dmyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+		let hbox    = KCStackView(frame: dmyrect)
+		hbox.axis   = .horizontal
+
+		let text0   = KCTextField(frame: dmyrect)
+		text0.text  = "Hello"
+		let text1   = KCTextField(frame: dmyrect)
+		text1.text  = "Good morning"
+		
+		hbox.addArrangedSubViews(subViews: [text0, text1])
+
+		topview.addArrangedSubView(subView: hbox)
 	}
 
 	private func doDumpView(message msg: String){

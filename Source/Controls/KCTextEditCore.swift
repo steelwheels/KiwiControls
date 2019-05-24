@@ -32,9 +32,10 @@ open class KCTextEditCore : KCView
 		return mTextEdit.sizeThatFits(size)
 	}
 
-	open override func sizeToFit() {
-		mTextEdit.sizeToFit()
-		super.resize(mTextEdit.frame.size)
+	open override func resize(_ size: KCSize) {
+		mTextEdit.frame.size  = size
+		mTextEdit.bounds.size = size
+		super.resize(size)
 	}
 
 	public var isEnabled: Bool {

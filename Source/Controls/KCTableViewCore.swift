@@ -32,94 +32,10 @@ open class KCTableViewCore : KCView
 		return mTableView.sizeThatFits(size)
 	}
 
-	open override func sizeToFit() {
-		mTableView.sizeToFit()
-		super.resize(mTableView.frame.size)
+	open override func resize(_ size: KCSize) {
+		mTableView.frame.size  = size
+		mTableView.bounds.size = size
+		super.resize(size)
 	}
-
-	/*
-	#if os(OSX)
-	@IBOutlet weak var mTextField: NSTextField!
-	#else
-	@IBOutlet weak var mLabel: UILabel!
-	#endif
-
-	public var text: String {
-		get {
-			return getText()
-		}
-		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: {
-				self.setText(label: newval)
-			})
-		}
-	}
-
-	private func getText() -> String {
-		#if os(OSX)
-			return mTextField.stringValue
-		#else
-			if let t = mLabel.text {
-				return t
-			} else {
-				return ""
-			}
-		#endif
-	}
-
-	private func setText(label str:String){
-		#if os(OSX)
-			mTextField.stringValue = str
-		#else
-			mLabel.text = str
-		#endif
-	}
-
-	public var font: KCFont? {
-		get {
-			#if os(iOS)
-				return mLabel.font
-			#else
-				return mTextField.font
-			#endif
-		}
-		set(font){
-			#if os(iOS)
-				mLabel.font = font
-			#else
-				mTextField.font = font
-			#endif
-		}
-	}
-
-	public var alignment: NSTextAlignment {
-		get {
-			#if os(iOS)
-				return mLabel.textAlignment
-			#else
-				return mTextField.alignment
-			#endif
-		}
-		set(align){
-			#if os(iOS)
-				mLabel.textAlignment = align
-			#else
-				mTextField.alignment = align
-			#endif
-		}
-	}
-
-	public func setColors(colors cols: KCColorPreference.TextColors){
-		#if os(OSX)
-			mTextField.textColor       = cols.foreground
-			mTextField.drawsBackground = true
-			mTextField.backgroundColor = cols.background
-		#else
-			mLabel.tintColor = cols.foreground
-			mLabel.textColor = cols.foreground
-			mLabel.backgroundColor = cols.background
-		#endif
-	}
-*/
 }
 

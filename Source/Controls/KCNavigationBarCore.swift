@@ -165,24 +165,31 @@ open class KCNavigationBarCore: KCView
 		#endif
 	}
 
-	open override func sizeToFit() {
+	open override func resize(_ size: KCSize) {
 		#if os(OSX)
-			/* Resize children */
-			mNavigationItem.sizeToFit()
-			leftBarButton.sizeToFit()
-			rightBarButton.sizeToFit()
-		#else
-			mNavigationBar.sizeToFit()
-		#endif
-		/* Calc union size */
-		let newsize = sizeThatFits(CGSize.zero)
-		super.resize(newsize)
-	}
+			let navsize   = mNavigationItem.frame.size
+			let leftsize  = leftBarButton.frame.size
+			let rightsize = rightBarButton.frame.size
 
-	open override var intrinsicContentSize: KCSize {
-		get {
-			return mNavigationBar.intrinsicContentSize
-		}
+			let newnavsize: KCSize
+			if size.width > leftsize.width + rightsize.width {
+				newnavsize = KCSize(width: size.width - (leftsize.width + rightsize.width), height: navsize.height)
+			} else {
+				NSLog("Too short navigation size")
+				newnavsize = KCSize(width: 1.0, height: navsize.height)
+			}
+
+			mNavigationItem.frame.size        = newnavsize
+			mNavigationItem.bounds.size       = newnavsize
+			leftBarButton.frame.size.height   = newnavsize.height
+			leftBarButton.bounds.size.height  = newnavsize.height
+			rightBarButton.frame.size.height  = newnavsize.height
+			rightBarButton.bounds.size.height = newnavsize.height
+		#else
+			mNavigationBar.frame.size  = size
+			mNavigationBar.bounds.size = size
+		#endif
+		super.resize(size)
 	}
 }
 
