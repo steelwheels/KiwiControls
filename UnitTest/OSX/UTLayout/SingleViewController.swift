@@ -18,7 +18,8 @@ public class SingleViewController: KCSingleViewController
 		let topview = KCStackView()
 
 		//allocateContents0(topView: topview)
-		allocateContents1(topView: topview)
+		//allocateContents1(topView: topview)
+		allocateContents2(topView: topview)
 
 		if let root = super.rootView, let cons = console {
 			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
@@ -62,6 +63,32 @@ public class SingleViewController: KCSingleViewController
 		text1.text  = "Good morning"
 		
 		hbox.addArrangedSubViews(subViews: [text0, text1])
+
+		topview.addArrangedSubView(subView: hbox)
+	}
+
+	private func allocateContents2(topView topview: KCStackView){
+		let dmyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+
+		let text0   = KCTextField(frame: dmyrect)
+		text0.text  = "Hello-------------------------------------------------------------"
+		let text1   = KCTextField(frame: dmyrect)
+		text1.text  = "Good morning"
+		let vbox0    = KCStackView(frame: dmyrect)
+		vbox0.axis   = .vertical
+		vbox0.addArrangedSubViews(subViews: [text0, text1])
+
+		let text2   = KCTextField(frame: dmyrect)
+		text2.text  = "Hello-------------------------------------------------------------"
+		let text3   = KCTextField(frame: dmyrect)
+		text3.text  = "Good morning"
+		let vbox1    = KCStackView(frame: dmyrect)
+		vbox1.axis   = .vertical
+		vbox1.addArrangedSubViews(subViews: [text3, text2])
+
+		let hbox = KCStackView(frame: dmyrect)
+		hbox.axis   = .horizontal
+		hbox.addArrangedSubViews(subViews: [vbox0, vbox1])
 
 		topview.addArrangedSubView(subView: hbox)
 	}

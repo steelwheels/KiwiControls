@@ -25,6 +25,7 @@ open class KCTextFieldCore : KCView
 		#if os(OSX)
 			mTextField.isBezeled		= false
 			mTextField.maximumNumberOfLines	= 1
+			mTextField.lineBreakMode	= .byTruncatingMiddle
 		#endif
 	}
 
@@ -38,6 +39,7 @@ open class KCTextFieldCore : KCView
 		mTextField.preferredMaxLayoutWidth = width
 		mTextField.frame.size  = newsize
 		mTextField.bounds.size = newsize
+		NSLog("KCTextFieldCore: resize newsize = \(newsize.description)")
 		super.resize(newsize)
 	}
 
