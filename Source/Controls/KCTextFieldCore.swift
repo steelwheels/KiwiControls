@@ -33,9 +33,12 @@ open class KCTextFieldCore : KCView
 	}
 
 	open override func resize(_ size: KCSize) {
-		mTextField.frame.size  = size
-		mTextField.bounds.size = size
-		super.resize(size)
+		let width   = min(mTextField.frame.size.width,  size.width)
+		let newsize = KCSize(width: width, height: size.height)
+		mTextField.preferredMaxLayoutWidth = width
+		mTextField.frame.size  = newsize
+		mTextField.bounds.size = newsize
+		super.resize(newsize)
 	}
 
 	public var isEnabled: Bool {
@@ -151,11 +154,5 @@ open class KCTextFieldCore : KCView
 				#endif
 			}
 		})
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			return mTextField.intrinsicContentSize
-		}
 	}
 }

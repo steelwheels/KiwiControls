@@ -36,7 +36,7 @@ public class KCSizeMinimizer: KCViewVisitor
 				if subparent.width > mResultSize.width {
 					subparent.width -= mResultSize.width
 				} else {
-					log(type: .Error, string: "Minimize overflow (holizontal)", file: #file, line: #line, function: #function)
+					log(type: .Error, string: "Width underflow", file: #file, line: #line, function: #function)
 				}
 			}
 		case .vertical:
@@ -50,7 +50,7 @@ public class KCSizeMinimizer: KCViewVisitor
 				if subparent.height > mResultSize.height {
 					subparent.height -= mResultSize.height
 				} else {
-					log(type: .Error, string: "Minimize overflow (vertical)", file: #file, line: #line, function: #function)
+					log(type: .Error, string: "Height underflow", file: #file, line: #line, function: #function)
 				}
 			}
 		}

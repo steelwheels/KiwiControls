@@ -57,7 +57,7 @@ public class SingleViewController: KCSingleViewController
 		hbox.axis   = .horizontal
 
 		let text0   = KCTextField(frame: dmyrect)
-		text0.text  = "Hello"
+		text0.text  = "Hello-------------------------------------------------------------"
 		let text1   = KCTextField(frame: dmyrect)
 		text1.text  = "Good morning"
 		
