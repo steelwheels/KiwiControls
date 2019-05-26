@@ -22,24 +22,14 @@ public class KCLayouter: CNLogging
 		get { return mConsole }
 	}
 
-	public class func windowSize(viewController vcont: KCSingleViewController, console cons: CNConsole) -> KCSize {
-		if let parent = vcont.parentController {
-			let result: KCSize
-			#if os(OSX)
-			if let window = parent.view.window {
-				result = window.entireFrame.size
-			} else {
-				cons.error(string: "No window at \(#file)/\(#line)/\(#function)")
-				result = KCSize(width: 100.0, height: 100.0)
-			}
-			#else
+	public class func windowSize() -> KCSize {
+		let result: KCSize
+		#if os(OSX)
+			result = CNPreference.shared.windowPreference.mainWindowSize
+		#else
 			result = UIScreen.main.bounds.size
-			#endif
-			return result
-		} else {
-			cons.error(string: "No parent controller at \(#file)/\(#line)/\(#function)")
-			return KCSize(width: 0.0, height: 0.0)
-		}
+		#endif
+		return result
 	}
 
 	public func layout(rootView view: KCRootView, windowSize winsize: KCSize){

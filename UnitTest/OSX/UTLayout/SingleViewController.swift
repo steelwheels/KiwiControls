@@ -22,13 +22,12 @@ public class SingleViewController: KCSingleViewController
 		//allocateContents2(topView: topview)
 		allocateContents3(topView: topview)
 
-		if let root = super.rootView, let cons = console {
+		if let root = super.rootView {
 			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: topview)
-
-			let winsize  = KCLayouter.windowSize(viewController: self, console: cons)
-			let layouter = KCLayouter(viewController: self, console: cons)
-			layouter.layout(rootView: root, windowSize: winsize)
+			//let winsize  = KCLayouter.windowSize()
+			//let layouter = KCLayouter(viewController: self, console: cons)
+			//layouter.layout(rootView: root, windowSize: winsize)
 		} else {
 			fatalError("No root view")
 		}

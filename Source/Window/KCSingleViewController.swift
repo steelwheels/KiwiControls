@@ -55,7 +55,7 @@ open class KCSingleViewController: KCViewController, CNLogging
 	#if os(OSX)
 	open override func viewWillAppear() {
 		super.viewWillAppear()
-		doViewWill1stAppear()
+		//doViewWill1stAppear()
 		doViewWillAppear()
 	}
 	#else
@@ -65,10 +65,10 @@ open class KCSingleViewController: KCViewController, CNLogging
 	}
 	#endif
 
-	#if os(OSX)
+	#if false
 	private func doViewWill1stAppear(){
 		/* Adjust window size */
-		if let window = self.view.window {
+		if let window = mParentController?.view.window {
 			let size = CNPreference.shared.windowPreference.mainWindowSize
 			if window.frame.size != size {
 				window.resize(size: size)
@@ -81,8 +81,14 @@ open class KCSingleViewController: KCViewController, CNLogging
 
 	private func doViewWillAppear() {
 		if let root = mRootView {
+			/* Update window size */
+			let winsize = KCLayouter.windowSize()
+			#if os(OSX)
+			if let window = mParentController?.view.window {
+				window.resize(size: winsize)
+			}
+			#endif
 			if root.hasCoreView {
-				let winsize = KCLayouter.windowSize(viewController: self, console: mConsole)
 				if winsize != mLayoutedSize {
 					/* Layout components */
 					log(type: .Flow, string: "Execute Layout", file: #file, line: #line, function: #function)

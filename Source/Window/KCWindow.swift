@@ -32,6 +32,10 @@ extension NSWindow
 		let origin   = self.frame.origin
 		let newframe = KCRect(origin: origin, size: sz)
 		self.setFrame(newframe, display: false)
+
+		if let root = self.contentView as? KCView {
+			root.resize(sz)
+		}
 	}
 
 	public var titleBarHeight: CGFloat {
