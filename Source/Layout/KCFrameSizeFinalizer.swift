@@ -22,6 +22,18 @@ public class KCFrameSizeFinalizer: KCViewVisitor
 		}
 	}
 
+	open override func visit(consoleView view: KCConsoleView){
+		view.resize(view.frame.size)
+	}
+
+	open override func visit(textField view: KCTextField){
+		view.resize(view.frame.size)
+	}
+
+	open override func visit(textEdit view: KCTextEdit){
+		view.resize(view.frame.size)
+	}
+
 	open override func visit(spriteView view: KCSpriteView) {
 		view.resize(view.frame.size)
 	}

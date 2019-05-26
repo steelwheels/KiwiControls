@@ -31,6 +31,16 @@ public class KCButtonCore: KCView
 		return mButton.sizeThatFits(size)
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				return mButton.intrinsicContentSize
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
 		mButton.frame.size  = size
 		mButton.bounds.size = size
@@ -104,12 +114,6 @@ public class KCButtonCore: KCView
 				#endif
 			}
 		})
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			return mButton.intrinsicContentSize
-		}
 	}
 }
 

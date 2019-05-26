@@ -23,15 +23,20 @@ open class KCTableViewCore : KCView
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 
-	open override var intrinsicContentSize: KCSize
-	{
-		return mTableView.intrinsicContentSize
-	}
-
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return mTableView.sizeThatFits(size)
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				return mTableView.intrinsicContentSize
+			}
+		}
+	}
+	
 	open override func resize(_ size: KCSize) {
 		mTableView.frame.size  = size
 		mTableView.bounds.size = size

@@ -46,6 +46,16 @@ open class KCConsoleViewCore : KCView
 		return conssize
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				return mTextView.intrinsicContentSize
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
 		mTextView.frame.size  = size
 		mTextView.bounds.size = size
@@ -94,11 +104,6 @@ open class KCConsoleViewCore : KCView
 			mColor = col
 			mTextView.backgroundColor = col.backgroundColor
 		}
-	}
-
-	open override var intrinsicContentSize: KCSize
-	{
-		return mTextView.intrinsicContentSize
 	}
 }
 

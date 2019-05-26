@@ -68,6 +68,14 @@ open class KCSpriteViewCore: KCView
 		return size
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		if hasFixedSize {
+			return super.intrinsicContentSize
+		} else {
+			return scene.size
+		}
+	}
+
 	open override func resize(_ size: KCSize){
 		scene.resize(sceneSize: size)
 		super.resize(size)

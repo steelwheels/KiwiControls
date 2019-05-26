@@ -48,6 +48,18 @@ public class KCStepperCore: KCView
 		return KCUnionSize(sizeA: stpsize, sizeB: txtsize, doVertical: false)
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				let fieldsize   = mTextField.intrinsicContentSize
+				let steppersize = mStepper.intrinsicContentSize
+				return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false)
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
 		let stpsize = mStepper.sizeThatFits(size)
 		let txtwidth: CGFloat
@@ -220,13 +232,5 @@ public class KCStepperCore: KCView
 		}
 	}
 	#endif
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			let fieldsize   = mTextField.intrinsicContentSize
-			let steppersize = mStepper.intrinsicContentSize
-			return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false)
-		}
-	}
 }
 

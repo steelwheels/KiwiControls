@@ -223,6 +223,23 @@ open class KCStackViewCore : KCView
 		return newsize
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				let dovert = (axis == .vertical)
+				var result = KCSize(width: 0.0, height: 0.0)
+				let subviews = arrangedSubviews()
+				for subview in subviews {
+					let size = subview.intrinsicContentSize
+					result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert)
+				}
+				return result
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
 		mStackView.frame.size  = size
 		mStackView.bounds.size = size
@@ -284,18 +301,5 @@ open class KCStackViewCore : KCView
 
 	open func arrangedSubviews() -> Array<KCView> {
 		return mStackView.arrangedSubviews as! Array<KCView>
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			let dovert = axis == .vertical
-			var result = KCSize(width: 0.0, height: 0.0)
-			let subviews = arrangedSubviews()
-			for subview in subviews {
-				let size = subview.intrinsicContentSize
-				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert)
-			}
-			return result
-		}
 	}
 }

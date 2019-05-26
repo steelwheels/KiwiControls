@@ -59,6 +59,18 @@ open class KCIconViewCore : KCView
 		return KCUnionSize(sizeA: labsize, sizeB: imgsize, doVertical: true)
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				let layersize = mLayerView.intrinsicContentSize
+				let labelsize = mLabelView.intrinsicContentSize
+				return KCUnionSize(sizeA: layersize, sizeB: labelsize, doVertical: true)
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
 		let imgsize = mLayerView.frame.size
 		let labsize: KCSize
@@ -116,14 +128,6 @@ open class KCIconViewCore : KCView
 					return ""
 				}
 			#endif
-		}
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			let layersize = mLayerView.intrinsicContentSize
-			let labelsize = mLabelView.intrinsicContentSize
-			return KCUnionSize(sizeA: layersize, sizeB: labelsize, doVertical: true)
 		}
 	}
 }

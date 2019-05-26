@@ -22,9 +22,20 @@ open class KCTextEditCore : KCView
 
 	public func setup(frame frm: CGRect){
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
+
+		mTextEdit.translatesAutoresizingMaskIntoConstraints = false
+		mTextEdit.autoresizesSubviews = true
+
 		#if os(OSX)
+			mTextEdit.usesSingleLineMode 	= false
 			mTextEdit.isBezeled		= true
-			mTextEdit.maximumNumberOfLines	= 0
+			mTextEdit.maximumNumberOfLines	= 4
+			mTextEdit.lineBreakMode		= .byCharWrapping
+
+			if let cell = mTextEdit.cell {
+				cell.wraps		= true
+				cell.isScrollable	= false
+			}
 		#endif
 	}
 
@@ -32,10 +43,27 @@ open class KCTextEditCore : KCView
 		return mTextEdit.sizeThatFits(size)
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				return mTextEdit.intrinsicContentSize
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
-		mTextEdit.frame.size  = size
-		mTextEdit.bounds.size = size
-		super.resize(size)
+		let width   = min(mTextEdit.frame.size.width,  size.width)
+		let newsize = KCSize(width: width, height: size.height)
+		mTextEdit.frame.size  = newsize
+		mTextEdit.bounds.size = newsize
+		#if os(OSX)
+			mTextEdit.isEditable  = false
+			mTextEdit.preferredMaxLayoutWidth = width
+		#endif
+		NSLog("KCTextEditCore: resize newsize = \(newsize.description)")
+		super.resize(newsize)
 	}
 
 	public var isEnabled: Bool {
@@ -137,12 +165,17 @@ open class KCTextEditCore : KCView
 		}
 	}
 
-	open override var intrinsicContentSize: KCSize {
+	#if os(OSX)
+	public var lineBreak: KCLineBreakMode {
 		get {
-			return mTextEdit.intrinsicContentSize
+			return mTextEdit.lineBreakMode
+		}
+		set(mode) {
+			mTextEdit.lineBreakMode = mode
 		}
 	}
-
+	#endif
+	
 	public func setColors(colors cols: KCColorPreference.TextColors){
 		CNExecuteInMainThread(doSync: false, execute: {
 			[weak self] () -> Void in

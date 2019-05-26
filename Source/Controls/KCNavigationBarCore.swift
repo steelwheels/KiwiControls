@@ -151,6 +151,10 @@ open class KCNavigationBarCore: KCView
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return navigationBarSize()
+	}
+
+	private func navigationBarSize() -> KCSize {
 		#if os(OSX)
 			let navsize   = mNavigationItem.frame.size
 			let leftsize  = leftBarButton.frame.size
@@ -163,6 +167,14 @@ open class KCNavigationBarCore: KCView
 		#else
 			return mNavigationBar.frame.size
 		#endif
+	}
+
+	open override var intrinsicContentSize: KCSize {
+		if hasFixedSize {
+			return super.intrinsicContentSize
+		} else {
+			return navigationBarSize()
+		}
 	}
 
 	open override func resize(_ size: KCSize) {

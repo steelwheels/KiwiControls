@@ -38,6 +38,22 @@ public class KCCheckBoxCore: KCView
 		#endif
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				#if os(iOS)
+					let labelsize  = mLabel.intrinsicContentSize
+					let switchsize = mSwitch.intrinsicContentSize
+					return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false)
+				#else
+					return mCheckBox.intrinsicContentSize
+				#endif
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
 		#if os(OSX)
 			mCheckBox.frame.size  = size
@@ -144,18 +160,6 @@ public class KCCheckBoxCore: KCView
 					#endif
 				}
 			})
-		}
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			#if os(iOS)
-				let labelsize  = mLabel.intrinsicContentSize
-				let switchsize = mSwitch.intrinsicContentSize
-				return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false)
-			#else
-				return mCheckBox.intrinsicContentSize
-			#endif
 		}
 	}
 }

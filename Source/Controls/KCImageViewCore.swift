@@ -38,6 +38,18 @@ open class KCImageViewCore : KCView
 		return fittingSize(source: imageSize, in: size)
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else if let image = mImageView.image {
+				return image.size
+			} else {
+				return KCSize.zero
+			}
+		}
+	}
+
 	open override func resize(_ size: KCSize) {
 		//NSLog("image: resize = \(size.description)")
 		if let image = mImageView.image {

@@ -19,7 +19,8 @@ public class SingleViewController: KCSingleViewController
 
 		//allocateContents0(topView: topview)
 		//allocateContents1(topView: topview)
-		allocateContents2(topView: topview)
+		//allocateContents2(topView: topview)
+		allocateContents3(topView: topview)
 
 		if let root = super.rootView, let cons = console {
 			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
@@ -91,6 +92,23 @@ public class SingleViewController: KCSingleViewController
 		hbox.addArrangedSubViews(subViews: [vbox0, vbox1])
 
 		topview.addArrangedSubView(subView: hbox)
+	}
+
+	private func allocateContents3(topView topview: KCStackView){
+		let dmyrect  = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+		let consview0 = KCConsoleView(frame: dmyrect)
+		let consview1 = KCConsoleView(frame: dmyrect)
+
+		let hbox = KCStackView(frame: dmyrect)
+		hbox.axis   = .horizontal
+		hbox.addArrangedSubViews(subViews: [consview0, consview1])
+		topview.addArrangedSubView(subView: hbox)
+
+		let console0 = consview0.consoleConnection
+		let console1 = consview1.consoleConnection
+
+		console0.print(string: "Hello, world. This message is written into the console0.")
+		console1.print(string: "Good morning, world. This message is written into the console1.")
 	}
 
 	private func doDumpView(message msg: String){

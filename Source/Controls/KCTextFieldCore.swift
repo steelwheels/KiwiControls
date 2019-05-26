@@ -22,10 +22,20 @@ open class KCTextFieldCore : KCView
 
 	public func setup(frame frm: CGRect){
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
+
+		mTextField.translatesAutoresizingMaskIntoConstraints = false
+		mTextField.autoresizesSubviews = true
+
 		#if os(OSX)
-			mTextField.isBezeled		= false
-			mTextField.maximumNumberOfLines	= 1
-			mTextField.lineBreakMode	= .byTruncatingMiddle
+			mTextField.usesSingleLineMode 		= false
+			mTextField.isBezeled			= false
+			mTextField.maximumNumberOfLines		= 1
+			mTextField.lineBreakMode		= .byTruncatingMiddle
+
+			if let cell = mTextField.cell {
+				cell.wraps		= true
+				cell.isScrollable	= false
+			}
 		#endif
 	}
 
@@ -33,6 +43,16 @@ open class KCTextFieldCore : KCView
 		return mTextField.sizeThatFits(size)
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get {
+			if hasFixedSize {
+				return super.intrinsicContentSize
+			} else {
+				return mTextField.intrinsicContentSize
+			}
+		}
+	}
+	
 	open override func resize(_ size: KCSize) {
 		let width   = min(mTextField.frame.size.width,  size.width)
 		let newsize = KCSize(width: width, height: size.height)

@@ -157,6 +157,10 @@ open class KCView : KCViewBase, CNLogging
 
 	private var mFixedSize:	KCSize?	= nil
 
+	public var hasFixedSize: Bool {
+		get { return mFixedSize != nil }
+	}
+
 	open func resize(_ size: KCSize){
 		mFixedSize       = size
 		self.frame.size  = size
