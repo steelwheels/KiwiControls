@@ -56,11 +56,11 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private var mPrevBodySize: KCSize = KCSize.zero
 
 	public func resize(sceneSize size: KCSize) {
-		self.size  = size
+		self.size = size
 
 		if mPrevBodySize != size {
-			let frm  = KCRect(origin: CGPoint.zero, size: size)
-			let body = SKPhysicsBody(edgeLoopFrom: frm)
+			let frame = KCRect(origin: CGPoint.zero, size: size)
+			let body  = SKPhysicsBody(edgeLoopFrom: frame)
 			body.setup(bodyType: .Boundary)
 			physicsBody = body
 
@@ -99,8 +99,13 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	/* Periodically update */
 	open override func update(_ currentTime: TimeInterval) {
+		/* Update by user defined method */
 		if let handler = updateHandler {
 			handler(currentTime, mNodes)
+		}
+		/* call built-in update method */
+		for (_, node) in mNodes {
+			node.update(currentTime)
 		}
 	}
 

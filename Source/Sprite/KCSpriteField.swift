@@ -54,15 +54,17 @@ public class KCSpriteField
 
 	public func logicalToPhysical(size sz: CGSize) -> CGSize {
 		let pframe = parent.frame
-		let width  = sz.width  * pframe.width  / logicalSize.width
-		let height = sz.height * pframe.height / logicalSize.height
+		let lsize  = logicalSize
+		let width  = sz.width  * pframe.width  / lsize.width
+		let height = sz.height * pframe.height / lsize.height
 		return CGSize(width: width, height: height)
 	}
 
 	public func logicalToPhysical(point pt: CGPoint) -> CGPoint {
 		let pframe = parent.frame
-		let x = pt.x * pframe.width  / logicalSize.width
-		let y = pt.y * pframe.height / logicalSize.height
+		let lsize  = logicalSize
+		let x = pt.x * pframe.width  / lsize.width
+		let y = pt.y * pframe.height / lsize.height
 		return CGPoint(x: x, y: y)
 	}
 
@@ -80,15 +82,17 @@ public class KCSpriteField
 
 	public func physicalToLogical(size sz: CGSize) -> CGSize {
 		let pframe = parent.frame
-		let width  = sz.width  * logicalSize.width  / pframe.width
-		let height = sz.height * logicalSize.height / pframe.height
+		let lsize  = logicalSize
+		let width  = sz.width  * lsize.width  / pframe.width
+		let height = sz.height * lsize.height / pframe.height
 		return CGSize(width: width, height: height)
 	}
 
 	public func physicalToLogical(point pt: CGPoint) -> CGPoint {
 		let pframe = parent.frame
-		let x = pt.x * logicalSize.width  / pframe.width
-		let y = pt.y * logicalSize.height / pframe.height
+		let lsize  = logicalSize
+		let x = pt.x * lsize.width  / pframe.width
+		let y = pt.y * lsize.height / pframe.height
 		return CGPoint(x: x, y: y)
 	}
 

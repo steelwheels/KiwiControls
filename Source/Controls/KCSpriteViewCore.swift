@@ -77,6 +77,10 @@ open class KCSpriteViewCore: KCView
 	}
 
 	open override func resize(_ size: KCSize){
+		if let view = mSpriteView {
+			view.frame.size  = size
+			view.bounds.size = size
+		}
 		scene.resize(sceneSize: size)
 		super.resize(size)
 	}
