@@ -12,23 +12,24 @@ public class KCLogWindowController: NSWindowController
 {
 	private var mConsoleView:	KCConsoleView
 	private var mConsole:		KCConsole
-	private var mButton:		KCButton
 
 	public class func allocateController() -> KCLogWindowController {
-		let (window, console, button) = KCLogWindowController.loadWindow()
-		return KCLogWindowController(window: window, consoleView: console, button: button)
+		let (window, console, clearbtn, closebtn) = KCLogWindowController.loadWindow()
+		return KCLogWindowController(window: window, consoleView: console, clearButton: clearbtn, closeButton: closebtn)
 	}
 
-	public required init(window win: NSWindow, consoleView consview: KCConsoleView, button btn: KCButton){
+	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton, closeButton closebtn: KCButton){
 		mConsoleView		= consview
 		mConsole		= KCConsole(ownerView: consview)
-		mButton			= btn
 		super.init(window: win)
 		/* Set console color */
 		mConsoleView.color = KCTextColor(normal:     KCColorTable.green,
 						 error:      KCColorTable.red,
 						 background: KCColorTable.black)
-		btn.buttonPressedCallback = {
+		clearbtn.buttonPressedCallback = {
+			consview.clear()
+		}
+		closebtn.buttonPressedCallback = {
 			[weak self] () -> Void in
 			if let myself = self {
 				myself.hide()
@@ -60,17 +61,34 @@ public class KCLogWindowController: NSWindowController
 		self.window?.orderOut(self.window)
 	}
 
-	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton) {
+	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton, KCButton) {
 		if let newwin = NSWindow.loadWindow() {
+			/* Setup window */
 			newwin.title = "Log"
-			let box = KCStackView(frame: newwin.frame)
-			newwin.setRootView(view: box)
-			let button  = KCButton()
-			button.title = "Close"
+
+			/* Console view */
 			let cons = KCConsoleView()
-			let children: Array<KCView> = [cons, button]
-			box.addArrangedSubViews(subViews: children)
-			return (newwin, cons, button)
+
+			/* Clear button */
+			let clearbtn = KCButton()
+			clearbtn.title = "Clear"
+			/* Close button */
+			let closebtn = KCButton()
+			closebtn.title = "Close"
+			/* Buttons box */
+			let btnbox  = KCStackView(frame: newwin.frame)
+			btnbox.axis = .horizontal
+			btnbox.distribution = .fillEqually
+			btnbox.addArrangedSubViews(subViews: [clearbtn, closebtn])
+
+			let logbox = KCStackView(frame: newwin.frame)
+			logbox.axis = .vertical
+			logbox.addArrangedSubViews(subViews: [cons, btnbox])
+
+			/* Add contents to window */
+			newwin.setRootView(view: logbox)
+
+			return (newwin, cons, clearbtn, closebtn)
 		} else {
 			fatalError("Failed to allocate window")
 		}

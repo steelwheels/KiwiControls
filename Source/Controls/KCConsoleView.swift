@@ -97,6 +97,10 @@ open class KCConsoleView : KCCoreView
 		coreView.appendText(string: str)
 	}
 
+	public func clear(){
+		coreView.clear()
+	}
+
 	public var color: KCTextColor {
 		get	 { return coreView.color }
 		set(col) { coreView.color = col}

@@ -85,6 +85,29 @@ open class KCConsoleViewCore : KCView
 		storage.endEditing()
 	}
 
+	public func clear(){
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+				if let storage = myself.mTextView.textStorage {
+					myself.clear(storage: storage)
+				}
+				#else
+				myself.clear(storage: myself.mTextView.textStorage)
+				#endif
+
+			}
+		})
+	}
+
+	private func clear(storage strg: NSTextStorage){
+		/* clear context */
+		strg.beginEditing()
+		strg.setAttributedString(NSAttributedString(string: ""))
+		strg.endEditing()
+	}
+	
 	private func scrollToBottom(){
 		#if os(OSX)
 			mTextView.scrollToEndOfDocument(self)
