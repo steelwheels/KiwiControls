@@ -96,7 +96,7 @@ open class KCConsoleView : KCCoreView
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .High)
+		return (.Low, .Low)
 	}
 
 	public var consoleConnection: CNConsole {

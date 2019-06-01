@@ -28,7 +28,24 @@ open class KCConsoleViewCore : KCView
 						      background: KCColorTable.white)
 
 	public func setup(frame frm: CGRect) {
+		setFont(size: 10.0)
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
+	}
+
+	private func setFont(size sz: CGFloat){
+		let font = KCFont.systemFont(ofSize: sz)
+		#if os(OSX)
+			let range: NSRange
+			if let storage = mTextView.textStorage {
+				range = NSRange(location: 0, length: storage.string.lengthOfBytes(using: .utf8))
+				storage.append(NSAttributedString(string: "*HELLO*"))
+			} else {
+				range = NSRange(location: 0, length: 0)
+			}
+			mTextView.setFont(font, range: range)
+		#else
+			mTextView.font = font
+		#endif
 	}
 
 	public var minimumColumnNumbers: Int {
@@ -56,7 +73,7 @@ open class KCConsoleViewCore : KCView
 	public func fontSize() -> KCSize {
 		let size: KCSize
 		#if os(OSX)
-			if let font = mTextView.textStorage?.font {
+			if let font = mTextView.font {
 				size = font.boundingRectForFont.size
 				log(type: .Flow, string: "fontSize: \(size.description)", file: #file, line: #line, function: #function)
 			} else {
