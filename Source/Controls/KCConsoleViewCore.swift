@@ -20,7 +20,10 @@ open class KCConsoleViewCore : KCView
 		@IBOutlet weak var mTextView: UITextView!
 	#endif
 
-	private var mColor: KCTextColor = KCTextColor(normal:     KCColorTable.black,
+	private var mMinimumColumnNumbers:	Int = 10
+	private var mMinimumLineNumbers:	Int = 1
+
+	private var mColor: 			KCTextColor = KCTextColor(normal:     KCColorTable.black,
 						      error:      KCColorTable.red,
 						      background: KCColorTable.white)
 
@@ -28,22 +31,63 @@ open class KCConsoleViewCore : KCView
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let size: KCSize
-		if let font = mTextView.font {
-			#if os(OSX)
-				size = font.boundingRectForFont.size
-			#else
-				size = KCSize(width: font.lineHeight, height: font.pointSize)
-			#endif
-			NSLog("Use system font: \(size.description)")
-		} else {
-			NSLog("Unknown font")
-			size = KCSize(width: 20.0, height: 20.0)
+	public var minimumColumnNumbers: Int {
+		get { return mMinimumColumnNumbers }
+		set(newnum){
+			if newnum > 0 {
+				mMinimumColumnNumbers = newnum
+			} else {
+				NSLog("Invalid parameter value: \(newnum)")
+			}
 		}
-		let conssize = KCSize(width:  min(size.width,  size.width  * 40),
-				      height: min(size.height, size.height *  4))
-		return conssize
+	}
+
+	public var minimumLineNumbers: Int {
+		get { return mMinimumLineNumbers }
+		set(newnum){
+			if newnum > 0 {
+				mMinimumLineNumbers = newnum
+			} else {
+				NSLog("Invalid parameter value: \(newnum)")
+			}
+		}
+	}
+
+	public func fontSize() -> KCSize {
+		let size: KCSize
+		#if os(OSX)
+			if let font = mTextView.textStorage?.font {
+				size = font.boundingRectForFont.size
+				log(type: .Flow, string: "fontSize: \(size.description)", file: #file, line: #line, function: #function)
+			} else {
+				log(type: .Error, string: "No Font", file: #file, line: #line, function: #function)
+				size = KCSize(width: 10.0, height: 10.0)
+			}
+		#else
+			if let font = mTextView.font {
+				size = KCSize(width: font.lineHeight, height: font.pointSize)
+				log(type: .Flow, string: "fontSize: \(size.description)", file: #file, line: #line, function: #function)
+			} else {
+				log(type: .Error, string: "No Font", file: #file, line: #line, function: #function)
+				size = KCSize(width: 10.0, height: 10.0)
+			}
+		#endif
+
+
+
+
+		return size
+	}
+
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let fontsize  = fontSize()
+		let reqwidth  = fontsize.width  * CGFloat(minimumColumnNumbers)
+		let reqheight = fontsize.height * CGFloat(minimumLineNumbers)
+		let reqsize   = KCSize(width: reqwidth, height: reqheight)
+
+		let result = KCSize(width: min(size.width,   reqsize.width),
+				    height: min(size.height, reqsize.height))
+		return result
 	}
 
 	open override var intrinsicContentSize: KCSize {
