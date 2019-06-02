@@ -30,6 +30,7 @@
 		053540081E0D5BD20031812D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053540061E0D5BD20031812D /* Main.storyboard */; };
 		0535400A1E0D5BD20031812D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053540091E0D5BD20031812D /* Assets.xcassets */; };
 		0535400D1E0D5BD20031812D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0535400B1E0D5BD20031812D /* LaunchScreen.storyboard */; };
+		0538B2D022A37A26001F7038 /* KCScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538B2CF22A37A26001F7038 /* KCScreen.swift */; };
 		053CB5F121F609D00031711B /* KCNavigationBarCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053CB5F021F609D00031711B /* KCNavigationBarCore.swift */; };
 		053CB5F321F60A580031711B /* KCNavigationBarCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053CB5F221F60A580031711B /* KCNavigationBarCore.xib */; };
 		053CB5F521F6118A0031711B /* KCNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053CB5F421F6118A0031711B /* KCNavigationBar.swift */; };
@@ -295,6 +296,7 @@
 		053540091E0D5BD20031812D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0535400C1E0D5BD20031812D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0535400E1E0D5BD20031812D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0538B2CF22A37A26001F7038 /* KCScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCScreen.swift; sourceTree = "<group>"; };
 		053CB5F021F609D00031711B /* KCNavigationBarCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCNavigationBarCore.swift; sourceTree = "<group>"; };
 		053CB5F221F60A580031711B /* KCNavigationBarCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCNavigationBarCore.xib; sourceTree = "<group>"; };
 		053CB5F421F6118A0031711B /* KCNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCNavigationBar.swift; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 			isa = PBXGroup;
 			children = (
 				05706B5C1F8A50C4008BE096 /* iOS */,
+				0538B2CF22A37A26001F7038 /* KCScreen.swift */,
 				05706B591F8A50BF008BE096 /* KCViewController.swift */,
 				05E32F492111FDE000EDEC31 /* KCMultiViewController.swift */,
 				05DB04AE2113542F0060CCA8 /* KCSingleViewController.swift */,
@@ -1475,6 +1478,7 @@
 				055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */,
 				05910BE820958D8900535E2A /* KCContext.swift in Sources */,
 				05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */,
+				0538B2D022A37A26001F7038 /* KCScreen.swift in Sources */,
 				058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */,
 				05B70CE0209F2C6F00BAE1EB /* KCLogViewController.swift in Sources */,
 				05686CB32124656D000CEA6C /* KCImageView.swift in Sources */,

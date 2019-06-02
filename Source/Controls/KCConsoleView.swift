@@ -21,15 +21,11 @@ public class KCConsole: CNConsole
 	}
 
 	public func print(string str: String){
-		let col  = mOwnerView.color.normalColor
-		let astr = attributedString(string: str, foregroundColor: col)
-		mOwnerView.appendText(string: astr)
+		mOwnerView.appendText(normal: str)
 	}
 
 	public func error(string str: String){
-		let col  = mOwnerView.color.errorColor
-		let astr = attributedString(string: str, foregroundColor: col)
-		mOwnerView.appendText(string: astr)
+		mOwnerView.appendText(error: str)
 	}
 
 	private func attributedString(string str: String, foregroundColor fgcolor: KCColor) -> NSAttributedString {
@@ -103,8 +99,12 @@ open class KCConsoleView : KCCoreView
 		get { return mConsoleConnection! }
 	}
 
-	public func appendText(string str: NSAttributedString){
-		coreView.appendText(string: str)
+	public func appendText(normal str: String){
+		coreView.appendText(normal: str)
+	}
+
+	public func appendText(error str: String){
+		coreView.appendText(error: str)
 	}
 
 	public func clear(){
