@@ -72,7 +72,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		if let curnode = mNodes[name] {
 			return curnode
 		} else {
-			let newnode  = KCSpriteNode(parentScene: self, image: img, initStatus: istat, field: mField, console: console)
+			let newnode  = KCSpriteNode(parentScene: self, image: img, initStatus: istat, field: mField)
 			newnode.name = name
 			mNodes[name] = newnode
 			CNExecuteInMainThread(doSync: false, execute: {

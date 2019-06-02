@@ -79,20 +79,25 @@ public struct KCSpriteNodeStatus
 	}
 }
 
-public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate,  CNLogging
+public struct KCSpriteNodeAttribute
+{
+	public var attribute:	CNNativeValue
+
+	public init(){
+		attribute = .nullValue
+	}
+}
+
+public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 {
 	private weak var mParentScene:	KCSpriteScene?
 	private var mStatus:		KCSpriteNodeStatus
-	private var mConsole:		CNConsole?
+	private var mAttribute:		KCSpriteNodeAttribute
 
-	public var console: CNConsole? {
-		get { return mConsole }
-	}
-
-	public init(parentScene scene: KCSpriteScene, image img: CNImage, initStatus istat: KCSpriteNodeStatus, field fld: KCSpriteField, console cons: CNConsole?){
+	public init(parentScene scene: KCSpriteScene, image img: CNImage, initStatus istat: KCSpriteNodeStatus, field fld: KCSpriteField){
 		mParentScene = scene
 		mStatus      = istat
-		mConsole     = cons
+		mAttribute   = KCSpriteNodeAttribute()
 		let tex      = SKTexture(image: img)
 		let physize  = fld.logicalToPhysical(size: istat.size)
 		super.init(texture: tex, color: KCColor.white, size: physize)
@@ -114,6 +119,11 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate,  CNLogging
 
 	public var status: KCSpriteNodeStatus {
 		get { return mStatus }
+	}
+
+	public var attribute: CNNativeValue {
+		get { return mAttribute.attribute }
+		set(newattr) { mAttribute.attribute = newattr }
 	}
 
 	private var field: KCSpriteField {
