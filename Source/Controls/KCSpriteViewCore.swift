@@ -36,8 +36,8 @@ open class KCSpriteViewCore: KCView
 		}
 	}
 
-	public var field: KCSpriteField {
-		get { return scene.field }
+	public func logicalSize() -> KCSize {
+		return scene.logicalSize()
 	}
 
 	public var backgroundColorOfScene: KCColor {

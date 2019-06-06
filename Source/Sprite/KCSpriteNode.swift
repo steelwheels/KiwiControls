@@ -94,17 +94,17 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	private var mStatus:		KCSpriteNodeStatus
 	private var mAttribute:		KCSpriteNodeAttribute
 
-	public init(parentScene scene: KCSpriteScene, image img: CNImage, initStatus istat: KCSpriteNodeStatus, field fld: KCSpriteField){
+	public init(parentScene scene: KCSpriteScene, image img: CNImage, initStatus istat: KCSpriteNodeStatus){
 		mParentScene = scene
 		mStatus      = istat
 		mAttribute   = KCSpriteNodeAttribute()
 		let tex      = SKTexture(image: img)
-		let physize  = fld.logicalToPhysical(size: istat.size)
+		let physize  = scene.logicalToPhysical(size: istat.size)
 		super.init(texture: tex, color: KCColor.white, size: physize)
 
 		/* Apply status */
 		self.scale(to: physize)
-		self.position = fld.logicalToPhysical(point: istat.position)
+		self.position = scene.logicalToPhysical(point: istat.position)
 
 		let body = SKPhysicsBody(rectangleOf: physize)
 		body.setup(bodyType: .Object)
@@ -126,24 +126,12 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		set(newattr) { mAttribute.attribute = newattr }
 	}
 
-	private var field: KCSpriteField {
-		get {
-			if let scene = mParentScene {
-				return scene.field
-			} else {
-				fatalError("Can not happen")
-			}
-		}
-	}
-
 	public var action: KCSpriteNodeAction {
 		get {
-			if let body = self.physicsBody {
-				let fld = field
-
+			if let body = self.physicsBody, let scene = mParentScene {
 				let visible = !self.isHidden
-				let dx      = fld.physicalToLogical(xSpeed: body.velocity.dx)
-				let dy	    = fld.physicalToLogical(ySpeed: body.velocity.dy)
+				let dx      = scene.physicalToLogical(xSpeed: body.velocity.dx)
+				let dy	    = scene.physicalToLogical(ySpeed: body.velocity.dy)
 				let speed   = sqrt(dx*dx + dy*dy)
 				let angle   = atan2(dx, dy)
 				return KCSpriteNodeAction(visible: visible, speed: speed, angle: angle)
@@ -152,11 +140,10 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 			}
 		}
 		set(newact){
-			if let body = self.physicsBody {
-				let fld = field
+			if let body = self.physicsBody, let scene = mParentScene {
 				self.isHidden = !newact.visible
-				let dx = fld.logicalToPhysical(xSpeed: newact.xSpeed)
-				let dy = fld.logicalToPhysical(ySpeed: newact.ySpeed)
+				let dx = scene.logicalToPhysical(xSpeed: newact.xSpeed)
+				let dy = scene.logicalToPhysical(ySpeed: newact.ySpeed)
 				body.velocity = CGVector(dx: dx, dy: dy)
 			}
 			self.zRotation = newact.angle

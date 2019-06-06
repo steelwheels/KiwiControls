@@ -56,7 +56,6 @@
 		0542C0E7209F09BB00F2A028 /* KCLogConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542C0E6209F09BB00F2A028 /* KCLogConsole.swift */; };
 		05462E68222B5A07002BD57E /* KCAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05462E67222B5A07002BD57E /* KCAttributedString.swift */; };
 		0549A1A620F6639F002EB823 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0549A1A520F6639F002EB823 /* KCLayouter.swift */; };
-		054C27FC2273D45D008429FD /* KCSpriteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054C27FB2273D45D008429FD /* KCSpriteField.swift */; };
 		054E213D209D9A860044A367 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054E213C209D9A860044A367 /* KCRootView.swift */; };
 		055674CB1DFB963B00794510 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055674CA1DFB963B00794510 /* KCGraphicsView.swift */; };
 		0558C9E71F8A018E00F3F9A6 /* KCEmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0558C9E61F8A018E00F3F9A6 /* KCEmptyViewController.xib */; };
@@ -321,7 +320,6 @@
 		0542C0E6209F09BB00F2A028 /* KCLogConsole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLogConsole.swift; sourceTree = "<group>"; };
 		05462E67222B5A07002BD57E /* KCAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCAttributedString.swift; sourceTree = "<group>"; };
 		0549A1A520F6639F002EB823 /* KCLayouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayouter.swift; sourceTree = "<group>"; };
-		054C27FB2273D45D008429FD /* KCSpriteField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteField.swift; sourceTree = "<group>"; };
 		054E213C209D9A860044A367 /* KCRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
 		055674CA1DFB963B00794510 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGraphicsView.swift; sourceTree = "<group>"; };
 		0558C9E61F8A018E00F3F9A6 /* KCEmptyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCEmptyViewController.xib; sourceTree = "<group>"; };
@@ -637,7 +635,6 @@
 			children = (
 				0502A22D2272032D00D8E36A /* KCSpriteScene.swift */,
 				05331C5D226F441D000D2918 /* KCSpriteNode.swift */,
-				054C27FB2273D45D008429FD /* KCSpriteField.swift */,
 				051C3AEA2275370800E172B3 /* KCPhysics.swift */,
 			);
 			name = " Sprite";
@@ -1441,7 +1438,6 @@
 				0598D57C1DE180D50098C5B8 /* KCStrokeEditorLayer.swift in Sources */,
 				05ACEF591E0C2C3C009F10A7 /* KCButton.swift in Sources */,
 				0584B1431EACAF9E00A5E9B8 /* KCStackView.swift in Sources */,
-				054C27FC2273D45D008429FD /* KCSpriteField.swift in Sources */,
 				0580439820958856009E20A9 /* KCContext.swift in Sources */,
 				05E8524C1FCF21060077C35F /* KCTextView.swift in Sources */,
 				0507744A1E6AE47B000435B2 /* KCIconView.swift in Sources */,

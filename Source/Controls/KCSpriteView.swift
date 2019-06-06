@@ -47,8 +47,8 @@ open class KCSpriteView: KCCoreView
 		}
 	}
 
-	public var field: KCSpriteField {
-		get { return coreView.field }
+	public func logicalSize() -> KCSize {
+		return coreView.logicalSize()
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {

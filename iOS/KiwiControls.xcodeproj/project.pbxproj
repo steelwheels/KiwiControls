@@ -100,7 +100,6 @@
 		058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659D1DE536B600C3BE27 /* KCLayer.swift */; };
 		058265A31DE536B600C3BE27 /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659E1DE536B600C3BE27 /* KCRepetitiveLayer.swift */; };
 		0583CC1922767C8500B36E0A /* KCPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583CC1522767C8500B36E0A /* KCPhysics.swift */; };
-		0583CC1A22767C8500B36E0A /* KCSpriteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583CC1622767C8500B36E0A /* KCSpriteField.swift */; };
 		0583CC1B22767C8500B36E0A /* KCSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583CC1722767C8500B36E0A /* KCSpriteNode.swift */; };
 		0583CC1C22767C8500B36E0A /* KCSpriteScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583CC1822767C8500B36E0A /* KCSpriteScene.swift */; };
 		0583FCAE1DEC805F00C4FCD1 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
@@ -365,7 +364,6 @@
 		0582659D1DE536B600C3BE27 /* KCLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayer.swift; sourceTree = "<group>"; };
 		0582659E1DE536B600C3BE27 /* KCRepetitiveLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveLayer.swift; sourceTree = "<group>"; };
 		0583CC1522767C8500B36E0A /* KCPhysics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPhysics.swift; sourceTree = "<group>"; };
-		0583CC1622767C8500B36E0A /* KCSpriteField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteField.swift; sourceTree = "<group>"; };
 		0583CC1722767C8500B36E0A /* KCSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteNode.swift; sourceTree = "<group>"; };
 		0583CC1822767C8500B36E0A /* KCSpriteScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteScene.swift; sourceTree = "<group>"; };
 		05841E951D8F7B950092C2C6 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
@@ -715,7 +713,6 @@
 			isa = PBXGroup;
 			children = (
 				0583CC1522767C8500B36E0A /* KCPhysics.swift */,
-				0583CC1622767C8500B36E0A /* KCSpriteField.swift */,
 				0583CC1722767C8500B36E0A /* KCSpriteNode.swift */,
 				0583CC1822767C8500B36E0A /* KCSpriteScene.swift */,
 			);
@@ -1421,7 +1418,6 @@
 				058265A31DE536B600C3BE27 /* KCRepetitiveLayer.swift in Sources */,
 				0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */,
 				05910BED20958D9400535E2A /* KCEclipse.swift in Sources */,
-				0583CC1A22767C8500B36E0A /* KCSpriteField.swift in Sources */,
 				0571B62F20956D3200603B95 /* KCSize.swift in Sources */,
 				0583CC1B22767C8500B36E0A /* KCSpriteNode.swift in Sources */,
 				05841E9D1D8F7B950092C2C6 /* KCView.swift in Sources */,
