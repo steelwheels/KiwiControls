@@ -11,23 +11,22 @@ import Foundation
 
 public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 {
-	public typealias UpdateHandler  = (_ currentTime: TimeInterval, _ nodes: Dictionary<String, KCSpriteNode>) -> Void
-	public typealias ContactHandler = (_ point: CGPoint, _ nodeA: KCSpriteNode?, _ nodeB: KCSpriteNode?) -> Void
+	public typealias ContactHandler = (_ point: KCPoint, _ nodeA: KCSpriteNode?, _ nodeB: KCSpriteNode?) -> Void
 
-	private var mNodes:		Dictionary<String, KCSpriteNode>	// node-name, node
+	private var mQueue:		CNOperationQueue
+	private var mNodes:		Dictionary<String, KCSpriteNode>		// node-name, node
+	private var mContexts:		Dictionary<String, CNOperationContext>	// node-name, context
 	private var mConsole:		CNConsole?
 
 	public var console: 		CNConsole? { get { return mConsole }}
-	public var updateHandler:	UpdateHandler?
-	public var contactBeginHandler:	ContactHandler?
-	public var contactEndHandler:	ContactHandler?
+	public var didContactHandler:	ContactHandler?
 
 	public init(frame frm: CGRect, console cons: CNConsole?){
+		mQueue			= CNOperationQueue()
 		mNodes   		= [:]
+		mContexts		= [:]
 		mConsole 		= cons
-		updateHandler		= nil
-		contactBeginHandler	= nil
-		contactEndHandler	= nil
+		didContactHandler	= nil
 		super.init(size: frm.size)
 
 		/* Setup scene */
@@ -71,13 +70,19 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus) -> KCSpriteNode {
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, context ctxt: CNOperationContext) -> KCSpriteNode {
 		if let curnode = mNodes[name] {
 			return curnode
 		} else {
+			/* Setup node */
 			let newnode  = KCSpriteNode(parentScene: self, image: img, initStatus: istat)
-			newnode.name = name
-			mNodes[name] = newnode
+			newnode.name    = name
+			mNodes[name]    = newnode
+			/* Setup context */
+			KCSpriteOperationContext.setName(context: ctxt, name: name)
+			KCSpriteOperationContext.setStatus(context: ctxt, status: istat)
+			KCSpriteOperationContext.setAction(context: ctxt, action: KCSpriteNodeAction())
+			mContexts[name] = ctxt
 			CNExecuteInMainThread(doSync: false, execute: {
 				[weak self] () -> Void in
 				if let myself = self {
@@ -89,39 +94,53 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	public func remove(nodeName name: String){
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				myself.asyncRemove(nodeName: name)
+			}
+		})
+	}
+
+	private func asyncRemove(nodeName name: String){
 		if let curnode = mNodes[name] {
+			self.removeChildren(in: [curnode])
 			mNodes.removeValue(forKey: name)
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					myself.removeChildren(in: [curnode])
-				}
-			})
+			mContexts.removeValue(forKey: name)
 		}
 	}
 
 	/* Periodically update */
 	open override func update(_ currentTime: TimeInterval) {
 		/* Update by user defined method */
-		if let handler = updateHandler {
-			handler(currentTime, mNodes)
+		let nonexecs = mQueue.execute(operations: Array(mContexts.values), timeLimit: nil)
+		for ctxt in nonexecs {
+			reportFailure(context: ctxt)
 		}
+
 		/* call built-in update method */
 		for (_, node) in mNodes {
 			node.update(currentTime)
 		}
 	}
 
+	private func reportFailure(context ctxt: CNOperationContext){
+		if let name = KCSpriteOperationContext.getName(context: ctxt), let cons = ctxt.console {
+			cons.print(string: "Failed to execute \(name)\n")
+			asyncRemove(nodeName: name)
+			return // without errors
+		}
+		log(type: .Error, string: "Internal error", file: #file, line: #line, function: #function)
+	}
+
 	/* Begin contact */
 	public func didBegin(_ contact: SKPhysicsContact) {
-		if let handler = contactBeginHandler {
-			execContactHandler(handler: handler, contact: contact)
-		}
+		/* Do nothing */
 	}
 
 	/* End contact */
 	public func didEnd(_ contact: SKPhysicsContact) {
-		if let handler = contactEndHandler {
+		if let handler = didContactHandler {
 			execContactHandler(handler: handler, contact: contact)
 		}
 	}

@@ -12,6 +12,7 @@
 		0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0501F7A41E12D93700B68A98 /* KCCheckBox.swift */; };
 		0502A22E2272032D00D8E36A /* KCSpriteScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502A22D2272032D00D8E36A /* KCSpriteScene.swift */; };
 		0507744A1E6AE47B000435B2 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050774491E6AE47B000435B2 /* KCIconView.swift */; };
+		0509B0F722A954D5001AD62B /* KCSpriteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509B0F622A954D5001AD62B /* KCSpriteOperation.swift */; };
 		0509C52F20D7C81C00905B33 /* KCTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509C52E20D7C81C00905B33 /* KCTextEdit.swift */; };
 		050E30D31E0D48F60076EBF1 /* UTState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E30D21E0D48F60076EBF1 /* UTState.swift */; };
 		0515CD561EACB37F00B4736D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CD551EACB37F00B4736D /* AppDelegate.swift */; };
@@ -280,6 +281,7 @@
 		0502A22D2272032D00D8E36A /* KCSpriteScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteScene.swift; sourceTree = "<group>"; };
 		05043C1C1D856F910033FEC6 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		050774491E6AE47B000435B2 /* KCIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
+		0509B0F622A954D5001AD62B /* KCSpriteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteOperation.swift; sourceTree = "<group>"; };
 		0509C52E20D7C81C00905B33 /* KCTextEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextEdit.swift; sourceTree = "<group>"; };
 		050E30D21E0D48F60076EBF1 /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
 		0515CD531EACB37F00B4736D /* UTStackView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTStackView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -635,6 +637,7 @@
 			children = (
 				0502A22D2272032D00D8E36A /* KCSpriteScene.swift */,
 				05331C5D226F441D000D2918 /* KCSpriteNode.swift */,
+				0509B0F622A954D5001AD62B /* KCSpriteOperation.swift */,
 				051C3AEA2275370800E172B3 /* KCPhysics.swift */,
 			);
 			name = " Sprite";
@@ -1461,6 +1464,7 @@
 				05C93F4720F0F1820057217F /* KCViewDumper.swift in Sources */,
 				0502A22E2272032D00D8E36A /* KCSpriteScene.swift in Sources */,
 				0580439C20958AE3009E20A9 /* KCVertices.swift in Sources */,
+				0509B0F722A954D5001AD62B /* KCSpriteOperation.swift in Sources */,
 				059101EA22A3729C000CBC9D /* KCScreen.swift in Sources */,
 				05F73B7F214964C500AD02B4 /* KCRootSizeAllocator.swift in Sources */,
 				05F66D311F45C5A1004786FE /* KCConsoleViewCore.swift in Sources */,

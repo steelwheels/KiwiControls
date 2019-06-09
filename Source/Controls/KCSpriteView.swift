@@ -64,23 +64,13 @@ open class KCSpriteView: KCCoreView
 	}
 	#endif
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus) -> KCSpriteNode {
-		return coreView.allocate(nodeName: name, image: img, initStatus: istat)
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, context ctxt: CNOperationContext) -> KCSpriteNode {
+		return coreView.allocate(nodeName: name, image: img, initStatus: istat, context: ctxt)
 	}
 
-	public var updateHandler: KCSpriteScene.UpdateHandler? {
-		get { return coreView.updateHandler }
-		set(newhdl){ coreView.updateHandler = newhdl }
-	}
-
-	public var contactBeginHandler: KCSpriteScene.ContactHandler? {
-		get { return coreView.contactBeginHandler }
-		set(newhdl){ coreView.contactBeginHandler = newhdl }
-	}
-
-	public var contactEndHandler: KCSpriteScene.ContactHandler? {
-		get { return coreView.contactEndHandler }
-		set(newhdl){ coreView.contactEndHandler = newhdl }
+	public var didContactHandler: KCSpriteScene.ContactHandler? {
+		get { return coreView.didContactHandler }
+		set(newhdl) { coreView.didContactHandler = newhdl }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

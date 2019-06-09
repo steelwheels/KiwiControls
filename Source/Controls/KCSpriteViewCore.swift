@@ -45,23 +45,13 @@ open class KCSpriteViewCore: KCView
 		set(newcol){ scene.backgroundColor = newcol }
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus) -> KCSpriteNode {
-		return scene.allocate(nodeName: name, image: img, initStatus: istat)
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, context ctxt: CNOperationContext) -> KCSpriteNode {
+		return scene.allocate(nodeName: name, image: img, initStatus: istat, context: ctxt)
 	}
 
-	public var contactBeginHandler: KCSpriteScene.ContactHandler? {
-		get { return scene.contactBeginHandler }
-		set(newhdl){ scene.contactBeginHandler = newhdl }
-	}
-
-	public var updateHandler: KCSpriteScene.UpdateHandler? {
-		get { return scene.updateHandler }
-		set(newhdl){ scene.updateHandler = newhdl }
-	}
-
-	public var contactEndHandler: KCSpriteScene.ContactHandler? {
-		get { return scene.contactEndHandler }
-		set(newhdl){ scene.contactEndHandler = newhdl }
+	public var didContactHandler: KCSpriteScene.ContactHandler? {
+		get { return scene.didContactHandler }
+		set(newhdl) { scene.didContactHandler = newhdl }
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {

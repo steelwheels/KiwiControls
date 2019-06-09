@@ -11,6 +11,15 @@ import SpriteKit
 import CoconutData
 import Cocoa
 
+class UTSpriteOpetation: CNOperationContext {
+	open override func main(){
+		if let cons = console {
+			cons.print(string: "UTSpriteOperation [update]\n")
+		}
+	}
+}
+
+
 class ViewController: NSViewController, CNLogging
 {
 	private var mConsole: CNConsole? = nil
@@ -53,7 +62,7 @@ class ViewController: NSViewController, CNLogging
 		mSpriteView.backgroundColorOfScene = .yellow
 
 		/* Set actions */
-		mSpriteView.contactEndHandler = {
+		mSpriteView.didContactHandler = {
 			[weak self] (_ point: CGPoint, _ nodeA: KCSpriteNode?, _ nodeB: KCSpriteNode?) -> Void in
 			if let myself = self {
 				myself.updateActions(contactAt: point, nodeA: nodeA, nodeB: nodeB, console: myself.mConsole!)
@@ -61,10 +70,12 @@ class ViewController: NSViewController, CNLogging
 		}
 		
 		/* allocate nodes */
+		let b0ctxt   = UTSpriteOpetation(console: cons)
 		let b0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.51))
-		let b0node   = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status)
+		let b0node   = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, context: b0ctxt)
+		let g0ctxt   = UTSpriteOpetation(console: cons)
 		let g0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.49))
-		let g0node   = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status)
+		let g0node   = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, context: g0ctxt)
 
 		/* allocate action */
 		let b0action = KCSpriteNodeAction(visible: true, speed: 0.3, angle: CGFloat.pi / 2.0)
