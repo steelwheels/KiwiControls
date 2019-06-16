@@ -92,12 +92,10 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 {
 	private weak var mParentScene:	KCSpriteScene?
 	private var mStatus:		KCSpriteNodeStatus
-	private var mAttribute:		KCSpriteNodeAttribute
 
 	public init(parentScene scene: KCSpriteScene, image img: CNImage, initStatus istat: KCSpriteNodeStatus){
 		mParentScene = scene
 		mStatus      = istat
-		mAttribute   = KCSpriteNodeAttribute()
 		let tex      = SKTexture(image: img)
 		let physize  = scene.logicalToPhysical(size: istat.size)
 		super.init(texture: tex, color: KCColor.white, size: physize)
@@ -120,12 +118,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	public var status: KCSpriteNodeStatus {
 		get { return mStatus }
 	}
-
-	public var attribute: CNNativeValue {
-		get { return mAttribute.attribute }
-		set(newattr) { mAttribute.attribute = newattr }
-	}
-
+	
 	public var action: KCSpriteNodeAction {
 		get {
 			if let body = self.physicsBody, let scene = mParentScene {
