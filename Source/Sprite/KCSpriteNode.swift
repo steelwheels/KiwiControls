@@ -116,7 +116,15 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	}
 
 	public var status: KCSpriteNodeStatus {
-		get { return mStatus }
+		get {
+			if let scene = mParentScene {
+				let size     = scene.physicalToLogical(size: self.size)
+				let position = scene.physicalToLogical(point: self.position)
+				return KCSpriteNodeStatus(size: size, position: position)
+			} else {
+				return KCSpriteNodeStatus()
+			}
+		}
 	}
 	
 	public var action: KCSpriteNodeAction {

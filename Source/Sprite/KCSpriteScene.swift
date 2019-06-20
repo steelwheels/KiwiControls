@@ -112,6 +112,16 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	/* Periodically update */
 	open override func update(_ currentTime: TimeInterval) {
+		/* Set inputs for each node */
+		for name in mNodes.keys {
+			if let action = mNodes[name]?.action, let status = mNodes[name]?.status, let op = mContexts[name] {
+				op.setParameter(name: "action", value: action.toValue())
+				op.setParameter(name: "status", value: status.toValue())
+			} else {
+				log(type: .Error, string: "Invalid properties", file: #file, line: #line, function: #function)
+			}
+		}
+
 		/* Update by user defined method */
 		let nonexecs = mQueue.execute(operations: Array(mContexts.values), timeLimit: nil)
 		for ctxt in nonexecs {

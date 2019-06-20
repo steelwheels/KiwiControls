@@ -61,33 +61,3 @@ public class KCSpriteOperationContext
 }
 
 
-
-/*
-open class KCSpriteOperationContext: CNOperationContext
-{
-	public var name:		String?
-	public var status:		KCSpriteNodeStatus?
-	public var action:		KCSpriteNodeAction?
-	public var result:		KCSpriteNodeAction?
-
-	public override init(console cons: CNConsole){
-		name		= nil
-		status		= nil
-		action		= nil
-		result		= nil
-		super.init(console: cons)
-	}
-
-	open override func main(){
-		if let stat = status, let act = action {
-			result = update(status: stat, action: act)
-		}
-	}
-
-	open func update(status stat: KCSpriteNodeStatus, action act: KCSpriteNodeAction) -> KCSpriteNodeAction? {
-		return nil
-	}
-}
-
-*/
-
