@@ -16,6 +16,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private var mQueue:		CNOperationQueue
 	private var mNodes:		Dictionary<String, KCSpriteNode>		// node-name, node
 	private var mContexts:		Dictionary<String, CNOperationContext>	// node-name, context
+	private var mSystemTime:	TimeInterval
 	private var mConsole:		CNConsole?
 
 	public var console: 		CNConsole? { get { return mConsole }}
@@ -26,6 +27,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mNodes   		= [:]
 		mContexts		= [:]
 		mConsole 		= cons
+		mSystemTime		= 0
 		didContactHandler	= nil
 		super.init(size: frm.size)
 
@@ -112,25 +114,42 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	/* Periodically update */
 	open override func update(_ currentTime: TimeInterval) {
+		mSystemTime = currentTime
+	}
+
+	open override func didSimulatePhysics() {
 		/* Set inputs for each node */
 		for name in mNodes.keys {
 			if let action = mNodes[name]?.action, let status = mNodes[name]?.status, let op = mContexts[name] {
-				op.setParameter(name: "action", value: action.toValue())
-				op.setParameter(name: "status", value: status.toValue())
+				KCSpriteOperationContext.setName(context: op, name: name)
+				KCSpriteOperationContext.setAction(context: op, action: action)
+				KCSpriteOperationContext.setStatus(context: op, status: status)
 			} else {
 				log(type: .Error, string: "Invalid properties", file: #file, line: #line, function: #function)
 			}
 		}
 
 		/* Update by user defined method */
-		let nonexecs = mQueue.execute(operations: Array(mContexts.values), timeLimit: nil)
+		let nonexecs = mQueue.execute(operations: Array(mContexts.values), timeLimit: nil, finalOperation: {
+			(_ ctxt: CNOperationContext) -> Void in
+			/* Get result ot this operation. It is used to update node actiion */
+			CNExecuteInMainThread(doSync: false, execute: {
+				() -> Void in
+				if let name   = KCSpriteOperationContext.getName(context: ctxt),
+				   let newact = KCSpriteOperationContext.getResult(context: ctxt) {
+					if let node = self.mNodes[name] {
+						node.action = newact
+					}
+				}
+			})
+		})
 		for ctxt in nonexecs {
 			reportFailure(context: ctxt)
 		}
 
 		/* call built-in update method */
 		for (_, node) in mNodes {
-			node.update(currentTime)
+			node.update(mSystemTime)
 		}
 	}
 

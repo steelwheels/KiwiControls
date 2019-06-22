@@ -10,6 +10,8 @@ import Foundation
 
 public class KCSpriteOperationContext
 {
+	public typealias UpdateFunction = (_ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction?
+
 	public static let 	NameItem	= "name"
 	public static let 	StatusItem	= "status"
 	public static let	ActionItem	= "action"
@@ -57,6 +59,18 @@ public class KCSpriteOperationContext
 			return KCSpriteNodeAction.spriteNodeAction(from: val)
 		}
 		return nil
+	}
+
+	public class func execute(context ctxt: CNOperationContext, updateFunction updfunc: KCSpriteOperationContext.UpdateFunction) -> Bool {
+		var result = false
+		if let curstat = KCSpriteOperationContext.getStatus(context: ctxt),
+		   let curact  = KCSpriteOperationContext.getAction(context: ctxt) {
+			if let newact = updfunc(curstat, curact) {
+				KCSpriteOperationContext.setResult(context: ctxt, action: newact)
+				result = true
+			}
+		}
+		return result
 	}
 }
 

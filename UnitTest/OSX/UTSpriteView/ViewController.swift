@@ -12,9 +12,19 @@ import CoconutData
 import Cocoa
 
 class UTSpriteOpetation: CNOperationContext {
-	open override func main(){
-		if let cons = console {
-			cons.print(string: "UTSpriteOperation [update]\n")
+	open override func mainOperation() {
+		let res = KCSpriteOperationContext.execute(context: self, updateFunction: {
+			(_ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
+			let newact = KCSpriteNodeAction(visible: action.visible,
+							speed:   action.speed,
+							angle:   action.angle)
+			return newact
+
+		})
+		if !res {
+			if let cons = console {
+				cons.print(string: "Failed to execute\n")
+			}
 		}
 	}
 }
