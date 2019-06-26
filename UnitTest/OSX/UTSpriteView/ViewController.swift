@@ -12,10 +12,10 @@ import CoconutData
 import Cocoa
 
 class UTSpriteOpetation: CNOperationContext {
-	open override func mainOperation() {
+	open override func main() {
 		let res = KCSpriteOperationContext.execute(context: self, updateFunction: {
 			(_ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
-			let newact = KCSpriteNodeAction(visible: action.visible,
+			let newact = KCSpriteNodeAction(active:  action.active,
 							speed:   action.speed,
 							angle:   action.angle)
 			return newact
@@ -73,25 +73,25 @@ class ViewController: NSViewController, CNLogging
 
 		/* Set actions */
 		mSpriteView.didContactHandler = {
-			[weak self] (_ point: CGPoint, _ nodeA: KCSpriteNode?, _ nodeB: KCSpriteNode?) -> Void in
+			[weak self] (_ point: CGPoint, _ operationA: CNOperationContext?, _ operationB: CNOperationContext?) -> Void in
 			if let myself = self {
-				myself.updateActions(contactAt: point, nodeA: nodeA, nodeB: nodeB, console: myself.mConsole!)
+				myself.updateActions(contactAt: point, operationA: operationA, operationB: operationB, console: myself.mConsole!)
 			}
 		}
 		
 		/* allocate nodes */
 		let b0ctxt   = UTSpriteOpetation(console: cons)
-		let b0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.51))
+		let b0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.1))
 		let b0node   = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, context: b0ctxt)
 		let g0ctxt   = UTSpriteOpetation(console: cons)
-		let g0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.49))
+		let g0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.9))
 		let g0node   = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, context: g0ctxt)
 
 		/* allocate action */
-		let b0action = KCSpriteNodeAction(visible: true, speed: 0.3, angle: CGFloat.pi / 2.0)
+		let b0action = KCSpriteNodeAction(active: true, speed: 0.5, angle: CGFloat.pi * 3.0 / 4.0)
 		b0node.action = b0action
 
-		let g0action = KCSpriteNodeAction(visible: true, speed: 0.3, angle: -(CGFloat.pi / 2.0))
+		let g0action = KCSpriteNodeAction(active: true, speed: 0.5, angle: -(CGFloat.pi / 4.0))
 		g0node.action = g0action
 	}
 
@@ -106,33 +106,23 @@ class ViewController: NSViewController, CNLogging
 		}
 	}
 
-	private func updateActions(contactAt point: CGPoint, nodeA na: KCSpriteNode?, nodeB nb: KCSpriteNode?, console cons: CNConsole) {
-		if let nodeA = na {
-			cons.print(string: "Node-A: ")
-			let text = nodeA.toValue().toText()
-			text.print(console: cons)
+	private func updateActions(contactAt point: CGPoint, operationA opA: CNOperationContext?, operationB opB: CNOperationContext?, console cons: CNConsole) {
 
-			/* Update action */
-			cons.print(string: "Action-A: ")
-			var act = nodeA.action
-			//let txt2 = act.toValue().toText()
-			//txt2.print(console: cons)
-			act.angle += CGFloat.pi / 8.0
-			nodeA.action = act
+		if let opA = opA {
+			if let name = KCSpriteOperationContext.getName(context: opA) {
+				cons.print(string: "Node-A: \(name)\n")
+			} else {
+				cons.print(string: "Node-A: <Unknown>\n")
+			}
 		} else {
 			cons.error(string: "No node-A\n")
 		}
-		if let nodeB = nb {
-			cons.print(string: "Node-B: ")
-			let text = nodeB.toValue().toText()
-			text.print(console: mConsole!)
-
-			/* Update action */
-			var act = nodeB.action
-			//let txt2 = act.toValue().toText()
-			//txt2.print(console: cons)
-			act.angle -= CGFloat.pi / 8.0
-			nodeB.action = act
+		if let opB = opB {
+			if let name = KCSpriteOperationContext.getName(context: opB) {
+				cons.print(string: "Node-B: \(name)\n")
+			} else {
+				cons.print(string: "Node-B: <Unknown>\n")
+			}
 		} else {
 			cons.error(string: "No node-B\n")
 		}

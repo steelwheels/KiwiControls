@@ -10,16 +10,16 @@ import SpriteKit
 import Foundation
 
 public struct KCSpriteNodeAction {
-	public var	visible:	Bool
-	public var	speed:		CGFloat		/* [m/sec]	*/
-	public var 	angle:		CGFloat		/* [radian]	*/
+	public var	active:		Bool		/* active or inactive	*/
+	public var	speed:		CGFloat		/* [m/sec]		*/
+	public var 	angle:		CGFloat		/* [radian]		*/
 
 	public init(){
-		self.init(visible: false, speed: 0.0, angle: 0.0)
+		self.init(active: true, speed: 0.0, angle: 0.0)
 	}
 
-	public init(visible vis: Bool, speed spd: CGFloat, angle agl: CGFloat) {
-		visible	= vis
+	public init(active act: Bool, speed spd: CGFloat, angle agl: CGFloat) {
+		active	= act
 		speed   = spd
 		angle   = agl
 	}
@@ -29,7 +29,7 @@ public struct KCSpriteNodeAction {
 
 	public func toValue() -> CNNativeValue {
 		var top: Dictionary<String, CNNativeValue> = [:]
-		top["visible"] = CNNativeValue.numberValue(NSNumber(booleanLiteral: visible))
+		top["active"]  = CNNativeValue.numberValue(NSNumber(booleanLiteral: active))
 		top["speed"]   = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(speed)))
 		top["angle"]   = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(angle)))
 		//top["xSpeed"]  = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(xSpeed)))
@@ -38,10 +38,10 @@ public struct KCSpriteNodeAction {
 	}
 
 	public static func spriteNodeAction(from value: CNNativeValue) -> KCSpriteNodeAction? {
-		if let visible = value.numberProperty(identifier: "visible"),
+		if let active  = value.numberProperty(identifier: "active"),
 		   let speed   = value.numberProperty(identifier: "speed"),
 		   let angle   = value.numberProperty(identifier: "angle") {
-			return KCSpriteNodeAction(visible: visible.boolValue, speed: CGFloat(speed.doubleValue), angle: CGFloat(angle.doubleValue))
+			return KCSpriteNodeAction(active: active.boolValue, speed: CGFloat(speed.doubleValue), angle: CGFloat(angle.doubleValue))
 		} else {
 			return nil
 		}
@@ -76,15 +76,6 @@ public struct KCSpriteNodeStatus
 		} else {
 			return nil
 		}
-	}
-}
-
-public struct KCSpriteNodeAttribute
-{
-	public var attribute:	CNNativeValue
-
-	public init(){
-		attribute = .nullValue
 	}
 }
 
@@ -130,34 +121,24 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	public var action: KCSpriteNodeAction {
 		get {
 			if let body = self.physicsBody, let scene = mParentScene {
-				let visible = !self.isHidden
+				let active  = true
 				let dx      = scene.physicalToLogical(xSpeed: body.velocity.dx)
 				let dy	    = scene.physicalToLogical(ySpeed: body.velocity.dy)
 				let speed   = sqrt(dx*dx + dy*dy)
 				let angle   = atan2(dx, dy)
-				return KCSpriteNodeAction(visible: visible, speed: speed, angle: angle)
+				return KCSpriteNodeAction(active: active, speed: speed, angle: angle)
 			} else {
 				return KCSpriteNodeAction()
 			}
 		}
 		set(newact){
 			if let body = self.physicsBody, let scene = mParentScene {
-				self.isHidden = !newact.visible
+				self.isHidden = false
 				let dx = scene.logicalToPhysical(xSpeed: newact.xSpeed)
 				let dy = scene.logicalToPhysical(ySpeed: newact.ySpeed)
 				body.velocity = CGVector(dx: dx, dy: dy)
+				self.zRotation = -atan2(dx, dy)
 			}
-			self.zRotation = newact.angle
-		}
-	}
-
-	public func update(_ currentTime: TimeInterval) {
-		if let body = self.physicsBody {
-			/* Update angle */
-			let dx    = body.velocity.dx
-			let dy    = body.velocity.dy
-			let angle = atan2(dx, dy)
-			self.zRotation = -angle
 		}
 	}
 

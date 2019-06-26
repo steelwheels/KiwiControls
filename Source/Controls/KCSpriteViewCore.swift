@@ -54,6 +54,11 @@ open class KCSpriteViewCore: KCView
 		set(newhdl) { scene.didContactHandler = newhdl }
 	}
 
+	public var becomeEmptyHandler: KCSpriteScene.BecomeEmptyHandler? {
+		get { return scene.becomeEmptyHandler }
+		set(newhdl) { scene.becomeEmptyHandler = newhdl }
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return size
 	}

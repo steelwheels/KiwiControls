@@ -73,6 +73,11 @@ open class KCSpriteView: KCCoreView
 		set(newhdl) { coreView.didContactHandler = newhdl }
 	}
 
+	public var becomeEmptyHandler: KCSpriteScene.BecomeEmptyHandler? {
+		get { return coreView.becomeEmptyHandler }
+		set(newhdl) { coreView.becomeEmptyHandler = newhdl }
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(spriteView: self)
 	}
