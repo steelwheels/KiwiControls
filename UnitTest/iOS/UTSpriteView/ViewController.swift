@@ -61,7 +61,7 @@ class ViewController: UIViewController, CNLogging
 
 		/* Set actions */
 		mSpriteView.didContactHandler = {
-			[weak self] (_ point: CGPoint, _ nodeA: KCSpriteNode?, _ nodeB: KCSpriteNode?) -> Void in
+			[weak self] (_ point: CGPoint, _ nodeA: CNOperationContext?, _ nodeB: CNOperationContext?) -> Void in
 			if let myself = self {
 				myself.makeContactActions(contactAt: point, nodeA: nodeA, nodeB: nodeB, console: myself.mConsole!)
 			}
@@ -77,40 +77,21 @@ class ViewController: UIViewController, CNLogging
 		let g0node   = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, context: g0ctxt)
 
 		/* allocate action */
-		let b0action = KCSpriteNodeAction(visible: true, speed: 0.3, angle: CGFloat.pi / 2.0)
+		let b0action = KCSpriteNodeAction(active: true, speed: 0.3, angle: CGFloat.pi / 2.0)
 		b0node.action = b0action
 
-		let g0action = KCSpriteNodeAction(visible: true, speed: 0.3, angle: -(CGFloat.pi / 2.0))
+		let g0action = KCSpriteNodeAction(active: true, speed: 0.3, angle: -(CGFloat.pi / 2.0))
 		g0node.action = g0action
 	}
 
-	private func makeContactActions(contactAt point: CGPoint, nodeA na: KCSpriteNode?, nodeB nb: KCSpriteNode?, console cons: CNConsole) -> Void {
-		if let nodeA = na {
+	private func makeContactActions(contactAt point: CGPoint, nodeA na: CNOperationContext?, nodeB nb: CNOperationContext?, console cons: CNConsole) -> Void {
+		if let _ = na {
 			cons.print(string: "Node-A: ")
-			let text = nodeA.toValue().toText()
-			text.print(console: cons)
-
-			/* Update action */
-			cons.print(string: "Action-A: ")
-			var act = nodeA.action
-			//let txt2 = act.toValue().toText()
-			//txt2.print(console: cons)
-			act.angle += CGFloat.pi / 8.0
-			nodeA.action = act
 		} else {
 			cons.error(string: "No node-A\n")
 		}
-		if let nodeB = nb {
+		if let _ = nb {
 			cons.print(string: "Node-B: ")
-			let text = nodeB.toValue().toText()
-			text.print(console: mConsole!)
-
-			/* Update action */
-			var act = nodeB.action
-			//let txt2 = act.toValue().toText()
-			//txt2.print(console: cons)
-			act.angle -= CGFloat.pi / 8.0
-			nodeB.action = act
 		} else {
 			cons.error(string: "No node-B\n")
 		}

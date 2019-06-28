@@ -20,6 +20,8 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private var mConsole:		CNConsole?
 
 	public var console: 		CNConsole? { get { return mConsole }}
+
+	public var simulationCondition:	KCSpriteCondition
 	public var didContactHandler:	ContactHandler?
 	public var becomeEmptyHandler:	BecomeEmptyHandler?
 
@@ -28,6 +30,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mNodes   		= [:]
 		mContexts		= [:]
 		mConsole 		= cons
+		simulationCondition	= KCSpriteCondition()
 		didContactHandler	= nil
 		super.init(size: frm.size)
 
@@ -72,12 +75,12 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, context ctxt: CNOperationContext) -> KCSpriteNode {
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, context ctxt: CNOperationContext) -> KCSpriteNode {
 		if let curnode = mNodes[name] {
 			return curnode
 		} else {
 			/* Setup node */
-			let newnode  = KCSpriteNode(parentScene: self, image: img, initStatus: istat)
+			let newnode  = KCSpriteNode(parentScene: self, image: img, initStatus: istat, initialAction: iact)
 			newnode.name    = name
 			mNodes[name]    = newnode
 			/* Setup context */

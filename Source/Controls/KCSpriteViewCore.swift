@@ -45,8 +45,13 @@ open class KCSpriteViewCore: KCView
 		set(newcol){ scene.backgroundColor = newcol }
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, context ctxt: CNOperationContext) -> KCSpriteNode {
-		return scene.allocate(nodeName: name, image: img, initStatus: istat, context: ctxt)
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, context ctxt: CNOperationContext) -> KCSpriteNode {
+		return scene.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, context: ctxt)
+	}
+
+	public var simulationCondition:	KCSpriteCondition {
+		get { return scene.simulationCondition }
+		set(newcond) { scene.simulationCondition = newcond }
 	}
 
 	public var didContactHandler: KCSpriteScene.ContactHandler? {

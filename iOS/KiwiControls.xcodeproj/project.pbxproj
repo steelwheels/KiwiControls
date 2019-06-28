@@ -31,6 +31,7 @@
 		0535400A1E0D5BD20031812D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053540091E0D5BD20031812D /* Assets.xcassets */; };
 		0535400D1E0D5BD20031812D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0535400B1E0D5BD20031812D /* LaunchScreen.storyboard */; };
 		0538B2D022A37A26001F7038 /* KCScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0538B2CF22A37A26001F7038 /* KCScreen.swift */; };
+		053B41C722C3C21300008F04 /* KCSpriteCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B41C622C3C21300008F04 /* KCSpriteCondition.swift */; };
 		053CB5F121F609D00031711B /* KCNavigationBarCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053CB5F021F609D00031711B /* KCNavigationBarCore.swift */; };
 		053CB5F321F60A580031711B /* KCNavigationBarCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053CB5F221F60A580031711B /* KCNavigationBarCore.xib */; };
 		053CB5F521F6118A0031711B /* KCNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053CB5F421F6118A0031711B /* KCNavigationBar.swift */; };
@@ -297,6 +298,7 @@
 		0535400C1E0D5BD20031812D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0535400E1E0D5BD20031812D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0538B2CF22A37A26001F7038 /* KCScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCScreen.swift; sourceTree = "<group>"; };
+		053B41C622C3C21300008F04 /* KCSpriteCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteCondition.swift; sourceTree = "<group>"; };
 		053CB5F021F609D00031711B /* KCNavigationBarCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCNavigationBarCore.swift; sourceTree = "<group>"; };
 		053CB5F221F60A580031711B /* KCNavigationBarCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCNavigationBarCore.xib; sourceTree = "<group>"; };
 		053CB5F421F6118A0031711B /* KCNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCNavigationBar.swift; sourceTree = "<group>"; };
@@ -714,10 +716,11 @@
 		0583CC1422767C5200B36E0A /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
+				0583CC1822767C8500B36E0A /* KCSpriteScene.swift */,
 				05F40E0422ABC3120059E553 /* KCSpriteOperation.swift */,
+				053B41C622C3C21300008F04 /* KCSpriteCondition.swift */,
 				0583CC1522767C8500B36E0A /* KCPhysics.swift */,
 				0583CC1722767C8500B36E0A /* KCSpriteNode.swift */,
-				0583CC1822767C8500B36E0A /* KCSpriteScene.swift */,
 			);
 			path = Sprite;
 			sourceTree = "<group>";
@@ -1436,6 +1439,7 @@
 				05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */,
 				0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */,
 				057B892121D287FA00309B2A /* KCSpriteViewCore.swift in Sources */,
+				053B41C722C3C21300008F04 /* KCSpriteCondition.swift in Sources */,
 				0557686F2155506A000AB421 /* KCGroupSizeAllocator.swift in Sources */,
 				056F4CB81E735017008BF572 /* KCTableViewCore.swift in Sources */,
 				05FE54B62127C8E7009709C4 /* KCDocumentPickerViewController.swift in Sources */,
