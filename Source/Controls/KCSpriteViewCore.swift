@@ -49,9 +49,9 @@ open class KCSpriteViewCore: KCView
 		return scene.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, context: ctxt)
 	}
 
-	public var simulationCondition:	KCSpriteCondition {
-		get { return scene.simulationCondition }
-		set(newcond) { scene.simulationCondition = newcond }
+	public var conditions:	KCSpriteCondition {
+		get { return scene.conditions }
+		set(newcond) { scene.conditions = newcond }
 	}
 
 	public var didContactHandler: KCSpriteScene.ContactHandler? {

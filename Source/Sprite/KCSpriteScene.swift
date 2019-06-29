@@ -11,17 +11,17 @@ import Foundation
 
 public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 {
-	public typealias ContactHandler     = (_ point: KCPoint, _ operationA: CNOperationContext?, _ operationB: CNOperationContext?) -> Void
+	public typealias ContactHandler     = (_ point: KCPoint, _ operation: CNOperationContext, _ targetName: String?) -> Void
 	public typealias BecomeEmptyHandler = () -> Void
 
 	private var mQueue:		CNOperationQueue
-	private var mNodes:		Dictionary<String, KCSpriteNode>		// node-name, node
+	private var mNodes:		Dictionary<String, KCSpriteNode>	// node-name, node
 	private var mContexts:		Dictionary<String, CNOperationContext>	// node-name, context
 	private var mConsole:		CNConsole?
 
 	public var console: 		CNConsole? { get { return mConsole }}
 
-	public var simulationCondition:	KCSpriteCondition
+	public var conditions:		KCSpriteCondition
 	public var didContactHandler:	ContactHandler?
 	public var becomeEmptyHandler:	BecomeEmptyHandler?
 
@@ -30,7 +30,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mNodes   		= [:]
 		mContexts		= [:]
 		mConsole 		= cons
-		simulationCondition	= KCSpriteCondition()
+		conditions		= KCSpriteCondition()
 		didContactHandler	= nil
 		super.init(size: frm.size)
 
@@ -135,21 +135,22 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 		/* Execute the operation */
 		let nonexecs = mQueue.execute(operations: Array(mContexts.values), timeLimit: nil)
+		if nonexecs.count > 0 {
+			if let cons = console {
+				cons.error(string: "Failed to execute some operations\n")
+			}
+		}
 
 		/* Wailt all operations are finished */
 		mQueue.waitOperations()
-
-		/* Report about failure operations */
-		for ctxt in nonexecs {
-			reportFailure(context: ctxt)
-		}
 
 		/* Get results */
 		for (_, ctxt) in mContexts {
 			if ctxt.isFinished {
 				if let name   = KCSpriteOperationContext.getName(context: ctxt),
+				   let status = KCSpriteOperationContext.getStatus(context: ctxt),
 				   let result = KCSpriteOperationContext.getResult(context: ctxt) {
-					if result.active {
+					if status.energy > 0.0 {
 						if let node = mNodes[name] {
 							node.action = result
 							log(type: .Flow, string: "action=\(result.angle)", file: #file, line: #line, function: #function)
@@ -160,6 +161,8 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 				} else {
 					log(type: .Error, string: "The operation has no result", file: #file, line: #line, function: #function)
 				}
+			} else {
+				reportFailure(context: ctxt)
 			}
 		}
 	}
@@ -180,31 +183,47 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	/* End contact */
 	public func didEnd(_ contact: SKPhysicsContact) {
-		if let handler = didContactHandler {
-			execContactHandler(handler: handler, contact: contact)
+		doContactEvent(contact: contact)
+	}
+
+	private func doContactEvent(contact cont: SKPhysicsContact){
+		let pt   = cont.contactPoint
+		let opAp = nodeToOperation(node: cont.bodyA.node as? KCSpriteNode)
+		let opBp = nodeToOperation(node: cont.bodyB.node as? KCSpriteNode)
+		if let opA = opAp, let opB = opBp {
+			applyContactEffect(operation: opA)
+			applyContactEffect(operation: opB)
+			if let handler = didContactHandler {
+				handler(pt, opA, KCSpriteOperationContext.getName(context: opB))
+				handler(pt, opB, KCSpriteOperationContext.getName(context: opA))
+			}
+		} else if let opA = opAp {
+			applyContactEffect(operation: opA)
+			if let handler = didContactHandler {
+				handler(pt, opA, nil)
+			}
+		} else if let opB = opBp {
+			applyContactEffect(operation: opB)
+			if let handler = didContactHandler {
+				handler(pt, opB, nil)
+			}
 		}
 	}
 
-	private func execContactHandler(handler hdl: ContactHandler, contact cont: SKPhysicsContact) {
-		let pt = cont.contactPoint
-
-		var opA: CNOperationContext? = nil
-		if let nodeA = cont.bodyA.node as? KCSpriteNode {
-			opA = nodeToOperation(node: nodeA)
+	private func applyContactEffect(operation op: CNOperationContext){
+		if var status = KCSpriteOperationContext.getStatus(context: op) {
+			let damage = conditions.collisionDamage
+			status.energy = max(status.energy - damage, 0.0)
+			KCSpriteOperationContext.setStatus(context: op, status: status)
 		}
-
-		var opB: CNOperationContext? = nil
-		if let nodeB = cont.bodyB.node as? KCSpriteNode {
-			opB = nodeToOperation(node: nodeB)
-		}
-		
-		hdl(pt, opA, opB)
 	}
 
-	private func nodeToOperation(node nd: KCSpriteNode) -> CNOperationContext? {
-		if let name = nd.name {
-			if let ctxt = mContexts[name] {
-				return ctxt
+	private func nodeToOperation(node nd: KCSpriteNode?) -> CNOperationContext? {
+		if let node = nd {
+			if let name = node.name {
+				if let ctxt = mContexts[name] {
+					return ctxt
+				}
 			}
 		}
 		log(type: .Error, string: "Operation is not found", file: #file, line: #line, function: #function)

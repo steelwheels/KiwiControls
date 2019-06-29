@@ -68,9 +68,9 @@ open class KCSpriteView: KCCoreView
 		return coreView.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, context: ctxt)
 	}
 
-	public var simulationCondition:	KCSpriteCondition {
-		get { return coreView.simulationCondition }
-		set(newcond) { coreView.simulationCondition = newcond }
+	public var conditions:	KCSpriteCondition {
+		get { return coreView.conditions }
+		set(newcond) { coreView.conditions = newcond }
 	}
 
 	public var didContactHandler: KCSpriteScene.ContactHandler? {

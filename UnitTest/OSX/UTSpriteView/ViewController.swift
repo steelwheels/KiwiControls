@@ -73,9 +73,9 @@ class ViewController: NSViewController, CNLogging
 
 		/* Set actions */
 		mSpriteView.didContactHandler = {
-			[weak self] (_ point: CGPoint, _ operationA: CNOperationContext?, _ operationB: CNOperationContext?) -> Void in
+			[weak self] (_ point: CGPoint, _ operation: CNOperationContext, _ targetName: String?) -> Void in
 			if let myself = self {
-				myself.updateActions(contactAt: point, operationA: operationA, operationB: operationB, console: myself.mConsole!)
+				myself.updateActions(contactAt: point, operation: operation, targetName: targetName, console: myself.mConsole!)
 			}
 		}
 		
@@ -83,11 +83,13 @@ class ViewController: NSViewController, CNLogging
 		let b0ctxt   = UTSpriteOpetation(console: cons)
 		let b0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.1), energy: 1.0)
 		let b0action = KCSpriteNodeAction(active: true, speed: 0.5, angle: CGFloat.pi * 3.0 / 4.0)
-		let b0node   = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, context: b0ctxt)
+		let _        = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, context: b0ctxt)
+
+
 		let g0ctxt   = UTSpriteOpetation(console: cons)
 		let g0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.9), energy: 1.0)
 		let g0action = KCSpriteNodeAction(active: true, speed: 0.5, angle: -(CGFloat.pi / 4.0))
-		let g0node   = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, context: g0ctxt)
+		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, context: g0ctxt)
 	}
 
 	open override func viewWillAppear() {
@@ -101,25 +103,23 @@ class ViewController: NSViewController, CNLogging
 		}
 	}
 
-	private func updateActions(contactAt point: CGPoint, operationA opA: CNOperationContext?, operationB opB: CNOperationContext?, console cons: CNConsole) {
-
-		if let opA = opA {
-			if let name = KCSpriteOperationContext.getName(context: opA) {
-				cons.print(string: "Node-A: \(name)\n")
-			} else {
-				cons.print(string: "Node-A: <Unknown>\n")
-			}
+	private func updateActions(contactAt point: CGPoint, operation op: CNOperationContext, targetName name: String?, console cons: CNConsole) {
+		var target: String
+		if let n = name {
+			target = n
 		} else {
-			cons.error(string: "No node-A\n")
+			target = "Wall"
 		}
-		if let opB = opB {
-			if let name = KCSpriteOperationContext.getName(context: opB) {
-				cons.print(string: "Node-B: \(name)\n")
-			} else {
-				cons.print(string: "Node-B: <Unknown>\n")
-			}
+
+		var energy: Double = 0
+		if let status = KCSpriteOperationContext.getStatus(context: op) {
+			energy = status.energy
+		}
+
+		if let opname = KCSpriteOperationContext.getName(context: op) {
+			cons.print(string: "Conflict \(opname) with \(target) : energy=\(energy)\n")
 		} else {
-			cons.error(string: "No node-B\n")
+			cons.print(string: "Conflict <Unknown> with \(target) : energy=\(energy)\n")
 		}
 	}
 }
