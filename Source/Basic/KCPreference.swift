@@ -13,10 +13,6 @@
 import CoconutData
 import Foundation
 
-public class KCConfig: CNConfig {
-	
-}
-
 public class KCWindowPreference
 {
 	public var spacing			: CGFloat
@@ -100,21 +96,7 @@ extension CNPreference
 			() -> KCTerminalPreference in return KCTerminalPreference()
 		})
 	}}
-
 }
 
-private var sDidSetupped: Bool = false
-
-public func KCSetupPreference(config conf: KCConfig)
-{
-	/* Skip setup if it already setupped */
-	if sDidSetupped {
-		return
-	} else {
-		sDidSetupped = true
-	}
-	/* Setup super class */
-	CNSetupPreference(config: conf)
-}
 
 
