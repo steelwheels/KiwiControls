@@ -11,7 +11,7 @@ import Foundation
 
 public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 {
-	public typealias ContactHandler     = (_ point: KCPoint, _ operation: CNOperationContext, _ targetName: String?) -> Void
+	public typealias ContactHandler     = (_ point: KCPoint, _ operation: CNOperationContext) -> Void
 	public typealias BecomeEmptyHandler = () -> Void
 
 	private var mQueue:		CNOperationQueue
@@ -187,35 +187,28 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	private func doContactEvent(contact cont: SKPhysicsContact){
-		let pt   = cont.contactPoint
-		let opAp = nodeToOperation(node: cont.bodyA.node as? KCSpriteNode)
-		let opBp = nodeToOperation(node: cont.bodyB.node as? KCSpriteNode)
-		if let opA = opAp, let opB = opBp {
-			applyContactEffect(operation: opA)
-			applyContactEffect(operation: opB)
-			if let handler = didContactHandler {
-				handler(pt, opA, KCSpriteOperationContext.getName(context: opB))
-				handler(pt, opB, KCSpriteOperationContext.getName(context: opA))
+		let pt    = cont.contactPoint
+		if let nodeA = cont.bodyA.node as? KCSpriteNode {
+			applyContactEffect(node: nodeA)
+			if let opA = nodeToOperation(node: nodeA) {
+				if let handler = didContactHandler {
+					handler(pt, opA)
+				}
 			}
-		} else if let opA = opAp {
-			applyContactEffect(operation: opA)
-			if let handler = didContactHandler {
-				handler(pt, opA, nil)
-			}
-		} else if let opB = opBp {
-			applyContactEffect(operation: opB)
-			if let handler = didContactHandler {
-				handler(pt, opB, nil)
+		}
+		if let nodeB = cont.bodyB.node as? KCSpriteNode {
+			applyContactEffect(node: nodeB)
+			if let opB = nodeToOperation(node: nodeB) {
+				if let handler = didContactHandler {
+					handler(pt, opB)
+				}
 			}
 		}
 	}
 
-	private func applyContactEffect(operation op: CNOperationContext){
-		if var status = KCSpriteOperationContext.getStatus(context: op) {
-			let damage = conditions.collisionDamage
-			status.energy = max(status.energy - damage, 0.0)
-			KCSpriteOperationContext.setStatus(context: op, status: status)
-		}
+	private func applyContactEffect(node nd: KCSpriteNode){
+		let damage = conditions.collisionDamage
+		nd.applyDamage(damage: damage)
 	}
 
 	private func nodeToOperation(node nd: KCSpriteNode?) -> CNOperationContext? {

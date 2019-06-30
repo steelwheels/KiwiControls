@@ -151,6 +151,14 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		}
 	}
 
+	public func applyDamage(damage dmg: Double){
+		if mEnergy > dmg {
+			mEnergy -= dmg
+		} else {
+			mEnergy = 0.0
+		}
+	}
+
 	public func toValue() -> CNNativeValue {
 		var top: Dictionary<String, CNNativeValue> = [:]
 
