@@ -15,9 +15,7 @@ class UTSpriteOpetation: CNOperationContext {
 	open override func main() {
 		let res = KCSpriteOperationContext.execute(context: self, updateFunction: {
 			(_ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
-			let newact = KCSpriteNodeAction(active:  action.active,
-							speed:   action.speed,
-							angle:   action.angle)
+			let newact = KCSpriteNodeAction(speed: action.speed, angle: action.angle)
 			return newact
 
 		})
@@ -86,13 +84,13 @@ class ViewController: NSViewController, CNLogging
 		/* allocate nodes */
 		let b0ctxt   = UTSpriteOpetation(console: cons)
 		let b0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.1), energy: 1.0)
-		let b0action = KCSpriteNodeAction(active: true, speed: 0.5, angle: CGFloat.pi * 3.0 / 4.0)
+		let b0action = KCSpriteNodeAction(speed: 0.5, angle: CGFloat.pi * 3.0 / 4.0)
 		let _        = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, context: b0ctxt)
 
 
 		let g0ctxt   = UTSpriteOpetation(console: cons)
 		let g0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.9), energy: 1.0)
-		let g0action = KCSpriteNodeAction(active: true, speed: 0.5, angle: -(CGFloat.pi / 4.0))
+		let g0action = KCSpriteNodeAction(speed: 0.5, angle: -(CGFloat.pi / 4.0))
 		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, context: g0ctxt)
 	}
 

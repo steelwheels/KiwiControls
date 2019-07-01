@@ -10,16 +10,14 @@ import SpriteKit
 import Foundation
 
 public struct KCSpriteNodeAction {
-	public var	active:		Bool		/* active or inactive	*/
 	public var	speed:		CGFloat		/* [m/sec]		*/
 	public var 	angle:		CGFloat		/* [radian]		*/
 
 	public init(){
-		self.init(active: true, speed: 0.0, angle: 0.0)
+		self.init(speed: 0.0, angle: 0.0)
 	}
 
-	public init(active act: Bool, speed spd: CGFloat, angle agl: CGFloat) {
-		active	= act
+	public init(speed spd: CGFloat, angle agl: CGFloat) {
 		speed   = spd
 		angle   = agl
 	}
@@ -29,19 +27,15 @@ public struct KCSpriteNodeAction {
 
 	public func toValue() -> CNNativeValue {
 		var top: Dictionary<String, CNNativeValue> = [:]
-		top["active"]  = CNNativeValue.numberValue(NSNumber(booleanLiteral: active))
 		top["speed"]   = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(speed)))
 		top["angle"]   = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(angle)))
-		//top["xSpeed"]  = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(xSpeed)))
-		//top["ySpeed"]  = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(ySpeed)))
 		return CNNativeValue.dictionaryValue(top)
 	}
 
 	public static func spriteNodeAction(from value: CNNativeValue) -> KCSpriteNodeAction? {
-		if let active  = value.numberProperty(identifier: "active"),
-		   let speed   = value.numberProperty(identifier: "speed"),
+		if let speed   = value.numberProperty(identifier: "speed"),
 		   let angle   = value.numberProperty(identifier: "angle") {
-			return KCSpriteNodeAction(active: active.boolValue, speed: CGFloat(speed.doubleValue), angle: CGFloat(angle.doubleValue))
+			return KCSpriteNodeAction(speed: CGFloat(speed.doubleValue), angle: CGFloat(angle.doubleValue))
 		} else {
 			return nil
 		}
@@ -130,12 +124,11 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	public var action: KCSpriteNodeAction {
 		get {
 			if let body = self.physicsBody, let scene = mParentScene {
-				let active  = true
 				let dx      = scene.physicalToLogical(xSpeed: body.velocity.dx)
 				let dy	    = scene.physicalToLogical(ySpeed: body.velocity.dy)
 				let speed   = sqrt(dx*dx + dy*dy)
 				let angle   = atan2(dx, dy)
-				return KCSpriteNodeAction(active: active, speed: speed, angle: angle)
+				return KCSpriteNodeAction(speed: speed, angle: angle)
 			} else {
 				return KCSpriteNodeAction()
 			}
