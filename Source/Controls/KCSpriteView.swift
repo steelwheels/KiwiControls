@@ -68,6 +68,11 @@ open class KCSpriteView: KCCoreView
 		return coreView.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, context: ctxt)
 	}
 
+	public var isPaused: Bool {
+		get { return coreView.isPaused }
+		set(newval) { coreView.isPaused = newval }
+	}
+
 	public var conditions:	KCSpriteCondition {
 		get { return coreView.conditions }
 		set(newcond) { coreView.conditions = newcond }

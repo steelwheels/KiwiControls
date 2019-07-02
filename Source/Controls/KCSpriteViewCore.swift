@@ -49,6 +49,11 @@ open class KCSpriteViewCore: KCView
 		return scene.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, context: ctxt)
 	}
 
+	public var isPaused: Bool {
+		get { return mSpriteView.isPaused }
+		set(newval) { mSpriteView.isPaused = newval }
+	}
+
 	public var conditions:	KCSpriteCondition {
 		get { return scene.conditions }
 		set(newcond) { scene.conditions = newcond }
