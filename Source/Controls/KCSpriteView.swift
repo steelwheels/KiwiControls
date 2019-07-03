@@ -83,9 +83,9 @@ open class KCSpriteView: KCCoreView
 		set(newhdl) { coreView.didContactHandler = newhdl }
 	}
 
-	public var becomeEmptyHandler: KCSpriteScene.BecomeEmptyHandler? {
-		get { return coreView.becomeEmptyHandler }
-		set(newhdl) { coreView.becomeEmptyHandler = newhdl }
+	public var continuationCheckerHandler: KCSpriteScene.ContinuationCheckerHandler? {
+		get { return coreView.continuationCheckerHandler }
+		set(newhdl) { coreView.continuationCheckerHandler = newhdl }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

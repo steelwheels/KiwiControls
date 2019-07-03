@@ -92,6 +92,9 @@ class ViewController: NSViewController, CNLogging
 		let g0status = KCSpriteNodeStatus(uniqueId: 1, teamId: 1, size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.9), energy: 1.0)
 		let g0action = KCSpriteNodeAction(speed: 0.5, angle: -(CGFloat.pi / 4.0))
 		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, context: g0ctxt)
+
+		/* Start action */
+		mSpriteView.isPaused = false
 	}
 
 	open override func viewWillAppear() {

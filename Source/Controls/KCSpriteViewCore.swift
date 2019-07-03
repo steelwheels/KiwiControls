@@ -26,6 +26,7 @@ open class KCSpriteViewCore: KCView
 		
 		mScene = scene
 		mSpriteView.presentScene(mScene)
+		scene.isPaused = true
 	}
 
 	private var scene: KCSpriteScene {
@@ -50,8 +51,8 @@ open class KCSpriteViewCore: KCView
 	}
 
 	public var isPaused: Bool {
-		get { return mSpriteView.isPaused }
-		set(newval) { mSpriteView.isPaused = newval }
+		get { return scene.isPaused }
+		set(newval) { scene.isPaused = newval }
 	}
 
 	public var conditions:	KCSpriteCondition {
@@ -64,9 +65,9 @@ open class KCSpriteViewCore: KCView
 		set(newhdl) { scene.didContactHandler = newhdl }
 	}
 
-	public var becomeEmptyHandler: KCSpriteScene.BecomeEmptyHandler? {
-		get { return scene.becomeEmptyHandler }
-		set(newhdl) { scene.becomeEmptyHandler = newhdl }
+	public var continuationCheckerHandler: KCSpriteScene.ContinuationCheckerHandler? {
+		get { return scene.continuationCheckerHandler }
+		set(newhdl) { scene.continuationCheckerHandler = newhdl }
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {

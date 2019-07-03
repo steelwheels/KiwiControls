@@ -11,8 +11,8 @@ import Foundation
 
 public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 {
-	public typealias ContactHandler     = (_ point: KCPoint, _ operation: CNOperationContext) -> Void
-	public typealias BecomeEmptyHandler = () -> Void
+	public typealias ContactHandler     		= (_ point: KCPoint, _ operation: CNOperationContext) -> Void
+	public typealias ContinuationCheckerHandler	= (_ status: Array<KCSpriteNodeStatus>) -> Bool
 
 	private var mQueue:		CNOperationQueue
 	private var mNodes:		Dictionary<String, KCSpriteNode>	// node-name, node
@@ -21,9 +21,9 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	public var console: 		CNConsole? { get { return mConsole }}
 
-	public var conditions:		KCSpriteCondition
-	public var didContactHandler:	ContactHandler?
-	public var becomeEmptyHandler:	BecomeEmptyHandler?
+	public var conditions:			KCSpriteCondition
+	public var didContactHandler:		ContactHandler?
+	public var continuationCheckerHandler:	ContinuationCheckerHandler?
 
 	public init(frame frm: CGRect, console cons: CNConsole?){
 		mQueue			= CNOperationQueue()
@@ -116,13 +116,18 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	open override func update(_ currentTime: TimeInterval) {
-		/* If no node is exist, pause the operation */
-		if mNodes.count == 0 {
-			if let emphdl = self.becomeEmptyHandler {
-				emphdl()
+		/* Decide continue or not */
+		if let checker = continuationCheckerHandler {
+			var status: Array<KCSpriteNodeStatus> = []
+			for node in mNodes.values {
+				status.append(node.status)
+			}
+			if !checker(status) {
+				self.isPaused = true
 				return
 			}
 		}
+
 		/* Set inputs for each node */
 		for name in mNodes.keys {
 			if let action = mNodes[name]?.action, let status = mNodes[name]?.status, let op = mContexts[name] {
