@@ -60,9 +60,9 @@ open class KCSpriteViewCore: KCView
 		set(newcond) { scene.conditions = newcond }
 	}
 
-	public var didContactHandler: KCSpriteScene.ContactHandler? {
-		get { return scene.didContactHandler }
-		set(newhdl) { scene.didContactHandler = newhdl }
+	public var contactObserverHandler: KCSpriteScene.ContactObserverHandler? {
+		get { return scene.contactObserverHandler }
+		set(newhdl) { scene.contactObserverHandler = newhdl }
 	}
 
 	public var continuationCheckerHandler: KCSpriteScene.ContinuationCheckerHandler? {

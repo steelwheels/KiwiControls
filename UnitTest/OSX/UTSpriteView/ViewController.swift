@@ -74,10 +74,10 @@ class ViewController: NSViewController, CNLogging
 		mSpriteView.conditions = cond
 
 		/* Set actions */
-		mSpriteView.didContactHandler = {
-			[weak self] (_ point: CGPoint, _ operation: CNOperationContext) -> Void in
+		mSpriteView.contactObserverHandler = {
+			[weak self] (_ point: CGPoint, _ status: KCSpriteNodeStatus) -> Void in
 			if let myself = self {
-				myself.updateActions(contactAt: point, operation: operation, console: myself.mConsole!)
+				myself.updateActions(contactAt: point, status: status, console: myself.mConsole!)
 			}
 		}
 		
@@ -108,17 +108,10 @@ class ViewController: NSViewController, CNLogging
 		}
 	}
 
-	private func updateActions(contactAt point: CGPoint, operation op: CNOperationContext, console cons: CNConsole) {
-		var energy: Double = 0
-		if let status = KCSpriteOperationContext.getStatus(context: op) {
-			energy = status.energy
-		}
-
-		if let opname = KCSpriteOperationContext.getName(context: op) {
-			cons.print(string: "Conflict \(opname): energy=\(energy)\n")
-		} else {
-			cons.print(string: "Conflict <Unknown>: energy=\(energy)\n")
-		}
+	private func updateActions(contactAt point: CGPoint, status stat: KCSpriteNodeStatus, console cons: CNConsole) {
+		let energy = stat.energy
+		let opname = stat.name
+		cons.print(string: "Conflict \(opname): energy=\(energy)\n")
 	}
 }
 

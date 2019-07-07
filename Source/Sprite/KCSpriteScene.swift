@@ -11,7 +11,7 @@ import Foundation
 
 public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 {
-	public typealias ContactHandler     		= (_ point: KCPoint, _ operation: CNOperationContext) -> Void
+	public typealias ContactObserverHandler     	= (_ point: KCPoint, _ status: KCSpriteNodeStatus) -> Void
 	public typealias ContinuationCheckerHandler	= (_ status: Array<KCSpriteNodeStatus>) -> Bool
 
 	private var mQueue:		CNOperationQueue
@@ -22,7 +22,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	public var console: 		CNConsole? { get { return mConsole }}
 
 	public var conditions:			KCSpriteCondition
-	public var didContactHandler:		ContactHandler?
+	public var contactObserverHandler:	ContactObserverHandler?
 	public var continuationCheckerHandler:	ContinuationCheckerHandler?
 
 	public init(frame frm: CGRect, console cons: CNConsole?){
@@ -31,7 +31,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mContexts		= [:]
 		mConsole 		= cons
 		conditions		= KCSpriteCondition()
-		didContactHandler	= nil
+		contactObserverHandler	= nil
 		super.init(size: frm.size)
 
 		/* Setup scene */
@@ -195,18 +195,14 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		let pt    = cont.contactPoint
 		if let nodeA = cont.bodyA.node as? KCSpriteNode {
 			applyContactEffect(node: nodeA)
-			if let opA = nodeToOperation(node: nodeA) {
-				if let handler = didContactHandler {
-					handler(pt, opA)
-				}
+			if let handler = contactObserverHandler {
+				handler(pt, nodeA.status)
 			}
 		}
 		if let nodeB = cont.bodyB.node as? KCSpriteNode {
 			applyContactEffect(node: nodeB)
-			if let opB = nodeToOperation(node: nodeB) {
-				if let handler = didContactHandler {
-					handler(pt, opB)
-				}
+			if let handler = contactObserverHandler {
+				handler(pt, nodeB.status)
 			}
 		}
 	}
