@@ -46,14 +46,14 @@ public struct KCSpriteNodeStatus
 {
 	public static let DEFAULT_ENERGY: Double	= 1.0
 
-	public var	uniqueId:	Int
+	public var	name:		String
 	public var	teamId:		Int
 	public var	size:		CGSize
 	public var 	position:	CGPoint
 	public var	energy:		Double
 
-	public init(uniqueId uid: Int, teamId tid: Int, size sz: CGSize, position pos: CGPoint, energy engy: Double){
-		uniqueId = uid
+	public init(name nm: String, teamId tid: Int, size sz: CGSize, position pos: CGPoint, energy engy: Double){
+		name     = nm
 		teamId   = tid
 		size     = sz
 		position = pos
@@ -62,7 +62,7 @@ public struct KCSpriteNodeStatus
 
 	public func toValue() -> CNNativeValue {
 		var top: Dictionary<String, CNNativeValue> = [:]
-		top["uniqueId"]	= CNNativeValue.numberValue(NSNumber(integerLiteral: uniqueId))
+		top["name"]	= CNNativeValue.stringValue(name)
 		top["teamId"]	= CNNativeValue.numberValue(NSNumber(integerLiteral: teamId))
 		top["size"]     = CNNativeValue.sizeValue(size)
 		top["position"] = CNNativeValue.pointValue(position)
@@ -71,12 +71,12 @@ public struct KCSpriteNodeStatus
 	}
 
 	public static func spriteNodeStatus(from value: CNNativeValue) -> KCSpriteNodeStatus? {
-		if let uid  = value.numberProperty(identifier: "uniqueId"),
+		if let name = value.stringProperty(identifier: "name"),
 		   let tid  = value.numberProperty(identifier: "teamId"),
 		   let size = value.sizeProperty(identifier:   "size"),
 		   let pos  = value.pointProperty(identifier:  "position"),
 		   let engy = value.numberProperty(identifier: "energy") {
-			return KCSpriteNodeStatus(uniqueId: uid.intValue, teamId: tid.intValue, size: size, position: pos, energy: engy.doubleValue)
+			return KCSpriteNodeStatus(name: name, teamId: tid.intValue, size: size, position: pos, energy: engy.doubleValue)
 		} else {
 			return nil
 		}
@@ -86,13 +86,13 @@ public struct KCSpriteNodeStatus
 public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 {
 	private weak var mParentScene:	KCSpriteScene?
-	private var	 mUniqueId:	Int
+	private var	 mName:		String
 	private var	 mTeamId:	Int
 	private var	 mEnergy:	Double
 
 	public init(parentScene scene: KCSpriteScene, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction){
 		mParentScene = scene
-		mUniqueId    = istat.uniqueId
+		mName        = istat.name
 		mTeamId      = istat.teamId
 		mEnergy	     = istat.energy
 		let tex      = SKTexture(image: img)
@@ -102,8 +102,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		/* Apply status */
 		self.scale(to: physize)
 		self.position = scene.logicalToPhysical(point: istat.position)
-
-
+		
 		let body = SKPhysicsBody(rectangleOf: physize)
 		body.setup(bodyType: .Object)
 		self.physicsBody = body
@@ -122,7 +121,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 			if let scene = mParentScene {
 				let size     = scene.physicalToLogical(size: self.size)
 				let position = scene.physicalToLogical(point: self.position)
-				return KCSpriteNodeStatus(uniqueId: mUniqueId, teamId: mTeamId, size: size, position: position, energy: mEnergy)
+				return KCSpriteNodeStatus(name: mName, teamId: mTeamId, size: size, position: position, energy: mEnergy)
 			} else {
 				fatalError("No parent scene")
 			}
