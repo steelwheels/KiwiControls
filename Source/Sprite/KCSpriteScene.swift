@@ -21,6 +21,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	public var console: 		CNConsole? { get { return mConsole }}
 
+	public var logicalScale:		CGFloat
 	public var conditions:			KCSpriteCondition
 	public var contactObserverHandler:	ContactObserverHandler?
 	public var continuationCheckerHandler:	ContinuationCheckerHandler?
@@ -30,6 +31,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mNodes   		= [:]
 		mContexts		= [:]
 		mConsole 		= cons
+		logicalScale		= 1.0
 		conditions		= KCSpriteCondition()
 		contactObserverHandler	= nil
 		super.init(size: frm.size)
@@ -50,15 +52,19 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	public func logicalSize() -> CGSize {
 		let psize = self.frame.size
-		let lsize: CGSize
+		let width: 	CGFloat
+		let height:	CGFloat
 		if psize.width >= psize.height && psize.height > 0 {
-			lsize = CGSize(width: psize.width / psize.height, height: 1.0)
+			width  = psize.width / psize.height
+			height = 1.0
 		} else if psize.height > psize.width && psize.width > 0 {
-			lsize = CGSize(width: 1.0, height: psize.height / psize.width)
+			width  = 1.0
+			height = psize.height / psize.width
 		} else {
-			lsize = CGSize(width: 1.0, height: 1.0)
+			width  = 1.0
+			height = 1.0
 		}
-		return lsize
+		return CGSize(width: width * logicalScale, height: height * logicalScale)
 	}
 
 	private var mPrevBodySize: KCSize = KCSize.zero

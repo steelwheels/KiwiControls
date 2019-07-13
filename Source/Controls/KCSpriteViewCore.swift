@@ -37,6 +37,11 @@ open class KCSpriteViewCore: KCView
 		}
 	}
 
+	public var logicalScale: CGFloat {
+		get { return scene.logicalScale }
+		set(newsize) { scene.logicalScale = newsize }
+	}
+
 	public func logicalSize() -> KCSize {
 		return scene.logicalSize()
 	}
