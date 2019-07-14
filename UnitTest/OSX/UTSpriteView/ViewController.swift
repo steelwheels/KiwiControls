@@ -82,14 +82,16 @@ class ViewController: NSViewController, CNLogging
 		}
 		
 		/* allocate nodes */
+		let nodebnds = CGRect(origin: CGPoint.zero, size: mSpriteView.logicalSize())
+
 		let b0ctxt   = UTSpriteOpetation(console: cons)
-		let b0status = KCSpriteNodeStatus(name: "B0", teamId: 0, size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.1), energy: 1.0)
+		let b0status = KCSpriteNodeStatus(name: "B0", teamId: 0, size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.1), bounds: nodebnds, energy: 1.0)
 		let b0action = KCSpriteNodeAction(speed: 0.5, angle: CGFloat.pi * 3.0 / 4.0)
 		let _        = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, context: b0ctxt)
 
 
 		let g0ctxt   = UTSpriteOpetation(console: cons)
-		let g0status = KCSpriteNodeStatus(name: "G0", teamId: 1, size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.9), energy: 1.0)
+		let g0status = KCSpriteNodeStatus(name: "G0", teamId: 1, size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.9), bounds: nodebnds, energy: 1.0)
 		let g0action = KCSpriteNodeAction(speed: 0.5, angle: -(CGFloat.pi / 4.0))
 		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, context: g0ctxt)
 
