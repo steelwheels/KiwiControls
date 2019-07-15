@@ -10,9 +10,10 @@ import Foundation
 
 public class KCSpriteOperationContext
 {
-	public typealias UpdateFunction = (_ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction?
+	public typealias UpdateFunction = (_ interval: TimeInterval, _ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction?
 
 	public static let 	NameItem	= "name"
+	public static let 	IntervalItem	= "interval"
 	public static let 	StatusItem	= "status"
 	public static let	ActionItem	= "action"
 	public static let 	ResultItem	= "result"
@@ -24,6 +25,20 @@ public class KCSpriteOperationContext
 	public class func getName(context ctxt: CNOperationContext) -> String? {
 		if let val = ctxt.parameter(name: NameItem) {
 			return val.toString()
+		}
+		return nil
+	}
+
+	public class func setInterval(context ctxt: CNOperationContext, interval difftime: TimeInterval){
+		let num = NSNumber(floatLiteral: Double(difftime))
+		ctxt.setParameter(name: IntervalItem, value: .numberValue(num))
+	}
+
+	public class func getInterval(context ctxt: CNOperationContext) -> TimeInterval? {
+		if let val = ctxt.parameter(name: IntervalItem) {
+			if let num = val.toNumber() {
+				return TimeInterval(num.doubleValue)
+			}
 		}
 		return nil
 	}
@@ -63,9 +78,10 @@ public class KCSpriteOperationContext
 
 	public class func execute(context ctxt: CNOperationContext, updateFunction updfunc: KCSpriteOperationContext.UpdateFunction) -> Bool {
 		var result = false
-		if let curstat = KCSpriteOperationContext.getStatus(context: ctxt),
-		   let curact  = KCSpriteOperationContext.getAction(context: ctxt) {
-			if let newact = updfunc(curstat, curact) {
+		if let interval = KCSpriteOperationContext.getInterval(context: ctxt),
+		   let curstat  = KCSpriteOperationContext.getStatus(context: ctxt),
+		   let curact   = KCSpriteOperationContext.getAction(context: ctxt) {
+			if let newact = updfunc(interval, curstat, curact) {
 				KCSpriteOperationContext.setResult(context: ctxt, action: newact)
 				result = true
 			}

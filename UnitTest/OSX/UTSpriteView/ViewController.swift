@@ -14,7 +14,7 @@ import Cocoa
 class UTSpriteOpetation: CNOperationContext {
 	open override func main() {
 		let res = KCSpriteOperationContext.execute(context: self, updateFunction: {
-			(_ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
+			(_ interval: TimeInterval, _ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
 			let newact = KCSpriteNodeAction(speed: action.speed, angle: action.angle)
 			return newact
 

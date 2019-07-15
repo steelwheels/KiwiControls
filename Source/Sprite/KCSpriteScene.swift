@@ -91,6 +91,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			mNodes[name]    = newnode
 			/* Setup context */
 			KCSpriteOperationContext.setName(context: ctxt, name: name)
+			KCSpriteOperationContext.setInterval(context: ctxt, interval: 0.0)
 			KCSpriteOperationContext.setStatus(context: ctxt, status: istat)
 			KCSpriteOperationContext.setAction(context: ctxt, action: KCSpriteNodeAction())
 			mContexts[name] = ctxt
@@ -121,6 +122,8 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 	}
 
+	private var mPreviousTime: TimeInterval = 0.0
+
 	open override func update(_ currentTime: TimeInterval) {
 		/* Decide continue or not */
 		if let checker = continuationCheckerHandler {
@@ -134,10 +137,15 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			}
 		}
 
+		/* Get interval */
+		let interval  = max(0.0, currentTime - mPreviousTime)
+		mPreviousTime = currentTime
+
 		/* Set inputs for each node */
 		for name in mNodes.keys {
 			if let action = mNodes[name]?.action, let status = mNodes[name]?.status, let op = mContexts[name] {
 				KCSpriteOperationContext.setName(context: op, name: name)
+				KCSpriteOperationContext.setInterval(context: op, interval: interval)
 				KCSpriteOperationContext.setAction(context: op, action: action)
 				KCSpriteOperationContext.setStatus(context: op, status: status)
 			} else {
