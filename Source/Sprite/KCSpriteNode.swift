@@ -151,7 +151,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 				let dx = scene.logicalToPhysical(xSpeed: newact.xSpeed)
 				let dy = scene.logicalToPhysical(ySpeed: newact.ySpeed)
 				body.velocity = CGVector(dx: dx, dy: dy)
-				self.zRotation = -atan2(dx, dy)
+				self.zRotation = -atan2(dx, dy) // counter clock wise
 			}
 		}
 	}

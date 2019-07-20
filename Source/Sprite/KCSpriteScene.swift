@@ -122,9 +122,19 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 	}
 
-	private var mPreviousTime: TimeInterval = 0.0
+	private var mPreviousTime: TimeInterval? = nil
 
 	open override func update(_ currentTime: TimeInterval) {
+		/* Ignore first call to get previous system time */
+		guard let prevtime = mPreviousTime else {
+			mPreviousTime = currentTime
+			return
+		}
+
+		/* Get interval */
+		let interval  = max(0.0, currentTime - prevtime)
+		mPreviousTime = currentTime
+
 		/* Decide continue or not */
 		if let checker = continuationCheckerHandler {
 			var status: Array<KCSpriteNodeStatus> = []
@@ -137,10 +147,6 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			}
 		}
 
-		/* Get interval */
-		let interval  = max(0.0, currentTime - mPreviousTime)
-		mPreviousTime = currentTime
-
 		/* Set inputs for each node */
 		for name in mNodes.keys {
 			if let action = mNodes[name]?.action, let status = mNodes[name]?.status, let op = mContexts[name] {
@@ -152,6 +158,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 				log(type: .Error, string: "Invalid properties", file: #file, line: #line, function: #function)
 			}
 		}
+
 		/* Execute the operation */
 		let nonexecs = mQueue.execute(operations: Array(mContexts.values), timeLimit: nil)
 		if nonexecs.count > 0 {
