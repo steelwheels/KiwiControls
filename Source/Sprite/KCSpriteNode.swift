@@ -89,25 +89,25 @@ public struct KCSpriteNodeStatus
 
 public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 {
-	private weak var mParentScene:	KCSpriteScene?
-	private var	 mName:		String
-	private var	 mTeamId:	Int
-	private var	 mEnergy:	Double
+	private var	mMapper:	CNGraphicsMapper
+	private var	mName:		String
+	private var	mTeamId:	Int
+	private var	mEnergy:	Double
 
-	public init(parentScene scene: KCSpriteScene, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction){
-		mParentScene = scene
+	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction){
+		mMapper	     = mapper
 		mName        = istat.name
 		mTeamId      = istat.teamId
 		mEnergy	     = istat.energy
 		let tex      = SKTexture(image: img)
-		let physize  = scene.logicalToPhysical(size: istat.size)
-		super.init(texture: tex, color: KCColor.white, size: physize)
+		let psize    = mapper.logicalToPhysical(size: istat.size)
+		super.init(texture: tex, color: KCColor.white, size: psize)
 
 		/* Apply status */
-		self.scale(to: physize)
-		self.position = scene.logicalToPhysical(point: istat.position)
+		self.scale(to: psize)
+		self.position = mapper.logicalToPhysical(point: istat.position)
 		
-		let body = SKPhysicsBody(rectangleOf: physize)
+		let body = SKPhysicsBody(rectangleOf: psize)
 		body.setup(bodyType: .Object)
 		self.physicsBody = body
 
@@ -122,36 +122,30 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 
 	public var status: KCSpriteNodeStatus {
 		get {
-			if let scene = mParentScene {
-				let size     = scene.physicalToLogical(size: self.size)
-				let position = scene.physicalToLogical(point: self.position)
-				let bounds   = CGRect(origin: CGPoint.zero, size: scene.logicalSize())
-				return KCSpriteNodeStatus(name: mName, teamId: mTeamId, size: size, position: position, bounds: bounds, energy: mEnergy)
-			} else {
-				fatalError("No parent scene")
-			}
+			let lsize  = mMapper.physicalToLogical(size:  self.size)
+			let lpos   = mMapper.physicalToLogical(point: self.position)
+			let bounds = CGRect(origin: CGPoint.zero, size: mMapper.logicalSize)
+			return KCSpriteNodeStatus(name: mName, teamId: mTeamId, size: lsize, position: lpos, bounds: bounds, energy: mEnergy)
 		}
 	}
 	
 	public var action: KCSpriteNodeAction {
 		get {
-			if let body = self.physicsBody, let scene = mParentScene {
-				let dx      = scene.physicalToLogical(xSpeed: body.velocity.dx)
-				let dy	    = scene.physicalToLogical(ySpeed: body.velocity.dy)
-				let speed   = sqrt(dx*dx + dy*dy)
-				let angle   = atan2(dx, dy)
+			if let body = self.physicsBody {
+				let vec   = mMapper.physicalToLogical(vector: body.velocity)
+				let speed = sqrt(vec.dx * vec.dx + vec.dy * vec.dy)
+				let angle = atan2(vec.dx, vec.dy)
 				return KCSpriteNodeAction(speed: speed, angle: angle)
 			} else {
 				return KCSpriteNodeAction()
 			}
 		}
 		set(newact){
-			if let body = self.physicsBody, let scene = mParentScene {
+			if let body = self.physicsBody {
 				self.isHidden = false
-				let dx = scene.logicalToPhysical(xSpeed: newact.xSpeed)
-				let dy = scene.logicalToPhysical(ySpeed: newact.ySpeed)
-				body.velocity = CGVector(dx: dx, dy: dy)
-				self.zRotation = -atan2(dx, dy) // counter clock wise
+				let vec = mMapper.logicalToPhysical(vector: CGVector(dx: newact.xSpeed, dy: newact.ySpeed))
+				body.velocity  = vec
+				self.zRotation = -atan2(vec.dx, vec.dy) // counter clock wise
 			}
 		}
 	}

@@ -47,13 +47,13 @@ open class KCSpriteView: KCCoreView
 		}
 	}
 
-	public var logicalScale: CGFloat {
-		get { return coreView.logicalScale }
-		set(newsize) { coreView.logicalScale = newsize }
+	public var logicalSize: CGSize {
+		get { return coreView.logicalSize }
+		set(newsize) { coreView.logicalSize = newsize }
 	}
 
-	public func logicalSize() -> KCSize {
-		return coreView.logicalSize()
+	public func setLogicalSizeWithKeepingAspectRatio(width val: CGFloat) -> CGSize {
+		return coreView.setLogicalSizeWithKeepingAspectRatio(width: val)
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {

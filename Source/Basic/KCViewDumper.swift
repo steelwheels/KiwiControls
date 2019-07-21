@@ -77,7 +77,7 @@ public class KCViewDumper: KCViewVisitor
 		let fsection = CNTextSection()
 		fsection.header = "field {" ; fsection.footer = "}"
 		fsection.add(text: CNTextLine(string: "physical_size: \(view.frame.size.description)"))
-		fsection.add(text: CNTextLine(string: "logical_size:  \(view.logicalSize().description)"))
+		fsection.add(text: CNTextLine(string: "logical_size:  \(view.logicalSize.description)"))
 		mSection.add(text: fsection)
 	}
 

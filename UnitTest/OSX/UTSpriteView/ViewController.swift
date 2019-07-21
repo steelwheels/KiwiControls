@@ -82,17 +82,22 @@ class ViewController: NSViewController, CNLogging
 		}
 		
 		/* allocate nodes */
-		let nodebnds = CGRect(origin: CGPoint.zero, size: mSpriteView.logicalSize())
+		//let lsize    = CGSize(width: 480.0, height: 270.0)
+		//mSpriteView.logicalSize = lsize
+		let lsize    = mSpriteView.setLogicalSizeWithKeepingAspectRatio(width: 100.0)
+
+		let nodesize = CGSize(width: lsize.height*0.1, height: lsize.height*0.1)
+		let nodebnds = CGRect(origin: CGPoint.zero, size: mSpriteView.logicalSize)
 
 		let b0ctxt   = UTSpriteOpetation(console: cons)
-		let b0status = KCSpriteNodeStatus(name: "B0", teamId: 0, size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.1), bounds: nodebnds, energy: 1.0)
-		let b0action = KCSpriteNodeAction(speed: 0.5, angle: CGFloat.pi * 0.55)
+		let b0status = KCSpriteNodeStatus(name: "B0", teamId: 0, size: nodesize, position: CGPoint(x: lsize.width * 0.1, y: lsize.height * 0.1), bounds: nodebnds, energy: 1.0)
+		let b0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 0.60)
 		let _        = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, context: b0ctxt)
 
 
 		let g0ctxt   = UTSpriteOpetation(console: cons)
-		let g0status = KCSpriteNodeStatus(name: "G0", teamId: 1, size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.9), bounds: nodebnds, energy: 1.0)
-		let g0action = KCSpriteNodeAction(speed: 0.5, angle: CGFloat.pi * 1.45)
+		let g0status = KCSpriteNodeStatus(name: "G0", teamId: 1, size: nodesize, position: CGPoint(x: lsize.width * 0.9, y: lsize.height * 0.9), bounds: nodebnds, energy: 1.0)
+		let g0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 1.40)
 		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, context: g0ctxt)
 
 		/* Start action */

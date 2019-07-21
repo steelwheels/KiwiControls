@@ -18,10 +18,10 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private var mNodes:		Dictionary<String, KCSpriteNode>	// node-name, node
 	private var mContexts:		Dictionary<String, CNOperationContext>	// node-name, context
 	private var mConsole:		CNConsole?
+	private var mMapper:		CNGraphicsMapper
 
 	public var console: 		CNConsole? { get { return mConsole }}
 
-	public var logicalScale:		CGFloat
 	public var conditions:			KCSpriteCondition
 	public var contactObserverHandler:	ContactObserverHandler?
 	public var continuationCheckerHandler:	ContinuationCheckerHandler?
@@ -31,7 +31,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mNodes   		= [:]
 		mContexts		= [:]
 		mConsole 		= cons
-		logicalScale		= 1.0
+		mMapper			= CNGraphicsMapper(physicalSize: frm.size)
 		conditions		= KCSpriteCondition()
 		contactObserverHandler	= nil
 		super.init(size: frm.size)
@@ -50,26 +50,31 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public func logicalSize() -> CGSize {
-		let psize = self.frame.size
-		let width: 	CGFloat
-		let height:	CGFloat
-		if psize.width >= psize.height && psize.height > 0 {
-			width  = psize.width / psize.height
-			height = 1.0
-		} else if psize.height > psize.width && psize.width > 0 {
-			width  = 1.0
-			height = psize.height / psize.width
-		} else {
-			width  = 1.0
-			height = 1.0
+	public var logicalSize: CGSize {
+		get {
+			return mMapper.logicalSize
 		}
-		return CGSize(width: width * logicalScale, height: height * logicalScale)
+		set(newsize){
+			mMapper.logicalSize = newsize
+		}
+	}
+
+	public func setLogicalSizeWithKeepingAspectRatio(width val: CGFloat) -> CGSize {
+		let psize = mMapper.physicalSize
+		guard psize.width > 0.0 && psize.height > 0.0 else {
+			NSLog("Invalid physical size")
+			return CGSize.zero
+		}
+		let hval  = val * psize.height / psize.width
+		let lsize = CGSize(width: val, height: hval)
+		logicalSize = lsize
+		return lsize
 	}
 
 	private var mPrevBodySize: KCSize = KCSize.zero
 	public func resize(sceneSize size: KCSize) {
 		self.size = size
+		mMapper.physicalSize = size
 
 		if mPrevBodySize != size {
 			let frame = KCRect(origin: CGPoint.zero, size: size)
@@ -86,7 +91,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			return curnode
 		} else {
 			/* Setup node */
-			let newnode  = KCSpriteNode(parentScene: self, image: img, initStatus: istat, initialAction: iact)
+			let newnode  = KCSpriteNode(graphiceMapper: mMapper, image: img, initStatus: istat, initialAction: iact)
 			newnode.name    = name
 			mNodes[name]    = newnode
 			/* Setup context */
@@ -253,64 +258,6 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 		log(type: .Error, string: "Node is not found", file: #file, line: #line, function: #function)
 		return nil
-	}
-
-	public func logicalToPhysical(size sz: CGSize) -> CGSize {
-		let pframe = self.frame
-		let lsize  = logicalSize()
-		let width  = sz.width  * pframe.width  / lsize.width
-		let height = sz.height * pframe.height / lsize.height
-		return CGSize(width: width, height: height)
-	}
-
-	public func logicalToPhysical(point pt: CGPoint) -> CGPoint {
-		let pframe = self.frame
-		let lsize  = logicalSize()
-		let x = pt.x * pframe.width  / lsize.width
-		let y = pt.y * pframe.height / lsize.height
-		return CGPoint(x: x, y: y)
-	}
-
-	public func logicalToPhysical(xSpeed spd: CGFloat) -> CGFloat {
-		let pframe = self.frame
-		let lsize  = logicalSize()
-		let newspd = spd * pframe.width / lsize.width
-		return newspd
-	}
-
-	public func logicalToPhysical(ySpeed spd: CGFloat) -> CGFloat {
-		let pframe = self.frame
-		let lsize  = logicalSize()
-		let newspd = spd * pframe.height / lsize.height
-		return newspd
-	}
-
-	public func physicalToLogical(size sz: CGSize) -> CGSize {
-		let pframe = self.frame
-		let lsize  = logicalSize()
-		let width  = sz.width  * lsize.width  / pframe.width
-		let height = sz.height * lsize.height / pframe.height
-		return CGSize(width: width, height: height)
-	}
-
-	public func physicalToLogical(point pt: CGPoint) -> CGPoint {
-		let pframe = self.frame
-		let lsize  = logicalSize()
-		let x = pt.x * lsize.width  / pframe.width
-		let y = pt.y * lsize.height / pframe.height
-		return CGPoint(x: x, y: y)
-	}
-
-	public func physicalToLogical(xSpeed speed: CGFloat) -> CGFloat {
-		let pframe   = self.frame
-		let lsize    = logicalSize()
-		return speed * lsize.width / pframe.width
-	}
-
-	public func physicalToLogical(ySpeed speed: CGFloat) -> CGFloat {
-		let pframe   = self.frame
-		let lsize    = logicalSize()
-		return speed * lsize.height / pframe.height
 	}
 }
 
