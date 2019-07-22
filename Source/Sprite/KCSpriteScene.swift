@@ -19,10 +19,10 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private var mContexts:		Dictionary<String, CNOperationContext>	// node-name, context
 	private var mConsole:		CNConsole?
 	private var mMapper:		CNGraphicsMapper
+	private var mWallCondition:	KCSpriteNodeCondition
 
 	public var console: 		CNConsole? { get { return mConsole }}
 
-	public var conditions:			KCSpriteCondition
 	public var contactObserverHandler:	ContactObserverHandler?
 	public var continuationCheckerHandler:	ContinuationCheckerHandler?
 
@@ -32,7 +32,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mContexts		= [:]
 		mConsole 		= cons
 		mMapper			= CNGraphicsMapper(physicalSize: frm.size)
-		conditions		= KCSpriteCondition()
+		mWallCondition		= KCSpriteNodeCondition(givingCollisionDamage: 0.0, receivingCollisionDamage: 0.0)
 		contactObserverHandler	= nil
 		super.init(size: frm.size)
 
@@ -86,12 +86,12 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, context ctxt: CNOperationContext) -> KCSpriteNode {
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteNodeCondition, context ctxt: CNOperationContext) -> KCSpriteNode {
 		if let curnode = mNodes[name] {
 			return curnode
 		} else {
 			/* Setup node */
-			let newnode  = KCSpriteNode(graphiceMapper: mMapper, image: img, initStatus: istat, initialAction: iact)
+			let newnode  = KCSpriteNode(graphiceMapper: mMapper, image: img, initStatus: istat, initialAction: iact, condition: cond)
 			newnode.name    = name
 			mNodes[name]    = newnode
 			/* Setup context */
@@ -128,6 +128,11 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	private var mPreviousTime: TimeInterval? = nil
+
+	public var wallCondition: KCSpriteNodeCondition {
+		get { return mWallCondition }
+		set(newcond) { mWallCondition = newcond }
+	}
 
 	open override func update(_ currentTime: TimeInterval) {
 		/* Ignore first call to get previous system time */
@@ -218,24 +223,26 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	private func doContactEvent(contact cont: SKPhysicsContact){
-		let pt    = cont.contactPoint
-		if let nodeA = cont.bodyA.node as? KCSpriteNode {
-			applyContactEffect(node: nodeA)
-			if let handler = contactObserverHandler {
-				handler(pt, nodeA.status)
-			}
-		}
-		if let nodeB = cont.bodyB.node as? KCSpriteNode {
-			applyContactEffect(node: nodeB)
-			if let handler = contactObserverHandler {
-				handler(pt, nodeB.status)
-			}
-		}
-	}
+		//let pt    = cont.contactPoint
+		let nodeA = cont.bodyA.node as? KCSpriteNode
+		let nodeB = cont.bodyB.node as? KCSpriteNode
 
-	private func applyContactEffect(node nd: KCSpriteNode){
-		let damage = conditions.collisionDamage
-		nd.applyDamage(damage: damage)
+		let condA: KCSpriteNodeCondition
+		if let node = nodeA {
+			condA = node.condition
+		} else {
+			condA = wallCondition
+		}
+
+		let condB: KCSpriteNodeCondition
+		if let node = nodeB {
+			condB = node.condition
+		} else {
+			condB = wallCondition
+		}
+
+		if let node = nodeA { node.applyDamage(by: condB)	}
+		if let node = nodeB { node.applyDamage(by: condA)	}
 	}
 
 	private func nodeToOperation(node nd: KCSpriteNode?) -> CNOperationContext? {

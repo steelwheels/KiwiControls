@@ -51,8 +51,8 @@ open class KCSpriteViewCore: KCView
 		set(newcol){ scene.backgroundColor = newcol }
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, context ctxt: CNOperationContext) -> KCSpriteNode {
-		return scene.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, context: ctxt)
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteNodeCondition, context ctxt: CNOperationContext) -> KCSpriteNode {
+		return scene.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, condition: cond, context: ctxt)
 	}
 
 	public var isPaused: Bool {
@@ -60,9 +60,9 @@ open class KCSpriteViewCore: KCView
 		set(newval) { scene.isPaused = newval }
 	}
 
-	public var conditions:	KCSpriteCondition {
-		get { return scene.conditions }
-		set(newcond) { scene.conditions = newcond }
+	public var wallCondition: KCSpriteNodeCondition {
+		get { return scene.wallCondition }
+		set(newcond) { scene.wallCondition = newcond }
 	}
 
 	public var contactObserverHandler: KCSpriteScene.ContactObserverHandler? {

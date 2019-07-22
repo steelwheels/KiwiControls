@@ -93,12 +93,14 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	private var	mName:		String
 	private var	mTeamId:	Int
 	private var	mEnergy:	Double
+	private var	mCondition:	KCSpriteNodeCondition
 
-	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction){
+	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction, condition cond: KCSpriteNodeCondition){
 		mMapper	     = mapper
 		mName        = istat.name
 		mTeamId      = istat.teamId
 		mEnergy	     = istat.energy
+		mCondition   = cond
 		let tex      = SKTexture(image: img)
 		let psize    = mapper.logicalToPhysical(size: istat.size)
 		super.init(texture: tex, color: KCColor.white, size: psize)
@@ -128,7 +130,11 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 			return KCSpriteNodeStatus(name: mName, teamId: mTeamId, size: lsize, position: lpos, bounds: bounds, energy: mEnergy)
 		}
 	}
-	
+
+	public var condition: KCSpriteNodeCondition {
+		get { return mCondition }
+	}
+
 	public var action: KCSpriteNodeAction {
 		get {
 			if let body = self.physicsBody {
@@ -150,9 +156,10 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		}
 	}
 
-	public func applyDamage(damage dmg: Double){
-		if mEnergy > dmg {
-			mEnergy -= dmg
+	public func applyDamage(by condition: KCSpriteNodeCondition){
+		let damage = self.mCondition.receivingCollisionDamage + condition.givingCollisionDamage
+		if mEnergy > damage {
+			mEnergy -= damage
 		} else {
 			mEnergy = 0.0
 		}
