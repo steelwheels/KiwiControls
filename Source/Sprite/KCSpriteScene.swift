@@ -14,9 +14,18 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	public typealias ContactObserverHandler     	= (_ point: KCPoint, _ status: KCSpriteNodeStatus) -> Void
 	public typealias ContinuationCheckerHandler	= (_ status: Array<KCSpriteNodeStatus>) -> Bool
 
+	private struct NodeInfo {
+		public var 	node:		KCSpriteNode
+		public var 	context:	CNOperationContext
+
+		public init(node nd: KCSpriteNode, context ctxt: CNOperationContext){
+			node	= nd
+			context	= ctxt
+		}
+	}
+
 	private var mQueue:		CNOperationQueue
-	private var mNodes:		Dictionary<String, KCSpriteNode>	// node-name, node
-	private var mContexts:		Dictionary<String, CNOperationContext>	// node-name, context
+	private var mNodes:		Dictionary<String, NodeInfo>		// node-name, node-info
 	private var mConsole:		CNConsole?
 	private var mMapper:		CNGraphicsMapper
 	private var mWallCondition:	KCSpriteNodeCondition
@@ -29,7 +38,6 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	public init(frame frm: CGRect, console cons: CNConsole?){
 		mQueue			= CNOperationQueue()
 		mNodes   		= [:]
-		mContexts		= [:]
 		mConsole 		= cons
 		mMapper			= CNGraphicsMapper(physicalSize: frm.size)
 		mWallCondition		= KCSpriteNodeCondition(givingCollisionDamage: 0.0, receivingCollisionDamage: 0.0)
@@ -87,19 +95,18 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteNodeCondition, context ctxt: CNOperationContext) -> KCSpriteNode {
-		if let curnode = mNodes[name] {
-			return curnode
+		if let nodeinfo = mNodes[name] {
+			return nodeinfo.node
 		} else {
 			/* Setup node */
 			let newnode  = KCSpriteNode(graphiceMapper: mMapper, image: img, initStatus: istat, initialAction: iact, condition: cond)
 			newnode.name    = name
-			mNodes[name]    = newnode
+			mNodes[name]    = NodeInfo(node: newnode, context: ctxt)
 			/* Setup context */
 			KCSpriteOperationContext.setName(context: ctxt, name: name)
 			KCSpriteOperationContext.setInterval(context: ctxt, interval: 0.0)
 			KCSpriteOperationContext.setStatus(context: ctxt, status: istat)
 			KCSpriteOperationContext.setAction(context: ctxt, action: KCSpriteNodeAction())
-			mContexts[name] = ctxt
 			CNExecuteInMainThread(doSync: false, execute: {
 				[weak self] () -> Void in
 				if let myself = self {
@@ -120,10 +127,9 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	private func syncRemove(nodeName name: String){
-		if let curnode = mNodes[name] {
-			self.removeChildren(in: [curnode])
+		if let nodeinfo = mNodes[name] {
+			self.removeChildren(in: [nodeinfo.node])
 			mNodes.removeValue(forKey: name)
-			mContexts.removeValue(forKey: name)
 		}
 	}
 
@@ -148,8 +154,8 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		/* Decide continue or not */
 		if let checker = continuationCheckerHandler {
 			var status: Array<KCSpriteNodeStatus> = []
-			for node in mNodes.values {
-				status.append(node.status)
+			for nodeinfo in mNodes.values {
+				status.append(nodeinfo.node.status)
 			}
 			if !checker(status) {
 				self.isPaused = true
@@ -159,18 +165,26 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 		/* Set inputs for each node */
 		for name in mNodes.keys {
-			if let action = mNodes[name]?.action, let status = mNodes[name]?.status, let op = mContexts[name] {
-				KCSpriteOperationContext.setName(context: op, name: name)
-				KCSpriteOperationContext.setInterval(context: op, interval: interval)
-				KCSpriteOperationContext.setAction(context: op, action: action)
-				KCSpriteOperationContext.setStatus(context: op, status: status)
+			if let nodeinfo = mNodes[name] {
+				let node = nodeinfo.node
+				let ctxt = nodeinfo.context
+				KCSpriteOperationContext.setName(context: ctxt, name: name)
+				KCSpriteOperationContext.setInterval(context: ctxt, interval: interval)
+				KCSpriteOperationContext.setAction(context: ctxt, action: node.action)
+				KCSpriteOperationContext.setStatus(context: ctxt, status: node.status)
 			} else {
 				log(type: .Error, string: "Invalid properties", file: #file, line: #line, function: #function)
 			}
 		}
 
+		/* Collect contexts */
+		var contexts: Array<CNOperationContext> = []
+		for nodeinfo in mNodes.values {
+			contexts.append(nodeinfo.context)
+		}
+
 		/* Execute the operation */
-		let nonexecs = mQueue.execute(operations: Array(mContexts.values), timeLimit: nil)
+		let nonexecs = mQueue.execute(operations: Array(contexts), timeLimit: nil)
 		if nonexecs.count > 0 {
 			if let cons = console {
 				cons.error(string: "Failed to execute some operations\n")
@@ -181,14 +195,14 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mQueue.waitOperations()
 
 		/* Get results */
-		for (_, ctxt) in mContexts {
+		for ctxt in contexts {
 			if ctxt.isFinished {
 				if let name   = KCSpriteOperationContext.getName(context: ctxt),
 				   let status = KCSpriteOperationContext.getStatus(context: ctxt),
 				   let result = KCSpriteOperationContext.getResult(context: ctxt) {
 					if status.energy > 0.0 {
-						if let node = mNodes[name] {
-							node.action = result
+						if let nodeinfo = mNodes[name] {
+							nodeinfo.node.action = result
 							log(type: .Flow, string: "action=\(result.angle)", file: #file, line: #line, function: #function)
 						}
 					} else {
@@ -248,8 +262,8 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private func nodeToOperation(node nd: KCSpriteNode?) -> CNOperationContext? {
 		if let node = nd {
 			if let name = node.name {
-				if let ctxt = mContexts[name] {
-					return ctxt
+				if let nodeinfo = mNodes[name] {
+					return nodeinfo.context
 				}
 			}
 		}
@@ -259,8 +273,8 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	private func operationToNode(context ctxt: CNOperationContext) -> KCSpriteNode? {
 		if let name = KCSpriteOperationContext.getName(context: ctxt) {
-			if let node = mNodes[name] {
-				return node
+			if let nodeinfo = mNodes[name] {
+				return nodeinfo.node
 			}
 		}
 		log(type: .Error, string: "Node is not found", file: #file, line: #line, function: #function)
