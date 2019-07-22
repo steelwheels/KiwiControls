@@ -24,6 +24,8 @@
 		051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C81E0DD76F00671A2D /* KCStepper.swift */; };
 		051C3AEB2275370800E172B3 /* KCPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C3AEA2275370800E172B3 /* KCPhysics.swift */; };
 		05213AF720956AD600683720 /* KCCoodinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05213AF620956AD600683720 /* KCCoodinate.swift */; };
+		0523C2C722E5BC7700FAB05F /* KCSpriteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523C2C622E5BC7700FAB05F /* KCSpriteAction.swift */; };
+		0523C2C922E5BCF700FAB05F /* KCSpriteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523C2C822E5BCF700FAB05F /* KCSpriteStatus.swift */; };
 		0526C46D21C0065F00EDC4E3 /* KCDistributionDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526C46B21C0065F00EDC4E3 /* KCDistributionDecider.swift */; };
 		0526C46E21C0065F00EDC4E3 /* KCGroupMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526C46C21C0065F00EDC4E3 /* KCGroupMaker.swift */; };
 		0526C47021C017E600EDC4E3 /* KCLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526C46F21C017E600EDC4E3 /* KCLayoutConstraint.swift */; };
@@ -296,6 +298,8 @@
 		051847C81E0DD76F00671A2D /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
 		051C3AEA2275370800E172B3 /* KCPhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCPhysics.swift; sourceTree = "<group>"; };
 		05213AF620956AD600683720 /* KCCoodinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoodinate.swift; sourceTree = "<group>"; };
+		0523C2C622E5BC7700FAB05F /* KCSpriteAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteAction.swift; sourceTree = "<group>"; };
+		0523C2C822E5BCF700FAB05F /* KCSpriteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteStatus.swift; sourceTree = "<group>"; };
 		0526C46B21C0065F00EDC4E3 /* KCDistributionDecider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCDistributionDecider.swift; sourceTree = "<group>"; };
 		0526C46C21C0065F00EDC4E3 /* KCGroupMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupMaker.swift; sourceTree = "<group>"; };
 		0526C46F21C017E600EDC4E3 /* KCLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -638,8 +642,10 @@
 			isa = PBXGroup;
 			children = (
 				0502A22D2272032D00D8E36A /* KCSpriteScene.swift */,
-				05331C5D226F441D000D2918 /* KCSpriteNode.swift */,
+				0523C2C622E5BC7700FAB05F /* KCSpriteAction.swift */,
+				0523C2C822E5BCF700FAB05F /* KCSpriteStatus.swift */,
 				05E234D722C3A9BC0056122F /* KCSpriteCondition.swift */,
+				05331C5D226F441D000D2918 /* KCSpriteNode.swift */,
 				0509B0F622A954D5001AD62B /* KCSpriteOperation.swift */,
 				051C3AEA2275370800E172B3 /* KCPhysics.swift */,
 			);
@@ -1429,6 +1435,7 @@
 				0587717D214F355D00F90BC1 /* KCIntrinsicSizeAllocator.swift in Sources */,
 				05804392209586D5009E20A9 /* KCEclipse.swift in Sources */,
 				05A4711E21D2877300E7C446 /* KCSpriteView.swift in Sources */,
+				0523C2C922E5BCF700FAB05F /* KCSpriteStatus.swift in Sources */,
 				0526C46E21C0065F00EDC4E3 /* KCGroupMaker.swift in Sources */,
 				05B03B7F1E223194001656A0 /* KCTextFieldCore.swift in Sources */,
 				0549A1A620F6639F002EB823 /* KCLayouter.swift in Sources */,
@@ -1475,6 +1482,7 @@
 				0580438C209570B7009E20A9 /* KCFontTable.swift in Sources */,
 				057E16B21E1189D900EC4DF6 /* KCButtonCore.swift in Sources */,
 				05BD996F20956C3100E468B7 /* KCSize.swift in Sources */,
+				0523C2C722E5BC7700FAB05F /* KCSpriteAction.swift in Sources */,
 				05804390209574C8009E20A9 /* KCStroke.swift in Sources */,
 				05FB742B1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift in Sources */,
 				055FBC391E6A442F00A7A640 /* KCIconViewCore.swift in Sources */,

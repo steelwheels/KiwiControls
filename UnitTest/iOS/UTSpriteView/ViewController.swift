@@ -12,8 +12,16 @@ import UIKit
 
 class UTSpriteOpetation: CNOperationContext {
 	open override func main(){
-		if let cons = console {
-			cons.print(string: "UTSpriteOperation [update]\n")
+		let res = KCSpriteOperationContext.execute(context: self, updateFunction: {
+			(_ interval: TimeInterval, _ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
+			let newact = KCSpriteNodeAction(speed: action.speed, angle: action.angle)
+			return newact
+
+		})
+		if !res {
+			if let cons = console {
+				cons.print(string: "Failed to execute\n")
+			}
 		}
 	}
 }
@@ -60,28 +68,33 @@ class ViewController: UIViewController, CNLogging
 		mSpriteView.backgroundColorOfScene = .yellow
 
 		/* Set actions */
-		mSpriteView.didContactHandler = {
-			[weak self] (_ point: CGPoint, _ nodeA: CNOperationContext?, _ nodeB: CNOperationContext?) -> Void in
+		mSpriteView.contactObserverHandler = {
+			[weak self] (_ point: CGPoint, _ status: KCSpriteNodeStatus) -> Void in
 			if let myself = self {
-				myself.makeContactActions(contactAt: point, nodeA: nodeA, nodeB: nodeB, console: myself.mConsole!)
+				myself.updateActions(contactAt: point, status: status, console: myself.mConsole!)
 			}
 		}
 
 		/* allocate nodes */
+		let lsize    = mSpriteView.setLogicalSizeWithKeepingAspectRatio(width: 100.0)
+
+		let nodesize = CGSize(width: lsize.height*0.1, height: lsize.height*0.1)
+		let nodebnds = CGRect(origin: CGPoint.zero, size: mSpriteView.logicalSize)
+
 		let b0ctxt   = UTSpriteOpetation(console: cons)
-		let b0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.1, y: 0.51))
-		let b0node   = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, context: b0ctxt)
+		let b0status = KCSpriteNodeStatus(name: "B0", teamId: 0, size: nodesize, position: CGPoint(x: lsize.width * 0.1, y: lsize.height * 0.1), bounds: nodebnds, energy: 1.0)
+		let b0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 0.60)
+		let b0cond   = KCSpriteNodeCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05)
+		let _        = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, condition: b0cond, context: b0ctxt)
 
 		let g0ctxt   = UTSpriteOpetation(console: cons)
-		let g0status = KCSpriteNodeStatus(size: CGSize(width: 0.2, height: 0.2), position: CGPoint(x: 0.9, y: 0.49))
-		let g0node   = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, context: g0ctxt)
+		let g0status = KCSpriteNodeStatus(name: "G0", teamId: 1, size: nodesize, position: CGPoint(x: lsize.width * 0.1, y: lsize.height * 0.9), bounds: nodebnds, energy: 1.0)
+		let g0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 0.40)
+		let g0cond   = KCSpriteNodeCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05)
+		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, condition: g0cond, context: g0ctxt)
 
-		/* allocate action */
-		let b0action = KCSpriteNodeAction(active: true, speed: 0.3, angle: CGFloat.pi / 2.0)
-		b0node.action = b0action
-
-		let g0action = KCSpriteNodeAction(active: true, speed: 0.3, angle: -(CGFloat.pi / 2.0))
-		g0node.action = g0action
+		/* Start action */
+		mSpriteView.isPaused = false
 	}
 
 	private func makeContactActions(contactAt point: CGPoint, nodeA na: CNOperationContext?, nodeB nb: CNOperationContext?, console cons: CNConsole) -> Void {
@@ -97,77 +110,10 @@ class ViewController: UIViewController, CNLogging
 		}
 	}
 	
-	/*
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		let cons = KCLogConsole.shared
-
-		guard let blueurl = CNFilePath.URLForResourceFile(fileName: "blue-machine", fileExtension: "png") else {
-			NSLog("Can not decide URL for blue-machine")
-			return
-		}
-		guard let blueimage = CNImage(contentsOf: blueurl) else {
-			NSLog("Can not load blue-machine")
-			return
-		}
-
-		guard let greenurl = CNFilePath.URLForResourceFile(fileName: "green-machine", fileExtension: "png") else {
-			NSLog("Can not decide URL for green-machine")
-			return
-		}
-		guard let greenimage = CNImage(contentsOf: greenurl) else {
-			NSLog("Can not load green-machine")
-			return
-		}
-
-		// Do any additional setup after loading the view.
-		mSpriteView.backgroundColorOfScene = .yellow
-
-		let b0init = KCSpriteNode(image: blueimage,
-					  scale: 0.5,
-					  alpha: 1.0,
-					  position: CGPoint(x: 10.0, y: 10.0),
-					  rotation: 0.0,
-					  duration: 1.0,
-					  console:  cons)
-		mSpriteView.database.write(identifier: "b0", value: b0init.toValue())
-
-		let g0init = KCSpriteNode(image: greenimage,
-					  scale: 0.5,
-					  alpha: 1.0,
-					  position: CGPoint(x: 370.0, y: 650.0),
-					  rotation: 0.0,
-					  duration: 1.0,
-					  console:  cons)
-		mSpriteView.database.write(identifier: "g0", value: g0init.toValue())
-
-		mSpriteView.database.commit()
-
-		let b0param = KCSpriteNode(image: blueimage,
-					  scale: 0.5,
-					  alpha: 1.0,
-					  position: CGPoint(x: 190.0, y: 320.0),
-					  rotation: 0.0,
-					  duration: 1.0,
-					  console:  cons)
-		mSpriteView.database.write(identifier: "b0", value: b0param.toValue())
-
-		let g0param = KCSpriteNode(image: greenimage,
-					  scale: 0.5,
-					  alpha: 1.0,
-					  position: CGPoint(x: 170.0, y: 340.0),
-					  rotation: 0.0,
-					  duration: 1.0,
-					  console:  cons)
-		mSpriteView.database.write(identifier: "g0", value: g0param.toValue())
-
-		mSpriteView.database.commit()
-
-		/* Update the database */
-		mSpriteView.database.commit()
+	private func updateActions(contactAt point: CGPoint, status stat: KCSpriteNodeStatus, console cons: CNConsole) {
+		let energy = stat.energy
+		let opname = stat.name
+		cons.print(string: "Conflict \(opname): energy=\(energy)\n")
 	}
-	*/
-
 }
 
