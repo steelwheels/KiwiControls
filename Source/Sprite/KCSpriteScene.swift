@@ -241,7 +241,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	private func doContactEvent(contact cont: SKPhysicsContact){
-		//let pt    = cont.contactPoint
+		let pt    = cont.contactPoint
 		let nodeA = cont.bodyA.node as? KCSpriteNode
 		let nodeB = cont.bodyB.node as? KCSpriteNode
 
@@ -259,8 +259,20 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			condB = wallCondition
 		}
 
-		if let node = nodeA { node.applyDamage(by: condB)	}
-		if let node = nodeB { node.applyDamage(by: condA)	}
+		if let node = nodeA {
+			node.applyDamage(by: condB)
+			/* Call handler */
+			if let handler = contactObserverHandler {
+				handler(pt, node.status)
+			}
+		}
+		if let node = nodeB {
+			node.applyDamage(by: condA)
+			/* Call handler */
+			if let handler = contactObserverHandler {
+				handler(pt, node.status)
+			}
+		}
 	}
 
 	private func nodeToOperation(node nd: KCSpriteNode?) -> CNOperationContext? {
