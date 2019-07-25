@@ -15,9 +15,9 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	private var	mName:		String
 	private var	mTeamId:	Int
 	private var	mEnergy:	Double
-	private var	mCondition:	KCSpriteNodeCondition
+	private var	mCondition:	KCSpriteCondition
 
-	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction, condition cond: KCSpriteNodeCondition){
+	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition){
 		mMapper	     = mapper
 		mName        = istat.name
 		mTeamId      = istat.teamId
@@ -53,7 +53,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		}
 	}
 
-	public var condition: KCSpriteNodeCondition {
+	public var condition: KCSpriteCondition {
 		get { return mCondition }
 	}
 
@@ -78,7 +78,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		}
 	}
 
-	public func applyDamage(by condition: KCSpriteNodeCondition){
+	public func applyDamage(by condition: KCSpriteCondition){
 		let damage = self.mCondition.receivingCollisionDamage + condition.givingCollisionDamage
 		if mEnergy > damage {
 			mEnergy -= damage

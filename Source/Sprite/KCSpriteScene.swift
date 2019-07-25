@@ -28,7 +28,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private var mNodes:		Dictionary<String, NodeInfo>		// node-name, node-info
 	private var mConsole:		CNConsole?
 	private var mMapper:		CNGraphicsMapper
-	private var mWallCondition:	KCSpriteNodeCondition
+	private var mWallCondition:	KCSpriteCondition
 
 	public var console: 		CNConsole? { get { return mConsole }}
 
@@ -40,7 +40,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mNodes   		= [:]
 		mConsole 		= cons
 		mMapper			= CNGraphicsMapper(physicalSize: frm.size)
-		mWallCondition		= KCSpriteNodeCondition(givingCollisionDamage: 0.0, receivingCollisionDamage: 0.0)
+		mWallCondition		= KCSpriteCondition(givingCollisionDamage: 0.0, receivingCollisionDamage: 0.0, raderRange: KCSpriteCondition.NoRange)
 		contactObserverHandler	= nil
 		super.init(size: frm.size)
 
@@ -94,7 +94,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteNodeCondition, context ctxt: CNOperationContext?) -> KCSpriteNode {
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition, context ctxt: CNOperationContext?) -> KCSpriteNode {
 		if let nodeinfo = mNodes[name] {
 			return nodeinfo.node
 		} else {
@@ -137,7 +137,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	private var mPreviousTime: TimeInterval? = nil
 
-	public var wallCondition: KCSpriteNodeCondition {
+	public var wallCondition: KCSpriteCondition {
 		get { return mWallCondition }
 		set(newcond) { mWallCondition = newcond }
 	}
@@ -245,14 +245,14 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		let nodeA = cont.bodyA.node as? KCSpriteNode
 		let nodeB = cont.bodyB.node as? KCSpriteNode
 
-		let condA: KCSpriteNodeCondition
+		let condA: KCSpriteCondition
 		if let node = nodeA {
 			condA = node.condition
 		} else {
 			condA = wallCondition
 		}
 
-		let condB: KCSpriteNodeCondition
+		let condB: KCSpriteCondition
 		if let node = nodeB {
 			condB = node.condition
 		} else {

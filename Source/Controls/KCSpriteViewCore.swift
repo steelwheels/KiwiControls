@@ -51,7 +51,7 @@ open class KCSpriteViewCore: KCView
 		set(newcol){ scene.backgroundColor = newcol }
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteNodeCondition, context ctxt: CNOperationContext?) -> KCSpriteNode {
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition, context ctxt: CNOperationContext?) -> KCSpriteNode {
 		return scene.allocate(nodeName: name, image: img, initStatus: istat, initAction: iact, condition: cond, context: ctxt)
 	}
 
@@ -60,7 +60,7 @@ open class KCSpriteViewCore: KCView
 		set(newval) { scene.isPaused = newval }
 	}
 
-	public var wallCondition: KCSpriteNodeCondition {
+	public var wallCondition: KCSpriteCondition {
 		get { return scene.wallCondition }
 		set(newcond) { scene.wallCondition = newcond }
 	}
