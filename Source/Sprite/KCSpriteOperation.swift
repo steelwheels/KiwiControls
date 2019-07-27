@@ -10,7 +10,7 @@ import Foundation
 
 public class KCSpriteOperationContext
 {
-	public typealias UpdateFunction = (_ interval: TimeInterval, _ status: KCSpriteNodeStatus, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction?
+	public typealias UpdateHandler = (_ interval: TimeInterval, _ status: KCSpriteNodeStatus, _ radar: KCSpriteRadar, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction?
 
 	public static let 	NameItem	= "name"
 	public static let 	IntervalItem	= "interval"
@@ -88,12 +88,13 @@ public class KCSpriteOperationContext
 		return nil
 	}
 
-	public class func execute(context ctxt: CNOperationContext, updateFunction updfunc: KCSpriteOperationContext.UpdateFunction) -> Bool {
+	public class func execute(context ctxt: CNOperationContext, updateFunction updfunc: KCSpriteOperationContext.UpdateHandler) -> Bool {
 		var result = false
 		if let interval = KCSpriteOperationContext.getInterval(context: ctxt),
 		   let curstat  = KCSpriteOperationContext.getStatus(context: ctxt),
+		   let currad   = KCSpriteOperationContext.getRadar(context: ctxt),
 		   let curact   = KCSpriteOperationContext.getAction(context: ctxt) {
-			if let newact = updfunc(interval, curstat, curact) {
+			if let newact = updfunc(interval, curstat, currad, curact) {
 				KCSpriteOperationContext.setResult(context: ctxt, action: newact)
 				result = true
 			}
