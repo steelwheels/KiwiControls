@@ -28,6 +28,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		super.init(texture: tex, color: KCColor.white, size: psize)
 
 		/* Apply status */
+		self.name = istat.name
 		self.scale(to: psize)
 		self.position = mapper.logicalToPhysical(point: istat.position)
 		
@@ -43,6 +44,8 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	public required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+
+	public var teamId: Int { return mTeamId }
 
 	public var status: KCSpriteNodeStatus {
 		get {
@@ -84,6 +87,14 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 			mEnergy -= damage
 		} else {
 			mEnergy = 0.0
+		}
+	}
+
+	public static func isSame(nodeA na: KCSpriteNode, nodeB nb: KCSpriteNode) -> Bool {
+		if na.mTeamId == nb.mTeamId && na.mName == nb.mName {
+			return true
+		} else {
+			return false
 		}
 	}
 

@@ -15,6 +15,7 @@ public class KCSpriteOperationContext
 	public static let 	NameItem	= "name"
 	public static let 	IntervalItem	= "interval"
 	public static let 	StatusItem	= "status"
+	public static let 	RadarItem	= "radar"
 	public static let	ActionItem	= "action"
 	public static let 	ResultItem	= "result"
 
@@ -61,6 +62,17 @@ public class KCSpriteOperationContext
 	public class func getAction(context ctxt: CNOperationContext) -> KCSpriteNodeAction? {
 		if let val = ctxt.parameter(name: ActionItem) {
 			return KCSpriteNodeAction.spriteNodeAction(from: val)
+		}
+		return nil
+	}
+
+	public class func setRadar(context ctxt: CNOperationContext, radar rad: KCSpriteRadar){
+		ctxt.setParameter(name: RadarItem, value: rad.toValue())
+	}
+
+	public class func getRadar(context ctxt: CNOperationContext) -> KCSpriteRadar? {
+		if let val = ctxt.parameter(name: RadarItem) {
+			return KCSpriteRadar.spriteRadar(from: val)
 		}
 		return nil
 	}

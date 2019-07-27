@@ -168,11 +168,13 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		/* Set inputs for each node */
 		for name in mNodes.keys {
 			if let nodeinfo = mNodes[name] {
-				let node = nodeinfo.node
+				let node  = nodeinfo.node
+				let radar = generateRadarInfo(for: node)
 				if let ctxt = nodeinfo.context {
 					KCSpriteOperationContext.setName(context: ctxt, name: name)
 					KCSpriteOperationContext.setInterval(context: ctxt, interval: interval)
 					KCSpriteOperationContext.setAction(context: ctxt, action: node.action)
+					KCSpriteOperationContext.setRadar(context: ctxt, radar: radar)
 					KCSpriteOperationContext.setStatus(context: ctxt, status: node.status)
 				}
 			} else {
@@ -229,6 +231,29 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 		log(type: .Error, string: "Internal error", file: #file, line: #line, function: #function)
 	}
+
+	private func generateRadarInfo(for node: KCSpriteNode) -> KCSpriteRadar {
+		let rrange = CGFloat(node.condition.raderRange)
+		var result = KCSpriteRadar()
+		if rrange <= 0.0 {
+			return result
+		}
+		for oinfo in mNodes.values {
+			let other = oinfo.node
+			if !KCSpriteNode.isSame(nodeA: other, nodeB: node) {
+				if CNGraphics.distance(pointA: other.position, pointB: node.position) <= rrange {
+					if let oname = other.name {
+						let ninfo = KCSpriteRadar.NodeInfo(name: oname, teamId: other.teamId, position: other.position)
+						result.append(nodeInfo: ninfo)
+					} else {
+						NSLog("KCSpriteScene.generateRadarInfo: No node name")
+					}
+				}
+			}
+		}
+		return result
+	}
+
 
 	/* Begin contact */
 	public func didBegin(_ contact: SKPhysicsContact) {

@@ -111,6 +111,7 @@
 		05877181214F699C00F90BC1 /* KCSizeMinimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05877180214F699C00F90BC1 /* KCSizeMinimizer.swift */; };
 		058AE0511E12C3A800116D89 /* KCButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058AE0501E12C3A800116D89 /* KCButtonCore.swift */; };
 		058AE0531E12C3BF00116D89 /* KCButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058AE0521E12C3BF00116D89 /* KCButtonCore.xib */; };
+		058CE6AE22EA07DE00016F7D /* KCSpriteRadar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CE6AD22EA07DE00016F7D /* KCSpriteRadar.swift */; };
 		058EC03420956E1900C3F36E /* KCFontTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EC03320956E1900C3F36E /* KCFontTable.swift */; };
 		058EC0382095703800C3F36E /* KCColorPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EC0362095703800C3F36E /* KCColorPreference.swift */; };
 		058EC0392095703800C3F36E /* KCColorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EC0372095703800C3F36E /* KCColorTable.swift */; };
@@ -378,6 +379,7 @@
 		05877180214F699C00F90BC1 /* KCSizeMinimizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSizeMinimizer.swift; sourceTree = "<group>"; };
 		058AE0501E12C3A800116D89 /* KCButtonCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButtonCore.swift; sourceTree = "<group>"; };
 		058AE0521E12C3BF00116D89 /* KCButtonCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonCore.xib; sourceTree = "<group>"; };
+		058CE6AD22EA07DE00016F7D /* KCSpriteRadar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteRadar.swift; sourceTree = "<group>"; };
 		058EC03320956E1900C3F36E /* KCFontTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFontTable.swift; sourceTree = "<group>"; };
 		058EC0362095703800C3F36E /* KCColorPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorPreference.swift; sourceTree = "<group>"; };
 		058EC0372095703800C3F36E /* KCColorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorTable.swift; sourceTree = "<group>"; };
@@ -724,6 +726,7 @@
 				05A63D1722E5BD6E001840BB /* KCSpriteStatus.swift */,
 				05A63D1522E5BD66001840BB /* KCSpriteAction.swift */,
 				053B41C622C3C21300008F04 /* KCSpriteCondition.swift */,
+				058CE6AD22EA07DE00016F7D /* KCSpriteRadar.swift */,
 				0583CC1722767C8500B36E0A /* KCSpriteNode.swift */,
 				05F40E0422ABC3120059E553 /* KCSpriteOperation.swift */,
 				0583CC1522767C8500B36E0A /* KCPhysics.swift */,
@@ -1485,6 +1488,7 @@
 				050955F81E3F84F4007D3641 /* KCImageDrawerLayer.swift in Sources */,
 				05910BEE20958D9400535E2A /* KCGradientTable.swift in Sources */,
 				05795BAA20F0FD2300EB504D /* KCViewVisitor.swift in Sources */,
+				058CE6AE22EA07DE00016F7D /* KCSpriteRadar.swift in Sources */,
 				05DDE5F421C01A7600520631 /* KCLayoutConstraint.swift in Sources */,
 				05DDE5F721C01A8600520631 /* KCDistributionDecider.swift in Sources */,
 				055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */,
