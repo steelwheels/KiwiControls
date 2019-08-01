@@ -28,7 +28,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	private var mNodes:		Dictionary<String, NodeInfo>		// node-name, node-info
 	private var mConsole:		CNConsole?
 	private var mMapper:		CNGraphicsMapper
-	private var mWallCondition:	KCSpriteCondition
+	private var mDamageByWall:	Double
 
 	public var console: 		CNConsole? { get { return mConsole }}
 
@@ -40,7 +40,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		mNodes   		= [:]
 		mConsole 		= cons
 		mMapper			= CNGraphicsMapper(physicalSize: frm.size)
-		mWallCondition		= KCSpriteCondition(givingCollisionDamage: 0.0, receivingCollisionDamage: 0.0, raderRange: KCSpriteCondition.NoRange)
+		mDamageByWall		= 0.0
 		contactObserverHandler	= nil
 		super.init(size: frm.size)
 
@@ -137,9 +137,9 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	private var mPreviousTime: TimeInterval? = nil
 
-	public var wallCondition: KCSpriteCondition {
-		get { return mWallCondition }
-		set(newcond) { mWallCondition = newcond }
+	public var damageByWall: Double {
+		get { return mDamageByWall }
+		set(newval) { mDamageByWall = newval }
 	}
 
 	open override func update(_ currentTime: TimeInterval) {
@@ -274,14 +274,14 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		if let node = nodeA {
 			condA = node.condition
 		} else {
-			condA = wallCondition
+			condA = KCSpriteCondition(givingCollisionDamage: mDamageByWall, receivingCollisionDamage: 0.0, raderRange: 0.0)
 		}
 
 		let condB: KCSpriteCondition
 		if let node = nodeB {
 			condB = node.condition
 		} else {
-			condB = wallCondition
+			condB = KCSpriteCondition(givingCollisionDamage: mDamageByWall, receivingCollisionDamage: 0.0, raderRange: 0.0)
 		}
 
 		if let node = nodeA {

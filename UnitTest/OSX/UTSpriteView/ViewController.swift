@@ -69,8 +69,7 @@ class ViewController: NSViewController, CNLogging
 		mSpriteView.backgroundColorOfScene = .yellow
 
 		/* Set condition */
-		let wallcond = KCSpriteCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05, raderRange: KCSpriteCondition.NoRange)
-		mSpriteView.wallCondition = wallcond
+		mSpriteView.damageByWall = 0.05
 
 		/* Set actions */
 		mSpriteView.contactObserverHandler = {

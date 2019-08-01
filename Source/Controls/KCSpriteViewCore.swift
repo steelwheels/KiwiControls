@@ -60,9 +60,9 @@ open class KCSpriteViewCore: KCView
 		set(newval) { scene.isPaused = newval }
 	}
 
-	public var wallCondition: KCSpriteCondition {
-		get { return scene.wallCondition }
-		set(newcond) { scene.wallCondition = newcond }
+	public var damageByWall: Double {
+		get { return scene.damageByWall }
+		set(newval) { scene.damageByWall = newval }
 	}
 
 	public var contactObserverHandler: KCSpriteScene.ContactObserverHandler? {
