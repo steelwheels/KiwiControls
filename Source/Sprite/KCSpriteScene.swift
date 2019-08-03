@@ -107,7 +107,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 				KCSpriteOperationContext.setName(context: ctxt, name: name)
 				KCSpriteOperationContext.setInterval(context: ctxt, interval: 0.0)
 				KCSpriteOperationContext.setStatus(context: ctxt, status: istat)
-				KCSpriteOperationContext.setAction(context: ctxt, action: KCSpriteNodeAction())
+				KCSpriteOperationContext.setAction(context: ctxt, action: KCSpriteNodeAction(speed: 0.0, angle: 0.0))
 			}
 			CNExecuteInMainThread(doSync: false, execute: {
 				[weak self] () -> Void in
@@ -234,7 +234,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	private func generateRadarInfo(for node: KCSpriteNode) -> KCSpriteRadar {
 		let rrange = CGFloat(node.condition.raderRange)
-		var result = KCSpriteRadar()
+		let result = KCSpriteRadar()
 		if rrange <= 0.0 {
 			return result
 		}

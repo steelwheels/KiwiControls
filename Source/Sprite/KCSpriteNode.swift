@@ -68,7 +68,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 				let angle = atan2(vec.dx, vec.dy)
 				return KCSpriteNodeAction(speed: speed, angle: angle)
 			} else {
-				return KCSpriteNodeAction()
+				return KCSpriteNodeAction(speed: 0.0, angle: 0.0)
 			}
 		}
 		set(newact){

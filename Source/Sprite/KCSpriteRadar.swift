@@ -8,7 +8,7 @@
 import CoconutData
 import Foundation
 
-public struct KCSpriteRadar
+public class KCSpriteRadar
 {
 	public struct NodeInfo {
 		var name:	String
@@ -47,7 +47,7 @@ public struct KCSpriteRadar
 		mNodeInfo = []
 	}
 
-	public mutating func append(nodeInfo ninfo: NodeInfo){
+	public func append(nodeInfo ninfo: NodeInfo){
 		mNodeInfo.append(ninfo)
 	}
 
@@ -61,7 +61,7 @@ public struct KCSpriteRadar
 
 	public static func spriteRadar(from value: CNNativeValue) -> KCSpriteRadar? {
 		if let topvals = value.toArray() {
-			var newradar = KCSpriteRadar()
+			let newradar = KCSpriteRadar()
 			for topval in topvals {
 				if let ninfo = NodeInfo.nodeInfo(from: topval) {
 					newradar.append(nodeInfo: ninfo)

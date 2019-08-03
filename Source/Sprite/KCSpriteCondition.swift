@@ -8,7 +8,7 @@
 import CoconutData
 import Foundation
 
-public struct KCSpriteCondition
+public class KCSpriteCondition
 {
 	private static let GivingCollisionDamageItem		= "givingCollisionDamage"
 	private static let ReceivingCollisionDamaggeItem	= "receivingCollisionDamage"

@@ -8,35 +8,39 @@
 import CoconutData
 import Foundation
 
-public struct KCSpriteNodeAction {
-	public var	speed:		CGFloat		/* [m/sec]		*/
-	public var 	angle:		CGFloat		/* [radian]		*/
+public class KCSpriteNodeAction: CNNativeStruct
+{
+	public static let SpeedItem		= "speed"
+	public static let AngleItem		= "angle"
 
-	public init(){
-		self.init(speed: 0.0, angle: 0.0)
+	private var mSpeed:		CGFloat		/* [m/sec]		*/
+	private var mAngle:		CGFloat		/* [radian]		*/
+
+	public init(speed spd: CGFloat, angle ang: CGFloat) {
+		mSpeed   = spd
+		mAngle   = ang
+		super.init(name: "SpriteNodeAction")
+
+		/* Setup members */
+		let speedobj = NSNumber(floatLiteral: Double(spd))
+		let angleobj = NSNumber(floatLiteral: Double(ang))
+		super.setMember(name: KCSpriteNodeAction.SpeedItem, value: CNNativeValue.numberValue(speedobj))
+		super.setMember(name: KCSpriteNodeAction.AngleItem, value: CNNativeValue.numberValue(angleobj))
 	}
 
-	public init(speed spd: CGFloat, angle agl: CGFloat) {
-		speed   = spd
-		angle   = agl
-	}
-
-	public var xSpeed: CGFloat { get { return speed * sin(angle) }}
-	public var ySpeed: CGFloat { get { return speed * cos(angle) }}
-
-	public func toValue() -> CNNativeValue {
-		var top: Dictionary<String, CNNativeValue> = [:]
-		top["speed"]   = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(speed)))
-		top["angle"]   = CNNativeValue.numberValue(NSNumber(floatLiteral: Double(angle)))
-		return CNNativeValue.dictionaryValue(top)
-	}
+	public var speed:  CGFloat { get { return mSpeed		}}
+	public var angle:  CGFloat { get { return mAngle 		}}
+	public var xSpeed: CGFloat { get { return mSpeed * sin(mAngle)	}}
+	public var ySpeed: CGFloat { get { return mSpeed * cos(mAngle)	}}
 
 	public static func spriteNodeAction(from value: CNNativeValue) -> KCSpriteNodeAction? {
-		if let speed   = value.numberProperty(identifier: "speed"),
-			let angle   = value.numberProperty(identifier: "angle") {
+		if let speed   = value.numberProperty(identifier: KCSpriteNodeAction.SpeedItem),
+		   let angle   = value.numberProperty(identifier: KCSpriteNodeAction.AngleItem) {
 			return KCSpriteNodeAction(speed: CGFloat(speed.doubleValue), angle: CGFloat(angle.doubleValue))
 		} else {
 			return nil
 		}
 	}
 }
+
+
