@@ -8,12 +8,14 @@
 import CoconutData
 import Foundation
 
-public class KCSpriteRadar
+public class KCSpriteRadar: CNNativeStruct
 {
-	public struct NodeInfo {
-		var name:	String
-		var teamId:	Int
-		var position:	CGPoint
+	private static let NodePositionsItem		= "nodePositions"
+
+	public struct NodePosition {
+		public var name:	String
+		public var teamId:	Int
+		public var position:	CGPoint
 
 		public init(name nm: String, teamId tid:Int, position pos: CGPoint) {
 			name 	 = nm
@@ -29,47 +31,56 @@ public class KCSpriteRadar
 			]
 			return CNNativeValue.dictionaryValue(props)
 		}
-
-		public static func nodeInfo(from value: CNNativeValue) -> NodeInfo? {
-			if let name   = value.stringProperty(identifier: "name"),
-			   let teamid = value.numberProperty(identifier: "teamId"),
-			   let pos    = value.pointProperty(identifier:  "position") {
-				return NodeInfo(name: name, teamId: teamid.intValue, position: pos)
-			} else {
-				return nil
-			}
-		}
 	}
 
-	private var mNodeInfo:	Array<NodeInfo>
+	private var mNodePositions:	Array<NodePosition> 	// <<node-name, node-info>
 
 	public init(){
-		mNodeInfo = []
+		mNodePositions = []
+		super.init(name: "SpriteRadar")
+
+		let empty = CNNativeValue.arrayValue([])
+		super.setMember(name: KCSpriteRadar.NodePositionsItem, value: empty)
 	}
 
-	public func append(nodeInfo ninfo: NodeInfo){
-		mNodeInfo.append(ninfo)
-	}
-
-	public func toValue() -> CNNativeValue {
-		var topvalues: Array<CNNativeValue> = []
-		for ninfo in mNodeInfo {
-			topvalues.append(ninfo.toValue())
+	public func setPositions(positions newpos: Array<NodePosition>) {
+		mNodePositions = newpos
+		/* Update node info */
+		var posval: Array<CNNativeValue> = []
+		for pos in newpos {
+			posval.append(pos.toValue())
 		}
-		return CNNativeValue.arrayValue(topvalues)
+		let newval = CNNativeValue.arrayValue(posval)
+		super.setMember(name: KCSpriteRadar.NodePositionsItem, value: newval)
 	}
 
-	public static func spriteRadar(from value: CNNativeValue) -> KCSpriteRadar? {
-		if let topvals = value.toArray() {
+	public class func spriteRadar(from val: CNNativeValue) -> KCSpriteRadar? {
+		if let arr = val.arrayProperty(identifier: KCSpriteRadar.NodePositionsItem) {
 			let newradar = KCSpriteRadar()
-			for topval in topvals {
-				if let ninfo = NodeInfo.nodeInfo(from: topval) {
-					newradar.append(nodeInfo: ninfo)
+			var newpos: Array<NodePosition> = []
+			for elm in arr {
+				if let pos = KCSpriteRadar.decodeNodePosition(value: elm) {
+					newpos.append(pos)
+				} else {
+					NSLog("Failed to decode element")
 				}
 			}
+			newradar.setPositions(positions: newpos)
 			return newradar
 		}
 		return nil
 	}
+
+	private class func decodeNodePosition(value val: CNNativeValue) -> NodePosition? {
+		if let nameval = val.stringProperty(identifier: "name"),
+		   let idval   = val.numberProperty(identifier: "teamId"),
+		   let posval  = val.pointProperty(identifier: "position") {
+			return NodePosition(name: nameval, teamId: idval.intValue, position: posval)
+		} else {
+			return nil
+		}
+	}
 }
+
+
 
