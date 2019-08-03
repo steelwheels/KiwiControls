@@ -8,32 +8,28 @@
 import CoconutData
 import Foundation
 
-public class KCSpriteCondition
+public class KCSpriteCondition: CNNativeStruct
 {
 	private static let GivingCollisionDamageItem		= "givingCollisionDamage"
 	private static let ReceivingCollisionDamaggeItem	= "receivingCollisionDamage"
 	private static let RaderRangeItem			= "raderRange"
 
-	public static let NoRange: Double	= -1.0
+	public static let NoRange: Double			= -1.0
 
-	public var givingCollisionDamage:	Double
-	public var receivingCollisionDamage:	Double
-	public var raderRange:			Double
+	private var mGivingCollisionDamage:		Double
+	private var mReceivingCollisionDamage:		Double
+	private var mRaderRange:			Double
 
 	public init(givingCollisionDamage gcdamage: Double, receivingCollisionDamage rcdamage: Double, raderRange rrange: Double){
-		givingCollisionDamage		= gcdamage
-		receivingCollisionDamage	= rcdamage
-		raderRange			= rrange
+		mGivingCollisionDamage		= gcdamage
+		mReceivingCollisionDamage	= rcdamage
+		mRaderRange			= rrange
+		super.init(name: "SpriteCondition")
 	}
 
-	public func toValue() -> CNNativeValue {
-		let dict :Dictionary<String, CNNativeValue> = [
-			KCSpriteCondition.GivingCollisionDamageItem: 		CNNativeValue.numberValue(NSNumber(floatLiteral: givingCollisionDamage)),
-			KCSpriteCondition.ReceivingCollisionDamaggeItem:	CNNativeValue.numberValue(NSNumber(floatLiteral: receivingCollisionDamage)),
-			KCSpriteCondition.RaderRangeItem:			CNNativeValue.numberValue(NSNumber(floatLiteral: raderRange))
-		]
-		return CNNativeValue.dictionaryValue(dict)
-	}
+	public var givingCollisionDamage: Double	{ get { return mGivingCollisionDamage 		}}
+	public var receivingCollisionDamage: Double 	{ get { return mReceivingCollisionDamage	}}
+	public var radarRange: Double			{ get { return mRaderRange 			}}
 
 	public static func spriteCondition(from value: CNNativeValue) -> KCSpriteCondition? {
 		if let gcdamage = value.numberProperty(identifier: KCSpriteCondition.GivingCollisionDamageItem),

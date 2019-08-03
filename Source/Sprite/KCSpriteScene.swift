@@ -233,7 +233,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	private func generateRadarInfo(for node: KCSpriteNode) -> KCSpriteRadar {
-		let rrange = CGFloat(node.condition.raderRange)
+		let rrange = CGFloat(node.condition.radarRange)
 		let result = KCSpriteRadar()
 		if rrange <= 0.0 {
 			return result
