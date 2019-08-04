@@ -276,14 +276,14 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		if let node = nodeA {
 			condA = node.condition
 		} else {
-			condA = KCSpriteCondition(givingCollisionDamage: mDamageByWall, receivingCollisionDamage: 0.0, raderRange: 0.0)
+			condA = KCSpriteCondition(givingCollisionDamage: mDamageByWall, receivingCollisionDamage: 0.0, radarRange: 0.0)
 		}
 
 		let condB: KCSpriteCondition
 		if let node = nodeB {
 			condB = node.condition
 		} else {
-			condB = KCSpriteCondition(givingCollisionDamage: mDamageByWall, receivingCollisionDamage: 0.0, raderRange: 0.0)
+			condB = KCSpriteCondition(givingCollisionDamage: mDamageByWall, receivingCollisionDamage: 0.0, radarRange: 0.0)
 		}
 
 		if let node = nodeA {

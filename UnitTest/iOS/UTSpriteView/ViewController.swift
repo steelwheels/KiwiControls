@@ -84,13 +84,13 @@ class ViewController: UIViewController, CNLogging
 		let b0ctxt   = UTSpriteOpetation(console: cons)
 		let b0status = KCSpriteNodeStatus(name: "B0", teamId: 0, size: nodesize, position: CGPoint(x: lsize.width * 0.1, y: lsize.height * 0.1), bounds: nodebnds, energy: 1.0)
 		let b0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 0.60)
-		let b0cond   = KCSpriteCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05, raderRange: KCSpriteCondition.NoRange)
+		let b0cond   = KCSpriteCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05, radarRange: KCSpriteCondition.NoRange)
 		let _        = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, condition: b0cond, context: b0ctxt)
 
 		let g0ctxt   = UTSpriteOpetation(console: cons)
 		let g0status = KCSpriteNodeStatus(name: "G0", teamId: 1, size: nodesize, position: CGPoint(x: lsize.width * 0.1, y: lsize.height * 0.9), bounds: nodebnds, energy: 1.0)
 		let g0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 0.40)
-		let g0cond   = KCSpriteCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05, raderRange: KCSpriteCondition.NoRange)
+		let g0cond   = KCSpriteCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05, radarRange: KCSpriteCondition.NoRange)
 		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, condition: g0cond, context: g0ctxt)
 
 		/* Start action */

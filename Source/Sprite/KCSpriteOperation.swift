@@ -66,17 +66,6 @@ public class KCSpriteOperationContext
 		return nil
 	}
 
-	public class func setRadar(context ctxt: CNOperationContext, radar rad: KCSpriteRadar){
-		ctxt.setParameter(name: RadarItem, value: rad.toValue())
-	}
-
-	public class func getRadar(context ctxt: CNOperationContext) -> KCSpriteRadar? {
-		if let val = ctxt.parameter(name: RadarItem) {
-			return KCSpriteRadar.spriteRadar(from: val)
-		}
-		return nil
-	}
-
 	public class func setResult(context ctxt: CNOperationContext, action act: KCSpriteNodeAction){
 		ctxt.setParameter(name: ResultItem, value: act.toValue())
 	}
@@ -84,6 +73,17 @@ public class KCSpriteOperationContext
 	public class func getResult(context ctxt: CNOperationContext) -> KCSpriteNodeAction? {
 		if let val = ctxt.parameter(name: ResultItem) {
 			return KCSpriteNodeAction.spriteNodeAction(from: val)
+		}
+		return nil
+	}
+
+	public class func setRadar(context ctxt: CNOperationContext, radar rad: KCSpriteRadar){
+		ctxt.setParameter(name: RadarItem, value: rad.toValue())
+	}
+
+	public class func getRadar(context ctxt: CNOperationContext) -> KCSpriteRadar? {
+		if let val = ctxt.parameter(name: RadarItem) {
+			return KCSpriteRadar.spriteRadar(from: val)
 		}
 		return nil
 	}
