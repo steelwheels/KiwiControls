@@ -238,13 +238,15 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		if rrange <= 0.0 {
 			return result
 		}
+		let lpos = node.logicalPosition
 		var positions: Array<KCSpriteRadar.NodePosition> = []
 		for oinfo in mNodes.values {
 			let other = oinfo.node
+			let opos  = other.logicalPosition
 			if !KCSpriteNode.isSame(nodeA: other, nodeB: node) {
-				if CNGraphics.distance(pointA: other.position, pointB: node.position) <= rrange {
+				if CNGraphics.distance(pointA: opos, pointB: lpos) <= rrange {
 					if let oname = other.name {
-						let pos = KCSpriteRadar.NodePosition(name: oname, teamId: other.teamId, position: other.position)
+						let pos = KCSpriteRadar.NodePosition(name: oname, teamId: other.teamId, position: opos)
 						positions.append(pos)
 					} else {
 						NSLog("KCSpriteScene.generateRadarInfo: No node name")

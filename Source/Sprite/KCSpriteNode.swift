@@ -47,6 +47,9 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 
 	public var teamId: Int { return mTeamId }
 
+	public var physicalPosition: CGPoint { get { return self.position }}
+	public var logicalPosition:  CGPoint { get { return mMapper.physicalToLogical(point: self.position) }}
+
 	public var status: KCSpriteNodeStatus {
 		get {
 			let lsize  = mMapper.physicalToLogical(size:  self.size)
