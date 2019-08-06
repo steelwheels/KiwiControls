@@ -10,7 +10,7 @@ import Foundation
 
 public class KCSpriteOperationContext
 {
-	public typealias UpdateHandler = (_ interval: TimeInterval, _ status: KCSpriteNodeStatus, _ radar: KCSpriteRadar, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction?
+	public typealias UpdateHandler = (_ interval: TimeInterval, _ status: KCSpriteStatus, _ radar: KCSpriteRadar, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction?
 
 	public static let 	NameItem	= "name"
 	public static let 	IntervalItem	= "interval"
@@ -44,13 +44,13 @@ public class KCSpriteOperationContext
 		return nil
 	}
 
-	public class func setStatus(context ctxt: CNOperationContext, status stat: KCSpriteNodeStatus){
+	public class func setStatus(context ctxt: CNOperationContext, status stat: KCSpriteStatus){
 		ctxt.setParameter(name: StatusItem, value: stat.toValue())
 	}
 
-	public class func getStatus(context ctxt: CNOperationContext) -> KCSpriteNodeStatus? {
+	public class func getStatus(context ctxt: CNOperationContext) -> KCSpriteStatus? {
 		if let val = ctxt.parameter(name: StatusItem) {
-			return KCSpriteNodeStatus.spriteNodeStatus(from: val)
+			return KCSpriteStatus.spriteStatus(from: val)
 		}
 		return nil
 	}

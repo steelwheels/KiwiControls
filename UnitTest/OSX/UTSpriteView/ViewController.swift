@@ -14,7 +14,7 @@ import Cocoa
 class UTSpriteOpetation: CNOperationContext {
 	open override func main() {
 		let res = KCSpriteOperationContext.execute(context: self, updateFunction: {
-			(_ interval: TimeInterval, _ status: KCSpriteNodeStatus, _ radar: KCSpriteRadar, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
+			(_ interval: TimeInterval, _ status: KCSpriteStatus, _ radar: KCSpriteRadar, _ action: KCSpriteNodeAction) -> KCSpriteNodeAction? in
 			let newact = KCSpriteNodeAction(speed: action.speed, angle: action.angle)
 			return newact
 		})
@@ -73,7 +73,7 @@ class ViewController: NSViewController, CNLogging
 
 		/* Set actions */
 		mSpriteView.contactObserverHandler = {
-			[weak self] (_ point: CGPoint, _ status: KCSpriteNodeStatus) -> Void in
+			[weak self] (_ point: CGPoint, _ status: KCSpriteStatus) -> Void in
 			if let myself = self {
 				myself.updateActions(contactAt: point, status: status, console: myself.mConsole!)
 			}
@@ -88,14 +88,14 @@ class ViewController: NSViewController, CNLogging
 		let nodebnds = CGRect(origin: CGPoint.zero, size: mSpriteView.logicalSize)
 
 		let b0ctxt   = UTSpriteOpetation(console: cons)
-		let b0status = KCSpriteNodeStatus(name: "B0", teamId: 0, size: nodesize, position: CGPoint(x: lsize.width * 0.1, y: lsize.height * 0.1), bounds: nodebnds, energy: 1.0)
+		let b0status = KCSpriteStatus(name: "B0", teamId: 0, size: nodesize, position: CGPoint(x: lsize.width * 0.1, y: lsize.height * 0.1), bounds: nodebnds, energy: 1.0, missileNum: 1)
 		let b0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 0.60)
 		let b0cond   = KCSpriteCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05, radarRange: KCSpriteCondition.NoRange)
 		let _        = mSpriteView.allocate(nodeName: "B0", image: blueimage, initStatus: b0status, initAction: b0action, condition: b0cond, context: b0ctxt)
 
 
 		let g0ctxt   = UTSpriteOpetation(console: cons)
-		let g0status = KCSpriteNodeStatus(name: "G0", teamId: 1, size: nodesize, position: CGPoint(x: lsize.width * 0.9, y: lsize.height * 0.9), bounds: nodebnds, energy: 1.0)
+		let g0status = KCSpriteStatus(name: "G0", teamId: 1, size: nodesize, position: CGPoint(x: lsize.width * 0.9, y: lsize.height * 0.9), bounds: nodebnds, energy: 1.0, missileNum: 1)
 		let g0action = KCSpriteNodeAction(speed: 20.0, angle: CGFloat.pi * 1.40)
 		let g0cond   = KCSpriteCondition(givingCollisionDamage: 0.05, receivingCollisionDamage: 0.05, radarRange: KCSpriteCondition.NoRange)
 		let _        = mSpriteView.allocate(nodeName: "G0", image: greenimage, initStatus: g0status, initAction: g0action, condition: g0cond, context: g0ctxt)
@@ -115,7 +115,7 @@ class ViewController: NSViewController, CNLogging
 		}
 	}
 
-	private func updateActions(contactAt point: CGPoint, status stat: KCSpriteNodeStatus, console cons: CNConsole) {
+	private func updateActions(contactAt point: CGPoint, status stat: KCSpriteStatus, console cons: CNConsole) {
 		let energy = stat.energy
 		let opname = stat.name
 		cons.print(string: "Conflict \(opname): energy=\(energy)\n")

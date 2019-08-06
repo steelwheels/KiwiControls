@@ -15,13 +15,15 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	private var	mName:		String
 	private var	mTeamId:	Int
 	private var	mEnergy:	Double
+	private var 	mMissileNum:	Int
 	private var	mCondition:	KCSpriteCondition
 
-	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initialAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition){
+	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteStatus, initialAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition){
 		mMapper	     = mapper
 		mName        = istat.name
 		mTeamId      = istat.teamId
 		mEnergy	     = istat.energy
+		mMissileNum  = istat.missileNum
 		mCondition   = cond
 		let tex      = SKTexture(image: img)
 		let psize    = mapper.logicalToPhysical(size: istat.size)
@@ -50,12 +52,12 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	public var physicalPosition: CGPoint { get { return self.position }}
 	public var logicalPosition:  CGPoint { get { return mMapper.physicalToLogical(point: self.position) }}
 
-	public var status: KCSpriteNodeStatus {
+	public var status: KCSpriteStatus {
 		get {
 			let lsize  = mMapper.physicalToLogical(size:  self.size)
 			let lpos   = mMapper.physicalToLogical(point: self.position)
 			let bounds = CGRect(origin: CGPoint.zero, size: mMapper.logicalSize)
-			return KCSpriteNodeStatus(name: mName, teamId: mTeamId, size: lsize, position: lpos, bounds: bounds, energy: mEnergy)
+			return KCSpriteStatus(name: mName, teamId: mTeamId, size: lsize, position: lpos, bounds: bounds, energy: mEnergy, missileNum: mMissileNum)
 		}
 	}
 

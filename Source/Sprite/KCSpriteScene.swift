@@ -11,8 +11,8 @@ import Foundation
 
 public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 {
-	public typealias ContactObserverHandler     	= (_ point: KCPoint, _ status: KCSpriteNodeStatus) -> Void
-	public typealias ContinuationCheckerHandler	= (_ status: Array<KCSpriteNodeStatus>) -> Bool
+	public typealias ContactObserverHandler     	= (_ point: KCPoint, _ status: KCSpriteStatus) -> Void
+	public typealias ContinuationCheckerHandler	= (_ status: Array<KCSpriteStatus>) -> Bool
 
 	private struct NodeInfo {
 		public var 	node:		KCSpriteNode
@@ -94,7 +94,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 		}
 	}
 
-	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteNodeStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition, context ctxt: CNOperationContext?) -> KCSpriteNode {
+	public func allocate(nodeName name: String, image img: CNImage, initStatus istat: KCSpriteStatus, initAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition, context ctxt: CNOperationContext?) -> KCSpriteNode {
 		if let nodeinfo = mNodes[name] {
 			return nodeinfo.node
 		} else {
@@ -155,7 +155,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 		/* Decide continue or not */
 		if let checker = continuationCheckerHandler {
-			var status: Array<KCSpriteNodeStatus> = []
+			var status: Array<KCSpriteStatus> = []
 			for nodeinfo in mNodes.values {
 				status.append(nodeinfo.node.status)
 			}
