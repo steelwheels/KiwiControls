@@ -18,7 +18,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 	private var 	mMissileNum:	Int
 	private var	mCondition:	KCSpriteCondition
 
-	public init(graphiceMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteStatus, initialAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition){
+	public init(graphicsMapper mapper: CNGraphicsMapper, image img: CNImage, initStatus istat: KCSpriteStatus, initialAction iact: KCSpriteNodeAction, condition cond: KCSpriteCondition){
 		mMapper	     = mapper
 		mName        = istat.name
 		mTeamId      = istat.teamId

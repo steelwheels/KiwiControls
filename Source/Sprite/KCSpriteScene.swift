@@ -99,7 +99,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			return nodeinfo.node
 		} else {
 			/* Setup node */
-			let newnode  = KCSpriteNode(graphiceMapper: mMapper, image: img, initStatus: istat, initialAction: iact, condition: cond)
+			let newnode  = KCSpriteNode(graphicsMapper: mMapper, image: img, initStatus: istat, initialAction: iact, condition: cond)
 			newnode.name    = name
 			mNodes[name]    = NodeInfo(node: newnode, context: ctxt)
 			/* Setup context */
