@@ -89,22 +89,26 @@ open class KCConsoleViewCore : KCView
 		}
 	}
 
+	public var columnNumbers: Int {
+		get { return Int(self.bounds.width / fontSize().width) }
+	}
+
+	public var lineNumbers: Int {
+		get { return Int(self.bounds.height / fontSize().height) }
+	}
+
 	public func fontSize() -> KCSize {
 		let size: KCSize
 		#if os(OSX)
 			if let font = mTextView.font {
 				size = font.boundingRectForFont.size
-				log(type: .Flow, string: "fontSize: \(size.description)", file: #file, line: #line, function: #function)
 			} else {
-				log(type: .Error, string: "No Font", file: #file, line: #line, function: #function)
 				size = KCSize(width: 10.0, height: 10.0)
 			}
 		#else
 			if let font = mTextView.font {
 				size = KCSize(width: font.lineHeight, height: font.pointSize)
-				log(type: .Flow, string: "fontSize: \(size.description)", file: #file, line: #line, function: #function)
 			} else {
-				log(type: .Error, string: "No Font", file: #file, line: #line, function: #function)
 				size = KCSize(width: 10.0, height: 10.0)
 			}
 		#endif
@@ -154,57 +158,23 @@ open class KCConsoleViewCore : KCView
 			if let myself = self {
 				#if os(OSX)
 				  if let storage = myself.mTextView.textStorage {
-					myself.appendText(destinationStorage: storage, string: str)
+					myself.mTextView.append(destinationStorage: storage, string: str)
 				  }
 				#else
 				  let storage = myself.mTextView.textStorage
-				  myself.appendText(destinationStorage: storage, string: str)
+				  myself.mTextView.append(destinationStorage: storage, string: str)
 				#endif
 				myself.scrollToBottom()
 			}
 		})
 	}
 
-	private func appendText(destinationStorage storage: NSTextStorage, string str: NSAttributedString){
-		storage.beginEditing()
-		storage.append(str)
-		storage.endEditing()
-	}
-
 	public func clear(){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(OSX)
-				if let storage = myself.mTextView.textStorage {
-					myself.clear(storage: storage)
-				}
-				#else
-				myself.clear(storage: myself.mTextView.textStorage)
-				#endif
-
-			}
-		})
-	}
-
-	private func clear(storage strg: NSTextStorage){
-		/* clear context */
-		strg.beginEditing()
-		strg.setAttributedString(NSAttributedString(string: ""))
-		strg.endEditing()
+		mTextView.clear()
 	}
 	
 	private func scrollToBottom(){
-		#if os(OSX)
-			mTextView.scrollToEndOfDocument(self)
-		#else
-			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
-			mTextView.isScrollEnabled = true
-
-			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
-			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
-			mTextView.setContentOffset(scrollPoint, animated: true)
-		#endif
+		mTextView.scrollToBottom()
 	}
 
 	public var color: KCTextColor {

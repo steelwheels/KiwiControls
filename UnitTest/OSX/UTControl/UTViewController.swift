@@ -62,10 +62,8 @@ class UTViewController: NSViewController
 			context.fill(bounds)
 		}
 
-		let str0 = NSAttributedString(string: "Hello, world!!\n")
-		mConsoleView.appendText(string: str0)
-		let str1 = NSAttributedString(string: "Good, evening!!\n")
-		mConsoleView.appendText(string: str1)
+		mConsoleView.appendText(normal: "Hello, world!!\n")
+		mConsoleView.appendText(normal: "Good, evening!!\n")
 
 		mState = state
 	}
