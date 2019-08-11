@@ -60,6 +60,10 @@ public class KCViewVisitor: CNLogging
 		visit(coreView: view)
 	}
 
+	open func visit(terminalView view: KCTerminalView){
+		visit(coreView: view)
+	}
+
 	open func visit(imageView view: KCImageView){
 		visit(coreView: view)
 	}

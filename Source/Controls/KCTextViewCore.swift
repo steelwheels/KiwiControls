@@ -14,12 +14,18 @@ import CoconutData
 
 open class KCTextViewCore : KCView
 {
+	public enum TextViewType {
+		case	console
+		case	terminal
+	}
+
 	#if os(OSX)
 		@IBOutlet var mTextView: NSTextView!
 	#else
 		@IBOutlet weak var mTextView: UITextView!
 	#endif
 
+	private var mViewType:			TextViewType = .console
 	private var mMinimumColumnNumbers:	Int = 10
 	private var mMinimumLineNumbers:	Int = 1
 
@@ -31,13 +37,32 @@ open class KCTextViewCore : KCView
 	private var mNormalAttributes: [NSAttributedString.Key: Any] = [:]
 	private var mErrorAttributes: [NSAttributedString.Key: Any] = [:]
 
-	public func setup(frame frm: CGRect) {
+	public func setup(type typ: TextViewType, delegate dlg: NSTextStorageDelegate?, frame frm: CGRect) {
 		updateAttributes()
 		if let font = defaultFont {
 			mTextView.font = font
 		}
-		mTextView.backgroundColor = KCColor.black
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
+		mTextView.translatesAutoresizingMaskIntoConstraints = false
+		mTextView.autoresizesSubviews = true
+		mTextView.backgroundColor = KCColor.black
+		#if os(OSX)
+			mTextView.textStorage?.delegate = dlg
+		#else
+			mTextView.textStorage.delegate = dlg
+		#endif
+		mViewType = typ
+		switch typ {
+		case .console:
+			mTextView.isEditable			= false
+			mTextView.isSelectable			= false
+		case .terminal:
+			mTextView.isEditable			= true
+			mTextView.isSelectable			= true
+			#if os(OSX)
+				mTextView.insertionPointColor	= KCColor.green
+			#endif
+		}
 	}
 
 	public func updateAttributes(){
@@ -181,6 +206,30 @@ open class KCTextViewCore : KCView
 			storage.beginEditing()
 			storage.insert(str, at: pos)
 			storage.endEditing()
+		})
+	}
+
+	public func setNormalAttributes(in range: NSRange) {
+		setAttributes(attributes: mNormalAttributes, in: range)
+	}
+
+	public func setErrorAttributes(in range: NSRange){
+		setAttributes(attributes: mErrorAttributes, in: range)
+	}
+
+	private func setAttributes(attributes attrs: [NSAttributedString.Key: Any], in range: NSRange) {
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+					if let storage = myself.mTextView.textStorage {
+						storage.setAttributes(attrs, range: range)
+					}
+				#else
+					let storage = myself.mTextView.textStorage
+					storage.setAttributes(attrs, range: range)
+				#endif
+			}
 		})
 	}
 

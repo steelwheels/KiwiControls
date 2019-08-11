@@ -18,9 +18,11 @@
 	public typealias KCColor		= UIColor
 	public typealias KCFont			= UIFont
 	public typealias KCResponder		= UIResponder
+	public typealias KCTextViewDelegate	= UITextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLineBreakMode	= NSLineBreakMode
+
 #else
 	public typealias KCPoint		= NSPoint
 	public typealias KCSize			= NSSize
@@ -28,6 +30,7 @@
 	public typealias KCColor		= NSColor
 	public typealias KCFont			= NSFont
 	public typealias KCResponder		= NSResponder
+	public typealias KCTextViewDelegate	= NSTextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLineBreakMode	= NSLineBreakMode

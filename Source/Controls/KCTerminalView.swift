@@ -1,6 +1,6 @@
 /**
- * @file	KCConsoleView.swift
- * @brief Define KCConsoleView class
+ * @file	KCTerminalView.swift
+ * @brief Define KCTerminalView class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
@@ -12,11 +12,11 @@
 #endif
 import CoconutData
 
-public class KCConsole: CNConsole
+public class KCTerminal: CNConsole
 {
-	private var mOwnerView:	KCConsoleView
+	private var mOwnerView:	KCTerminalView
 
-	public init(ownerView owner: KCConsoleView){
+	public init(ownerView owner: KCTerminalView){
 		mOwnerView = owner
 	}
 
@@ -28,20 +28,14 @@ public class KCConsole: CNConsole
 		mOwnerView.appendText(error: str)
 	}
 
-	private func attributedString(string str: String, foregroundColor fgcolor: KCColor) -> NSAttributedString {
-		let bgcolor = mOwnerView.color.backgroundColor
-		let attrs: [KCStringAttribute] = [.foregroundColor(fgcolor), .backgroundColor(bgcolor)]
-		return NSAttributedString(string: str, stringAttributes: attrs)
-	}
-
 	public func scan() -> String? {
 		return nil
 	}
 }
 
-open class KCConsoleView : KCCoreView
+open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 {
-	private var mConsoleConnection: KCConsole? = nil
+	private var mConsoleConnection: KCTerminal? = nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -71,10 +65,11 @@ open class KCConsoleView : KCCoreView
 	}
 
 	private func setupContext(){
-		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
-			mConsoleConnection = KCConsole(ownerView: self)
+		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
+			mConsoleConnection = KCTerminal(ownerView: self)
 			setCoreView(view: newview)
-			newview.setup(type: .console, delegate: nil, frame: self.frame)
+			let storage = KCTextStorage(coreView: coreView)
+			newview.setup(type: .terminal, delegate: storage, frame: self.frame)
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTextViewCore")
@@ -125,10 +120,12 @@ open class KCConsoleView : KCCoreView
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
-		vis.visit(consoleView: self)
+		vis.visit(terminalView: self)
 	}
 
 	private var coreView: KCTextViewCore {
 		get { return getCoreView() }
 	}
 }
+
+
