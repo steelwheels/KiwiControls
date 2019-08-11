@@ -34,25 +34,29 @@ public class KCTextStorage: NSObject, NSTextStorageDelegate
 	/* Delegate for Text storage */
 	#if os(OSX)
 	public func textStorage(_ storage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range erange: NSRange, changeInLength delta: Int) {
-		if editedMask.rawValue & 0x1 != 0 {
+		if delta > 0 {
 			/* Added */
 			let substr = storage.attributedSubstring(from: erange)
-			NSLog("added: \(substr.string) \(erange)")
+			NSLog("added: \(substr.string) \(erange) \(delta)")
 			coreView.setNormalAttributes(in: erange)
-		} else {
+		} else if delta < 0 {
 			/* Removed */
-			NSLog("removed: \(erange)")
+			NSLog("removed: \(erange) \(delta)")
+		} else {
+			NSLog("Not changed")
 		}
 	}
 	#else
 	public func textStorage(_ storage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range erange: NSRange, changeInLength delta: Int) {
-		if editedMask.rawValue & 0x1 != 0 {
+		if delta > 0 {
 			/* Added */
 			let substr = storage.attributedSubstring(from: erange)
 			NSLog("added: \(substr.string) \(erange) \(delta)")
-		} else {
+		} else if delta < 0 {
 			/* Removed */
 			NSLog("removed: \(erange) \(delta)")
+		} else {
+			NSLog("Not changed")
 		}
 	}
 	#endif

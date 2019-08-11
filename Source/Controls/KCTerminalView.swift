@@ -36,6 +36,7 @@ public class KCTerminal: CNConsole
 open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 {
 	private var mConsoleConnection: KCTerminal? = nil
+	private var mTextStorage: KCTextStorage?    = nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -69,6 +70,7 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 			mConsoleConnection = KCTerminal(ownerView: self)
 			setCoreView(view: newview)
 			let storage = KCTextStorage(coreView: coreView)
+			mTextStorage = storage
 			newview.setup(type: .terminal, delegate: storage, frame: self.frame)
 			allocateSubviewLayout(subView: newview)
 		} else {

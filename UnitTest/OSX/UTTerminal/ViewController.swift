@@ -18,6 +18,7 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
+		NSLog("Launch terminal")
 		mTerminalView.appendText(normal: "Hello, world !!")
 	}
 
