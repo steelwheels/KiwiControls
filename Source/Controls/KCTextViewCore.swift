@@ -158,23 +158,66 @@ open class KCTextViewCore : KCView
 			if let myself = self {
 				#if os(OSX)
 				  if let storage = myself.mTextView.textStorage {
-					myself.mTextView.append(destinationStorage: storage, string: str)
+					myself.syncAppend(destinationStorage: storage, string: str)
 				  }
 				#else
 				  let storage = myself.mTextView.textStorage
-				  myself.mTextView.append(destinationStorage: storage, string: str)
+				  myself.syncAppend(destinationStorage: storage, string: str)
 				#endif
 				myself.scrollToBottom()
 			}
 		})
 	}
 
-	public func clear(){
-		mTextView.clear()
+	private func syncAppend(destinationStorage storage: NSTextStorage, string str: NSAttributedString){
+		storage.beginEditing()
+		storage.append(str)
+		storage.endEditing()
 	}
-	
+
+	private func insert(destinationStorage storage: NSTextStorage, string str: NSAttributedString, at pos: Int) {
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			storage.beginEditing()
+			storage.insert(str, at: pos)
+			storage.endEditing()
+		})
+	}
+
+	public func clear(){
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self] () -> Void in
+			if let myself = self {
+				#if os(OSX)
+					if let storage = myself.mTextView.textStorage {
+						myself.clear(storage: storage)
+					}
+				#else
+					myself.clear(storage: myself.mTextView.textStorage)
+				#endif
+
+			}
+		})
+	}
+
+	private func clear(storage strg: NSTextStorage){
+		/* clear context */
+		strg.beginEditing()
+		strg.setAttributedString(NSAttributedString(string: ""))
+		strg.endEditing()
+	}
+
 	private func scrollToBottom(){
-		mTextView.scrollToBottom()
+		#if os(OSX)
+			mTextView.scrollToEndOfDocument(self)
+		#else
+			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
+			mTextView.isScrollEnabled = true
+
+			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
+			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
+			mTextView.setContentOffset(scrollPoint, animated: true)
+		#endif
 	}
 
 	public var color: KCTextColor {

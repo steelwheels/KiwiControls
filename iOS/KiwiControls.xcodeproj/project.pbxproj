@@ -123,7 +123,6 @@
 		05910BF420958D9D00535E2A /* KCStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05910BF120958D9D00535E2A /* KCStroke.swift */; };
 		05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05910BF220958D9D00535E2A /* KCTriangle.swift */; };
 		05910BF620958D9D00535E2A /* KCVertices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05910BF320958D9D00535E2A /* KCVertices.swift */; };
-		059140D422FD73F9007A8780 /* KCTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059140D322FD73F9007A8780 /* KCTextView.swift */; };
 		059570451F7659D6007898FB /* KCType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059570441F7659D6007898FB /* KCType.swift */; };
 		0596308B20D7C8ED003D5657 /* KCTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596308A20D7C8ED003D5657 /* KCTextEdit.swift */; };
 		0597E8691FEFCB5C000D8442 /* KCPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597E8681FEFCB5C000D8442 /* KCPreference.swift */; };
@@ -392,7 +391,6 @@
 		05910BF120958D9D00535E2A /* KCStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStroke.swift; sourceTree = "<group>"; };
 		05910BF220958D9D00535E2A /* KCTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTriangle.swift; sourceTree = "<group>"; };
 		05910BF320958D9D00535E2A /* KCVertices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCVertices.swift; sourceTree = "<group>"; };
-		059140D322FD73F9007A8780 /* KCTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextView.swift; sourceTree = "<group>"; };
 		059570441F7659D6007898FB /* KCType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCType.swift; sourceTree = "<group>"; };
 		0596308A20D7C8ED003D5657 /* KCTextEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextEdit.swift; sourceTree = "<group>"; };
 		0597E8681FEFCB5C000D8442 /* KCPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreference.swift; sourceTree = "<group>"; };
@@ -586,7 +584,6 @@
 				05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */,
 				057853731F46732C00BBB2BA /* KCConsoleView.swift */,
 				057853741F46732C00BBB2BA /* KCTextViewCore.swift */,
-				059140D322FD73F9007A8780 /* KCTextView.swift */,
 				05686CB22124656D000CEA6C /* KCImageView.swift */,
 				05686CB021245D7C000CEA6C /* KCImageViewCore.swift */,
 				057B891E21D287FA00309B2A /* KCSpriteView.swift */,
@@ -1478,7 +1475,6 @@
 				05353FFB1E0D5A340031812D /* KCButton.swift in Sources */,
 				05910BEF20958D9400535E2A /* KCImage.swift in Sources */,
 				0506F2EB1DFB12690028D1E2 /* KCGraphicsView.swift in Sources */,
-				059140D422FD73F9007A8780 /* KCTextView.swift in Sources */,
 				0571B63020956D3200603B95 /* KCRect.swift in Sources */,
 				05A63D1622E5BD67001840BB /* KCSpriteAction.swift in Sources */,
 				05F7A11820A7C90B00A395AB /* KCApplicationDelegate.swift in Sources */,
