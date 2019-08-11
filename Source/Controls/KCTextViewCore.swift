@@ -1,8 +1,8 @@
 /**
- * @file	KCConsoleViewCore.swift
- * @brief Define KCConsoleViewCore class
+ * @file	KCTextViewCore.swift
+ * @brief Define KCTextViewCore class
  * @par Copyright
- *   Copyright (C) 2017 Steel Wheels Project
+ *   Copyright (C) 2017, 2018, 2019 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCConsoleViewCore : KCView
+open class KCTextViewCore : KCView
 {
 	#if os(OSX)
 		@IBOutlet var mTextView: NSTextView!

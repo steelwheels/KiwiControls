@@ -71,13 +71,13 @@ open class KCConsoleView : KCCoreView
 	}
 
 	private func setupContext(){
-		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCConsoleViewCore") as? KCConsoleViewCore {
+		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
 			mConsoleConnection = KCConsole(ownerView: self)
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
 		} else {
-			fatalError("Can not load KCConsoleViewCore")
+			fatalError("Can not load KCTextViewCore")
 		}
 	}
 
@@ -89,6 +89,14 @@ open class KCConsoleView : KCCoreView
 	public var minimumLineNumbers: Int {
 		get { return coreView.minimumLineNumbers }
 		set(newnum){ coreView.minimumLineNumbers = newnum }
+	}
+
+	public var columnNumbers: Int {
+		get { return coreView.columnNumbers }
+	}
+
+	public var lineNumbers: Int {
+		get { return coreView.lineNumbers }
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
@@ -120,7 +128,7 @@ open class KCConsoleView : KCCoreView
 		vis.visit(consoleView: self)
 	}
 
-	private var coreView: KCConsoleViewCore {
+	private var coreView: KCTextViewCore {
 		get { return getCoreView() }
 	}
 }
