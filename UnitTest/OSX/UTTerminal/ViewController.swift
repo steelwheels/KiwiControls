@@ -10,7 +10,7 @@ import KiwiControls
 import CoconutData
 import Cocoa
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, NSWindowDelegate {
 
 	@IBOutlet weak var mTerminalView: KCTerminalView!
 
@@ -19,7 +19,15 @@ class ViewController: NSViewController {
 
 		// Do any additional setup after loading the view.
 		NSLog("Launch terminal")
-		mTerminalView.appendText(normal: "Hello, world !!")
+		//mTerminalView.appendText(normal: "Hello, world !!")
+	}
+
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		/* Set delegate */
+		if let win = view.window {
+			win.delegate = self
+		}
 	}
 
 	override var representedObject: Any? {
@@ -28,6 +36,12 @@ class ViewController: NSViewController {
 		}
 	}
 
-
+	public func windowDidResize(_ notification: Notification) {
+		if let win = view.window {
+			let newsize = win.frame.size
+			NSLog("Resize: \(newsize.description)")
+			mTerminalView.resize(newsize)
+		}
+	}
 }
 

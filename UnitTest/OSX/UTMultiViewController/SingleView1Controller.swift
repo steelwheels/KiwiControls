@@ -29,10 +29,6 @@ public class SingleView1Controller: KCSingleViewController
 		if let root = super.rootView {
 			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: box0)
-
-			let winsize  = KCLayouter.windowSize(viewController: self, console: logConsole)
-			let layouter = KCLayouter(viewController: self, console: logConsole, doVerbose: true)
-			layouter.layout(rootView: root, windowSize: winsize)
 		} else {
 			fatalError("No root view")
 		}
@@ -76,8 +72,8 @@ public class SingleView1Controller: KCSingleViewController
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
 			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
-			let dumper = KCViewDumper(console: logConsole)
-			dumper.dump(type: .Flow, view: view)
+			let dumper = KCViewDumper(console: console!)
+			dumper.dump(view: view)
 		} else {
 			fatalError("No root view")
 		}
