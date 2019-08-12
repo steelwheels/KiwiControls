@@ -43,12 +43,17 @@ open class KCTextViewCore : KCView
 			mTextView.font = font
 		}
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
-		mTextView.translatesAutoresizingMaskIntoConstraints = false
-		mTextView.autoresizesSubviews = true
+		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
+		mTextView.autoresizesSubviews     = true
 		mTextView.backgroundColor = KCColor.black
 		#if os(OSX)
-			mTextView.textStorage?.delegate = dlg
+			mTextView.isVerticallyResizable   = true
+			mTextView.isHorizontallyResizable = false
+			if let storage = mTextView.textStorage {
+				storage.delegate = dlg
+			}
 		#else
+			mTextView.isScrollEnabled = true
 			mTextView.textStorage.delegate = dlg
 		#endif
 		mViewType = typ
@@ -261,8 +266,6 @@ open class KCTextViewCore : KCView
 			mTextView.scrollToEndOfDocument(self)
 		#else
 			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
-			mTextView.isScrollEnabled = true
-
 			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
 			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
 			mTextView.setContentOffset(scrollPoint, animated: true)

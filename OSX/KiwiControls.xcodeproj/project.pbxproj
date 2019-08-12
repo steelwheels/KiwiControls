@@ -715,7 +715,7 @@
 			path = OSX;
 			sourceTree = "<group>";
 		};
-		05331C5C226F4387000D2918 /*  Sprite */ = {
+		05331C5C226F4387000D2918 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
 				0502A22D2272032D00D8E36A /* KCSpriteScene.swift */,
@@ -727,7 +727,6 @@
 				0509B0F622A954D5001AD62B /* KCSpriteOperation.swift */,
 				051C3AEA2275370800E172B3 /* KCPhysics.swift */,
 			);
-			name = " Sprite";
 			path = Sprite;
 			sourceTree = "<group>";
 		};
@@ -755,7 +754,7 @@
 				0532F2B01F77B14D0024A1EA /* Window */,
 				05ACEF571E0C2BC9009F10A7 /* Controls */,
 				05EB22D423000E58005D50AE /* Text */,
-				05331C5C226F4387000D2918 /*  Sprite */,
+				05331C5C226F4387000D2918 /* Sprite */,
 				055674C91DFB960100794510 /* GraphicsView */,
 				05213AF520956AAD00683720 /* Graphics */,
 				05386D571D8585AC004B8DDF /* LayerView */,

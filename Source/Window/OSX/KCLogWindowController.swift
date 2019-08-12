@@ -76,18 +76,23 @@ public class KCLogWindowController: NSWindowController
 			let closebtn = KCButton()
 			closebtn.title = "Close"
 			/* Buttons box */
-			let btnbox  = KCStackView(frame: newwin.frame)
+			let btnwidth  = clearbtn.frame.size.width + closebtn.frame.size.width
+			let btnheight = max(clearbtn.frame.size.height, closebtn.frame.size.height)
+			let btnframe  = KCRect(origin: KCPoint.zero, size: KCSize(width: btnwidth, height: btnheight))
+			let btnbox    = KCStackView(frame: btnframe)
 			btnbox.axis = .horizontal
 			btnbox.distribution = .fillEqually
 			btnbox.addArrangedSubViews(subViews: [clearbtn, closebtn])
-
-			let logbox = KCStackView(frame: newwin.frame)
+			/* Log box */
+			let logwidth  = max(cons.frame.width, btnwidth)
+			let logheight = cons.frame.height + btnheight
+			let logframe  = KCRect(origin: KCPoint.zero, size: KCSize(width: logwidth, height: logheight))
+			let logbox    = KCStackView(frame: logframe)
 			logbox.axis = .vertical
 			logbox.addArrangedSubViews(subViews: [cons, btnbox])
-
 			/* Add contents to window */
 			newwin.setRootView(view: logbox)
-
+			newwin.resize(size: logframe.size)
 			return (newwin, cons, clearbtn, closebtn)
 		} else {
 			fatalError("Failed to allocate window")

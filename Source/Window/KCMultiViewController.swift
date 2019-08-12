@@ -14,11 +14,8 @@ import CoconutData
 
 #if os(iOS)
 	public typealias KCMultiViewControllerBase = UITabBarController
-	protocol KCWindowDelegate {
-	}
 #else
 	public typealias KCMultiViewControllerBase = NSTabViewController
-	typealias KCWindowDelegate = NSWindowDelegate
 #endif
 
 open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, CNLogging

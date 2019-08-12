@@ -22,15 +22,23 @@ class ViewController: NSViewController {
 	}
 
 	override func viewDidAppear() {
+		dumpSize(title: "Before")
+		let colnum  = mConsoleView.columnNumbers
+		for _ in 0..<colnum {
+			mConsoleView.appendText(normal: "*")
+		}
+		for i in 0..<40 {
+			mConsoleView.appendText(normal: "*\(i)\n")
+		}
+		dumpSize(title: "After")
+	}
+
+	private func dumpSize(title titlestr: String){
 		let width   = mConsoleView.bounds.width
 		let height  = mConsoleView.bounds.height
 		let linenum = mConsoleView.lineNumbers
 		let colnum  = mConsoleView.columnNumbers
-		mConsoleView.appendText(normal: "\(width) x \(height) -> \(colnum) x \(linenum)\n")
-
-		for _ in 0..<colnum {
-			mConsoleView.appendText(normal: "*")
-		}
+		NSLog("[\(titlestr)] \(width) x \(height) -> \(colnum) x \(linenum)\n")
 	}
 
 	override var representedObject: Any? {

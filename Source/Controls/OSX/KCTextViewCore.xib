@@ -12,42 +12,43 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsx-HE-A4i">
+                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHe-4z-TA6">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                    <clipView key="contentView" drawsBackground="NO" id="wbr-EW-TMN">
-                        <rect key="frame" x="1" y="1" width="478" height="268"/>
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="cfH-6G-Uc5">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="3jQ-Ip-bZA">
-                                <rect key="frame" x="0.0" y="0.0" width="478" height="268"/>
+                            <textView importsGraphics="NO" verticallyResizable="YES" smartInsertDelete="YES" id="WpD-Cj-ZIr">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="478" height="268"/>
+                                <size key="minSize" width="480" height="270"/>
                                 <size key="maxSize" width="480" height="10000000"/>
-                                <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             </textView>
                         </subviews>
                     </clipView>
-                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="yyV-OX-emB">
-                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="cGg-oL-9Uf">
+                        <rect key="frame" x="-100" y="-100" width="240" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MeO-Zj-3L4">
-                        <rect key="frame" x="463" y="1" width="16" height="268"/>
+                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="l90-wf-Ciw">
+                        <rect key="frame" x="464" y="0.0" width="16" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="xsx-HE-A4i" secondAttribute="trailing" id="RM3-w7-KrI"/>
-                <constraint firstItem="xsx-HE-A4i" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Ya0-dr-cxS"/>
-                <constraint firstItem="xsx-HE-A4i" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="gUx-pm-gNF"/>
-                <constraint firstAttribute="bottom" secondItem="xsx-HE-A4i" secondAttribute="bottom" id="hrD-RE-UG3"/>
+                <constraint firstItem="RHe-4z-TA6" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="13L-gI-cmM"/>
+                <constraint firstAttribute="trailing" secondItem="RHe-4z-TA6" secondAttribute="trailing" id="O2B-WW-GEL"/>
+                <constraint firstItem="RHe-4z-TA6" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="a7C-cO-xED"/>
+                <constraint firstAttribute="bottom" secondItem="RHe-4z-TA6" secondAttribute="bottom" id="dhL-8Y-Pdg"/>
             </constraints>
             <connections>
-                <outlet property="mTextView" destination="3jQ-Ip-bZA" id="uUI-at-Pe2"/>
+                <outlet property="mTextView" destination="WpD-Cj-ZIr" id="K6h-EV-Me5"/>
             </connections>
+            <point key="canvasLocation" x="46" y="-130"/>
         </customView>
     </objects>
 </document>

@@ -34,6 +34,7 @@
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLineBreakMode	= NSLineBreakMode
+	public typealias KCWindowDelegate 	= NSWindowDelegate
 #endif
 
 #if os(OSX)
@@ -41,6 +42,12 @@ public extension NSResponder {
 	var next: NSResponder? {
 		return self.nextResponder
 	}
+}
+#endif
+
+#if os(iOS)
+protocol KCWindowDelegate {
+	/* Dummy for iOS */
 }
 #endif
 
