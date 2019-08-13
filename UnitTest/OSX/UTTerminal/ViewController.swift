@@ -10,16 +10,24 @@ import KiwiControls
 import CoconutData
 import Cocoa
 
+class UTTerminal: KCTerminalDelegate {
+	func put(line str: String) {
+		NSLog("UTTerminal.put(\(str))")
+	}
+}
+
 class ViewController: NSViewController, NSWindowDelegate {
 
 	@IBOutlet weak var mTerminalView: KCTerminalView!
+	private var mTerminalObject: UTTerminal? = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
 		NSLog("Launch terminal")
-		//mTerminalView.appendText(normal: "Hello, world !!")
+		mTerminalObject = UTTerminal()
+		mTerminalView.terminalDelegate = mTerminalObject
 	}
 
 	override func viewDidAppear() {

@@ -60,7 +60,6 @@
 		055773DB228848820079E37F /* KCLayoutFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DA228848820079E37F /* KCLayoutFinalizer.swift */; };
 		055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */; };
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
-		055A4096230036AD0073D014 /* KCTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A4095230036AD0073D014 /* KCTextStorage.swift */; };
 		055D8089213E075E00100601 /* UTLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D8088213E075E00100601 /* UTLogViewController.swift */; };
 		055DAEF120FCD0AE00C8C4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */; };
 		055DAEF320FCD0AE00C8C4E3 /* MultiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055DAEF220FCD0AE00C8C4E3 /* MultiViewController.swift */; };
@@ -161,6 +160,7 @@
 		05EE31F61EACB214007164F4 /* KCStackViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EE31F51EACB214007164F4 /* KCStackViewCore.xib */; };
 		05EE31F91EACB2B8007164F4 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F71EACB2B8007164F4 /* KCStackView.swift */; };
 		05EE31FA1EACB2B8007164F4 /* KCStackViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */; };
+		05F400C62303014A003D3995 /* KCTextViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F400C52303014A003D3995 /* KCTextViewDelegates.swift */; };
 		05F40E0522ABC3120059E553 /* KCSpriteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F40E0422ABC3120059E553 /* KCSpriteOperation.swift */; };
 		05F7A11820A7C90B00A395AB /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */; };
 		05FAEB0E21A5C76300FE9130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FAEB0D21A5C76300FE9130 /* AppDelegate.swift */; };
@@ -330,7 +330,6 @@
 		055773DA228848820079E37F /* KCLayoutFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutFinalizer.swift; sourceTree = "<group>"; };
 		055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFrameSizeFinalizer.swift; sourceTree = "<group>"; };
 		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
-		055A4095230036AD0073D014 /* KCTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextStorage.swift; sourceTree = "<group>"; };
 		055D8088213E075E00100601 /* UTLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTLogViewController.swift; sourceTree = "<group>"; };
 		055DAEEE20FCD0AE00C8C4E3 /* UTPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		055DAEF020FCD0AE00C8C4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -440,6 +439,7 @@
 		05EE31F51EACB214007164F4 /* KCStackViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStackViewCore.xib; sourceTree = "<group>"; };
 		05EE31F71EACB2B8007164F4 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
 		05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackViewCore.swift; sourceTree = "<group>"; };
+		05F400C52303014A003D3995 /* KCTextViewDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextViewDelegates.swift; sourceTree = "<group>"; };
 		05F40E0422ABC3120059E553 /* KCSpriteOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteOperation.swift; sourceTree = "<group>"; };
 		05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		05FAEB0B21A5C76300FE9130 /* UTSpriteView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTSpriteView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -642,7 +642,7 @@
 		055A40942300368C0073D014 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				055A4095230036AD0073D014 /* KCTextStorage.swift */,
+				05F400C52303014A003D3995 /* KCTextViewDelegates.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -1473,13 +1473,13 @@
 				05DDE5F821C01A8600520631 /* KCGroupMaker.swift in Sources */,
 				0584F515210DFE9900492366 /* KCWindow.swift in Sources */,
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
-				055A4096230036AD0073D014 /* KCTextStorage.swift in Sources */,
 				053CB5F521F6118A0031711B /* KCNavigationBar.swift in Sources */,
 				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
 				053CB5F121F609D00031711B /* KCNavigationBarCore.swift in Sources */,
 				057FF5ED22989D5000E81BAB /* KCRootSizeAllocator.swift in Sources */,
 				05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
+				05F400C62303014A003D3995 /* KCTextViewDelegates.swift in Sources */,
 				057B892021D287FA00309B2A /* KCSpriteView.swift in Sources */,
 				059570451F7659D6007898FB /* KCType.swift in Sources */,
 				051E34E41E42370000620E1C /* KCStrokeDrawerLayer.swift in Sources */,

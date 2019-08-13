@@ -72,16 +72,23 @@ open class KCTextViewCore : KCView
 	}
 
 	public var viewType: TextViewType { get { return mViewType }}
+
+	public var textViewDelegate: KCTextViewDelegates? {
+		get { return mTextViewDelegates }
+	}
+
 	public var textStorage: NSTextStorage {
 		get {
 			#if os(OSX)
 				if let storage = mTextView.textStorage {
 					return storage
+				} else {
+					fatalError("No storage")
 				}
 			#else
 				return mTextView.textStorage
 			#endif
-			fatalError("No storage")
+
 		}
 	}
 
@@ -144,10 +151,15 @@ open class KCTextViewCore : KCView
 
 	public func selectedRanges() -> Array<NSRange> {
 		var result: Array<NSRange> = []
-		let ranges = mTextView.selectedRanges
-		for src in ranges {
-			result.append(src.rangeValue)
-		}
+		#if os(OSX)
+			let ranges = mTextView.selectedRanges
+			for src in ranges {
+				result.append(src.rangeValue)
+			}
+		#else
+			let range  = mTextView.selectedRange
+			result.append(range)
+		#endif
 		return result
 	}
 

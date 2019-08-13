@@ -22,7 +22,7 @@ public protocol KCTerminalDelegate
  * Key binding: https://developer.apple.com/documentation/appkit/nsstandardkeybindingresponding
  *              https://www.hcs.harvard.edu/~jrus/site/system-bindings.html
  */
-public class KCTextViewDelegates: NSObject, NSTextViewDelegate, NSTextStorageDelegate
+public class KCTextViewDelegates: NSObject, KCTextViewDelegate, NSTextStorageDelegate
 {
 	public typealias CallbackType = (_ line: String) -> Void
 
@@ -42,24 +42,17 @@ public class KCTextViewDelegates: NSObject, NSTextViewDelegate, NSTextStorageDel
 		}
 	}
 
-/*
-	public func textViewDidChangeSelection(_ notification: Notification) {
-		if let view = notification.object as? NSTextView {
-			let ranges = view.selectedRanges
-			for range in ranges {
-				NSLog("range: \(range.description)")
-			}
-		}
-	}
-*/
-
+	#if os(OSX)
 	public func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 		fatalError("Must be override")
 	}
+	#endif
 
+	#if os(OSX)
 	public func textView(_ textView: NSTextView, clickedOn cell: NSTextAttachmentCellProtocol, in cellFrame: NSRect, at charIndex: Int) {
 		NSLog("clicked")
 	}
+	#endif
 
 	/* Delegate for Text storage */
 	#if os(OSX)
@@ -92,9 +85,14 @@ public class KCConsoleViewDelegates: KCTextViewDelegates
 		super.init(coreView: view)
 	}
 
+	public override func textStorage(_ storage: NSTextStorage, range erange: NSRange, changeInLength delta: Int) {
+	}
+
+	#if os(OSX)
 	public override func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 		return false
 	}
+	#endif
 }
 
 public class KCTerminalViewDelegates: KCTextViewDelegates
@@ -121,23 +119,35 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 
 	private func commandOperations() -> Dictionary<String, CommandFunction> {
 		let result: Dictionary<String, CommandFunction> = [
-			"moveUp:": { () -> Bool in
-				/* Do nothing */
-				return true
+			"moveUp:": { [weak self] () -> Bool in
+				if let myself = self {
+					return myself.moveUpCommand()
+				}
+				return true // No more operation
 			},
 			"moveLeft": { [weak self] () -> Bool in
 				if let myself = self {
-					if let idx = myself.currentIndex() {
-						return (myself.mLineStartIndex < idx)
-					}
+					return myself.moveLeftCommand()
 				}
-				/* Do nothing */
-				return true
+				return true // No more operation
 			}
 		]
 		return result
 	}
 
+	private func moveUpCommand() -> Bool {
+		return true // Finish operation
+	}
+
+	private func moveLeftCommand() -> Bool {
+		if let idx = currentIndex() {
+			return (mLineStartIndex < idx)
+		} else {
+			return true // No more operation
+		}
+	}
+
+	#if os(OSX)
 	public override func textView(_ textView: NSTextView, doCommandBy selector: Selector) -> Bool {
 		let cmdname = selector.description
 		if let cmdfunc = mCommandOperations[cmdname] {
@@ -146,6 +156,7 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 			return false
 		}
 	}
+	#endif
 
 	public override func textStorage(_ storage: NSTextStorage, range erange: NSRange, changeInLength delta: Int) {
 		if delta > 0 {

@@ -69,9 +69,28 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 			mConsoleConnection = KCTerminalConsole(ownerView: self)
 			setCoreView(view: newview)
 			newview.setup(type: .terminal, frame: self.frame)
+
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTextViewCore")
+		}
+	}
+
+	public var terminalDelegate: KCTerminalDelegate? {
+		get {
+			if let vdlg = coreView.textViewDelegate as? KCTerminalViewDelegates {
+				return vdlg.terminalDelegate
+			} else {
+				NSLog("[Error] Failed to get terminal delegate")
+				return nil
+			}
+		}
+		set(newdlg){
+			if let vdlg = coreView.textViewDelegate as? KCTerminalViewDelegates {
+				vdlg.terminalDelegate = newdlg
+			} else {
+				NSLog("[Error] Failed to set terminal delegate")
+			}
 		}
 	}
 
