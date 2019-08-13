@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-public class KCTerminal: CNConsole
+public class KCTerminalConsole: CNConsole
 {
 	private var mOwnerView:	KCTerminalView
 
@@ -35,8 +35,7 @@ public class KCTerminal: CNConsole
 
 open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 {
-	private var mConsoleConnection: KCTerminal? = nil
-	private var mTextStorage: KCTextStorage?    = nil
+	private var mConsoleConnection: KCTerminalConsole? = nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -67,11 +66,9 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
-			mConsoleConnection = KCTerminal(ownerView: self)
+			mConsoleConnection = KCTerminalConsole(ownerView: self)
 			setCoreView(view: newview)
-			let storage = KCTextStorage(coreView: coreView)
-			mTextStorage = storage
-			newview.setup(type: .terminal, delegate: storage, frame: self.frame)
+			newview.setup(type: .terminal, frame: self.frame)
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTextViewCore")

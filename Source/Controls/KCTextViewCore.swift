@@ -26,6 +26,7 @@ open class KCTextViewCore : KCView
 	#endif
 
 	private var mViewType:			TextViewType = .console
+	private var mTextViewDelegates:		KCTextViewDelegates? = nil
 	private var mMinimumColumnNumbers:	Int = 10
 	private var mMinimumLineNumbers:	Int = 1
 
@@ -37,24 +38,27 @@ open class KCTextViewCore : KCView
 	private var mNormalAttributes: [NSAttributedString.Key: Any] = [:]
 	private var mErrorAttributes: [NSAttributedString.Key: Any] = [:]
 
-	public func setup(type typ: TextViewType, delegate dlg: NSTextStorageDelegate?, frame frm: CGRect) {
+	public func setup(type typ: TextViewType, frame frm: CGRect) {
 		updateAttributes()
 		if let font = defaultFont {
 			mTextView.font = font
 		}
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
-		mTextView.autoresizesSubviews     = true
-		mTextView.backgroundColor = KCColor.black
+		mTextView.autoresizesSubviews = true
+		mTextView.backgroundColor     = KCColor.black
+		switch typ {
+		case .console:  mTextViewDelegates = KCConsoleViewDelegates(coreView: self)
+		case .terminal: mTextViewDelegates = KCTerminalViewDelegates(coreView: self)
+		}
+		mTextView.delegate            = mTextViewDelegates!
+		textStorage.delegate          = mTextViewDelegates!
 		#if os(OSX)
 			mTextView.isVerticallyResizable   = true
 			mTextView.isHorizontallyResizable = false
-			if let storage = mTextView.textStorage {
-				storage.delegate = dlg
-			}
+			mTextView.insertionPointColor	  = KCColor.green
 		#else
 			mTextView.isScrollEnabled = true
-			mTextView.textStorage.delegate = dlg
 		#endif
 		mViewType = typ
 		switch typ {
@@ -64,9 +68,20 @@ open class KCTextViewCore : KCView
 		case .terminal:
 			mTextView.isEditable			= true
 			mTextView.isSelectable			= true
+		}
+	}
+
+	public var viewType: TextViewType { get { return mViewType }}
+	public var textStorage: NSTextStorage {
+		get {
 			#if os(OSX)
-				mTextView.insertionPointColor	= KCColor.green
+				if let storage = mTextView.textStorage {
+					return storage
+				}
+			#else
+				return mTextView.textStorage
 			#endif
+			fatalError("No storage")
 		}
 	}
 
@@ -125,6 +140,15 @@ open class KCTextViewCore : KCView
 
 	public var lineNumbers: Int {
 		get { return Int(self.bounds.height / fontSize().height) }
+	}
+
+	public func selectedRanges() -> Array<NSRange> {
+		var result: Array<NSRange> = []
+		let ranges = mTextView.selectedRanges
+		for src in ranges {
+			result.append(src.rangeValue)
+		}
+		return result
 	}
 
 	public func fontSize() -> KCSize {
