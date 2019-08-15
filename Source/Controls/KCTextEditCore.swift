@@ -62,7 +62,6 @@ open class KCTextEditCore : KCView
 			mTextEdit.isEditable  = false
 			mTextEdit.preferredMaxLayoutWidth = width
 		#endif
-		NSLog("KCTextEditCore: resize newsize = \(newsize.description)")
 		super.resize(newsize)
 	}
 

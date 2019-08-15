@@ -1,33 +1,34 @@
-//
-//  ViewController.swift
-//  UTTerminal
-//
-//  Created by Tomoo Hamada on 2019/08/11.
-//  Copyright © 2019 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file ViewController.swift
+ * @brief Define ViewController class
+ * @par Copyright
+ *   Copyright (C) 2019 Steel Wheels Project
+ */
 
 import KiwiControls
 import CoconutData
+import CoconutShell
 import Cocoa
 
-class UTTerminal: KCTerminalDelegate {
-	func put(line str: String) {
-		NSLog("UTTerminal.put(\(str))")
-	}
+class UTShell: CNShell
+{
+
 }
 
 class ViewController: NSViewController, NSWindowDelegate {
 
-	@IBOutlet weak var mTerminalView: KCTerminalView!
-	private var mTerminalObject: UTTerminal? = nil
+	@IBOutlet weak var	mTerminalView: KCTerminalView!
+	private var		mShell: UTShell? = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
 		NSLog("Launch terminal")
-		mTerminalObject = UTTerminal()
-		mTerminalView.terminalDelegate = mTerminalObject
+		let interface = CNShellInterface()
+		let shell     = UTShell(interface: interface)
+		mShell        = shell
+		mTerminalView.shellInterface = interface
 	}
 
 	override func viewDidAppear() {
@@ -35,6 +36,12 @@ class ViewController: NSViewController, NSWindowDelegate {
 		/* Set delegate */
 		if let win = view.window {
 			win.delegate = self
+		}
+		/* Start shell */
+		if let shell = mShell {
+			NSLog("start shell")
+			shell.prompt = "$"
+			shell.start()
 		}
 	}
 

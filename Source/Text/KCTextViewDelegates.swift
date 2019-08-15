@@ -11,12 +11,8 @@
 	import UIKit
 #endif
 import CoconutData
+import CoconutShell
 import Foundation
-
-public protocol KCTerminalDelegate
-{
-	func put(line str: String)
-}
 
 /* References:
  * Key binding: https://developer.apple.com/documentation/appkit/nsstandardkeybindingresponding
@@ -100,21 +96,26 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 	typealias CommandFunction = () -> Bool
 
 	private var		mLineStartIndex: 	Int
-	private var		mTerminalDelegate:	KCTerminalDelegate?
+	private var		mShellInterface:	CNShellInterface?
 	private var		mCommandOperations: 	Dictionary<String, CommandFunction>
 
 	public override init(coreView view: KCTextViewCore){
-		mLineStartIndex    = 0
-		mTerminalDelegate  = nil
-		mCommandOperations = [:]
+		mLineStartIndex		= 0
+		mShellInterface		= nil
+		mCommandOperations	= [:]
 		super.init(coreView: view)
 
 		mCommandOperations = commandOperations()
 	}
 
-	public var terminalDelegate: KCTerminalDelegate? {
-		get         { return mTerminalDelegate   }
-		set(newval) { mTerminalDelegate = newval }
+	public var lineStartIndex: Int {
+		get	    { return mLineStartIndex }
+		set(newidx) { mLineStartIndex = newidx}
+	}
+
+	public var shellInterface: CNShellInterface? {
+		get       { return mShellInterface }
+		set(intf) { mShellInterface = intf }
 	}
 
 	private func commandOperations() -> Dictionary<String, CommandFunction> {
@@ -159,51 +160,45 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 	#endif
 
 	public override func textStorage(_ storage: NSTextStorage, range erange: NSRange, changeInLength delta: Int) {
-		if delta > 0 {
-			//let substr = storage.attributedSubstring(from: erange)
-			//NSLog("added: \(substr.string) \(erange) \(delta) -> \(mCurrentIndex)")
-			/* Set attributes for new text */
-			coreView.setNormalAttributes(in: erange)
-			/* If the insertion point is before current index, increase it */
-			if erange.location < mLineStartIndex {
-				mLineStartIndex += delta
-				return
-			}
-			/* Collect lines terminated by newline */
-			let src    = storage.string
-			let start  = src.index(src.startIndex, offsetBy: mLineStartIndex)
-			var i      = start
-			let end    = src.endIndex
-			var index  = mLineStartIndex
-			var lines: Array<String>   = []
-			var line: Array<Character> = []
-			while i < end {
-				let c = src[i]
-				if c == "\n" {
-					if line.count > 0 {
-						lines.append(String(line))
-						line = []
-						mLineStartIndex = index
-					}
-				} else {
-					line.append(c)
+		/* Adjust start index */
+		if delta < 0 && erange.location <= mLineStartIndex {
+			mLineStartIndex += delta
+		}
+
+		/* Check some strings after the start index */
+		let srcstr = storage.string
+		guard delta > 0 && mLineStartIndex < srcstr.count else {
+			return
+		}
+
+		/* Collect lines terminated by newline */
+		let start  = srcstr.index(srcstr.startIndex, offsetBy: mLineStartIndex)
+		var i      = start
+		let end    = srcstr.endIndex
+		var index  = mLineStartIndex
+		var lines: Array<String>   = []
+		var line:  Array<Character> = []
+		while i < end {
+			let c = srcstr[i]
+			if c == "\n" {
+				if line.count > 0 {
+					lines.append(String(line))
+					line = []
+					mLineStartIndex = index + 1
 				}
-				i = src.index(i, offsetBy: 1)
-				index += 1
+			} else {
+				line.append(c)
 			}
-			/* Pass lines to callbacks */
-			for line in lines {
-				if let tdlg = mTerminalDelegate {
-					tdlg.put(line: line)
-				} else {
-					NSLog("line: \(line)")
-				}
+			i = srcstr.index(i, offsetBy: 1)
+			index += 1
+		}
+		/* Pass lines to callbacks */
+		for line in lines {
+			if let intf = mShellInterface {
+				intf.stdin.send(string: line)
+			} else {
+				NSLog("line: \(line)")
 			}
-		} else if delta < 0 {
-			/* Removed */
-			//NSLog("removed: \(erange) \(delta) -> \(mCurrentIndex)")
-		} else {
-			//NSLog("Not changed")
 		}
 	}
 }

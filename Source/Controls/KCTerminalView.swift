@@ -11,31 +11,11 @@
 	import UIKit
 #endif
 import CoconutData
-
-public class KCTerminalConsole: CNConsole
-{
-	private var mOwnerView:	KCTerminalView
-
-	public init(ownerView owner: KCTerminalView){
-		mOwnerView = owner
-	}
-
-	public func print(string str: String){
-		mOwnerView.appendText(normal: str)
-	}
-
-	public func error(string str: String){
-		mOwnerView.appendText(error: str)
-	}
-
-	public func scan() -> String? {
-		return nil
-	}
-}
+import CoconutShell
 
 open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 {
-	private var mConsoleConnection: KCTerminalConsole? = nil
+	private var mShellConnection:   CNShellInterface?  = nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -66,28 +46,42 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
-			mConsoleConnection = KCTerminalConsole(ownerView: self)
 			setCoreView(view: newview)
 			newview.setup(type: .terminal, frame: self.frame)
-
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTextViewCore")
 		}
 	}
 
-	public var terminalDelegate: KCTerminalDelegate? {
+	public var shellInterface: CNShellInterface? {
 		get {
 			if let vdlg = coreView.textViewDelegate as? KCTerminalViewDelegates {
-				return vdlg.terminalDelegate
+				return vdlg.shellInterface
 			} else {
 				NSLog("[Error] Failed to get terminal delegate")
 				return nil
 			}
 		}
-		set(newdlg){
+		set(newintf){
 			if let vdlg = coreView.textViewDelegate as? KCTerminalViewDelegates {
-				vdlg.terminalDelegate = newdlg
+				if let intf = newintf {
+					/* Connect stdout */
+					intf.stdout.receiverFunction = {
+						[weak self] (_ str: String) -> Void in
+						if let myself = self {
+							myself.insertText(normal: str, delegate: vdlg)
+						}
+					}
+					/* Connect stderr */
+					intf.stderr.receiverFunction = {
+						[weak self] (_ str: String) -> Void in
+						if let myself = self {
+							myself.insertText(error: str, delegate: vdlg)
+						}
+					}
+				}
+				vdlg.shellInterface = newintf
 			} else {
 				NSLog("[Error] Failed to set terminal delegate")
 			}
@@ -116,16 +110,28 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 		return (.Low, .Low)
 	}
 
-	public var consoleConnection: CNConsole {
-		get { return mConsoleConnection! }
-	}
-
 	public func appendText(normal str: String){
 		coreView.appendText(normal: str)
 	}
 
 	public func appendText(error str: String){
 		coreView.appendText(error: str)
+	}
+
+	public func insertText(normal str: String, delegate dlg: KCTerminalViewDelegates){
+		coreView.insertText(normal: str, before: KCTextViewCore.INSERTION_POINT)
+	}
+
+	public func insertText(error str: String, delegate dlg: KCTerminalViewDelegates){
+		coreView.insertText(error: str, before: KCTextViewCore.INSERTION_POINT)
+	}
+
+	public func insertText(normal str: String, before pos: Int){
+		coreView.insertText(normal: str, before: pos)
+	}
+
+	public func insertText(error str: String, before pos: Int){
+		coreView.insertText(error: str, before: pos)
 	}
 
 	public func clear(){

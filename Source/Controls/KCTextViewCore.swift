@@ -14,6 +14,8 @@ import CoconutData
 
 open class KCTextViewCore : KCView
 {
+	public static let INSERTION_POINT	= -1
+
 	public enum TextViewType {
 		case	console
 		case	terminal
@@ -208,6 +210,17 @@ open class KCTextViewCore : KCView
 		super.resize(size)
 	}
 
+	private func syncInsertionPoint() -> Int? {
+		let values = mTextView.selectedRanges
+		for value in values {
+			let range = value.rangeValue
+			if range.length == 0 {
+				return range.location
+			}
+		}
+		return nil
+	}
+
 	public func appendText(normal str: String){
 		let astr = NSAttributedString(string: str, attributes: mNormalAttributes)
 		appendAttributedText(string: astr)
@@ -222,14 +235,7 @@ open class KCTextViewCore : KCView
 		CNExecuteInMainThread(doSync: false, execute: {
 			[weak self] () -> Void in
 			if let myself = self {
-				#if os(OSX)
-				  if let storage = myself.mTextView.textStorage {
-					myself.syncAppend(destinationStorage: storage, string: str)
-				  }
-				#else
-				  let storage = myself.mTextView.textStorage
-				  myself.syncAppend(destinationStorage: storage, string: str)
-				#endif
+				myself.syncAppend(destinationStorage: myself.textStorage, string: str)
 				myself.scrollToBottom()
 			}
 		})
@@ -241,13 +247,43 @@ open class KCTextViewCore : KCView
 		storage.endEditing()
 	}
 
-	private func insert(destinationStorage storage: NSTextStorage, string str: NSAttributedString, at pos: Int) {
+	public func insertText(normal str: String, before pos: Int){
+		let astr = NSAttributedString(string: str, attributes: mNormalAttributes)
+		insertAttributedText(string: astr, before: pos)
+	}
+
+	public func insertText(error str: String, before pos: Int){
+		let astr = NSAttributedString(string: str, attributes: mErrorAttributes)
+		insertAttributedText(string: astr, before: pos)
+	}
+
+	private func insertAttributedText(string str: NSAttributedString, before pos: Int){
 		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			storage.beginEditing()
-			storage.insert(str, at: pos)
-			storage.endEditing()
+			[weak self] () -> Void in
+			if let myself = self {
+				myself.syncInsert(destinationStorage: myself.textStorage, string: str, before: pos)
+				myself.scrollToBottom()
+			}
 		})
+	}
+
+	private func syncInsert(destinationStorage storage: NSTextStorage, string str: NSAttributedString, before pos: Int) {
+		/* Get position to insert */
+		let mpos: Int
+		if pos == KCTextViewCore.INSERTION_POINT, let inpos = syncInsertionPoint() {
+			mpos = inpos
+		} else {
+			mpos = pos
+		}
+		/* Update current index */
+		if let dlg = textViewDelegate as? KCTerminalViewDelegates {
+			if mpos <= dlg.lineStartIndex {
+				dlg.lineStartIndex += str.string.count
+			}
+		}
+		storage.beginEditing()
+		storage.insert(str, at: mpos)
+		storage.endEditing()
 	}
 
 	public func setNormalAttributes(in range: NSRange) {
