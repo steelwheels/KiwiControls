@@ -211,14 +211,18 @@ open class KCTextViewCore : KCView
 	}
 
 	private func syncInsertionPoint() -> Int? {
-		let values = mTextView.selectedRanges
-		for value in values {
-			let range = value.rangeValue
-			if range.length == 0 {
-				return range.location
+		#if os(OSX)
+			let values = mTextView.selectedRanges
+			for value in values {
+				let range = value.rangeValue
+				if range.length == 0 {
+					return range.location
+				}
 			}
-		}
-		return nil
+			return nil
+		#else
+			return mTextView.selectedRange.location
+		#endif
 	}
 
 	public func appendText(normal str: String){
