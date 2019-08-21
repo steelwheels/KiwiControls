@@ -15,8 +15,6 @@ import CoconutShell
 
 open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 {
-	private var mShellConnection:   CNShellInterface?  = nil
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -67,19 +65,20 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 			if let vdlg = coreView.textViewDelegate as? KCTerminalViewDelegates {
 				if let intf = newintf {
 					/* Connect stdout */
-					intf.stdout.receiverFunction = {
+					intf.output.setReader(handler: {
 						[weak self] (_ str: String) -> Void in
 						if let myself = self {
 							myself.insertText(normal: str, delegate: vdlg)
 						}
-					}
+					})
+
 					/* Connect stderr */
-					intf.stderr.receiverFunction = {
+					intf.error.setReader(handler: {
 						[weak self] (_ str: String) -> Void in
 						if let myself = self {
 							myself.insertText(error: str, delegate: vdlg)
 						}
-					}
+					})
 				}
 				vdlg.shellInterface = newintf
 			} else {

@@ -40,7 +40,6 @@ class ViewController: NSViewController, NSWindowDelegate {
 		/* Start shell */
 		if let shell = mShell {
 			NSLog("start shell")
-			shell.prompt = "$"
 			shell.start()
 		}
 	}

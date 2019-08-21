@@ -195,9 +195,9 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 		/* Pass lines to callbacks */
 		for line in lines {
 			if let intf = mShellInterface {
-				intf.stdin.send(string: line)
+				intf.input.write(string: line)
 			} else {
-				NSLog("line: \(line)")
+				NSLog("[Error] No shell interface line: \(line)")
 			}
 		}
 	}
