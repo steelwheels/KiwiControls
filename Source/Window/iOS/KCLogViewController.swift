@@ -32,10 +32,9 @@ open class KCLogViewController: KCSingleViewController
 		navigation.rightButtonPressedCallback	= {
 			[weak self] () -> Void in
 			if let myself = self {
-				if let parent = myself.parentController {
-					if !parent.popViewController() {
-						myself.mConsole.error(string: "Can not pop previous view at \(#file)/\(#line)/\(#function)")
-					}
+				let parent = myself.parentController
+				if !parent.popViewController() {
+					myself.mConsole.error(string: "Can not pop previous view at \(#file)/\(#line)/\(#function)")
 				}
 			}
 		}

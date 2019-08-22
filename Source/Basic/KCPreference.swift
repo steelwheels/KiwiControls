@@ -18,14 +18,14 @@ public class KCWindowPreference
 	public var spacing			: CGFloat
 	public var backgroundColor		: KCColor
 	#if os(OSX)
-	public var mainWindowSize		: KCSize
+	public var mainWindowSize		: KCSize?
 	#endif
 
 	public init(){
 		spacing			= 0.0
 		backgroundColor		= KCColor.white
 		#if os(OSX)
-			mainWindowSize	= KCSize(width: 640, height: 360)
+			mainWindowSize	= nil
 		#endif
 	}
 

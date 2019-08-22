@@ -23,6 +23,9 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
 	private var mViewStack:		CNStack = CNStack<String>()	/* name */
 	private var mConsole:		CNConsole? = nil
+	#if os(OSX)
+	private var mHasMainWindowSize:	Bool = false
+	#endif
 	#if os(iOS)
 	private var mPickerView:	KCDocumentPickerViewController? = nil
 	#endif
@@ -48,19 +51,31 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	#if os(OSX)
 	open override func viewWillAppear() {
 		super.viewWillAppear()
-		doViewWill1stAppear()
+		let _ = setInitialWindowSize()
 	}
 	#endif
 
 	#if os(OSX)
-	private func doViewWill1stAppear(){
-		/* Adjust window size */
-		if let window = self.view.window {
-			let size = CNPreference.shared.windowPreference.mainWindowSize
-			if window.frame.size != size {
-				window.resize(size: size)
+	public func setInitialWindowSize() -> KCSize? {
+		var result: KCSize? = nil
+		if !mHasMainWindowSize {
+			/* Adjust window size */
+			if let window = self.view.window {
+				if let size = KCLayouter.windowSize() {
+					NSLog("Window size = \(size.description)")
+					if window.frame.size != size {
+						window.resize(size: size)
+						mHasMainWindowSize = true
+						result = size
+					}
+				} else {
+					NSLog("No window size")
+				}
+			} else {
+				NSLog("[Error] No window")
 			}
 		}
+		return result
 	}
 	#endif
 

@@ -25,8 +25,9 @@ class ViewController: NSViewController, NSWindowDelegate {
 
 		// Do any additional setup after loading the view.
 		NSLog("Launch terminal")
+		let console   = CNDefaultConsole()
 		let interface = CNShellInterface()
-		let shell     = UTShell(interface: interface)
+		let shell     = UTShell(interface: interface, console: console)
 		mShell        = shell
 		mTerminalView.shellInterface = interface
 	}

@@ -22,8 +22,8 @@ public class KCLayouter: CNLogging
 		get { return mConsole }
 	}
 
-	public class func windowSize() -> KCSize {
-		let result: KCSize
+	public class func windowSize() -> KCSize? {
+		let result: KCSize?
 		#if os(OSX)
 			result = CNPreference.shared.windowPreference.mainWindowSize
 		#else
@@ -55,11 +55,11 @@ public class KCLayouter: CNLogging
 	}
 
 	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {
-		if let parent = vcont.parentController {
-			let space: CGFloat = CNPreference.shared.windowPreference.spacing
-			#if os(OSX)
+		let parent = vcont.parentController
+		let space: CGFloat = CNPreference.shared.windowPreference.spacing
+		#if os(OSX)
 			let result = KCEdgeInsets(top: space, left: space, bottom: space, right: space)
-			#else
+		#else
 			let topmargin: CGFloat
 			if CNPreference.shared.windowPreference.isPortrait {
 				topmargin =  16.0 - space
@@ -71,12 +71,8 @@ public class KCLayouter: CNLogging
 						  left:   insets.left   + space,
 						  bottom: insets.bottom + space,
 						  right:  insets.right  + space)
-			#endif
-			return result
-		} else {
-			NSLog("No parent controller")
-			return KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-		}
+		#endif
+		return result
 	}
 
 	private class func contentRect(size sz: KCSize, inset ist: KCEdgeInsets) -> KCRect {
