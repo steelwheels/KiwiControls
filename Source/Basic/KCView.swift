@@ -132,7 +132,6 @@ open class KCView : KCViewBase, CNLogging
 	/*
 	 * Update area control
 	 */
-
 	private var areaToBeDisplay = CGRect.zero
 
 	open override func draw(_ dirtyRect: KCRect){
@@ -150,6 +149,12 @@ open class KCView : KCViewBase, CNLogging
 		super.setNeedsDisplay(areaToBeDisplay)
 		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
 	}
+
+	#if os(OSX)
+	public func setNeedsLayout() {
+		self.needsLayout = true
+	}
+	#endif
 
 	/*
 	 * layout

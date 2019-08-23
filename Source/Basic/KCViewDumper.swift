@@ -104,6 +104,17 @@ public class KCViewDumper: KCViewVisitor
 		}
 		section.add(text: CNTextLine(string: "do-autolayout: " + doauto))
 
+		#if os(OSX)
+			if let core: KCView = view.getCoreView() {
+				let accresp = core.acceptsFirstResponder
+				section.add(text: CNTextLine(string: "responder: accept=\(accresp)"))
+			}
+		#else
+			let is1stresp  = view.isFirstResponder
+			let can1stresp = view.canBecomeFirstResponder
+			section.add(text: CNTextLine(string: "responder: is1st=\(is1stresp) can1stresp=\(can1stresp)"))
+		#endif
+
 		let (hexp, vexp) = view.expansionPriorities()
 		section.add(text: CNTextLine(string: "expansion-priority: h:\(hexp.description()) "
 								       + "v:\(vexp.description())"))
