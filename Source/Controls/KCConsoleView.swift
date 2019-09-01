@@ -74,7 +74,7 @@ open class KCConsoleView : KCCoreView
 		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
 			mConsoleConnection = KCConsole(ownerView: self)
 			setCoreView(view: newview)
-			newview.setup(type: .console, frame: self.frame)
+			newview.setup(type: .console, frame: self.frame, shellInterface: nil)
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTextViewCore")

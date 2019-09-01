@@ -96,12 +96,12 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 	typealias CommandFunction = () -> Bool
 
 	private var		mLineStartIndex: 	Int
-	private var		mShellInterface:	CNShellInterface?
+	private var		mShellInterface:	CNShellInterface
 	private var		mCommandOperations: 	Dictionary<String, CommandFunction>
 
-	public override init(coreView view: KCTextViewCore){
+	public init(coreView view: KCTextViewCore, shellInterface intf: CNShellInterface){
 		mLineStartIndex		= 0
-		mShellInterface		= nil
+		mShellInterface		= intf
 		mCommandOperations	= [:]
 		super.init(coreView: view)
 
@@ -111,11 +111,6 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 	public var lineStartIndex: Int {
 		get	    { return mLineStartIndex }
 		set(newidx) { mLineStartIndex = newidx}
-	}
-
-	public var shellInterface: CNShellInterface? {
-		get       { return mShellInterface }
-		set(intf) { mShellInterface = intf }
 	}
 
 	private func commandOperations() -> Dictionary<String, CommandFunction> {
@@ -182,7 +177,8 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 			let c = srcstr[i]
 			if c == "\n" {
 				if line.count > 0 {
-					lines.append(String(line))
+					/* newline is required to present end of the line */
+					lines.append(String(line) + "\n")
 					line = []
 					mLineStartIndex = index + 1
 				}
@@ -194,10 +190,10 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 		}
 		/* Pass lines to callbacks */
 		for line in lines {
-			if let intf = mShellInterface {
-				intf.input.write(string: line)
+			if let data = line.data(using: .utf8) {
+				mShellInterface.input.write(data: data)
 			} else {
-				NSLog("[Error] No shell interface line: \(line)")
+				NSLog("[Error] Failed to convert: \(line)")
 			}
 		}
 	}

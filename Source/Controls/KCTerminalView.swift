@@ -15,13 +15,17 @@ import CoconutShell
 
 open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 {
+	private var mShellInterface:	CNShellInterface
+
 	#if os(OSX)
 	public override init(frame : NSRect){
+		mShellInterface = CNShellInterface()
 		super.init(frame: frame) ;
 		setupContext() ;
 	}
 	#else
 	public override init(frame: CGRect){
+		mShellInterface = CNShellInterface()
 		super.init(frame: frame) ;
 		setupContext()
 	}
@@ -38,6 +42,7 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 	}
 
 	public required init?(coder: NSCoder) {
+		mShellInterface = CNShellInterface()
 		super.init(coder: coder) ;
 		setupContext() ;
 	}
@@ -45,46 +50,36 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
 			setCoreView(view: newview)
-			newview.setup(type: .terminal, frame: self.frame)
+			newview.setup(type: .terminal, frame: self.frame, shellInterface: mShellInterface)
 			allocateSubviewLayout(subView: newview)
+
+			/* Connect standard output */
+			mShellInterface.output.fileHandleForReading.readabilityHandler = {
+				[weak self] (_ hdl: FileHandle) -> Void in
+				if let myself = self {
+					let data = hdl.availableData
+					if let str = String(data: data, encoding: .utf8) {
+						myself.insertText(normal: str)
+					}
+				}
+			}
+			/* Connect standard error */
+			mShellInterface.error.fileHandleForReading.readabilityHandler = {
+				[weak self] (_ hdl: FileHandle) -> Void in
+				if let myself = self {
+					let data = hdl.availableData
+					if let str = String(data: data, encoding: .utf8) {
+						myself.insertText(error: str)
+					}
+				}
+			}
 		} else {
 			fatalError("Can not load KCTextViewCore")
 		}
 	}
 
-	public var shellInterface: CNShellInterface? {
-		get {
-			if let vdlg = coreView.textViewDelegate as? KCTerminalViewDelegates {
-				return vdlg.shellInterface
-			} else {
-				NSLog("[Error] Failed to get terminal delegate")
-				return nil
-			}
-		}
-		set(newintf){
-			if let vdlg = coreView.textViewDelegate as? KCTerminalViewDelegates {
-				if let intf = newintf {
-					/* Connect stdout */
-					intf.output.setReader(handler: {
-						[weak self] (_ str: String) -> Void in
-						if let myself = self {
-							myself.insertText(normal: str, delegate: vdlg)
-						}
-					})
-
-					/* Connect stderr */
-					intf.error.setReader(handler: {
-						[weak self] (_ str: String) -> Void in
-						if let myself = self {
-							myself.insertText(error: str, delegate: vdlg)
-						}
-					})
-				}
-				vdlg.shellInterface = newintf
-			} else {
-				NSLog("[Error] Failed to set terminal delegate")
-			}
-		}
+	public var shellInterface: CNShellInterface {
+		get { return mShellInterface }
 	}
 
 	public var minimumColumnNumbers: Int {
@@ -117,11 +112,11 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 		coreView.appendText(error: str)
 	}
 
-	public func insertText(normal str: String, delegate dlg: KCTerminalViewDelegates){
+	public func insertText(normal str: String){
 		coreView.insertText(normal: str, before: KCTextViewCore.INSERTION_POINT)
 	}
 
-	public func insertText(error str: String, delegate dlg: KCTerminalViewDelegates){
+	public func insertText(error str: String){
 		coreView.insertText(error: str, before: KCTextViewCore.INSERTION_POINT)
 	}
 

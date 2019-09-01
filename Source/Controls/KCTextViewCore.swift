@@ -11,6 +11,7 @@
 	import UIKit
 #endif
 import CoconutData
+import CoconutShell
 
 open class KCTextViewCore : KCView
 {
@@ -40,7 +41,7 @@ open class KCTextViewCore : KCView
 	private var mNormalAttributes: [NSAttributedString.Key: Any] = [:]
 	private var mErrorAttributes: [NSAttributedString.Key: Any] = [:]
 
-	public func setup(type typ: TextViewType, frame frm: CGRect) {
+	public func setup(type typ: TextViewType, frame frm: CGRect, shellInterface intf: CNShellInterface?) {
 		updateAttributes()
 		if let font = defaultFont {
 			mTextView.font = font
@@ -50,8 +51,14 @@ open class KCTextViewCore : KCView
 		mTextView.autoresizesSubviews = true
 		mTextView.backgroundColor     = KCColor.black
 		switch typ {
-		case .console:  mTextViewDelegates = KCConsoleViewDelegates(coreView: self)
-		case .terminal: mTextViewDelegates = KCTerminalViewDelegates(coreView: self)
+		case .console:
+			mTextViewDelegates = KCConsoleViewDelegates(coreView: self)
+		case .terminal:
+			if let intf = intf {
+				mTextViewDelegates = KCTerminalViewDelegates(coreView: self, shellInterface: intf)
+			} else {
+				NSLog("Failed to convert interface")
+			}
 		}
 		mTextView.delegate            = mTextViewDelegates!
 		textStorage.delegate          = mTextViewDelegates!
