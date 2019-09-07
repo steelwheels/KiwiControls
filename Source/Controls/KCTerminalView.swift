@@ -95,6 +95,10 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 		}
 	}
 
+	public var fontSize: KCSize {
+		get { return coreView.fontSize() }
+	}
+
 	public var minimumColumnNumbers: Int {
 		get { return coreView.minimumColumnNumbers }
 		set(newnum){ coreView.minimumColumnNumbers = newnum}

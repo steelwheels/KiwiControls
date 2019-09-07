@@ -26,7 +26,7 @@ class ViewController: NSViewController, NSWindowDelegate {
 		let env		= CNShellEnvironment()
 		let conf	= CNConfig(doVerbose: true)
 		NSLog("Allocate shell")
-		let shell     = CNShellThread(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf)
+		let shell     = CNShellThread(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
 		mShell        = shell
 	}
 
@@ -41,6 +41,10 @@ class ViewController: NSViewController, NSWindowDelegate {
 			NSLog("start shell")
 			shell.start()
 		}
+		let fontsize = mTerminalView.fontSize
+		let colnum   = mTerminalView.columnNumbers
+		let rownum   = mTerminalView.lineNumbers
+		NSLog("fsize=\(fontsize.description) colnun=\(colnum), rownum=\(rownum)")
 	}
 
 	override var representedObject: Any? {

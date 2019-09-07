@@ -43,13 +43,18 @@ open class KCTextViewCore : KCView
 
 	public func setup(type typ: TextViewType, frame frm: CGRect, output outhdl: FileHandle?) {
 		updateAttributes()
-		if let font = defaultFont {
-			mTextView.font = font
-		}
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
+		#if os(OSX)
+			mTextView.font = NSFont.systemFont(ofSize: 10.0)
+			mTextView.drawsBackground = true
+		#else
+			mTextView.font = UIFont.systemFont(ofSize: 10.0)
+			//mTextView.drawsBackground     = true
+		#endif
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
 		mTextView.backgroundColor     = KCColor.black
+
 		switch typ {
 		case .console:
 			mTextViewDelegates = KCConsoleViewDelegates(coreView: self)
@@ -63,7 +68,7 @@ open class KCTextViewCore : KCView
 		mTextView.delegate            = mTextViewDelegates!
 		textStorage.delegate          = mTextViewDelegates!
 		#if os(OSX)
-			mTextView.isVerticallyResizable   = true
+			mTextView.isVerticallyResizable   = false
 			mTextView.isHorizontallyResizable = false
 			mTextView.insertionPointColor	  = KCColor.green
 		#else
@@ -102,7 +107,7 @@ open class KCTextViewCore : KCView
 	}
 
 	public func updateAttributes(){
-		if let font = defaultFont {
+		if let font = mTextView.font {
 			mNormalAttributes = [
 				.font: 			font,
 				.foregroundColor:	mColor.normalColor,
@@ -115,16 +120,6 @@ open class KCTextViewCore : KCView
 			]
 		} else {
 			NSLog("Failed to load font")
-		}
-	}
-
-	private var defaultFont: KCFont? {
-		get {
-			#if os(OSX)
-				return KCFont.userFixedPitchFont(ofSize: 12.0)
-			#else
-				return KCFont.monospacedDigitSystemFont(ofSize: 12.0, weight: .regular)
-			#endif
 		}
 	}
 
@@ -196,8 +191,8 @@ open class KCTextViewCore : KCView
 		let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumLineNumbers))
 		let reqsize   = KCSize(width: reqwidth, height: reqheight)
 
-		let result = KCSize(width: min(size.width,   reqsize.width),
-				    height: min(size.height, reqsize.height))
+		let result = KCSize(width:  max(size.width,  reqsize.width),
+				    height: max(size.height, reqsize.height))
 		return result
 	}
 
