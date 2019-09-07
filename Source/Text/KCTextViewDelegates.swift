@@ -96,12 +96,12 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 	typealias CommandFunction = () -> Bool
 
 	private var		mLineStartIndex: 	Int
-	private var		mShellInterface:	CNShellInterface
+	private var		mOutputHandle:		FileHandle
 	private var		mCommandOperations: 	Dictionary<String, CommandFunction>
 
-	public init(coreView view: KCTextViewCore, shellInterface intf: CNShellInterface){
+	public init(coreView view: KCTextViewCore, output outhdl: FileHandle) {
 		mLineStartIndex		= 0
-		mShellInterface		= intf
+		mOutputHandle		= outhdl
 		mCommandOperations	= [:]
 		super.init(coreView: view)
 
@@ -191,7 +191,7 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 		/* Pass lines to callbacks */
 		for line in lines {
 			if let data = line.data(using: .utf8) {
-				mShellInterface.input.write(data: data)
+				mOutputHandle.write(data)
 			} else {
 				NSLog("[Error] Failed to convert: \(line)")
 			}

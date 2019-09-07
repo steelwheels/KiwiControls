@@ -15,17 +15,23 @@ import CoconutShell
 
 open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 {
-	private var mShellInterface:	CNShellInterface
+	private var	mInputPipe: 	Pipe
+	private var	mOutputPipe: 	Pipe
+	private var	mErrorPipe: 	Pipe
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mShellInterface = CNShellInterface()
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
 		super.init(frame: frame) ;
 		setupContext() ;
 	}
 	#else
 	public override init(frame: CGRect){
-		mShellInterface = CNShellInterface()
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
 		super.init(frame: frame) ;
 		setupContext()
 	}
@@ -42,19 +48,30 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 	}
 
 	public required init?(coder: NSCoder) {
-		mShellInterface = CNShellInterface()
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
 		super.init(coder: coder) ;
 		setupContext() ;
 	}
 
+	deinit {
+		mOutputPipe.fileHandleForReading.readabilityHandler = nil
+		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+	}
+
+	public var inputFileHandle:	FileHandle { get { return mInputPipe.fileHandleForReading	}}
+	public var ouptutFileHandle:	FileHandle { get { return mOutputPipe.fileHandleForWriting	}}
+	public var errorFileHandle:	FileHandle { get { return mErrorPipe.fileHandleForWriting	}}
+
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
 			setCoreView(view: newview)
-			newview.setup(type: .terminal, frame: self.frame, shellInterface: mShellInterface)
+			newview.setup(type: .terminal, frame: self.frame, output: mInputPipe.fileHandleForWriting)
 			allocateSubviewLayout(subView: newview)
 
 			/* Connect standard output */
-			mShellInterface.output.fileHandleForReading.readabilityHandler = {
+			mOutputPipe.fileHandleForReading.readabilityHandler = {
 				[weak self] (_ hdl: FileHandle) -> Void in
 				if let myself = self {
 					let data = hdl.availableData
@@ -64,7 +81,7 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 				}
 			}
 			/* Connect standard error */
-			mShellInterface.error.fileHandleForReading.readabilityHandler = {
+			mErrorPipe.fileHandleForReading.readabilityHandler = {
 				[weak self] (_ hdl: FileHandle) -> Void in
 				if let myself = self {
 					let data = hdl.availableData
@@ -76,10 +93,6 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 		} else {
 			fatalError("Can not load KCTextViewCore")
 		}
-	}
-
-	public var shellInterface: CNShellInterface {
-		get { return mShellInterface }
 	}
 
 	public var minimumColumnNumbers: Int {

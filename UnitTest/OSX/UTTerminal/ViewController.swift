@@ -10,30 +10,23 @@ import CoconutData
 import CoconutShell
 import Cocoa
 
-class UTShell: CNShellThread
-{
-	public override func input(string str: String) {
-		NSLog("input: \(str)")
-		super.input(string: str)
-	}
-}
-
 class ViewController: NSViewController, NSWindowDelegate {
 
 	@IBOutlet weak var	mTerminalView: KCTerminalView!
-	private var		mShell: UTShell? = nil
+	private var		mShell: CNShellThread? = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		/* Allocate shell */
 		NSLog("Launch terminal")
-		let intf      = mTerminalView.shellInterface
-		let console   = CNDefaultConsole()
-		let env	      = CNShellEnvironment()
-		let conf      = CNConfig(doVerbose: true)
+		let inhdl	= mTerminalView.inputFileHandle
+		let outhdl	= mTerminalView.ouptutFileHandle
+		let errhdl	= mTerminalView.errorFileHandle
+		let env		= CNShellEnvironment()
+		let conf	= CNConfig(doVerbose: true)
 		NSLog("Allocate shell")
-		let shell     = UTShell(interface: intf, environment: env, console: console, config: conf)
+		let shell     = CNShellThread(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf)
 		mShell        = shell
 	}
 
