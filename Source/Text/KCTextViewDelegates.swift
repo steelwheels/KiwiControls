@@ -183,7 +183,8 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 					mLineStartIndex = index + 1
 				}
 			} else {
-				line.append(c)
+				let mc = unicodeToChar(char: c)
+				line.append(mc)
 			}
 			i = srcstr.index(i, offsetBy: 1)
 			index += 1
@@ -196,6 +197,22 @@ public class KCTerminalViewDelegates: KCTextViewDelegates
 				NSLog("[Error] Failed to convert: \(line)")
 			}
 		}
+	}
+
+	/*
+	 * reference: https://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
+	 */
+	private func unicodeToChar(char c: Character) -> Character {
+		let result: Character
+		switch c {
+		/* Smart single quotation -> ASCII quotation */
+		case "\u{2018}", "\u{2019}":	result = "\u{0027}"
+		/* Smart double quotation -> ASCII quotation */
+		case "\u{201c}", "\u{201d}":	result = "\u{0022}"
+		/* Normal -> ASCII */
+		default:			result = c
+		}
+		return result
 	}
 }
 

@@ -14,7 +14,8 @@ This software is produced by [Steel Wheels Project](http://steelwheels.github.io
 
 ## Related documents
 ### Specification
-* [RGB Color Chart](http://lowlife.jp/yasusii/static/color_chart.html)
+* [RGB Color Chart](http://lowlife.jp/yasusii/static/color_chart.html): Color definition for console
+* [ASCII and Unicode quotation marks](https://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html): The conversion from unicode to ASCII code at the NSTextView. It is required to pass the input to compiler.
 
 ### Required Software by this framework
 *  [Canary Framework](http://steelwheels.github.io/Canary/): This framework defines primitive data structure and functions. For more details, see [README file](https://github.com/steelwheels/Canary) on github.
