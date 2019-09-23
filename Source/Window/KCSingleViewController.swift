@@ -100,7 +100,7 @@ open class KCSingleViewController: KCViewController, CNLogging
 
 	#if os(OSX)
 	private func parentWindowSize() -> KCSize {
-		if let initsize = parentController.setInitialWindowSize() {
+		if let initsize = parentController.initialWindowSize() {
 			return initsize
 		} else {
 			if let window = parentController.view.window {

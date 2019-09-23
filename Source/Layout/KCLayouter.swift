@@ -22,16 +22,6 @@ public class KCLayouter: CNLogging
 		get { return mConsole }
 	}
 
-	public class func windowSize() -> KCSize? {
-		let result: KCSize?
-		#if os(OSX)
-			result = CNPreference.shared.windowPreference.mainWindowSize
-		#else
-			result = UIScreen.main.bounds.size
-		#endif
-		return result
-	}
-
 	public func layout(rootView view: KCRootView, windowSize winsize: KCSize){
 		log(type: .Flow, string: "Get content size", file: #file, line: #line, function: #function)
 		let windowrect = KCRect(origin: CGPoint.zero, size: winsize)

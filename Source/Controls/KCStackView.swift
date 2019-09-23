@@ -54,17 +54,7 @@ open class KCStackView : KCCoreView
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		let prih 	: ExpansionPriority
-		let priv	: ExpansionPriority
-		switch axis {
-		case .vertical:
-			prih = .Low
-			priv = .High
-		case .horizontal:
-			prih = .High
-			priv = .Low
-		}
-		return (prih, priv)
+		return (.Low, .Low)
 	}
 
 	private func setupLayout(){

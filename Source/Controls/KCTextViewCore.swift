@@ -191,8 +191,8 @@ open class KCTextViewCore : KCView
 		let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumLineNumbers))
 		let reqsize   = KCSize(width: reqwidth, height: reqheight)
 
-		let result = KCSize(width:  max(size.width,  reqsize.width),
-				    height: max(size.height, reqsize.height))
+		let result = KCSize(width:  min(size.width,  reqsize.width),
+				    height: min(size.height, reqsize.height))
 		return result
 	}
 

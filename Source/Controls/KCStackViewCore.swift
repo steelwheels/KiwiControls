@@ -183,44 +183,115 @@ open class KCStackViewCore : KCView
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		var parent	= size
-		var newsize	= KCSize(width: 0.0, height: 0.0)
 		log(type: .Flow, string: "sizeThatFits(\(size.description))", file: #file, line: #line, function: #function)
-		switch self.axis {
-		case .horizontal:
-			newsize.height = size.height
-			for subview in mStackView.arrangedSubviews {
-				let subsize: KCSize
-				if let view = subview as? KCView {
-					subsize = view.sizeThatFits(parent)
-				} else {
-					subsize = subview.frame.size
-				}
-				newsize.width += subsize.width
-				if parent.width >= subsize.width {
-					parent.width -= subsize.width
-				} else {
-					log(type: .Error, string: "Width underflow (parent: \(parent.width), sub: \(subsize.width))", file: #file, line: #line, function: #function)
-				}
-			}
-		case .vertical:
-			newsize.width  = size.width
-			for subview in mStackView.arrangedSubviews {
-				let subsize: KCSize
-				if let view = subview as? KCView {
-					subsize = view.sizeThatFits(parent)
-				} else {
-					subsize = subview.frame.size
-				}
-				newsize.height += subsize.height
-				if parent.height >= subsize.height {
-					parent.height -= subsize.height
-				} else {
-					log(type: .Error, string: "Height underflow (parent: \(parent.height), sub: \(subsize.height))", file: #file, line: #line, function: #function)
-				}
+
+		var parentsize = size
+		let (highviews, lowviews, fixedviews) = categizeSubviews(subViews: self.arrangedSubviews())
+
+		/* Allocate fixed views */
+		for subview in fixedviews {
+			let subsize = subview.sizeThatFits(parentsize)
+			switch self.axis {
+			case .horizontal:
+				parentsize.width  = max(0.0, parentsize.width  - subsize.width)
+			case .vertical:
+				parentsize.height = max(0.0, parentsize.height - subsize.height)
 			}
 		}
-		return newsize
+
+		/* Allocate low-expand views */
+		let ldivsize = dividedSize(parentSize: parentsize, subviewCount: lowviews.count + highviews.count)
+		for subview in lowviews {
+			let subsize = subview.sizeThatFits(ldivsize)
+			switch self.axis {
+			case .horizontal:
+				parentsize.width  = max(0.0, parentsize.width  - subsize.width)
+			case .vertical:
+				parentsize.height = max(0.0, parentsize.height - subsize.height)
+			}
+		}
+
+		/* Allocate high-expand views */
+		let hdivsize = dividedSize(parentSize: parentsize, subviewCount: highviews.count)
+		for subview in highviews {
+			let subsize = subview.sizeThatFits(hdivsize)
+			switch self.axis {
+			case .horizontal:
+				parentsize.width  = max(0.0, parentsize.width  - subsize.width)
+			case .vertical:
+				parentsize.height = max(0.0, parentsize.height - subsize.height)
+			}
+		}
+
+		/* get entire size */
+		var ressize = CGSize.zero
+		for subview in self.arrangedSubviews() {
+			let subsize = subview.frame.size
+			switch self.axis {
+			case .horizontal:
+				ressize.height =  max(ressize.height, subsize.height)
+				ressize.width  += subsize.width
+			case .vertical:
+				ressize.width  =  max(ressize.width, subsize.width)
+				ressize.height += subsize.height
+			}
+		}
+
+		if ressize.width > size.width {
+			log(type: .Error, string: "Width overflow: \(ressize.width) > \(size.width) ",
+				file: #file, line: #line, function: #function)
+		}
+		if ressize.height > size.height {
+			log(type: .Error, string: "height overflow: \(ressize.height) > \(size.height)",
+				file: #file, line: #line, function: #function)
+		}
+		return ressize
+	}
+
+	private func categizeSubviews(subViews subviews: Array<KCView>) -> (Array<KCView>, Array<KCView>, Array<KCView>) {
+		var highviews:   Array<KCView> = []
+		var lowviews:    Array<KCView> = []
+		var fixedviews:  Array<KCView> = []
+		for subview in subviews {
+			if let subview = subview as? KCCoreView {
+				let (hpri, vpri) = subview.expansionPriorities()
+				switch self.axis {
+				case .horizontal:
+					switch hpri {
+					case .High:	highviews.append(subview)
+					case .Low:	lowviews.append(subview)
+					case .Fixed:	fixedviews.append(subview)
+					}
+				case .vertical:
+					switch vpri {
+					case .High:	highviews.append(subview)
+					case .Low:	lowviews.append(subview)
+					case .Fixed:	fixedviews.append(subview)
+					}
+				}
+			} else {
+				fatalError("Can not happen")
+			}
+		}
+		return (highviews, lowviews, fixedviews)
+	}
+
+	private func dividedSize(parentSize size: CGSize, subviewCount subviewnum: Int) -> CGSize {
+		if subviewnum > 1 {
+			let width: 	CGFloat
+			let height:	CGFloat
+			switch self.axis {
+			case .horizontal:
+				width  = size.width  / CGFloat(subviewnum)
+				height = size.height
+			case .vertical:
+				width  = size.width
+				height = size.height / CGFloat(subviewnum)
+			}
+			return CGSize(width: width, height: height)
+		} else {
+			return size
+		}
 	}
 
 	open override var intrinsicContentSize: KCSize {

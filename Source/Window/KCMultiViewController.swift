@@ -51,17 +51,17 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	#if os(OSX)
 	open override func viewWillAppear() {
 		super.viewWillAppear()
-		let _ = setInitialWindowSize()
+		let _ = initialWindowSize()
 	}
 	#endif
 
 	#if os(OSX)
-	public func setInitialWindowSize() -> KCSize? {
+	public func initialWindowSize() -> KCSize? {
 		var result: KCSize? = nil
 		if !mHasMainWindowSize {
 			/* Adjust window size */
 			if let window = self.view.window {
-				if let size = KCLayouter.windowSize() {
+				if let size = KCMultiViewController.windowSize() {
 					NSLog("Window size = \(size.description)")
 					if window.frame.size != size {
 						window.resize(size: size)
@@ -77,6 +77,17 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		}
 		return result
 	}
+
+	private class func windowSize() -> KCSize? {
+		let result: KCSize?
+		#if os(OSX)
+		result = CNPreference.shared.windowPreference.mainWindowSize
+		#else
+		result = UIScreen.main.bounds.size
+		#endif
+		return result
+	}
+
 	#endif
 
 	public func showTabBar(visible vis: Bool){
