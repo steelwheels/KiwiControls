@@ -130,6 +130,13 @@ open class KCSingleViewController: KCViewController, CNLogging
 			if root.hasCoreView {
 				let finalizer = KCLayoutFinalizer(console: mConsole)
 				finalizer.finalizeLayout(rootView: root)
+				/* Make first responder
+				 * reference: https://stackoverflow.com/questions/7263482/problems-setting-firstresponder-in-cocoa-mac-osx
+				 */
+				let maker = KCFirstResponderMaker(console: mConsole)
+				if !maker.makeFirstResponder(rootView: root) {
+					log(type: .Flow, string: "No first responder", file: #file, line: #line, function: #function)
+				}
 			}
 		}
 	}

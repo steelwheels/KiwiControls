@@ -64,6 +64,11 @@ open class KCCoreView: KCView
 		return coreview.sizeThatFits(size)
 	}
 
+	open override func minimumSize(_ size: CGSize) -> CGSize {
+		let coreview: KCView = getCoreView()
+		return coreview.minimumSize(size)
+	}
+
 	open override func resize(_ size: KCSize){
 		if hasCoreView {
 			let coreview: KCView = getCoreView()
@@ -71,6 +76,16 @@ open class KCCoreView: KCView
 		}
 		super.resize(size)
 	}
+
+	#if os(OSX)
+	public override func becomeFirstResponder(for window: NSWindow) -> Bool {
+		if hasCoreView {
+			let coreview: KCView = getCoreView()
+			return coreview.becomeFirstResponder(for: window)
+		}
+		return false
+	}
+	#endif
 
 	open func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
 		return (.Fixed, .Fixed)

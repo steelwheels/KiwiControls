@@ -10,13 +10,23 @@ import Foundation
 
 public class KCSizeMinimizer: KCViewVisitor
 {
+	private var mRootSize:   KCSize
 	private var mParentSize: KCSize = KCSize.zero
 	private var mResultSize: KCSize = KCSize.zero
+
+	public init(rootSize root: KCSize, console cons: CNConsole) {
+		mRootSize = root
+		super.init(console: cons)
+	}
 
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCCoreView = view.getCoreView()
 
-		mParentSize = view.frame.size
+		/* do not use resize */
+		view.frame.size  = mRootSize
+		view.bounds.size = mRootSize
+		mParentSize      = mRootSize
+
 		coreview.accept(visitor: self)
 		coreview.resize(mResultSize)
 	}
@@ -92,7 +102,7 @@ public class KCSizeMinimizer: KCViewVisitor
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		mResultSize = view.sizeThatFits(mParentSize)
+		mResultSize = view.minimumSize(mParentSize)
 		view.resize(mResultSize)
 	}
 

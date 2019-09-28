@@ -68,7 +68,7 @@ open class KCTextViewCore : KCView
 		mTextView.delegate            = mTextViewDelegates!
 		textStorage.delegate          = mTextViewDelegates!
 		#if os(OSX)
-			mTextView.isVerticallyResizable   = false
+			mTextView.isVerticallyResizable   = true
 			mTextView.isHorizontallyResizable = false
 			mTextView.insertionPointColor	  = KCColor.green
 		#else
@@ -185,14 +185,20 @@ open class KCTextViewCore : KCView
 		return size
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+
+	open override func minimumSize(_ size: CGSize) -> CGSize {
 		let fontsize  = fontSize()
+		NSLog("font = \(fontsize.width) x \(fontsize.height)")
 		let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
 		let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumLineNumbers))
 		let reqsize   = KCSize(width: reqwidth, height: reqheight)
+		return reqsize
+	}
 
-		let result = KCSize(width:  min(size.width,  reqsize.width),
-				    height: min(size.height, reqsize.height))
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let minsize = minimumSize(size)
+		let result  = KCSize(width:  max(size.width,  minsize.width),
+				     height: max(size.height, minsize.height))
 		return result
 	}
 
@@ -338,6 +344,13 @@ open class KCTextViewCore : KCView
 		strg.setAttributedString(NSAttributedString(string: ""))
 		strg.endEditing()
 	}
+
+	#if os(OSX)
+	public override func becomeFirstResponder(for window: NSWindow) -> Bool {
+		window.makeFirstResponder(mTextView)
+		return true
+	}
+	#endif
 
 	private func scrollToBottom(){
 		#if os(OSX)

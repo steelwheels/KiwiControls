@@ -191,10 +191,19 @@ open class KCView : KCViewBase, CNLogging
 	#if os(OSX)
 
 	func sizeThatFits(_ size: CGSize) -> CGSize {
+		NSLog("Override this method")
 		return KCSectSize(sizeA: self.frame.size, sizeB: size)
 	}
 
+	public func becomeFirstResponder(for window: NSWindow) -> Bool {
+		return false
+	}
+
 	#endif
+
+	open func minimumSize(_ size: CGSize) -> CGSize {
+		return sizeThatFits(size)
+	}
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false

@@ -27,7 +27,7 @@ public class KCLayouter: CNLogging
 		let windowrect = KCRect(origin: CGPoint.zero, size: winsize)
 
 		log(type: .Flow, string: "Minimize window size: " + winsize.description, file: #file, line: #line, function: #function)
-		let minimizer = KCSizeMinimizer(console: mConsole)
+		let minimizer = KCSizeMinimizer(rootSize: winsize, console: mConsole)
 		view.accept(visitor: minimizer)
 
 		log(type: .Flow, string: "Minimize group size", file: #file, line: #line, function: #function)
