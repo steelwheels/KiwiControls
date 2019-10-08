@@ -31,6 +31,9 @@ class ViewController: NSViewController {
 			mConsoleView.appendText(normal: "*\(i)\n")
 		}
 		dumpSize(title: "After")
+
+		let logcons = KCLogManager.shared.console
+		logcons.print(string: "Hello, log console")
 	}
 
 	private func dumpSize(title titlestr: String){
