@@ -40,7 +40,7 @@ class ViewController: UIViewController, CNLogging
 		super.viewDidLoad()
 
 		/* Allocate cosole */
-		let cons = KCLogConsole.shared
+		let cons = KCLogManager.shared.console
 		mConsole = cons
 
 		log(type: .Flow, string: "Message from ViewController", file: #file, line: #line, function: #function)

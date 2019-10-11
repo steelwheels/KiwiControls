@@ -32,7 +32,12 @@ public class KCWindowPreference
 	#if os(iOS)
 	public var isPortrait: Bool {
 		get {
-			return UIApplication.shared.statusBarOrientation.isPortrait
+			if let window = UIApplication.shared.windows.first {
+				if let scene = window.windowScene {
+					return scene.interfaceOrientation.isPortrait
+				}
+			}
+			return true
 		}
 	}
 	#endif
