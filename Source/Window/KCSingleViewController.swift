@@ -76,7 +76,11 @@ open class KCSingleViewController: KCViewController, CNLogging
 			/* get window size */
 			let winsize: CGSize
 			#if os(OSX)
-				winsize = parentWindowSize()
+				if let prefsize = KCMultiViewController.preferenceWindowSize() {
+					winsize = prefsize
+				} else {
+					winsize = parentWindowSize()
+				}
 			#else
 				winsize = UIScreen.main.bounds.size
 			#endif
@@ -100,15 +104,11 @@ open class KCSingleViewController: KCViewController, CNLogging
 
 	#if os(OSX)
 	private func parentWindowSize() -> KCSize {
-		if let initsize = parentController.initialWindowSize() {
-			return initsize
+		if let window = parentController.view.window {
+			return window.frame.size
 		} else {
-			if let window = parentController.view.window {
-				return window.frame.size
-			} else {
-				NSLog("[Error] No parent window")
-				return KCSize(width: 640.0, height: 360.0)
-			}
+			NSLog("[Error] No parent window")
+			return KCSize(width: 640.0, height: 360.0)
 		}
 	}
 	#endif

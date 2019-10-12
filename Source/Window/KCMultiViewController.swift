@@ -23,9 +23,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
 	private var mViewStack:		CNStack = CNStack<String>()	/* name */
 	private var mConsole:		CNConsole? = nil
-	#if os(OSX)
-	private var mHasMainWindowSize:	Bool = false
-	#endif
 	#if os(iOS)
 	private var mPickerView:	KCDocumentPickerViewController? = nil
 	#endif
@@ -46,44 +43,32 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		log(type: .Flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		showTabBar(visible:false)
+
+		/* Setup window size */
+		#if os(OSX)
+			if let size = KCMultiViewController.preferenceWindowSize() {
+				if let window = self.view.window {
+					window.resize(size: size)
+				} else {
+					NSLog("No window")
+				}
+			}
+		#endif
 	}
 
 	#if os(OSX)
 	open override func viewWillAppear() {
 		super.viewWillAppear()
-		let _ = initialWindowSize()
 	}
 	#endif
 
 	#if os(OSX)
-	public func initialWindowSize() -> KCSize? {
-		var result: KCSize? = nil
-		if !mHasMainWindowSize {
-			/* Adjust window size */
-			if let window = self.view.window {
-				if let size = KCMultiViewController.windowSize() {
-					NSLog("Window size = \(size.description)")
-					if window.frame.size != size {
-						window.resize(size: size)
-						mHasMainWindowSize = true
-						result = size
-					}
-				} else {
-					NSLog("No window size")
-				}
-			} else {
-				NSLog("[Error] No window")
-			}
-		}
-		return result
-	}
-
-	private class func windowSize() -> KCSize? {
+	public class func preferenceWindowSize() -> KCSize? {
 		let result: KCSize?
 		#if os(OSX)
-		result = CNPreference.shared.windowPreference.mainWindowSize
+			result = CNPreference.shared.windowPreference.mainWindowSize
 		#else
-		result = UIScreen.main.bounds.size
+			result = UIScreen.main.bounds.size
 		#endif
 		return result
 	}
