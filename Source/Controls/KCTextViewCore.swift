@@ -202,16 +202,6 @@ open class KCTextViewCore : KCView
 		return result
 	}
 
-	open override var intrinsicContentSize: KCSize {
-		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				return mTextView.intrinsicContentSize
-			}
-		}
-	}
-
 	open override func resize(_ size: KCSize) {
 		mTextView.frame.size  = size
 		mTextView.bounds.size = size

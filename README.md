@@ -9,8 +9,9 @@ This software is produced by [Steel Wheels Project](http://steelwheels.github.io
 [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html).
 
 ## Target system
-* OS version:   macOS 10.14 or iOS 12
-* Xcode:        Xcode10
+* macOS: 15.0
+* iOS:   13.0
+* Xcode: 11.0
 
 ## Related documents
 ### Specification

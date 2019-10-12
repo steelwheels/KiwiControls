@@ -1,6 +1,6 @@
 /**
- * @file	KCLogConsole.swift
- * @brief	Define KCLogConsole class
+ * @file	KCLogManager.swift
+ * @brief	Define KCLogManager class
  * @par Copyright
  *   Copyright (C) 2018 Steel Wheels Project
  */

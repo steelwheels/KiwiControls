@@ -39,6 +39,10 @@ public class KCLayouter: CNLogging
 		let rootallocator = KCRootSizeAllocator(windowSize: winsize, windowInset: insets)
 		rootallocator.setRootFrame(rootView: view, contentRect: windowrect)
 
+		log(type: .Flow, string: "Adjust view size", file: #file, line: #line, function: #function)
+		let adjuster = KCSizeAdjuster(console: mConsole)
+		view.accept(visitor: adjuster)
+
 		log(type: .Flow, string: "Decide distribution", file: #file, line: #line, function: #function)
 		let distdecider = KCDistributionDecider(console: mConsole)
 		view.accept(visitor: distdecider)
