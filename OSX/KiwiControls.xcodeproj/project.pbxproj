@@ -132,7 +132,6 @@
 		0584B1431EACAF9E00A5E9B8 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584B1421EACAF9E00A5E9B8 /* KCStackView.swift */; };
 		0584E7601DEADFDE007E33C3 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05043C1C1D856F910033FEC6 /* KiwiControls.framework */; };
 		0584F513210DFE6300492366 /* KCWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584F512210DFE6300492366 /* KCWindow.swift */; };
-		0587717D214F355D00F90BC1 /* KCIntrinsicSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587717C214F355D00F90BC1 /* KCIntrinsicSizeAllocator.swift */; };
 		0588EA1A209E918E00C6D5E8 /* KCLogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0588EA19209E918E00C6D5E8 /* KCLogWindowController.swift */; };
 		058CE6AC22EA077B00016F7D /* KCSpriteRadar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CE6AB22EA077B00016F7D /* KCSpriteRadar.swift */; };
 		058E68D4211DFAC300DC4DFA /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
@@ -443,7 +442,6 @@
 		0584B1401EACA29500A5E9B8 /* KCStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackViewCore.swift; sourceTree = "<group>"; };
 		0584B1421EACAF9E00A5E9B8 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
 		0584F512210DFE6300492366 /* KCWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCWindow.swift; sourceTree = "<group>"; };
-		0587717C214F355D00F90BC1 /* KCIntrinsicSizeAllocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIntrinsicSizeAllocator.swift; sourceTree = "<group>"; };
 		0588EA19209E918E00C6D5E8 /* KCLogWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLogWindowController.swift; sourceTree = "<group>"; };
 		058CE6AB22EA077B00016F7D /* KCSpriteRadar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteRadar.swift; sourceTree = "<group>"; };
 		059101E922A3729C000CBC9D /* KCScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCScreen.swift; sourceTree = "<group>"; };
@@ -1052,7 +1050,6 @@
 				0526C46C21C0065F00EDC4E3 /* KCGroupMaker.swift */,
 				05316D3B214AC8930005BB0E /* KCGroupSizeAllocator.swift */,
 				05F73B7E214964C500AD02B4 /* KCRootSizeAllocator.swift */,
-				0587717C214F355D00F90BC1 /* KCIntrinsicSizeAllocator.swift */,
 				0526C46B21C0065F00EDC4E3 /* KCDistributionDecider.swift */,
 				056C0C492288419200C6171E /* KCLayoutFinalizer.swift */,
 				056C0C4B228842CF00C6171E /* KCFrameSizeFinalizer.swift */,
@@ -1607,7 +1604,6 @@
 				0598D5791DE180D50098C5B8 /* KCImageDrawerLayer.swift in Sources */,
 				0531C92D1FD404570020AD7D /* KCPreference.swift in Sources */,
 				0542C0E7209F09BB00F2A028 /* KCLogConsole.swift in Sources */,
-				0587717D214F355D00F90BC1 /* KCIntrinsicSizeAllocator.swift in Sources */,
 				05804392209586D5009E20A9 /* KCEclipse.swift in Sources */,
 				05A4711E21D2877300E7C446 /* KCSpriteView.swift in Sources */,
 				0523C2C922E5BCF700FAB05F /* KCSpriteStatus.swift in Sources */,
@@ -2049,7 +2045,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -2081,7 +2077,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -2410,7 +2406,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTLayout/UTLayout.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -2421,7 +2417,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTLayout/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(USER_LIBRARY_DIR)/Frameworks @executable_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTLayout;
@@ -2440,7 +2436,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTLayout/UTLayout.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -2451,7 +2447,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTLayout/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(USER_LIBRARY_DIR)/Frameworks @executable_path/../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";

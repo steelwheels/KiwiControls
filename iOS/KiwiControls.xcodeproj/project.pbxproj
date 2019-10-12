@@ -56,7 +56,6 @@
 		055112621EB6006700CC75E8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055112611EB6006700CC75E8 /* KCCoreView.swift */; };
 		0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */; };
 		0557686F2155506A000AB421 /* KCGroupSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */; };
-		055768702155506A000AB421 /* KCIntrinsicSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */; };
 		055773DB228848820079E37F /* KCLayoutFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DA228848820079E37F /* KCLayoutFinalizer.swift */; };
 		055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */; };
 		0558A70F209D9CFD005905A1 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558A70E209D9CFD005905A1 /* KCRootView.swift */; };
@@ -328,7 +327,6 @@
 		055112611EB6006700CC75E8 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupSizeAllocator.swift; sourceTree = "<group>"; };
-		0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIntrinsicSizeAllocator.swift; sourceTree = "<group>"; };
 		055773DA228848820079E37F /* KCLayoutFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutFinalizer.swift; sourceTree = "<group>"; };
 		055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFrameSizeFinalizer.swift; sourceTree = "<group>"; };
 		0558A70E209D9CFD005905A1 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
@@ -841,7 +839,6 @@
 				05877180214F699C00F90BC1 /* KCSizeMinimizer.swift */,
 				0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */,
 				057FF5EC22989D5000E81BAB /* KCRootSizeAllocator.swift */,
-				0557686D2155506A000AB421 /* KCIntrinsicSizeAllocator.swift */,
 				055773DA228848820079E37F /* KCLayoutFinalizer.swift */,
 				055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */,
 			);
@@ -1460,7 +1457,6 @@
 				05841E9D1D8F7B950092C2C6 /* KCView.swift in Sources */,
 				05910BF620958D9D00535E2A /* KCVertices.swift in Sources */,
 				052237B71E2234480073E4C9 /* KCTextFieldCore.swift in Sources */,
-				055768702155506A000AB421 /* KCIntrinsicSizeAllocator.swift in Sources */,
 				05A346AC2340179700DC7D2F /* KCFirstResponderMaker.swift in Sources */,
 				056F4CB41E734EE5008BF572 /* KCIconViewCore.swift in Sources */,
 				0583CC1C22767C8500B36E0A /* KCSpriteScene.swift in Sources */,
@@ -2178,8 +2174,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -2200,6 +2197,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -2211,8 +2209,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -2233,6 +2232,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = NO;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
