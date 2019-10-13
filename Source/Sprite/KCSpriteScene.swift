@@ -224,8 +224,8 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 	}
 
 	private func reportFailure(context ctxt: CNOperationContext){
-		if let name = KCSpriteOperationContext.getName(context: ctxt), let cons = ctxt.console {
-			cons.print(string: "Failed to execute \(name)\n")
+		if let name = KCSpriteOperationContext.getName(context: ctxt) {
+			ctxt.console.error(string: "Failed to execute \(name)\n")
 			syncRemove(nodeName: name)
 			return // without errors
 		}
