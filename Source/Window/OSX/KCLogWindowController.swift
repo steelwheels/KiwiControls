@@ -11,7 +11,6 @@ import Foundation
 public class KCLogWindowController: NSWindowController
 {
 	private var mConsoleView:	KCConsoleView
-	private var mConsole:		KCConsole
 
 	public class func allocateController() -> KCLogWindowController {
 		let (window, console, clearbtn, closebtn) = KCLogWindowController.loadWindow()
@@ -20,7 +19,6 @@ public class KCLogWindowController: NSWindowController
 
 	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton, closeButton closebtn: KCButton){
 		mConsoleView		= consview
-		mConsole		= KCConsole(ownerView: consview)
 		super.init(window: win)
 		/* Set console color */
 		mConsoleView.color = KCTextColor(normal:     KCColorTable.green,
@@ -41,24 +39,20 @@ public class KCLogWindowController: NSWindowController
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public func print(string str: String){
-		mConsole.print(string: str)
-	}
-
-	public func error(string str: String){
-		mConsole.error(string: str)
-	}
-
-	public func scan() -> String? {
-		return mConsole.scan()
-	}
-
 	public func show() {
 		self.window?.orderFront(self.window)
 	}
 
 	public func hide() {
 		self.window?.orderOut(self.window)
+	}
+
+	public func print(string str: String) {
+		mConsoleView.consoleConnection.print(string: str)
+	}
+
+	public func error(string str: String) {
+		mConsoleView.consoleConnection.error(string: str)
 	}
 
 	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton, KCButton) {

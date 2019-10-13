@@ -12,6 +12,7 @@
 #endif
 import CoconutData
 
+/*
 public class KCConsole: CNConsole
 {
 	private var mOwnerView:	KCConsoleView
@@ -38,20 +39,29 @@ public class KCConsole: CNConsole
 		return nil
 	}
 }
+*/
 
 open class KCConsoleView : KCCoreView
 {
-	private var mConsoleConnection: KCConsole? = nil
+	private var mPipeConsole:		CNPipeConsole
+
+	public var consoleConnection: CNFileConsole {
+		get { return mPipeConsole.interfaceConsole }
+	}
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		super.init(frame: frame) ;
-		setupContext() ;
+		mPipeConsole = CNPipeConsole()
+		super.init(frame: frame)
+		setupContext()
+		setupHandlers()
 	}
 	#else
 	public override init(frame: CGRect){
-		super.init(frame: frame) ;
+		mPipeConsole = CNPipeConsole()
+		super.init(frame: frame)
 		setupContext()
+		setupHandlers()
 	}
 	#endif
 
@@ -62,22 +72,34 @@ open class KCConsoleView : KCCoreView
 			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 22)
 		#endif
 		self.init(frame: frame)
-		setupContext()
 	}
 
 	public required init?(coder: NSCoder) {
+		mPipeConsole = CNPipeConsole()
 		super.init(coder: coder) ;
-		setupContext() ;
+		setupContext()
+		setupHandlers()
 	}
 
 	private func setupContext(){
 		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
-			mConsoleConnection = KCConsole(ownerView: self)
 			setCoreView(view: newview)
 			newview.setup(type: .console, frame: self.frame, output: nil)
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTextViewCore")
+		}
+	}
+
+	private func setupHandlers() {
+		mPipeConsole.inputHandler = nil
+		mPipeConsole.outputHandler = {
+			(_ str: String) -> Void in
+			self.appendText(normal: str)
+		}
+		mPipeConsole.errorHandler = {
+			(_ str: String) -> Void in
+			self.appendText(error: str)
 		}
 	}
 
@@ -101,10 +123,6 @@ open class KCConsoleView : KCCoreView
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
 		return (.Low, .Low)
-	}
-
-	public var consoleConnection: CNConsole {
-		get { return mConsoleConnection! }
 	}
 
 	public func appendText(normal str: String){
