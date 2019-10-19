@@ -49,9 +49,11 @@ open class KCSingleViewController: KCViewController, CNLogging
 	}
 
 	open override func loadView() {
-		let root  = allocateRootView()
-		self.view = root
-		mRootView = root
+		if mRootView == nil {
+			let root  = allocateRootView()
+			self.view = root
+			mRootView = root
+		}
 	}
 
 	open func allocateRootView() -> KCRootView {
@@ -94,7 +96,7 @@ open class KCSingleViewController: KCViewController, CNLogging
 					/* This size is layouted */
 					mLayoutedSize = winsize
 				} else {
-					log(type: .Flow, string: "// Skip layout", file: #file, line: #line, function: #function)
+					log(type: .Flow, string: "Skip layout", file: #file, line: #line, function: #function)
 				}
 			}
 		} else {
