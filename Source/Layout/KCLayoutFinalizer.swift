@@ -21,7 +21,7 @@ public class KCLayoutFinalizer: CNLogging
 	}
 
 	public func finalizeLayout(rootView view: KCRootView){
-		log(type: .Flow, string: "Frame size finalizer", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Frame size finalizer", file: #file, line: #line, function: #function)
 		let sizefinalizer = KCFrameSizeFinalizer(console: mConsole)
 		view.accept(visitor: sizefinalizer)
 	}

@@ -23,27 +23,27 @@ public class KCLayouter: CNLogging
 	}
 
 	public func layout(rootView view: KCRootView, windowSize winsize: KCSize){
-		log(type: .Flow, string: "Get content size", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Get content size", file: #file, line: #line, function: #function)
 		let windowrect = KCRect(origin: CGPoint.zero, size: winsize)
 
-		log(type: .Flow, string: "Minimize window size: " + winsize.description, file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Minimize window size: " + winsize.description, file: #file, line: #line, function: #function)
 		let minimizer = KCSizeMinimizer(rootSize: winsize, console: mConsole)
 		view.accept(visitor: minimizer)
 
-		log(type: .Flow, string: "Minimize group size", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Minimize group size", file: #file, line: #line, function: #function)
 		let groupfitter = KCGroupSizeAllocator(console: mConsole)
 		view.accept(visitor: groupfitter)
 
-		log(type: .Flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
 		let insets       = KCLayouter.safeAreaInset(viewController: mViewController)
 		let rootallocator = KCRootSizeAllocator(windowSize: winsize, windowInset: insets)
 		rootallocator.setRootFrame(rootView: view, contentRect: windowrect)
 
-		log(type: .Flow, string: "Adjust view size", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Adjust view size", file: #file, line: #line, function: #function)
 		let adjuster = KCSizeAdjuster(console: mConsole)
 		view.accept(visitor: adjuster)
 
-		log(type: .Flow, string: "Decide distribution", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Decide distribution", file: #file, line: #line, function: #function)
 		let distdecider = KCDistributionDecider(console: mConsole)
 		view.accept(visitor: distdecider)
 	}

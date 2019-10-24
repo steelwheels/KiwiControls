@@ -20,13 +20,13 @@ class ViewController: NSViewController, NSWindowDelegate {
 		// Do any additional setup after loading the view.
 		/* Allocate shell */
 		NSLog("Launch terminal")
-		let inhdl	= mTerminalView.inputFileHandle
-		let outhdl	= mTerminalView.ouptutFileHandle
-		let errhdl	= mTerminalView.errorFileHandle
+		let instrm  : CNFileStream = .fileHandle(mTerminalView.inputFileHandle)
+		let outstrm : CNFileStream = .fileHandle(mTerminalView.ouptutFileHandle)
+		let errstrm : CNFileStream = .fileHandle(mTerminalView.errorFileHandle)
 		let env		= CNShellEnvironment()
-		let conf	= CNConfig(doVerbose: true)
+		let conf	= CNConfig(logLevel: .flow)
 		NSLog("Allocate shell")
-		let shell     = CNShellThread(input: inhdl, output: outhdl, error: errhdl, environment: env, config: conf, terminationHander: nil)
+		let shell     = CNShellThread(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
 		mShell        = shell
 	}
 

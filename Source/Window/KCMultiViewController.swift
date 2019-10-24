@@ -40,7 +40,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	}
 
 	open override func viewDidLoad() {
-		log(type: .Flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		showTabBar(visible:false)
 
@@ -152,7 +152,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 				if let vcont = item.viewController as? KCSingleViewController {
 					result.append(vcont)
 				} else {
-					log(type: .Error, string: "Unknown object", file: #file, line: #line, function: #function)
+					log(type: .error, string: "Unknown object", file: #file, line: #line, function: #function)
 				}
 			}
 		#else
@@ -161,7 +161,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 					if let svcont = vcont as? KCSingleViewController {
 						result.append(svcont)
 					} else {
-						log(type: .Error, string: "Unknown object", file: #file, line: #line, function: #function)
+						log(type: .error, string: "Unknown object", file: #file, line: #line, function: #function)
 					}
 				}
 			}
@@ -203,13 +203,13 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	}
 
 	public func pushViewController(byName name: String) -> Bool {
-		log(type: .Flow, string: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 		if let idx = mIndexTable[name] {
 			mViewStack.push(name)
 			switchView(index: idx)
 			return true
 		} else {
-			log(type: .Error, string: "No matched view", file: #file, line: #line, function: #function)
+			log(type: .error, string: "No matched view", file: #file, line: #line, function: #function)
 			return false
 		}
 	}
@@ -218,14 +218,14 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		if mViewStack.count > 1 {
 			let _ = mViewStack.pop()
 			if let name = mViewStack.peek() {
-				log(type: .Flow, string:  "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+				log(type: .flow, string:  "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 				if let idx = mIndexTable[name] {
 					switchView(index: idx)
 					return true
 				}
 			}
 		}
-		log(type: .Error, string: "Can not happen", file: #file, line: #line, function: #function)
+		log(type: .error, string: "Can not happen", file: #file, line: #line, function: #function)
 		return false
 	}
 
@@ -236,7 +236,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		} else {
 			oldname = "<none>"
 		}
-		log(type: .Error, string: "replaceViewController origin: \(oldname) -> named: \"\(name)\"", file: #file, line: #line, function: #function)
+		log(type: .error, string: "replaceViewController origin: \(oldname) -> named: \"\(name)\"", file: #file, line: #line, function: #function)
 		return pushViewController(byName: name)
 	}
 

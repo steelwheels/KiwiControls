@@ -41,24 +41,24 @@ class ViewController: UIViewController, CNLogging
 		let cons = KCLogManager.shared.console
 		mConsole = cons
 
-		log(type: .Flow, string: "Message from ViewController", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "Message from ViewController", file: #file, line: #line, function: #function)
 		mSpriteView.set(console: cons)
 
 		guard let blueurl = CNFilePath.URLForResourceFile(fileName: "blue-machine", fileExtension: "png") else {
-			log(type: .Error, string: "Can not decide URL for blue-machine", file: #file, line: #line, function: #function)
+			log(type: .error, string: "Can not decide URL for blue-machine", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let blueimage = CNImage(contentsOf: blueurl) else {
-			log(type: .Error, string: "Can not load blue-machine", file: #file, line: #line, function: #function)
+			log(type: .error, string: "Can not load blue-machine", file: #file, line: #line, function: #function)
 			return
 		}
 
 		guard let greenurl = CNFilePath.URLForResourceFile(fileName: "green-machine", fileExtension: "png") else {
-			log(type: .Error, string: "Can not decide URL for green-machine", file: #file, line: #line, function: #function)
+			log(type: .error, string: "Can not decide URL for green-machine", file: #file, line: #line, function: #function)
 			return
 		}
 		guard let greenimage = CNImage(contentsOf: greenurl) else {
-			log(type: .Error, string: "Can not load green-machine", file: #file, line: #line, function: #function)
+			log(type: .error, string: "Can not load green-machine", file: #file, line: #line, function: #function)
 			return
 		}
 

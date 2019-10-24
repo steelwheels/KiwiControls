@@ -89,11 +89,11 @@ public class KCSizeMinimizer: KCViewVisitor
 		}
 
 		if merged.width > mParentSize.width {
-			log(type: .Error, string: "Width overflow: \(merged.width) > \(mParentSize.width) ",
+			log(type: .warning, string: "Width overflow: \(merged.width) > \(mParentSize.width) ",
 				file: #file, line: #line, function: #function)
 		}
 		if merged.height > mParentSize.height {
-			log(type: .Error, string: "height overflow: \(merged.height) > \(mParentSize.height)",
+			log(type: .warning, string: "height overflow: \(merged.height) > \(mParentSize.height)",
 				file: #file, line: #line, function: #function)
 		}
 

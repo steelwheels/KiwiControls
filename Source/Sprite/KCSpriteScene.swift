@@ -178,7 +178,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 					KCSpriteOperationContext.setStatus(context: ctxt, status: node.status)
 				}
 			} else {
-				log(type: .Error, string: "Invalid properties", file: #file, line: #line, function: #function)
+				log(type: .error, string: "Invalid properties", file: #file, line: #line, function: #function)
 			}
 		}
 
@@ -208,13 +208,13 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 						if status.energy > 0.0 {
 							if let nodeinfo = mNodes[name] {
 								nodeinfo.node.action = result
-								log(type: .Flow, string: "action=\(result.angle)", file: #file, line: #line, function: #function)
+								log(type: .flow, string: "action=\(result.angle)", file: #file, line: #line, function: #function)
 							}
 						} else {
 							syncRemove(nodeName: name)
 						}
 					} else {
-						log(type: .Error, string: "The operation has no result", file: #file, line: #line, function: #function)
+						log(type: .error, string: "The operation has no result", file: #file, line: #line, function: #function)
 					}
 				} else {
 					reportFailure(context: ctxt)
@@ -229,7 +229,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			syncRemove(nodeName: name)
 			return // without errors
 		}
-		log(type: .Error, string: "Internal error", file: #file, line: #line, function: #function)
+		log(type: .error, string: "Internal error", file: #file, line: #line, function: #function)
 	}
 
 	private func generateRadarInfo(for node: KCSpriteNode) -> KCSpriteRadar {
@@ -312,7 +312,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 				}
 			}
 		}
-		log(type: .Error, string: "Operation is not found", file: #file, line: #line, function: #function)
+		log(type: .error, string: "Operation is not found", file: #file, line: #line, function: #function)
 		return nil
 	}
 
@@ -322,7 +322,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 				return nodeinfo.node
 			}
 		}
-		log(type: .Error, string: "Node is not found", file: #file, line: #line, function: #function)
+		log(type: .error, string: "Node is not found", file: #file, line: #line, function: #function)
 		return nil
 	}
 }

@@ -42,7 +42,7 @@ public class KCStepperCore: KCView
 		if txtsize.width > stpsize.width {
 			txtsize.width -= stpsize.width
 		} else {
-			log(type: .Error, string: "Too short size", file: #file, line: #line, function: #function)
+			log(type: .warning, string: "Too short size", file: #file, line: #line, function: #function)
 		}
 		txtsize = mTextField.sizeThatFits(txtsize)
 		return KCUnionSize(sizeA: stpsize, sizeB: txtsize, doVertical: false)
@@ -66,7 +66,7 @@ public class KCStepperCore: KCView
 		if size.width > stpsize.width {
 			txtwidth = size.width - stpsize.width
 		} else {
-			log(type: .Error, string: "Too short text", file: #file, line: #line, function: #function)
+			log(type: .warning, string: "Too short text", file: #file, line: #line, function: #function)
 			txtwidth = 1.0
 		}
 		let txtsize = KCSize(width: txtwidth, height: stpsize.height)

@@ -90,17 +90,17 @@ open class KCSingleViewController: KCViewController, CNLogging
 			if root.hasCoreView {
 				if winsize != mLayoutedSize {
 					/* Layout components */
-					log(type: .Flow, string: "Execute Layout", file: #file, line: #line, function: #function)
+					log(type: .flow, string: "Execute Layout", file: #file, line: #line, function: #function)
 					let layouter = KCLayouter(viewController: self, console: mConsole)
 					layouter.layout(rootView: root, windowSize: winsize)
 					/* This size is layouted */
 					mLayoutedSize = winsize
 				} else {
-					log(type: .Flow, string: "Skip layout", file: #file, line: #line, function: #function)
+					log(type: .flow, string: "Skip layout", file: #file, line: #line, function: #function)
 				}
 			}
 		} else {
-			log(type: .Error, string: "No root view", file: #file, line: #line, function: #function)
+			log(type: .error, string: "No root view", file: #file, line: #line, function: #function)
 		}
 	}
 
@@ -137,7 +137,7 @@ open class KCSingleViewController: KCViewController, CNLogging
 				 */
 				let maker = KCFirstResponderMaker(console: mConsole)
 				if !maker.makeFirstResponder(rootView: root) {
-					log(type: .Flow, string: "No first responder", file: #file, line: #line, function: #function)
+					log(type: .flow, string: "No first responder", file: #file, line: #line, function: #function)
 				}
 			}
 		}
