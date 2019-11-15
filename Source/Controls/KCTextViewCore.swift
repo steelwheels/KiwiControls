@@ -11,16 +11,10 @@
 	import UIKit
 #endif
 import CoconutData
-import CoconutShell
 
-open class KCTextViewCore : KCView
+open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 {
-	public static let INSERTION_POINT	= -1
-
-	public enum TextViewType {
-		case	console
-		case	terminal
-	}
+	public typealias TerminalMode = KCStorageController.TerminalMode
 
 	#if os(OSX)
 		@IBOutlet var mTextView: NSTextView!
@@ -28,22 +22,47 @@ open class KCTextViewCore : KCView
 		@IBOutlet weak var mTextView: UITextView!
 	#endif
 
-	private var mViewType:			TextViewType = .console
-	private var mTextViewDelegates:		KCTextViewDelegates? = nil
+	private var mInputPipe:			Pipe
+	private var mOutputPipe:		Pipe
+	private var mErrorPipe:			Pipe
+	private var mStorageController:		KCStorageController?  = nil
+	private var mTerminalDelegate:		KCTerminalDelegate? = nil
 	private var mMinimumColumnNumbers:	Int = 10
 	private var mMinimumLineNumbers:	Int = 1
 
-	private var mColor: 	KCTextColor = KCTextColor(
-					normal:     KCColorTable.green,
-					error:      KCColorTable.red,
-					background: KCColorTable.black)
+	public var inputFileHandle: FileHandle {
+		get { return mInputPipe.fileHandleForReading }
+	}
 
-	private var mNormalAttributes: [NSAttributedString.Key: Any] = [:]
-	private var mErrorAttributes: [NSAttributedString.Key: Any] = [:]
+	public var outputFileHandle: FileHandle {
+		get { return mOutputPipe.fileHandleForWriting }
+	}
 
-	public func setup(type typ: TextViewType, frame frm: CGRect, output outhdl: FileHandle?) {
-		updateAttributes()
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
+	public var errorFileHandle: FileHandle {
+		get { return mErrorPipe.fileHandleForWriting }
+	}
+
+	public override init(frame frameRect: KCRect) {
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
+		super.init(frame: frameRect)
+	}
+
+	public required init?(coder: NSCoder) {
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
+		super.init(coder: coder)
+	}
+
+	deinit {
+		mOutputPipe.fileHandleForReading.readabilityHandler = nil
+		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+	}
+
+	public func setup(mode md: TerminalMode, frame frm: CGRect)
+	{
 		#if os(OSX)
 			mTextView.font = NSFont.systemFont(ofSize: 10.0)
 			mTextView.drawsBackground = true
@@ -54,6 +73,257 @@ open class KCTextViewCore : KCView
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
 		mTextView.backgroundColor     = KCColor.black
+
+		#if os(OSX)
+			mTextView.isVerticallyResizable   = true
+			mTextView.isHorizontallyResizable = false
+			mTextView.insertionPointColor	  = KCColor.green
+		#else
+			mTextView.isScrollEnabled = true
+		#endif
+		switch md {
+		case .log:
+			mTextView.isEditable			= false
+			mTextView.isSelectable			= false
+		case .console:
+			mTextView.isEditable			= true
+			mTextView.isSelectable			= true
+		}
+		mTextView.delegate = self
+
+		/* Allocate storage */
+		#if os(OSX)
+			guard let storage = mTextView.textStorage else {
+				NSLog("[Error] No storage")
+				return
+			}
+		#else
+			let storage = mTextView.textStorage
+		#endif
+		storage.delegate = self
+
+		/* Allocate delegate */
+		let delegate = KCTerminalDelegate()
+		delegate.pressNewline = {
+			() -> Void in
+			self.pressNewline()
+		}
+		delegate.pressTab = {
+			() -> Void in
+			self.pressTab()
+		}
+		mTerminalDelegate = delegate
+	
+		mStorageController  = KCStorageController(mode: md, delegate: delegate)
+
+		mOutputPipe.fileHandleForReading.readabilityHandler = {
+			[weak self]  (_ hdl: FileHandle) -> Void in
+			if let myself = self {
+				let data = hdl.availableData
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in
+					#if os(OSX)
+						if let controller = myself.mStorageController, let storage = myself.mTextView.textStorage {
+							controller.receive(textStorage: storage, type: .normal, data: data)
+							myself.insertionPosition = controller.insertionPosition
+							//NSLog("IP = \(myself.insertionPosition)")
+						}
+					#else
+						if let controller = myself.mStorageController {
+							let storage = myself.mTextView.textStorage
+							controller.receive(textStorage: storage, type: .normal, data: data)
+							myself.insertionPosition = controller.insertionPosition
+							//NSLog("IP = \(myself.insertionPosition)")
+						}
+					#endif
+					myself.scrollToBottom()
+				})
+			}
+		}
+		mErrorPipe.fileHandleForReading.readabilityHandler = {
+			[weak self]  (_ hdl: FileHandle) -> Void in
+			if let myself = self {
+				let data = hdl.availableData
+				CNExecuteInMainThread(doSync: false, execute: {
+					#if os(OSX)
+						if let controller = myself.mStorageController, let storage = myself.mTextView.textStorage {
+							controller.receive(textStorage: storage, type: .error, data: data)
+						}
+					#else
+						if let controller = myself.mStorageController {
+							let storage = myself.mTextView.textStorage
+							controller.receive(textStorage: storage, type: .error, data: data)
+						}
+					#endif
+					myself.scrollToBottom()
+				})
+			}
+		}
+	}
+
+	/* Delegate of text view */
+	#if os(OSX)
+	public func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+		if let keybind = CNKeyBinding.decode(selectorName: commandSelector.description) {
+			if let ecodes = keybind.toEscapeCode() {
+				for ecode in ecodes {
+					mInputPipe.fileHandleForWriting.write(string: ecode.encode())
+				}
+			}
+		}
+		return true // the command is processed in this method
+	}
+	#endif
+
+	#if os(OSX)
+	public func textView(_ textView: NSTextView, shouldChangeTextIn range: NSRange, replacementString: String?) -> Bool {
+		if let str = replacementString {
+			mInputPipe.fileHandleForWriting.write(string: str)
+		}
+		return false // reject this change
+	}
+	#else
+	public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+		mInputPipe.fileHandleForWriting.write(string: text)
+		return false // reject this change
+	}
+	#endif
+
+	public var columnNumbers: Int {
+		get { return Int(self.bounds.width / fontSize().width) }
+	}
+
+	public var lineNumbers: Int {
+		get { return Int(self.bounds.height / fontSize().height) }
+	}
+
+	public var minimumColumnNumbers: Int {
+		get { return mMinimumColumnNumbers }
+		set(newnum){ mMinimumColumnNumbers = newnum }
+	}
+
+	public var minimumLineNumbers: Int {
+		get { return mMinimumLineNumbers }
+		set(newnum){ mMinimumLineNumbers = newnum }
+	}
+
+	public func fontSize() -> KCSize {
+		let size: KCSize
+		#if os(OSX)
+			if let font = mTextView.font {
+				size = font.boundingRectForFont.size
+			} else {
+				size = KCSize(width: 10.0, height: 10.0)
+			}
+		#else
+			if let font = mTextView.font {
+				size = KCSize(width: font.lineHeight, height: font.pointSize)
+			} else {
+				size = KCSize(width: 10.0, height: 10.0)
+			}
+		#endif
+		return size
+	}
+
+	public var color: KCTextColor {
+		get { return storageController.color }
+		set(newcol){ storageController.color = newcol }
+	}
+
+	private var insertionPosition: Int {
+		get {
+			#if os(OSX)
+				let values = mTextView.selectedRanges
+				for value in values {
+					let range = value.rangeValue
+					if range.length == 0 {
+						return range.location
+					}
+				}
+				NSLog("Error: No insertion point")
+				return 0
+			#else
+				return mTextView.selectedRange.location
+			#endif
+		}
+		set(newpt){
+			let range = NSRange(location: newpt, length: 0)
+			#if os(OSX)
+				mTextView.setSelectedRange(range)
+			#else
+				mTextView.selectedRange = range
+			#endif
+		}
+	}
+
+	private func scrollToBottom(){
+		#if os(OSX)
+			mTextView.scrollToEndOfDocument(self)
+		#else
+			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
+			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
+			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
+			mTextView.setContentOffset(scrollPoint, animated: true)
+		#endif
+	}
+
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		let minsize = minimumSize(size)
+		let result  = KCSize(width:  max(size.width,  minsize.width),
+				     height: max(size.height, minsize.height))
+		return result
+	}
+
+	open override func resize(_ size: KCSize) {
+		mTextView.frame.size  = size
+		mTextView.bounds.size = size
+		super.resize(size)
+	}
+
+	open override func minimumSize(_ size: CGSize) -> CGSize {
+		let fontsize  = fontSize()
+		let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
+		let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumLineNumbers))
+		let reqsize   = KCSize(width: reqwidth, height: reqheight)
+		return reqsize
+	}
+
+	private var storageController: KCStorageController {
+		get {
+			if let controller = mStorageController {
+				return controller
+			} else {
+				fatalError("Can not happen")
+			}
+		}
+	}
+
+	open func pressNewline() {
+	}
+
+	open func pressTab() {
+	}
+}
+
+/*
+open class KCTextViewCore : KCView, KCTextViewDelegate
+{
+	public static let INSERTION_POINT	= -1
+
+	public enum TextViewType {
+		case	console
+		case	terminal
+	}
+
+
+
+	private var mViewType:			TextViewType = .console
+	private var mTerminalStorage:		KCTerminalStorage? = nil
+
+
+	public func setup(type typ: TextViewType, frame frm: CGRect, output outhdl: FileHandle?) {
+		updateAttributes()
+		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		switch typ {
 		case .console:
@@ -67,22 +337,6 @@ open class KCTextViewCore : KCView
 		}
 		mTextView.delegate            = mTextViewDelegates!
 		textStorage.delegate          = mTextViewDelegates!
-		#if os(OSX)
-			mTextView.isVerticallyResizable   = true
-			mTextView.isHorizontallyResizable = false
-			mTextView.insertionPointColor	  = KCColor.green
-		#else
-			mTextView.isScrollEnabled = true
-		#endif
-		mViewType = typ
-		switch typ {
-		case .console:
-			mTextView.isEditable			= false
-			mTextView.isSelectable			= false
-		case .terminal:
-			mTextView.isEditable			= true
-			mTextView.isSelectable			= true
-		}
 	}
 
 	public var viewType: TextViewType { get { return mViewType }}
@@ -106,6 +360,8 @@ open class KCTextViewCore : KCView
 		}
 	}
 
+
+
 	public func updateAttributes(){
 		if let font = mTextView.font {
 			mNormalAttributes = [
@@ -123,36 +379,6 @@ open class KCTextViewCore : KCView
 		}
 	}
 
-	public var minimumColumnNumbers: Int {
-		get { return mMinimumColumnNumbers }
-		set(newnum){
-			if newnum > 0 {
-				mMinimumColumnNumbers = newnum
-			} else {
-				NSLog("Invalid parameter value: \(newnum)")
-			}
-		}
-	}
-
-	public var minimumLineNumbers: Int {
-		get { return mMinimumLineNumbers }
-		set(newnum){
-			if newnum > 0 {
-				mMinimumLineNumbers = newnum
-			} else {
-				NSLog("Invalid parameter value: \(newnum)")
-			}
-		}
-	}
-
-	public var columnNumbers: Int {
-		get { return Int(self.bounds.width / fontSize().width) }
-	}
-
-	public var lineNumbers: Int {
-		get { return Int(self.bounds.height / fontSize().height) }
-	}
-
 	public func selectedRanges() -> Array<NSRange> {
 		var result: Array<NSRange> = []
 		#if os(OSX)
@@ -167,61 +393,7 @@ open class KCTextViewCore : KCView
 		return result
 	}
 
-	public func fontSize() -> KCSize {
-		let size: KCSize
-		#if os(OSX)
-			if let font = mTextView.font {
-				size = font.boundingRectForFont.size
-			} else {
-				size = KCSize(width: 10.0, height: 10.0)
-			}
-		#else
-			if let font = mTextView.font {
-				size = KCSize(width: font.lineHeight, height: font.pointSize)
-			} else {
-				size = KCSize(width: 10.0, height: 10.0)
-			}
-		#endif
-		return size
-	}
 
-
-	open override func minimumSize(_ size: CGSize) -> CGSize {
-		let fontsize  = fontSize()
-		NSLog("font = \(fontsize.width) x \(fontsize.height)")
-		let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
-		let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumLineNumbers))
-		let reqsize   = KCSize(width: reqwidth, height: reqheight)
-		return reqsize
-	}
-
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let minsize = minimumSize(size)
-		let result  = KCSize(width:  max(size.width,  minsize.width),
-				     height: max(size.height, minsize.height))
-		return result
-	}
-
-	open override func resize(_ size: KCSize) {
-		mTextView.frame.size  = size
-		mTextView.bounds.size = size
-		super.resize(size)
-	}
-
-	private func syncInsertionPoint() -> Int? {
-		#if os(OSX)
-			let values = mTextView.selectedRanges
-			for value in values {
-				let range = value.rangeValue
-				if range.length == 0 {
-					return range.location
-				}
-			}
-			return nil
-		#else
-			return mTextView.selectedRange.location
-		#endif
-	}
 
 	public func appendText(normal str: String){
 		let astr = NSAttributedString(string: str, attributes: mNormalAttributes)
@@ -342,17 +514,6 @@ open class KCTextViewCore : KCView
 	}
 	#endif
 
-	private func scrollToBottom(){
-		#if os(OSX)
-			mTextView.scrollToEndOfDocument(self)
-		#else
-			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
-			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
-			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
-			mTextView.setContentOffset(scrollPoint, animated: true)
-		#endif
-	}
-
 	public var color: KCTextColor {
 		get	 { return mColor }
 		set(col) {
@@ -361,4 +522,6 @@ open class KCTextViewCore : KCView
 		}
 	}
 }
+
+*/
 

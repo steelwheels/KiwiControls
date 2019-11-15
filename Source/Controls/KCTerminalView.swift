@@ -11,27 +11,16 @@
 	import UIKit
 #endif
 import CoconutData
-import CoconutShell
 
-open class KCTerminalView : KCCoreView, NSTextStorageDelegate
+open class KCTerminalView : KCCoreView
 {
-	private var	mInputPipe: 	Pipe
-	private var	mOutputPipe: 	Pipe
-	private var	mErrorPipe: 	Pipe
-
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mInputPipe	= Pipe()
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
 		super.init(frame: frame) ;
 		setupContext() ;
 	}
 	#else
 	public override init(frame: CGRect){
-		mInputPipe	= Pipe()
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
 		super.init(frame: frame) ;
 		setupContext()
 	}
@@ -48,12 +37,75 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 	}
 
 	public required init?(coder: NSCoder) {
-		mInputPipe	= Pipe()
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
 		super.init(coder: coder) ;
 		setupContext() ;
 	}
+
+	public var inputFileHandle: FileHandle {
+		get { return coreView.inputFileHandle }
+	}
+
+	public var outputFileHandle: FileHandle {
+		get { return coreView.outputFileHandle }
+	}
+
+	public var errorFileHandle: FileHandle {
+		get { return coreView.errorFileHandle }
+	}
+
+	private func setupContext(){
+		guard let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore else {
+			NSLog("Failed to load resource")
+			return
+		}
+		setCoreView(view: newview)
+		newview.setup(mode: .console, frame: self.frame)
+		allocateSubviewLayout(subView: newview)
+	}
+
+	public var columnNumbers: Int {
+		get { return coreView.columnNumbers }
+	}
+
+	public var lineNumbers: Int {
+		get { return coreView.lineNumbers }
+	}
+
+	public var minimumColumnNumbers: Int {
+		get { return coreView.minimumColumnNumbers }
+		set(newnum){ coreView.minimumColumnNumbers = newnum }
+	}
+
+	public var minimumLineNumbers: Int {
+		get { return coreView.minimumLineNumbers }
+		set(newnum){ coreView.minimumLineNumbers = newnum }
+	}
+
+	public var color: KCTextColor {
+		get { return coreView.color }
+		set(newcol){ coreView.color = newcol }
+	}
+
+	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
+		return (.Low, .Low)
+	}
+
+	open override func accept(visitor vis: KCViewVisitor){
+		vis.visit(terminalView: self)
+	}
+
+	private var coreView: KCTextViewCore {
+		get { return getCoreView() }
+	}
+}
+
+/*
+open class KCTerminalView : KCCoreView, NSTextStorageDelegate
+{
+	private var	mInputPipe: 	Pipe
+	private var	mOutputPipe: 	Pipe
+	private var	mErrorPipe: 	Pipe
+
 
 	deinit {
 		mOutputPipe.fileHandleForReading.readabilityHandler = nil
@@ -99,27 +151,7 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 		get { return coreView.fontSize() }
 	}
 
-	public var minimumColumnNumbers: Int {
-		get { return coreView.minimumColumnNumbers }
-		set(newnum){ coreView.minimumColumnNumbers = newnum}
-	}
 
-	public var minimumLineNumbers: Int {
-		get { return coreView.minimumLineNumbers }
-		set(newnum){ coreView.minimumLineNumbers = newnum }
-	}
-
-	public var columnNumbers: Int {
-		get { return coreView.columnNumbers }
-	}
-
-	public var lineNumbers: Int {
-		get { return coreView.lineNumbers }
-	}
-
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Low)
-	}
 
 	public func appendText(normal str: String){
 		coreView.appendText(normal: str)
@@ -154,13 +186,10 @@ open class KCTerminalView : KCCoreView, NSTextStorageDelegate
 		set(col) { coreView.color = col}
 	}
 
-	open override func accept(visitor vis: KCViewVisitor){
-		vis.visit(terminalView: self)
-	}
 
-	private var coreView: KCTextViewCore {
-		get { return getCoreView() }
-	}
+
+
 }
 
+*/
 

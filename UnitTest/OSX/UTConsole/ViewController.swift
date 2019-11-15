@@ -15,25 +15,31 @@ class ViewController: NSViewController {
 	@IBOutlet weak var mConsoleView: KCConsoleView!
 
 	override func viewDidLoad() {
+		NSLog("viewDidLoad")
 		super.viewDidLoad()
 
 		// Do any additional setup after loading the view.
-		mConsoleView.appendText(normal: "Hello, world !!\n")
+		//mConsoleView.consoleConnection.print(string: "Hello, world !!\n")
 	}
 
 	override func viewDidAppear() {
+		NSLog("viewDidAppear")
 		dumpSize(title: "Before")
 		let colnum  = mConsoleView.columnNumbers
 		for _ in 0..<colnum {
-			mConsoleView.appendText(normal: "*")
+			NSLog("viewDidAppear (1)")
+			mConsoleView.consoleConnection.print(string: "*")
 		}
 		for i in 0..<40 {
-			mConsoleView.appendText(normal: "*\(i)\n")
+			NSLog("viewDidAppear (2)")
+			mConsoleView.consoleConnection.print(string: "*\(i)\n")
 		}
+		NSLog("viewDidAppear (3)")
 		dumpSize(title: "After")
 
-		let logcons = KCLogManager.shared.console
-		logcons.print(string: "Hello, log console")
+		NSLog("viewDidAppear (4)")
+		//let logcons = KCLogManager.shared.console
+		//logcons.print(string: "Hello, log console")
 	}
 
 	private func dumpSize(title titlestr: String){

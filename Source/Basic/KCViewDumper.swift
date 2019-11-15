@@ -86,10 +86,8 @@ public class KCViewDumper: KCViewVisitor
 
 		let fsection = CNTextSection()
 		fsection.header = "CLI {" ; fsection.footer = "}"
-		let fsize   = view.fontSize
 		let colnum  = view.columnNumbers
 		let linenum = view.lineNumbers
-		fsection.add(text: CNTextLine(string: "font_size: \(fsize.description)"))
 		fsection.add(text: CNTextLine(string: "colmun-num: \(colnum), line-num: \(linenum)"))
 		mSection.add(text: fsection)
 	}

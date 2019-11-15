@@ -21,7 +21,7 @@ class ViewController: NSViewController, NSWindowDelegate {
 		/* Allocate shell */
 		NSLog("Launch terminal")
 		let instrm  : CNFileStream = .fileHandle(mTerminalView.inputFileHandle)
-		let outstrm : CNFileStream = .fileHandle(mTerminalView.ouptutFileHandle)
+		let outstrm : CNFileStream = .fileHandle(mTerminalView.outputFileHandle)
 		let errstrm : CNFileStream = .fileHandle(mTerminalView.errorFileHandle)
 		let env		= CNShellEnvironment()
 		let conf	= CNConfig(logLevel: .flow)
@@ -41,10 +41,9 @@ class ViewController: NSViewController, NSWindowDelegate {
 			NSLog("start shell")
 			shell.start()
 		}
-		let fontsize = mTerminalView.fontSize
 		let colnum   = mTerminalView.columnNumbers
 		let rownum   = mTerminalView.lineNumbers
-		NSLog("fsize=\(fontsize.description) colnun=\(colnum), rownum=\(rownum)")
+		NSLog("colnun=\(colnum), rownum=\(rownum)")
 	}
 
 	override var representedObject: Any? {

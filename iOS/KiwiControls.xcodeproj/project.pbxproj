@@ -86,6 +86,7 @@
 		0571B63020956D3200603B95 /* KCRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571B62C20956D3200603B95 /* KCRect.swift */; };
 		0571B63120956D3200603B95 /* KCPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571B62D20956D3200603B95 /* KCPoint.swift */; };
 		0571B63220956D3200603B95 /* KCCoodinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571B62E20956D3200603B95 /* KCCoodinate.swift */; };
+		05726E41237AD5D200373542 /* KCStorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05726E40237AD5D200373542 /* KCStorageController.swift */; };
 		057853721F46725100BBB2BA /* KCConsoleViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057853711F46725100BBB2BA /* KCConsoleViewCore.xib */; };
 		057853751F46732C00BBB2BA /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057853731F46732C00BBB2BA /* KCConsoleView.swift */; };
 		057853761F46732C00BBB2BA /* KCTextViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057853741F46732C00BBB2BA /* KCTextViewCore.swift */; };
@@ -162,7 +163,6 @@
 		05EE31F61EACB214007164F4 /* KCStackViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EE31F51EACB214007164F4 /* KCStackViewCore.xib */; };
 		05EE31F91EACB2B8007164F4 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F71EACB2B8007164F4 /* KCStackView.swift */; };
 		05EE31FA1EACB2B8007164F4 /* KCStackViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */; };
-		05F400C62303014A003D3995 /* KCTextViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F400C52303014A003D3995 /* KCTextViewDelegates.swift */; };
 		05F40E0522ABC3120059E553 /* KCSpriteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F40E0422ABC3120059E553 /* KCSpriteOperation.swift */; };
 		05F7A11820A7C90B00A395AB /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */; };
 		05FAEB0E21A5C76300FE9130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FAEB0D21A5C76300FE9130 /* AppDelegate.swift */; };
@@ -359,6 +359,7 @@
 		0571B62C20956D3200603B95 /* KCRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRect.swift; sourceTree = "<group>"; };
 		0571B62D20956D3200603B95 /* KCPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint.swift; sourceTree = "<group>"; };
 		0571B62E20956D3200603B95 /* KCCoodinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoodinate.swift; sourceTree = "<group>"; };
+		05726E40237AD5D200373542 /* KCStorageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStorageController.swift; sourceTree = "<group>"; };
 		057853711F46725100BBB2BA /* KCConsoleViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCConsoleViewCore.xib; sourceTree = "<group>"; };
 		057853731F46732C00BBB2BA /* KCConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsoleView.swift; sourceTree = "<group>"; };
 		057853741F46732C00BBB2BA /* KCTextViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextViewCore.swift; sourceTree = "<group>"; };
@@ -443,7 +444,6 @@
 		05EE31F51EACB214007164F4 /* KCStackViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStackViewCore.xib; sourceTree = "<group>"; };
 		05EE31F71EACB2B8007164F4 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
 		05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackViewCore.swift; sourceTree = "<group>"; };
-		05F400C52303014A003D3995 /* KCTextViewDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextViewDelegates.swift; sourceTree = "<group>"; };
 		05F40E0422ABC3120059E553 /* KCSpriteOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteOperation.swift; sourceTree = "<group>"; };
 		05F7A11720A7C90A00A395AB /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		05FAEB0B21A5C76300FE9130 /* UTSpriteView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTSpriteView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -647,7 +647,7 @@
 		055A40942300368C0073D014 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				05F400C52303014A003D3995 /* KCTextViewDelegates.swift */,
+				05726E40237AD5D200373542 /* KCStorageController.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -1176,7 +1176,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					05021CFE1DE59F35003D4F20 = {
@@ -1486,7 +1486,6 @@
 				057FF5ED22989D5000E81BAB /* KCRootSizeAllocator.swift in Sources */,
 				05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
-				05F400C62303014A003D3995 /* KCTextViewDelegates.swift in Sources */,
 				057B892021D287FA00309B2A /* KCSpriteView.swift in Sources */,
 				059570451F7659D6007898FB /* KCType.swift in Sources */,
 				051E34E41E42370000620E1C /* KCStrokeDrawerLayer.swift in Sources */,
@@ -1515,6 +1514,7 @@
 				058CE6AE22EA07DE00016F7D /* KCSpriteRadar.swift in Sources */,
 				05DDE5F421C01A7600520631 /* KCLayoutConstraint.swift in Sources */,
 				05DDE5F721C01A8600520631 /* KCDistributionDecider.swift in Sources */,
+				05726E41237AD5D200373542 /* KCStorageController.swift in Sources */,
 				055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */,
 				05910BE820958D8900535E2A /* KCContext.swift in Sources */,
 				05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */,
@@ -2178,7 +2178,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -2213,7 +2213,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

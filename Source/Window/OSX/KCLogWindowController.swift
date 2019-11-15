@@ -20,10 +20,6 @@ public class KCLogWindowController: NSWindowController
 	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton, closeButton closebtn: KCButton){
 		mConsoleView		= consview
 		super.init(window: win)
-		/* Set console color */
-		mConsoleView.color = KCTextColor(normal:     KCColorTable.green,
-						 error:      KCColorTable.red,
-						 background: KCColorTable.black)
 		clearbtn.buttonPressedCallback = {
 			consview.clear()
 		}
@@ -48,11 +44,13 @@ public class KCLogWindowController: NSWindowController
 	}
 
 	public func print(string str: String) {
-		mConsoleView.consoleConnection.print(string: str)
+		let cons = mConsoleView.consoleConnection
+		cons.print(string: str)
 	}
 
 	public func error(string str: String) {
-		mConsoleView.consoleConnection.error(string: str)
+		let cons = mConsoleView.consoleConnection
+		cons.error(string: str)
 	}
 
 	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton, KCButton) {

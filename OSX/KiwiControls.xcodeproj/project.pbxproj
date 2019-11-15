@@ -25,7 +25,6 @@
 		051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C81E0DD76F00671A2D /* KCStepper.swift */; };
 		051C3AEB2275370800E172B3 /* KCPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C3AEA2275370800E172B3 /* KCPhysics.swift */; };
 		05213AF720956AD600683720 /* KCCoodinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05213AF620956AD600683720 /* KCCoodinate.swift */; };
-		0521F4F1230447F600F4F438 /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0521F4F0230447F600F4F438 /* CoconutShell.framework */; };
 		0523C2C722E5BC7700FAB05F /* KCSpriteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523C2C622E5BC7700FAB05F /* KCSpriteAction.swift */; };
 		0523C2C922E5BCF700FAB05F /* KCSpriteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523C2C822E5BCF700FAB05F /* KCSpriteStatus.swift */; };
 		0526C46D21C0065F00EDC4E3 /* KCDistributionDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526C46B21C0065F00EDC4E3 /* KCDistributionDecider.swift */; };
@@ -65,6 +64,10 @@
 		0542C0E7209F09BB00F2A028 /* KCLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542C0E6209F09BB00F2A028 /* KCLogManager.swift */; };
 		05462E68222B5A07002BD57E /* KCAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05462E67222B5A07002BD57E /* KCAttributedString.swift */; };
 		0549A1A620F6639F002EB823 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0549A1A520F6639F002EB823 /* KCLayouter.swift */; };
+		054DCA54237A9E73009E133B /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0521F4F0230447F600F4F438 /* CoconutShell.framework */; };
+		054DCA55237A9E73009E133B /* CoconutShell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0521F4F0230447F600F4F438 /* CoconutShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		054DCA56237AA181009E133B /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0521F4F0230447F600F4F438 /* CoconutShell.framework */; };
+		054DCA57237AA181009E133B /* CoconutShell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0521F4F0230447F600F4F438 /* CoconutShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		054E213D209D9A860044A367 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054E213C209D9A860044A367 /* KCRootView.swift */; };
 		055674CB1DFB963B00794510 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055674CA1DFB963B00794510 /* KCGraphicsView.swift */; };
 		0558C9E71F8A018E00F3F9A6 /* KCEmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0558C9E61F8A018E00F3F9A6 /* KCEmptyViewController.xib */; };
@@ -77,8 +80,6 @@
 		0562C95422FFA7B600ED5555 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0562C95322FFA7B600ED5555 /* ViewController.swift */; };
 		0562C95622FFA7B700ED5555 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0562C95522FFA7B700ED5555 /* Assets.xcassets */; };
 		0562C95922FFA7B700ED5555 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0562C95722FFA7B700ED5555 /* Main.storyboard */; };
-		0562C96122FFA7DB00ED5555 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
-		0562C96222FFA7FE00ED5555 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
 		05648A691D8EB1A500EABCD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05648A681D8EB1A500EABCD0 /* ViewController.swift */; };
 		05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05648A6A1D8EB1B100EABCD0 /* Main.storyboard */; };
 		0566C5B41E69B50B001F6FD7 /* KCTableViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0566C5B31E69B50B001F6FD7 /* KCTableViewCore.xib */; };
@@ -106,6 +107,7 @@
 		056E4A2921F779F900ED7AD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A2821F779F900ED7AD2 /* ViewController.swift */; };
 		056E4A2B21F779FB00ED7AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A2A21F779FB00ED7AD2 /* Assets.xcassets */; };
 		056E4A2E21F779FB00ED7AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A2C21F779FB00ED7AD2 /* Main.storyboard */; };
+		0573258E23798F38009872AA /* KCStorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573258D23798F37009872AA /* KCStorageController.swift */; };
 		05774D5F214368950073FCBA /* SingleView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05774D5E214368950073FCBA /* SingleView1Controller.swift */; };
 		057B0CD02116DAB2007885F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CCF2116DAB2007885F3 /* AppDelegate.swift */; };
 		057B0CD22116DAB2007885F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CD12116DAB2007885F3 /* ViewController.swift */; };
@@ -157,8 +159,6 @@
 		05ACEF651E0C3317009F10A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF641E0C3317009F10A7 /* Assets.xcassets */; };
 		05ACEF681E0C3317009F10A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF661E0C3317009F10A7 /* Main.storyboard */; };
 		05B03B7F1E223194001656A0 /* KCTextFieldCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05978CC31E2228510023640E /* KCTextFieldCore.swift */; };
-		05B0AA2522FE781B0065DAE1 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
-		05B0AA2622FE782B0065DAE1 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
 		05B371B121AA37A500D31809 /* green-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B371AF21AA37A500D31809 /* green-machine.png */; };
 		05B371B221AA37A500D31809 /* blue-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B371B021AA37A500D31809 /* blue-machine.png */; };
 		05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */; };
@@ -174,7 +174,14 @@
 		05C93F4720F0F1820057217F /* KCViewDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C93F4620F0F1820057217F /* KCViewDumper.swift */; };
 		05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D10C591DEDEFC700210470 /* KCTimer.swift */; };
 		05E234D822C3A9BC0056122F /* KCSpriteCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E234D722C3A9BC0056122F /* KCSpriteCondition.swift */; };
-		05EB22D62300308D005D50AE /* KCTextViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB22D52300308D005D50AE /* KCTextViewDelegates.swift */; };
+		05EB5F1F237A94DE00C19A43 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
+		05EB5F20237A94DE00C19A43 /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05EB5F22237A94E000C19A43 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
+		05EB5F23237A94E000C19A43 /* KiwiControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05EB5F24237A94E700C19A43 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; };
+		05EB5F25237A94E700C19A43 /* CoconutData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05DF51DF20F7B710007D631C /* CoconutData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05EB5F27237A94E900C19A43 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; };
+		05EB5F28237A94E900C19A43 /* KiwiControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 053CDD60222A982A00CAB136 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05F66D2F1F45C50F004786FE /* KCTextViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F66D2E1F45C50F004786FE /* KCTextViewCore.xib */; };
 		05F66D311F45C5A1004786FE /* KCTextViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F66D301F45C5A1004786FE /* KCTextViewCore.swift */; };
 		05F66D331F45C8B4004786FE /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F66D321F45C8B4004786FE /* KCConsoleView.swift */; };
@@ -305,6 +312,32 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05EB5F21237A94DE00C19A43 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05EB5F23237A94E000C19A43 /* KiwiControls.framework in Embed Frameworks */,
+				05EB5F20237A94DE00C19A43 /* CoconutData.framework in Embed Frameworks */,
+				054DCA55237A9E73009E133B /* CoconutShell.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05EB5F26237A94E700C19A43 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05EB5F28237A94E900C19A43 /* KiwiControls.framework in Embed Frameworks */,
+				05EB5F25237A94E700C19A43 /* CoconutData.framework in Embed Frameworks */,
+				054DCA57237AA181009E133B /* CoconutShell.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -415,6 +448,7 @@
 		056E4A2D21F779FB00ED7AD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056E4A2F21F779FB00ED7AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056E4A3021F779FB00ED7AD2 /* UTNavigationBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTNavigationBar.entitlements; sourceTree = "<group>"; };
+		0573258D23798F37009872AA /* KCStorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCStorageController.swift; sourceTree = "<group>"; };
 		05774D5E214368950073FCBA /* SingleView1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
 		057B0CCD2116DAB2007885F3 /* UTMultiViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		057B0CCF2116DAB2007885F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -490,7 +524,6 @@
 		05D10C591DEDEFC700210470 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimer.swift; sourceTree = "<group>"; };
 		05DF51DF20F7B710007D631C /* CoconutData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutData.framework; path = ../../../Library/Frameworks/CoconutData.framework; sourceTree = "<group>"; };
 		05E234D722C3A9BC0056122F /* KCSpriteCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteCondition.swift; sourceTree = "<group>"; };
-		05EB22D52300308D005D50AE /* KCTextViewDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextViewDelegates.swift; sourceTree = "<group>"; };
 		05F66D2E1F45C50F004786FE /* KCTextViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTextViewCore.xib; sourceTree = "<group>"; };
 		05F66D301F45C5A1004786FE /* KCTextViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextViewCore.swift; sourceTree = "<group>"; };
 		05F66D321F45C8B4004786FE /* KCConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsoleView.swift; sourceTree = "<group>"; };
@@ -505,7 +538,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0521F4F1230447F600F4F438 /* CoconutShell.framework in Frameworks */,
 				053CDD44222A8E4C00CAB136 /* CoconutData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,8 +553,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B0AA2622FE782B0065DAE1 /* KiwiControls.framework in Frameworks */,
-				05B0AA2522FE781B0065DAE1 /* CoconutData.framework in Frameworks */,
+				05EB5F27237A94E900C19A43 /* KiwiControls.framework in Frameworks */,
+				05EB5F24237A94E700C19A43 /* CoconutData.framework in Frameworks */,
+				054DCA56237AA181009E133B /* CoconutShell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,8 +572,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0562C96222FFA7FE00ED5555 /* CoconutData.framework in Frameworks */,
-				0562C96122FFA7DB00ED5555 /* KiwiControls.framework in Frameworks */,
+				05EB5F22237A94E000C19A43 /* KiwiControls.framework in Frameworks */,
+				05EB5F1F237A94DE00C19A43 /* CoconutData.framework in Frameworks */,
+				054DCA54237A9E73009E133B /* CoconutShell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,7 +1097,7 @@
 		05EB22D423000E58005D50AE /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				05EB22D52300308D005D50AE /* KCTextViewDelegates.swift */,
+				0573258D23798F37009872AA /* KCStorageController.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -1142,6 +1176,7 @@
 				052735F222FE7614008CE1F3 /* Sources */,
 				052735F322FE7614008CE1F3 /* Frameworks */,
 				052735F422FE7614008CE1F3 /* Resources */,
+				05EB5F26237A94E700C19A43 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1178,6 +1213,7 @@
 				0562C94B22FFA7B500ED5555 /* Sources */,
 				0562C94C22FFA7B500ED5555 /* Frameworks */,
 				0562C94D22FFA7B500ED5555 /* Resources */,
+				05EB5F21237A94DE00C19A43 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1325,7 +1361,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					05043C1B1D856F910033FEC6 = {
@@ -1588,6 +1624,7 @@
 				0598D57B1DE180D50098C5B8 /* KCRepetitiveLayer.swift in Sources */,
 				05386D4B1D8570A4004B8DDF /* KCViewController.swift in Sources */,
 				05386D4A1D8570A4004B8DDF /* KCView.swift in Sources */,
+				0573258E23798F38009872AA /* KCStorageController.swift in Sources */,
 				05F73B7D21495FB500AD02B4 /* KCSizeMinimizer.swift in Sources */,
 				056C0C4C228842CF00C6171E /* KCFrameSizeFinalizer.swift in Sources */,
 				0584F513210DFE6300492366 /* KCWindow.swift in Sources */,
@@ -1617,7 +1654,6 @@
 				054E213D209D9A860044A367 /* KCRootView.swift in Sources */,
 				0580439A209588FB009E20A9 /* KCTriangle.swift in Sources */,
 				0509C52F20D7C81C00905B33 /* KCTextEdit.swift in Sources */,
-				05EB22D62300308D005D50AE /* KCTextViewDelegates.swift in Sources */,
 				058043962095874B009E20A9 /* KCGradientTable.swift in Sources */,
 				05978CC41E2228510023640E /* KCTextField.swift in Sources */,
 				058043952095874B009E20A9 /* KCHexagon.swift in Sources */,
@@ -2049,7 +2085,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -2081,7 +2117,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
