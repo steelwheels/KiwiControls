@@ -46,45 +46,13 @@ public class KCWindowPreference
 public class KCTerminalPreference
 {
 	public var	font:			KCFont
-	public var	standardTextColor:	KCColor
-	public var	errorTextColor:		KCColor
-	public var	backgroundColor:	KCColor
+	public var	foregroundColor:	CNColor
+	public var	backgroundColor:	CNColor
 
 	public init() {
 		font			= KCFont(name: "Menlo", size: 12.0)!
-		standardTextColor	= KCColor.green
-		errorTextColor		= KCColor.red
-		backgroundColor		= KCColor.black
-	}
-
-	public var cursorAttributes: Dictionary<NSAttributedString.Key, Any> {
-		get {
-			return [
-				.font		: font,
-				.foregroundColor: backgroundColor,
-				.backgroundColor: standardTextColor
-			]
-		}
-	}
-
-	public var standardAttribute: Dictionary<NSAttributedString.Key, Any> {
-		get {
-			return [
-				.font		: font,
-				.foregroundColor: standardTextColor,
-				.backgroundColor: backgroundColor
-			]
-		}
-	}
-
-	public var errorAttribute: Dictionary<NSAttributedString.Key, Any> {
-		get {
-			return [
-				.font		: font,
-				.foregroundColor: errorTextColor,
-				.backgroundColor: backgroundColor
-			]
-		}
+		foregroundColor		= CNColor.Green
+		backgroundColor		= CNColor.Black
 	}
 }
 

@@ -26,7 +26,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mOutputPipe:		Pipe
 	private var mErrorPipe:			Pipe
 	private var mStorageController:		KCStorageController?  = nil
-	private var mTerminalDelegate:		KCTerminalDelegate? = nil
 	private var mMinimumColumnNumbers:	Int = 10
 	private var mMinimumLineNumbers:	Int = 1
 
@@ -102,24 +101,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		#endif
 		storage.delegate = self
 
-		/* Allocate delegate */
-		let delegate = KCTerminalDelegate()
-		delegate.pressNewline = {
-			() -> Void in
-			self.pressNewline()
-		}
-		delegate.pressTab = {
-			() -> Void in
-			self.pressTab()
-		}
-		mTerminalDelegate = delegate
-
-		guard let font = mTextView.font else {
-			NSLog("Failed to get font")
-			return
-		}
-
-		mStorageController  = KCStorageController(mode: md, font: font, delegate: delegate)
+		mStorageController  = KCStorageController(mode: md)
 
 		mOutputPipe.fileHandleForReading.readabilityHandler = {
 			[weak self]  (_ hdl: FileHandle) -> Void in

@@ -13,17 +13,6 @@
 import CoconutData
 import Foundation
 
-public class KCTerminalDelegate
-{
-	public var	pressNewline:		(() -> Void)?
-	public var	pressTab:		(() -> Void)?
-
-	public init(){
-		pressNewline		= nil
-		pressTab		= nil
-	}
-}
-
 public class KCStorageController: NSObject
 {
 	public enum TerminalMode {
@@ -55,32 +44,20 @@ public class KCStorageController: NSObject
 	}
 
 	private var		mMode:				TerminalMode
-	private var		mDelegate:			KCTerminalDelegate
 	private var		mInsertionPosition:		Int
-	private var		mForegroundColorStack:		CNStack<CNColor>
-	private var		mBackgroundColorStack:		CNStack<CNColor>
 	private var		mCurrentAttributes:		[NSAttributedString.Key: Any] = [:]
 
 	public var insertionPosition: Int { get { return mInsertionPosition }}
 
-	public init(mode md: TerminalMode, font fnt: KCFont, delegate dlg: KCTerminalDelegate) {
+	public init(mode md: TerminalMode) {
 		mMode			= md
-		mDelegate		= dlg
 		mInsertionPosition	= 0
-
-		let forecolor		= CNColor.Green
-		mForegroundColorStack 	= CNStack()
-		mForegroundColorStack.push(forecolor)
-
-		let backcolor		= CNColor.Black
-		mBackgroundColorStack	= CNStack()
-		mBackgroundColorStack.push(backcolor)
-
 		super.init()
 
-		mCurrentAttributes[.font]	     = fnt
-		mCurrentAttributes[.foregroundColor] = KCColorTable.codeToColor(color: forecolor)
-		mCurrentAttributes[.backgroundColor] = KCColorTable.codeToColor(color: backcolor)
+		let pref = CNPreference.shared.terminalPreference
+		mCurrentAttributes[.font]	     = pref.font
+		mCurrentAttributes[.foregroundColor] = KCColorTable.codeToColor(color: pref.foregroundColor)
+		mCurrentAttributes[.backgroundColor] = KCColorTable.codeToColor(color: pref.backgroundColor)
 	}
 
 	/* This thread must be called in main thread */
@@ -143,24 +120,14 @@ public class KCStorageController: NSObject
 		case .scrollDown:
 			break
 		case .foregroundColor(let fcol):
-			mForegroundColorStack.push(fcol)
 			set(foregroundColor: fcol)
 		case .backgroundColor(let bcol):
-			mBackgroundColorStack.push(bcol)
 			set(backgroundColor: bcol)
 		case .setNormalAttributes:
-			if mForegroundColorStack.count > 1 {
-				let _ = mForegroundColorStack.pop()
-			}
-			if let fcol = mForegroundColorStack.peek() {
-				set(foregroundColor: fcol)
-			}
-			if mBackgroundColorStack.count > 1 {
-				let _ = mBackgroundColorStack.pop()
-			}
-			if let bcol = mBackgroundColorStack.peek() {
-				set(backgroundColor: bcol)
-			}
+			/* Reset to default */
+			let pref = CNPreference.shared.terminalPreference
+			set(foregroundColor: pref.foregroundColor)
+			set(backgroundColor: pref.backgroundColor)
 		}
 	}
 
@@ -190,18 +157,6 @@ public class KCStorageController: NSObject
 	}
 
 	private func insert(textStorage storage: NSTextStorage, type typ: StreamType, character ch: Character) {
-		switch ch {
-		case "\n":
-			if let callback = mDelegate.pressNewline {
-				callback()
-			}
-		case "\t":
-			if let callback = mDelegate.pressTab {
-				callback()
-			}
-		default:
-			break
-		}
 		replace(textStorage: storage, type: typ, string: String(ch))
 	}
 
