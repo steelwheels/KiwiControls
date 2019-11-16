@@ -92,11 +92,6 @@ open class KCConsoleView : KCCoreView
 		set(newnum){ coreView.minimumLineNumbers = newnum }
 	}
 
-	public var color: KCTextColor {
-		get { return coreView.color }
-		set(newcol){ coreView.color = newcol }
-	}
-
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
 		return (.Low, .Low)
 	}

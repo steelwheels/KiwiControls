@@ -54,36 +54,33 @@ public class KCStorageController: NSObject
 		}
 	}
 
-	private var		mMode:			TerminalMode
-	private var		mDelegate:		KCTerminalDelegate
-	private var		mInsertionPosition:	Int
-	private var		mColor:			KCTextColor
-	private var		mNormalAttributes:	[NSAttributedString.Key: Any] = [:]
-	private var		mErrorAttributes:	[NSAttributedString.Key: Any] = [:]
+	private var		mMode:				TerminalMode
+	private var		mDelegate:			KCTerminalDelegate
+	private var		mInsertionPosition:		Int
+	private var		mForegroundColorStack:		CNStack<CNColor>
+	private var		mBackgroundColorStack:		CNStack<CNColor>
+	private var		mCurrentAttributes:		[NSAttributedString.Key: Any] = [:]
 
 	public var insertionPosition: Int { get { return mInsertionPosition }}
-	public var color: KCTextColor {
-		get { return mColor }
-		set(newcol){ mColor = newcol }
-	}
 
-	public init(mode md: TerminalMode, delegate dlg: KCTerminalDelegate) {
+	public init(mode md: TerminalMode, font fnt: KCFont, delegate dlg: KCTerminalDelegate) {
 		mMode			= md
 		mDelegate		= dlg
 		mInsertionPosition	= 0
 
-		mColor = KCTextColor(normal:     KCColorTable.green,
-				     error:      KCColorTable.red,
-				     background: KCColorTable.black)
-		mNormalAttributes = [
-			.foregroundColor:	mColor.normalColor,
-			.backgroundColor:	mColor.backgroundColor
-		]
-		mErrorAttributes = [
-			.foregroundColor:	mColor.errorColor,
-			.backgroundColor:	mColor.backgroundColor
-		]
+		let forecolor		= CNColor.Green
+		mForegroundColorStack 	= CNStack()
+		mForegroundColorStack.push(forecolor)
+
+		let backcolor		= CNColor.Black
+		mBackgroundColorStack	= CNStack()
+		mBackgroundColorStack.push(backcolor)
+
 		super.init()
+
+		mCurrentAttributes[.font]	     = fnt
+		mCurrentAttributes[.foregroundColor] = KCColorTable.codeToColor(color: forecolor)
+		mCurrentAttributes[.backgroundColor] = KCColorTable.codeToColor(color: backcolor)
 	}
 
 	/* This thread must be called in main thread */
@@ -145,16 +142,38 @@ public class KCStorageController: NSObject
 			break
 		case .scrollDown:
 			break
+		case .foregroundColor(let fcol):
+			mForegroundColorStack.push(fcol)
+			set(foregroundColor: fcol)
+		case .backgroundColor(let bcol):
+			mBackgroundColorStack.push(bcol)
+			set(backgroundColor: bcol)
+		case .setNormalAttributes:
+			if mForegroundColorStack.count > 1 {
+				let _ = mForegroundColorStack.pop()
+			}
+			if let fcol = mForegroundColorStack.peek() {
+				set(foregroundColor: fcol)
+			}
+			if mBackgroundColorStack.count > 1 {
+				let _ = mBackgroundColorStack.pop()
+			}
+			if let bcol = mBackgroundColorStack.peek() {
+				set(backgroundColor: bcol)
+			}
 		}
 	}
 
+	private func set(foregroundColor col: CNColor) {
+		mCurrentAttributes[.foregroundColor] = KCColorTable.codeToColor(color: col)
+	}
+
+	private func set(backgroundColor col: CNColor) {
+		mCurrentAttributes[.backgroundColor] = KCColorTable.codeToColor(color: col)
+	}
+
 	private func attributedString(type typ: StreamType, string str: String) -> NSAttributedString {
-		let result: NSAttributedString
-		switch typ {
-		case .normal:	result = NSAttributedString(string: str, attributes: mNormalAttributes)
-		case .error:	result = NSAttributedString(string: str, attributes: mErrorAttributes)
-		}
-		return result
+		return NSAttributedString(string: str, attributes: mCurrentAttributes)
 	}
 
 	private func replace(textStorage storage: NSTextStorage, type typ: StreamType, string str: String) {

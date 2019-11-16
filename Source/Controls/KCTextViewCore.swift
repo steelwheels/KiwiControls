@@ -113,8 +113,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			self.pressTab()
 		}
 		mTerminalDelegate = delegate
-	
-		mStorageController  = KCStorageController(mode: md, delegate: delegate)
+
+		guard let font = mTextView.font else {
+			NSLog("Failed to get font")
+			return
+		}
+
+		mStorageController  = KCStorageController(mode: md, font: font, delegate: delegate)
 
 		mOutputPipe.fileHandleForReading.readabilityHandler = {
 			[weak self]  (_ hdl: FileHandle) -> Void in
@@ -223,11 +228,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			}
 		#endif
 		return size
-	}
-
-	public var color: KCTextColor {
-		get { return storageController.color }
-		set(newcol){ storageController.color = newcol }
 	}
 
 	private var insertionPosition: Int {

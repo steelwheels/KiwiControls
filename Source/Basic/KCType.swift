@@ -51,18 +51,6 @@ protocol KCWindowDelegate {
 }
 #endif
 
-public struct KCTextColor {
-	public var	normalColor:		KCColor
-	public var	errorColor:		KCColor
-	public var	backgroundColor:	KCColor
-
-	public init(normal norm: KCColor, error err: KCColor, background bg: KCColor){
-		normalColor	= norm
-		errorColor	= err
-		backgroundColor	= bg
-	}
-}
-
 #if os(iOS)
 	public typealias KCEdgeInsets		= UIEdgeInsets
 

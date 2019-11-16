@@ -27,17 +27,13 @@ class ViewController: NSViewController {
 		dumpSize(title: "Before")
 		let colnum  = mConsoleView.columnNumbers
 		for _ in 0..<colnum {
-			NSLog("viewDidAppear (1)")
 			mConsoleView.consoleConnection.print(string: "*")
 		}
 		for i in 0..<40 {
-			NSLog("viewDidAppear (2)")
 			mConsoleView.consoleConnection.print(string: "*\(i)\n")
 		}
-		NSLog("viewDidAppear (3)")
 		dumpSize(title: "After")
 
-		NSLog("viewDidAppear (4)")
 		//let logcons = KCLogManager.shared.console
 		//logcons.print(string: "Hello, log console")
 	}
