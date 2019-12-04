@@ -23,10 +23,9 @@ class ViewController: NSViewController, NSWindowDelegate {
 		let instrm  : CNFileStream = .fileHandle(mTerminalView.inputFileHandle)
 		let outstrm : CNFileStream = .fileHandle(mTerminalView.outputFileHandle)
 		let errstrm : CNFileStream = .fileHandle(mTerminalView.errorFileHandle)
-		let env		= CNShellEnvironment()
 		let conf	= CNConfig(logLevel: .flow)
 		NSLog("Allocate shell")
-		let shell     = CNShellThread(input: instrm, output: outstrm, error: errstrm, environment: env, config: conf, terminationHander: nil)
+		let shell     = CNShellThread(input: instrm, output: outstrm, error: errstrm, config: conf, terminationHander: nil)
 		mShell        = shell
 	}
 

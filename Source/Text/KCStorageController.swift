@@ -108,10 +108,14 @@ public class KCStorageController: NSObject
 		case .cursorPoisition(let x, let y):
 			moveCursorTo(x: x, y: y)
 		case .eraceFromCursorToEnd:
-			deleteAllFromCursor(direction: .forward)
+			deleteBufferFromCursor(textStorage: storage, direction: .forward)
 		case .eraceFromCursorToBegin:
-			deleteAllFromCursor(direction: .backward)
-		case .eraceFromBeginToEnd:
+			deleteBufferFromCursor(textStorage: storage, direction: .backward)
+		case .eraceFromCursorToRight:
+			deleteLineFromCursor(textStorage: storage, direction: .forward)
+		case .eraceFromCursorToLeft:
+			deleteLineFromCursor(textStorage: storage, direction: .backward)
+		case .eraceEntireLine:
 			deleteLine()
 		case .eraceEntireBuffer:
 			clear(textStorage: storage)
@@ -233,8 +237,85 @@ public class KCStorageController: NSObject
 		/* Not supported yet */
 	}
 
-	private func deleteAllFromCursor(direction dir: Direction) {
-		/* Not supported yet */
+	private func deleteBufferFromCursor(textStorage storage: NSTextStorage, direction dir: Direction) {
+		switch mMode {
+		case .log:
+			break
+		case .console:
+			switch dir {
+			case .forward:
+				/* Delete from current position to end of buffer */
+				let restlen  = storage.string.count - mInsertionPosition
+				if restlen > 0 {
+					let range = NSRange(location: mInsertionPosition, length: restlen)
+					storage.deleteCharacters(in: range)
+				}
+			case .backward:
+				/* Delete from start of buffer to current position */
+				if mInsertionPosition > 0 {
+					let range = NSRange(location: 0, length: mInsertionPosition)
+					storage.deleteCharacters(in: range)
+				}
+			case .up, .down:
+				break
+			}
+		}
+	}
+
+	private func deleteLineFromCursor(textStorage storage: NSTextStorage, direction dir: Direction) {
+		switch mMode {
+		case .log:
+			break
+		case .console:
+			switch dir {
+			case .forward:
+				/* Delete from current position to end of line */
+				let offset = searchNewline(textStorage: storage, direction: .forward)
+				if  offset > 0 {
+					let range = NSRange(location: mInsertionPosition, length: offset)
+					storage.deleteCharacters(in: range)
+				}
+			case .backward:
+				/* Delete from start of line to current position */
+				let offset = searchNewline(textStorage: storage, direction: .backward)
+				if  offset > 0 {
+					let range = NSRange(location: mInsertionPosition - offset , length: offset)
+					storage.deleteCharacters(in: range)
+				}
+			case .up, .down:
+				break
+			}
+		}
+	}
+
+	private func searchNewline(textStorage storage: NSTextStorage, direction dir: Direction) -> Int {
+		let str    = storage.string
+		var offset = 0
+		switch dir {
+		case .forward:
+			let end = str.endIndex
+			var idx = str.index(str.startIndex, offsetBy: mInsertionPosition)
+			while idx < end {
+				if str[idx] == "\n" {
+					break
+				}
+				offset += 1
+				idx     = str.index(after: idx)
+			}
+		case .backward:
+			let start = str.startIndex
+			var idx   = str.index(str.startIndex, offsetBy: mInsertionPosition)
+			while start < idx {
+				if str[idx] == "\n" {
+					break
+				}
+				offset += 1
+				idx     = str.index(before: idx)
+			}
+		case .up, .down:
+			break
+		}
+		return offset
 	}
 
 	private func deleteLine(){
