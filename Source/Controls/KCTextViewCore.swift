@@ -165,12 +165,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	#if os(OSX)
 	public func textView(_ textView: NSTextView, shouldChangeTextIn range: NSRange, replacementString: String?) -> Bool {
 		if let str = replacementString {
+			//NSLog("shouldChangeTextIn: \(range.description)")
 			mInputPipe.fileHandleForWriting.write(string: str)
 		}
 		return false // reject this change
 	}
 	#else
 	public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+		//NSLog("shouldChangeTextIn: \(range.description)")
 		mInputPipe.fileHandleForWriting.write(string: text)
 		return false // reject this change
 	}
@@ -278,12 +280,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				fatalError("Can not happen")
 			}
 		}
-	}
-
-	open func pressNewline() {
-	}
-
-	open func pressTab() {
 	}
 }
 

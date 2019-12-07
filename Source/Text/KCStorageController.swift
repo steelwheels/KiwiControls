@@ -82,39 +82,39 @@ public class KCStorageController: NSObject
 		//NSLog("receive = \(code.description())")
 		switch code {
 		case .string(let str):
-			replace(textStorage: storage, type: typ, string: str)
+			append(textStorage: storage, type: typ, string: str)
 		case .newline:
-			insert(textStorage: storage, type: typ, character: "\n")
+			append(textStorage: storage, type: typ, character: "\n")
 		case .tab:
-			insert(textStorage: storage, type: typ, character: "\t")
+			append(textStorage: storage, type: typ, character: "\t")
 		case .backspace:
-			moveCursor(textStorage: storage, direction: .backward, number: 1)
+			moveCursorBackward(textStorage: storage, number: 1)
 		case .delete:
-			deleteFromCursor(textStorage: storage, direction: .backward, number: 1)
+			deleteBackwardCharacters(textStorage: storage, number: 1)
 		case .cursorUp(let n):
-			moveCursor(textStorage: storage, direction: .up, number: n)
+			moveCursorUp(textStorage: storage, number: n)
 		case .cursorDown(let n):
-			moveCursor(textStorage: storage, direction: .down, number: n)
+			moveCursorDown(textStorage: storage, number: n)
 		case .cursorForward(let n):
-			moveCursor(textStorage: storage, direction: .forward, number: n)
+			moveCursorForward(textStorage: storage, number: n)
 		case .cursorBack(let n):
-			moveCursor(textStorage: storage, direction: .backward, number: n)
+			moveCursorBackward(textStorage: storage, number: n)
 		case .cursorNextLine(let n):
-			moveCursor(textStorage: storage, direction: .down, number: n)
+			moveCursorNextLine(textStorage: storage, number: n)
 		case .cursorPreviousLine(let n):
-			moveCursor(textStorage: storage, direction: .up, number: n)
+			moveCursorPreviousLine(textStorage: storage, number: n)
 		case .cursorHolizontalAbsolute(let pos):
 			moveCursorTo(x: pos, y: nil)
 		case .cursorPoisition(let x, let y):
 			moveCursorTo(x: x, y: y)
 		case .eraceFromCursorToEnd:
-			deleteBufferFromCursor(textStorage: storage, direction: .forward)
+			deleteForwardAllCharacters(textStorage: storage)
 		case .eraceFromCursorToBegin:
-			deleteBufferFromCursor(textStorage: storage, direction: .backward)
+			deleteBackwardAllCharacters(textStorage: storage)
 		case .eraceFromCursorToRight:
-			deleteLineFromCursor(textStorage: storage, direction: .forward)
+			deleteForwardCharacters(textStorage: storage, number: 1)
 		case .eraceFromCursorToLeft:
-			deleteLineFromCursor(textStorage: storage, direction: .backward)
+			deleteBackwardCharacters(textStorage: storage, number: 1)
 		case .eraceEntireLine:
 			deleteLine()
 		case .eraceEntireBuffer:
@@ -147,175 +147,92 @@ public class KCStorageController: NSObject
 		return NSAttributedString(string: str, attributes: mCurrentAttributes)
 	}
 
-	private func replace(textStorage storage: NSTextStorage, type typ: StreamType, string str: String) {
-		/* Insert string to current position */
+	private func append(textStorage storage: NSTextStorage, type typ: StreamType, string str: String) {
 		let astr = attributedString(type: typ, string: str)
-		/* Get range to replace */
-		let restlen  = storage.string.count - mInsertionPosition
-		let replen   = min(restlen, str.count)
-		let reprange = NSRange(location: mInsertionPosition, length: replen)
-		/* Replace string */
-		storage.replaceCharacters(in: reprange, with: astr)
-		/* Update insertion point */
-		mInsertionPosition += str.count
+		/* Insert string to current position */
+		mInsertionPosition = storage.write(string: astr, at: mInsertionPosition)
 	}
 
-	private func insert(textStorage storage: NSTextStorage, type typ: StreamType, character ch: Character) {
-		replace(textStorage: storage, type: typ, string: String(ch))
+	private func append(textStorage storage: NSTextStorage, type typ: StreamType, character ch: Character) {
+		append(textStorage: storage, type: typ, string: String(ch))
 	}
 
-	private func moveCursor(textStorage storage: NSTextStorage, direction dir: Direction, number num: Int) {
-		/* normalize */
-		let mdir: Direction
-		let mnum: Int
-		if num >= 0 {
-			mdir = dir
-			mnum = num
-		} else {
-			mdir = dir.reverse()
-			mnum = -num
-		}
-
-		switch mdir {
-		case .forward:
-			let curlen = storage.string.count
-			let newpos = min(mInsertionPosition + mnum, curlen)
-			let delta  = newpos - mInsertionPosition
-			if delta > 0 {
-				mInsertionPosition += delta
-			}
-		case .backward:
-			let rnum = min(mInsertionPosition, mnum)
-			if rnum > 0 {
-				mInsertionPosition += -rnum
-			}
-		case .up, .down:
-			NSLog("Not supported")
+	private func moveCursorForward(textStorage storage: NSTextStorage, number num: Int) {
+		switch mMode {
+		case .log:	break
+		case .console:	mInsertionPosition = storage.moveCursorForward(from: mInsertionPosition, number: num)
 		}
 	}
 
-	private func moveCursorIndex(textStorage storage: NSTextStorage, delta del: Int) {
-		var newpos = mInsertionPosition + del
-		if newpos < 0 {
-			newpos = 0
-		} else if newpos > storage.string.count {
-			newpos = storage.string.count
+	private func moveCursorBackward(textStorage storage: NSTextStorage, number num: Int) {
+		switch mMode {
+		case .log:	break
+		case .console:	mInsertionPosition = storage.moveCursorBackward(from: mInsertionPosition, number: num)
 		}
-		mInsertionPosition = newpos
+	}
+
+	private func moveCursorUp(textStorage storage: NSTextStorage, number num: Int) {
+		switch mMode {
+		case .log:	break
+		case .console:	mInsertionPosition = storage.moveCursorUp(from: mInsertionPosition, number: num, moveToHead: false)
+		}
+	}
+
+	private func moveCursorDown(textStorage storage: NSTextStorage, number num: Int) {
+		switch mMode {
+		case .log:	break
+		case .console:	mInsertionPosition = storage.moveCursorDown(from: mInsertionPosition, number: num, moveToHead: false)
+		}
+	}
+
+	private func moveCursorPreviousLine(textStorage storage: NSTextStorage, number num: Int) {
+		switch mMode {
+		case .log:	break
+		case .console:	mInsertionPosition = storage.moveCursorUp(from: mInsertionPosition, number: num, moveToHead: true)
+		}
+	}
+
+	private func moveCursorNextLine(textStorage storage: NSTextStorage, number num: Int) {
+		switch mMode {
+		case .log:	break
+		case .console:	mInsertionPosition = storage.moveCursorDown(from: mInsertionPosition, number: num, moveToHead: true)
+		}
 	}
 
 	private func moveCursorTo(x xpos: Int?, y ypos: Int?){
 		/* Not supported */
 	}
 
-	private func deleteFromCursor(textStorage storage: NSTextStorage, direction dir: Direction, number num: Int) {
+	private func deleteForwardCharacters(textStorage storage: NSTextStorage, number num: Int) {
 		switch mMode {
-		case .log:
-			break
-		case .console:
-			switch dir {
-			case .forward:
-				let range = NSRange(location: mInsertionPosition, length: num)
-				storage.deleteCharacters(in: range)
-			case .backward:
-				let rnum  = min(mInsertionPosition, num)
-				if rnum > 0 {
-					/* Get new point */
-					let newpos = mInsertionPosition - rnum
-					let range  = NSRange(location: newpos, length: rnum)
-					storage.deleteCharacters(in: range)
-					/* Update insertion point */
-					mInsertionPosition = newpos
-				}
-			case .up, .down:
-				break
-			}
+		case .log:	break
+		case .console:	mInsertionPosition = storage.deleteForwardCharacters(at: mInsertionPosition, number: num)
 		}
 	}
 
-	private func deleteWordFromCursor(direction dir: Direction) {
+	private func deleteForwaredWord(direction dir: Direction) {
 		/* Not supported yet */
 	}
 
-	private func deleteBufferFromCursor(textStorage storage: NSTextStorage, direction dir: Direction) {
+	private func deleteForwardAllCharacters(textStorage storage: NSTextStorage) {
 		switch mMode {
-		case .log:
-			break
-		case .console:
-			switch dir {
-			case .forward:
-				/* Delete from current position to end of buffer */
-				let restlen  = storage.string.count - mInsertionPosition
-				if restlen > 0 {
-					let range = NSRange(location: mInsertionPosition, length: restlen)
-					storage.deleteCharacters(in: range)
-				}
-			case .backward:
-				/* Delete from start of buffer to current position */
-				if mInsertionPosition > 0 {
-					let range = NSRange(location: 0, length: mInsertionPosition)
-					storage.deleteCharacters(in: range)
-				}
-			case .up, .down:
-				break
-			}
+		case .log:	break
+		case .console:	mInsertionPosition = storage.deleteForwardAllCharacters(at: mInsertionPosition)
 		}
 	}
 
-	private func deleteLineFromCursor(textStorage storage: NSTextStorage, direction dir: Direction) {
+	private func deleteBackwardCharacters(textStorage storage: NSTextStorage, number num: Int) {
 		switch mMode {
-		case .log:
-			break
-		case .console:
-			switch dir {
-			case .forward:
-				/* Delete from current position to end of line */
-				let offset = searchNewline(textStorage: storage, direction: .forward)
-				if  offset > 0 {
-					let range = NSRange(location: mInsertionPosition, length: offset)
-					storage.deleteCharacters(in: range)
-				}
-			case .backward:
-				/* Delete from start of line to current position */
-				let offset = searchNewline(textStorage: storage, direction: .backward)
-				if  offset > 0 {
-					let range = NSRange(location: mInsertionPosition - offset , length: offset)
-					storage.deleteCharacters(in: range)
-				}
-			case .up, .down:
-				break
-			}
+		case .log:	break
+		case .console:	mInsertionPosition = storage.deleteBackwardCharacters(at: mInsertionPosition, number: num)
 		}
 	}
 
-	private func searchNewline(textStorage storage: NSTextStorage, direction dir: Direction) -> Int {
-		let str    = storage.string
-		var offset = 0
-		switch dir {
-		case .forward:
-			let end = str.endIndex
-			var idx = str.index(str.startIndex, offsetBy: mInsertionPosition)
-			while idx < end {
-				if str[idx] == "\n" {
-					break
-				}
-				offset += 1
-				idx     = str.index(after: idx)
-			}
-		case .backward:
-			let start = str.startIndex
-			var idx   = str.index(str.startIndex, offsetBy: mInsertionPosition)
-			while start < idx {
-				if str[idx] == "\n" {
-					break
-				}
-				offset += 1
-				idx     = str.index(before: idx)
-			}
-		case .up, .down:
-			break
+	private func deleteBackwardAllCharacters(textStorage storage: NSTextStorage){
+		switch mMode {
+		case .log:	break
+		case .console:	mInsertionPosition = storage.deleteBackwardAllCharacters(at: mInsertionPosition)
 		}
-		return offset
 	}
 
 	private func deleteLine(){
