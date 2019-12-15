@@ -60,33 +60,16 @@ public class KCStorageController: NSObject
 		mCurrentAttributes[.backgroundColor] = KCColorTable.codeToColor(color: pref.backgroundColor)
 	}
 
-	/* This thread must be called in main thread */
-	public func receive(textStorage storage: NSTextStorage, type typ: StreamType, data dt: Data) {
-		if let str = String(data: dt, encoding: .utf8) {
-			switch CNEscapeCode.decode(string: str) {
-			case .ok(let codes):
-				storage.beginEditing()
-				for code in codes {
-					self.receive(textStorage: storage, type: typ, escapeCode: code)
-				}
-				storage.endEditing()
-			case .error(let err):
-				NSLog("Failed to decode escape code: \(err.description())")
-			}
-		} else {
-			NSLog("Failed to decode data: \(dt)")
-		}
-	}
-
-	private func receive(textStorage storage: NSTextStorage, type typ: StreamType, escapeCode code: CNEscapeCode){
+	public func receive(textStorage storage: NSTextStorage, escapeCode code: CNEscapeCode) -> Bool { /* -> Accepted or not */
+		var result = true
 		//NSLog("receive = \(code.description())")
 		switch code {
 		case .string(let str):
-			append(textStorage: storage, type: typ, string: str)
+			append(textStorage: storage, type: .normal, string: str)
 		case .newline:
-			append(textStorage: storage, type: typ, character: "\n")
+			append(textStorage: storage, type: .normal, character: "\n")
 		case .tab:
-			append(textStorage: storage, type: typ, character: "\t")
+			append(textStorage: storage, type: .normal, character: "\t")
 		case .backspace:
 			moveCursorBackward(textStorage: storage, number: 1)
 		case .delete:
@@ -120,9 +103,9 @@ public class KCStorageController: NSObject
 		case .eraceEntireBuffer:
 			clear(textStorage: storage)
 		case .scrollUp:
-			break
+			result = false			// not accepted
 		case .scrollDown:
-			break
+			result = false			// not accepted
 		case .foregroundColor(let fcol):
 			set(foregroundColor: fcol)
 		case .backgroundColor(let bcol):
@@ -132,7 +115,12 @@ public class KCStorageController: NSObject
 			let pref = CNPreference.shared.terminalPreference
 			set(foregroundColor: pref.foregroundColor)
 			set(backgroundColor: pref.backgroundColor)
+		case .requestScreenSize:
+			result = false 			// not accepted
+		case .screenSize(_, _):
+			break				// ignored
 		}
+		return result
 	}
 
 	private func set(foregroundColor col: CNColor) {

@@ -111,14 +111,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					() -> Void in
 					#if os(OSX)
 						if let controller = myself.mStorageController, let storage = myself.mTextView.textStorage {
-							controller.receive(textStorage: storage, type: .normal, data: data)
+							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
 							myself.insertionPosition = controller.insertionPosition
 							//NSLog("IP = \(myself.insertionPosition)")
 						}
 					#else
 						if let controller = myself.mStorageController {
 							let storage = myself.mTextView.textStorage
-							controller.receive(textStorage: storage, type: .normal, data: data)
+							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
 							myself.insertionPosition = controller.insertionPosition
 							//NSLog("IP = \(myself.insertionPosition)")
 						}
@@ -134,17 +134,53 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				CNExecuteInMainThread(doSync: false, execute: {
 					#if os(OSX)
 						if let controller = myself.mStorageController, let storage = myself.mTextView.textStorage {
-							controller.receive(textStorage: storage, type: .error, data: data)
+							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
 						}
 					#else
 						if let controller = myself.mStorageController {
 							let storage = myself.mTextView.textStorage
-							controller.receive(textStorage: storage, type: .error, data: data)
+							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
 						}
 					#endif
 					myself.scrollToBottom()
 				})
 			}
+		}
+	}
+
+	private func receiveInputStream(storageController controller: KCStorageController, textStorage storage: NSTextStorage, inputData data: Data) {
+		//controller.receive(textStorage: storage, type: .error, data: data)
+		if let str = String(data: data, encoding: .utf8) {
+			switch CNEscapeCode.decode(string: str) {
+			case .ok(let codes):
+				storage.beginEditing()
+				for code in codes {
+					if !controller.receive(textStorage: storage, escapeCode: code) {
+						executeCommandInView(escapeCode: code)
+					}
+				}
+				storage.endEditing()
+			case .error(let err):
+				NSLog("Failed to decode escape code: \(err.description())")
+			}
+		} else {
+			NSLog("Failed to decode data: \(data)")
+		}
+	}
+
+	private func executeCommandInView(escapeCode code: CNEscapeCode){
+		switch code {
+		case .scrollUp:
+			break
+		case .scrollDown:
+			break
+		case .requestScreenSize:
+			/* Ack the size*/
+			let ackcode: CNEscapeCode = .screenSize(self.columnNumbers, self.lineNumbers)
+			mOutputPipe.fileHandleForWriting.write(string: ackcode.encode())
+		default:
+			let desc = code.description()
+			NSLog("Unexpected code: \(desc)")
 		}
 	}
 
