@@ -43,6 +43,26 @@ class ViewController: NSViewController, NSWindowDelegate {
 		let colnum   = mTerminalView.columnNumbers
 		let rownum   = mTerminalView.lineNumbers
 		NSLog("colnun=\(colnum), rownum=\(rownum)")
+
+		/* Send screen size */
+		NSLog("Send request")
+		let reqstr = CNEscapeCode.requestScreenSize.encode()
+		mTerminalView.outputFileHandle.write(string: reqstr)
+
+		/*
+		NSLog("Accepted code")
+		let ackdata = mTerminalView.inputFileHandle.availableData
+		if let ackstr = String(data: ackdata, encoding: .utf8) {
+			switch CNEscapeCode.decode(string: ackstr) {
+			case .ok(let codes):
+				for code in codes {
+					NSLog("code: \(code.description())")
+				}
+			case .error(let err):
+				NSLog("Internal error: \(err.description())")
+			}
+		}
+		*/
 	}
 
 	override var representedObject: Any? {

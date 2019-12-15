@@ -177,7 +177,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.columnNumbers, self.lineNumbers)
-			mOutputPipe.fileHandleForWriting.write(string: ackcode.encode())
+			mInputPipe.fileHandleForWriting.write(string: ackcode.encode())
 		default:
 			let desc = code.description()
 			NSLog("Unexpected code: \(desc)")
