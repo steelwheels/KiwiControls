@@ -80,7 +80,7 @@ public class KCStorageController: NSObject
 			moveCursorDown(textStorage: storage, number: n)
 		case .cursorForward(let n):
 			moveCursorForward(textStorage: storage, number: n)
-		case .cursorBack(let n):
+		case .cursorBackward(let n):
 			moveCursorBackward(textStorage: storage, number: n)
 		case .cursorNextLine(let n):
 			moveCursorNextLine(textStorage: storage, number: n)
