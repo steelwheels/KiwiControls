@@ -86,7 +86,6 @@
 		0571B63020956D3200603B95 /* KCRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571B62C20956D3200603B95 /* KCRect.swift */; };
 		0571B63120956D3200603B95 /* KCPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571B62D20956D3200603B95 /* KCPoint.swift */; };
 		0571B63220956D3200603B95 /* KCCoodinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571B62E20956D3200603B95 /* KCCoodinate.swift */; };
-		05726E41237AD5D200373542 /* KCStorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05726E40237AD5D200373542 /* KCStorageController.swift */; };
 		057853721F46725100BBB2BA /* KCConsoleViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057853711F46725100BBB2BA /* KCConsoleViewCore.xib */; };
 		057853751F46732C00BBB2BA /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057853731F46732C00BBB2BA /* KCConsoleView.swift */; };
 		057853761F46732C00BBB2BA /* KCTextViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057853741F46732C00BBB2BA /* KCTextViewCore.swift */; };
@@ -359,7 +358,6 @@
 		0571B62C20956D3200603B95 /* KCRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRect.swift; sourceTree = "<group>"; };
 		0571B62D20956D3200603B95 /* KCPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint.swift; sourceTree = "<group>"; };
 		0571B62E20956D3200603B95 /* KCCoodinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoodinate.swift; sourceTree = "<group>"; };
-		05726E40237AD5D200373542 /* KCStorageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStorageController.swift; sourceTree = "<group>"; };
 		057853711F46725100BBB2BA /* KCConsoleViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCConsoleViewCore.xib; sourceTree = "<group>"; };
 		057853731F46732C00BBB2BA /* KCConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsoleView.swift; sourceTree = "<group>"; };
 		057853741F46732C00BBB2BA /* KCTextViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextViewCore.swift; sourceTree = "<group>"; };
@@ -644,14 +642,6 @@
 			path = UTStackView;
 			sourceTree = "<group>";
 		};
-		055A40942300368C0073D014 /* Text */ = {
-			isa = PBXGroup;
-			children = (
-				05726E40237AD5D200373542 /* KCStorageController.swift */,
-			);
-			path = Text;
-			sourceTree = "<group>";
-		};
 		055DAEEF20FCD0AE00C8C4E3 /* UTPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,7 +753,6 @@
 				0571B63320956DE600603B95 /* Font */,
 				05706B571F8A5080008BE096 /* Window */,
 				05353FF91E0D5A190031812D /* Controls */,
-				055A40942300368C0073D014 /* Text */,
 				0583CC1422767C5200B36E0A /* Sprite */,
 				0571B62A20956D0E00603B95 /* Graphics */,
 				0506F2E91DFB12400028D1E2 /* GraphicsView */,
@@ -1514,7 +1503,6 @@
 				058CE6AE22EA07DE00016F7D /* KCSpriteRadar.swift in Sources */,
 				05DDE5F421C01A7600520631 /* KCLayoutConstraint.swift in Sources */,
 				05DDE5F721C01A8600520631 /* KCDistributionDecider.swift in Sources */,
-				05726E41237AD5D200373542 /* KCStorageController.swift in Sources */,
 				055773DD228848900079E37F /* KCFrameSizeFinalizer.swift in Sources */,
 				05910BE820958D8900535E2A /* KCContext.swift in Sources */,
 				05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */,

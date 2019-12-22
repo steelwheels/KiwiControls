@@ -14,7 +14,10 @@ import CoconutData
 
 open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 {
-	public typealias TerminalMode = KCStorageController.TerminalMode
+	public enum TerminalMode {
+		case log
+		case console
+	}
 
 	#if os(OSX)
 		@IBOutlet var mTextView: NSTextView!
@@ -25,9 +28,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mInputPipe:			Pipe
 	private var mOutputPipe:		Pipe
 	private var mErrorPipe:			Pipe
-	private var mStorageController:		KCStorageController?  = nil
+	private var mCurrentIndex:		Int = 0
 	private var mMinimumColumnNumbers:	Int = 10
 	private var mMinimumLineNumbers:	Int = 1
+	private var mTerminalInfo:		CNTerminalInfo
 
 	public var inputFileHandle: FileHandle {
 		get { return mInputPipe.fileHandleForReading }
@@ -45,6 +49,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mInputPipe	= Pipe()
 		mOutputPipe	= Pipe()
 		mErrorPipe	= Pipe()
+		mTerminalInfo	= CNTerminalInfo()
 		super.init(frame: frameRect)
 	}
 
@@ -52,12 +57,26 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mInputPipe	= Pipe()
 		mOutputPipe	= Pipe()
 		mErrorPipe	= Pipe()
+		mTerminalInfo	= CNTerminalInfo()
 		super.init(coder: coder)
 	}
 
 	deinit {
 		mOutputPipe.fileHandleForReading.readabilityHandler = nil
 		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+	}
+
+	private var textStorage: NSTextStorage {
+		get {
+			#if os(OSX)
+				if let storage = self.mTextView.textStorage {
+					return storage
+				}
+				fatalError("Can not happen")
+			#else
+				return self.mTextView.textStorage
+			#endif
+		}
 	}
 
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
@@ -101,28 +120,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		#endif
 		storage.delegate = self
 
-		mStorageController  = KCStorageController(mode: md)
-
 		mOutputPipe.fileHandleForReading.readabilityHandler = {
 			[weak self]  (_ hdl: FileHandle) -> Void in
 			if let myself = self {
 				let data = hdl.availableData
 				CNExecuteInMainThread(doSync: false, execute: {
 					() -> Void in
-					#if os(OSX)
-						if let controller = myself.mStorageController, let storage = myself.mTextView.textStorage {
-							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
-							myself.insertionPosition = controller.insertionPosition
-							//NSLog("IP = \(myself.insertionPosition)")
-						}
-					#else
-						if let controller = myself.mStorageController {
-							let storage = myself.mTextView.textStorage
-							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
-							myself.insertionPosition = controller.insertionPosition
-							//NSLog("IP = \(myself.insertionPosition)")
-						}
-					#endif
+					myself.receiveInputStream(inputData: data)
 					myself.scrollToBottom()
 				})
 			}
@@ -132,30 +136,23 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			if let myself = self {
 				let data = hdl.availableData
 				CNExecuteInMainThread(doSync: false, execute: {
-					#if os(OSX)
-						if let controller = myself.mStorageController, let storage = myself.mTextView.textStorage {
-							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
-						}
-					#else
-						if let controller = myself.mStorageController {
-							let storage = myself.mTextView.textStorage
-							myself.receiveInputStream(storageController: controller, textStorage: storage, inputData: data)
-						}
-					#endif
+					myself.receiveInputStream(inputData: data)
 					myself.scrollToBottom()
 				})
 			}
 		}
 	}
 
-	private func receiveInputStream(storageController controller: KCStorageController, textStorage storage: NSTextStorage, inputData data: Data) {
-		//controller.receive(textStorage: storage, type: .error, data: data)
+	private func receiveInputStream(inputData data: Data) {
 		if let str = String(data: data, encoding: .utf8) {
 			switch CNEscapeCode.decode(string: str) {
 			case .ok(let codes):
+				let storage = textStorage
 				storage.beginEditing()
 				for code in codes {
-					if !controller.receive(textStorage: storage, escapeCode: code) {
+					if let newidx = storage.execute(index: mCurrentIndex, terminalInfo: mTerminalInfo, escapeCode: code) {
+						mCurrentIndex = newidx
+					} else {
 						executeCommandInView(escapeCode: code)
 					}
 				}
@@ -174,6 +171,15 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			break
 		case .scrollDown:
 			break
+		case .foregroundColor(let fcol):
+			mTerminalInfo.foregroundColor = fcol
+		case .backgroundColor(let bcol):
+			mTerminalInfo.backgroundColor = bcol
+		case .setNormalAttributes:
+			/* Reset to default */
+			let pref = CNPreference.shared.terminalPreference
+			mTerminalInfo.foregroundColor  = pref.foregroundColor
+			mTerminalInfo.backgroundColor  = pref.backgroundColor
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.columnNumbers, self.lineNumbers)
@@ -307,235 +313,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		let reqsize   = KCSize(width: reqwidth, height: reqheight)
 		return reqsize
 	}
-
-	private var storageController: KCStorageController {
-		get {
-			if let controller = mStorageController {
-				return controller
-			} else {
-				fatalError("Can not happen")
-			}
-		}
-	}
 }
 
-/*
-open class KCTextViewCore : KCView, KCTextViewDelegate
-{
-	public static let INSERTION_POINT	= -1
-
-	public enum TextViewType {
-		case	console
-		case	terminal
-	}
-
-
-
-	private var mViewType:			TextViewType = .console
-	private var mTerminalStorage:		KCTerminalStorage? = nil
-
-
-	public func setup(type typ: TextViewType, frame frm: CGRect, output outhdl: FileHandle?) {
-		updateAttributes()
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
-
-		switch typ {
-		case .console:
-			mTextViewDelegates = KCConsoleViewDelegates(coreView: self)
-		case .terminal:
-			if let hdl = outhdl {
-				mTextViewDelegates = KCTerminalViewDelegates(coreView: self, output: hdl)
-			} else {
-				NSLog("Failed to convert interface")
-			}
-		}
-		mTextView.delegate            = mTextViewDelegates!
-		textStorage.delegate          = mTextViewDelegates!
-	}
-
-	public var viewType: TextViewType { get { return mViewType }}
-
-	public var textViewDelegate: KCTextViewDelegates? {
-		get { return mTextViewDelegates }
-	}
-
-	public var textStorage: NSTextStorage {
-		get {
-			#if os(OSX)
-				if let storage = mTextView.textStorage {
-					return storage
-				} else {
-					fatalError("No storage")
-				}
-			#else
-				return mTextView.textStorage
-			#endif
-
-		}
-	}
-
-
-
-	public func updateAttributes(){
-		if let font = mTextView.font {
-			mNormalAttributes = [
-				.font: 			font,
-				.foregroundColor:	mColor.normalColor,
-				.backgroundColor:	mColor.backgroundColor
-			]
-			mErrorAttributes = [
-				.font: 			font,
-				.foregroundColor:	mColor.errorColor,
-				.backgroundColor:	mColor.backgroundColor
-			]
-		} else {
-			NSLog("Failed to load font")
-		}
-	}
-
-	public func selectedRanges() -> Array<NSRange> {
-		var result: Array<NSRange> = []
-		#if os(OSX)
-			let ranges = mTextView.selectedRanges
-			for src in ranges {
-				result.append(src.rangeValue)
-			}
-		#else
-			let range  = mTextView.selectedRange
-			result.append(range)
-		#endif
-		return result
-	}
-
-
-
-	public func appendText(normal str: String){
-		let astr = NSAttributedString(string: str, attributes: mNormalAttributes)
-		appendAttributedText(string: astr)
-	}
-
-	public func appendText(error str: String){
-		let astr = NSAttributedString(string: str, attributes: mErrorAttributes)
-		appendAttributedText(string: astr)
-	}
-
-	private func appendAttributedText(string str: NSAttributedString){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				myself.syncAppend(destinationStorage: myself.textStorage, string: str)
-				myself.scrollToBottom()
-			}
-		})
-	}
-
-	private func syncAppend(destinationStorage storage: NSTextStorage, string str: NSAttributedString){
-		storage.beginEditing()
-		storage.append(str)
-		storage.endEditing()
-	}
-
-	public func insertText(normal str: String, before pos: Int){
-		let astr = NSAttributedString(string: str, attributes: mNormalAttributes)
-		insertAttributedText(string: astr, before: pos)
-	}
-
-	public func insertText(error str: String, before pos: Int){
-		let astr = NSAttributedString(string: str, attributes: mErrorAttributes)
-		insertAttributedText(string: astr, before: pos)
-	}
-
-	private func insertAttributedText(string str: NSAttributedString, before pos: Int){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				myself.syncInsert(destinationStorage: myself.textStorage, string: str, before: pos)
-				myself.scrollToBottom()
-			}
-		})
-	}
-
-	private func syncInsert(destinationStorage storage: NSTextStorage, string str: NSAttributedString, before pos: Int) {
-		/* Get position to insert */
-		let mpos: Int
-		if pos == KCTextViewCore.INSERTION_POINT, let inpos = syncInsertionPoint() {
-			mpos = inpos
-		} else {
-			mpos = pos
-		}
-		/* Update current index */
-		if let dlg = textViewDelegate as? KCTerminalViewDelegates {
-			if mpos <= dlg.lineStartIndex {
-				dlg.lineStartIndex += str.string.count
-			}
-		}
-		storage.beginEditing()
-		storage.insert(str, at: mpos)
-		storage.endEditing()
-	}
-
-	public func setNormalAttributes(in range: NSRange) {
-		setAttributes(attributes: mNormalAttributes, in: range)
-	}
-
-	public func setErrorAttributes(in range: NSRange){
-		setAttributes(attributes: mErrorAttributes, in: range)
-	}
-
-	private func setAttributes(attributes attrs: [NSAttributedString.Key: Any], in range: NSRange) {
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(OSX)
-					if let storage = myself.mTextView.textStorage {
-						storage.setAttributes(attrs, range: range)
-					}
-				#else
-					let storage = myself.mTextView.textStorage
-					storage.setAttributes(attrs, range: range)
-				#endif
-			}
-		})
-	}
-
-	public func clear(){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(OSX)
-					if let storage = myself.mTextView.textStorage {
-						myself.clear(storage: storage)
-					}
-				#else
-					myself.clear(storage: myself.mTextView.textStorage)
-				#endif
-
-			}
-		})
-	}
-
-	private func clear(storage strg: NSTextStorage){
-		/* clear context */
-		strg.beginEditing()
-		strg.setAttributedString(NSAttributedString(string: ""))
-		strg.endEditing()
-	}
-
-	#if os(OSX)
-	public override func becomeFirstResponder(for window: NSWindow) -> Bool {
-		window.makeFirstResponder(mTextView)
-		return true
-	}
-	#endif
-
-	public var color: KCTextColor {
-		get	 { return mColor }
-		set(col) {
-			mColor = col
-			mTextView.backgroundColor = col.backgroundColor
-		}
-	}
-}
-
-*/
 

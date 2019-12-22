@@ -43,30 +43,11 @@ public class KCWindowPreference
 	#endif
 }
 
-public class KCTerminalPreference
-{
-	public var	font:			KCFont
-	public var	foregroundColor:	CNColor
-	public var	backgroundColor:	CNColor
-
-	public init() {
-		font			= KCFont(name: "Menlo", size: 12.0)!
-		foregroundColor		= CNColor.Green
-		backgroundColor		= CNColor.Black
-	}
-}
-
 extension CNPreference
 {
 	public var windowPreference: KCWindowPreference { get {
 		return get(name: "window", allocator: {
 			() -> KCWindowPreference in return KCWindowPreference()
-		})
-	}}
-
-	public var terminalPreference: KCTerminalPreference { get {
-		return get(name: "system", allocator: {
-			() -> KCTerminalPreference in return KCTerminalPreference()
 		})
 	}}
 }
