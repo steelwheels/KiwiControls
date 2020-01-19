@@ -146,7 +146,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 		set(newsize){
 			let newfont: CNFont
-			newfont = NSFontManager.shared.convert(font, toSize: newsize)
+			#if os(OSX)
+				newfont = NSFontManager.shared.convert(font, toSize: newsize)
+			#else
+				newfont = font.withSize(newsize)
+			#endif
 			self.font = newfont
 		}
 	}
