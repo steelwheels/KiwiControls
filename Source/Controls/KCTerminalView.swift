@@ -63,6 +63,16 @@ open class KCTerminalView : KCCoreView
 		allocateSubviewLayout(subView: newview)
 	}
 
+	public var font: CNFont {
+		get		{ return coreView.font	}
+		set(newfont)	{ coreView.font = newfont }
+	}
+
+	public var fontPointSize: CGFloat{
+		get		{ return coreView.fontPointSize		}
+		set(newsize)	{ coreView.fontPointSize = newsize	}
+	}
+
 	public var columnNumbers: Int {
 		get { return coreView.columnNumbers }
 	}

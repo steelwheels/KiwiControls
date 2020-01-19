@@ -140,6 +140,17 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 	}
 
+	public var fontPointSize: CGFloat {
+		get {
+			return font.pointSize
+		}
+		set(newsize){
+			let newfont: CNFont
+			newfont = NSFontManager.shared.convert(font, toSize: newsize)
+			self.font = newfont
+		}
+	}
+
 	private var textStorage: NSTextStorage {
 		get {
 			#if os(OSX)

@@ -35,6 +35,10 @@ class ViewController: NSViewController, NSWindowDelegate {
 		if let win = view.window {
 			win.delegate = self
 		}
+		/* Set font size */
+		NSLog("Set font size: 16")
+		mTerminalView.fontPointSize = 16.0
+
 		/* Start shell */
 		if let shell = mShell {
 			NSLog("start shell")
