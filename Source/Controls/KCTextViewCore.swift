@@ -66,33 +66,30 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
 	}
 
-	private var textStorage: NSTextStorage {
+	public var font: CNFont {
 		get {
-			#if os(OSX)
-				if let storage = self.mTextView.textStorage {
-					return storage
-				}
-				fatalError("Can not happen")
-			#else
-				return self.mTextView.textStorage
-			#endif
+			return mTerminalInfo.font
+		}
+		set(newfont) {
+			mTerminalInfo.font = newfont
+			mTextView.typingAttributes[NSAttributedString.Key.font] = newfont
+			textStorage.changeOverallFont(font: newfont)
 		}
 	}
 
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
 	{
-		#if os(OSX)
-			mTextView.font = NSFont.systemFont(ofSize: 10.0)
-			mTextView.drawsBackground = true
-		#else
-			mTextView.font = UIFont.systemFont(ofSize: 10.0)
-			//mTextView.drawsBackground     = true
-		#endif
+		/* Setup font */
+		let curfont = mTerminalInfo.font
+		mTextView.font = curfont
+		mTextView.typingAttributes[NSAttributedString.Key.font] = curfont
+
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
 		mTextView.backgroundColor     = KCColor.black
 
 		#if os(OSX)
+			mTextView.drawsBackground	  = true
 			mTextView.isVerticallyResizable   = true
 			mTextView.isHorizontallyResizable = false
 			mTextView.insertionPointColor	  = KCColor.green
@@ -143,6 +140,19 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 	}
 
+	private var textStorage: NSTextStorage {
+		get {
+			#if os(OSX)
+				if let storage = self.mTextView.textStorage {
+					return storage
+				}
+				fatalError("Can not happen")
+			#else
+				return self.mTextView.textStorage
+			#endif
+		}
+	}
+
 	private func receiveInputStream(inputData data: Data) {
 		if let str = String(data: data, encoding: .utf8) {
 			switch CNEscapeCode.decode(string: str) {
@@ -157,12 +167,23 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					}
 				}
 				storage.endEditing()
+				/* Update selected range */
+				let range = NSRange(location: mCurrentIndex, length: 0)
+				setSelectedRange(range: range)
 			case .error(let err):
 				NSLog("Failed to decode escape code: \(err.description())")
 			}
 		} else {
 			NSLog("Failed to decode data: \(data)")
 		}
+	}
+
+	public func setSelectedRange(range rng: NSRange){
+		#if os(OSX)
+			mTextView.setSelectedRange(rng)
+		#else
+			mTextView.selectedRange = rng
+		#endif
 	}
 
 	private func executeCommandInView(escapeCode code: CNEscapeCode){
@@ -239,47 +260,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public func fontSize() -> KCSize {
+		let curfont = self.font
 		let size: KCSize
 		#if os(OSX)
-			if let font = mTextView.font {
-				size = font.boundingRectForFont.size
-			} else {
-				size = KCSize(width: 10.0, height: 10.0)
-			}
+		size = curfont.boundingRectForFont.size
 		#else
-			if let font = mTextView.font {
-				size = KCSize(width: font.lineHeight, height: font.pointSize)
-			} else {
-				size = KCSize(width: 10.0, height: 10.0)
-			}
+		size = KCSize(width: curfont.lineHeight, height: curfont.pointSize)
 		#endif
 		return size
-	}
-
-	private var insertionPosition: Int {
-		get {
-			#if os(OSX)
-				let values = mTextView.selectedRanges
-				for value in values {
-					let range = value.rangeValue
-					if range.length == 0 {
-						return range.location
-					}
-				}
-				NSLog("Error: No insertion point")
-				return 0
-			#else
-				return mTextView.selectedRange.location
-			#endif
-		}
-		set(newpt){
-			let range = NSRange(location: newpt, length: 0)
-			#if os(OSX)
-				mTextView.setSelectedRange(range)
-			#else
-				mTextView.selectedRange = range
-			#endif
-		}
 	}
 
 	private func scrollToBottom(){

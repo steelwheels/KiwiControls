@@ -128,7 +128,7 @@ open class KCTextEditCore : KCView
 		})
 	}
 
-	public var font: KCFont? {
+	public var font: CNFont? {
 		get {
 			return mTextEdit.font
 		}

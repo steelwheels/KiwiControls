@@ -69,7 +69,7 @@ open class KCTextEdit : KCCoreView
 		set(newval){ coreView.text = newval }
 	}
 
-	public var font: KCFont? {
+	public var font: CNFont? {
 		get		{ return coreView.font }
 		set(font)	{ coreView.font = font }
 	}

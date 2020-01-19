@@ -5,6 +5,7 @@
  *   Copyright (C) 2015 Steel Wheels Project
  */
 
+import CoconutData
 import CoreGraphics
 
 public class KCFontTable
@@ -27,23 +28,23 @@ public class KCFontTable
 
 	}
 
-	public func font(withStyle style: FontStyle) -> KCFont {
+	public func font(withStyle style: FontStyle) -> CNFont {
 		#if os(OSX)
-			var result: KCFont
+			var result: CNFont
 			switch style {
-			case .Title:	result = KCFont.messageFont(ofSize:	titleSize)
-			case .Headline:	result = KCFont.boldSystemFont(ofSize:	headlineSize)
-			case .Body:	result = KCFont.messageFont(ofSize:	bodySize)
-			case .Caption:	result = KCFont.messageFont(ofSize:	captionSize)
+			case .Title:	result = CNFont.messageFont(ofSize:	titleSize)
+			case .Headline:	result = CNFont.boldSystemFont(ofSize:	headlineSize)
+			case .Body:	result = CNFont.messageFont(ofSize:	bodySize)
+			case .Caption:	result = CNFont.messageFont(ofSize:	captionSize)
 			}
 			return result
 		#else
-			var result: KCFont
+			var result: CNFont
 			switch style {
-			case .Title:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title1)
-			case .Headline:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
-			case .Caption:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
-			case .Body:	result = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+			case .Title:	result = CNFont.preferredFont(forTextStyle: CNFont.TextStyle.title1)
+			case .Headline:	result = CNFont.preferredFont(forTextStyle: CNFont.TextStyle.headline)
+			case .Caption:	result = CNFont.preferredFont(forTextStyle: CNFont.TextStyle.caption1)
+			case .Body:	result = CNFont.preferredFont(forTextStyle: CNFont.TextStyle.body)
 			}
 			return result
 		#endif

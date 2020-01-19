@@ -16,7 +16,6 @@
 	public typealias KCSize			= CGSize
 	public typealias KCRect			= CGRect
 	public typealias KCColor		= UIColor
-	public typealias KCFont			= UIFont
 	public typealias KCResponder		= UIResponder
 	public typealias KCTextViewDelegate	= UITextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
@@ -28,7 +27,6 @@
 	public typealias KCSize			= NSSize
 	public typealias KCRect			= NSRect
 	public typealias KCColor		= NSColor
-	public typealias KCFont			= NSFont
 	public typealias KCResponder		= NSResponder
 	public typealias KCTextViewDelegate	= NSTextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute

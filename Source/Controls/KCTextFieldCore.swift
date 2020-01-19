@@ -116,7 +116,7 @@ open class KCTextFieldCore : KCView
 		})
 	}
 
-	public var font: KCFont? {
+	public var font: CNFont? {
 		get {
 			return mTextField.font
 		}

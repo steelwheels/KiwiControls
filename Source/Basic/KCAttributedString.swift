@@ -5,10 +5,11 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public enum KCStringAttribute {
-	case font(KCFont)
+	case font(CNFont)
 	case foregroundColor(KCColor)
 	case backgroundColor(KCColor)
 }

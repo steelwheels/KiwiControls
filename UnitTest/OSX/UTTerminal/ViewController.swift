@@ -20,12 +20,12 @@ class ViewController: NSViewController, NSWindowDelegate {
 		// Do any additional setup after loading the view.
 		/* Allocate shell */
 		NSLog("Launch terminal")
+		let queue   : DispatchQueue = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
 		let instrm  : CNFileStream = .fileHandle(mTerminalView.inputFileHandle)
 		let outstrm : CNFileStream = .fileHandle(mTerminalView.outputFileHandle)
 		let errstrm : CNFileStream = .fileHandle(mTerminalView.errorFileHandle)
-		let conf	= CNConfig(logLevel: .flow)
 		NSLog("Allocate shell")
-		let shell     = CNShellThread(input: instrm, output: outstrm, error: errstrm, config: conf, terminationHander: nil)
+		let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm)
 		mShell        = shell
 	}
 
@@ -38,7 +38,7 @@ class ViewController: NSViewController, NSWindowDelegate {
 		/* Start shell */
 		if let shell = mShell {
 			NSLog("start shell")
-			shell.start()
+			shell.start(arguments: [])
 		}
 		let colnum   = mTerminalView.columnNumbers
 		let rownum   = mTerminalView.lineNumbers
