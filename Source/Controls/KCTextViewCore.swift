@@ -86,7 +86,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
-		mTextView.backgroundColor     = KCColor.black
+		mTextView.textColor		= KCColor.green
+		mTextView.backgroundColor	= KCColor.black
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
