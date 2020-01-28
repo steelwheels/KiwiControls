@@ -14,6 +14,8 @@ import CoconutData
 
 open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 {
+	public typealias TextAttribute = NSTextStorage.TextAttribute
+
 	public enum TerminalMode {
 		case log
 		case console
@@ -29,9 +31,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mOutputPipe:		Pipe
 	private var mErrorPipe:			Pipe
 	private var mCurrentIndex:		Int = 0
+	private var mTextAttribute:		TextAttribute
 	private var mMinimumColumnNumbers:	Int = 10
 	private var mMinimumLineNumbers:	Int = 1
-	private var mTerminalInfo:		CNTerminalInfo
 
 	public var inputFileHandle: FileHandle {
 		get { return mInputPipe.fileHandleForReading }
@@ -49,7 +51,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mInputPipe	= Pipe()
 		mOutputPipe	= Pipe()
 		mErrorPipe	= Pipe()
-		mTerminalInfo	= CNTerminalInfo()
+		mTextAttribute	= TextAttribute()
 		super.init(frame: frameRect)
 	}
 
@@ -57,7 +59,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mInputPipe	= Pipe()
 		mOutputPipe	= Pipe()
 		mErrorPipe	= Pipe()
-		mTerminalInfo	= CNTerminalInfo()
+		mTextAttribute	= TextAttribute()
 		super.init(coder: coder)
 	}
 
@@ -68,10 +70,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public var font: CNFont {
 		get {
-			return mTerminalInfo.font
+			return mTextAttribute.font
 		}
 		set(newfont) {
-			mTerminalInfo.font = newfont
+			mTextAttribute.font = newfont
 			mTextView.typingAttributes[NSAttributedString.Key.font] = newfont
 			textStorage.changeOverallFont(font: newfont)
 		}
@@ -80,20 +82,19 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
 	{
 		/* Setup font */
-		let curfont = mTerminalInfo.font
-		mTextView.font = curfont
-		mTextView.typingAttributes[NSAttributedString.Key.font] = curfont
+		mTextView.font = mTextAttribute.font
+		mTextView.typingAttributes[NSAttributedString.Key.font] = mTextAttribute.font
 
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
-		mTextView.textColor		= KCColor.green
-		mTextView.backgroundColor	= KCColor.black
+		mTextView.textColor		= mTextAttribute.foregroundColor.toObject()
+		mTextView.backgroundColor	= mTextAttribute.backgroundColor.toObject()
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
 			mTextView.isVerticallyResizable   = true
 			mTextView.isHorizontallyResizable = false
-			mTextView.insertionPointColor	  = KCColor.green
+			mTextView.insertionPointColor	  = mTextAttribute.foregroundColor.toObject()
 		#else
 			mTextView.isScrollEnabled = true
 		#endif
@@ -176,7 +177,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				let storage = textStorage
 				storage.beginEditing()
 				for code in codes {
-					if let newidx = storage.execute(index: mCurrentIndex, terminalInfo: mTerminalInfo, escapeCode: code) {
+					if let newidx = storage.execute(index: mCurrentIndex, attribute: mTextAttribute, escapeCode: code) {
 						mCurrentIndex = newidx
 					} else {
 						executeCommandInView(escapeCode: code)
@@ -209,14 +210,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		case .scrollDown:
 			break
 		case .foregroundColor(let fcol):
-			mTerminalInfo.foregroundColor = fcol
+			mTextAttribute.foregroundColor = fcol
 		case .backgroundColor(let bcol):
-			mTerminalInfo.backgroundColor = bcol
+			mTextAttribute.backgroundColor = bcol
 		case .setNormalAttributes:
 			/* Reset to default */
 			let pref = CNPreference.shared.terminalPreference
-			mTerminalInfo.foregroundColor  = pref.foregroundColor
-			mTerminalInfo.backgroundColor  = pref.backgroundColor
+			mTextAttribute.foregroundColor  = pref.foregroundColor
+			mTextAttribute.backgroundColor  = pref.backgroundColor
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.columnNumbers, self.lineNumbers)
