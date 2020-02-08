@@ -59,7 +59,6 @@ open class KCTextFieldCore : KCView
 		mTextField.preferredMaxLayoutWidth = width
 		mTextField.frame.size  = newsize
 		mTextField.bounds.size = newsize
-		NSLog("KCTextFieldCore: resize newsize = \(newsize.description)")
 		super.resize(newsize)
 	}
 

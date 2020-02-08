@@ -43,11 +43,76 @@ public class KCWindowPreference
 	#endif
 }
 
+public class KCTerminalPreference: CNPreferenceTable
+{
+	public let TextColorItem		= "textColor"
+	public let BackgroundColorItem		= "backgroundColor"
+	public let FontItem			= "fontItem"
+
+	public override init() {
+		super.init()
+		self.textColor		= KCColor.black
+		self.backgroundColor 	= KCColor.white
+		self.font		= CNFont.monospacedSystemFont(ofSize: 12.0, weight: .regular)
+	}
+
+	public var textColor: KCColor? {
+		get {
+			if let color = super.anyValue(forKey: TextColorItem) as? KCColor {
+				return color
+			} else {
+				return nil
+			}
+		}
+		set(newcol) {
+			if let col = newcol {
+				super.set(anyValue: col, forKey: TextColorItem)
+			}
+		}
+	}
+
+	public var backgroundColor: KCColor? {
+		get {
+			if let color = super.anyValue(forKey: BackgroundColorItem) as? KCColor {
+				return color
+			} else {
+				return nil
+			}
+		}
+		set(newcol) {
+			if let col = newcol {
+				super.set(anyValue: col, forKey: BackgroundColorItem)
+			}
+		}
+	}
+
+	public var font: CNFont? {
+		get {
+			if let font = super.anyValue(forKey: FontItem) as? CNFont {
+				return font
+			} else {
+				return nil
+			}
+		}
+		set(newfont) {
+			if let font = newfont {
+				super.set(anyValue: font, forKey: FontItem)
+			}
+		}
+	}
+}
+
 extension CNPreference
 {
 	public var windowPreference: KCWindowPreference { get {
 		return get(name: "window", allocator: {
 			() -> KCWindowPreference in return KCWindowPreference()
+		})
+	}}
+
+	public var terminalPreference: KCTerminalPreference { get {
+		return get(name: "terminal", allocator: {
+			() -> KCTerminalPreference in return KCTerminalPreference()
 		})
 	}}
 }

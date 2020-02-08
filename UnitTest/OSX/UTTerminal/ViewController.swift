@@ -53,6 +53,11 @@ class ViewController: NSViewController, NSWindowDelegate {
 		let reqstr = CNEscapeCode.requestScreenSize.encode()
 		mTerminalView.outputFileHandle.write(string: reqstr)
 
+		/* Update preference */
+		let pref = CNPreference.shared.terminalPreference
+		pref.textColor	     = KCColor.blue
+		pref.backgroundColor = KCColor.black
+
 		/*
 		NSLog("Accepted code")
 		let ackdata = mTerminalView.inputFileHandle.availableData

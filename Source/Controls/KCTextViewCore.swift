@@ -14,8 +14,6 @@ import CoconutData
 
 open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 {
-	public typealias TextAttribute = NSTextStorage.TextAttribute
-
 	public enum TerminalMode {
 		case log
 		case console
@@ -30,10 +28,39 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mInputPipe:			Pipe
 	private var mOutputPipe:		Pipe
 	private var mErrorPipe:			Pipe
-	private var mCurrentIndex:		Int = 0
-	private var mTextAttribute:		TextAttribute
+	private var mCurrentIndex:		Int
+	private var mTextTerminalColor:		CNColor
+	private var mBackgroundTerminalColor:	CNColor
+	private var mFont:			CNFont
 	private var mMinimumColumnNumbers:	Int = 10
 	private var mMinimumLineNumbers:	Int = 1
+
+	public override init(frame frameRect: KCRect) {
+		mInputPipe			= Pipe()
+		mOutputPipe			= Pipe()
+		mErrorPipe			= Pipe()
+		mCurrentIndex			= 0
+		mTextTerminalColor		= CNColor.Green
+		mBackgroundTerminalColor	= CNColor.Black
+		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
+		super.init(frame: frameRect)
+	}
+
+	public required init?(coder: NSCoder) {
+		mInputPipe			= Pipe()
+		mOutputPipe			= Pipe()
+		mErrorPipe			= Pipe()
+		mCurrentIndex			= 0
+		mTextTerminalColor		= CNColor.Green
+		mBackgroundTerminalColor	= CNColor.Black
+		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
+		super.init(coder: coder)
+	}
+
+	deinit {
+		mOutputPipe.fileHandleForReading.readabilityHandler = nil
+		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+	}
 
 	public var inputFileHandle: FileHandle {
 		get { return mInputPipe.fileHandleForReading }
@@ -47,54 +74,76 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		get { return mErrorPipe.fileHandleForWriting }
 	}
 
-	public override init(frame frameRect: KCRect) {
-		mInputPipe	= Pipe()
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
-		mTextAttribute	= TextAttribute()
-		super.init(frame: frameRect)
+	public var textColor: KCColor? {
+		get { return mTextView.textColor }
+		set(newcol)	{
+			if let col = newcol {
+				mTextView.textColor = col
+				#if os(OSX)
+					mTextView.insertionPointColor = col
+				#endif
+				mTextTerminalColor = col.toTerminalColor()
+			}
+		}
 	}
 
-	public required init?(coder: NSCoder) {
-		mInputPipe	= Pipe()
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
-		mTextAttribute	= TextAttribute()
-		super.init(coder: coder)
+	#if os(OSX)
+	public var backgroundColor: KCColor? {
+		get 		{ return mTextView.backgroundColor   }
+		set(newcol)	{
+			if let col = newcol {
+				mTextView.backgroundColor = col
+				mBackgroundTerminalColor  = col.toTerminalColor()
+			}
+		}
 	}
-
-	deinit {
-		mOutputPipe.fileHandleForReading.readabilityHandler = nil
-		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+	#else
+	public override var backgroundColor: KCColor? {
+		get 		{ return mTextView.backgroundColor   }
+		set(newcol)	{
+			if let col = newcol {
+				//Following assignment caused crash ... I don't know why.
+				//mTextView.backgroundColor = col
+				mBackgroundTerminalColor  = col.toTerminalColor()
+			}
+			super.backgroundColor = newcol
+		}
 	}
+	#endif
 
 	public var font: CNFont {
-		get {
-			return mTextAttribute.font
-		}
+		get { return mFont }
 		set(newfont) {
-			mTextAttribute.font = newfont
 			mTextView.typingAttributes[NSAttributedString.Key.font] = newfont
 			textStorage.changeOverallFont(font: newfont)
+			mFont = newfont
 		}
 	}
 
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
 	{
 		/* Setup font */
-		mTextView.font = mTextAttribute.font
-		mTextView.typingAttributes[NSAttributedString.Key.font] = mTextAttribute.font
+		if let newfont = CNFont(name: "Consolas", size: 12.0) {
+			self.font = newfont
+		} else {
+			self.font = CNFont.systemFont(ofSize: CNFont.systemFontSize)
+		}
+
+		/* Setup color */
+		let pref = CNPreference.shared.terminalPreference
+		self.textColor       = pref.textColor
+		self.backgroundColor = pref.backgroundColor
 
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
-		mTextView.textColor		= mTextAttribute.foregroundColor.toObject()
-		mTextView.backgroundColor	= mTextAttribute.backgroundColor.toObject()
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
 			mTextView.isVerticallyResizable   = true
 			mTextView.isHorizontallyResizable = false
-			mTextView.insertionPointColor	  = mTextAttribute.foregroundColor.toObject()
+			if let color = pref.textColor {
+				mTextView.insertionPointColor	  = color
+			}
 		#else
 			mTextView.isScrollEnabled = true
 		#endif
@@ -177,7 +226,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				let storage = textStorage
 				storage.beginEditing()
 				for code in codes {
-					if let newidx = storage.execute(index: mCurrentIndex, attribute: mTextAttribute, escapeCode: code) {
+					if let newidx = storage.execute(index:		 mCurrentIndex,
+									foregroundColor: mTextTerminalColor,
+									backgroundColor: mBackgroundTerminalColor,
+									font: 		 mFont,
+									escapeCode: code) {
 						mCurrentIndex = newidx
 					} else {
 						executeCommandInView(escapeCode: code)
@@ -210,14 +263,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		case .scrollDown:
 			break
 		case .foregroundColor(let fcol):
-			mTextAttribute.foregroundColor = fcol
+			self.textColor = fcol.toObject()
 		case .backgroundColor(let bcol):
-			mTextAttribute.backgroundColor = bcol
+			self.backgroundColor = bcol.toObject()
 		case .setNormalAttributes:
 			/* Reset to default */
 			let pref = CNPreference.shared.terminalPreference
-			mTextAttribute.foregroundColor  = pref.foregroundColor
-			mTextAttribute.backgroundColor  = pref.backgroundColor
+			self.textColor       = pref.textColor
+			self.backgroundColor = pref.backgroundColor
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.columnNumbers, self.lineNumbers)
