@@ -24,28 +24,34 @@ public class KCLayouter: CNLogging
 
 	public func layout(rootView view: KCRootView, windowSize winsize: KCSize){
 		log(type: .flow, string: "Get content size", file: #file, line: #line, function: #function)
-		let windowrect = KCRect(origin: CGPoint.zero, size: winsize)
+		let insets        = KCLayouter.safeAreaInset(viewController: mViewController)
+		let windowrect	  = KCRect(origin: CGPoint.zero, size: winsize)
+		let contentrect	  = KCEdgeInsetsInsetRect(windowrect, insets)
 
-		log(type: .flow, string: "Minimize window size: " + winsize.description, file: #file, line: #line, function: #function)
-		let minimizer = KCSizeMinimizer(rootSize: winsize, console: mConsole)
+		log(type: .flow, string: "Minimize content size: " + contentrect.size.description, file: #file, line: #line, function: #function)
+		let minimizer = KCSizeMinimizer(rootSize: contentrect.size, console: mConsole)
 		view.accept(visitor: minimizer)
+		//dump(view: view)
 
 		log(type: .flow, string: "Minimize group size", file: #file, line: #line, function: #function)
 		let groupfitter = KCGroupSizeAllocator(console: mConsole)
 		view.accept(visitor: groupfitter)
+		//dump(view: view)
 
 		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
-		let insets       = KCLayouter.safeAreaInset(viewController: mViewController)
 		let rootallocator = KCRootSizeAllocator(windowSize: winsize, windowInset: insets)
-		rootallocator.setRootFrame(rootView: view, contentRect: windowrect)
+		rootallocator.setRootFrame(rootView: view, contentRect: contentrect)
+		//dump(view: view)
 
 		log(type: .flow, string: "Adjust view size", file: #file, line: #line, function: #function)
 		let adjuster = KCSizeAdjuster(console: mConsole)
 		view.accept(visitor: adjuster)
+		//dump(view: view)
 
 		log(type: .flow, string: "Decide distribution", file: #file, line: #line, function: #function)
 		let distdecider = KCDistributionDecider(console: mConsole)
 		view.accept(visitor: distdecider)
+		//dump(view: view)
 	}
 
 	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {
@@ -75,6 +81,15 @@ public class KCLayouter: CNLogging
 		let width  = max(0.0, sz.width  - (x + ist.right))
 		let height = max(0.0, sz.height - (y + ist.bottom))
 		return KCRect(x: x, y: y, width: width, height: height)
+	}
+
+	private func dump(view v: KCView) {
+		if let cons = console {
+			let dumper = KCViewDumper(console: cons)
+			dumper.dump(view: v)
+		} else {
+			NSLog("No console")
+		}
 	}
 }
 

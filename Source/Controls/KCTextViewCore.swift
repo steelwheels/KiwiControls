@@ -33,7 +33,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mBackgroundTerminalColor:	CNColor
 	private var mFont:			CNFont
 	private var mMinimumColumnNumbers:	Int = 10
-	private var mMinimumLineNumbers:	Int = 1
+	private var mMinimumLineNumbers:	Int = 10
 
 	public override init(frame frameRect: KCRect) {
 		mInputPipe			= Pipe()
@@ -123,11 +123,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
 	{
 		/* Setup font */
-		if let newfont = CNFont(name: "Consolas", size: 12.0) {
+		if let newfont = CNFont(name: "Consolas", size: 16.0) {
 			self.font = newfont
 		} else {
-			self.font = CNFont.systemFont(ofSize: CNFont.systemFontSize)
+			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
 		}
+		//NSLog("Font name=\(self.font.fontName) size=\(fontSize().description) point=\(self.font.pointSize)")
 
 		/* Setup color */
 		let pref = CNPreference.shared.terminalPreference

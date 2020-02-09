@@ -76,6 +76,10 @@ public class KCViewVisitor: CNLogging
 		visit(coreView: view)
 	}
 
+	open func visit(colorSelector view: KCColorSelector){
+		visit(coreView: view)
+	}
+
 	open func visit(coreView view: KCCoreView){
 	}
 }

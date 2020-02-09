@@ -36,8 +36,8 @@ class ViewController: NSViewController, NSWindowDelegate {
 			win.delegate = self
 		}
 		/* Set font size */
-		NSLog("Set font size: 16")
-		mTerminalView.fontPointSize = 16.0
+		NSLog("Font point size: \(mTerminalView.fontPointSize)")
+		//mTerminalView.fontPointSize = 16.0
 
 		/* Start shell */
 		if let shell = mShell {
@@ -54,9 +54,9 @@ class ViewController: NSViewController, NSWindowDelegate {
 		mTerminalView.outputFileHandle.write(string: reqstr)
 
 		/* Update preference */
-		let pref = CNPreference.shared.terminalPreference
-		pref.textColor	     = KCColor.blue
-		pref.backgroundColor = KCColor.black
+		//let pref = CNPreference.shared.terminalPreference
+		//pref.textColor	     = KCColor.blue
+		//pref.backgroundColor = KCColor.black
 
 		/*
 		NSLog("Accepted code")

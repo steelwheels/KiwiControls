@@ -32,14 +32,14 @@ public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize) -> KCSize
 	return KCSize(width: width, height: height)
 }
 
-public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize, doVertical vert: Bool) -> KCSize
+public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize, doVertical vert: Bool, spacing space: CGFloat) -> KCSize
 {
 	if vert {
 		let width  = max(a.width, b.width)
-		let height = a.height + b.height
+		let height = a.height + b.height + space
 		return KCSize(width: width, height: height)
 	} else {
-		let width  = a.width + b.width
+		let width  = a.width + b.width + space
 		let height = max(a.height, b.height)
 		return KCSize(width: width, height: height)
 	}

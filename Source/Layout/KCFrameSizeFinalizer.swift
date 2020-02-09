@@ -42,6 +42,14 @@ public class KCFrameSizeFinalizer: KCViewVisitor
 		view.resize(view.frame.size)
 	}
 
+	open override func visit(navigationBar view: KCNavigationBar) {
+		view.resize(view.frame.size)
+	}
+
+	open override func visit(colorSelector view: KCColorSelector) {
+		view.resize(view.frame.size)
+	}
+
 	open override func visit(coreView view: KCCoreView){
 	}
 }

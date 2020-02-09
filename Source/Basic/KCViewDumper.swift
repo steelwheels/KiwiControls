@@ -89,6 +89,8 @@ public class KCViewDumper: KCViewVisitor
 		let colnum  = view.columnNumbers
 		let linenum = view.lineNumbers
 		fsection.add(text: CNTextLine(string: "colmun-num: \(colnum), line-num: \(linenum)"))
+		let font    = view.font
+		fsection.add(string: "font:\(font.fontName))")
 		mSection.add(text: fsection)
 	}
 

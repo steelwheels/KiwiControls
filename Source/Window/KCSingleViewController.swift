@@ -78,11 +78,7 @@ open class KCSingleViewController: KCViewController, CNLogging
 			/* get window size */
 			let winsize: CGSize
 			#if os(OSX)
-				if let prefsize = KCMultiViewController.preferenceWindowSize() {
-					winsize = prefsize
-				} else {
-					winsize = parentWindowSize()
-				}
+				winsize = parentController.contentSize
 			#else
 				winsize = UIScreen.main.bounds.size
 			#endif
@@ -103,17 +99,6 @@ open class KCSingleViewController: KCViewController, CNLogging
 			log(type: .error, string: "No root view", file: #file, line: #line, function: #function)
 		}
 	}
-
-	#if os(OSX)
-	private func parentWindowSize() -> KCSize {
-		if let window = parentController.view.window {
-			return window.frame.size
-		} else {
-			NSLog("[Error] No parent window")
-			return KCSize(width: 640.0, height: 360.0)
-		}
-	}
-	#endif
 
 	#if os(OSX)
 	open override func viewDidAppear() {

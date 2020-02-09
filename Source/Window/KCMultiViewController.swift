@@ -23,7 +23,9 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
 	private var mViewStack:		CNStack = CNStack<String>()	/* name */
 	private var mConsole:		CNConsole? = nil
-	#if os(iOS)
+	#if os(OSX)
+	private var mContentSize:	KCSize = KCSize.zero
+	#else
 	private var mPickerView:	KCDocumentPickerViewController? = nil
 	#endif
 
@@ -35,6 +37,12 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		mConsole = cons
 	}
 
+	#if os(OSX)
+	public var contentSize: KCSize {
+		get { return mContentSize }
+	}
+	#endif
+
 	public var console: CNConsole? {
 		get { return mConsole }
 	}
@@ -44,15 +52,22 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		super.viewDidLoad()
 		showTabBar(visible:false)
 
-		/* Setup window size */
+		/* Change window size */
 		#if os(OSX)
 			if let size = KCMultiViewController.preferenceWindowSize() {
 				if let window = self.view.window {
-					window.resize(size: size)
+					window.setContentSize(size)
+					self.view.setFrameSize(size)
+					self.view.setBoundsSize(size)
 				} else {
 					NSLog("No window")
 				}
 			}
+		#endif
+
+		/* Keep initial size */
+		#if os(OSX)
+			mContentSize = self.view.frame.size
 		#endif
 	}
 
@@ -72,7 +87,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		#endif
 		return result
 	}
-
 	#endif
 
 	public func showTabBar(visible vis: Bool){

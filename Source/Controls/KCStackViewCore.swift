@@ -31,6 +31,7 @@ open class KCStackViewCore : KCView
 	public func setup(frame frm: CGRect) {
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
+		mStackView.spacing = CNPreference.shared.windowPreference.spacing
 		#if os(OSX)
 			mStackView.orientation  = .vertical
 			mStackView.alignment    = .centerX
@@ -184,18 +185,19 @@ open class KCStackViewCore : KCView
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		var merged = KCSize.zero
+		let space  = CNPreference.shared.windowPreference.spacing
 		switch self.axis {
 		case .horizontal:
 			for subview in self.arrangedSubviews() {
 				let subsize = subview.frame.size
-				merged.width  += subsize.width
+				merged.width  += subsize.width + space
 				merged.height =  max(merged.height, subsize.height)
 			}
 		case .vertical:
 			for subview in self.arrangedSubviews() {
 				let subsize = subview.frame.size
 				merged.width  =  max(merged.width, subsize.width)
-				merged.height += subsize.height
+				merged.height += subsize.height + space
 			}
 		}
 		return merged
@@ -208,10 +210,11 @@ open class KCStackViewCore : KCView
 			} else {
 				let dovert = (axis == .vertical)
 				var result = KCSize(width: 0.0, height: 0.0)
+				let space  = CNPreference.shared.windowPreference.spacing
 				let subviews = arrangedSubviews()
 				for subview in subviews {
 					let size = subview.intrinsicContentSize
-					result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert)
+					result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
 				}
 				return result
 			}

@@ -45,7 +45,8 @@ public class KCStepperCore: KCView
 			log(type: .warning, string: "Too short size", file: #file, line: #line, function: #function)
 		}
 		txtsize = mTextField.sizeThatFits(txtsize)
-		return KCUnionSize(sizeA: stpsize, sizeB: txtsize, doVertical: false)
+		let space = CNPreference.shared.windowPreference.spacing
+		return KCUnionSize(sizeA: stpsize, sizeB: txtsize, doVertical: false, spacing: space)
 	}
 
 	open override var intrinsicContentSize: KCSize {
@@ -55,7 +56,8 @@ public class KCStepperCore: KCView
 			} else {
 				let fieldsize   = mTextField.intrinsicContentSize
 				let steppersize = mStepper.intrinsicContentSize
-				return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false)
+				let space       = CNPreference.shared.windowPreference.spacing
+				return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
 			}
 		}
 	}

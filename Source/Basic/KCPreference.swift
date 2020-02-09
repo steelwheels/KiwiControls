@@ -22,7 +22,7 @@ public class KCWindowPreference
 	#endif
 
 	public init(){
-		spacing			= 0.0
+		spacing			= 8.0
 		backgroundColor		= KCColor.white
 		#if os(OSX)
 			mainWindowSize	= nil

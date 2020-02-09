@@ -34,7 +34,8 @@ public class KCCheckBoxCore: KCView
 		#else
 			let swsize  = mSwitch.sizeThatFits(size)
 			let labsize = mLabel.sizeThatFits(size)
-			return KCUnionSize(sizeA: swsize, sizeB: labsize, doVertical: false)
+			let space   = CNPreference.shared.windowPreference.spacing
+			return KCUnionSize(sizeA: swsize, sizeB: labsize, doVertical: false, spacing: space)
 		#endif
 	}
 
@@ -46,7 +47,8 @@ public class KCCheckBoxCore: KCView
 				#if os(iOS)
 					let labelsize  = mLabel.intrinsicContentSize
 					let switchsize = mSwitch.intrinsicContentSize
-					return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false)
+					let space   = CNPreference.shared.windowPreference.spacing
+					return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
 				#else
 					return mCheckBox.intrinsicContentSize
 				#endif

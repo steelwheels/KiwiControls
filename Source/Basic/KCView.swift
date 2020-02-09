@@ -207,16 +207,16 @@ open class KCView : KCViewBase, CNLogging
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
-		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self, attribute: .top,    length: 0.0)) ;
-		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self, attribute: .left,   length: 0.0)) ;
+		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self,   attribute: .top,    length: 0.0)) ;
+		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self,   attribute: .left,   length: 0.0)) ;
 		addConstraint(KCView.allocateLayout(fromView: self,   toView: sview,  attribute: .bottom, length: 0.0)) ;
 		addConstraint(KCView.allocateLayout(fromView: self,   toView: sview,  attribute: .right,  length: 0.0)) ;
 	}
 
 	public func allocateSubviewLayout(subView sview: KCViewBase, in inset: KCEdgeInsets){
 		sview.translatesAutoresizingMaskIntoConstraints = false
-		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self, attribute: .top,    length: inset.top)) ;
-		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self, attribute: .left,   length: inset.left)) ;
+		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self,   attribute: .top,    length: inset.top)) ;
+		addConstraint(KCView.allocateLayout(fromView: sview,  toView: self,   attribute: .left,   length: inset.left)) ;
 		addConstraint(KCView.allocateLayout(fromView: self,   toView: sview,  attribute: .bottom, length: inset.bottom)) ;
 		addConstraint(KCView.allocateLayout(fromView: self,   toView: sview,  attribute: .right,  length: inset.right)) ;
 	}
