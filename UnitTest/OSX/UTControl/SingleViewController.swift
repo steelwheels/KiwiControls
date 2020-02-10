@@ -13,7 +13,27 @@ class SingleViewController: KCSingleViewController
 {
 	open override func loadView() {
 		super.loadView()
+		if false {
+			setupColorSelectorView()
+		} else {
+			setupPreferenceView()
+		}
+	}
 
+	private func setupColorSelectorView() {
+		let selview = KCColorSelector()
+		selview.callbackFunc = {
+			(_ color: KCColor) in
+			NSLog("Update text color")
+		}
+		if let root = super.rootView {
+			root.setup(childView: selview)
+		} else {
+			NSLog("Failed to set controls")
+		}
+	}
+
+	private func setupPreferenceView() {
 		let prefview = KCTerminalPreferenceView()
 		/*
 		if let cons = super.console {

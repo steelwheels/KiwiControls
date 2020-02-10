@@ -16,6 +16,11 @@ open class KCColorSelector : KCCoreView
 {
 	public typealias CallbackFunction = KCColorSelectorCore.CallbackFunction
 
+	public var color: KCColor {
+		get 		{ return coreView.color		}
+		set(newcol)	{ coreView.color = newcol 	}
+	}
+
 	public var callbackFunc: CallbackFunction? {
 		get		{ return coreView.callbackFunc }
 		set(newfunc)	{ coreView.callbackFunc = newfunc }

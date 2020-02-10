@@ -45,9 +45,11 @@ public class KCWindowPreference
 
 public class KCTerminalPreference: CNPreferenceTable
 {
+	public typealias CallbackFunction = (_ color: KCColor) -> Void
+
 	public let TextColorItem		= "textColor"
 	public let BackgroundColorItem		= "backgroundColor"
-	public let FontItem			= "fontItem"
+	public let FontItem			= "font"
 
 	public override init() {
 		super.init()

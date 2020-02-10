@@ -14,9 +14,6 @@ import CoconutData
 
 open class KCTerminalView : KCCoreView
 {
-	private var mTextColorListener		: CNPreferenceListner?	= nil
-	private var mBackgroundColorListner	: CNPreferenceListner?  = nil
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -37,12 +34,6 @@ open class KCTerminalView : KCCoreView
 		#endif
 		self.init(frame: frame)
 		setupContext()
-	}
-
-	deinit {
-		let pref = CNPreference.shared.terminalPreference
-		if let listner = mTextColorListener	 { pref.removeObserver(listner: listner) }
-		if let listner = mBackgroundColorListner { pref.removeObserver(listner: listner) }
 	}
 
 	public required init?(coder: NSCoder) {
@@ -95,23 +86,6 @@ open class KCTerminalView : KCCoreView
 		setCoreView(view: newview)
 		newview.setup(mode: .console, frame: self.frame)
 		allocateSubviewLayout(subView: newview)
-
-		/* Connect with preference */
-		let pref = CNPreference.shared.terminalPreference
-		mTextColorListener = pref.addObserver(forKey: pref.TextColorItem, callback: {
-			(_ anyobj: Any) -> Void in
-			if let color = anyobj as? KCColor {
-				NSLog("update text color")
-				self.textColor = color
-			}
-		})
-		mBackgroundColorListner = pref.addObserver(forKey: pref.BackgroundColorItem, callback: {
-			(_ anyobj: Any) -> Void in
-			if let color = anyobj as? KCColor {
-				NSLog("update background color")
-				self.backgroundColor = color
-			}
-		})
 	}
 
 	public var fontPointSize: CGFloat{

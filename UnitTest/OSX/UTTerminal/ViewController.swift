@@ -54,9 +54,9 @@ class ViewController: NSViewController, NSWindowDelegate {
 		mTerminalView.outputFileHandle.write(string: reqstr)
 
 		/* Update preference */
-		//let pref = CNPreference.shared.terminalPreference
-		//pref.textColor	     = KCColor.blue
-		//pref.backgroundColor = KCColor.black
+		let pref = CNPreference.shared.terminalPreference
+		pref.textColor	     = KCColor.green
+		pref.backgroundColor = KCColor.black
 
 		/*
 		NSLog("Accepted code")

@@ -56,6 +56,43 @@ open class KCColorSelectorCore: KCView
 		#endif
 	}
 
+	#if os(OSX)
+	public var color: KCColor {
+		get {
+			if let well = mColorWell {
+				return well.color
+			} else {
+				NSLog("No color well for get")
+				return KCColor.black
+			}
+		}
+		set(newcol){
+			if let well = mColorWell {
+				well.color = newcol
+			} else {
+				NSLog("No color well for set")
+			}
+		}
+	}
+	#else
+	public var color: KCColor {
+		get {
+			if let button = mButton {
+				if let color = button.backgroundColor {
+					return color
+				}
+			}
+			NSLog("No color")
+			return KCColor.black
+		}
+		set(newcol){
+			if let button = mButton {
+				button.backgroundColor = newcol
+			}
+		}
+	}
+	#endif
+
 	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if let key = keyPath {
 			if key == ColorItem {

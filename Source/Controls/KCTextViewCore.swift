@@ -60,6 +60,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	deinit {
 		mOutputPipe.fileHandleForReading.readabilityHandler = nil
 		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+
+		/* Stop to observe */
+		let pref = CNPreference.shared.terminalPreference
+		pref.removeObserver(observer: self, forKey: pref.TextColorItem)
+		pref.removeObserver(observer: self, forKey: pref.BackgroundColorItem)
 	}
 
 	public var inputFileHandle: FileHandle {
@@ -123,7 +128,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
 	{
 		/* Setup font */
-		if let newfont = CNFont(name: "Consolas", size: 16.0) {
+		if let newfont = CNFont(name: "Courier", size: 16.0) {
 			self.font = newfont
 		} else {
 			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
@@ -190,6 +195,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				})
 			}
 		}
+
+		/* Start observe */
+		pref.addObserver(observer: self, forKey: pref.TextColorItem)
+		pref.addObserver(observer: self, forKey: pref.BackgroundColorItem)
 	}
 
 	public var fontPointSize: CGFloat {
@@ -371,6 +380,21 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumLineNumbers))
 		let reqsize   = KCSize(width: reqwidth, height: reqheight)
 		return reqsize
+	}
+
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if let key = keyPath, let vals = change {
+			if let color = vals[.newKey] as? KCColor {
+				switch key {
+				case CNPreference.shared.terminalPreference.TextColorItem:
+					self.textColor = color
+				case CNPreference.shared.terminalPreference.BackgroundColorItem:
+					self.backgroundColor = color
+				default:
+					break
+				}
+			}
+		}
 	}
 }
 

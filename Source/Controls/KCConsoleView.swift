@@ -14,9 +14,6 @@ import CoconutData
 
 open class KCConsoleView : KCCoreView
 {
-	private var mTextColorListener		: CNPreferenceListner?	= nil
-	private var mBackgroundColorListner	: CNPreferenceListner?  = nil
-	
 	private var mConsole:	CNFileConsole?	= nil
 
 	public var textColor: KCColor? {
@@ -65,12 +62,6 @@ open class KCConsoleView : KCCoreView
 		super.init(coder: coder) ;
 		setupContext() ;
 	}
-
-	deinit {
-		let pref = CNPreference.shared.terminalPreference
-		if let listner = mTextColorListener	 { pref.removeObserver(listner: listner) }
-		if let listner = mBackgroundColorListner { pref.removeObserver(listner: listner) }
-	}
 	
 	public var consoleConnection: CNFileConsole {
 		get {
@@ -94,23 +85,6 @@ open class KCConsoleView : KCCoreView
 		setCoreView(view: newview)
 		newview.setup(mode: .log, frame: self.frame)
 		allocateSubviewLayout(subView: newview)
-
-		/* Connect with preference */
-		let pref = CNPreference.shared.terminalPreference
-		mTextColorListener = pref.addObserver(forKey: pref.TextColorItem, callback: {
-			(_ anyobj: Any) -> Void in
-			if let color = anyobj as? KCColor {
-				NSLog("update text color")
-				self.textColor = color
-			}
-		})
-		mBackgroundColorListner = pref.addObserver(forKey: pref.BackgroundColorItem, callback: {
-			(_ anyobj: Any) -> Void in
-			if let color = anyobj as? KCColor {
-				NSLog("update background color")
-				self.backgroundColor = color
-			}
-		})
 	}
 
 	public var font: CNFont {
