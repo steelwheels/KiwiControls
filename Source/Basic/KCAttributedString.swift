@@ -50,3 +50,39 @@ public extension NSAttributedString {
 		self.init(string: str, attributes: attrobj.attributes)
 	}
 }
+
+public extension NSMutableAttributedString
+{
+	func changeOverallTextColor(targetColor curcol: KCColor, newColor newcol: KCColor){
+		self.beginEditing()
+		let entire = NSMakeRange(0, self.length)
+		self.enumerateAttribute(.foregroundColor, in: entire, options: [], using: {
+			(anyobj, range, unsage) -> Void in
+			/* Replace current foreground color attribute by new color */
+			if let colobj = anyobj as? KCColor {
+				if colobj.isEqual(curcol) {
+					removeAttribute(.foregroundColor, range: range)
+					addAttribute(.foregroundColor, value: newcol, range: range)
+				}
+			}
+		})
+		self.endEditing()
+	}
+
+	func changeOverallBackgroundColor(targetColor curcol: KCColor, newColor newcol: KCColor){
+		self.beginEditing()
+		let entire = NSMakeRange(0, self.length)
+		self.enumerateAttribute(.backgroundColor, in: entire, options: [], using: {
+			(anyobj, range, unsage) -> Void in
+			/* Replace current background color attribute by new color */
+			if let colobj = anyobj as? KCColor {
+				if colobj.isEqual(curcol) {
+					removeAttribute(.backgroundColor, range: range)
+					addAttribute(.backgroundColor, value: newcol, range: range)
+				}
+			}
+		})
+		self.endEditing()
+	}
+}
+

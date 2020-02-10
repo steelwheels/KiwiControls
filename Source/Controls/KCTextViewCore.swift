@@ -98,7 +98,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		set(newcol)	{
 			if let col = newcol {
 				mTextView.backgroundColor = col
-				mBackgroundTerminalColor  = col.toTerminalColor()
+				let newcol = col.toTerminalColor()
+				if !mBackgroundTerminalColor.isEqual(to: newcol) {
+					textStorage.changeOverallBackgroundColor(targetColor: mBackgroundTerminalColor.toObject(), newColor: newcol.toObject())
+					mBackgroundTerminalColor = newcol
+				}
 			}
 		}
 	}
@@ -107,9 +111,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		get 		{ return mTextView.backgroundColor   }
 		set(newcol)	{
 			if let col = newcol {
+				let newcol = col.toTerminalColor()
+				if !mBackgroundTerminalColor.isEqual(to: newcol) {
+					textStorage.changeOverallBackgroundColor(targetColor: mBackgroundTerminalColor.toObject(), newColor: newcol.toObject())
+					mBackgroundTerminalColor = newcol
+				}
 				//Following assignment caused crash ... I don't know why.
 				//mTextView.backgroundColor = col
-				mBackgroundTerminalColor  = col.toTerminalColor()
 			}
 			super.backgroundColor = newcol
 		}
