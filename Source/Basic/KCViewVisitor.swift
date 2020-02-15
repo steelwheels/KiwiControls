@@ -80,6 +80,10 @@ public class KCViewVisitor: CNLogging
 		visit(coreView: view)
 	}
 
+	open func visit(popupMenu view: KCPopupMenu){
+		visit(coreView: view)
+	}
+
 	open func visit(coreView view: KCCoreView){
 	}
 }

@@ -17,6 +17,7 @@
 		0506CD3C211E67D1009BFF55 /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
 		0506F2EB1DFB12690028D1E2 /* KCGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506F2EA1DFB12690028D1E2 /* KCGraphicsView.swift */; };
 		050955F81E3F84F4007D3641 /* KCImageDrawerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050955F71E3F84F4007D3641 /* KCImageDrawerLayer.swift */; };
+		0509A8CC23F23286006A12F6 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509A8CB23F23286006A12F6 /* KCTerminalPreferenceView.swift */; };
 		050E5E111DEF2C42006DC247 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5E101DEF2C42006DC247 /* KCTimer.swift */; };
 		0513227B23518D98005EB8EC /* KCSizeAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513227A23518D98005EB8EC /* KCSizeAdjuster.swift */; };
 		051E34E41E42370000620E1C /* KCStrokeDrawerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E34E21E42370000620E1C /* KCStrokeDrawerLayer.swift */; };
@@ -150,6 +151,9 @@
 		05DB04BC2113566B0060CCA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DB04BA2113566B0060CCA8 /* Main.storyboard */; };
 		05DB04BE2113566C0060CCA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DB04BD2113566C0060CCA8 /* Assets.xcassets */; };
 		05DB04C12113566C0060CCA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05DB04BF2113566C0060CCA8 /* LaunchScreen.storyboard */; };
+		05DC85DE23F2961100958CAF /* KCPopupMenuCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05DC85DD23F2961100958CAF /* KCPopupMenuCore.xib */; };
+		05DC85E123F297EC00958CAF /* KCPopupMenuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC85DF23F297EC00958CAF /* KCPopupMenuCore.swift */; };
+		05DC85E223F297EC00958CAF /* KCPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC85E023F297EC00958CAF /* KCPopupMenu.swift */; };
 		05DDE5F421C01A7600520631 /* KCLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE5F321C01A7600520631 /* KCLayoutConstraint.swift */; };
 		05DDE5F721C01A8600520631 /* KCDistributionDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE5F521C01A8600520631 /* KCDistributionDecider.swift */; };
 		05DDE5F821C01A8600520631 /* KCGroupMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE5F621C01A8600520631 /* KCGroupMaker.swift */; };
@@ -301,6 +305,7 @@
 		0506CD37211E6452009BFF55 /* SingleView0Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleView0Controller.swift; path = ../../OSX/UTMultiViewController/SingleView0Controller.swift; sourceTree = "<group>"; };
 		0506F2EA1DFB12690028D1E2 /* KCGraphicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCGraphicsView.swift; path = GraphicsView/KCGraphicsView.swift; sourceTree = "<group>"; };
 		050955F71E3F84F4007D3641 /* KCImageDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImageDrawerLayer.swift; sourceTree = "<group>"; };
+		0509A8CB23F23286006A12F6 /* KCTerminalPreferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTerminalPreferenceView.swift; sourceTree = "<group>"; };
 		050E5E101DEF2C42006DC247 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimer.swift; path = Timer/KCTimer.swift; sourceTree = "<group>"; };
 		0513227A23518D98005EB8EC /* KCSizeAdjuster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSizeAdjuster.swift; sourceTree = "<group>"; };
 		051E34E21E42370000620E1C /* KCStrokeDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeDrawerLayer.swift; sourceTree = "<group>"; };
@@ -432,6 +437,9 @@
 		05DB04BD2113566C0060CCA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05DB04C02113566C0060CCA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05DB04C22113566C0060CCA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DC85DD23F2961100958CAF /* KCPopupMenuCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCPopupMenuCore.xib; sourceTree = "<group>"; };
+		05DC85DF23F297EC00958CAF /* KCPopupMenuCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPopupMenuCore.swift; sourceTree = "<group>"; };
+		05DC85E023F297EC00958CAF /* KCPopupMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPopupMenu.swift; sourceTree = "<group>"; };
 		05DDE5F321C01A7600520631 /* KCLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutConstraint.swift; sourceTree = "<group>"; };
 		05DDE5F521C01A8600520631 /* KCDistributionDecider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCDistributionDecider.swift; sourceTree = "<group>"; };
 		05DDE5F621C01A8600520631 /* KCGroupMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupMaker.swift; sourceTree = "<group>"; };
@@ -576,6 +584,14 @@
 			name = GraphicsView;
 			sourceTree = "<group>";
 		};
+		0509A8CA23F23268006A12F6 /* Combination */ = {
+			isa = PBXGroup;
+			children = (
+				0509A8CB23F23286006A12F6 /* KCTerminalPreferenceView.swift */,
+			);
+			path = Combination;
+			sourceTree = "<group>";
+		};
 		050E5E0F1DEF2C2F006DC247 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,6 +647,8 @@
 				053CB5F021F609D00031711B /* KCNavigationBarCore.swift */,
 				057ECD8223EE6A9A003176C3 /* KCColorSelector.swift */,
 				05E874A523EE87080028949E /* KCColorSelectorCore.swift */,
+				05DC85E023F297EC00958CAF /* KCPopupMenu.swift */,
+				05DC85DF23F297EC00958CAF /* KCPopupMenuCore.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -732,6 +750,7 @@
 				053CB5F221F60A580031711B /* KCNavigationBarCore.xib */,
 				0545D7BD23D9FF7000949357 /* KCTextViewCore.xib */,
 				057ECD7F23EE6994003176C3 /* KCColorSelectorCore.xib */,
+				05DC85DD23F2961100958CAF /* KCPopupMenuCore.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -761,6 +780,7 @@
 				0571B63320956DE600603B95 /* Font */,
 				05706B571F8A5080008BE096 /* Window */,
 				05353FF91E0D5A190031812D /* Controls */,
+				0509A8CA23F23268006A12F6 /* Combination */,
 				0583CC1422767C5200B36E0A /* Sprite */,
 				0571B62A20956D0E00603B95 /* Graphics */,
 				0506F2E91DFB12400028D1E2 /* GraphicsView */,
@@ -1343,6 +1363,7 @@
 				057ECD8023EE6994003176C3 /* KCColorSelectorCore.xib in Resources */,
 				05686CAF21245D11000CEA6C /* KCImageViewCore.xib in Resources */,
 				058AE0531E12C3BF00116D89 /* KCButtonCore.xib in Resources */,
+				05DC85DE23F2961100958CAF /* KCPopupMenuCore.xib in Resources */,
 				056F4CB01E734E74008BF572 /* KCIconViewCore.xib in Resources */,
 				05B8662520D7A67D006CF515 /* KCTextEditCore.xib in Resources */,
 				05E75DF61E13F3E100287756 /* KCCheckBoxCore.xib in Resources */,
@@ -1479,6 +1500,7 @@
 				05841E9A1D8F7B950092C2C6 /* KCAlert.swift in Sources */,
 				053CB5F521F6118A0031711B /* KCNavigationBar.swift in Sources */,
 				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
+				05DC85E223F297EC00958CAF /* KCPopupMenu.swift in Sources */,
 				053CB5F121F609D00031711B /* KCNavigationBarCore.swift in Sources */,
 				057FF5ED22989D5000E81BAB /* KCRootSizeAllocator.swift in Sources */,
 				05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */,
@@ -1491,6 +1513,7 @@
 				05841EA31D8F7BA00092C2C6 /* KCLayerView.swift in Sources */,
 				056F4CB71E735017008BF572 /* KCTableView.swift in Sources */,
 				059AE84923E8788200906BD5 /* KCColor.swift in Sources */,
+				05DC85E123F297EC00958CAF /* KCPopupMenuCore.swift in Sources */,
 				057853751F46732C00BBB2BA /* KCConsoleView.swift in Sources */,
 				05353FFB1E0D5A340031812D /* KCButton.swift in Sources */,
 				05910BEF20958D9400535E2A /* KCImage.swift in Sources */,
@@ -1518,6 +1541,7 @@
 				05686CB121245D7C000CEA6C /* KCImageViewCore.swift in Sources */,
 				0538B2D022A37A26001F7038 /* KCScreen.swift in Sources */,
 				058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */,
+				0509A8CC23F23286006A12F6 /* KCTerminalPreferenceView.swift in Sources */,
 				05B70CE0209F2C6F00BAE1EB /* KCLogViewController.swift in Sources */,
 				05686CB32124656D000CEA6C /* KCImageView.swift in Sources */,
 				0545BA6223518886008A245E /* KCLogManager.swift in Sources */,

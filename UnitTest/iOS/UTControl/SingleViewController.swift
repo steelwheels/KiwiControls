@@ -17,9 +17,14 @@ class SingleViewController: KCSingleViewController
 		let stackview = KCStackView()
 		stackview.axis = .vertical
 
-		let colselector = KCColorSelector()
-		colselector.setLabel(string: "Text color:")
-		stackview.addArrangedSubView(subView: colselector)
+		if true {
+			let termpref = KCTerminalPreferenceView()
+			stackview.addArrangedSubView(subView: termpref)
+		} else {
+			let colselector = KCColorSelector()
+			colselector.setLabel(string: "Text color:")
+			stackview.addArrangedSubView(subView: colselector)
+		}
 
 		if let root = super.rootView {
 			root.setup(childView: stackview)

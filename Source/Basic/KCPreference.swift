@@ -55,7 +55,11 @@ public class KCTerminalPreference: CNPreferenceTable
 		super.init()
 		self.textColor		= KCColor.black
 		self.backgroundColor 	= KCColor.white
-		self.font		= CNFont.monospacedSystemFont(ofSize: 12.0, weight: .regular)
+		if let newfont = CNFont(name: "Courier", size: 16.0) {
+			self.font = newfont
+		} else {
+			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
+		}
 	}
 
 	public var textColor: KCColor? {

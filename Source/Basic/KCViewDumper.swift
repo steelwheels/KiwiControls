@@ -94,6 +94,18 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
+	open override func visit(popupMenu view: KCPopupMenu) {
+		visit(coreView: view)
+
+		let fsection = CNTextSection()
+		fsection.header = "items {" ; fsection.footer = "}"
+		let titles = view.itemTitles()
+		for title in titles {
+			fsection.add(string: title)
+		}
+		mSection.add(text: fsection)
+	}
+
 	open override func visit(coreView view: KCCoreView){
 		let section = CNTextSection()
 

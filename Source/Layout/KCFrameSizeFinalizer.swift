@@ -50,6 +50,10 @@ public class KCFrameSizeFinalizer: KCViewVisitor
 		view.resize(view.frame.size)
 	}
 
+	open override func visit(popupMenu view: KCPopupMenu) {
+		view.resize(view.frame.size)
+	}
+
 	open override func visit(coreView view: KCCoreView){
 	}
 }

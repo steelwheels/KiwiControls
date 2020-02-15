@@ -13,21 +13,22 @@ public class SingleView1Controller: KCSingleViewController
 {
 	public override func loadView() {
 		super.loadView()
-		
-		let label0    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
-		label0.text   = "Hello, world. This is label0"
 
-		let label1    = KCTextField(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
-		label1.text   = "Goodmorning, world. This is label1"
+		let terminal  = KCTerminalView()
+		terminal.outputFileHandle.write(string: "Good, morning !!")
+
+		//let console = KCConsoleView()
+		//console.consoleConnection.print(string: "Hello, world !!")
 
 		let box0 = KCStackView(frame: KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
-		box0.addArrangedSubViews(subViews: [label0, label1])
+		box0.addArrangedSubViews(subViews: [terminal])
+		//box0.addArrangedSubViews(subViews: [console])
 		box0.axis = .vertical
 		box0.distribution = .fill
 		box0.alignment = .center
 
 		if let root = super.rootView {
-			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
+			log(type: .flow, string: "setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: box0)
 		} else {
 			fatalError("No root view")
@@ -36,20 +37,20 @@ public class SingleView1Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		log(type: .Flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -57,13 +58,13 @@ public class SingleView1Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear(animated)
 		doDumpView(message: "After viewDidAppear")
 	}
@@ -71,7 +72,7 @@ public class SingleView1Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
+			log(type: .flow, string: msg, file: #file, line: #line, function: #function)
 			let dumper = KCViewDumper(console: console!)
 			dumper.dump(view: view)
 		} else {

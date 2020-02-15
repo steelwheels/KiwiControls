@@ -36,7 +36,7 @@ public class SingleView0Controller: KCSingleViewController
 		box1.addArrangedSubViews(subViews: [box0, edit1])
 
 		if let root = super.rootView {
-			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
+			log(type: .flow, string: "setup root view", file: #file, line: #line, function: #function)
 			root.setup(childView: box1)
 		} else {
 			fatalError("No root view")
@@ -44,13 +44,13 @@ public class SingleView0Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		log(type: .Flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear()
 		doDumpView(message: "Last viewWillAppear")
 	}
@@ -64,7 +64,7 @@ public class SingleView0Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear()
 		doDumpView(message: "Last viewDidAppear")
 	}
@@ -78,7 +78,7 @@ public class SingleView0Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
+			log(type: .flow, string: msg, file: #file, line: #line, function: #function)
 			let dumper = KCViewDumper(console: console!)
 			dumper.dump(view: view)
 		} else {

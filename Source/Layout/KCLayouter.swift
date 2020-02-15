@@ -38,10 +38,12 @@ public class KCLayouter: CNLogging
 		view.accept(visitor: groupfitter)
 		//dump(view: view)
 
+		/*
 		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
-		let rootallocator = KCRootSizeAllocator(windowSize: winsize, windowInset: insets)
+		let rootallocator = KCRootSizeAllocator()
 		rootallocator.setRootFrame(rootView: view, contentRect: contentrect)
 		//dump(view: view)
+		*/
 
 		log(type: .flow, string: "Adjust view size", file: #file, line: #line, function: #function)
 		let adjuster = KCSizeAdjuster(console: mConsole)

@@ -65,6 +65,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		let pref = CNPreference.shared.terminalPreference
 		pref.removeObserver(observer: self, forKey: pref.TextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.BackgroundColorItem)
+		pref.removeObserver(observer: self, forKey: pref.FontItem)
 	}
 
 	public var inputFileHandle: FileHandle {
@@ -135,18 +136,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
 	{
-		/* Setup font */
-		if let newfont = CNFont(name: "Courier", size: 16.0) {
-			self.font = newfont
+		let pref = CNPreference.shared.terminalPreference
+		if let font = pref.font {
+			self.font = font
 		} else {
 			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
 		}
-		//NSLog("Font name=\(self.font.fontName) size=\(fontSize().description) point=\(self.font.pointSize)")
-
-		/* Setup color */
-		let pref = CNPreference.shared.terminalPreference
-		self.textColor       = pref.textColor
-		self.backgroundColor = pref.backgroundColor
+		self.textColor       	= pref.textColor
+		self.backgroundColor 	= pref.backgroundColor
 
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
@@ -154,7 +151,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
 			mTextView.isVerticallyResizable   = true
-			mTextView.isHorizontallyResizable = false
+			mTextView.isHorizontallyResizable = true
 			if let color = pref.textColor {
 				mTextView.insertionPointColor	  = color
 			}
@@ -207,6 +204,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		/* Start observe */
 		pref.addObserver(observer: self, forKey: pref.TextColorItem)
 		pref.addObserver(observer: self, forKey: pref.BackgroundColorItem)
+		pref.addObserver(observer: self, forKey: pref.FontItem)
 	}
 
 	public var fontPointSize: CGFloat {
@@ -398,6 +396,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					self.textColor = color
 				case CNPreference.shared.terminalPreference.BackgroundColorItem:
 					self.backgroundColor = color
+				default:
+					break
+				}
+			} else if let font = vals[.newKey] as? CNFont {
+				switch key {
+				case CNPreference.shared.terminalPreference.FontItem:
+					//NSLog("Change font: \(font.fontName)")
+					self.font = font
 				default:
 					break
 				}

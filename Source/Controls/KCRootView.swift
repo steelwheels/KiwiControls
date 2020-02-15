@@ -40,6 +40,7 @@ open class KCRootView: KCCoreView
 
 	public func setup(childView child: KCView){
 		self.addSubview(child)
+		super.allocateSubviewLayout(subView: child)
 		setCoreView(view: child)
 		child.set(console: self.console)
 		#if os(iOS)

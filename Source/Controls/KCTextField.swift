@@ -69,6 +69,23 @@ open class KCTextField : KCCoreView
 		set(font)	{ coreView.font = font }
 	}
 
+	public var textColor: KCColor? {
+		get      { return coreView.textColor }
+		set(col) { coreView.textColor = col }
+	}
+
+	#if os(OSX)
+	public var backgroundColor: KCColor? {
+		get      { return coreView.backgroundColor }
+		set(col) { coreView.backgroundColor = col }
+	}
+	#else
+	public override var backgroundColor: KCColor? {
+		get      { return coreView.backgroundColor }
+		set(col) { coreView.backgroundColor = col }
+	}
+	#endif
+
 	public var alignment: NSTextAlignment {
 		get	  { return coreView.alignment }
 		set(align){ coreView.alignment = align }
@@ -77,13 +94,6 @@ open class KCTextField : KCCoreView
 	public var lineBreak: KCLineBreakMode {
 		get	  { return coreView.lineBreak	}
 		set(mode) { coreView.lineBreak = mode	}
-	}
-
-	public func setColors(colors cols: KCColorPreference.TextColors){
-		coreView.setColors(colors: cols)
-		#if os(iOS)
-			self.backgroundColor = cols.background
-		#endif
 	}
 
 	public func setDouble(value val: Double) {

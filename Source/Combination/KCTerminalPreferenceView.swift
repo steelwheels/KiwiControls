@@ -16,9 +16,14 @@ public class KCTerminalPreferenceView: KCStackView
 {
 	public typealias CallbackFunction = KCColorSelectorCore.CallbackFunction
 
-	private var 	mLabel:				KCTextField?		= nil
+	private var	mFontLabel:			KCTextField?		= nil
+	private var	mFontNameMenu:			KCPopupMenu?		= nil
+	private var 	mFontSizeMenu:			KCPopupMenu?		= nil
 	private var	mTextColorSelector:		KCColorSelector?	= nil
 	private var	mBackgroundColorSelector:	KCColorSelector?	= nil
+
+	private var	mFontNames:			Array<String>?		= nil
+	private var 	mFontSizes:			Array<CGFloat>?		= nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -47,26 +52,85 @@ public class KCTerminalPreferenceView: KCStackView
 	}
 
 	private func setupContext() {
-		allocateView()
+		/* Allocate parts vertically */
+		super.axis = .vertical
+
+		let fonts = CNFontManager.shared.availableFixedPitchFonts
+		let sizes : Array<CGFloat> = [10.0, 12.0, 16.0, 20.0, 24.0]
+		mFontNames = fonts
+		mFontSizes = sizes
+
+		var sizestrs: Array<String> = []
+		for size in sizes {
+			sizestrs.append("\(size)")
+		}
+		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
+		let colbox  = allocateColorSelectorView()
+		super.addArrangedSubViews(subViews: [fontbox, colbox])
 
 		/* Set initial values */
 		let pref = CNPreference.shared.terminalPreference
+		if let font = pref.font {
+			if let label = mFontLabel {
+				label.text = font.fontName
+			}
+		}
 		if let col = pref.textColor {
 			self.textColor = col
 		}
 		if let col = pref.backgroundColor {
 			self.backgroundColor = col
 		}
+
+		/* Set actions */
+		if let menu = mFontNameMenu {
+			menu.callbackFunction = {
+				(_ index: Int, _ namep: String?) -> Void in
+				self.updateFont(indexOfName: index, indexOfSize: self.indexOfSelectedFontSize)
+			}
+		}
+		if let menu = mFontSizeMenu {
+			menu.callbackFunction = {
+				(_ index: Int, _ namep: String?) -> Void in
+				self.updateFont(indexOfName: self.indexOfSelectedFontName, indexOfSize: index)
+			}
+		}
 	}
 
-	private func allocateView() {
-		/* Allocate parts vertically */
-		super.axis = .vertical
+	private func allocateFontSelectorView(fonts fnts: Array<String>, sizes szs: Array<String>) -> KCStackView {
+		/* Title */
+		let title = KCTextField()
+		title.text = "Font"
 
-		/* Add label */
-		let label = KCTextField()
-		label.text = "Terminal size"
-		mLabel = label
+		let fontlabel = KCTextField()
+		fontlabel.text = "Name:"
+
+		let fontmenu = KCPopupMenu()
+		fontmenu.addItems(withTitles: fnts)
+		mFontNameMenu = fontmenu
+
+		let sizelabel = KCTextField()
+		sizelabel.text = "Size:"
+
+		let sizemenu = KCPopupMenu()
+		sizemenu.addItems(withTitles: szs)
+		mFontSizeMenu = sizemenu
+
+		/* Bind items */
+		let fontbox = KCStackView()
+		fontbox.axis = .horizontal
+		fontbox.addArrangedSubViews(subViews: [fontlabel, fontmenu, sizelabel, sizemenu])
+
+		let box = KCStackView()
+		box.axis = .vertical
+		box.addArrangedSubViews(subViews: [title, fontbox])
+		return box
+	}
+
+	private func allocateColorSelectorView() -> KCStackView {
+		/* Title */
+		let title = KCTextField()
+		title.text = "Colors"
 
 		/* Add text color selector */
 		let textsel = KCColorSelector()
@@ -89,11 +153,56 @@ public class KCTerminalPreferenceView: KCStackView
 		mBackgroundColorSelector = backsel
 
 		/* Bind selectors */
-		let box = KCStackView()
-		box.axis = .horizontal
-		box.addArrangedSubViews(subViews: [textsel, backsel])
+		let colbox = KCStackView()
+		colbox.axis = .horizontal
+		colbox.addArrangedSubViews(subViews: [textsel, backsel])
 
-		super.addArrangedSubViews(subViews: [label, box])
+		let box = KCStackView()
+		box.axis = .vertical
+		box.addArrangedSubViews(subViews: [title, colbox])
+		return box
+	}
+
+	private var indexOfSelectedFontName: Int {
+		get {
+			if let menu = mFontNameMenu {
+				return menu.indexOfSelectedItem
+			} else {
+				return 0
+			}
+		}
+	}
+
+	private var indexOfSelectedFontSize: Int {
+		get {
+			if let menu = mFontSizeMenu {
+				return menu.indexOfSelectedItem
+			} else {
+				return 0
+			}
+		}
+	}
+
+	private var mPreviousNameIndex: Int = -1
+	private var mPreviousSizeIndex: Int = -1
+
+	private func updateFont(indexOfName iname: Int, indexOfSize isize: Int) {
+		if let names = mFontNames, let sizes = mFontSizes {
+			/* Suppress chattering */
+			if iname != mPreviousNameIndex || isize != mPreviousSizeIndex {
+				let name = names[iname]
+				let size = sizes[isize]
+				//NSLog("Update font: \(name)@\(size)")
+
+				/* Update font */
+				let font  = CNFont(name: name, size: size)
+				let pref  = CNPreference.shared.terminalPreference
+				pref.font = font
+
+				mPreviousNameIndex = iname
+				mPreviousSizeIndex = isize
+			}
+		}
 	}
 
 	public var textColor: KCColor {
@@ -101,10 +210,20 @@ public class KCTerminalPreferenceView: KCStackView
 		set(newcol) 	{ setColor(to: mTextColorSelector, color: newcol) }
 	}
 
-	public var backgroundColor: KCColor {
+	#if os(OSX)
+	public var backgroundColor: KCColor? {
 		get		{ return getColor(from: mBackgroundColorSelector)	}
 		set(newcol) 	{ setColor(to: mBackgroundColorSelector, color: newcol)	}
 	}
+	#else
+	public override var backgroundColor: KCColor? {
+		get		{ return getColor(from: mBackgroundColorSelector)	}
+		set(newcol) 	{
+			setColor(to: mBackgroundColorSelector, color: newcol)
+			super.backgroundColor = newcol
+		}
+	}
+	#endif
 
 	private func getColor(from selector: KCColorSelector?) -> KCColor {
 		if let sel = selector {
@@ -115,11 +234,9 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 	}
 
-	private func setColor(to selector: KCColorSelector?, color col: KCColor) {
-		if let sel = selector {
-			sel.color = col
-		} else {
-			NSLog("No selector")
+	private func setColor(to selector: KCColorSelector?, color col: KCColor?) {
+		if let sel = selector, let colp = col {
+			sel.color = colp
 		}
 	}
 }

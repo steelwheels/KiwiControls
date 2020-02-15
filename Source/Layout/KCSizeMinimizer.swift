@@ -33,43 +33,44 @@ public class KCSizeMinimizer: KCViewVisitor
 
 	open override func visit(stackView view: KCStackView){
 		/* Keep the current size */
-		let subview    = view.arrangedSubviews()
-		let axis       = view.axis
-		var parentsize = mParentSize
+		let subview     = view.arrangedSubviews()
+		let axis        = view.axis
+		let parentsize  = mParentSize
+		var currentsize = mParentSize
 
 		/* Categorize subviews by it's prioroty */
 		let (highviews, lowviews, fixedviews) = categorizeSubviews(stackView: view)
 
 		/* Visit fixed views first */
-		let fdivsize = dividedSize(stackView: view, parentSize: parentsize, subviewCount: subview.count)
+		let fdivsize = dividedSize(stackView: view, parentSize: currentsize, subviewCount: subview.count)
 		for subview in fixedviews {
 			mParentSize = fdivsize
 			subview.accept(visitor: self)
 			switch axis {
-			case .horizontal: parentsize.width  = max(0.0, parentsize.width  - mResultSize.width )
-			case .vertical:	  parentsize.height = max(0.0, parentsize.height - mResultSize.height)
+			case .horizontal: currentsize.width  = max(0.0, currentsize.width  - mResultSize.width )
+			case .vertical:	  currentsize.height = max(0.0, currentsize.height - mResultSize.height)
 			}
 		}
 
 		/* Visit low expandable views first */
-		let ldivsize = dividedSize(stackView: view, parentSize: parentsize, subviewCount: lowviews.count + highviews.count)
+		let ldivsize = dividedSize(stackView: view, parentSize: currentsize, subviewCount: lowviews.count + highviews.count)
 		for subview in lowviews {
 			mParentSize = ldivsize
 			subview.accept(visitor: self)
 			switch axis {
-			case .horizontal: parentsize.width  = max(0.0, parentsize.width  - mResultSize.width )
-			case .vertical:	  parentsize.height = max(0.0, parentsize.height - mResultSize.height)
+			case .horizontal: currentsize.width  = max(0.0, currentsize.width  - mResultSize.width )
+			case .vertical:	  currentsize.height = max(0.0, currentsize.height - mResultSize.height)
 			}
 		}
 
 		/* Visit high expandable views first */
-		let hdivsize = dividedSize(stackView: view, parentSize: parentsize, subviewCount: highviews.count)
+		let hdivsize = dividedSize(stackView: view, parentSize: currentsize, subviewCount: highviews.count)
 		for subview in highviews {
 			mParentSize = hdivsize
 			subview.accept(visitor: self)
 			switch axis {
-			case .horizontal: parentsize.width  = max(0.0, parentsize.width  - mResultSize.width )
-			case .vertical:	  parentsize.height = max(0.0, parentsize.height - mResultSize.height)
+			case .horizontal: currentsize.width  = max(0.0, currentsize.width  - mResultSize.width )
+			case .vertical:	  currentsize.height = max(0.0, currentsize.height - mResultSize.height)
 			}
 		}
 
@@ -88,11 +89,11 @@ public class KCSizeMinimizer: KCViewVisitor
 			}
 		}
 
-		if merged.width > mParentSize.width {
+		if merged.width > parentsize.width {
 			log(type: .warning, string: "Width overflow: \(merged.width) > \(mParentSize.width) ",
 				file: #file, line: #line, function: #function)
 		}
-		if merged.height > mParentSize.height {
+		if merged.height > parentsize.height {
 			log(type: .warning, string: "height overflow: \(merged.height) > \(mParentSize.height)",
 				file: #file, line: #line, function: #function)
 		}

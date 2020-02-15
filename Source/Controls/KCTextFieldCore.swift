@@ -129,6 +129,48 @@ open class KCTextFieldCore : KCView
 		}
 	}
 
+	public var textColor: KCColor? {
+		get 		{ return mTextField.textColor }
+		set(newcol)	{
+			CNExecuteInMainThread(doSync: false, execute: {
+				[weak self] () -> Void in
+				if let myself = self {
+					#if os(OSX)
+						myself.mTextField.textColor = newcol
+					#else
+						myself.mTextField.tintColor = newcol
+					#endif
+				}
+			})
+		}
+	}
+
+	#if os(OSX)
+	public var backgroundColor: KCColor? {
+		get 		{ return mTextField.backgroundColor }
+		set(newcol)	{ setBackgroundColor(color: newcol) }
+	}
+	#else
+	public override var backgroundColor: KCColor? {
+		get 		{ return mTextField.backgroundColor }
+		set(newcol)	{ setBackgroundColor(color: newcol) }
+	}
+	#endif
+
+	private func setBackgroundColor(color col: KCColor?) {
+		#if os(OSX)
+		CNExecuteInMainThread(doSync: false, execute: {
+			[weak self]  () -> Void in
+			if let myself = self {
+				myself.mTextField.backgroundColor = col
+				myself.mTextField.drawsBackground = true
+			}
+		})
+		#else
+		super.backgroundColor = col
+		#endif
+	}
+
 	public var alignment: NSTextAlignment {
 		get {
 			#if os(iOS)
@@ -158,22 +200,5 @@ open class KCTextFieldCore : KCView
 		set(mode) {
 			mTextField.lineBreakMode = mode
 		}
-	}
-
-	public func setColors(colors cols: KCColorPreference.TextColors){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(OSX)
-					myself.mTextField.textColor       = cols.foreground
-					myself.mTextField.drawsBackground = true
-					myself.mTextField.backgroundColor = cols.background
-				#else
-					myself.mTextField.tintColor = cols.foreground
-					myself.mTextField.textColor = cols.foreground
-					myself.mTextField.backgroundColor = cols.background
-				#endif
-			}
-		})
 	}
 }
