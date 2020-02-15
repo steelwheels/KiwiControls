@@ -33,7 +33,6 @@ open class KCTerminalView : KCCoreView
 			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 22)
 		#endif
 		self.init(frame: frame)
-		setupContext()
 	}
 
 	public required init?(coder: NSCoder) {
@@ -53,25 +52,15 @@ open class KCTerminalView : KCCoreView
 		get { return coreView.errorFileHandle }
 	}
 
-	public var textColor: KCColor? {
-		get		{ return coreView.textColor }
-		set(newcol)	{ coreView.textColor = newcol }
+	public var foregroundTextColor: KCColor? {
+		get		{ return coreView.foregroundTextColor }
+		set(newcol)	{ coreView.foregroundTextColor = newcol }
 	}
 
-	#if os(OSX)
-	public var backgroundColor: KCColor? {
-		get		{ return coreView.backgroundColor }
-		set(newcol)	{ coreView.backgroundColor = newcol }
+	public var backgroundTextColor: KCColor? {
+		get		{ return coreView.backgroundTextColor }
+		set(newcol)	{ coreView.backgroundTextColor = newcol }
 	}
-	#else
-	public override var backgroundColor: KCColor? {
-		get		{ return coreView.backgroundColor }
-		set(newcol)	{
-			coreView.backgroundColor = newcol
-			super.backgroundColor = newcol
-		}
-	}
-	#endif
 
 	public var font: CNFont {
 		get		{ return coreView.font		}

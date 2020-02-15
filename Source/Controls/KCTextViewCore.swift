@@ -63,8 +63,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		/* Stop to observe */
 		let pref = CNPreference.shared.terminalPreference
-		pref.removeObserver(observer: self, forKey: pref.TextColorItem)
-		pref.removeObserver(observer: self, forKey: pref.BackgroundColorItem)
+		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
+		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.FontItem)
 	}
 
@@ -80,7 +80,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		get { return mErrorPipe.fileHandleForWriting }
 	}
 
-	public var textColor: KCColor? {
+	public var foregroundTextColor: KCColor? {
 		get { return mTextView.textColor }
 		set(newcol)	{
 			if let col = newcol {
@@ -93,8 +93,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 	}
 
-	#if os(OSX)
-	public var backgroundColor: KCColor? {
+	public var backgroundTextColor: KCColor? {
 		get 		{ return mTextView.backgroundColor   }
 		set(newcol)	{
 			if let col = newcol {
@@ -107,23 +106,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			}
 		}
 	}
-	#else
-	public override var backgroundColor: KCColor? {
-		get 		{ return mTextView.backgroundColor   }
-		set(newcol)	{
-			if let col = newcol {
-				let newcol = col.toTerminalColor()
-				if !mBackgroundTerminalColor.isEqual(to: newcol) {
-					textStorage.changeOverallBackgroundColor(targetColor: mBackgroundTerminalColor.toObject(), newColor: newcol.toObject())
-					mBackgroundTerminalColor = newcol
-				}
-				//Following assignment caused crash ... I don't know why.
-				//mTextView.backgroundColor = col
-			}
-			super.backgroundColor = newcol
-		}
-	}
-	#endif
 
 	public var font: CNFont {
 		get { return mFont }
@@ -142,8 +124,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		} else {
 			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
 		}
-		self.textColor       	= pref.textColor
-		self.backgroundColor 	= pref.backgroundColor
+		self.foregroundTextColor       	= pref.foregroundTextColor
+		self.backgroundTextColor 	= pref.backgroundTextColor
 
 		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
 		mTextView.autoresizesSubviews = true
@@ -152,7 +134,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			mTextView.drawsBackground	  = true
 			mTextView.isVerticallyResizable   = true
 			mTextView.isHorizontallyResizable = true
-			if let color = pref.textColor {
+			if let color = pref.foregroundTextColor {
 				mTextView.insertionPointColor	  = color
 			}
 		#else
@@ -202,8 +184,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 
 		/* Start observe */
-		pref.addObserver(observer: self, forKey: pref.TextColorItem)
-		pref.addObserver(observer: self, forKey: pref.BackgroundColorItem)
+		pref.addObserver(observer: self, forKey: pref.ForegroundTextColorItem)
+		pref.addObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.addObserver(observer: self, forKey: pref.FontItem)
 	}
 
@@ -279,14 +261,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		case .scrollDown:
 			break
 		case .foregroundColor(let fcol):
-			self.textColor = fcol.toObject()
+			self.foregroundTextColor = fcol.toObject()
 		case .backgroundColor(let bcol):
-			self.backgroundColor = bcol.toObject()
+			self.backgroundTextColor = bcol.toObject()
 		case .setNormalAttributes:
 			/* Reset to default */
 			let pref = CNPreference.shared.terminalPreference
-			self.textColor       = pref.textColor
-			self.backgroundColor = pref.backgroundColor
+			self.foregroundTextColor = pref.foregroundTextColor
+			self.backgroundTextColor = pref.backgroundTextColor
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.columnNumbers, self.lineNumbers)
@@ -392,10 +374,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		if let key = keyPath, let vals = change {
 			if let color = vals[.newKey] as? KCColor {
 				switch key {
-				case CNPreference.shared.terminalPreference.TextColorItem:
-					self.textColor = color
-				case CNPreference.shared.terminalPreference.BackgroundColorItem:
-					self.backgroundColor = color
+				case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
+					self.foregroundTextColor = color
+				case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
+					self.backgroundTextColor = color
 				default:
 					break
 				}

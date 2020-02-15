@@ -25,8 +25,12 @@
             <constraints>
                 <constraint firstItem="pER-tC-qwh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="3cy-tS-cMf"/>
                 <constraint firstItem="pER-tC-qwh" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="D4Q-bq-8Mx"/>
+                <constraint firstItem="pER-tC-qwh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="DvC-dU-9AO"/>
+                <constraint firstItem="pER-tC-qwh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KPm-Dq-7Yh"/>
                 <constraint firstItem="pER-tC-qwh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Quv-hQ-Cqm"/>
                 <constraint firstItem="pER-tC-qwh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fYm-az-TO2"/>
+                <constraint firstItem="pER-tC-qwh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qrY-IT-2dJ"/>
+                <constraint firstItem="pER-tC-qwh" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="znF-Us-egy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>

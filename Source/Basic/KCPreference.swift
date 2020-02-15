@@ -47,14 +47,14 @@ public class KCTerminalPreference: CNPreferenceTable
 {
 	public typealias CallbackFunction = (_ color: KCColor) -> Void
 
-	public let TextColorItem		= "textColor"
-	public let BackgroundColorItem		= "backgroundColor"
+	public let ForegroundTextColorItem	= "foregroundTextColor"
+	public let BackgroundTextColorItem	= "backgroundTextColor"
 	public let FontItem			= "font"
 
 	public override init() {
 		super.init()
-		self.textColor		= KCColor.black
-		self.backgroundColor 	= KCColor.white
+		self.foregroundTextColor	= KCColor.black
+		self.backgroundTextColor 	= KCColor.white
 		if let newfont = CNFont(name: "Courier", size: 16.0) {
 			self.font = newfont
 		} else {
@@ -62,9 +62,9 @@ public class KCTerminalPreference: CNPreferenceTable
 		}
 	}
 
-	public var textColor: KCColor? {
+	public var foregroundTextColor: KCColor? {
 		get {
-			if let color = super.anyValue(forKey: TextColorItem) as? KCColor {
+			if let color = super.anyValue(forKey: ForegroundTextColorItem) as? KCColor {
 				return color
 			} else {
 				return nil
@@ -72,14 +72,14 @@ public class KCTerminalPreference: CNPreferenceTable
 		}
 		set(newcol) {
 			if let col = newcol {
-				super.set(anyValue: col, forKey: TextColorItem)
+				super.set(anyValue: col, forKey: ForegroundTextColorItem)
 			}
 		}
 	}
 
-	public var backgroundColor: KCColor? {
+	public var backgroundTextColor: KCColor? {
 		get {
-			if let color = super.anyValue(forKey: BackgroundColorItem) as? KCColor {
+			if let color = super.anyValue(forKey: BackgroundTextColorItem) as? KCColor {
 				return color
 			} else {
 				return nil
@@ -87,7 +87,7 @@ public class KCTerminalPreference: CNPreferenceTable
 		}
 		set(newcol) {
 			if let col = newcol {
-				super.set(anyValue: col, forKey: BackgroundColorItem)
+				super.set(anyValue: col, forKey: BackgroundTextColorItem)
 			}
 		}
 	}

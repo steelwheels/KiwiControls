@@ -75,10 +75,10 @@ public class KCTerminalPreferenceView: KCStackView
 				label.text = font.fontName
 			}
 		}
-		if let col = pref.textColor {
+		if let col = pref.foregroundTextColor {
 			self.textColor = col
 		}
-		if let col = pref.backgroundColor {
+		if let col = pref.backgroundTextColor {
 			self.backgroundColor = col
 		}
 
@@ -138,7 +138,7 @@ public class KCTerminalPreferenceView: KCStackView
 		textsel.callbackFunc = {
 			(_ color: KCColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
-			pref.textColor = color
+			pref.foregroundTextColor = color
 		}
 		mTextColorSelector = textsel
 
@@ -148,7 +148,7 @@ public class KCTerminalPreferenceView: KCStackView
 		backsel.callbackFunc = {
 			(_ color: KCColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
-			pref.backgroundColor = color
+			pref.backgroundTextColor = color
 		}
 		mBackgroundColorSelector = backsel
 

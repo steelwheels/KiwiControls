@@ -268,13 +268,14 @@ open class KCView : KCViewBase, CNLogging
 		return nil
 	}
 
+	/*
 	public func setTransparentView(){
 		#if os(iOS)
 		self.isOpaque = false
 		self.backgroundColor = UIColor.clear
 		self.clearsContextBeforeDrawing = false
 		#endif
-	}
+	}*/
 
 	/*
 	 * Visitor
