@@ -27,8 +27,8 @@ public class UTLogViewController: KCLogViewController
 
 	private func doDumpView(){
 		if let view = self.rootView {
-			let dumper = KCViewDumper(console: logConsole)
-			dumper.dump(type: .Flow, view: view)
+			let dumper = KCViewDumper(console: mConsole)
+			dumper.dump(view: view)
 		} else {
 			fatalError("No root view")
 		}

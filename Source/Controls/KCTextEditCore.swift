@@ -14,11 +14,21 @@ import CoconutData
 
 open class KCTextEditCore : KCView
 {
+	public enum FormatterType {
+		case general
+		case decimal
+	}
+
+	public typealias CallbackFunction = (_ str: String) -> Void
+
 	#if os(OSX)
 	@IBOutlet weak var mTextEdit: NSTextField!
+	private var	mTextEditDelegate:	KCTextEditDelegate? = nil
 	#else
 	@IBOutlet weak var mTextEdit: UITextField!
 	#endif
+
+	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
@@ -37,9 +47,51 @@ open class KCTextEditCore : KCView
 				cell.isScrollable	= false
 			}
 		#endif
+
+
+		#if os(OSX)
+			let delegate = KCTextEditDelegate(parent: self)
+			mTextEdit.delegate = delegate
+			mTextEditDelegate = delegate
+		#else
+			mTextEdit.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+		#endif
+	}
+
+	#if os(iOS)
+	@objc public func textFieldDidChange(_ textField: KCTextField) {
+		let text = self.text
+		if let cbfunc = self.callbackFunction {
+			cbfunc(text)
+		} else {
+			NSLog("TextEdit: \(text)")
+		}
+	}
+	#endif
+
+	public func set(format form: FormatterType){
+		#if os(OSX)
+		switch form {
+		case .general:
+			mTextEdit.formatter = nil
+		case .decimal:
+			let numformatter = NumberFormatter()
+			numformatter.numberStyle           = .decimal
+			numformatter.maximumFractionDigits = 0
+			numformatter.minimumFractionDigits = 0
+			mTextEdit.formatter = numformatter
+
+			mTextEdit.usesSingleLineMode 	= true
+			mTextEdit.maximumNumberOfLines	= 1
+		}
+		#endif
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return mTextEdit.sizeThatFits(size)
+	}
+
+	open override func minimumSize(_ size: CGSize) -> CGSize {
 		return mTextEdit.sizeThatFits(size)
 	}
 
@@ -192,4 +244,26 @@ open class KCTextEditCore : KCView
 		})
 	}
 }
+
+#if os(OSX)
+@objc private class KCTextEditDelegate: NSObject, NSTextFieldDelegate
+{
+	private weak var mParent: KCTextEditCore?
+
+	public init(parent par: KCTextEditCore) {
+		mParent = par
+	}
+
+	public func controlTextDidEndEditing(_ obj: Notification) {
+		if let parent = mParent {
+			let text = parent.text
+			if let cbfunc = parent.callbackFunction {
+				cbfunc(text)
+			} else {
+				NSLog("TextEdit: \(text)")
+			}
+		}
+	}
+}
+#endif
 

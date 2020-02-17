@@ -16,6 +16,8 @@ public class KCTerminalPreferenceView: KCStackView
 {
 	public typealias CallbackFunction = KCColorSelectorCore.CallbackFunction
 
+	private var	mTerminalWidthField:		KCTextEdit?		= nil
+	private var	mTerminalHeightField:		KCTextEdit?		= nil
 	private var	mFontLabel:			KCTextField?		= nil
 	private var	mFontNameMenu:			KCPopupMenu?		= nil
 	private var 	mFontSizeMenu:			KCPopupMenu?		= nil
@@ -64,12 +66,25 @@ public class KCTerminalPreferenceView: KCStackView
 		for size in sizes {
 			sizestrs.append("\(size)")
 		}
+		let sizebox = allocateSizeSelectorView()
 		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
 		let colbox  = allocateColorSelectorView()
+		//super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
 		super.addArrangedSubViews(subViews: [fontbox, colbox])
+		let _ = [sizebox]
 
 		/* Set initial values */
 		let pref = CNPreference.shared.terminalPreference
+		if let field = mTerminalWidthField {
+			if let num = pref.columnNumber {
+				field.text = "\(num)"
+			}
+		}
+		if let field = mTerminalHeightField {
+			if let num = pref.rowNumber {
+				field.text = "\(num)"
+			}
+		}
 		if let font = pref.font {
 			if let label = mFontLabel {
 				label.text = font.fontName
@@ -83,6 +98,24 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 
 		/* Set actions */
+		if let field = mTerminalWidthField {
+			field.callbackFunction = {
+				(_ str: String) -> Void in
+				if let val = Int(str) {
+					let pref = CNPreference.shared.terminalPreference
+					pref.columnNumber = val
+				}
+			}
+		}
+		if let field = mTerminalHeightField {
+			field.callbackFunction = {
+				(_ str: String) -> Void in
+				if let val = Int(str) {
+					let pref = CNPreference.shared.terminalPreference
+					pref.rowNumber = val
+				}
+			}
+		}
 		if let menu = mFontNameMenu {
 			menu.callbackFunction = {
 				(_ index: Int, _ namep: String?) -> Void in
@@ -95,6 +128,40 @@ public class KCTerminalPreferenceView: KCStackView
 				self.updateFont(indexOfName: self.indexOfSelectedFontName, indexOfSize: index)
 			}
 		}
+	}
+
+	private func allocateSizeSelectorView() -> KCStackView {
+		/* Title */
+		let title = KCTextField()
+		title.text = "Size"
+
+		let widthlabel = KCTextField()
+		widthlabel.text = "Width:"
+
+		let widthfield = KCTextEdit()
+		widthfield.set(format: .decimal)
+		widthfield.isEditable = true
+		widthfield.isEnabled  = true
+		mTerminalWidthField = widthfield
+
+		let heightlabel = KCTextField()
+		heightlabel.text = "Height:"
+
+		let heightfield = KCTextEdit()
+		heightfield.set(format: .decimal)
+		heightfield.isEditable = true
+		heightfield.isEnabled  = true
+		mTerminalHeightField = heightfield
+
+		/* Bind items */
+		let sizebox = KCStackView()
+		sizebox.axis = .horizontal
+		sizebox.addArrangedSubViews(subViews: [widthlabel, widthfield, heightlabel, heightfield])
+
+		let box = KCStackView()
+		box.axis = .vertical
+		box.addArrangedSubViews(subViews: [title, sizebox])
+		return box
 	}
 
 	private func allocateFontSelectorView(fonts fnts: Array<String>, sizes szs: Array<String>) -> KCStackView {

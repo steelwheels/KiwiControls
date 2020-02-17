@@ -78,6 +78,15 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	#endif
 
 	#if os(OSX)
+	open override func viewDidAppear() {
+		super.viewDidAppear()
+		if let win = self.view.window {
+			win.delegate = self
+		}
+	}
+	#endif
+
+	#if os(OSX)
 	public class func preferenceWindowSize() -> KCSize? {
 		let result: KCSize?
 		#if os(OSX)
@@ -259,6 +268,23 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 			self.selectedTabViewItemIndex = idx
 		#else
 			self.selectedIndex = idx
+		#endif
+	}
+
+	public func windowDidResize(_ notification: Notification) {
+		if let viewctrl = currentViewController() as? KCSingleViewController {
+			viewctrl.windowDidResize(parentViewController: self)
+		} else {
+			NSLog("[Error] No view controller")
+		}
+	}
+
+	private func currentViewController() -> KCViewController? {
+		#if os(OSX)
+			let item = self.tabViewItems[self.selectedTabViewItemIndex]
+			return item.viewController
+		#else
+			return super.selectedViewController
 		#endif
 	}
 

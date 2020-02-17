@@ -20,6 +20,7 @@
 		0509A8CC23F23286006A12F6 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509A8CB23F23286006A12F6 /* KCTerminalPreferenceView.swift */; };
 		050E5E111DEF2C42006DC247 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5E101DEF2C42006DC247 /* KCTimer.swift */; };
 		0513227B23518D98005EB8EC /* KCSizeAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513227A23518D98005EB8EC /* KCSizeAdjuster.swift */; };
+		0519DE7023F912AC007EE2EC /* KCWindowSizeUpdator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0519DE6F23F912AC007EE2EC /* KCWindowSizeUpdator.swift */; };
 		051E34E41E42370000620E1C /* KCStrokeDrawerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E34E21E42370000620E1C /* KCStrokeDrawerLayer.swift */; };
 		051E34E51E42370000620E1C /* KCStrokeEditorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E34E31E42370000620E1C /* KCStrokeEditorLayer.swift */; };
 		052237B61E2234480073E4C9 /* KCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052237B41E2234480073E4C9 /* KCTextField.swift */; };
@@ -97,7 +98,6 @@
 		057B892121D287FA00309B2A /* KCSpriteViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B891F21D287FA00309B2A /* KCSpriteViewCore.swift */; };
 		057ECD8023EE6994003176C3 /* KCColorSelectorCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057ECD7F23EE6994003176C3 /* KCColorSelectorCore.xib */; };
 		057ECD8423EE6A9A003176C3 /* KCColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057ECD8223EE6A9A003176C3 /* KCColorSelector.swift */; };
-		057FF5ED22989D5000E81BAB /* KCRootSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FF5EC22989D5000E81BAB /* KCRootSizeAllocator.swift */; };
 		0580219E1E102766001457C8 /* KCStepperCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0580219D1E102766001457C8 /* KCStepperCore.xib */; };
 		058021A01E102882001457C8 /* KCStepperCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580219F1E102882001457C8 /* KCStepperCore.swift */; };
 		058021A21E102D9A001457C8 /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058021A11E102D9A001457C8 /* KCStepper.swift */; };
@@ -308,6 +308,7 @@
 		0509A8CB23F23286006A12F6 /* KCTerminalPreferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTerminalPreferenceView.swift; sourceTree = "<group>"; };
 		050E5E101DEF2C42006DC247 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCTimer.swift; path = Timer/KCTimer.swift; sourceTree = "<group>"; };
 		0513227A23518D98005EB8EC /* KCSizeAdjuster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSizeAdjuster.swift; sourceTree = "<group>"; };
+		0519DE6F23F912AC007EE2EC /* KCWindowSizeUpdator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCWindowSizeUpdator.swift; sourceTree = "<group>"; };
 		051E34E21E42370000620E1C /* KCStrokeDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeDrawerLayer.swift; sourceTree = "<group>"; };
 		051E34E31E42370000620E1C /* KCStrokeEditorLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeEditorLayer.swift; sourceTree = "<group>"; };
 		052237B41E2234480073E4C9 /* KCTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextField.swift; sourceTree = "<group>"; };
@@ -379,7 +380,6 @@
 		057B891F21D287FA00309B2A /* KCSpriteViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteViewCore.swift; sourceTree = "<group>"; };
 		057ECD7F23EE6994003176C3 /* KCColorSelectorCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCColorSelectorCore.xib; sourceTree = "<group>"; };
 		057ECD8223EE6A9A003176C3 /* KCColorSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorSelector.swift; sourceTree = "<group>"; };
-		057FF5EC22989D5000E81BAB /* KCRootSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootSizeAllocator.swift; sourceTree = "<group>"; };
 		0580219D1E102766001457C8 /* KCStepperCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStepperCore.xib; sourceTree = "<group>"; };
 		0580219F1E102882001457C8 /* KCStepperCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepperCore.swift; sourceTree = "<group>"; };
 		058021A11E102D9A001457C8 /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
@@ -859,7 +859,7 @@
 				05877180214F699C00F90BC1 /* KCSizeMinimizer.swift */,
 				0513227A23518D98005EB8EC /* KCSizeAdjuster.swift */,
 				0557686C2155506A000AB421 /* KCGroupSizeAllocator.swift */,
-				057FF5EC22989D5000E81BAB /* KCRootSizeAllocator.swift */,
+				0519DE6F23F912AC007EE2EC /* KCWindowSizeUpdator.swift */,
 				055773DA228848820079E37F /* KCLayoutFinalizer.swift */,
 				055773DC228848900079E37F /* KCFrameSizeFinalizer.swift */,
 			);
@@ -1502,7 +1502,6 @@
 				052237B61E2234480073E4C9 /* KCTextField.swift in Sources */,
 				05DC85E223F297EC00958CAF /* KCPopupMenu.swift in Sources */,
 				053CB5F121F609D00031711B /* KCNavigationBarCore.swift in Sources */,
-				057FF5ED22989D5000E81BAB /* KCRootSizeAllocator.swift in Sources */,
 				05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */,
 				05E874A623EE87080028949E /* KCColorSelectorCore.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
@@ -1531,6 +1530,7 @@
 				05EE31F91EACB2B8007164F4 /* KCStackView.swift in Sources */,
 				050955F81E3F84F4007D3641 /* KCImageDrawerLayer.swift in Sources */,
 				05CEAB8622FFA87A00FFA8D8 /* KCTerminalView.swift in Sources */,
+				0519DE7023F912AC007EE2EC /* KCWindowSizeUpdator.swift in Sources */,
 				05910BEE20958D9400535E2A /* KCGradientTable.swift in Sources */,
 				05795BAA20F0FD2300EB504D /* KCViewVisitor.swift in Sources */,
 				058CE6AE22EA07DE00016F7D /* KCSpriteRadar.swift in Sources */,

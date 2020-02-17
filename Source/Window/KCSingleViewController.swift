@@ -61,10 +61,11 @@ open class KCSingleViewController: KCViewController, CNLogging
 	}
 
 	#if os(OSX)
-	open override func viewWillAppear() {
+	open override func viewWillLayout() {
+		NSLog("viewWillLayout ... begin")
 		super.viewWillAppear()
-		//doViewWill1stAppear()
 		doViewWillAppear()
+		NSLog("viewWillLayout ... end")
 	}
 	#else
 	open override func viewWillAppear(_ animated: Bool){
@@ -111,6 +112,9 @@ open class KCSingleViewController: KCViewController, CNLogging
 		doViewDidAppear()
 	}
 	#endif
+
+	public func windowDidResize(parentViewController parent: KCMultiViewController) {
+	}
 
 	private func doViewDidAppear(){
 		if let root = mRootView {

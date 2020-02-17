@@ -14,6 +14,9 @@ import CoconutData
 
 open class KCTextEdit : KCCoreView
 {
+	public typealias FormatterType    = KCTextEditCore.FormatterType
+	public typealias CallbackFunction = KCTextEditCore.CallbackFunction
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -50,8 +53,12 @@ open class KCTextEdit : KCCoreView
 		}
 	}
 
+	public func set(format form: FormatterType){
+		coreView.set(format: form)
+	}
+
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .High)
+		return (.High, .Fixed) // Vert: The number of lines are fixed
 	}
 
 	public var isEnabled: Bool {
@@ -62,6 +69,11 @@ open class KCTextEdit : KCCoreView
 	public var isEditable: Bool {
 		get { return coreView.isEditable }
 		set(v) { coreView.isEditable = v }
+	}
+
+	public var callbackFunction: CallbackFunction? {
+		get { return coreView.callbackFunction	}
+		set(v) { coreView.callbackFunction = v 	}
 	}
 
 	public var text: String {

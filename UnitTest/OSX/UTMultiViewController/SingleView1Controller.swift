@@ -11,11 +11,14 @@ import Foundation
 
 public class SingleView1Controller: KCSingleViewController
 {
+	private var mTerminalView:	KCTerminalView? = nil
+
 	public override func loadView() {
 		super.loadView()
 
 		let terminal  = KCTerminalView()
 		terminal.outputFileHandle.write(string: "Good, morning !!")
+		mTerminalView = terminal
 
 		//let console = KCConsoleView()
 		//console.consoleConnection.print(string: "Hello, world !!")
@@ -61,6 +64,11 @@ public class SingleView1Controller: KCSingleViewController
 		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
+
+		/* Update terminal size */
+		if let termview = mTerminalView {
+			termview.minimumColumnNumbers = 10
+		}
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {

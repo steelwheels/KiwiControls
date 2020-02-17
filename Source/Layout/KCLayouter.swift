@@ -39,21 +39,25 @@ public class KCLayouter: CNLogging
 		//dump(view: view)
 
 		/*
-		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
-		let rootallocator = KCRootSizeAllocator()
-		rootallocator.setRootFrame(rootView: view, contentRect: contentrect)
-		//dump(view: view)
-		*/
-
 		log(type: .flow, string: "Adjust view size", file: #file, line: #line, function: #function)
 		let adjuster = KCSizeAdjuster(console: mConsole)
 		view.accept(visitor: adjuster)
 		//dump(view: view)
-
+*/
+		
 		log(type: .flow, string: "Decide distribution", file: #file, line: #line, function: #function)
 		let distdecider = KCDistributionDecider(console: mConsole)
 		view.accept(visitor: distdecider)
 		//dump(view: view)
+
+		/*
+		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
+		let winupdator = KCWindowSizeUpdator(console: mConsole)
+		view.accept(visitor: winupdator)
+		//dump(view: view)
+		*/
+
+		NSLog("Layout result size: \(view.frame.size.description)")
 	}
 
 	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {

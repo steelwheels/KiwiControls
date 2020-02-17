@@ -22,6 +22,23 @@ public class KCScreen
 		mScale = KCScreen.initScale()
 	}
 
+	/* Area for application unit: pixel*/
+	public var contentSize: CGSize? {
+		#if os(OSX)
+			if let screen = NSScreen.main {
+				return screen.visibleFrame.size
+			} else {
+				return nil
+			}
+		#else
+			return UIScreen.main.nativeBounds.size
+		#endif
+	}
+
+	public func pointToPixel(point value: CGFloat) -> CGFloat {
+		return value / mScale
+	}
+
 	private class func initScale() -> CGFloat {
 		var result: CGFloat
 		#if os(OSX)
@@ -39,9 +56,5 @@ public class KCScreen
 			result = 1.0
 		}
 		return result
-	}
-
-	public func pointToPixel(point value: CGFloat) -> CGFloat {
-		return value / mScale
 	}
 }

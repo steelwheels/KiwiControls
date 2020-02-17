@@ -53,7 +53,7 @@ public class KCSizeMinimizer: KCViewVisitor
 		}
 
 		/* Visit low expandable views first */
-		let ldivsize = dividedSize(stackView: view, parentSize: currentsize, subviewCount: lowviews.count + highviews.count)
+		let ldivsize = dividedSize(stackView: view, parentSize: currentsize, subviewCount: lowviews.count)
 		for subview in lowviews {
 			mParentSize = ldivsize
 			subview.accept(visitor: self)

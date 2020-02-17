@@ -35,12 +35,12 @@ class SingleViewController: KCSingleViewController
 
 	private func setupPreferenceView() {
 		let prefview = KCTerminalPreferenceView()
-		/*
 		if let cons = super.console {
 			let dumper = KCViewDumper(console: cons)
 			dumper.dump(view: prefview)
-		}*/
+		}
 		if let root = super.rootView {
+			NSLog("Load preference view")
 			root.setup(childView: prefview)
 		} else {
 			NSLog("Failed to set controls")

@@ -95,9 +95,9 @@ open class KCTerminalView : KCCoreView
 		set(newnum){ coreView.minimumColumnNumbers = newnum }
 	}
 
-	public var minimumLineNumbers: Int {
-		get { return coreView.minimumLineNumbers }
-		set(newnum){ coreView.minimumLineNumbers = newnum }
+	public var minimumRowNumbers: Int {
+		get { return coreView.minimumRowNumbers }
+		set(newnum){ coreView.minimumRowNumbers = newnum }
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {

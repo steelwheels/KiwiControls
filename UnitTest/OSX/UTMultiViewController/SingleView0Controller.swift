@@ -56,7 +56,7 @@ public class SingleView0Controller: KCSingleViewController
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		log(type: .Flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear(animated)
 		doDumpView(message: "Last viewWillAppear")
 	}
@@ -70,7 +70,7 @@ public class SingleView0Controller: KCSingleViewController
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear(animated)
 		doDumpView(message: "Last viewDidAppear")
 	}

@@ -14,6 +14,11 @@ import CoconutData
 
 open class KCTextFieldCore : KCView
 {
+	public enum FormatterType {
+		case general
+		case decimal
+	}
+
 	#if os(OSX)
 	@IBOutlet weak var mTextField: NSTextField!
 	#else
@@ -39,7 +44,26 @@ open class KCTextFieldCore : KCView
 		#endif
 	}
 
+	public func set(format form: FormatterType){
+		#if os(OSX)
+		switch form {
+		case .general:
+			mTextField.formatter = nil
+		case .decimal:
+			let numformatter = NumberFormatter()
+			numformatter.numberStyle           = .decimal
+			numformatter.maximumFractionDigits = 0
+			numformatter.minimumFractionDigits = 0
+			mTextField.formatter = numformatter
+		}
+		#endif
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return mTextField.sizeThatFits(size)
+	}
+
+	open override func minimumSize(_ size: CGSize) -> CGSize {
 		return mTextField.sizeThatFits(size)
 	}
 

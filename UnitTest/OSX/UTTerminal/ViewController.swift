@@ -55,8 +55,8 @@ class ViewController: NSViewController, NSWindowDelegate {
 
 		/* Update preference */
 		let pref = CNPreference.shared.terminalPreference
-		pref.textColor	     = KCColor.green
-		pref.backgroundColor = KCColor.black
+		pref.foregroundTextColor = KCColor.green
+		pref.backgroundTextColor = KCColor.black
 
 		/*
 		NSLog("Accepted code")

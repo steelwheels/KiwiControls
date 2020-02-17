@@ -203,6 +203,10 @@ open class KCStackViewCore : KCView
 		return merged
 	}
 
+	open override func minimumSize(_ size: CGSize) -> CGSize {
+		return sizeThatFits(size)
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if hasFixedSize {

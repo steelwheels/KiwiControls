@@ -47,18 +47,40 @@ public class KCTerminalPreference: CNPreferenceTable
 {
 	public typealias CallbackFunction = (_ color: KCColor) -> Void
 
+	public let columnNumberItem		= "colmunNumber"
+	public let rowNumberItem		= "rowNumber"
 	public let ForegroundTextColorItem	= "foregroundTextColor"
 	public let BackgroundTextColorItem	= "backgroundTextColor"
 	public let FontItem			= "font"
 
 	public override init() {
 		super.init()
+		self.columnNumber		= 10
+		self.rowNumber			= 10
 		self.foregroundTextColor	= KCColor.black
 		self.backgroundTextColor 	= KCColor.white
 		if let newfont = CNFont(name: "Courier", size: 16.0) {
 			self.font = newfont
 		} else {
 			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
+		}
+	}
+
+	public var columnNumber: Int? {
+		get { return super.intValue(forKey: columnNumberItem) }
+		set(newval) {
+			if let val = newval {
+				super.set(intValue: val, forKey: columnNumberItem)
+			}
+		}
+	}
+
+	public var rowNumber: Int? {
+		get { return super.intValue(forKey: rowNumberItem) }
+		set(newval) {
+			if let val = newval {
+				super.set(intValue: val, forKey: rowNumberItem)
+			}
 		}
 	}
 

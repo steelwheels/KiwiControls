@@ -14,6 +14,8 @@ import CoconutData
 
 open class KCTextField : KCCoreView
 {
+	public typealias FormatterType = KCTextFieldCore.FormatterType
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -50,8 +52,12 @@ open class KCTextField : KCCoreView
 		}
 	}
 
+	public func set(format form: FormatterType){
+		coreView.set(format: form)
+	}
+
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .Fixed)
+		return (.High, .Fixed)  // The hight is fixed
 	}
 
 	public var isEnabled: Bool {

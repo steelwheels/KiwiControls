@@ -32,11 +32,11 @@ class MultiViewController: KCMultiViewController
 
 		if self.pushViewController(byName: "control") {
 			if let cons = self.console {
-				cons.print(string: "termial view ready")
+				cons.print(string: "control view ready")
 			}
 		} else {
 			if let cons = self.console {
-				cons.print(string: "termial view is NOT ready")
+				cons.print(string: "control view is NOT ready")
 			}
 		}
 	}
