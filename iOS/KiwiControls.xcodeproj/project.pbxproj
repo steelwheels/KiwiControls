@@ -104,6 +104,9 @@
 		058265A01DE536B600C3BE27 /* KCBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659B1DE536B600C3BE27 /* KCBackgroundLayer.swift */; };
 		058265A21DE536B600C3BE27 /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659D1DE536B600C3BE27 /* KCLayer.swift */; };
 		058265A31DE536B600C3BE27 /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582659E1DE536B600C3BE27 /* KCRepetitiveLayer.swift */; };
+		0582C3FF2400251500C4E753 /* KCLabeledStackViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582C3FD2400251500C4E753 /* KCLabeledStackViewCore.swift */; };
+		0582C4002400251500C4E753 /* KCLabeledStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0582C3FE2400251500C4E753 /* KCLabeledStackView.swift */; };
+		0582C4022400253A00C4E753 /* KCLabeledStackViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0582C4012400253A00C4E753 /* KCLabeledStackViewCore.xib */; };
 		058327A023EEA99200EE5F6A /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583279F23EEA99200EE5F6A /* SingleViewController.swift */; };
 		058327A123EEA9C800EE5F6A /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FAEB2621A5CAE000FE9130 /* KiwiControls.framework */; };
 		058327A223EEA9CC00EE5F6A /* CoconutData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AFECF20F7C10800F58FC7 /* CoconutData.framework */; };
@@ -386,6 +389,9 @@
 		0582659B1DE536B600C3BE27 /* KCBackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCBackgroundLayer.swift; sourceTree = "<group>"; };
 		0582659D1DE536B600C3BE27 /* KCLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayer.swift; sourceTree = "<group>"; };
 		0582659E1DE536B600C3BE27 /* KCRepetitiveLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveLayer.swift; sourceTree = "<group>"; };
+		0582C3FD2400251500C4E753 /* KCLabeledStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLabeledStackViewCore.swift; sourceTree = "<group>"; };
+		0582C3FE2400251500C4E753 /* KCLabeledStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLabeledStackView.swift; sourceTree = "<group>"; };
+		0582C4012400253A00C4E753 /* KCLabeledStackViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCLabeledStackViewCore.xib; sourceTree = "<group>"; };
 		0583279F23EEA99200EE5F6A /* SingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		0583CC1522767C8500B36E0A /* KCPhysics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPhysics.swift; sourceTree = "<group>"; };
 		0583CC1722767C8500B36E0A /* KCSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteNode.swift; sourceTree = "<group>"; };
@@ -636,6 +642,8 @@
 				056F4CB61E735017008BF572 /* KCTableViewCore.swift */,
 				05EE31F71EACB2B8007164F4 /* KCStackView.swift */,
 				05EE31F81EACB2B8007164F4 /* KCStackViewCore.swift */,
+				0582C3FE2400251500C4E753 /* KCLabeledStackView.swift */,
+				0582C3FD2400251500C4E753 /* KCLabeledStackViewCore.swift */,
 				057853731F46732C00BBB2BA /* KCConsoleView.swift */,
 				05CEAB8522FFA87A00FFA8D8 /* KCTerminalView.swift */,
 				057853741F46732C00BBB2BA /* KCTextViewCore.swift */,
@@ -751,6 +759,7 @@
 				0545D7BD23D9FF7000949357 /* KCTextViewCore.xib */,
 				057ECD7F23EE6994003176C3 /* KCColorSelectorCore.xib */,
 				05DC85DD23F2961100958CAF /* KCPopupMenuCore.xib */,
+				0582C4012400253A00C4E753 /* KCLabeledStackViewCore.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1368,6 +1377,7 @@
 				05B8662520D7A67D006CF515 /* KCTextEditCore.xib in Resources */,
 				05E75DF61E13F3E100287756 /* KCCheckBoxCore.xib in Resources */,
 				057853721F46725100BBB2BA /* KCConsoleViewCore.xib in Resources */,
+				0582C4022400253A00C4E753 /* KCLabeledStackViewCore.xib in Resources */,
 				057B891D21D287D900309B2A /* KCSpriteViewCore.xib in Resources */,
 				05A5CEF420FAD6C100DBED51 /* KCTextFieldCore.xib in Resources */,
 				053CB5F321F60A580031711B /* KCNavigationBarCore.xib in Resources */,
@@ -1470,6 +1480,7 @@
 				058EC03420956E1900C3F36E /* KCFontTable.swift in Sources */,
 				058265A31DE536B600C3BE27 /* KCRepetitiveLayer.swift in Sources */,
 				0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */,
+				0582C3FF2400251500C4E753 /* KCLabeledStackViewCore.swift in Sources */,
 				05910BED20958D9400535E2A /* KCEclipse.swift in Sources */,
 				0571B62F20956D3200603B95 /* KCSize.swift in Sources */,
 				05F40E0522ABC3120059E553 /* KCSpriteOperation.swift in Sources */,
@@ -1527,6 +1538,7 @@
 				057853761F46732C00BBB2BA /* KCTextViewCore.swift in Sources */,
 				0571B63120956D3200603B95 /* KCPoint.swift in Sources */,
 				050E5E111DEF2C42006DC247 /* KCTimer.swift in Sources */,
+				0582C4002400251500C4E753 /* KCLabeledStackView.swift in Sources */,
 				05EE31F91EACB2B8007164F4 /* KCStackView.swift in Sources */,
 				050955F81E3F84F4007D3641 /* KCImageDrawerLayer.swift in Sources */,
 				05CEAB8622FFA87A00FFA8D8 /* KCTerminalView.swift in Sources */,
