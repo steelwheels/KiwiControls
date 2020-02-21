@@ -31,12 +31,14 @@ public class KCLayouter: CNLogging
 		log(type: .flow, string: "Minimize content size: " + contentrect.size.description, file: #file, line: #line, function: #function)
 		let minimizer = KCSizeMinimizer(rootSize: contentrect.size, console: mConsole)
 		view.accept(visitor: minimizer)
-		//dump(view: view)
+		dump(view: view)
 
+		/*
 		log(type: .flow, string: "Minimize group size", file: #file, line: #line, function: #function)
 		let groupfitter = KCGroupSizeAllocator(console: mConsole)
 		view.accept(visitor: groupfitter)
 		//dump(view: view)
+*/
 
 		/*
 		log(type: .flow, string: "Adjust view size", file: #file, line: #line, function: #function)
@@ -50,12 +52,10 @@ public class KCLayouter: CNLogging
 		view.accept(visitor: distdecider)
 		//dump(view: view)
 
-		/*
 		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
-		let winupdator = KCWindowSizeUpdator(console: mConsole)
+		let winupdator = KCWindowSizeUpdator(contentRect: contentrect,console: mConsole)
 		view.accept(visitor: winupdator)
 		//dump(view: view)
-		*/
 
 		NSLog("Layout result size: \(view.frame.size.description)")
 	}

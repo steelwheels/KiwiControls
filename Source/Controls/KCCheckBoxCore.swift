@@ -28,6 +28,19 @@ public class KCCheckBoxCore: KCView
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 
+	open override var fittingSize: KCSize {
+		get {
+			#if os(OSX)
+				return mCheckBox.fittingSize
+			#else
+				let swsize  = mSwitch.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+				let labsize = mLabel.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+				let space   = CNPreference.shared.windowPreference.spacing
+				return KCUnionSize(sizeA: swsize, sizeB: labsize, doVertical: false, spacing: space)
+			#endif
+		}
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		#if os(OSX)
 			return mCheckBox.sizeThatFits(size)

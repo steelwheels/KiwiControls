@@ -69,9 +69,7 @@ public class KCTerminalPreferenceView: KCStackView
 		let sizebox = allocateSizeSelectorView()
 		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
 		let colbox  = allocateColorSelectorView()
-		//super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
-		super.addArrangedSubViews(subViews: [fontbox, colbox])
-		let _ = [sizebox]
+		super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
 
 		/* Set initial values */
 		let pref = CNPreference.shared.terminalPreference
@@ -130,11 +128,7 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 	}
 
-	private func allocateSizeSelectorView() -> KCStackView {
-		/* Title */
-		let title = KCTextField()
-		title.text = "Size"
-
+	private func allocateSizeSelectorView() -> KCLabeledStackView {
 		let widthlabel = KCTextField()
 		widthlabel.text = "Width:"
 
@@ -143,6 +137,10 @@ public class KCTerminalPreferenceView: KCStackView
 		widthfield.isEditable = true
 		widthfield.isEnabled  = true
 		mTerminalWidthField = widthfield
+
+		let widthbox = KCStackView()
+		widthbox.axis = .horizontal
+		widthbox.addArrangedSubViews(subViews: [widthlabel, widthfield])
 
 		let heightlabel = KCTextField()
 		heightlabel.text = "Height:"
@@ -153,28 +151,30 @@ public class KCTerminalPreferenceView: KCStackView
 		heightfield.isEnabled  = true
 		mTerminalHeightField = heightfield
 
-		/* Bind items */
-		let sizebox = KCStackView()
-		sizebox.axis = .horizontal
-		sizebox.addArrangedSubViews(subViews: [widthlabel, widthfield, heightlabel, heightfield])
+		let heightbox = KCStackView()
+		heightbox.axis = .horizontal
+		heightbox.addArrangedSubViews(subViews: [heightlabel, heightfield])
 
-		let box = KCStackView()
-		box.axis = .vertical
-		box.addArrangedSubViews(subViews: [title, sizebox])
-		return box
+		let top = KCLabeledStackView()
+		top.title = "Size"
+		let content = top.contentsView
+		content.axis = .horizontal
+		content.addArrangedSubViews(subViews: [widthbox, heightbox])
+
+		return top
 	}
 
-	private func allocateFontSelectorView(fonts fnts: Array<String>, sizes szs: Array<String>) -> KCStackView {
-		/* Title */
-		let title = KCTextField()
-		title.text = "Font"
-
+	private func allocateFontSelectorView(fonts fnts: Array<String>, sizes szs: Array<String>) -> KCLabeledStackView {
 		let fontlabel = KCTextField()
 		fontlabel.text = "Name:"
 
 		let fontmenu = KCPopupMenu()
 		fontmenu.addItems(withTitles: fnts)
 		mFontNameMenu = fontmenu
+
+		let namebox = KCStackView()
+		namebox.axis = .horizontal
+		namebox.addArrangedSubViews(subViews: [fontlabel, fontmenu])
 
 		let sizelabel = KCTextField()
 		sizelabel.text = "Size:"
@@ -183,23 +183,21 @@ public class KCTerminalPreferenceView: KCStackView
 		sizemenu.addItems(withTitles: szs)
 		mFontSizeMenu = sizemenu
 
-		/* Bind items */
-		let fontbox = KCStackView()
-		fontbox.axis = .horizontal
-		fontbox.addArrangedSubViews(subViews: [fontlabel, fontmenu, sizelabel, sizemenu])
+		let sizebox = KCStackView()
+		sizebox.axis = .horizontal
+		sizebox.addArrangedSubViews(subViews: [sizelabel, sizemenu])
 
-		let box = KCStackView()
-		box.axis = .vertical
-		box.addArrangedSubViews(subViews: [title, fontbox])
-		return box
+		let top = KCLabeledStackView()
+		top.title = "Font"
+		let content = top.contentsView
+		content.axis = .horizontal
+		content.addArrangedSubViews(subViews: [namebox, sizebox])
+
+		return top
 	}
 
-	private func allocateColorSelectorView() -> KCStackView {
-		/* Title */
-		let title = KCTextField()
-		title.text = "Colors"
-
-		/* Add text color selector */
+	private func allocateColorSelectorView() -> KCLabeledStackView {
+		/* Allocate text color selector */
 		let textsel = KCColorSelector()
 		textsel.setLabel(string: "Text:")
 		textsel.callbackFunc = {
@@ -209,7 +207,7 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 		mTextColorSelector = textsel
 
-		/* Add backlight color selector */
+		/* Add background color selector */
 		let backsel = KCColorSelector()
 		backsel.setLabel(string: "Background:")
 		backsel.callbackFunc = {
@@ -219,15 +217,13 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 		mBackgroundColorSelector = backsel
 
-		/* Bind selectors */
-		let colbox = KCStackView()
-		colbox.axis = .horizontal
-		colbox.addArrangedSubViews(subViews: [textsel, backsel])
+		let top = KCLabeledStackView()
+		top.title = "Color"
+		let content = top.contentsView
+		content.axis = .horizontal
+		content.addArrangedSubViews(subViews: [textsel, backsel])
 
-		let box = KCStackView()
-		box.axis = .vertical
-		box.addArrangedSubViews(subViews: [title, colbox])
-		return box
+		return top
 	}
 
 	private var indexOfSelectedFontName: Int {

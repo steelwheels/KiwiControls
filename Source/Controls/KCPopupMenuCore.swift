@@ -101,6 +101,16 @@ open class KCPopupMenuCore: KCView
 		#endif
 	}
 
+	open override var fittingSize: KCSize {
+		get {
+			#if os(OSX)
+				return mPopupButton.fittingSize
+			#else
+				return mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			#endif
+		}
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		#if os(OSX)
 			return mPopupButton.sizeThatFits(size)

@@ -105,6 +105,10 @@ open class KCColorSelectorCore: KCView
 		}
 	}
 
+	open override var fittingSize: KCSize {
+		return defaultSize
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return defaultSize
 	}
@@ -117,12 +121,6 @@ open class KCColorSelectorCore: KCView
 				return defaultSize
 			}
 		}
-	}
-
-	open override func minimumSize(_ size: CGSize) -> CGSize {
-		let width  = min(size.width,  defaultSize.width)
-		let height = min(size.height, defaultSize.height)
-		return CGSize(width: width, height: height)
 	}
 
 	open override func resize(_ size: KCSize) {

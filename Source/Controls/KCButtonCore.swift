@@ -27,6 +27,16 @@ public class KCButtonCore: KCView
 		super.resize(bounds.size)
 	}
 
+	open override var fittingSize: KCSize {
+		get {
+			#if os(OSX)
+				return mButton.fittingSize
+			#else
+				return mButton.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			#endif
+		}
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return mButton.sizeThatFits(size)
 	}

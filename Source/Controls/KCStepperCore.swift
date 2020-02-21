@@ -36,6 +36,25 @@ public class KCStepperCore: KCView
 		#endif
 	}
 
+	open override var fittingSize: KCSize {
+		get {
+			let labelsize: KCSize
+			#if os(OSX)
+				labelsize = mTextField.fittingSize
+			#else
+				labelsize = mTextField.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			#endif
+			let stepsize: KCSize
+			#if os(OSX)
+				stepsize = mStepper.fittingSize
+			#else
+				stepsize = mStepper.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			#endif
+			let space = CNPreference.shared.windowPreference.spacing
+			return KCUnionSize(sizeA: labelsize, sizeB: stepsize, doVertical: false, spacing: space)
+		}
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		let stpsize = mStepper.sizeThatFits(size)
 		var txtsize = size

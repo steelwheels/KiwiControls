@@ -161,10 +161,10 @@ open class KCStackViewCore : KCView
 		get {
 			let result: CNDistribution
 			switch mStackView.distribution {
-			case .fill:		result = .fill
-			case .fillEqually:	result = .fillEqually
-			case .equalSpacing:	result = .equalSpacing
-			default:		result = .fill
+			case .fillProportionally:	result = .fillProportinally
+			case .fillEqually:		result = .fillEqually
+			case .equalSpacing:		result = .equalSpacing
+			default:			result = .fillProportinally
 			}
 			return result
 		}
@@ -175,36 +175,64 @@ open class KCStackViewCore : KCView
 				let newdist: UIStackView.Distribution
 			#endif
 			switch newval {
-			case .fill: 		newdist = .fill
-			case .fillEqually:	newdist = .fillEqually
-			case .equalSpacing:	newdist = .equalSpacing
+			case .fillProportinally: 	newdist = .fillProportionally
+			case .fillEqually:		newdist = .fillEqually
+			case .equalSpacing:		newdist = .equalSpacing
 			}
 			mStackView.distribution = newdist
 		}
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		var merged = KCSize.zero
-		let space  = CNPreference.shared.windowPreference.spacing
-		switch self.axis {
-		case .horizontal:
-			for subview in self.arrangedSubviews() {
-				let subsize = subview.frame.size
-				merged.width  += subsize.width + space
-				merged.height =  max(merged.height, subsize.height)
-			}
-		case .vertical:
-			for subview in self.arrangedSubviews() {
-				let subsize = subview.frame.size
-				merged.width  =  max(merged.width, subsize.width)
-				merged.height += subsize.height + space
+		var merged   = KCSize.zero
+		let space    = CNPreference.shared.windowPreference.spacing
+		let subviews = self.arrangedSubviews()
+		if subviews.count > 0 {
+			switch self.axis {
+			case .horizontal:
+				for subview in subviews {
+					let subsize = subview.frame.size
+					merged.width  += subsize.width
+					merged.height =  max(merged.height, subsize.height)
+				}
+				merged.width += space * CGFloat(subviews.count - 1)
+			case .vertical:
+				for subview in subviews {
+					let subsize = subview.frame.size
+					merged.width  =  max(merged.width, subsize.width)
+					merged.height += subsize.height
+				}
+				merged.height += space * CGFloat(subviews.count - 1)
 			}
 		}
 		return merged
 	}
 
-	open override func minimumSize(_ size: CGSize) -> CGSize {
-		return sizeThatFits(size)
+	open override var fittingSize: KCSize {
+		get {
+			var merged   = KCSize.zero
+			let space    = CNPreference.shared.windowPreference.spacing
+			let subviews = self.arrangedSubviews()
+			if subviews.count > 0 {
+				switch self.axis {
+				case .horizontal:
+					for subview in subviews {
+						let subsize = subview.fittingSize
+						merged.width  += subsize.width
+						merged.height =  max(merged.height, subsize.height)
+					}
+					merged.width += space * CGFloat(subviews.count - 1)
+				case .vertical:
+					for subview in subviews {
+						let subsize = subview.fittingSize
+						merged.width  =  max(merged.width, subsize.width)
+						merged.height += subsize.height + space
+					}
+					merged.height += space * CGFloat(subviews.count - 1)
+				}
+			}
+			return merged
+		}
 	}
 
 	open override var intrinsicContentSize: KCSize {

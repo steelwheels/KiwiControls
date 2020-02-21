@@ -27,6 +27,10 @@ public class KCSizeAdjuster: KCViewVisitor
 		}
 	}
 
+	open override func visit(labeledStackView view: KCLabeledStackView){
+		view.contentsView.accept(visitor: self)
+	}
+
 	open override func visit(coreView view: KCCoreView){
 	}
 }

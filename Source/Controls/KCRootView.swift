@@ -48,6 +48,10 @@ open class KCRootView: KCCoreView
 		#endif
 	}
 
+	public override func expansionPriorities() -> (KCCoreView.ExpansionPriority, KCCoreView.ExpansionPriority) {
+		return (.Low, .Low)
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(rootView: self)
 	}

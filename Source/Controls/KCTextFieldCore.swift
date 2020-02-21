@@ -63,8 +63,14 @@ open class KCTextFieldCore : KCView
 		return mTextField.sizeThatFits(size)
 	}
 
-	open override func minimumSize(_ size: CGSize) -> CGSize {
-		return mTextField.sizeThatFits(size)
+	open override var fittingSize: KCSize {
+		get {
+			#if os(OSX)
+				return mTextField.fittingSize
+			#else
+				return mTextField.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			#endif
+		}
 	}
 
 	open override var intrinsicContentSize: KCSize {

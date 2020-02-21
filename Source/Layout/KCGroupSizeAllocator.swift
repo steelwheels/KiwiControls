@@ -31,6 +31,11 @@ public class KCGroupSizeAllocator: KCViewVisitor
 		view.resize(mergeElementSizes(stackView: view))
 	}
 
+	open override func visit(labeledStackView view: KCLabeledStackView){
+		/* first visit subviews */
+		view.contentsView.accept(visitor: self)
+	}
+
 	open override func visit(coreView view: KCCoreView){
 		/* Do nothing */
 	}

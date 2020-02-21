@@ -64,9 +64,9 @@ open class KCCoreView: KCView
 		return coreview.sizeThatFits(size)
 	}
 
-	open override func minimumSize(_ size: CGSize) -> CGSize {
+	open override var fittingSize: KCSize {
 		let coreview: KCView = getCoreView()
-		return coreview.minimumSize(size)
+		return coreview.fittingSize
 	}
 
 	open override func resize(_ size: KCSize){

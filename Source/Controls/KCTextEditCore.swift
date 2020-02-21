@@ -91,8 +91,14 @@ open class KCTextEditCore : KCView
 		return mTextEdit.sizeThatFits(size)
 	}
 
-	open override func minimumSize(_ size: CGSize) -> CGSize {
-		return mTextEdit.sizeThatFits(size)
+	open override var fittingSize: KCSize {
+		get {
+			#if os(OSX)
+				return mTextEdit.fittingSize
+			#else
+				return mTextEdit.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			#endif
+		}
 	}
 
 	open override var intrinsicContentSize: KCSize {

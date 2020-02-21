@@ -56,6 +56,10 @@ public class KCViewVisitor: CNLogging
 		visit(coreView: view)
 	}
 
+	open func visit(labeledStackView view: KCLabeledStackView) {
+		visit(coreView: view)
+	}
+
 	open func visit(consoleView view: KCConsoleView){
 		visit(coreView: view)
 	}

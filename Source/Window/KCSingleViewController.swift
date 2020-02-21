@@ -62,10 +62,8 @@ open class KCSingleViewController: KCViewController, CNLogging
 
 	#if os(OSX)
 	open override func viewWillLayout() {
-		NSLog("viewWillLayout ... begin")
 		super.viewWillAppear()
 		doViewWillAppear()
-		NSLog("viewWillLayout ... end")
 	}
 	#else
 	open override func viewWillAppear(_ animated: Bool){

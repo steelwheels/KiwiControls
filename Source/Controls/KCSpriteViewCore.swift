@@ -75,6 +75,12 @@ open class KCSpriteViewCore: KCView
 		set(newhdl) { scene.continuationCheckerHandler = newhdl }
 	}
 
+	open override var fittingSize: KCSize {
+		get {
+			return scene.size
+		}
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return size
 	}

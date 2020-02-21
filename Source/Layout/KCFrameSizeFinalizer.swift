@@ -22,39 +22,13 @@ public class KCFrameSizeFinalizer: KCViewVisitor
 		}
 	}
 
-	open override func visit(consoleView view: KCConsoleView){
-		view.resize(view.frame.size)
-	}
-
-	open override func visit(terminalView view: KCTerminalView){
-		view.resize(view.frame.size)
-	}
-
-	open override func visit(textField view: KCTextField){
-		view.resize(view.frame.size)
-	}
-
-	open override func visit(textEdit view: KCTextEdit){
-		view.resize(view.frame.size)
-	}
-
-	open override func visit(spriteView view: KCSpriteView) {
-		view.resize(view.frame.size)
-	}
-
-	open override func visit(navigationBar view: KCNavigationBar) {
-		view.resize(view.frame.size)
-	}
-
-	open override func visit(colorSelector view: KCColorSelector) {
-		view.resize(view.frame.size)
-	}
-
-	open override func visit(popupMenu view: KCPopupMenu) {
+	open override func visit(labeledStackView view: KCLabeledStackView){
+		view.contentsView.accept(visitor: self)
 		view.resize(view.frame.size)
 	}
 
 	open override func visit(coreView view: KCCoreView){
+		view.resize(view.frame.size)
 	}
 }
 

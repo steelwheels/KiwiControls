@@ -23,6 +23,14 @@ open class KCTableViewCore : KCView
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 
+	open override var fittingSize: KCSize {
+		#if os(OSX)
+			return mTableView.fittingSize
+		#else
+			return mTableView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+		#endif
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return mTableView.sizeThatFits(size)
 	}

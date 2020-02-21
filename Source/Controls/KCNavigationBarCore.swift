@@ -150,6 +150,10 @@ open class KCNavigationBarCore: KCView
 		}
 	}
 
+	open override var fittingSize: KCSize {
+		return navigationBarSize()
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return navigationBarSize()
 	}

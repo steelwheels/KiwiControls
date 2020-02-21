@@ -58,6 +58,18 @@ public class KCViewDumper: KCViewVisitor
 		mSection = section
 	}
 
+	open override func visit(labeledStackView view: KCLabeledStackView){
+		/* Allocate section for stack */
+		visit(coreView: view)
+		let cursection = mSection
+
+		/* Visit contents */
+		view.contentsView.accept(visitor: self)
+		cursection.add(text: mSection)
+
+		mSection = cursection
+	}
+
 	open override func visit(navigationBar view: KCNavigationBar) {
 		visit(coreView: view)
 

@@ -11,8 +11,6 @@ import Foundation
 public class KCSizeMinimizer: KCViewVisitor
 {
 	private var mRootSize:   KCSize
-	private var mParentSize: KCSize = KCSize.zero
-	private var mResultSize: KCSize = KCSize.zero
 
 	public init(rootSize root: KCSize, console cons: CNConsole) {
 		mRootSize = root
@@ -25,10 +23,32 @@ public class KCSizeMinimizer: KCViewVisitor
 		/* do not use resize */
 		view.frame.size  = mRootSize
 		view.bounds.size = mRootSize
-		mParentSize      = mRootSize
 
 		coreview.accept(visitor: self)
-		coreview.resize(mResultSize)
+		coreview.resize(coreview.fittingSize)
+	}
+
+	open override func visit(stackView view: KCStackView){
+		/* Visit children first */
+		for subview in view.arrangedSubviews() {
+			subview.accept(visitor: self)
+		}
+		view.resize(view.fittingSize)
+	}
+
+	open override func visit(labeledStackView view: KCLabeledStackView){
+		view.contentsView.accept(visitor: self)
+		view.resize(view.fittingSize)
+	}
+
+	open override func visit(coreView view: KCCoreView){
+		view.resize(view.fittingSize)
+	}
+
+	/*
+
+	open override func visit(rootView view: KCRootView){
+
 	}
 
 	open override func visit(stackView view: KCStackView){
@@ -152,5 +172,6 @@ public class KCSizeMinimizer: KCViewVisitor
 			return size
 		}
 	}
+*/
 }
 

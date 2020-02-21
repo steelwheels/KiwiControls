@@ -199,11 +199,23 @@ open class KCView : KCViewBase, CNLogging
 		return false
 	}
 
-	#endif
-
-	open func minimumSize(_ size: CGSize) -> CGSize {
-		return sizeThatFits(size)
+	open override var fittingSize: KCSize {
+		get {
+			NSLog("Must be override")
+			return KCSize.zero
+		}
 	}
+
+	#else
+
+	open var fittingSize: KCSize {
+		get {
+			NSLog("Must be override")
+			return KCSize.zero
+		}
+	}
+
+	#endif
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false

@@ -34,6 +34,12 @@ open class KCImageViewCore : KCView
 		mImageView.image = img
 	}
 
+	open override var fittingSize: KCSize {
+		get {
+			return imageSize
+		}
+	}
+
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return fittingSize(source: imageSize, in: size)
 	}

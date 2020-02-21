@@ -399,24 +399,23 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let minsize = minimumSize(size)
-		let result  = KCSize(width:  max(size.width,  minsize.width),
-				     height: max(size.height, minsize.height))
-		return result
+		return self.fittingSize
+	}
+
+	open override var fittingSize: KCSize {
+		get {
+			let fontsize  = fontSize()
+			let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
+			let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumRowNumbers))
+			let reqsize   = KCSize(width: reqwidth, height: reqheight)
+			return reqsize
+		}
 	}
 
 	open override func resize(_ size: KCSize) {
 		mTextView.frame.size  = size
 		mTextView.bounds.size = size
 		super.resize(size)
-	}
-
-	open override func minimumSize(_ size: CGSize) -> CGSize {
-		let fontsize  = fontSize()
-		let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
-		let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumRowNumbers))
-		let reqsize   = KCSize(width: reqwidth, height: reqheight)
-		return reqsize
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

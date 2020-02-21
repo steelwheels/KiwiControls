@@ -22,7 +22,7 @@ open class KCLogViewController: KCSingleViewController
 		let stack   = KCStackView(frame: dmyrect)
 		stack.axis         = .vertical
 		stack.alignment    = .fill
-		stack.distribution = .fill
+		stack.distribution = .fillProportinally
 
 		/* Allocate navigation bar to stack */
 		let navigation = KCNavigationBar(frame: dmyrect)

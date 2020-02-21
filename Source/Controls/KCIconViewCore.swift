@@ -45,13 +45,18 @@ open class KCIconViewCore : KCView
 		return CGRect(origin: layerorigin, size: layersize)
 	}
 
-	open override func minimumSize(_ size: CGSize) -> CGSize {
-		/* Allocate label size */
-		let labsize = mLabelView.sizeThatFits(size)
-		/* Allocate image size */
-		let imgsize = mLayerView.minimumSize(size)
-		let space   = CNPreference.shared.windowPreference.spacing
-		return KCUnionSize(sizeA: labsize, sizeB: imgsize, doVertical: true, spacing: space)
+	open override var fittingSize: KCSize {
+		get {
+			#if os(OSX)
+			let labsize = mLabelView.fittingSize
+			let imgsize = mLayerView.fittingSize
+			#else
+			let labsize = mLabelView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			let imgsize = mLayerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+			#endif
+			let space   = CNPreference.shared.windowPreference.spacing
+			return KCUnionSize(sizeA: labsize, sizeB: imgsize, doVertical: true, spacing: space)
+		}
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {

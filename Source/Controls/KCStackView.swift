@@ -58,7 +58,7 @@ open class KCStackView : KCCoreView
 	}
 
 	private func setupLayout(){
-		self.distribution = .fill
+		self.distribution = .fillProportinally
 	}
 
 	public var axis: CNAxis {
