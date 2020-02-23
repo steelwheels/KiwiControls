@@ -25,6 +25,8 @@ open class KCIconViewCore : KCView
 	private var mIconDrawer: KCImageDrawerLayer? = nil
 
 	public func setup(frame frm: CGRect) {
+		KCView.setAutolayoutMode(views: [self, mLayerView, mLabelView])
+		
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		let layerframe   = KCIconViewCore.calcLayerFrame(entireFrame: bounds, deltaHeight: mLabelView.frame.size.height)

@@ -1,8 +1,8 @@
 /**
- * @file	KCSingleViewController.swift
- * @brief	Define KCSingleViewController class
+ * @file	KCPlaneViewController.swift
+ * @brief	Define KCPlaneViewController class
  * @par Copyright
- *   Copyright (C) 2018 Steel Wheels Project
+ *   Copyright (C) 2020 Steel Wheels Project
  */
 
 #if os(iOS)
@@ -12,36 +12,25 @@ import Cocoa
 #endif
 import CoconutData
 
-open class KCSingleViewController: KCViewController, CNLogging
+open class KCPlaneViewController: KCViewController, CNLogging
 {
-	private weak var mParentController:	KCMultiViewController?
 	private var mRootView:			KCRootView? = nil
-	private var mLayoutedSize:		KCSize
 	private var mConsole:			CNConsole
 
-	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole){
-		mParentController	= parent
-		mLayoutedSize		= KCSize.zero
-		mConsole     		= cons
-		super.init(nibName: nil, bundle: nil)
+	public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+		mRootView	= nil
+		mConsole	= KCLogManager.shared.console
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 
 	public required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		mRootView	= nil
+		mConsole	= KCLogManager.shared.console
+		super.init(coder: coder)
 	}
 
 	public var console: CNConsole? {
 		get { return mConsole }
-	}
-
-	public var parentController: KCMultiViewController {
-		get {
-			if let controller = mParentController {
-				return controller
-			} else {
-				fatalError("Can not happen")
-			}
-		}
 	}
 
 	public var rootView: KCRootView? {
@@ -58,17 +47,12 @@ open class KCSingleViewController: KCViewController, CNLogging
 			let size = UIScreen.main.bounds.size
 			#endif
 
-			let root = allocateRootView()
+			let root  = KCRootView(console: mConsole)
 			root.frame.size  = size
 			root.bounds.size = size
 			self.view = root
 			mRootView = root
-			//NSLog("Root size: \(root.frame.size)")
 		}
-	}
-
-	open func allocateRootView() -> KCRootView {
-		return KCRootView(console: mConsole)
 	}
 
 	#if os(OSX)
@@ -77,30 +61,24 @@ open class KCSingleViewController: KCViewController, CNLogging
 		doViewWillLayout()
 	}
 	#else
-	open override func viewWillLayoutSubviews() {
-		super.viewWillLayoutSubviews()
+	open override func viewWillLayout(_ animated: Bool){
+		super.viewWillLayout(animated)
 		doViewWillLayout()
 	}
 	#endif
 
+	var mPrevRootSize = KCSize.zero
+
 	private func doViewWillLayout() {
 		if let root = mRootView {
 			if root.hasCoreView {
-				#if os(OSX)
-				let screen = root.frame
-				#else
-				let screen = UIScreen.main.bounds
-				#endif
-				let content = KCEdgeInsetsInsetRect(screen, self.safeAreaInset)
-				if content.size != mLayoutedSize {
-					/* Layout components */
+				/* Layout components */
+				let newsize = root.frame.size
+				if mPrevRootSize != newsize {
 					log(type: .flow, string: "Execute Layout", file: #file, line: #line, function: #function)
 					let layouter = KCLayouter(console: mConsole)
-					layouter.layout(rootView: root, contentRect: content)
-					/* This size is layouted */
-					mLayoutedSize = content.size
-				} else {
-					log(type: .flow, string: "Skip layout", file: #file, line: #line, function: #function)
+					layouter.layout(rootView: root, contentRect: root.frame)
+					mPrevRootSize = newsize
 				}
 			}
 		} else {
@@ -139,5 +117,4 @@ open class KCSingleViewController: KCViewController, CNLogging
 		}
 	}
 }
-
 

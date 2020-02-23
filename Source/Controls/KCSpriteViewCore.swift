@@ -21,6 +21,8 @@ open class KCSpriteViewCore: KCView
 	private var mNodes: 		Dictionary<String, KCSpriteNode>	 = [:]
 
 	public func setup(frame frm: CGRect) {
+		KCView.setAutolayoutMode(views: [self, mSpriteView])
+
 		let scene       = KCSpriteScene(frame: frm, console: console)
 		scene.scaleMode = .aspectFill
 		

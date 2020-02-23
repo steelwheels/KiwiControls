@@ -23,6 +23,7 @@ open class KCLabeledStackViewCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect) -> Void {
+		KCView.setAutolayoutMode(views: [self, mTextField, mStackView])
 		self.title = "Title"
 	}
 

@@ -10,23 +10,30 @@ import CoconutData
 import CoconutShell
 import Cocoa
 
-class ViewController: NSViewController, NSWindowDelegate {
+class ViewController: KCPlaneViewController, NSWindowDelegate
+{
+	private var	mTerminalView:	KCTerminalView? = nil
+	private var	mShell: CNShellThread? = nil
 
-	@IBOutlet weak var	mTerminalView: KCTerminalView!
-	private var		mShell: CNShellThread? = nil
+	override func loadView() {
+		super.loadView()
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view.
-		/* Allocate shell */
-		NSLog("Launch terminal")
-		let queue   : DispatchQueue = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
-		let instrm  : CNFileStream = .fileHandle(mTerminalView.inputFileHandle)
-		let outstrm : CNFileStream = .fileHandle(mTerminalView.outputFileHandle)
-		let errstrm : CNFileStream = .fileHandle(mTerminalView.errorFileHandle)
-		NSLog("Allocate shell")
-		let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm)
-		mShell        = shell
+		/* Allocate preference view */
+		if let rootview = super.rootView {
+			let termview = KCTerminalView()
+			rootview.setup(childView: termview)
+			mTerminalView = termview
+
+			/* Allocate shell */
+			NSLog("Launch terminal")
+			let queue   : DispatchQueue = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
+			let instrm  : CNFileStream = .fileHandle(termview.inputFileHandle)
+			let outstrm : CNFileStream = .fileHandle(termview.outputFileHandle)
+			let errstrm : CNFileStream = .fileHandle(termview.errorFileHandle)
+			NSLog("Allocate shell")
+			let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm)
+			mShell        = shell
+		}
 	}
 
 	override func viewDidAppear() {
@@ -35,8 +42,14 @@ class ViewController: NSViewController, NSWindowDelegate {
 		if let win = view.window {
 			win.delegate = self
 		}
+
+		guard let termview = mTerminalView else {
+			NSLog("No terminal view")
+			return
+		}
+
 		/* Set font size */
-		NSLog("Font point size: \(mTerminalView.fontPointSize)")
+		NSLog("Font point size: \(termview.fontPointSize)")
 		//mTerminalView.fontPointSize = 16.0
 
 		/* Start shell */
@@ -44,20 +57,26 @@ class ViewController: NSViewController, NSWindowDelegate {
 			NSLog("start shell")
 			shell.start(arguments: [])
 		}
-		let colnum   = mTerminalView.columnNumbers
-		let rownum   = mTerminalView.lineNumbers
+
+		/*
+		let colnum   = termview.columnNumbers
+		let rownum   = termview.lineNumbers
 		NSLog("colnun=\(colnum), rownum=\(rownum)")
+		*/
 
 		/* Send screen size */
+		/*
 		NSLog("Send request")
 		let reqstr = CNEscapeCode.requestScreenSize.encode()
-		mTerminalView.outputFileHandle.write(string: reqstr)
+		termview.outputFileHandle.write(string: reqstr)
+		*/
 
 		/* Update preference */
+/*
 		let pref = CNPreference.shared.terminalPreference
 		pref.foregroundTextColor = KCColor.green
 		pref.backgroundTextColor = KCColor.black
-
+*/
 		/*
 		NSLog("Accepted code")
 		let ackdata = mTerminalView.inputFileHandle.availableData
@@ -81,10 +100,10 @@ class ViewController: NSViewController, NSWindowDelegate {
 	}
 
 	public func windowDidResize(_ notification: Notification) {
-		if let win = view.window {
+		if let win = view.window, let termview = mTerminalView {
 			let newsize = win.frame.size
 			NSLog("Resize: \(newsize.description)")
-			mTerminalView.resize(newsize)
+			termview.resize(newsize)
 		}
 	}
 }

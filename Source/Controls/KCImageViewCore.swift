@@ -21,6 +21,7 @@ open class KCImageViewCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect){
+		KCView.setAutolayoutMode(views: [self, mImageView])
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		#if os(OSX)

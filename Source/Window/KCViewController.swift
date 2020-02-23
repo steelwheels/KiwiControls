@@ -48,6 +48,27 @@ public extension KCViewController
 		fatalError("Failed to load " + nibname)
 	}
 
+	var safeAreaInset: KCEdgeInsets {
+		get {
+			#if os(OSX)
+				let result = KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+			#else
+				let topmargin: CGFloat
+				if CNPreference.shared.windowPreference.isPortrait {
+					topmargin =  16.0
+				} else {
+					topmargin =  0.0
+				}
+				let insets = self.view.safeAreaInsets
+				let result = KCEdgeInsets(top:    insets.top    + topmargin,
+							  left:   insets.left,
+							  bottom: insets.bottom,
+							  right:  insets.right)
+			#endif
+			return result
+		}
+	}
+
 	func alert(error err: NSError){
 		let _ = KCAlert.runModal(error: err, in: self)
 	}

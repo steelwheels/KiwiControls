@@ -8,6 +8,23 @@
 import CoconutData
 import Foundation
 
+public class KCWindowSizeUpdator
+{
+	private var mConsole: CNConsole
+
+	public init(console cons: CNConsole) {
+		mConsole = cons
+	}
+
+	public func updateContentSize(rootView root: KCRootView, contentRect content: KCRect) {
+		root.rebounds(origin: content.origin, size: content.size)
+		if let core: KCView = root.getCoreView() {
+			core.rebounds(origin: content.origin, size: content.size)
+		}
+	}
+}
+
+/*
 public class KCWindowSizeUpdator: KCViewVisitor
 {
 	private var mContentRect:	KCRect
@@ -67,7 +84,6 @@ public class KCWindowSizeUpdator: KCViewVisitor
 	}
 }
 
-/*
 public class KCRootSizeAllocator
 {
 	public func setRootFrame(rootView view: KCRootView, contentRect content: KCRect){

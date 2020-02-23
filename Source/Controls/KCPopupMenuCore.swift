@@ -26,6 +26,11 @@ open class KCPopupMenuCore: KCView
 #endif
 
 	public func setup(frame frm: CGRect) -> Void {
+		#if os(OSX)
+			KCView.setAutolayoutMode(views: [self, mPopupButton])
+		#else
+			KCView.setAutolayoutMode(views: [self, mPickerView])
+		#endif
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		super.resize(bounds.size)
 

@@ -54,6 +54,17 @@ open class KCView : KCViewBase, CNLogging
 		}
 	}
 
+	public class func setAutolayoutMode(view v: KCViewBase) {
+		v.translatesAutoresizingMaskIntoConstraints = false
+		v.autoresizesSubviews = true
+	}
+
+	public class func setAutolayoutMode(views vs: Array<KCViewBase>) {
+		for v in vs {
+			setAutolayoutMode(view: v)
+		}
+	}
+
 	/*
 	 * Logging
 	 */

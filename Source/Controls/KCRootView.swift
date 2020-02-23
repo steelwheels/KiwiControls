@@ -39,6 +39,8 @@ open class KCRootView: KCCoreView
 	}
 
 	public func setup(childView child: KCView){
+		KCView.setAutolayoutMode(view: self)
+		
 		self.addSubview(child)
 		super.allocateSubviewLayout(subView: child)
 		setCoreView(view: child)

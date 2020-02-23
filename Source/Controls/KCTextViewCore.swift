@@ -120,6 +120,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public func setup(mode md: TerminalMode, frame frm: CGRect)
 	{
+		KCView.setAutolayoutMode(views: [self])
+		mTextView.translatesAutoresizingMaskIntoConstraints = true
+		mTextView.autoresizesSubviews = false
+
 		let pref = CNPreference.shared.terminalPreference
 		if let font = pref.font {
 			self.font = font
@@ -136,10 +140,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		self.foregroundTextColor       	= pref.foregroundTextColor
 		self.backgroundTextColor 	= pref.backgroundTextColor
-
-		mTextView.translatesAutoresizingMaskIntoConstraints = true // Keep true to scrollable
-		mTextView.autoresizesSubviews = true
-		self.autoresizesSubviews      = true
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
@@ -399,6 +399,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		NSLog("sizeThatFits <- \(size.description)")
 		return self.fittingSize
 	}
 
@@ -408,13 +409,19 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
 			let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumRowNumbers))
 			let reqsize   = KCSize(width: reqwidth, height: reqheight)
+			//NSLog("size: scale=\(KCScreen.shared.scale) font=\(fontsize.description) fitting=\(reqsize.description)")
+			NSLog("fittingSize -> \(reqsize.description)")
 			return reqsize
 		}
 	}
 
 	open override func resize(_ size: KCSize) {
-		mTextView.frame.size  = size
-		mTextView.bounds.size = size
+		NSLog("resize <- \(size.description)")
+		#if os(OSX)
+			mTextView.setConstrainedFrameSize(size)
+		#else
+			mTextView.contentSize = size
+		#endif
 		super.resize(size)
 	}
 

@@ -29,12 +29,12 @@ open class KCColorSelector : KCCoreView
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
-		setupContext() ;
+		setup() ;
 	}
 	#else
 	public override init(frame: CGRect){
 		super.init(frame: frame) ;
-		setupContext()
+		setup()
 	}
 	#endif
 
@@ -49,10 +49,11 @@ open class KCColorSelector : KCCoreView
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
-		setupContext() ;
+		setup() ;
 	}
 
-	private func setupContext(){
+	private func setup(){
+		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCColorSelectorCore.self, nibName: "KCColorSelectorCore") as? KCColorSelectorCore {
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)

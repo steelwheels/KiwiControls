@@ -10,11 +10,9 @@ import Foundation
 
 public class KCLayouter: CNLogging
 {
-	private var mViewController:	KCSingleViewController
 	private var mConsole:		CNConsole
 
-	public required init(viewController vcont: KCSingleViewController, console cons: CNConsole){
-		mViewController = vcont
+	public required init(console cons: CNConsole){
 		mConsole	= cons
 	}
 
@@ -22,16 +20,13 @@ public class KCLayouter: CNLogging
 		get { return mConsole }
 	}
 
-	public func layout(rootView view: KCRootView, windowSize winsize: KCSize){
+	public func layout(rootView view: KCRootView, contentRect content: KCRect){
 		log(type: .flow, string: "Get content size", file: #file, line: #line, function: #function)
-		let insets        = KCLayouter.safeAreaInset(viewController: mViewController)
-		let windowrect	  = KCRect(origin: CGPoint.zero, size: winsize)
-		let contentrect	  = KCEdgeInsetsInsetRect(windowrect, insets)
 
-		log(type: .flow, string: "Minimize content size: " + contentrect.size.description, file: #file, line: #line, function: #function)
-		let minimizer = KCSizeMinimizer(rootSize: contentrect.size, console: mConsole)
+		log(type: .flow, string: "Minimize content size: " + content.size.description, file: #file, line: #line, function: #function)
+		let minimizer = KCSizeMinimizer(rootSize: content.size, console: mConsole)
 		view.accept(visitor: minimizer)
-		dump(view: view)
+		//dump(view: view)
 
 		/*
 		log(type: .flow, string: "Minimize group size", file: #file, line: #line, function: #function)
@@ -53,15 +48,15 @@ public class KCLayouter: CNLogging
 		//dump(view: view)
 
 		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
-		let winupdator = KCWindowSizeUpdator(contentRect: contentrect,console: mConsole)
-		view.accept(visitor: winupdator)
+		let winupdator = KCWindowSizeUpdator(console: mConsole)
+		winupdator.updateContentSize(rootView: view, contentRect: content)
 		//dump(view: view)
 
 		NSLog("Layout result size: \(view.frame.size.description)")
 	}
 
-	private class func safeAreaInset(viewController vcont: KCSingleViewController) -> KCEdgeInsets {
-		let parent = vcont.parentController
+	/*
+	private class func safeAreaInset(viewController vcont: KCViewController) -> KCEdgeInsets {
 		let space: CGFloat = CNPreference.shared.windowPreference.spacing
 		#if os(OSX)
 			let result = KCEdgeInsets(top: space, left: space, bottom: space, right: space)
@@ -88,7 +83,7 @@ public class KCLayouter: CNLogging
 		let height = max(0.0, sz.height - (y + ist.bottom))
 		return KCRect(x: x, y: y, width: width, height: height)
 	}
-
+*/
 	private func dump(view v: KCView) {
 		if let cons = console {
 			let dumper = KCViewDumper(console: cons)

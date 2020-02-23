@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -708,25 +708,7 @@
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="8fH-O5-wiK" customClass="KCTerminalView" customModule="KiwiControls">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                            </customView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="8fH-O5-wiK" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="3SD-fL-YKG"/>
-                            <constraint firstItem="8fH-O5-wiK" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="9Me-m4-4rF"/>
-                            <constraint firstAttribute="trailing" secondItem="8fH-O5-wiK" secondAttribute="trailing" id="Mzl-u9-LcE"/>
-                            <constraint firstAttribute="trailing" secondItem="8fH-O5-wiK" secondAttribute="trailing" id="TnI-8Y-8fu"/>
-                            <constraint firstItem="8fH-O5-wiK" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="UgF-Bj-i4G"/>
-                            <constraint firstItem="8fH-O5-wiK" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="luO-Ty-hM5"/>
-                            <constraint firstAttribute="bottom" secondItem="8fH-O5-wiK" secondAttribute="bottom" id="qpj-PE-mbP"/>
-                            <constraint firstAttribute="bottom" secondItem="8fH-O5-wiK" secondAttribute="bottom" id="v8L-Md-Rxl"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="mTerminalView" destination="8fH-O5-wiK" id="zmk-TS-LGd"/>
-                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -20,6 +20,7 @@ open class KCTableViewCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect) {
+		KCView.setAutolayoutMode(views: [self, mTableView])
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 

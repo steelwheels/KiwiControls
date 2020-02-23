@@ -31,6 +31,11 @@ open class KCColorSelectorCore: KCView
 	public var callbackFunc	: CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
+		#if os(OSX)
+			KCView.setAutolayoutMode(views: [self, mLabel, mColorWell])
+		#else
+			KCView.setAutolayoutMode(views: [self, mLabel, mButton])
+		#endif
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		super.resize(bounds.size)
 		connectObserver()

@@ -38,6 +38,7 @@ open class KCSpriteView: KCCoreView
 	}
 
 	private func setup(frame frm: CGRect){
+		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCSpriteView.self, nibName: "KCSpriteViewCore") as? KCSpriteViewCore {
 			setCoreView(view: newview)
 			newview.setup(frame: frm)

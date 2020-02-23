@@ -17,6 +17,8 @@ public class KCScreen
 	public static var 	shared = KCScreen()
 	private var		mScale: CGFloat
 
+	public var scale: CGFloat { get { return mScale }}
+
 	public init(){
 		/* scale: point to pixel */
 		mScale = KCScreen.initScale()

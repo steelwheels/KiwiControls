@@ -23,6 +23,7 @@ public class KCButtonCore: KCView
 	public var buttonPressedCallback: (() -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
+		KCView.setAutolayoutMode(views: [self, mButton])
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		super.resize(bounds.size)
 	}

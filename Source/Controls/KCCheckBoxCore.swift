@@ -25,6 +25,11 @@ public class KCCheckBoxCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void
 	{
+		#if os(OSX)
+			KCView.setAutolayoutMode(views: [self, mCheckBox])
+		#else
+			KCView.setAutolayoutMode(views: [self, mSwitch, mLabel])
+		#endif
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 	}
 

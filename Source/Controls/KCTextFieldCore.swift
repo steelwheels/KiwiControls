@@ -26,10 +26,8 @@ open class KCTextFieldCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect){
+		KCView.setAutolayoutMode(views: [self, mTextField])
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
-
-		mTextField.translatesAutoresizingMaskIntoConstraints = false
-		mTextField.autoresizesSubviews = true
 
 		#if os(OSX)
 			mTextField.usesSingleLineMode 		= false

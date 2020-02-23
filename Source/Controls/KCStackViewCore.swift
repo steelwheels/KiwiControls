@@ -29,6 +29,7 @@ open class KCStackViewCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect) {
+		KCView.setAutolayoutMode(views: [self, mStackView])
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		mStackView.spacing = CNPreference.shared.windowPreference.spacing

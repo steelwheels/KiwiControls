@@ -31,10 +31,8 @@ open class KCTextEditCore : KCView
 	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
+		KCView.setAutolayoutMode(views: [self, mTextEdit])
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
-
-		mTextEdit.translatesAutoresizingMaskIntoConstraints = false
-		mTextEdit.autoresizesSubviews = true
 
 		#if os(OSX)
 			mTextEdit.usesSingleLineMode 	= false

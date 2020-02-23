@@ -11,15 +11,26 @@ import UIKit
 
 class SingleViewController: KCSingleViewController
 {
+	private var mTerminalView: KCTerminalView? = nil
+
 	open override func loadView() {
 		super.loadView()
 
-		let terminalview       = KCTerminalView()
-		terminalview.outputFileHandle.write(string: "Hello, world")
+		let terminalview = KCTerminalView()
+		mTerminalView = terminalview
+
 		if let root = super.rootView {
 			root.setup(childView: terminalview)
 		} else {
 			NSLog("Failed to set terminal")
+		}
+	}
+
+	open override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+
+		if let termview = mTerminalView {
+			termview.outputFileHandle.write(string: "Hello, world")
 		}
 	}
 }

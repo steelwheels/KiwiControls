@@ -17,12 +17,12 @@ open class KCButton: KCCoreView
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame)
-		setupContext(frame: frame)
+		setup(frame: frame)
 	}
 	#else
 	public override init(frame: CGRect){
 		super.init(frame: frame)
-		setupContext(frame: frame)
+		setup(frame: frame)
 	}
 	#endif
 
@@ -37,10 +37,11 @@ open class KCButton: KCCoreView
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		setupContext(frame: self.frame)
+		setup(frame: self.frame)
 	}
 
-	private func setupContext(frame frm: CGRect){
+	private func setup(frame frm: CGRect){
+		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCButton.self, nibName: "KCButtonCore") as? KCButtonCore {
 			setCoreView(view: newview)
 			newview.setup(frame: frm)

@@ -17,12 +17,12 @@ open class KCTerminalView : KCCoreView
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
-		setupContext() ;
+		setup() ;
 	}
 	#else
 	public override init(frame: CGRect){
 		super.init(frame: frame) ;
-		setupContext()
+		setup()
 	}
 	#endif
 
@@ -37,7 +37,7 @@ open class KCTerminalView : KCCoreView
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
-		setupContext() ;
+		setup() ;
 	}
 
 	public var inputFileHandle: FileHandle {
@@ -67,7 +67,8 @@ open class KCTerminalView : KCCoreView
 		set(newcol)	{ coreView.font = newcol	}
 	}
 	
-	private func setupContext(){
+	private func setup(){
+		KCView.setAutolayoutMode(view: self)
 		guard let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore else {
 			NSLog("Failed to load resource")
 			return

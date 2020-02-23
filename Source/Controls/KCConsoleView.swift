@@ -29,12 +29,12 @@ open class KCConsoleView : KCCoreView
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
-		setupContext() ;
+		setup() ;
 	}
 	#else
 	public override init(frame: CGRect){
 		super.init(frame: frame) ;
-		setupContext()
+		setup()
 	}
 	#endif
 
@@ -45,12 +45,12 @@ open class KCConsoleView : KCCoreView
 			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 22)
 		#endif
 		self.init(frame: frame)
-		setupContext()
+		setup()
 	}
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
-		setupContext() ;
+		setup() ;
 	}
 	
 	public var consoleConnection: CNFileConsole {
@@ -67,7 +67,8 @@ open class KCConsoleView : KCCoreView
 		}
 	}
 
-	private func setupContext(){
+	private func setup(){
+		KCView.setAutolayoutMode(view: self)
 		guard let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore else {
 			NSLog("Failed to load resource")
 			return

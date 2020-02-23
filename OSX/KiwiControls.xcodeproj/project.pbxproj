@@ -25,7 +25,7 @@
 		051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C81E0DD76F00671A2D /* KCStepper.swift */; };
 		051C3AEB2275370800E172B3 /* KCPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C3AEA2275370800E172B3 /* KCPhysics.swift */; };
 		051E7C8423EECB7300C9E095 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E7C8323EECB7300C9E095 /* KCTerminalPreferenceView.swift */; };
-		051E7C8623EEDC6200C9E095 /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E7C8523EEDC6200C9E095 /* SingleViewController.swift */; };
+		051E7C8623EEDC6200C9E095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E7C8523EEDC6200C9E095 /* ViewController.swift */; };
 		05213AF720956AD600683720 /* KCCoodinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05213AF620956AD600683720 /* KCCoodinate.swift */; };
 		0523643C23FD7DC30006C175 /* KCLabeledStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523643B23FD7DC30006C175 /* KCLabeledStackView.swift */; };
 		0523C2C722E5BC7700FAB05F /* KCSpriteAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523C2C622E5BC7700FAB05F /* KCSpriteAction.swift */; };
@@ -155,6 +155,7 @@
 		0598D9B8212459A80018AA1D /* KCImageViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598D9B7212459A80018AA1D /* KCImageViewCore.swift */; };
 		059CFFA61EB5E9A30005F3C0 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059CFFA51EB5E9A30005F3C0 /* KCCoreView.swift */; };
 		05A03C0A1E1EAB5300156321 /* KCButtonBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A03C091E1EAB5300156321 /* KCButtonBody.swift */; };
+		05A197412401177700AB99F4 /* KCPlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A197402401177700AB99F4 /* KCPlaneViewController.swift */; };
 		05A352DF23F270EE0094D0A7 /* KCPopupMenuCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A352DE23F270EE0094D0A7 /* KCPopupMenuCore.xib */; };
 		05A352E123F2722D0094D0A7 /* KCPopupMenuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A352E023F2722D0094D0A7 /* KCPopupMenuCore.swift */; };
 		05A352E323F2764C0094D0A7 /* KCPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A352E223F2764C0094D0A7 /* KCPopupMenu.swift */; };
@@ -163,7 +164,6 @@
 		05A4711F21D2877300E7C446 /* KCSpriteViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A4711D21D2877200E7C446 /* KCSpriteViewCore.swift */; };
 		05ACEF591E0C2C3C009F10A7 /* KCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEF581E0C2C3C009F10A7 /* KCButton.swift */; };
 		05ACEF611E0C3317009F10A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEF601E0C3317009F10A7 /* AppDelegate.swift */; };
-		05ACEF631E0C3317009F10A7 /* MultiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ACEF621E0C3317009F10A7 /* MultiViewController.swift */; };
 		05ACEF651E0C3317009F10A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF641E0C3317009F10A7 /* Assets.xcassets */; };
 		05ACEF681E0C3317009F10A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05ACEF661E0C3317009F10A7 /* Main.storyboard */; };
 		05B014E423EE4B4F00CBF3B5 /* KCColorSelectorCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B014E323EE4B4F00CBF3B5 /* KCColorSelectorCore.xib */; };
@@ -393,7 +393,7 @@
 		051847C81E0DD76F00671A2D /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
 		051C3AEA2275370800E172B3 /* KCPhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCPhysics.swift; sourceTree = "<group>"; };
 		051E7C8323EECB7300C9E095 /* KCTerminalPreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTerminalPreferenceView.swift; sourceTree = "<group>"; };
-		051E7C8523EEDC6200C9E095 /* SingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
+		051E7C8523EEDC6200C9E095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		05213AF620956AD600683720 /* KCCoodinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoodinate.swift; sourceTree = "<group>"; };
 		0521F4F0230447F600F4F438 /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../Library/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
 		0523643B23FD7DC30006C175 /* KCLabeledStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLabeledStackView.swift; sourceTree = "<group>"; };
@@ -528,6 +528,7 @@
 		0598D9B7212459A80018AA1D /* KCImageViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCImageViewCore.swift; sourceTree = "<group>"; };
 		059CFFA51EB5E9A30005F3C0 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		05A03C091E1EAB5300156321 /* KCButtonBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButtonBody.swift; sourceTree = "<group>"; };
+		05A197402401177700AB99F4 /* KCPlaneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPlaneViewController.swift; sourceTree = "<group>"; };
 		05A352DE23F270EE0094D0A7 /* KCPopupMenuCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCPopupMenuCore.xib; sourceTree = "<group>"; };
 		05A352E023F2722D0094D0A7 /* KCPopupMenuCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCPopupMenuCore.swift; sourceTree = "<group>"; };
 		05A352E223F2764C0094D0A7 /* KCPopupMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCPopupMenu.swift; sourceTree = "<group>"; };
@@ -537,7 +538,6 @@
 		05ACEF581E0C2C3C009F10A7 /* KCButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButton.swift; sourceTree = "<group>"; };
 		05ACEF5E1E0C3317009F10A7 /* UTControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05ACEF601E0C3317009F10A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05ACEF621E0C3317009F10A7 /* MultiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiViewController.swift; sourceTree = "<group>"; };
 		05ACEF641E0C3317009F10A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05ACEF671E0C3317009F10A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05ACEF691E0C3317009F10A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -793,6 +793,7 @@
 				0584F512210DFE6300492366 /* KCWindow.swift */,
 				052960882115B26D00D9D739 /* KCMultiViewController.swift */,
 				052960892115B26D00D9D739 /* KCSingleViewController.swift */,
+				05A197402401177700AB99F4 /* KCPlaneViewController.swift */,
 				05386D451D8570A4004B8DDF /* KCViewController.swift */,
 				05FFB86B234002D800FAEEE1 /* KCFirstResponderMaker.swift */,
 			);
@@ -1077,8 +1078,7 @@
 			isa = PBXGroup;
 			children = (
 				05ACEF601E0C3317009F10A7 /* AppDelegate.swift */,
-				05ACEF621E0C3317009F10A7 /* MultiViewController.swift */,
-				051E7C8523EEDC6200C9E095 /* SingleViewController.swift */,
+				051E7C8523EEDC6200C9E095 /* ViewController.swift */,
 				05ACEF641E0C3317009F10A7 /* Assets.xcassets */,
 				05ACEF661E0C3317009F10A7 /* Main.storyboard */,
 				05ACEF691E0C3317009F10A7 /* Info.plist */,
@@ -1415,7 +1415,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					05043C1B1D856F910033FEC6 = {
@@ -1761,6 +1761,7 @@
 				05BD996F20956C3100E468B7 /* KCSize.swift in Sources */,
 				0523C2C722E5BC7700FAB05F /* KCSpriteAction.swift in Sources */,
 				05804390209574C8009E20A9 /* KCStroke.swift in Sources */,
+				05A197412401177700AB99F4 /* KCPlaneViewController.swift in Sources */,
 				05FB742B1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift in Sources */,
 				055FBC391E6A442F00A7A640 /* KCIconViewCore.swift in Sources */,
 				05807D49212467B600614EAB /* KCImageView.swift in Sources */,
@@ -1856,8 +1857,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				051E7C8623EEDC6200C9E095 /* SingleViewController.swift in Sources */,
-				05ACEF631E0C3317009F10A7 /* MultiViewController.swift in Sources */,
+				051E7C8623EEDC6200C9E095 /* ViewController.swift in Sources */,
 				05ACEF611E0C3317009F10A7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2172,7 +2172,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
@@ -2204,7 +2204,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.KiwiControls";
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steel-wheels-project.KiwiControls";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
@@ -2402,10 +2402,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTTerminal/UTTerminal.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -2417,6 +2418,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTerminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2430,10 +2432,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTTerminal/UTTerminal.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -2444,6 +2447,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTerminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

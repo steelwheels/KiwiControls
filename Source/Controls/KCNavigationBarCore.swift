@@ -28,6 +28,12 @@ open class KCNavigationBarCore: KCView
 
 
 	public func setup(frame frm: CGRect){
+		#if os(OSX)
+		KCView.setAutolayoutMode(views: [self, mNavigationBar, mNavigationItem, leftBarButton, rightBarButton])
+		#else
+		KCView.setAutolayoutMode(views: [self, mNavigationBar])
+		#endif
+
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		self.title = ""

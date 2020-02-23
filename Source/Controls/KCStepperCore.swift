@@ -26,6 +26,7 @@ public class KCStepperCore: KCView
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
+		KCView.setAutolayoutMode(views: [self, mTextField, mStepper])
 		self.rebounds(origin: KCPoint.zero, size: frm.size)
 		#if os(iOS)
 			mTextField.text = ""
