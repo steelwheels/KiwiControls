@@ -66,9 +66,12 @@ public class KCTerminalPreferenceView: KCStackView
 		for size in sizes {
 			sizestrs.append("\(size)")
 		}
+
+		/* Allocate labeled subviews */
 		let sizebox = allocateSizeSelectorView()
 		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
 		let colbox  = allocateColorSelectorView()
+		//super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
 		super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
 
 		/* Set initial values */
@@ -129,21 +132,15 @@ public class KCTerminalPreferenceView: KCStackView
 	}
 
 	private func allocateSizeSelectorView() -> KCLabeledStackView {
-		let widthlabel = KCTextField()
-		widthlabel.text = "Width:"
-
 		let widthfield = KCTextEdit()
 		widthfield.set(format: .decimal)
 		widthfield.isEditable = true
 		widthfield.isEnabled  = true
 		mTerminalWidthField = widthfield
 
-		let widthbox = KCStackView()
-		widthbox.axis = .horizontal
-		widthbox.addArrangedSubViews(subViews: [widthlabel, widthfield])
-
-		let heightlabel = KCTextField()
-		heightlabel.text = "Height:"
+		let widthbox = KCLabeledStackView()
+		widthbox.title = "width:"
+		widthbox.contentsView.addArrangedSubView(subView: widthfield)
 
 		let heightfield = KCTextEdit()
 		heightfield.set(format: .decimal)
@@ -151,9 +148,9 @@ public class KCTerminalPreferenceView: KCStackView
 		heightfield.isEnabled  = true
 		mTerminalHeightField = heightfield
 
-		let heightbox = KCStackView()
-		heightbox.axis = .horizontal
-		heightbox.addArrangedSubViews(subViews: [heightlabel, heightfield])
+		let heightbox = KCLabeledStackView()
+		heightbox.title = "height:"
+		heightbox.contentsView.addArrangedSubView(subView: heightfield)
 
 		let top = KCLabeledStackView()
 		top.title = "Size"
@@ -165,33 +162,27 @@ public class KCTerminalPreferenceView: KCStackView
 	}
 
 	private func allocateFontSelectorView(fonts fnts: Array<String>, sizes szs: Array<String>) -> KCLabeledStackView {
-		let fontlabel = KCTextField()
-		fontlabel.text = "Name:"
-
 		let fontmenu = KCPopupMenu()
 		fontmenu.addItems(withTitles: fnts)
 		mFontNameMenu = fontmenu
 
-		let namebox = KCStackView()
-		namebox.axis = .horizontal
-		namebox.addArrangedSubViews(subViews: [fontlabel, fontmenu])
-
-		let sizelabel = KCTextField()
-		sizelabel.text = "Size:"
+		let fontbox = KCLabeledStackView()
+		fontbox.title = "Name:"
+		fontbox.contentsView.addArrangedSubView(subView: fontmenu)
 
 		let sizemenu = KCPopupMenu()
 		sizemenu.addItems(withTitles: szs)
 		mFontSizeMenu = sizemenu
 
-		let sizebox = KCStackView()
-		sizebox.axis = .horizontal
-		sizebox.addArrangedSubViews(subViews: [sizelabel, sizemenu])
+		let sizebox = KCLabeledStackView()
+		sizebox.title = "Size:"
+		sizebox.contentsView.addArrangedSubView(subView: sizemenu)
 
 		let top = KCLabeledStackView()
 		top.title = "Font"
 		let content = top.contentsView
 		content.axis = .horizontal
-		content.addArrangedSubViews(subViews: [namebox, sizebox])
+		content.addArrangedSubViews(subViews: [fontbox, sizebox])
 
 		return top
 	}
@@ -199,29 +190,37 @@ public class KCTerminalPreferenceView: KCStackView
 	private func allocateColorSelectorView() -> KCLabeledStackView {
 		/* Allocate text color selector */
 		let textsel = KCColorSelector()
-		textsel.setLabel(string: "Text:")
+		if let col = CNPreference.shared.terminalPreference.foregroundTextColor {
+			textsel.color = col
+		}
 		textsel.callbackFunc = {
 			(_ color: KCColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
 			pref.foregroundTextColor = color
 		}
-		mTextColorSelector = textsel
+		let textbox = KCLabeledStackView()
+		textbox.title = "Text:"
+		textbox.contentsView.addArrangedSubView(subView: textsel)
 
 		/* Add background color selector */
 		let backsel = KCColorSelector()
-		backsel.setLabel(string: "Background:")
+		if let col = CNPreference.shared.terminalPreference.backgroundTextColor {
+			backsel.color = col
+		}
 		backsel.callbackFunc = {
 			(_ color: KCColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
 			pref.backgroundTextColor = color
 		}
-		mBackgroundColorSelector = backsel
+		let backbox = KCLabeledStackView()
+		backbox.title = "Background:"
+		backbox.contentsView.addArrangedSubView(subView: backsel)
 
 		let top = KCLabeledStackView()
 		top.title = "Color"
 		let content = top.contentsView
 		content.axis = .horizontal
-		content.addArrangedSubViews(subViews: [textsel, backsel])
+		content.addArrangedSubViews(subViews: [textbox, backbox])
 
 		return top
 	}

@@ -10,7 +10,7 @@ import CoconutData
 import CoconutShell
 import Cocoa
 
-class ViewController: KCPlaneViewController, NSWindowDelegate
+class ViewController: KCPlaneViewController
 {
 	private var	mTerminalView:	KCTerminalView? = nil
 	private var	mShell: CNShellThread? = nil
@@ -38,10 +38,6 @@ class ViewController: KCPlaneViewController, NSWindowDelegate
 
 	override func viewDidAppear() {
 		super.viewDidAppear()
-		/* Set delegate */
-		if let win = view.window {
-			win.delegate = self
-		}
 
 		guard let termview = mTerminalView else {
 			NSLog("No terminal view")
@@ -96,14 +92,6 @@ class ViewController: KCPlaneViewController, NSWindowDelegate
 	override var representedObject: Any? {
 		didSet {
 		// Update the view, if already loaded.
-		}
-	}
-
-	public func windowDidResize(_ notification: Notification) {
-		if let win = view.window, let termview = mTerminalView {
-			let newsize = win.frame.size
-			NSLog("Resize: \(newsize.description)")
-			termview.resize(newsize)
 		}
 	}
 }

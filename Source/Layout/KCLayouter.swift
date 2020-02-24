@@ -20,11 +20,11 @@ public class KCLayouter: CNLogging
 		get { return mConsole }
 	}
 
-	public func layout(rootView view: KCRootView, contentRect content: KCRect){
+	public func layout(rootView view: KCRootView, contentSize content: KCSize){
 		log(type: .flow, string: "Get content size", file: #file, line: #line, function: #function)
 
-		log(type: .flow, string: "Minimize content size: " + content.size.description, file: #file, line: #line, function: #function)
-		let minimizer = KCSizeMinimizer(rootSize: content.size, console: mConsole)
+		log(type: .flow, string: "Minimize content size: " + content.description, file: #file, line: #line, function: #function)
+		let minimizer = KCSizeMinimizer(rootSize: content, console: mConsole)
 		view.accept(visitor: minimizer)
 		//dump(view: view)
 
@@ -49,8 +49,8 @@ public class KCLayouter: CNLogging
 
 		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
 		let winupdator = KCWindowSizeUpdator(console: mConsole)
-		winupdator.updateContentSize(rootView: view, contentRect: content)
-		//dump(view: view)
+		winupdator.updateContentSize(rootView: view, contentSize: content)
+		dump(view: view)
 
 		NSLog("Layout result size: \(view.frame.size.description)")
 	}

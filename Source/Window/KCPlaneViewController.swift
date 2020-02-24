@@ -12,7 +12,7 @@ import Cocoa
 #endif
 import CoconutData
 
-open class KCPlaneViewController: KCViewController, CNLogging
+open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 {
 	private var mRootView:			KCRootView? = nil
 	private var mConsole:			CNConsole
@@ -47,6 +47,9 @@ open class KCPlaneViewController: KCViewController, CNLogging
 			let size = UIScreen.main.bounds.size
 			#endif
 
+			/* Keep the size */
+			self.preferredContentSize = size
+
 			let root  = KCRootView(console: mConsole)
 			root.frame.size  = size
 			root.bounds.size = size
@@ -73,11 +76,11 @@ open class KCPlaneViewController: KCViewController, CNLogging
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Layout components */
-				let newsize = root.frame.size
+				let newsize = self.preferredContentSize
 				if mPrevRootSize != newsize {
 					log(type: .flow, string: "Execute Layout", file: #file, line: #line, function: #function)
 					let layouter = KCLayouter(console: mConsole)
-					layouter.layout(rootView: root, contentRect: root.frame)
+					layouter.layout(rootView: root, contentSize: newsize)
 					mPrevRootSize = newsize
 				}
 			}
@@ -102,6 +105,10 @@ open class KCPlaneViewController: KCViewController, CNLogging
 	}
 
 	private func doViewDidAppear(){
+		if let win = self.view.window {
+			win.delegate = self
+		}
+
 		if let root = mRootView {
 			if root.hasCoreView {
 				let finalizer = KCLayoutFinalizer(console: mConsole)
@@ -115,6 +122,11 @@ open class KCPlaneViewController: KCViewController, CNLogging
 				}
 			}
 		}
+	}
+
+	public func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+		NSLog("Window resize: \(frameSize.description)")
+		return frameSize
 	}
 }
 

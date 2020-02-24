@@ -24,7 +24,7 @@ public class KCLayoutFinalizer: CNLogging
 		log(type: .flow, string: "Frame size finalizer", file: #file, line: #line, function: #function)
 		let sizefinalizer = KCFrameSizeFinalizer(console: mConsole)
 		view.accept(visitor: sizefinalizer)
-		dump(view: view)
+		//dump(view: view)
 	}
 
 	private func dump(view v: KCView) {

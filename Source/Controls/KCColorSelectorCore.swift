@@ -18,13 +18,11 @@ open class KCColorSelectorCore: KCView
 	public typealias CallbackFunction = (_ color: KCColor) -> Void
 
 	private let ColorItem		= "color"
-	private let defaultSize		= KCSize(width: 240, height: 48)
+	private let defaultSize		= KCSize(width: 64, height: 40)
 
 	#if os(OSX)
-	@IBOutlet weak var mLabel: 	NSTextField!
 	@IBOutlet weak var mColorWell: 	NSColorWell!
 	#else
-	@IBOutlet weak var mLabel: 	UILabel!
 	@IBOutlet weak var mButton: 	UIButton!
 	#endif
 
@@ -32,9 +30,9 @@ open class KCColorSelectorCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void {
 		#if os(OSX)
-			KCView.setAutolayoutMode(views: [self, mLabel, mColorWell])
+			KCView.setAutolayoutMode(views: [self, mColorWell])
 		#else
-			KCView.setAutolayoutMode(views: [self, mLabel, mButton])
+			KCView.setAutolayoutMode(views: [self, mButton])
 		#endif
 		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
 		super.resize(bounds.size)
@@ -50,14 +48,6 @@ open class KCColorSelectorCore: KCView
 	deinit {
 		#if os(OSX)
 			mColorWell.removeObserver(self, forKeyPath: ColorItem)
-		#endif
-	}
-
-	public func setLabel(string str: String) {
-		#if os(OSX)
-			mLabel.stringValue = str
-		#else
-			mLabel.text = str
 		#endif
 	}
 

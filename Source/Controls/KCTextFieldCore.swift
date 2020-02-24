@@ -41,7 +41,7 @@ open class KCTextFieldCore : KCView
 			}
 		#endif
 	}
-
+	
 	public func set(format form: FormatterType){
 		#if os(OSX)
 		switch form {

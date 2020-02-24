@@ -58,6 +58,9 @@ open class KCSingleViewController: KCViewController, CNLogging
 			let size = UIScreen.main.bounds.size
 			#endif
 
+			/* Keep the size */
+			self.preferredContentSize = size
+
 			let root = allocateRootView()
 			root.frame.size  = size
 			root.bounds.size = size
@@ -86,19 +89,14 @@ open class KCSingleViewController: KCViewController, CNLogging
 	private func doViewWillLayout() {
 		if let root = mRootView {
 			if root.hasCoreView {
-				#if os(OSX)
-				let screen = root.frame
-				#else
-				let screen = UIScreen.main.bounds
-				#endif
-				let content = KCEdgeInsetsInsetRect(screen, self.safeAreaInset)
-				if content.size != mLayoutedSize {
+				let newsize = self.preferredContentSize
+				if newsize != mLayoutedSize {
 					/* Layout components */
 					log(type: .flow, string: "Execute Layout", file: #file, line: #line, function: #function)
 					let layouter = KCLayouter(console: mConsole)
-					layouter.layout(rootView: root, contentRect: content)
+					layouter.layout(rootView: root, contentSize: newsize)
 					/* This size is layouted */
-					mLayoutedSize = content.size
+					mLayoutedSize = newsize
 				} else {
 					log(type: .flow, string: "Skip layout", file: #file, line: #line, function: #function)
 				}

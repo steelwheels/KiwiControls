@@ -37,7 +37,7 @@ open class KCTextEditCore : KCView
 		#if os(OSX)
 			mTextEdit.usesSingleLineMode 	= false
 			mTextEdit.isBezeled		= true
-			mTextEdit.maximumNumberOfLines	= 4
+			mTextEdit.maximumNumberOfLines	= 1
 			mTextEdit.lineBreakMode		= .byCharWrapping
 
 			if let cell = mTextEdit.cell {

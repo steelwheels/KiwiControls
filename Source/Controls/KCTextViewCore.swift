@@ -399,7 +399,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		NSLog("sizeThatFits <- \(size.description)")
+		//NSLog("sizeThatFits <- \(size.description)")
 		return self.fittingSize
 	}
 
@@ -409,14 +409,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
 			let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumRowNumbers))
 			let reqsize   = KCSize(width: reqwidth, height: reqheight)
-			//NSLog("size: scale=\(KCScreen.shared.scale) font=\(fontsize.description) fitting=\(reqsize.description)")
-			NSLog("fittingSize -> \(reqsize.description)")
+			//NSLog("fittingSize -> \(reqsize.description)")
 			return reqsize
 		}
 	}
 
 	open override func resize(_ size: KCSize) {
-		NSLog("resize <- \(size.description)")
+		//NSLog("resize <- \(size.description)")
 		#if os(OSX)
 			mTextView.setConstrainedFrameSize(size)
 		#else
@@ -430,8 +429,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			if let color = vals[.newKey] as? KCColor {
 				switch key {
 				case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
+					NSLog("Change foreground color")
 					self.foregroundTextColor = color
 				case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
+					NSLog("Change background color")
 					self.backgroundTextColor = color
 				default:
 					break
@@ -439,7 +440,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			} else if let font = vals[.newKey] as? CNFont {
 				switch key {
 				case CNPreference.shared.terminalPreference.FontItem:
-					//NSLog("Change font: \(font.fontName)")
+					NSLog("Change font: \(font.fontName)")
 					self.font = font
 				default:
 					break

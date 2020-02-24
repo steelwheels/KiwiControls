@@ -16,10 +16,10 @@ public class KCWindowSizeUpdator
 		mConsole = cons
 	}
 
-	public func updateContentSize(rootView root: KCRootView, contentRect content: KCRect) {
-		root.rebounds(origin: content.origin, size: content.size)
+	public func updateContentSize(rootView root: KCRootView, contentSize content: KCSize) {
+		root.rebounds(origin: root.frame.origin, size: content)
 		if let core: KCView = root.getCoreView() {
-			core.rebounds(origin: content.origin, size: content.size)
+			core.rebounds(origin: core.frame.origin, size: content)
 		}
 	}
 }

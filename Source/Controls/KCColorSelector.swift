@@ -63,10 +63,6 @@ open class KCColorSelector : KCCoreView
 		}
 	}
 
-	public func setLabel(string str: String){
-		coreView.setLabel(string: str)
-	}
-
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
 		return (.High, .Low)
 	}
