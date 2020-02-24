@@ -17,11 +17,19 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 	private var mRootView:			KCRootView? = nil
 	private var mConsole:			CNConsole
 
+	#if os(OSX)
 	public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
 		mRootView	= nil
 		mConsole	= KCLogManager.shared.console
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
+	#else
+	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+		mRootView	= nil
+		mConsole	= KCLogManager.shared.console
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+	}
+	#endif
 
 	public required init?(coder: NSCoder) {
 		mRootView	= nil
@@ -64,8 +72,8 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 		doViewWillLayout()
 	}
 	#else
-	open override func viewWillLayout(_ animated: Bool){
-		super.viewWillLayout(animated)
+	open override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
 		doViewWillLayout()
 	}
 	#endif
@@ -105,9 +113,11 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 	}
 
 	private func doViewDidAppear(){
-		if let win = self.view.window {
-			win.delegate = self
-		}
+		#if os(OSX)
+			if let win = self.view.window {
+				win.delegate = self
+			}
+		#endif
 
 		if let root = mRootView {
 			if root.hasCoreView {
@@ -124,9 +134,11 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 		}
 	}
 
+	#if os(OSX)
 	public func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
 		NSLog("Window resize: \(frameSize.description)")
 		return frameSize
 	}
+	#endif
 }
 

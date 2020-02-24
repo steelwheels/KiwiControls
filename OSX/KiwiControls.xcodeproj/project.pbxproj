@@ -39,6 +39,7 @@
 		0527360022FE7615008CE1F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052735FE22FE7615008CE1F3 /* Main.storyboard */; };
 		0529608A2115B26D00D9D739 /* KCMultiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052960882115B26D00D9D739 /* KCMultiViewController.swift */; };
 		0529608B2115B26D00D9D739 /* KCSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052960892115B26D00D9D739 /* KCSingleViewController.swift */; };
+		052C0D72240363C6004D42E5 /* KCPreferenceWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C0D71240363C6004D42E5 /* KCPreferenceWindow.swift */; };
 		052CDEF820D7AEFA00CC184D /* KCTextEditCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052CDEF720D7AEFA00CC184D /* KCTextEditCore.xib */; };
 		052CDEFA20D7AFB900CC184D /* KCTextEditCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052CDEF920D7AFB900CC184D /* KCTextEditCore.swift */; };
 		05316D3C214AC8930005BB0E /* KCGroupSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05316D3B214AC8930005BB0E /* KCGroupSizeAllocator.swift */; };
@@ -411,6 +412,7 @@
 		0527360222FE7615008CE1F3 /* UTConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTConsole.entitlements; sourceTree = "<group>"; };
 		052960882115B26D00D9D739 /* KCMultiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCMultiViewController.swift; sourceTree = "<group>"; };
 		052960892115B26D00D9D739 /* KCSingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSingleViewController.swift; sourceTree = "<group>"; };
+		052C0D71240363C6004D42E5 /* KCPreferenceWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCPreferenceWindow.swift; sourceTree = "<group>"; };
 		052CDEF720D7AEFA00CC184D /* KCTextEditCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTextEditCore.xib; sourceTree = "<group>"; };
 		052CDEF920D7AFB900CC184D /* KCTextEditCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextEditCore.swift; sourceTree = "<group>"; };
 		05316D3B214AC8930005BB0E /* KCGroupSizeAllocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCGroupSizeAllocator.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 				059101E922A3729C000CBC9D /* KCScreen.swift */,
 				0542C0E6209F09BB00F2A028 /* KCLogManager.swift */,
 				0584F512210DFE6300492366 /* KCWindow.swift */,
+				052C0D71240363C6004D42E5 /* KCPreferenceWindow.swift */,
 				052960882115B26D00D9D739 /* KCMultiViewController.swift */,
 				052960892115B26D00D9D739 /* KCSingleViewController.swift */,
 				05A197402401177700AB99F4 /* KCPlaneViewController.swift */,
@@ -1742,6 +1745,7 @@
 				0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,
 				0588EA1A209E918E00C6D5E8 /* KCLogWindowController.swift in Sources */,
+				052C0D72240363C6004D42E5 /* KCPreferenceWindow.swift in Sources */,
 				0523643C23FD7DC30006C175 /* KCLabeledStackView.swift in Sources */,
 				0598D57A1DE180D50098C5B8 /* KCLayer.swift in Sources */,
 				0526C46D21C0065F00EDC4E3 /* KCDistributionDecider.swift in Sources */,
