@@ -202,7 +202,6 @@
 		05F73B7D21495FB500AD02B4 /* KCSizeMinimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F73B7C21495FB500AD02B4 /* KCSizeMinimizer.swift */; };
 		05F73B7F214964C500AD02B4 /* KCWindowSizeUpdator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F73B7E214964C500AD02B4 /* KCWindowSizeUpdator.swift */; };
 		05FB742B1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB742A1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift */; };
-		05FFB86C234002D800FAEEE1 /* KCFirstResponderMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FFB86B234002D800FAEEE1 /* KCFirstResponderMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -573,7 +572,6 @@
 		05F73B7C21495FB500AD02B4 /* KCSizeMinimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSizeMinimizer.swift; sourceTree = "<group>"; };
 		05F73B7E214964C500AD02B4 /* KCWindowSizeUpdator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCWindowSizeUpdator.swift; sourceTree = "<group>"; };
 		05FB742A1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeDrawerLayer.swift; sourceTree = "<group>"; };
-		05FFB86B234002D800FAEEE1 /* KCFirstResponderMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCFirstResponderMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -798,7 +796,6 @@
 				052960892115B26D00D9D739 /* KCSingleViewController.swift */,
 				05A197402401177700AB99F4 /* KCPlaneViewController.swift */,
 				05386D451D8570A4004B8DDF /* KCViewController.swift */,
-				05FFB86B234002D800FAEEE1 /* KCFirstResponderMaker.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -1739,7 +1736,6 @@
 				0513227923518A82005EB8EC /* KCSizeAdjuster.swift in Sources */,
 				05C93F4520F0E5220057217F /* KCViewVisitor.swift in Sources */,
 				056C0C4A2288419200C6171E /* KCLayoutFinalizer.swift in Sources */,
-				05FFB86C234002D800FAEEE1 /* KCFirstResponderMaker.swift in Sources */,
 				059CFFA61EB5E9A30005F3C0 /* KCCoreView.swift in Sources */,
 				05386D591D858603004B8DDF /* KCLayerView.swift in Sources */,
 				0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */,

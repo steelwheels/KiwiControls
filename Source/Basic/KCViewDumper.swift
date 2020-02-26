@@ -98,9 +98,9 @@ public class KCViewDumper: KCViewVisitor
 
 		let fsection = CNTextSection()
 		fsection.header = "CLI {" ; fsection.footer = "}"
-		let colnum  = view.columnNumbers
-		let linenum = view.lineNumbers
-		fsection.add(text: CNTextLine(string: "colmun-num: \(colnum), line-num: \(linenum)"))
+		let colnum = view.currentColumnNumbers
+		let rownum = view.currentRowNumbers
+		fsection.add(text: CNTextLine(string: "colmun-num: \(colnum), row-num: \(rownum)"))
 		let font    = view.font
 		fsection.add(string: "font:\(font.fontName))")
 		mSection.add(text: fsection)
@@ -148,8 +148,7 @@ public class KCViewDumper: KCViewVisitor
 			}
 		#else
 			let is1stresp  = view.isFirstResponder
-			let can1stresp = view.canBecomeFirstResponder
-			section.add(text: CNTextLine(string: "responder: is1st=\(is1stresp) can1stresp=\(can1stresp)"))
+			section.add(text: CNTextLine(string: "responder: is1st=\(is1stresp)"))
 		#endif
 
 		let (hexp, vexp) = view.expansionPriorities()

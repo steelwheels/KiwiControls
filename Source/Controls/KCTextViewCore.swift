@@ -14,6 +14,9 @@ import CoconutData
 
 open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 {
+	private let MinimumColumnNumber		= 10
+	private let MinimumRowNumber		= 10
+
 	public enum TerminalMode {
 		case log
 		case console
@@ -32,8 +35,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mTextTerminalColor:		CNColor
 	private var mBackgroundTerminalColor:	CNColor
 	private var mFont:			CNFont
-	private var mMinimumColumnNumbers:	Int = 10
-	private var mMinimumRowNumbers:		Int = 10
+	private var mCurrentColumnNumbers:	Int
+	private var mCurrentRowNumbers:		Int
 
 	public override init(frame frameRect: KCRect) {
 		mInputPipe			= Pipe()
@@ -43,6 +46,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mTextTerminalColor		= CNColor.Green
 		mBackgroundTerminalColor	= CNColor.Black
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
+		mCurrentColumnNumbers		= 80
+		mCurrentRowNumbers		= 25
 		super.init(frame: frameRect)
 	}
 
@@ -54,6 +59,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mTextTerminalColor		= CNColor.Green
 		mBackgroundTerminalColor	= CNColor.Black
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
+		mCurrentColumnNumbers		= 80
+		mCurrentRowNumbers		= 25
 		super.init(coder: coder)
 	}
 
@@ -132,10 +139,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 
 		if let num = pref.columnNumber {
-			self.mMinimumColumnNumbers = num
+			self.mCurrentColumnNumbers = num
 		}
 		if let num = pref.rowNumber {
-			self.mMinimumRowNumbers = num
+			self.mCurrentRowNumbers = num
 		}
 
 		self.foregroundTextColor       	= pref.foregroundTextColor
@@ -284,7 +291,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			self.backgroundTextColor = pref.backgroundTextColor
 		case .requestScreenSize:
 			/* Ack the size*/
-			let ackcode: CNEscapeCode = .screenSize(self.columnNumbers, self.lineNumbers)
+			let ackcode: CNEscapeCode = .screenSize(self.currentColumnNumbers, self.currentRowNumbers)
 			mInputPipe.fileHandleForWriting.write(string: ackcode.encode())
 		default:
 			let desc = code.description()
@@ -322,58 +329,69 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 	#endif
 
+	/*
 	public var columnNumbers: Int {
 		get { return Int(self.bounds.width / fontSize().width) }
 	}
 
 	public var lineNumbers: Int {
 		get { return Int(self.bounds.height / fontSize().height) }
-	}
+	}*/
 
-	public var minimumColumnNumbers: Int {
+	public var currentColumnNumbers: Int {
 		get {
-			return mMinimumColumnNumbers
+			return mCurrentColumnNumbers
 		}
 		set(newnum){
 			if let num = adjustColumnNumbers(number: newnum) {
-				mMinimumColumnNumbers = num
+				if mCurrentColumnNumbers != num {
+					NSLog("set column num: \(mCurrentColumnNumbers) -> \(num)")
+					mCurrentColumnNumbers = num
+					self.setNeedsLayout()
+				}
 			}
 		}
 	}
 
-	public var minimumRowNumbers: Int {
+	public var currentRowNumbers: Int {
 		get {
-			return mMinimumRowNumbers
+			return mCurrentRowNumbers
 		}
 		set(newnum){
 			if let num = adjustRowNumbers(number: newnum) {
-				mMinimumRowNumbers = num
+				if mCurrentRowNumbers != num {
+					NSLog("set row num: \(mCurrentRowNumbers) -> \(num)")
+					mCurrentRowNumbers    = num
+					self.setNeedsLayout()
+				}
 			}
 		}
 	}
 
 	private func adjustColumnNumbers(number num: Int) -> Int? {
-		if let screensize = KCScreen.shared.contentSize {
-			let fontsize  = fontSize()
-			let fontwidth = KCScreen.shared.pointToPixel(point: fontsize.width)
-			let maxnum    = Int(screensize.width / fontwidth)
-			//NSLog("ScreenSize = \(screensize.description), fontwidth=\(fontwidth), maxnum=\(maxnum)")
-			return min(maxnum, num)
-		} else {
-			return nil
+		if num >= MinimumColumnNumber {
+			if let screensize = KCScreen.shared.contentSize {
+				let fontsize  = fontSize()
+				let fontwidth = KCScreen.shared.pointToPixel(point: fontsize.width)
+				let maxnum    = Int(screensize.width / fontwidth)
+				NSLog("ScreenSize = \(screensize.description), fontwidth=\(fontwidth), maxnum=\(maxnum)")
+				return min(maxnum, num)
+			}
 		}
+		return nil
 	}
 
 	private func adjustRowNumbers(number num: Int) -> Int? {
-		if let screensize = KCScreen.shared.contentSize {
-			let fontsize   = fontSize()
-			let fontheight = KCScreen.shared.pointToPixel(point: fontsize.height)
-			let maxnum     = Int(screensize.height / fontheight)
-			//NSLog("ScreenSize = \(screensize.description) fontheight=\(fontheight), maxnum=\(maxnum)")
-			return min(maxnum, num)
-		} else {
-			return nil
+		if num >= MinimumRowNumber {
+			if let screensize = KCScreen.shared.contentSize {
+				let fontsize   = fontSize()
+				let fontheight = KCScreen.shared.pointToPixel(point: fontsize.height)
+				let maxnum     = Int(screensize.height / fontheight)
+				NSLog("ScreenSize = \(screensize.description) fontheight=\(fontheight), maxnum=\(maxnum)")
+				return min(maxnum, num)
+			}
 		}
+		return nil
 	}
 
 	public func fontSize() -> KCSize {
@@ -406,10 +424,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	open override var fittingSize: KCSize {
 		get {
 			let fontsize  = fontSize()
-			let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(minimumColumnNumbers))
-			let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(minimumRowNumbers))
+			let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(mCurrentColumnNumbers))
+			let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(mCurrentRowNumbers))
 			let reqsize   = KCSize(width: reqwidth, height: reqheight)
-			//NSLog("fittingSize -> \(reqsize.description)")
+			NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(reqsize.description)")
 			return reqsize
 		}
 	}
@@ -448,17 +466,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			} else if let num = vals[.newKey] as? NSNumber {
 				switch key {
 				case CNPreference.shared.terminalPreference.columnNumberItem:
-					let colnum = num.intValue
-					if self.minimumColumnNumbers != colnum {
-						NSLog("new column num = \(colnum)")
-						self.setNeedsLayout()
-					}
+					self.currentColumnNumbers = num.intValue
 				case CNPreference.shared.terminalPreference.rowNumberItem:
-					let rownum = num.intValue
-					if self.minimumRowNumbers != rownum {
-						NSLog("new row num = \(rownum)")
-						self.setNeedsLayout()
-					}
+					self.currentRowNumbers = num.intValue
 				default:
 					break
 				}

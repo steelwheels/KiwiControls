@@ -54,39 +54,10 @@ class ViewController: KCPlaneViewController
 			shell.start(arguments: [])
 		}
 
-		/*
-		let colnum   = termview.columnNumbers
-		let rownum   = termview.lineNumbers
-		NSLog("colnun=\(colnum), rownum=\(rownum)")
-		*/
-
-		/* Send screen size */
-		/*
-		NSLog("Send request")
-		let reqstr = CNEscapeCode.requestScreenSize.encode()
-		termview.outputFileHandle.write(string: reqstr)
-		*/
-
-		/* Update preference */
-/*
-		let pref = CNPreference.shared.terminalPreference
-		pref.foregroundTextColor = KCColor.green
-		pref.backgroundTextColor = KCColor.black
-*/
-		/*
-		NSLog("Accepted code")
-		let ackdata = mTerminalView.inputFileHandle.availableData
-		if let ackstr = String(data: ackdata, encoding: .utf8) {
-			switch CNEscapeCode.decode(string: ackstr) {
-			case .ok(let codes):
-				for code in codes {
-					NSLog("code: \(code.description())")
-				}
-			case .error(let err):
-				NSLog("Internal error: \(err.description())")
-			}
-		}
-		*/
+		/* Update size */
+		NSLog("Request to update the size of terminal")
+		termview.currentColumnNumbers	= 80
+		termview.currentRowNumbers	= 25
 	}
 
 	override var representedObject: Any? {

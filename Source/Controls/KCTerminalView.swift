@@ -83,22 +83,14 @@ open class KCTerminalView : KCCoreView
 		set(newsize)	{ coreView.fontPointSize = newsize	}
 	}
 
-	public var columnNumbers: Int {
-		get { return coreView.columnNumbers }
+	public var currentColumnNumbers: Int {
+		get { return coreView.currentColumnNumbers }
+		set(newnum){ coreView.currentColumnNumbers = newnum }
 	}
 
-	public var lineNumbers: Int {
-		get { return coreView.lineNumbers }
-	}
-
-	public var minimumColumnNumbers: Int {
-		get { return coreView.minimumColumnNumbers }
-		set(newnum){ coreView.minimumColumnNumbers = newnum }
-	}
-
-	public var minimumRowNumbers: Int {
-		get { return coreView.minimumRowNumbers }
-		set(newnum){ coreView.minimumRowNumbers = newnum }
+	public var currentRowNumbers: Int {
+		get { return coreView.currentRowNumbers }
+		set(newnum){ coreView.currentRowNumbers = newnum }
 	}
 
 	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {

@@ -206,10 +206,6 @@ open class KCView : KCViewBase, CNLogging
 		return KCSectSize(sizeA: self.frame.size, sizeB: size)
 	}
 
-	public func becomeFirstResponder(for window: NSWindow) -> Bool {
-		return false
-	}
-
 	open override var fittingSize: KCSize {
 		get {
 			NSLog("Must be override")
@@ -246,6 +242,17 @@ open class KCView : KCViewBase, CNLogging
 
 	private class func allocateLayout(fromView fview : KCViewBase, toView tview: KCViewBase, attribute attr: KCLayoutAttribute, length len: CGFloat) -> NSLayoutConstraint {
 		return NSLayoutConstraint(item: fview, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: tview, attribute: attr, multiplier: 1.0, constant: len) ;
+	}
+
+	/* Original: https://www.hackingwithswift.com/example-code/uikit/how-to-find-the-view-controller-responsible-for-a-view */
+	public func findViewController() -> KCViewController? {
+	    if let nextResponder = self.next as? KCViewController {
+		return nextResponder
+	    } else if let nextResponder = self.next as? KCView {
+		return nextResponder.findViewController()
+	    } else {
+		return nil
+	    }
 	}
 
 	/*

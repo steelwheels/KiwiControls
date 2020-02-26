@@ -77,16 +77,6 @@ open class KCCoreView: KCView
 		super.resize(size)
 	}
 
-	#if os(OSX)
-	public override func becomeFirstResponder(for window: NSWindow) -> Bool {
-		if hasCoreView {
-			let coreview: KCView = getCoreView()
-			return coreview.becomeFirstResponder(for: window)
-		}
-		return false
-	}
-	#endif
-
 	open func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
 		return (.Fixed, .Fixed)
 	}
