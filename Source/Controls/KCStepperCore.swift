@@ -56,19 +56,6 @@ public class KCStepperCore: KCView
 		}
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let stpsize = mStepper.sizeThatFits(size)
-		var txtsize = size
-		if txtsize.width > stpsize.width {
-			txtsize.width -= stpsize.width
-		} else {
-			log(type: .warning, string: "Too short size", file: #file, line: #line, function: #function)
-		}
-		txtsize = mTextField.sizeThatFits(txtsize)
-		let space = CNPreference.shared.windowPreference.spacing
-		return KCUnionSize(sizeA: stpsize, sizeB: txtsize, doVertical: false, spacing: space)
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if hasFixedSize {
@@ -83,7 +70,12 @@ public class KCStepperCore: KCView
 	}
 
 	open override func resize(_ size: KCSize) {
-		let stpsize = mStepper.sizeThatFits(size)
+		let stpsize: KCSize
+		#if os(OSX)
+			stpsize = mStepper.fittingSize
+		#else
+			stpsize = mStepper.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+		#endif
 		let txtwidth: CGFloat
 		if size.width > stpsize.width {
 			txtwidth = size.width - stpsize.width

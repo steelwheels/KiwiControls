@@ -38,10 +38,6 @@ public class KCButtonCore: KCView
 		}
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return mButton.sizeThatFits(size)
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if hasFixedSize {

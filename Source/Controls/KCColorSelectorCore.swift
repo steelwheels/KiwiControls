@@ -104,10 +104,6 @@ open class KCColorSelectorCore: KCView
 		return defaultSize
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return defaultSize
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if hasFixedSize {

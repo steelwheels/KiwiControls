@@ -200,28 +200,19 @@ open class KCView : KCViewBase, CNLogging
 	}
 
 	#if os(OSX)
-
-	func sizeThatFits(_ size: CGSize) -> CGSize {
-		NSLog("Override this method")
-		return KCSectSize(sizeA: self.frame.size, sizeB: size)
-	}
-
 	open override var fittingSize: KCSize {
 		get {
 			NSLog("Must be override")
 			return KCSize.zero
 		}
 	}
-
 	#else
-
 	open var fittingSize: KCSize {
 		get {
 			NSLog("Must be override")
 			return KCSize.zero
 		}
 	}
-
 	#endif
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){

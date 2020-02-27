@@ -32,10 +32,6 @@ open class KCTableViewCore : KCView
 		#endif
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return mTableView.sizeThatFits(size)
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if hasFixedSize {

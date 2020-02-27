@@ -57,10 +57,6 @@ open class KCTextFieldCore : KCView
 		#endif
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return mTextField.sizeThatFits(size)
-	}
-
 	open override var fittingSize: KCSize {
 		get {
 			#if os(OSX)

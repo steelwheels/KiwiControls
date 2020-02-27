@@ -85,10 +85,6 @@ open class KCTextEditCore : KCView
 		#endif
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return mTextEdit.sizeThatFits(size)
-	}
-
 	open override var fittingSize: KCSize {
 		get {
 			#if os(OSX)

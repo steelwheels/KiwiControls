@@ -61,19 +61,6 @@ open class KCIconViewCore : KCView
 		}
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		var fsize = size
-		/* Allocate label size */
-		let labsize = mLabelView.sizeThatFits(fsize)
-		/* Allocate image size */
-		if fsize.height > labsize.height {
-			fsize.height -= labsize.height
-		}
-		let imgsize = mLayerView.sizeThatFits(fsize)
-		let space   = CNPreference.shared.windowPreference.spacing
-		return KCUnionSize(sizeA: labsize, sizeB: imgsize, doVertical: true, spacing: space)
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if hasFixedSize {

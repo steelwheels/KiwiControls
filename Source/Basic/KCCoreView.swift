@@ -19,8 +19,29 @@ open class KCCoreView: KCView
 
 	public func setCoreView(view v: KCView) {
 		mCoreView = v
+		if self.subviews.count == 0 {
+			self.addSubview(v)
+		} else {
+			NSLog("Core view is already defined")
+		}
 	}
 
+	public var hasCoreView: Bool {
+		if let _ = mCoreView {
+			return true
+		} else {
+			return false
+		}
+	}
+
+	public func getCoreView<T>() -> T {
+		if let v = mCoreView as? T {
+			return v
+		} else {
+			fatalError("No core view")
+		}
+	}
+	
 	public override func set(console cons: CNConsole?) {
 		if let core = mCoreView {
 			core.set(console: cons)
@@ -57,11 +78,6 @@ open class KCCoreView: KCView
 				return super.intrinsicContentSize
 			}
 		}
-	}
-
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let coreview: KCView = getCoreView()
-		return coreview.sizeThatFits(size)
 	}
 
 	open override var fittingSize: KCSize {
@@ -140,22 +156,6 @@ open class KCCoreView: KCView
 					core.isHidden   = !newval
 				})
 			}
-		}
-	}
-
-	public var hasCoreView: Bool {
-		if let _ = mCoreView {
-			return true
-		} else {
-			return false
-		}
-	}
-
-	public func getCoreView<T>() -> T {
-		if let v = mCoreView as? T {
-			return v
-		} else {
-			fatalError("No core view")
 		}
 	}
 }

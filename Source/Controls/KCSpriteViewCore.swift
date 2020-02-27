@@ -83,10 +83,6 @@ open class KCSpriteViewCore: KCView
 		}
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return size
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		if hasFixedSize {
 			return super.intrinsicContentSize

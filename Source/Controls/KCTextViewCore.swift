@@ -416,11 +416,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		#endif
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		//NSLog("sizeThatFits <- \(size.description)")
-		return self.fittingSize
-	}
-
 	open override var fittingSize: KCSize {
 		get {
 			let fontsize  = fontSize()

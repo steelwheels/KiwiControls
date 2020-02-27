@@ -184,31 +184,6 @@ open class KCStackViewCore : KCView
 		}
 	}
 
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		var merged   = KCSize.zero
-		let space    = CNPreference.shared.windowPreference.spacing
-		let subviews = self.arrangedSubviews()
-		if subviews.count > 0 {
-			switch self.axis {
-			case .horizontal:
-				for subview in subviews {
-					let subsize = subview.frame.size
-					merged.width  += subsize.width
-					merged.height =  max(merged.height, subsize.height)
-				}
-				merged.width += space * CGFloat(subviews.count - 1)
-			case .vertical:
-				for subview in subviews {
-					let subsize = subview.frame.size
-					merged.width  =  max(merged.width, subsize.width)
-					merged.height += subsize.height
-				}
-				merged.height += space * CGFloat(subviews.count - 1)
-			}
-		}
-		return merged
-	}
-
 	open override var fittingSize: KCSize {
 		get {
 			var merged   = KCSize.zero
