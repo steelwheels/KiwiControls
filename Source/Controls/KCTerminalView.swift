@@ -69,13 +69,13 @@ open class KCTerminalView : KCCoreView
 	
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
-		guard let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore else {
-			NSLog("Failed to load resource")
-			return
+		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore  {
+			setCoreView(view: newview)
+			newview.setup(mode: .console, frame: self.frame)
+			allocateSubviewLayout(subView: newview)
+		} else {
+			fatalError("Failed to load resource")
 		}
-		setCoreView(view: newview)
-		newview.setup(mode: .console, frame: self.frame)
-		allocateSubviewLayout(subView: newview)
 	}
 
 	public var fontPointSize: CGFloat{

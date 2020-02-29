@@ -42,6 +42,23 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 	return CGPoint(x: p.x, y: y)
 }
 
+extension KCViewBase
+{
+#if os(OSX)
+	public func setNeedsLayout() {
+		self.needsLayout = true
+	}
+
+	public func setNeedsUpdateConstraints() {
+		self.needsUpdateConstraints = true
+	}
+
+	public func setNeedsDisplay(){
+		self.needsDisplay = true
+	}
+#endif
+}
+
 open class KCView : KCViewBase, CNLogging
 {
 	public static var noIntrinsicValue: CGFloat {
@@ -161,11 +178,7 @@ open class KCView : KCViewBase, CNLogging
 		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
 	}
 
-	#if os(OSX)
-	public func setNeedsLayout() {
-		self.needsLayout = true
-	}
-	#endif
+
 
 	/*
 	 * layout
@@ -254,11 +267,11 @@ open class KCView : KCViewBase, CNLogging
 		#if os(iOS)
 			let nib = UINib(nibName: nn, bundle: bundle)
 			let views = nib.instantiate(withOwner: nil, options: nil)
-			for i in 0..<views.count {
-				if let view = views[i] as? KCView {
+			for view in views {
+				if let v = view as? KCView {
 					rebounds(origin: self.bounds.origin, size: self.bounds.size)
-					addSubview(view) ;
-					return view ;
+					//addSubview(v) ;
+					return v ;
 				}
 			}
 		#else
@@ -266,11 +279,11 @@ open class KCView : KCViewBase, CNLogging
 				var viewsp : NSArray? = NSArray()
 				if(nib.instantiate(withOwner: nil, topLevelObjects: &viewsp)){
 					if let views = viewsp {
-						for i in 0..<views.count {
-							if let view = views[i] as? KCView {
+						for view in views {
+							if let v = view as? KCView {
 								rebounds(origin: self.bounds.origin, size: self.bounds.size)
-								addSubview(view) ;
-								return view ;
+								//addSubview(v) ;
+								return v ;
 							}
 						}
 					}
@@ -288,15 +301,6 @@ open class KCView : KCViewBase, CNLogging
 		}
 		return nil
 	}
-
-	/*
-	public func setTransparentView(){
-		#if os(iOS)
-		self.isOpaque = false
-		self.backgroundColor = UIColor.clear
-		self.clearsContextBeforeDrawing = false
-		#endif
-	}*/
 
 	/*
 	 * Visitor

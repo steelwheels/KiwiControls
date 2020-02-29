@@ -19,11 +19,7 @@ open class KCCoreView: KCView
 
 	public func setCoreView(view v: KCView) {
 		mCoreView = v
-		if self.subviews.count == 0 {
-			self.addSubview(v)
-		} else {
-			NSLog("Core view is already defined")
-		}
+		self.addSubview(v)
 	}
 
 	public var hasCoreView: Bool {

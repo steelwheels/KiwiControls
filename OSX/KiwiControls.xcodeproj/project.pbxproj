@@ -17,7 +17,7 @@
 		050A063523E8706F00663512 /* KCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A063423E8706F00663512 /* KCColor.swift */; };
 		0513227923518A82005EB8EC /* KCSizeAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513227823518A82005EB8EC /* KCSizeAdjuster.swift */; };
 		0515CD561EACB37F00B4736D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CD551EACB37F00B4736D /* AppDelegate.swift */; };
-		0515CD581EACB37F00B4736D /* UTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CD571EACB37F00B4736D /* UTViewController.swift */; };
+		0515CD581EACB37F00B4736D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CD571EACB37F00B4736D /* ViewController.swift */; };
 		0515CD5A1EACB37F00B4736D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0515CD591EACB37F00B4736D /* Assets.xcassets */; };
 		0515CD5D1EACB37F00B4736D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0515CD5B1EACB37F00B4736D /* Main.storyboard */; };
 		051847C51E0DD4F700671A2D /* KCStepperCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051847C41E0DD4F700671A2D /* KCStepperCore.xib */; };
@@ -121,6 +121,7 @@
 		057B0CD42116DAB4007885F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057B0CD32116DAB4007885F3 /* Assets.xcassets */; };
 		057B0CD72116DAB4007885F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057B0CD52116DAB4007885F3 /* Main.storyboard */; };
 		057B0CE32116F595007885F3 /* SingleView0Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CE12116F518007885F3 /* SingleView0Controller.swift */; };
+		057BA36D24097F6900AE5FBB /* KCFirstResponderDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057BA36C24097F6900AE5FBB /* KCFirstResponderDecider.swift */; };
 		057C42CE1E4390D3001BD954 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C42CD1E4390D3001BD954 /* KCSelectionLayer.swift */; };
 		057E16B01E11886100EC4DF6 /* KCButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */; };
 		057E16B21E1189D900EC4DF6 /* KCButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */; };
@@ -384,7 +385,7 @@
 		0513227823518A82005EB8EC /* KCSizeAdjuster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSizeAdjuster.swift; sourceTree = "<group>"; };
 		0515CD531EACB37F00B4736D /* UTStackView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTStackView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0515CD551EACB37F00B4736D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0515CD571EACB37F00B4736D /* UTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTViewController.swift; sourceTree = "<group>"; };
+		0515CD571EACB37F00B4736D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0515CD591EACB37F00B4736D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0515CD5C1EACB37F00B4736D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0515CD5E1EACB37F00B4736D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -494,6 +495,7 @@
 		057B0CD82116DAB4007885F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057B0CD92116DAB4007885F3 /* UTMultiViewController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiViewController.entitlements; sourceTree = "<group>"; };
 		057B0CE12116F518007885F3 /* SingleView0Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleView0Controller.swift; sourceTree = "<group>"; };
+		057BA36C24097F6900AE5FBB /* KCFirstResponderDecider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCFirstResponderDecider.swift; sourceTree = "<group>"; };
 		057C42CD1E4390D3001BD954 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
 		057E16AF1E11886100EC4DF6 /* KCButtonCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCButtonCore.xib; sourceTree = "<group>"; };
 		057E16B11E1189D900EC4DF6 /* KCButtonCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButtonCore.swift; sourceTree = "<group>"; };
@@ -713,7 +715,7 @@
 			isa = PBXGroup;
 			children = (
 				0515CD551EACB37F00B4736D /* AppDelegate.swift */,
-				0515CD571EACB37F00B4736D /* UTViewController.swift */,
+				0515CD571EACB37F00B4736D /* ViewController.swift */,
 				0515CD591EACB37F00B4736D /* Assets.xcassets */,
 				0515CD5B1EACB37F00B4736D /* Main.storyboard */,
 				0515CD5E1EACB37F00B4736D /* Info.plist */,
@@ -1150,6 +1152,7 @@
 				05F73B7E214964C500AD02B4 /* KCWindowSizeUpdator.swift */,
 				056C0C492288419200C6171E /* KCLayoutFinalizer.swift */,
 				056C0C4B228842CF00C6171E /* KCFrameSizeFinalizer.swift */,
+				057BA36C24097F6900AE5FBB /* KCFirstResponderDecider.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1704,6 +1707,7 @@
 				05804392209586D5009E20A9 /* KCEclipse.swift in Sources */,
 				05A4711E21D2877300E7C446 /* KCSpriteView.swift in Sources */,
 				0523C2C922E5BCF700FAB05F /* KCSpriteStatus.swift in Sources */,
+				057BA36D24097F6900AE5FBB /* KCFirstResponderDecider.swift in Sources */,
 				0526C46E21C0065F00EDC4E3 /* KCGroupMaker.swift in Sources */,
 				05B03B7F1E223194001656A0 /* KCTextFieldCore.swift in Sources */,
 				0549A1A620F6639F002EB823 /* KCLayouter.swift in Sources */,
@@ -1781,7 +1785,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0515CD581EACB37F00B4736D /* UTViewController.swift in Sources */,
+				0515CD581EACB37F00B4736D /* ViewController.swift in Sources */,
 				0515CD561EACB37F00B4736D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

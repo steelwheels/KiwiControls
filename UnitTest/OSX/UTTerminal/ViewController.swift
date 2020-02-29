@@ -36,6 +36,11 @@ class ViewController: KCPlaneViewController
 		}
 	}
 
+	override func viewWillLayout() {
+		NSLog("viewWillLayout")
+		super.viewWillLayout()
+	}
+
 	override func viewDidAppear() {
 		super.viewDidAppear()
 

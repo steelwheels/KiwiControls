@@ -101,8 +101,8 @@ public class KCTerminalPreferenceView: KCStackView
 		/* Set actions */
 		if let field = mTerminalWidthField {
 			field.callbackFunction = {
-				(_ str: String) -> Void in
-				if let val = Int(str) {
+				(_ value: CNValue) -> Void in
+				if let val = value.intValue {
 					let pref = CNPreference.shared.terminalPreference
 					pref.columnNumber = val
 				}
@@ -110,8 +110,8 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 		if let field = mTerminalHeightField {
 			field.callbackFunction = {
-				(_ str: String) -> Void in
-				if let val = Int(str) {
+				(_ value: CNValue) -> Void in
+				if let val = value.intValue {
 					let pref = CNPreference.shared.terminalPreference
 					pref.rowNumber = val
 				}

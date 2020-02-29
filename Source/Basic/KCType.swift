@@ -21,7 +21,7 @@
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLineBreakMode	= NSLineBreakMode
-
+	public typealias KCWindow		= UIWindow
 #else
 	public typealias KCPoint		= NSPoint
 	public typealias KCSize			= NSSize
@@ -33,6 +33,7 @@
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLineBreakMode	= NSLineBreakMode
 	public typealias KCWindowDelegate 	= NSWindowDelegate
+	public typealias KCWindow		= NSWindow
 #endif
 
 #if os(OSX)

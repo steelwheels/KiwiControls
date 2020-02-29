@@ -2,7 +2,7 @@
  * @file	KCTextEditCore.swift
  * @brief	Define KCTextEditCore class
  * @par Copyright
- *   Copyright (C) 2018 Steel Wheels Project
+ *   Copyright (C) 2018-2020 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -19,7 +19,7 @@ open class KCTextEditCore : KCView
 		case decimal
 	}
 
-	public typealias CallbackFunction = (_ str: String) -> Void
+	public typealias CallbackFunction = (_ value: CNValue) -> Void
 
 	#if os(OSX)
 	@IBOutlet weak var mTextEdit: NSTextField!
@@ -58,9 +58,9 @@ open class KCTextEditCore : KCView
 
 	#if os(iOS)
 	@objc public func textFieldDidChange(_ textField: KCTextField) {
-		let text = self.text
+		let value = CNValue(stringValue: self.text)
 		if let cbfunc = self.callbackFunction {
-			cbfunc(text)
+			cbfunc(value)
 		} else {
 			NSLog("TextEdit: \(text)")
 		}
@@ -81,6 +81,9 @@ open class KCTextEditCore : KCView
 
 			mTextEdit.usesSingleLineMode 	= true
 			mTextEdit.maximumNumberOfLines	= 1
+		}
+		if let dlg = mTextEditDelegate {
+			dlg.format = form
 		}
 		#endif
 	}
@@ -111,7 +114,6 @@ open class KCTextEditCore : KCView
 		mTextEdit.frame.size  = newsize
 		mTextEdit.bounds.size = newsize
 		#if os(OSX)
-			mTextEdit.isEditable  = false
 			mTextEdit.preferredMaxLayoutWidth = width
 		#endif
 		super.resize(newsize)
@@ -248,20 +250,44 @@ open class KCTextEditCore : KCView
 #if os(OSX)
 @objc private class KCTextEditDelegate: NSObject, NSTextFieldDelegate
 {
-	private weak var mParent: KCTextEditCore?
+	public typealias FormatterType = KCTextEditCore.FormatterType
+
+	public var	 	format: 	FormatterType?
+	private weak var 	mParent: 	KCTextEditCore?
 
 	public init(parent par: KCTextEditCore) {
-		mParent = par
+		mParent		= par
+		format		= nil
 	}
 
 	public func controlTextDidEndEditing(_ obj: Notification) {
-		if let parent = mParent {
-			let text = parent.text
-			if let cbfunc = parent.callbackFunction {
-				cbfunc(text)
-			} else {
-				NSLog("TextEdit: \(text)")
+		guard let parent = mParent else {
+			return
+		}
+
+		/* Convert text to taget value */
+		let text  = parent.text
+		let value : CNValue
+		if let form = format {
+			switch form {
+			case .general:
+				value = CNValue(stringValue: text)
+			case .decimal:
+				if let intval = Int(text) {
+					value = CNValue(intValue: intval)
+				} else {
+					NSLog("Failed to convert int: \(text)")
+					value = CNValue(intValue: 0)
+				}
 			}
+		} else {
+			value = CNValue(stringValue: text)
+		}
+		/* */
+		if let cbfunc = parent.callbackFunction {
+			cbfunc(value)
+		} else {
+			NSLog("TextEdit: \(value.description)")
 		}
 	}
 }

@@ -69,13 +69,14 @@ open class KCConsoleView : KCCoreView
 
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
-		guard let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore else {
+		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore  {
+			setCoreView(view: newview)
+			newview.setup(mode: .log, frame: self.frame)
+			allocateSubviewLayout(subView: newview)
+		} else {
 			NSLog("Failed to load resource")
 			return
 		}
-		setCoreView(view: newview)
-		newview.setup(mode: .log, frame: self.frame)
-		allocateSubviewLayout(subView: newview)
 	}
 
 	public var font: CNFont {

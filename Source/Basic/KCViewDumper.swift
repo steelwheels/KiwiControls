@@ -141,6 +141,14 @@ public class KCViewDumper: KCViewVisitor
 		}
 		section.add(text: CNTextLine(string: "do-autolayout: " + doauto))
 
+		let doautoresize: String
+		if view.autoresizesSubviews {
+			doautoresize = "Yes"
+		} else {
+			doautoresize = "No"
+		}
+		section.add(text: CNTextLine(string: "do-autoresuze: " + doautoresize))
+
 		#if os(OSX)
 			if let core: KCView = view.getCoreView() {
 				let accresp = core.acceptsFirstResponder

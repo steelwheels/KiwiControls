@@ -25,7 +25,7 @@ class ViewController: NSViewController {
 	override func viewDidAppear() {
 		NSLog("viewDidAppear")
 		dumpSize(title: "Before")
-		let colnum  = mConsoleView.columnNumbers
+		let colnum  = mConsoleView.currentColumnNumbers
 		for _ in 0..<colnum {
 			mConsoleView.consoleConnection.print(string: "*")
 		}
@@ -41,8 +41,8 @@ class ViewController: NSViewController {
 	private func dumpSize(title titlestr: String){
 		let width   = mConsoleView.bounds.width
 		let height  = mConsoleView.bounds.height
-		let linenum = mConsoleView.lineNumbers
-		let colnum  = mConsoleView.columnNumbers
+		let linenum = mConsoleView.currentRowNumbers
+		let colnum  = mConsoleView.currentColumnNumbers
 		NSLog("[\(titlestr)] \(width) x \(height) -> \(colnum) x \(linenum)\n")
 	}
 

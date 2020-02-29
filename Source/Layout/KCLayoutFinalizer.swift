@@ -20,10 +20,16 @@ public class KCLayoutFinalizer: CNLogging
 		get { return mConsole }
 	}
 
-	public func finalizeLayout(rootView view: KCRootView){
+	public func finalizeLayout(window win: KCWindow, rootView view: KCRootView){
 		log(type: .flow, string: "Frame size finalizer", file: #file, line: #line, function: #function)
 		let sizefinalizer = KCFrameSizeFinalizer(console: mConsole)
 		view.accept(visitor: sizefinalizer)
+
+		#if os(OSX)
+			let decider = KCFirstResponderDecider(window: win, console: mConsole)
+			let hasresp = decider.decideFirstResponder(rootView: view)
+			NSLog("Has responder: \(hasresp)")
+		#endif
 		//dump(view: view)
 	}
 

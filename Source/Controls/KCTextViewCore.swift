@@ -329,25 +329,17 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 	#endif
 
-	/*
-	public var columnNumbers: Int {
-		get { return Int(self.bounds.width / fontSize().width) }
-	}
-
-	public var lineNumbers: Int {
-		get { return Int(self.bounds.height / fontSize().height) }
-	}*/
-
 	public var currentColumnNumbers: Int {
 		get {
 			return mCurrentColumnNumbers
 		}
 		set(newnum){
-			if let num = adjustColumnNumbers(number: newnum) {
-				if mCurrentColumnNumbers != num {
-					NSLog("set column num: \(mCurrentColumnNumbers) -> \(num)")
-					mCurrentColumnNumbers = num
-					self.setNeedsLayout()
+			if let num = self.adjustColumnNumbers(number: newnum) {
+				//NSLog("compare column num: \(self.mCurrentColumnNumbers) <-> \(num)")
+				if self.mCurrentColumnNumbers != num {
+					NSLog("set column num: \(self.mCurrentColumnNumbers) -> \(num)")
+					self.mCurrentColumnNumbers = num
+					mTextView.setNeedsLayout()
 				}
 			}
 		}
@@ -358,11 +350,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			return mCurrentRowNumbers
 		}
 		set(newnum){
-			if let num = adjustRowNumbers(number: newnum) {
-				if mCurrentRowNumbers != num {
-					NSLog("set row num: \(mCurrentRowNumbers) -> \(num)")
-					mCurrentRowNumbers    = num
-					self.setNeedsLayout()
+			if let num = self.adjustRowNumbers(number: newnum) {
+				//NSLog("compare row num: \(self.mCurrentRowNumbers) <-> \(num)")
+				if self.mCurrentRowNumbers != num {
+					NSLog("set row num: \(self.mCurrentRowNumbers) -> \(num)")
+					self.mCurrentRowNumbers = num
+					mTextView.setNeedsLayout()
 				}
 			}
 		}
@@ -374,7 +367,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				let fontsize  = fontSize()
 				let fontwidth = KCScreen.shared.pointToPixel(point: fontsize.width)
 				let maxnum    = Int(screensize.width / fontwidth)
-				NSLog("ScreenSize = \(screensize.description), fontwidth=\(fontwidth), maxnum=\(maxnum)")
+				//NSLog("ScreenSize = \(screensize.description), fontwidth=\(fontwidth), maxnum=\(maxnum)")
 				return min(maxnum, num)
 			}
 		}
@@ -387,7 +380,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				let fontsize   = fontSize()
 				let fontheight = KCScreen.shared.pointToPixel(point: fontsize.height)
 				let maxnum     = Int(screensize.height / fontheight)
-				NSLog("ScreenSize = \(screensize.description) fontheight=\(fontheight), maxnum=\(maxnum)")
+				//NSLog("ScreenSize = \(screensize.description) fontheight=\(fontheight), maxnum=\(maxnum)")
 				return min(maxnum, num)
 			}
 		}

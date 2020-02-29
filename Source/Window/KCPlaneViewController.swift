@@ -16,17 +16,20 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 {
 	private var mRootView:			KCRootView? = nil
 	private var mConsole:			CNConsole
+	private var mTargetSize:		KCSize
 
 	#if os(OSX)
 	public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
 		mRootView	= nil
 		mConsole	= KCLogManager.shared.console
+		mTargetSize	= KCSize.zero
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 	#else
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		mRootView	= nil
 		mConsole	= KCLogManager.shared.console
+		mTargetSize	= KCSize.zero
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 	#endif
@@ -34,6 +37,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 	public required init?(coder: NSCoder) {
 		mRootView	= nil
 		mConsole	= KCLogManager.shared.console
+		mTargetSize	= KCSize.zero
 		super.init(coder: coder)
 	}
 
@@ -56,7 +60,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 			#endif
 
 			/* Keep the size */
-			self.preferredContentSize = size
+			mTargetSize = size
 
 			let root  = KCRootView(console: mConsole)
 			root.frame.size  = size
@@ -84,7 +88,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Layout components */
-				let newsize = self.preferredContentSize
+				let newsize = mTargetSize
 				if mPrevRootSize != newsize {
 					log(type: .flow, string: "Execute Layout", file: #file, line: #line, function: #function)
 					let layouter = KCLayouter(console: mConsole)
@@ -113,24 +117,14 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 	}
 
 	private func doViewDidAppear(){
-		#if os(OSX)
-			if let win = self.view.window {
-				win.delegate = self
-			}
-		#endif
-
+		guard let window = self.view.window else {
+			NSLog("No window")
+			return
+		}
 		if let root = mRootView {
 			if root.hasCoreView {
 				let finalizer = KCLayoutFinalizer(console: mConsole)
-				finalizer.finalizeLayout(rootView: root)
-				/* Make first responder
-				 * reference: https://stackoverflow.com/questions/7263482/problems-setting-firstresponder-in-cocoa-mac-osx
-				 */
-				/*
-				let maker = KCFirstResponderMaker(console: mConsole)
-				if !maker.makeFirstResponder(rootView: root) {
-					log(type: .flow, string: "No first responder", file: #file, line: #line, function: #function)
-				}*/
+				finalizer.finalizeLayout(window: window, rootView: root)
 			}
 		}
 	}
