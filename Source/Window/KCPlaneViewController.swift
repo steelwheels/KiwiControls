@@ -12,11 +12,17 @@ import Cocoa
 #endif
 import CoconutData
 
-open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
+open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewControlEventReceiver, CNLogging
 {
 	private var mRootView:			KCRootView? = nil
-	private var mConsole:			CNConsole
 	private var mTargetSize:		KCSize
+	private var mConsole:			CNConsole
+
+	public init(console cons: CNConsole){
+		mTargetSize	= KCSize.zero
+		mConsole     	= cons
+		super.init(nibName: nil, bundle: nil)
+	}
 
 	#if os(OSX)
 	public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
@@ -45,6 +51,10 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 		get { return mConsole }
 	}
 
+	open func allocateRootView() -> KCRootView {
+		return KCRootView(console: mConsole)
+	}
+
 	public var rootView: KCRootView? {
 		get { return mRootView }
 	}
@@ -62,11 +72,12 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 			/* Keep the size */
 			mTargetSize = size
 
-			let root  = KCRootView(console: mConsole)
+			let root = allocateRootView()
 			root.frame.size  = size
 			root.bounds.size = size
 			self.view = root
 			mRootView = root
+			//NSLog("Root size: \(root.frame.size)")
 		}
 	}
 
@@ -113,9 +124,6 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 	}
 	#endif
 
-	public func windowDidResize(parentViewController parent: KCMultiViewController) {
-	}
-
 	private func doViewDidAppear(){
 		guard let window = self.view.window else {
 			NSLog("No window")
@@ -129,11 +137,15 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, CNLogging
 		}
 	}
 
-	#if os(OSX)
-	public func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-		NSLog("Window resize: \(frameSize.description)")
-		return frameSize
+	public func windowDidResize(parentViewController parent: KCMultiViewController) {
 	}
-	#endif
+
+	public func updateWindowSize() {
+		if let root = mRootView {
+			let newsize = root.fittingSize
+			NSLog("updated size: \(newsize.description)")
+			mTargetSize = newsize
+		}
+	}
 }
 

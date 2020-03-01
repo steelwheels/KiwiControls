@@ -61,11 +61,6 @@ open class KCTerminalView : KCCoreView
 		get		{ return coreView.backgroundTextColor }
 		set(newcol)	{ coreView.backgroundTextColor = newcol }
 	}
-
-	public var font: CNFont {
-		get		{ return coreView.font		}
-		set(newcol)	{ coreView.font = newcol	}
-	}
 	
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
@@ -78,9 +73,13 @@ open class KCTerminalView : KCCoreView
 		}
 	}
 
-	public var fontPointSize: CGFloat{
-		get		{ return coreView.fontPointSize		}
-		set(newsize)	{ coreView.fontPointSize = newsize	}
+	public func setFontSize(pointSize size: CGFloat) {
+		coreView.setFontSize(pointSize: size)
+	}
+
+	public var font: CNFont {
+		get		{ return coreView.font	}
+		set(newfont)	{ coreView.font = newfont }
 	}
 
 	public var currentColumnNumbers: Int {

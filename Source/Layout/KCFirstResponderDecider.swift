@@ -28,13 +28,10 @@ public class KCFirstResponderDecider
 	}
 
 	private func searchFirstResponder(view base: KCViewBase) -> Bool {
-		let classname = String(describing: type(of: base))
-		NSLog("try to makeFirstResponder(\(classname))")
-
 		if isTextView(view: base) {
 			if base.acceptsFirstResponder {
-				let classname = String(describing: type(of: base))
-				NSLog("makeFirstResponder(\(classname))")
+				//let classname = String(describing: type(of: base))
+				//NSLog("makeFirstResponder(\(classname))")
 				mWindow.makeFirstResponder(base)
 				return true
 			}
@@ -52,10 +49,8 @@ public class KCFirstResponderDecider
 		let result: Bool
 		if let t = v as? NSTextField {
 			result = t.isEditable
-			NSLog("NSTextField -> \(result)")
 		} else if let t = v as? NSTextView {
 			result = t.isEditable
-			NSLog("NSTextView  -> \(result)")
 		} else {
 			result = false
 		}

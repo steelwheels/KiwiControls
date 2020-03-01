@@ -209,21 +209,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		pref.addObserver(observer: self, forKey: pref.FontItem)
 	}
 
-	public var fontPointSize: CGFloat {
-		get {
-			return font.pointSize
-		}
-		set(newsize){
-			let newfont: CNFont
-			#if os(OSX)
-				newfont = NSFontManager.shared.convert(font, toSize: newsize)
-			#else
-				newfont = font.withSize(newsize)
-			#endif
-			self.font = newfont
-		}
-	}
-
 	private var textStorage: NSTextStorage {
 		get {
 			#if os(OSX)
@@ -329,6 +314,17 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 	#endif
 
+	public func setFontSize(pointSize size: CGFloat) {
+		#if os(OSX)
+			let newfont = NSFontManager.shared.convert(font, toSize: size)
+			self.font   = newfont
+		#else
+			if let newfont = CNFont(name: self.font.fontName, size: size) {
+				self.font   = newfont
+			}
+		#endif
+	}
+
 	public var currentColumnNumbers: Int {
 		get {
 			return mCurrentColumnNumbers
@@ -339,7 +335,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				if self.mCurrentColumnNumbers != num {
 					NSLog("set column num: \(self.mCurrentColumnNumbers) -> \(num)")
 					self.mCurrentColumnNumbers = num
-					mTextView.setNeedsLayout()
+					notify(viewControlEvent: .updateWindowSize)
 				}
 			}
 		}
@@ -355,7 +351,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				if self.mCurrentRowNumbers != num {
 					NSLog("set row num: \(self.mCurrentRowNumbers) -> \(num)")
 					self.mCurrentRowNumbers = num
-					mTextView.setNeedsLayout()
+					notify(viewControlEvent: .updateWindowSize)
 				}
 			}
 		}
@@ -365,9 +361,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		if num >= MinimumColumnNumber {
 			if let screensize = KCScreen.shared.contentSize {
 				let fontsize  = fontSize()
-				let fontwidth = KCScreen.shared.pointToPixel(point: fontsize.width)
-				let maxnum    = Int(screensize.width / fontwidth)
-				//NSLog("ScreenSize = \(screensize.description), fontwidth=\(fontwidth), maxnum=\(maxnum)")
+				let maxnum    = Int(screensize.width / fontsize.width)
+				//NSLog("ScreenSize = \(screensize.description), fontwidth=\(fontsize.width), num=\(num), maxnum=\(maxnum)")
 				return min(maxnum, num)
 			}
 		}
@@ -378,9 +373,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		if num >= MinimumRowNumber {
 			if let screensize = KCScreen.shared.contentSize {
 				let fontsize   = fontSize()
-				let fontheight = KCScreen.shared.pointToPixel(point: fontsize.height)
-				let maxnum     = Int(screensize.height / fontheight)
-				//NSLog("ScreenSize = \(screensize.description) fontheight=\(fontheight), maxnum=\(maxnum)")
+				let maxnum     = Int(screensize.height / fontsize.height)
+				//NSLog("ScreenSize = \(screensize.description) fontheight=\(fontsize.height), num=\(num), maxnum=\(maxnum)")
 				return min(maxnum, num)
 			}
 		}
@@ -388,14 +382,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public func fontSize() -> KCSize {
-		let curfont = self.font
-		let size: KCSize
-		#if os(OSX)
-		size = curfont.boundingRectForFont.size
-		#else
-		size = KCSize(width: curfont.lineHeight, height: curfont.pointSize)
-		#endif
-		return size
+		let attr = [NSAttributedString.Key.font: mFont]
+		let astr = NSAttributedString(string: " ", attributes: attr)
+		return astr.size()
 	}
 
 	private func scrollToBottom(){
@@ -412,11 +401,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	open override var fittingSize: KCSize {
 		get {
 			let fontsize  = fontSize()
-			let reqwidth  = KCScreen.shared.pointToPixel(point: fontsize.width  * CGFloat(mCurrentColumnNumbers))
-			let reqheight = KCScreen.shared.pointToPixel(point: fontsize.height * CGFloat(mCurrentRowNumbers))
-			let reqsize   = KCSize(width: reqwidth, height: reqheight)
-			NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(reqsize.description)")
-			return reqsize
+			let termsize  = KCSize(width:  fontsize.width  * CGFloat(mCurrentColumnNumbers),
+					       height: fontsize.height * CGFloat(mCurrentRowNumbers))
+			//NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(termsize.description)")
+			return termsize
 		}
 	}
 
@@ -435,10 +423,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			if let color = vals[.newKey] as? KCColor {
 				switch key {
 				case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
-					NSLog("Change foreground color")
+					//NSLog("Change foreground color")
 					self.foregroundTextColor = color
 				case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
-					NSLog("Change background color")
+					//NSLog("Change background color")
 					self.backgroundTextColor = color
 				default:
 					break
@@ -446,7 +434,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			} else if let font = vals[.newKey] as? CNFont {
 				switch key {
 				case CNPreference.shared.terminalPreference.FontItem:
-					NSLog("Change font: \(font.fontName)")
+					//NSLog("Change font: \(font.fontName)")
 					self.font = font
 				default:
 					break

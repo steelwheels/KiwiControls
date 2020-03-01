@@ -79,14 +79,13 @@ open class KCConsoleView : KCCoreView
 		}
 	}
 
+	public func setFontSize(pointSize size: CGFloat) {
+		coreView.setFontSize(pointSize: size)
+	}
+	
 	public var font: CNFont {
 		get		{ return coreView.font	}
 		set(newfont)	{ coreView.font = newfont }
-	}
-
-	public var fontPointSize: CGFloat{
-		get		{ return coreView.fontPointSize		}
-		set(newsize)	{ coreView.fontPointSize = newsize	}
 	}
 
 	public func clear(){

@@ -55,14 +55,14 @@ public class KCTerminalPreference: CNPreferenceTable
 
 	public override init() {
 		super.init()
-		self.columnNumber		= 10
-		self.rowNumber			= 10
+		self.columnNumber		= 80
+		self.rowNumber			= 25
 		self.foregroundTextColor	= KCColor.black
 		self.backgroundTextColor 	= KCColor.white
-		if let newfont = CNFont(name: "Courier", size: 16.0) {
+		if let newfont = CNFont(name: "Courier", size: 14.0) {
 			self.font = newfont
 		} else {
-			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
+			self.font = CNFont.monospacedDigitSystemFont(ofSize: 14.0, weight: .regular)
 		}
 	}
 

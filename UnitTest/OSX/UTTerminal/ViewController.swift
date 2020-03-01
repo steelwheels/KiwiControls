@@ -49,10 +49,6 @@ class ViewController: KCPlaneViewController
 			return
 		}
 
-		/* Set font size */
-		NSLog("Font point size: \(termview.fontPointSize)")
-		//mTerminalView.fontPointSize = 16.0
-
 		/* Start shell */
 		if let shell = mShell {
 			NSLog("start shell")

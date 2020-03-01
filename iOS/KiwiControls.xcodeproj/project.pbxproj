@@ -163,6 +163,7 @@
 		05DDE5F721C01A8600520631 /* KCDistributionDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE5F521C01A8600520631 /* KCDistributionDecider.swift */; };
 		05DDE5F821C01A8600520631 /* KCGroupMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DDE5F621C01A8600520631 /* KCGroupMaker.swift */; };
 		05E32F4A2111FDE000EDEC31 /* KCMultiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E32F492111FDE000EDEC31 /* KCMultiViewController.swift */; };
+		05E708B1240B305100874CA4 /* KCViewControlEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E708B0240B305100874CA4 /* KCViewControlEvent.swift */; };
 		05E75DF61E13F3E100287756 /* KCCheckBoxCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */; };
 		05E75DF91E13F4C000287756 /* KCCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75DF71E13F4C000287756 /* KCCheckBox.swift */; };
 		05E75DFA1E13F4C000287756 /* KCCheckBoxCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */; };
@@ -455,6 +456,7 @@
 		05DDE5F621C01A8600520631 /* KCGroupMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupMaker.swift; sourceTree = "<group>"; };
 		05E32F492111FDE000EDEC31 /* KCMultiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCMultiViewController.swift; sourceTree = "<group>"; };
 		05E3428E2128056B00B9BA11 /* UTRootView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTRootView.entitlements; sourceTree = "<group>"; };
+		05E708B0240B305100874CA4 /* KCViewControlEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewControlEvent.swift; sourceTree = "<group>"; };
 		05E75DF51E13F3E100287756 /* KCCheckBoxCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCCheckBoxCore.xib; sourceTree = "<group>"; };
 		05E75DF71E13F4C000287756 /* KCCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBox.swift; sourceTree = "<group>"; };
 		05E75DF81E13F4C000287756 /* KCCheckBoxCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCheckBoxCore.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				05E32F492111FDE000EDEC31 /* KCMultiViewController.swift */,
 				05DB04AE2113542F0060CCA8 /* KCSingleViewController.swift */,
 				050073E624036553008ECA0F /* KCPlaneViewController.swift */,
+				05E708B0240B305100874CA4 /* KCViewControlEvent.swift */,
 				0545BA6123518886008A245E /* KCLogManager.swift */,
 				05FE54B52127C8E7009709C4 /* KCDocumentPickerViewController.swift */,
 				0584F514210DFE9800492366 /* KCWindow.swift */,
@@ -1521,6 +1524,7 @@
 				053CB5F121F609D00031711B /* KCNavigationBarCore.swift in Sources */,
 				05910BF520958D9D00535E2A /* KCTriangle.swift in Sources */,
 				05E874A623EE87080028949E /* KCColorSelectorCore.swift in Sources */,
+				05E708B1240B305100874CA4 /* KCViewControlEvent.swift in Sources */,
 				058021A21E102D9A001457C8 /* KCStepper.swift in Sources */,
 				057B892021D287FA00309B2A /* KCSpriteView.swift in Sources */,
 				059570451F7659D6007898FB /* KCType.swift in Sources */,

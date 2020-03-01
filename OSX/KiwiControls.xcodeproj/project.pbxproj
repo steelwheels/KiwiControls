@@ -115,6 +115,7 @@
 		056E4A2921F779F900ED7AD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E4A2821F779F900ED7AD2 /* ViewController.swift */; };
 		056E4A2B21F779FB00ED7AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A2A21F779FB00ED7AD2 /* Assets.xcassets */; };
 		056E4A2E21F779FB00ED7AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056E4A2C21F779FB00ED7AD2 /* Main.storyboard */; };
+		05755390240AB28A00BDA233 /* KCViewControlEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575538F240AB28A00BDA233 /* KCViewControlEvent.swift */; };
 		05774D5F214368950073FCBA /* SingleView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05774D5E214368950073FCBA /* SingleView1Controller.swift */; };
 		057B0CD02116DAB2007885F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CCF2116DAB2007885F3 /* AppDelegate.swift */; };
 		057B0CD22116DAB2007885F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B0CD12116DAB2007885F3 /* ViewController.swift */; };
@@ -486,6 +487,7 @@
 		056E4A2D21F779FB00ED7AD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		056E4A2F21F779FB00ED7AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056E4A3021F779FB00ED7AD2 /* UTNavigationBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTNavigationBar.entitlements; sourceTree = "<group>"; };
+		0575538F240AB28A00BDA233 /* KCViewControlEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCViewControlEvent.swift; sourceTree = "<group>"; };
 		05774D5E214368950073FCBA /* SingleView1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
 		057B0CCD2116DAB2007885F3 /* UTMultiViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		057B0CCF2116DAB2007885F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -798,6 +800,7 @@
 				052960892115B26D00D9D739 /* KCSingleViewController.swift */,
 				05A197402401177700AB99F4 /* KCPlaneViewController.swift */,
 				05386D451D8570A4004B8DDF /* KCViewController.swift */,
+				0575538F240AB28A00BDA233 /* KCViewControlEvent.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -1741,6 +1744,7 @@
 				05C93F4520F0E5220057217F /* KCViewVisitor.swift in Sources */,
 				056C0C4A2288419200C6171E /* KCLayoutFinalizer.swift in Sources */,
 				059CFFA61EB5E9A30005F3C0 /* KCCoreView.swift in Sources */,
+				05755390240AB28A00BDA233 /* KCViewControlEvent.swift in Sources */,
 				05386D591D858603004B8DDF /* KCLayerView.swift in Sources */,
 				0501F7A51E12D93700B68A98 /* KCCheckBox.swift in Sources */,
 				05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */,
