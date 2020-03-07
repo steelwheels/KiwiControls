@@ -15,7 +15,7 @@
 		0509B0F722A954D5001AD62B /* KCSpriteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509B0F622A954D5001AD62B /* KCSpriteOperation.swift */; };
 		0509C52F20D7C81C00905B33 /* KCTextEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509C52E20D7C81C00905B33 /* KCTextEdit.swift */; };
 		050A063523E8706F00663512 /* KCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A063423E8706F00663512 /* KCColor.swift */; };
-		0513227923518A82005EB8EC /* KCSizeAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513227823518A82005EB8EC /* KCSizeAdjuster.swift */; };
+		0513227923518A82005EB8EC /* KCExpansionAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513227823518A82005EB8EC /* KCExpansionAdjuster.swift */; };
 		0515CD561EACB37F00B4736D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CD551EACB37F00B4736D /* AppDelegate.swift */; };
 		0515CD581EACB37F00B4736D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CD571EACB37F00B4736D /* ViewController.swift */; };
 		0515CD5A1EACB37F00B4736D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0515CD591EACB37F00B4736D /* Assets.xcassets */; };
@@ -383,7 +383,7 @@
 		0509B0F622A954D5001AD62B /* KCSpriteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSpriteOperation.swift; sourceTree = "<group>"; };
 		0509C52E20D7C81C00905B33 /* KCTextEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextEdit.swift; sourceTree = "<group>"; };
 		050A063423E8706F00663512 /* KCColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCColor.swift; sourceTree = "<group>"; };
-		0513227823518A82005EB8EC /* KCSizeAdjuster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSizeAdjuster.swift; sourceTree = "<group>"; };
+		0513227823518A82005EB8EC /* KCExpansionAdjuster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCExpansionAdjuster.swift; sourceTree = "<group>"; };
 		0515CD531EACB37F00B4736D /* UTStackView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTStackView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0515CD551EACB37F00B4736D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0515CD571EACB37F00B4736D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1150,7 +1150,7 @@
 				05F73B7C21495FB500AD02B4 /* KCSizeMinimizer.swift */,
 				05316D3B214AC8930005BB0E /* KCGroupSizeAllocator.swift */,
 				0526C46C21C0065F00EDC4E3 /* KCGroupMaker.swift */,
-				0513227823518A82005EB8EC /* KCSizeAdjuster.swift */,
+				0513227823518A82005EB8EC /* KCExpansionAdjuster.swift */,
 				0526C46B21C0065F00EDC4E3 /* KCDistributionDecider.swift */,
 				05F73B7E214964C500AD02B4 /* KCWindowSizeUpdator.swift */,
 				056C0C492288419200C6171E /* KCLayoutFinalizer.swift */,
@@ -1740,7 +1740,7 @@
 				05BD996D20956C2A00E468B7 /* KCPoint.swift in Sources */,
 				0529608B2115B26D00D9D739 /* KCSingleViewController.swift in Sources */,
 				05DC3B1D23EE8CF9001C4768 /* KCColorSelector.swift in Sources */,
-				0513227923518A82005EB8EC /* KCSizeAdjuster.swift in Sources */,
+				0513227923518A82005EB8EC /* KCExpansionAdjuster.swift in Sources */,
 				05C93F4520F0E5220057217F /* KCViewVisitor.swift in Sources */,
 				056C0C4A2288419200C6171E /* KCLayoutFinalizer.swift in Sources */,
 				059CFFA61EB5E9A30005F3C0 /* KCCoreView.swift in Sources */,

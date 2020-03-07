@@ -114,6 +114,15 @@ open class KCColorSelectorCore: KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		#if os(OSX)
+			mColorWell.setExpansionPriority(holizontal: holiz, vertical: vert)
+		#else
+			mButton.setExpansionPriority(holizontal: holiz, vertical: vert)
+		#endif
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		super.resize(size)
 	}

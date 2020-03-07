@@ -13,9 +13,7 @@ public class SingleView2Controller: KCSingleViewController
 {
 	private var mConsole = CNFileConsole()
 
-	public override func loadView() {
-		super.loadView()
-
+	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		log(type: .flow, string: "loadView", file: #file, line: #line, function: #function)
 
 		let dummyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
@@ -40,13 +38,9 @@ public class SingleView2Controller: KCSingleViewController
 		box0.distribution = .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, text0, button0])
 
-		if let root = super.rootView {
-			mConsole.print(string: "\(#function): setup root view\n")
-			root.setup(childView: box0)
-		} else {
-			fatalError("No root view")
-		}
-		doDumpView(message: "After loadView")
+		root.setup(childView: box0)
+
+		return box0.fittingSize
 	}
 
 	public override func viewDidLoad() {

@@ -12,16 +12,12 @@ class ViewController:  KCPlaneViewController
 {
 	private var mStackView:		KCStackView? = nil
 
-	override func viewDidLoad()
-	{
-		super.loadView()
+	open func loadViewContext(rootView root: KCRootView) -> KCSize {
+		let stackview = KCStackView()
+		rootview.setup(childView: stackview)
+		mStackView = stackview
 
-		/* Allocate preference view */
-		if let rootview = super.rootView {
-			let stackview = KCStackView()
-			rootview.setup(childView: stackview)
-			mStackView = stackview
-		}
+		return stackview.fittingSize
 	}
 
 	override func viewWillLayout() {

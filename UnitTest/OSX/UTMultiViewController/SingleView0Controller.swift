@@ -11,9 +11,7 @@ import Foundation
 
 public class SingleView0Controller: KCSingleViewController
 {
-	public override func loadView() {
-		super.loadView()
-		
+	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
 		let label0    = KCTextField(frame: dmyrect)
@@ -35,12 +33,9 @@ public class SingleView0Controller: KCSingleViewController
 		box1.distribution	= .fill
 		box1.addArrangedSubViews(subViews: [box0, edit1])
 
-		if let root = super.rootView {
-			log(type: .flow, string: "setup root view", file: #file, line: #line, function: #function)
-			root.setup(childView: box1)
-		} else {
-			fatalError("No root view")
-		}
+		root.setup(childView: box1)
+
+		return box1.fittingSize
 	}
 
 	public override func viewDidLoad() {

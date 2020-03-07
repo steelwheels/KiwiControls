@@ -54,10 +54,6 @@ open class KCStackView : KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Low)
-	}
-
 	private func setupLayout(){
 		self.distribution = .fillProportinally
 	}

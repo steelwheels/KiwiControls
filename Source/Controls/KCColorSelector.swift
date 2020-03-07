@@ -63,10 +63,6 @@ open class KCColorSelector : KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .Low)
-	}
-
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(colorSelector: self)
 	}

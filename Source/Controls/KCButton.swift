@@ -51,10 +51,6 @@ open class KCButton: KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Fixed)
-	}
-
 	public var buttonPressedCallback: (() -> Void)? {
 		get { return coreView.buttonPressedCallback }
 		set(callback){ coreView.buttonPressedCallback = callback }

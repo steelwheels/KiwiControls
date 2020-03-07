@@ -2,7 +2,7 @@
  * @file	KCCoreView.swift
  * @brief	Define KCCoreView class
  * @par Copyright
- *   Copyright (C) 2017 Steel Wheels Project
+ *   Copyright (C) 2017-2020 Steel Wheels Project
  */
 
 import Foundation
@@ -45,27 +45,6 @@ open class KCCoreView: KCView
 		super.set(console: cons)
 	}
 
-	/* for autolayout */
-	public enum ExpansionPriority {
-		case High
-		case Low
-		case Fixed
-
-		public static func sortedPriorities() -> Array<ExpansionPriority> {
-			return [.Fixed, .Low, .High]
-		}
-
-		public func description() -> String {
-			let result: String
-			switch self {
-			case .High:	result = "high"
-			case .Low:	result = "low"
-			case .Fixed:	result = "fixed"
-			}
-			return result
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if let core = mCoreView {
@@ -81,61 +60,26 @@ open class KCCoreView: KCView
 		return coreview.fittingSize
 	}
 
+	open override func expandability() -> (KCViewBase.ExpansionPriority, KCViewBase.ExpansionPriority) {
+		if let core = mCoreView {
+			return core.expandability()
+		} else {
+			return super.expandability()
+		}
+	}
+	open override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		if let core = mCoreView {
+			core.setExpandability(holizontal: holiz, vertical: vert)
+		}
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize){
 		if hasCoreView {
 			let coreview: KCView = getCoreView()
 			coreview.resize(size)
 		}
 		super.resize(size)
-	}
-
-	open func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Fixed, .Fixed)
-	}
-
-	#if os(OSX)
-	public override func contentCompressionResistancePriority(for orientation: NSLayoutConstraint.Orientation) -> NSLayoutConstraint.Priority {
-		switch contentPriorityForCore(forVertical: orientation == .vertical) {
-		case .Fixed:	return .defaultHigh
-		case .Low:	return .defaultHigh
-		case .High:	return .defaultLow
-		}
-	}
-	#else
-	public override func contentCompressionResistancePriority(for axis: NSLayoutConstraint.Axis) -> UILayoutPriority {
-		switch contentPriorityForCore(forVertical: axis == .vertical) {
-		case .Fixed:	return .defaultHigh
-		case .Low:	return .defaultHigh
-		case .High:	return .defaultLow
-		}
-	}
-	#endif
-
-	#if os(OSX)
-	public override func contentHuggingPriority(for orientation: NSLayoutConstraint.Orientation) -> NSLayoutConstraint.Priority {
-		switch contentPriorityForCore(forVertical: orientation == .vertical) {
-		case .Fixed:	return .defaultHigh
-		case .Low:	return .defaultHigh
-		case .High:	return .defaultLow
-		}
-	}
-	#else
-	public override func contentHuggingPriority(for axis: NSLayoutConstraint.Axis) -> UILayoutPriority {
-		switch contentPriorityForCore(forVertical: axis == .vertical) {
-		case .Fixed:	return .defaultHigh
-		case .Low:	return .defaultHigh
-		case .High:	return .defaultLow
-		}
-	}
-	#endif
-
-	private func contentPriorityForCore(forVertical dovert: Bool) -> ExpansionPriority {
-		let (hpri, vpri) = self.expansionPriorities()
-		if dovert {
-			return vpri
-		} else {
-			return hpri
-		}
 	}
 
 	public var isVisible: Bool {

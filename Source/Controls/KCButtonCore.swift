@@ -48,6 +48,11 @@ public class KCButtonCore: KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		mButton.setExpansionPriority(holizontal: holiz, vertical: vert)
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		mButton.frame.size  = size
 		mButton.bounds.size = size

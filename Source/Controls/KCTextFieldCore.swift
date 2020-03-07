@@ -76,7 +76,17 @@ open class KCTextFieldCore : KCView
 			}
 		}
 	}
-	
+
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		let corevert: KCViewBase.ExpansionPriority
+		switch vert {
+		case .Fixed:		corevert = .Fixed
+		case .High, .Low:	corevert = .Low
+		}
+		mTextField.setExpansionPriority(holizontal: holiz, vertical: corevert)
+		super.setExpandability(holizontal: holiz, vertical: corevert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		let width   = min(mTextField.frame.size.width,  size.width)
 		let newsize = KCSize(width: width, height: size.height)

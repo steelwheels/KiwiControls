@@ -86,10 +86,6 @@ open class KCNavigationBar : KCCoreView
 		set(cbfunc) { coreView.rightButtonPressedCallback = cbfunc }
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .Fixed)
-	}
-
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(navigationBar: self)
 	}

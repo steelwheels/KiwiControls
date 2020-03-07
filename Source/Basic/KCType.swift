@@ -20,6 +20,7 @@
 	public typealias KCTextViewDelegate	= UITextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
+	public typealias KCLayoutPriority	= UILayoutPriority
 	public typealias KCLineBreakMode	= NSLineBreakMode
 	public typealias KCWindow		= UIWindow
 #else
@@ -31,6 +32,7 @@
 	public typealias KCTextViewDelegate	= NSTextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
+	public typealias KCLayoutPriority	= NSLayoutConstraint.Priority
 	public typealias KCLineBreakMode	= NSLineBreakMode
 	public typealias KCWindowDelegate 	= NSWindowDelegate
 	public typealias KCWindow		= NSWindow

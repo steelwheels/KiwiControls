@@ -118,7 +118,7 @@ public class KCGroupSizeAllocator: KCViewVisitor
 		for priority in KCCoreView.ExpansionPriority.sortedPriorities() {
 			for subview in views {
 				if let coreview = subview as? KCCoreView {
-					let (hexp, vexp) = coreview.expansionPriorities()
+					let (hexp, vexp) = coreview.expandability()
 					if axs == .horizontal && hexp == priority {
 						result.append(coreview)
 					} else if axs == .vertical && vexp == priority {

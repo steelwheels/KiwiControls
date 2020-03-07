@@ -171,5 +171,15 @@ public class KCCheckBoxCore: KCView
 			})
 		}
 	}
+
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		#if os(OSX)
+			mCheckBox.setExpansionPriority(holizontal: holiz, vertical: .Low)
+		#else
+			mSwitch.setExpansionPriority(holizontal: holiz, vertical: .Low)
+			mLabel.setExpansionPriority(holizontal: holiz, vertical: .Low)
+		#endif
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
 }
 

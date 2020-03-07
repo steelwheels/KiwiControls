@@ -51,10 +51,6 @@ public class KCStepper: KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Fixed)
-	}
-
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? {
 		get { return coreView.updateValueCallback }
 		set(newval){ coreView.updateValueCallback = newval }

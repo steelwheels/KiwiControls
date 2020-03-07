@@ -57,6 +57,68 @@ extension KCViewBase
 		self.needsDisplay = true
 	}
 #endif
+	/* for autolayout */
+	public enum ExpansionPriority {
+		case High
+		case Low
+		case Fixed
+
+		public static func sortedPriorities() -> Array<ExpansionPriority> {
+			return [.Fixed, .Low, .High]
+		}
+
+		public func description() -> String {
+			let result: String
+			switch self {
+			case .High:	result = "high"
+			case .Low:	result = "low"
+			case .Fixed:	result = "fixed"
+			}
+			return result
+		}
+	}
+
+	public func setExpansionPriority(holizontal holiz: ExpansionPriority, vertical vert: ExpansionPriority) {
+		let hval = expansionPriorityToValue(expansion: holiz)
+		setContentHuggingPriority(hval, for: .horizontal)
+		setContentCompressionResistancePriority(hval, for: .horizontal)
+
+		let vval = expansionPriorityToValue(expansion: vert)
+		setContentHuggingPriority(vval, for: .vertical)
+		setContentCompressionResistancePriority(vval, for: .vertical)
+	}
+
+	public func expansionPriority() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {
+		let hval = contentHuggingPriority(for: .horizontal)
+		let hpri = valueToExpansionPriority(value: hval)
+
+		let vval = contentHuggingPriority(for: .vertical)
+		let vpri = valueToExpansionPriority(value: vval)
+
+		return (hpri, vpri)
+	}
+
+	private func expansionPriorityToValue(expansion exp: ExpansionPriority) -> KCLayoutPriority {
+		let result: KCLayoutPriority
+		switch exp {
+		case .Fixed:	result = .required - 1
+		case .Low:	result = .defaultHigh
+		case .High:	result = .defaultLow
+		}
+		return result
+	}
+
+	private func valueToExpansionPriority(value val: KCLayoutPriority) -> ExpansionPriority {
+		let result: ExpansionPriority
+		if val >= KCLayoutPriority.required - 1 {
+			result = .Fixed
+		} else if val >= KCLayoutPriority.defaultHigh {
+			result = .High
+		} else {
+			result = .Low
+		}
+		return result
+	}
 }
 
 open class KCView : KCViewBase, CNLogging
@@ -178,12 +240,9 @@ open class KCView : KCViewBase, CNLogging
 		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
 	}
 
-
-
 	/*
 	 * layout
 	 */
-
 	private var mFixedSize:	KCSize?	= nil
 
 	public var hasFixedSize: Bool {
@@ -204,6 +263,14 @@ open class KCView : KCViewBase, CNLogging
 				return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
 			}
 		}
+	}
+
+	open func setExpandability(holizontal holiz: ExpansionPriority, vertical vert: ExpansionPriority) {
+		setExpansionPriority(holizontal: holiz, vertical: vert)
+	}
+
+	open func expandability() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {
+		return expansionPriority()
 	}
 
 	open func rebounds(origin org: KCPoint, size sz: KCSize){

@@ -28,19 +28,9 @@ public class KCLayouter: CNLogging
 		view.accept(visitor: minimizer)
 		dump(view: view)
 
-		/*
-		log(type: .flow, string: "Minimize group size", file: #file, line: #line, function: #function)
-		let groupfitter = KCGroupSizeAllocator(console: mConsole)
-		view.accept(visitor: groupfitter)
-		//dump(view: view)
-*/
-
-		/*
-		log(type: .flow, string: "Adjust view size", file: #file, line: #line, function: #function)
-		let adjuster = KCSizeAdjuster(console: mConsole)
+		log(type: .flow, string: "Adjust expandability ", file: #file, line: #line, function: #function)
+		let adjuster = KCExpansionAdjuster(console: mConsole)
 		view.accept(visitor: adjuster)
-		//dump(view: view)
-*/
 		
 		log(type: .flow, string: "Decide distribution", file: #file, line: #line, function: #function)
 		let distdecider = KCDistributionDecider(console: mConsole)

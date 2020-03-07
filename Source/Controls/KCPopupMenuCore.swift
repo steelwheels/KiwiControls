@@ -108,11 +108,13 @@ open class KCPopupMenuCore: KCView
 
 	open override var fittingSize: KCSize {
 		get {
+			let space = CNPreference.shared.windowPreference.spacing
 			#if os(OSX)
-				return mPopupButton.fittingSize
+				let btnsize = mPopupButton.fittingSize
 			#else
-				return mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+				let btnsize = mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 			#endif
+			return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
 		}
 	}
 
@@ -128,6 +130,15 @@ open class KCPopupMenuCore: KCView
 				#endif
 			}
 		}
+	}
+
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		#if os(OSX)
+			mPopupButton.setExpansionPriority(holizontal: holiz, vertical: vert)
+		#else
+			mPickerView.setExpansionPriority(holizontal: holiz, vertical: vert)
+		#endif
+		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 }
 

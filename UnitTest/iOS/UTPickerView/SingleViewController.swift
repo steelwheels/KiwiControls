@@ -38,11 +38,8 @@ public class SingleViewController: KCSingleViewController
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	public override func loadView() {
-		NSLog("SingleViewController: load \"\(mViewType.description)\" view (init root view) at \(#function)")
-		super.loadView()
 
+	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
 		let label0    = KCTextField(frame: dmyrect)
@@ -81,16 +78,8 @@ public class SingleViewController: KCSingleViewController
 		box1.distribution	= .fill
 		box1.addArrangedSubViews(subViews: [box0, label1])
 
-		if let root = super.rootView {
-			log(type: .Flow, string: "\(mViewType.description): setup root view", file: #file, line: #line, function: #function)
-			root.setup(childView: box1)
-
-			let winsize  = KCLayouter.windowSize(viewController: self, console: logConsole)
-			let layouter = KCLayouter(viewController: self, logConsole: logConsole, doVerbose: true)
-			layouter.layout(rootView: root, windowSize: winsize)
-		} else {
-			fatalError("\(mViewType.description): No root view")
-		}
+		root.setup(childView: box1)
+		return box1.fittingSize
 	}
 
 	private var mPicker: KCDocumentPickerViewController? = nil

@@ -73,6 +73,7 @@ public class KCTerminalPreferenceView: KCStackView
 		let colbox  = allocateColorSelectorView()
 		//super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
 		super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
+		//let _ = [sizebox]
 
 		/* Set initial values */
 		let pref = CNPreference.shared.terminalPreference

@@ -12,25 +12,16 @@ import Foundation
 
 public class SingleViewController: KCSingleViewController
 {
-	public override func loadView() {
-		super.loadView()
-
+	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		let topview = KCStackView()
 
 		//allocateContents0(topView: topview)
 		//allocateContents1(topView: topview)
 		//allocateContents2(topView: topview)
 		allocateContents3(topView: topview)
+		root.setup(childView: topview)
 
-		if let root = super.rootView {
-			log(type: .Flow, string: "setup root view", file: #file, line: #line, function: #function)
-			root.setup(childView: topview)
-			//let winsize  = KCLayouter.windowSize()
-			//let layouter = KCLayouter(viewController: self, console: cons)
-			//layouter.layout(rootView: root, windowSize: winsize)
-		} else {
-			fatalError("No root view")
-		}
+		return topview.fittingSize
 	}
 	
 	private func allocateContents0(topView topview: KCStackView){

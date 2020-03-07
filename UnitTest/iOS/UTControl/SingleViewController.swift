@@ -11,9 +11,7 @@ import UIKit
 
 class SingleViewController: KCSingleViewController
 {
-	open override func loadView() {
-		super.loadView()
-
+	open override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		let stackview = KCStackView()
 		stackview.axis = .vertical
 
@@ -22,15 +20,11 @@ class SingleViewController: KCSingleViewController
 			stackview.addArrangedSubView(subView: termpref)
 		} else {
 			let colselector = KCColorSelector()
-			colselector.setLabel(string: "Text color:")
 			stackview.addArrangedSubView(subView: colselector)
 		}
 
-		if let root = super.rootView {
-			root.setup(childView: stackview)
-		} else {
-			NSLog("Failed to set controls")
-		}
+		root.setup(childView: stackview)
+		return stackview.fittingSize
 	}
 }
 

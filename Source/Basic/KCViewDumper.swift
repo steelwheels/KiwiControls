@@ -159,7 +159,7 @@ public class KCViewDumper: KCViewVisitor
 			section.add(text: CNTextLine(string: "responder: is1st=\(is1stresp)"))
 		#endif
 
-		let (hexp, vexp) = view.expansionPriorities()
+		let (hexp, vexp) = view.expandability()
 		section.add(text: CNTextLine(string: "expansion-priority: h:\(hexp.description()) "
 								       + "v:\(vexp.description())"))
 

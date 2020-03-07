@@ -53,6 +53,11 @@ open class KCImageViewCore : KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		mImageView.setExpansionPriority(holizontal: holiz, vertical: vert)
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		//NSLog("image: resize = \(size.description)")
 		if let image = mImageView.image {

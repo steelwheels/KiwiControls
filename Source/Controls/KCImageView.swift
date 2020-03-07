@@ -51,10 +51,6 @@ open class KCImageView: KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .High)
-	}
-
 	public func set(image img: CNImage) {
 		coreView.set(image: img)
 	}

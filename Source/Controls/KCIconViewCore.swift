@@ -74,6 +74,12 @@ open class KCIconViewCore : KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		mLayerView.setExpansionPriority(holizontal: holiz, vertical: vert)
+		mLabelView.setExpansionPriority(holizontal: .Fixed, vertical: .Fixed)
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		let imgsize = mLayerView.frame.size
 		let labsize: KCSize

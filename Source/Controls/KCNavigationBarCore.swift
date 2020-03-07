@@ -183,6 +183,16 @@ open class KCNavigationBarCore: KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		#if os(OSX)
+			mNavigationBar.setExpandability(holizontal: .High, vertical: .Low)
+			mNavigationItem.setExpansionPriority(holizontal: .Fixed, vertical: .Fixed)
+			leftBarButton.setExpansionPriority(holizontal: .Low, vertical: .Fixed)
+			rightBarButton.setExpansionPriority(holizontal: .Low, vertical: .Fixed)
+		#endif
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		#if os(OSX)
 			let navsize   = mNavigationItem.frame.size

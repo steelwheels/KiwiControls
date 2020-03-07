@@ -229,6 +229,11 @@ open class KCStackViewCore : KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		mStackView.setExpansionPriority(holizontal: holiz, vertical: vert)
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		mStackView.frame.size  = size
 		mStackView.bounds.size = size

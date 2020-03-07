@@ -105,10 +105,6 @@ open class KCConsoleView : KCCoreView
 		set(newnum){ coreView.currentRowNumbers = newnum }
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Low)
-	}
-
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(consoleView: self)
 	}

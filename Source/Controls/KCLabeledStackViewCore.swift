@@ -58,6 +58,12 @@ open class KCLabeledStackViewCore : KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		mTextField.setExpansionPriority(holizontal: holiz, vertical: .Fixed)
+		mStackView.setExpandability(holizontal: holiz, vertical: vert)
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		#if os(OSX)
 		var textsize = mTextField.fittingSize

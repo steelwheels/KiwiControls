@@ -46,8 +46,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mTextTerminalColor		= CNColor.Green
 		mBackgroundTerminalColor	= CNColor.Black
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mCurrentColumnNumbers		= 80
-		mCurrentRowNumbers		= 25
+		mCurrentColumnNumbers		= 10
+		mCurrentRowNumbers		= 10
 		super.init(frame: frameRect)
 	}
 
@@ -59,8 +59,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mTextTerminalColor		= CNColor.Green
 		mBackgroundTerminalColor	= CNColor.Black
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mCurrentColumnNumbers		= 80
-		mCurrentRowNumbers		= 25
+		mCurrentColumnNumbers		= 10
+		mCurrentRowNumbers		= 10
 		super.init(coder: coder)
 	}
 
@@ -331,9 +331,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 		set(newnum){
 			if let num = self.adjustColumnNumbers(number: newnum) {
-				//NSLog("compare column num: \(self.mCurrentColumnNumbers) <-> \(num)")
 				if self.mCurrentColumnNumbers != num {
-					NSLog("set column num: \(self.mCurrentColumnNumbers) -> \(num)")
 					self.mCurrentColumnNumbers = num
 					notify(viewControlEvent: .updateWindowSize)
 				}
@@ -349,7 +347,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			if let num = self.adjustRowNumbers(number: newnum) {
 				//NSLog("compare row num: \(self.mCurrentRowNumbers) <-> \(num)")
 				if self.mCurrentRowNumbers != num {
-					NSLog("set row num: \(self.mCurrentRowNumbers) -> \(num)")
+					//NSLog("update row num: \(self.mCurrentRowNumbers) -> \(num)")
 					self.mCurrentRowNumbers = num
 					notify(viewControlEvent: .updateWindowSize)
 				}
@@ -383,8 +381,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public func fontSize() -> KCSize {
 		let attr = [NSAttributedString.Key.font: mFont]
-		let astr = NSAttributedString(string: " ", attributes: attr)
-		return astr.size()
+		let str: String = " "
+		//NSLog("font size = \(str.size(withAttributes: attr).description)")
+		return str.size(withAttributes: attr)
 	}
 
 	private func scrollToBottom(){
@@ -400,12 +399,17 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	open override var fittingSize: KCSize {
 		get {
-			let fontsize  = fontSize()
-			let termsize  = KCSize(width:  fontsize.width  * CGFloat(mCurrentColumnNumbers),
-					       height: fontsize.height * CGFloat(mCurrentRowNumbers))
+			let fontsize   = fontSize()
+			let termsize   = KCSize(width:  fontsize.width  * CGFloat(mCurrentColumnNumbers),
+						height: fontsize.height * CGFloat(mCurrentRowNumbers))
 			//NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(termsize.description)")
 			return termsize
 		}
+	}
+
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		mTextView.setExpansionPriority(holizontal: holiz, vertical: vert)
+		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 
 	open override func resize(_ size: KCSize) {
@@ -429,7 +433,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					//NSLog("Change background color")
 					self.backgroundTextColor = color
 				default:
-					break
+					NSLog("Unknown key (1): \(key)")
 				}
 			} else if let font = vals[.newKey] as? CNFont {
 				switch key {
@@ -437,16 +441,18 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					//NSLog("Change font: \(font.fontName)")
 					self.font = font
 				default:
-					break
+					NSLog("Unknown key (2): \(key)")
 				}
 			} else if let num = vals[.newKey] as? NSNumber {
 				switch key {
 				case CNPreference.shared.terminalPreference.columnNumberItem:
 					self.currentColumnNumbers = num.intValue
+					//NSLog("currentColumnNumbers = \(currentColumnNumbers)")
 				case CNPreference.shared.terminalPreference.rowNumberItem:
 					self.currentRowNumbers = num.intValue
+					//NSLog("currentRowNumbers = \(currentRowNumbers)")
 				default:
-					break
+					NSLog("Unknown key (3): \(key)")
 				}
 			}
 		}

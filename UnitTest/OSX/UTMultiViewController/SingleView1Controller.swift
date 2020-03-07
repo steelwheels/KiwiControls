@@ -13,9 +13,7 @@ public class SingleView1Controller: KCSingleViewController
 {
 	private var mTerminalView:	KCTerminalView? = nil
 
-	public override func loadView() {
-		super.loadView()
-
+	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		let terminal  = KCTerminalView()
 		terminal.outputFileHandle.write(string: "Good, morning !!")
 		mTerminalView = terminal
@@ -30,13 +28,9 @@ public class SingleView1Controller: KCSingleViewController
 		box0.distribution = .fill
 		box0.alignment = .center
 
-		if let root = super.rootView {
-			log(type: .flow, string: "setup root view", file: #file, line: #line, function: #function)
-			root.setup(childView: box0)
-		} else {
-			fatalError("No root view")
-		}
-		doDumpView(message: "After loadView")
+		root.setup(childView: box0)
+
+		return box0.fittingSize
 	}
 
 	public override func viewDidLoad() {

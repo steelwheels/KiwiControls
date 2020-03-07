@@ -57,10 +57,6 @@ open class KCSpriteView: KCCoreView
 		return coreView.setLogicalSizeWithKeepingAspectRatio(width: val)
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .High)
-	}
-
 	#if false
 	public func setColors(colors cols: KCColorPreference.ButtonColors){
 		coreView.setColors(colors: cols)

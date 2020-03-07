@@ -69,6 +69,12 @@ public class KCStepperCore: KCView
 		}
 	}
 
+	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+		mTextField.setExpansionPriority(holizontal: holiz, vertical: vert)
+		mStepper.setExpansionPriority(holizontal: .Fixed, vertical: .Fixed)
+		super.setExpandability(holizontal: holiz, vertical: vert)
+	}
+
 	open override func resize(_ size: KCSize) {
 		let stpsize: KCSize
 		#if os(OSX)

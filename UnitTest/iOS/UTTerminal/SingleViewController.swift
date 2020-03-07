@@ -13,17 +13,11 @@ class SingleViewController: KCSingleViewController
 {
 	private var mTerminalView: KCTerminalView? = nil
 
-	open override func loadView() {
-		super.loadView()
-
+	open override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		let terminalview = KCTerminalView()
 		mTerminalView = terminalview
-
-		if let root = super.rootView {
-			root.setup(childView: terminalview)
-		} else {
-			NSLog("Failed to set terminal")
-		}
+		root.setup(childView: terminalview)
+		return terminalview.fittingSize
 	}
 
 	open override func viewDidAppear(_ animated: Bool) {

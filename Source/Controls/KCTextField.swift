@@ -57,10 +57,6 @@ open class KCTextField : KCCoreView
 		coreView.set(format: form)
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .Fixed)  // The hight is fixed
-	}
-
 	public var isEnabled: Bool {
 		get { return coreView.isEnabled }
 		set(v) { coreView.isEnabled = v }

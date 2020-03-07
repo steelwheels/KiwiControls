@@ -62,23 +62,34 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	open override func loadView() {
 		super.loadView()
 		if mRootView == nil {
-			/* Get original size */
-			#if os(OSX)
-			let size = self.view.frame.size
-			#else
-			let size = UIScreen.main.bounds.size
-			#endif
+			let root = allocateRootView()
+
+			/* Allocate contents by super class */
+			let retsize = loadViewContext(rootView: root)
 
 			/* Keep the size */
-			mTargetSize = size
+			let contentsize: KCSize
+			#if os(OSX)
+				contentsize = retsize
+			#else
+				if let window = self.view.window {
+					contentsize = window.bounds.size
+				} else {
+					contentsize = UIScreen.main.bounds.size
+				}
+			#endif
+			mTargetSize = contentsize
 
-			let root = allocateRootView()
-			root.frame.size  = size
-			root.bounds.size = size
+			root.frame.size  = contentsize
+			root.bounds.size = contentsize
 			self.view = root
 			mRootView = root
-			//NSLog("Root size: \(root.frame.size)")
 		}
+	}
+
+	open func loadViewContext(rootView root: KCRootView) -> KCSize {
+		NSLog("Override this method")
+		return root.frame.size
 	}
 
 	#if os(OSX)
@@ -143,8 +154,14 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	public func updateWindowSize() {
 		if let root = mRootView {
 			let newsize = root.fittingSize
-			NSLog("updated size: \(newsize.description)")
+			NSLog("updated window size: \(newsize.description)")
 			mTargetSize = newsize
+			#if os(OSX)
+			if let win = self.view.window {
+				win.resize(size: newsize)
+			}
+			#endif
+			root.setNeedsLayout()
 		}
 	}
 }

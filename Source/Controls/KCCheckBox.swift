@@ -51,10 +51,6 @@ open class KCCheckBox: KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.Low, .Fixed)
-	}
-
 	public var checkUpdatedCallback: ((_ value: Bool) -> Void)? {
 		get { return coreView.checkUpdatedCallback }
 		set(callback){ coreView.checkUpdatedCallback = callback }

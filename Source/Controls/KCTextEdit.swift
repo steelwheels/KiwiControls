@@ -58,10 +58,6 @@ open class KCTextEdit : KCCoreView
 		coreView.set(format: form)
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .Fixed) // Vert: The number of lines are fixed
-	}
-
 	public var isEnabled: Bool {
 		get { return coreView.isEnabled }
 		set(v) { coreView.isEnabled = v }

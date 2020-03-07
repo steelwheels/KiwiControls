@@ -51,10 +51,6 @@ open class KCLabeledStackView: KCCoreView
 		}
 	}
 
-	open override func expansionPriorities() -> (ExpansionPriority /* Holiz */, ExpansionPriority /* Vert */) {
-		return (.High, .High)
-	}
-
 	public var title: String {
 		get { return coreView.title }
 		set(newstr){ coreView.title = newstr }

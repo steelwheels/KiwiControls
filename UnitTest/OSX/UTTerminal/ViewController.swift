@@ -15,25 +15,22 @@ class ViewController: KCPlaneViewController
 	private var	mTerminalView:	KCTerminalView? = nil
 	private var	mShell: CNShellThread? = nil
 
-	override func loadView() {
-		super.loadView()
+	open override func loadViewContext(rootView root: KCRootView) -> KCSize {
+		let termview = KCTerminalView()
+		root.setup(childView: termview)
+		mTerminalView = termview
 
-		/* Allocate preference view */
-		if let rootview = super.rootView {
-			let termview = KCTerminalView()
-			rootview.setup(childView: termview)
-			mTerminalView = termview
+		/* Allocate shell */
+		NSLog("Launch terminal")
+		let queue   : DispatchQueue = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
+		let instrm  : CNFileStream = .fileHandle(termview.inputFileHandle)
+		let outstrm : CNFileStream = .fileHandle(termview.outputFileHandle)
+		let errstrm : CNFileStream = .fileHandle(termview.errorFileHandle)
+		NSLog("Allocate shell")
+		let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm)
+		mShell        = shell
 
-			/* Allocate shell */
-			NSLog("Launch terminal")
-			let queue   : DispatchQueue = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
-			let instrm  : CNFileStream = .fileHandle(termview.inputFileHandle)
-			let outstrm : CNFileStream = .fileHandle(termview.outputFileHandle)
-			let errstrm : CNFileStream = .fileHandle(termview.errorFileHandle)
-			NSLog("Allocate shell")
-			let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm)
-			mShell        = shell
-		}
+		return termview.fittingSize
 	}
 
 	override func viewWillLayout() {

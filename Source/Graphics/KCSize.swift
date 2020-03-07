@@ -25,10 +25,17 @@ extension KCSize
 	}
 }
 
-public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize) -> KCSize
+public func KCMaxSize(sizeA a: KCSize, sizeB b: KCSize) -> KCSize
 {
 	let width  = max(a.width,  b.width)
 	let height = max(a.height, b.height)
+	return KCSize(width: width, height: height)
+}
+
+public func KCMinSize(sizeA a: KCSize, sizeB b: KCSize) -> KCSize
+{
+	let width  = min(a.width,  b.width)
+	let height = min(a.height, b.height)
 	return KCSize(width: width, height: height)
 }
 

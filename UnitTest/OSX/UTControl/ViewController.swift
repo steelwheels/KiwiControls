@@ -11,14 +11,12 @@ import KiwiControls
 
 class ViewController: KCPlaneViewController
 {
-	override func loadView() {
-		super.loadView()
-
-		/* Allocate preference view */
-		if let rootview = super.rootView {
-			let prefview = KCTerminalPreferenceView()
-			rootview.setup(childView: prefview)
-		}
+	open override func loadViewContext(rootView root: KCRootView) -> KCSize {
+		let prefview = KCTerminalPreferenceView()
+		root.setup(childView: prefview)
+		let prefsize = KCMaxSize(sizeA: prefview.fittingSize, sizeB: KCSize(width: 640, height: 480))
+		NSLog("PreferenceView: size=\(prefsize)")
+		return prefsize
 	}
 
 	override func viewDidLoad() {
