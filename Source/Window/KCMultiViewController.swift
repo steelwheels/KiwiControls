@@ -129,8 +129,8 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 				(_ url: URL) -> Void in
 				loader(url)
 			}))
-			let pref = CNPreference.shared.documentTypePreference
-			let utis = pref.UTIs(forExtensions: exts)
+			let manager = CNDocumentTypeManager.shared
+			let utis    = manager.UTIs(forExtensions: exts)
 			picker.openPicker(UTIs: utis)
 		#endif
 	}
@@ -154,8 +154,8 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 				(_ url: URL) -> String? in
 				return loader(url)
 			}))
-			let pref = CNPreference.shared.documentTypePreference
-			let utis = pref.UTIs(forExtensions: exts)
+			let manager = CNDocumentTypeManager.shared
+			let utis = manager.UTIs(forExtensions: exts)
 			picker.openPicker(UTIs: utis)
 		#endif
 	}

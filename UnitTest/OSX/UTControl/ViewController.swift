@@ -23,6 +23,19 @@ class ViewController: KCPlaneViewController
 		super.viewDidLoad()
 	}
 
+	public override func viewWillDisappear() {
+		if let window = self.view.window as? KCPreferenceWindow {
+			if window.didCancelled {
+				NSLog("viewWillDisappear: Cancelled")
+			} else {
+				NSLog("viewWillDisappear: Save preference")
+				CNPreference.shared.save()
+			}
+		} else {
+			NSLog("viewWillDisappear: No window")
+		}
+	}
+
 	public override func viewDidAppear() {
 		super.viewDidAppear()
 	}

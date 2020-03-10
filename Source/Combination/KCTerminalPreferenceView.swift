@@ -71,33 +71,23 @@ public class KCTerminalPreferenceView: KCStackView
 		let sizebox = allocateSizeSelectorView()
 		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
 		let colbox  = allocateColorSelectorView()
-		//super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
 		super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
-		//let _ = [sizebox]
 
 		/* Set initial values */
 		let pref = CNPreference.shared.terminalPreference
 		if let field = mTerminalWidthField {
-			if let num = pref.columnNumber {
-				field.text = "\(num)"
-			}
+			let num		= pref.columnNumber
+			field.text	= "\(num)"
 		}
 		if let field = mTerminalHeightField {
-			if let num = pref.rowNumber {
-				field.text = "\(num)"
-			}
+			let num		= pref.rowNumber
+			field.text	= "\(num)"
 		}
-		if let font = pref.font {
-			if let label = mFontLabel {
-				label.text = font.fontName
-			}
+		if let label = mFontLabel {
+			label.text = pref.font.fontName
 		}
-		if let col = pref.foregroundTextColor {
-			self.textColor = col
-		}
-		if let col = pref.backgroundTextColor {
-			self.backgroundColor = col
-		}
+		self.textColor		= pref.foregroundTextColor
+		self.backgroundColor	= pref.backgroundTextColor
 
 		/* Set actions */
 		if let field = mTerminalWidthField {
@@ -191,9 +181,7 @@ public class KCTerminalPreferenceView: KCStackView
 	private func allocateColorSelectorView() -> KCLabeledStackView {
 		/* Allocate text color selector */
 		let textsel = KCColorSelector()
-		if let col = CNPreference.shared.terminalPreference.foregroundTextColor {
-			textsel.color = col
-		}
+		textsel.color = CNPreference.shared.terminalPreference.foregroundTextColor
 		textsel.callbackFunc = {
 			(_ color: KCColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
@@ -205,9 +193,7 @@ public class KCTerminalPreferenceView: KCStackView
 
 		/* Add background color selector */
 		let backsel = KCColorSelector()
-		if let col = CNPreference.shared.terminalPreference.backgroundTextColor {
-			backsel.color = col
-		}
+		backsel.color = CNPreference.shared.terminalPreference.backgroundTextColor
 		backsel.callbackFunc = {
 			(_ color: KCColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
@@ -258,10 +244,10 @@ public class KCTerminalPreferenceView: KCStackView
 				//NSLog("Update font: \(name)@\(size)")
 
 				/* Update font */
-				let font  = CNFont(name: name, size: size)
-				let pref  = CNPreference.shared.terminalPreference
-				pref.font = font
-
+				if let font  = CNFont(name: name, size: size) {
+					let pref  = CNPreference.shared.terminalPreference
+					pref.font = font
+				}
 				mPreviousNameIndex = iname
 				mPreviousSizeIndex = isize
 			}

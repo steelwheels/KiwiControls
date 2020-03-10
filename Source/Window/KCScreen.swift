@@ -59,4 +59,17 @@ public class KCScreen
 		}
 		return result
 	}
+
+	#if os(iOS)
+	public var isPortrait: Bool {
+		get {
+			if let window = UIApplication.shared.windows.first {
+				if let scene = window.windowScene {
+					return scene.interfaceOrientation.isPortrait
+				}
+			}
+			return true
+		}
+	}
+	#endif
 }

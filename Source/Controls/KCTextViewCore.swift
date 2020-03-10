@@ -70,8 +70,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		/* Stop to observe */
 		let pref = CNPreference.shared.terminalPreference
-		pref.removeObserver(observer: self, forKey: pref.columnNumberItem)
-		pref.removeObserver(observer: self, forKey: pref.rowNumberItem)
+		pref.removeObserver(observer: self, forKey: pref.ColumnNumberItem)
+		pref.removeObserver(observer: self, forKey: pref.RowNumberItem)
 		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.FontItem)
@@ -132,19 +132,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mTextView.autoresizesSubviews = false
 
 		let pref = CNPreference.shared.terminalPreference
-		if let font = pref.font {
-			self.font = font
-		} else {
-			self.font = CNFont.monospacedDigitSystemFont(ofSize: 16.0, weight: .regular)
-		}
-
-		if let num = pref.columnNumber {
-			self.mCurrentColumnNumbers = num
-		}
-		if let num = pref.rowNumber {
-			self.mCurrentRowNumbers = num
-		}
-
+		self.font = pref.font
+		self.mCurrentColumnNumbers	= pref.columnNumber
+		self.mCurrentRowNumbers		= pref.rowNumber
 		self.foregroundTextColor       	= pref.foregroundTextColor
 		self.backgroundTextColor 	= pref.backgroundTextColor
 
@@ -152,9 +142,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			mTextView.drawsBackground	  = true
 			mTextView.isVerticallyResizable   = true
 			mTextView.isHorizontallyResizable = true
-			if let color = pref.foregroundTextColor {
-				mTextView.insertionPointColor	  = color
-			}
+			mTextView.insertionPointColor	  = pref.foregroundTextColor
 		#else
 			mTextView.isScrollEnabled = true
 		#endif
@@ -202,8 +190,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 
 		/* Start observe */
-		pref.addObserver(observer: self, forKey: pref.columnNumberItem)
-		pref.addObserver(observer: self, forKey: pref.rowNumberItem)
+		pref.addObserver(observer: self, forKey: pref.ColumnNumberItem)
+		pref.addObserver(observer: self, forKey: pref.RowNumberItem)
 		pref.addObserver(observer: self, forKey: pref.ForegroundTextColorItem)
 		pref.addObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.addObserver(observer: self, forKey: pref.FontItem)
@@ -445,10 +433,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				}
 			} else if let num = vals[.newKey] as? NSNumber {
 				switch key {
-				case CNPreference.shared.terminalPreference.columnNumberItem:
+				case CNPreference.shared.terminalPreference.ColumnNumberItem:
 					self.currentColumnNumbers = num.intValue
 					//NSLog("currentColumnNumbers = \(currentColumnNumbers)")
-				case CNPreference.shared.terminalPreference.rowNumberItem:
+				case CNPreference.shared.terminalPreference.RowNumberItem:
 					self.currentRowNumbers = num.intValue
 					//NSLog("currentRowNumbers = \(currentRowNumbers)")
 				default:

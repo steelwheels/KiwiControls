@@ -12,14 +12,26 @@ import AppKit
 #else
 import UIKit
 #endif
+import CoconutData
 import Foundation
 
 #if os(OSX)
 
-public class KCPreferenceWindow: NSWindow
+public class KCPreferenceWindow: NSWindow, NSWindowDelegate
 {
+	private var mDidCancelled = false
+
+	public override init(contentRect rect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
+		mDidCancelled = false
+		super.init(contentRect: rect, styleMask: style, backing: backingStoreType, defer: flag)
+		self.delegate = self
+	}
+
+	public var didCancelled: Bool { get { return mDidCancelled }}
+
 	/* Close the window when the ESC is pressed */
 	public override func cancelOperation(_ sender: Any?) {
+		mDidCancelled = true
 		self.close()
 	}
 }
