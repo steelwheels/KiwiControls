@@ -16,12 +16,26 @@ import Foundation
 extension CNPreferenceTable
 {
 	public func set(colorValue val: KCColor, forKey key: String) {
-		_set(anyValue: val, forKey: key)
+		set(anyValue: val, forKey: key)
 	}
 
 	public func colorValue(forKey key: String) -> KCColor? {
-		if let val = _anyValue(forKey: key) as? KCColor {
+		if let val = anyValue(forKey: key) as? KCColor {
 			return val
+		} else {
+			return nil
+		}
+	}
+
+	public func storeColorValue(colorValue val: KCColor, forKey key: String) {
+		let pathstr = path(keyString: key)
+		UserDefaults.standard.set(color: val, forKey: pathstr)
+	}
+
+	public func loadColorValue(forKey key: String) -> KCColor? {
+		let pathstr = path(keyString: key)
+		if let color = UserDefaults.standard.color(forKey: pathstr) {
+			return color
 		} else {
 			return nil
 		}
@@ -37,12 +51,13 @@ public class KCWindowPreference: CNPreferenceTable
 	public var mainWindowSize		: KCSize?
 	#endif
 
-	public override init(){
+	public init(){
 		spacing			= 8.0
 		backgroundColor		= KCColor.white
 		#if os(OSX)
 			mainWindowSize	= nil
 		#endif
+		super.init(sectionName: "WindowPreference")
 	}
 }
 
@@ -54,19 +69,42 @@ public class KCTerminalPreference: CNPreferenceTable
 	public let BackgroundTextColorItem	= "backgroundTextColor"
 	public let FontItem			= "font"
 
-	public override init() {
-		super.init()
-		super.set(intValue: 80, forKey: ColumnNumberItem)
-		super.set(intValue: 25, forKey: RowNumberItem)
-		super.set(colorValue: KCColor.black, forKey: ForegroundTextColorItem)
-		super.set(colorValue: KCColor.white, forKey: BackgroundTextColorItem)
-		let font: CNFont
-		if let newfont = CNFont(name: "Courier", size: 14.0) {
-			font = newfont
+	public init() {
+		super.init(sectionName: "TerminalPreference")
+
+		if let num = super.loadIntValue(forKey: ColumnNumberItem) {
+			super.set(intValue: num, forKey: ColumnNumberItem)
 		} else {
-			font = CNFont.monospacedDigitSystemFont(ofSize: 14.0, weight: .regular)
+			self.columnNumber = 80
 		}
-		super.set(fontValue: font, forKey: FontItem)
+
+		if let num = super.loadIntValue(forKey: RowNumberItem) {
+			super.set(intValue: num, forKey: RowNumberItem)
+		} else {
+			self.rowNumber = 25
+		}
+
+		if let col = super.loadColorValue(forKey: ForegroundTextColorItem) {
+			super.set(colorValue: col, forKey: ForegroundTextColorItem)
+		} else {
+			self.foregroundTextColor = KCColor.black
+		}
+
+		if let col = super.loadColorValue(forKey: BackgroundTextColorItem) {
+			super.set(colorValue: col, forKey: BackgroundTextColorItem)
+		} else {
+			self.backgroundTextColor = KCColor.white
+		}
+
+		if let newfont = super.loadFontValue(forKey: FontItem) {
+			super.set(fontValue: newfont, forKey: FontItem)
+		} else {
+			if let newfont = CNFont(name: "Courier", size: 14.0) {
+				font = newfont
+			} else {
+				font = CNFont.monospacedDigitSystemFont(ofSize: 14.0, weight: .regular)
+			}
+		}
 	}
 
 	public var columnNumber: Int {
@@ -76,7 +114,10 @@ public class KCTerminalPreference: CNPreferenceTable
 			}
 			fatalError("Can not happen")
 		}
-		set(newval) { super.set(intValue: newval, forKey: ColumnNumberItem) }
+		set(newval) {
+			super.set(intValue: newval, forKey: ColumnNumberItem)
+			super.storeIntValue(intValue: newval, forKey: ColumnNumberItem)
+		}
 	}
 
 	public var rowNumber: Int {
@@ -86,7 +127,10 @@ public class KCTerminalPreference: CNPreferenceTable
 			}
 			fatalError("Can not happen")
 		}
-		set(newval) { super.set(intValue: newval, forKey: RowNumberItem) }
+		set(newval) {
+			super.set(intValue: newval, forKey: RowNumberItem)
+			super.storeIntValue(intValue: newval, forKey: RowNumberItem)
+		}
 	}
 
 	public var foregroundTextColor: KCColor {
@@ -96,7 +140,10 @@ public class KCTerminalPreference: CNPreferenceTable
 			}
 			fatalError("Can not happen")
 		}
-		set(newcol) { super.set(colorValue: newcol, forKey: ForegroundTextColorItem) }
+		set(newcol) {
+			super.set(colorValue: newcol, forKey: ForegroundTextColorItem)
+			super.storeColorValue(colorValue: newcol, forKey: ForegroundTextColorItem)
+		}
 	}
 
 	public var backgroundTextColor: KCColor {
@@ -106,7 +153,10 @@ public class KCTerminalPreference: CNPreferenceTable
 			}
 			fatalError("Can not happen")
 		}
-		set(newcol) { super.set(colorValue: newcol, forKey: BackgroundTextColorItem) }
+		set(newcol) {
+			super.set(colorValue: newcol, forKey: BackgroundTextColorItem)
+			super.storeColorValue(colorValue: newcol, forKey: BackgroundTextColorItem)
+		}
 	}
 
 	public var font: CNFont {
@@ -116,7 +166,10 @@ public class KCTerminalPreference: CNPreferenceTable
 			}
 			fatalError("Can not happen")
 		}
-		set(newfont) { super.set(fontValue: newfont, forKey: FontItem) }
+		set(newfont) {
+			super.set(fontValue: newfont, forKey: FontItem)
+			super.storeFontValue(fontValue: newfont, forKey: FontItem)
+		}
 	}
 }
 

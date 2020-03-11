@@ -23,9 +23,9 @@ extension UserDefaults
 		return nil
 	}
 
-	public func set(_ color: KCColor, forKey key: String) {
+	public func set(color colobj: KCColor, forKey key: String) {
 		do {
-			let data = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+			let data = try NSKeyedArchiver.archivedData(withRootObject: colobj, requiringSecureCoding: false)
 			set(data, forKey: key)
 		}
 		catch let err as NSError {
