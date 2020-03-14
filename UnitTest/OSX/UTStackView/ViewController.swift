@@ -12,11 +12,10 @@ class ViewController:  KCPlaneViewController
 {
 	private var mStackView:		KCStackView? = nil
 
-	open func loadViewContext(rootView root: KCRootView) -> KCSize {
+	open override func loadViewContext(rootView root: KCRootView) -> KCSize {
 		let stackview = KCStackView()
-		rootview.setup(childView: stackview)
+		root.setup(childView: stackview)
 		mStackView = stackview
-
 		return stackview.fittingSize
 	}
 

@@ -28,13 +28,10 @@ extension NSWindow
 		}
 	}
 
-	public func resize(size sz: KCSize){
-		let origin   = self.frame.origin
-		let newframe = KCRect(origin: origin, size: sz)
-		self.setFrame(newframe, display: false)
-
+	public func resize(size newsize: KCSize){
+		self.setContentSize(newsize)
 		if let root = self.contentView as? KCView {
-			root.resize(sz)
+			root.resize(newsize)
 		}
 	}
 

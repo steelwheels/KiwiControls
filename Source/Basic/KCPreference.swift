@@ -115,8 +115,10 @@ public class KCTerminalPreference: CNPreferenceTable
 			fatalError("Can not happen")
 		}
 		set(newval) {
+			if newval != super.intValue(forKey: ColumnNumberItem) {
+				super.storeIntValue(intValue: newval, forKey: ColumnNumberItem)
+			}
 			super.set(intValue: newval, forKey: ColumnNumberItem)
-			super.storeIntValue(intValue: newval, forKey: ColumnNumberItem)
 		}
 	}
 
@@ -128,8 +130,10 @@ public class KCTerminalPreference: CNPreferenceTable
 			fatalError("Can not happen")
 		}
 		set(newval) {
+			if newval != super.intValue(forKey: RowNumberItem) {
+				super.storeIntValue(intValue: newval, forKey: RowNumberItem)
+			}
 			super.set(intValue: newval, forKey: RowNumberItem)
-			super.storeIntValue(intValue: newval, forKey: RowNumberItem)
 		}
 	}
 
