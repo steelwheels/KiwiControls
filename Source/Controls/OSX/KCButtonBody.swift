@@ -5,6 +5,7 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import CoconutData
 import Cocoa
 
 /**
@@ -45,7 +46,7 @@ public class KCButtonBody: NSButton
 
 	override public func updateLayer() {
 		if let cols = mColors {
-			let backcolor	: KCColor
+			let backcolor	: CNColor
 			if self.cell!.isHighlighted {
 				backcolor = cols.background.highlight
 			} else {

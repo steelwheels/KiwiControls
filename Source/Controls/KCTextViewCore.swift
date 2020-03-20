@@ -2,7 +2,7 @@
  * @file	KCTextViewCore.swift
  * @brief Define KCTextViewCore class
  * @par Copyright
- *   Copyright (C) 2017, 2018, 2019 Steel Wheels Project
+ *   Copyright (C) 2017-2022 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -32,8 +32,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mOutputPipe:		Pipe
 	private var mErrorPipe:			Pipe
 	private var mCurrentIndex:		Int
-	private var mTextTerminalColor:		CNColor
-	private var mBackgroundTerminalColor:	CNColor
+	private var mForegroundTextColor:	CNColor?
+	private var mBackgroundTextColor:	CNColor?
 	private var mFont:			CNFont
 	private var mCurrentColumnNumbers:	Int
 	private var mCurrentRowNumbers:		Int
@@ -43,8 +43,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
 		mCurrentIndex			= 0
-		mTextTerminalColor		= CNColor.Green
-		mBackgroundTerminalColor	= CNColor.Black
+		mForegroundTextColor		= nil
+		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
 		mCurrentColumnNumbers		= 10
 		mCurrentRowNumbers		= 10
@@ -56,8 +56,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
 		mCurrentIndex			= 0
-		mTextTerminalColor		= CNColor.Green
-		mBackgroundTerminalColor	= CNColor.Black
+		mForegroundTextColor		= nil
+		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
 		mCurrentColumnNumbers		= 10
 		mCurrentRowNumbers		= 10
@@ -89,30 +89,31 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		get { return mErrorPipe.fileHandleForWriting }
 	}
 
-	public var foregroundTextColor: KCColor? {
-		get { return mTextView.textColor }
-		set(newcol)	{
-			if let col = newcol {
-				mTextView.textColor = col
-				#if os(OSX)
-					mTextView.insertionPointColor = col
-				#endif
-				mTextTerminalColor = col.toTerminalColor()
+	public var foregroundTextColor: CNColor {
+		get {
+			if let col = mForegroundTextColor {
+				return col
+			} else {
+				let pref = CNPreference.shared.terminalPreference
+				return pref.foregroundTextColor
 			}
+		}
+		set(newcol) {
+			mForegroundTextColor = newcol
 		}
 	}
 
-	public var backgroundTextColor: KCColor? {
-		get 		{ return mTextView.backgroundColor   }
-		set(newcol)	{
-			if let col = newcol {
-				mTextView.backgroundColor = col
-				let newcol = col.toTerminalColor()
-				if !mBackgroundTerminalColor.isEqual(to: newcol) {
-					textStorage.changeOverallBackgroundColor(targetColor: mBackgroundTerminalColor.toObject(), newColor: newcol.toObject())
-					mBackgroundTerminalColor = newcol
-				}
+	public var backgroundTextColor: CNColor {
+		get 		{
+			if let col = mBackgroundTextColor {
+				return col
+			} else {
+				let pref = CNPreference.shared.terminalPreference
+				return pref.backgroundTextColor
 			}
+		}
+		set(newcol) {
+			mBackgroundTextColor = newcol
 		}
 	}
 
@@ -135,8 +136,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		self.font = pref.font
 		self.mCurrentColumnNumbers	= pref.columnNumber
 		self.mCurrentRowNumbers		= pref.rowNumber
-		self.foregroundTextColor       	= pref.foregroundTextColor
-		self.backgroundTextColor 	= pref.backgroundTextColor
+
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
@@ -166,6 +166,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let storage = mTextView.textStorage
 		#endif
 		storage.delegate = self
+
+		/* Set colors */
+		mTextView.textColor = pref.foregroundTextColor
+		#if os(OSX)
+			mTextView.insertionPointColor = pref.foregroundTextColor
+		#endif
+		mTextView.backgroundColor = pref.backgroundTextColor
 
 		mOutputPipe.fileHandleForReading.readabilityHandler = {
 			[weak self]  (_ hdl: FileHandle) -> Void in
@@ -210,6 +217,15 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 	}
 
+	private func updateDefaultForegroundColor(color col: CNColor) {
+		textStorage.changeOverallTextColor(targetColor: foregroundTextColor, newColor: col)
+	}
+
+	private func updateDefaultBackgroundColor(color col: CNColor) {
+		textStorage.changeOverallBackgroundColor(targetColor: backgroundTextColor, newColor: col)
+		mTextView.backgroundColor = col
+	}
+
 	private func receiveInputStream(inputData data: Data) {
 		if let str = String(data: data, encoding: .utf8) {
 			switch CNEscapeCode.decode(string: str) {
@@ -218,8 +234,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				storage.beginEditing()
 				for code in codes {
 					if let newidx = storage.execute(index:		 mCurrentIndex,
-									foregroundColor: mTextTerminalColor,
-									backgroundColor: mBackgroundTerminalColor,
+									foregroundColor: foregroundTextColor,
+									backgroundColor: mBackgroundTextColor,
 									font: 		 mFont,
 									escapeCode: code) {
 						mCurrentIndex = newidx
@@ -254,14 +270,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		case .scrollDown:
 			break
 		case .foregroundColor(let fcol):
-			self.foregroundTextColor = fcol.toObject()
+			self.foregroundTextColor = fcol
 		case .backgroundColor(let bcol):
-			self.backgroundTextColor = bcol.toObject()
+			self.backgroundTextColor = bcol
 		case .setNormalAttributes:
 			/* Reset to default */
-			let pref = CNPreference.shared.terminalPreference
-			self.foregroundTextColor = pref.foregroundTextColor
-			self.backgroundTextColor = pref.backgroundTextColor
+			mForegroundTextColor = nil
+			mBackgroundTextColor = nil
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.currentColumnNumbers, self.currentRowNumbers)
@@ -412,13 +427,15 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if let key = keyPath, let vals = change {
-			if let color = vals[.newKey] as? KCColor {
+			if let color = vals[.newKey] as? CNColor {
 				switch key {
 				case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
 					//NSLog("Change foreground color")
+					updateDefaultForegroundColor(color: color)
 					self.foregroundTextColor = color
 				case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
 					//NSLog("Change background color")
+					updateDefaultBackgroundColor(color: color)
 					self.backgroundTextColor = color
 				default:
 					NSLog("Unknown key (1): \(key)")

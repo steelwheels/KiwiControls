@@ -183,7 +183,7 @@ public class KCTerminalPreferenceView: KCStackView
 		let textsel = KCColorSelector()
 		textsel.color = CNPreference.shared.terminalPreference.foregroundTextColor
 		textsel.callbackFunc = {
-			(_ color: KCColor) -> Void in
+			(_ color: CNColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
 			pref.foregroundTextColor = color
 		}
@@ -195,7 +195,7 @@ public class KCTerminalPreferenceView: KCStackView
 		let backsel = KCColorSelector()
 		backsel.color = CNPreference.shared.terminalPreference.backgroundTextColor
 		backsel.callbackFunc = {
-			(_ color: KCColor) -> Void in
+			(_ color: CNColor) -> Void in
 			let pref = CNPreference.shared.terminalPreference
 			pref.backgroundTextColor = color
 		}
@@ -254,18 +254,18 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 	}
 
-	public var textColor: KCColor {
+	public var textColor: CNColor {
 		get		{ return getColor(from: mTextColorSelector)	  }
 		set(newcol) 	{ setColor(to: mTextColorSelector, color: newcol) }
 	}
 
 	#if os(OSX)
-	public var backgroundColor: KCColor? {
+	public var backgroundColor: CNColor? {
 		get		{ return getColor(from: mBackgroundColorSelector)	}
 		set(newcol) 	{ setColor(to: mBackgroundColorSelector, color: newcol)	}
 	}
 	#else
-	public override var backgroundColor: KCColor? {
+	public override var backgroundColor: CNColor? {
 		get		{ return getColor(from: mBackgroundColorSelector)	}
 		set(newcol) 	{
 			setColor(to: mBackgroundColorSelector, color: newcol)
@@ -274,16 +274,16 @@ public class KCTerminalPreferenceView: KCStackView
 	}
 	#endif
 
-	private func getColor(from selector: KCColorSelector?) -> KCColor {
+	private func getColor(from selector: KCColorSelector?) -> CNColor {
 		if let sel = selector {
 			return sel.color
 		} else {
 			NSLog("No selector")
-			return KCColor.black
+			return CNColor.black
 		}
 	}
 
-	private func setColor(to selector: KCColorSelector?, color col: KCColor?) {
+	private func setColor(to selector: KCColorSelector?, color col: CNColor?) {
 		if let sel = selector, let colp = col {
 			sel.color = colp
 		}

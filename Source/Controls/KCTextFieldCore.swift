@@ -163,7 +163,7 @@ open class KCTextFieldCore : KCView
 		}
 	}
 
-	public var textColor: KCColor? {
+	public var textColor: CNColor? {
 		get 		{ return mTextField.textColor }
 		set(newcol)	{
 			CNExecuteInMainThread(doSync: false, execute: {
@@ -180,18 +180,18 @@ open class KCTextFieldCore : KCView
 	}
 
 	#if os(OSX)
-	public var backgroundColor: KCColor? {
+	public var backgroundColor: CNColor? {
 		get 		{ return mTextField.backgroundColor }
 		set(newcol)	{ setBackgroundColor(color: newcol) }
 	}
 	#else
-	public override var backgroundColor: KCColor? {
+	public override var backgroundColor: CNColor? {
 		get 		{ return mTextField.backgroundColor }
 		set(newcol)	{ setBackgroundColor(color: newcol) }
 	}
 	#endif
 
-	private func setBackgroundColor(color col: KCColor?) {
+	private func setBackgroundColor(color col: CNColor?) {
 		#if os(OSX)
 		CNExecuteInMainThread(doSync: false, execute: {
 			[weak self]  () -> Void in

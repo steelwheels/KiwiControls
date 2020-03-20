@@ -10,8 +10,8 @@ import Foundation
 
 public enum KCStringAttribute {
 	case font(CNFont)
-	case foregroundColor(KCColor)
-	case backgroundColor(KCColor)
+	case foregroundColor(CNColor)
+	case backgroundColor(CNColor)
 }
 
 private class KCStringAttributes {
@@ -53,13 +53,13 @@ public extension NSAttributedString {
 
 public extension NSMutableAttributedString
 {
-	func changeOverallTextColor(targetColor curcol: KCColor, newColor newcol: KCColor){
+	func changeOverallTextColor(targetColor curcol: CNColor, newColor newcol: CNColor){
 		self.beginEditing()
 		let entire = NSMakeRange(0, self.length)
 		self.enumerateAttribute(.foregroundColor, in: entire, options: [], using: {
 			(anyobj, range, unsage) -> Void in
 			/* Replace current foreground color attribute by new color */
-			if let colobj = anyobj as? KCColor {
+			if let colobj = anyobj as? CNColor {
 				if colobj.isEqual(curcol) {
 					removeAttribute(.foregroundColor, range: range)
 					addAttribute(.foregroundColor, value: newcol, range: range)
@@ -69,13 +69,13 @@ public extension NSMutableAttributedString
 		self.endEditing()
 	}
 
-	func changeOverallBackgroundColor(targetColor curcol: KCColor, newColor newcol: KCColor){
+	func changeOverallBackgroundColor(targetColor curcol: CNColor, newColor newcol: CNColor){
 		self.beginEditing()
 		let entire = NSMakeRange(0, self.length)
 		self.enumerateAttribute(.backgroundColor, in: entire, options: [], using: {
 			(anyobj, range, unsage) -> Void in
 			/* Replace current background color attribute by new color */
-			if let colobj = anyobj as? KCColor {
+			if let colobj = anyobj as? CNColor {
 				if colobj.isEqual(curcol) {
 					removeAttribute(.backgroundColor, range: range)
 					addAttribute(.backgroundColor, value: newcol, range: range)

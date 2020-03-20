@@ -15,24 +15,24 @@ import Foundation
 
 extension CNPreferenceTable
 {
-	public func set(colorValue val: KCColor, forKey key: String) {
+	public func set(colorValue val: CNColor, forKey key: String) {
 		set(anyValue: val, forKey: key)
 	}
 
-	public func colorValue(forKey key: String) -> KCColor? {
-		if let val = anyValue(forKey: key) as? KCColor {
+	public func colorValue(forKey key: String) -> CNColor? {
+		if let val = anyValue(forKey: key) as? CNColor {
 			return val
 		} else {
 			return nil
 		}
 	}
 
-	public func storeColorValue(colorValue val: KCColor, forKey key: String) {
+	public func storeColorValue(colorValue val: CNColor, forKey key: String) {
 		let pathstr = path(keyString: key)
 		UserDefaults.standard.set(color: val, forKey: pathstr)
 	}
 
-	public func loadColorValue(forKey key: String) -> KCColor? {
+	public func loadColorValue(forKey key: String) -> CNColor? {
 		let pathstr = path(keyString: key)
 		if let color = UserDefaults.standard.color(forKey: pathstr) {
 			return color
@@ -46,14 +46,14 @@ extension CNPreferenceTable
 public class KCWindowPreference: CNPreferenceTable
 {
 	public var spacing			: CGFloat
-	public var backgroundColor		: KCColor
+	public var backgroundColor		: CNColor
 	#if os(OSX)
 	public var mainWindowSize		: KCSize?
 	#endif
 
 	public init(){
 		spacing			= 8.0
-		backgroundColor		= KCColor.white
+		backgroundColor		= CNColor.white
 		#if os(OSX)
 			mainWindowSize	= nil
 		#endif
@@ -87,13 +87,13 @@ public class KCTerminalPreference: CNPreferenceTable
 		if let col = super.loadColorValue(forKey: ForegroundTextColorItem) {
 			super.set(colorValue: col, forKey: ForegroundTextColorItem)
 		} else {
-			self.foregroundTextColor = KCColor.black
+			self.foregroundTextColor = CNColor.black
 		}
 
 		if let col = super.loadColorValue(forKey: BackgroundTextColorItem) {
 			super.set(colorValue: col, forKey: BackgroundTextColorItem)
 		} else {
-			self.backgroundTextColor = KCColor.white
+			self.backgroundTextColor = CNColor.white
 		}
 
 		if let newfont = super.loadFontValue(forKey: FontItem) {
@@ -137,7 +137,7 @@ public class KCTerminalPreference: CNPreferenceTable
 		}
 	}
 
-	public var foregroundTextColor: KCColor {
+	public var foregroundTextColor: CNColor {
 		get {
 			if let color = super.colorValue(forKey: ForegroundTextColorItem) {
 				return color
@@ -150,7 +150,7 @@ public class KCTerminalPreference: CNPreferenceTable
 		}
 	}
 
-	public var backgroundTextColor: KCColor {
+	public var backgroundTextColor: CNColor {
 		get {
 			if let color = super.colorValue(forKey: BackgroundTextColorItem) {
 				return color

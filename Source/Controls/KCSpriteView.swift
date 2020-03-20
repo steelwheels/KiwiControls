@@ -94,7 +94,7 @@ open class KCSpriteView: KCCoreView
 		vis.visit(spriteView: self)
 	}
 
-	public var backgroundColorOfScene: KCColor {
+	public var backgroundColorOfScene: CNColor {
 		get 		{ return coreView.backgroundColorOfScene	}
 		set(color) 	{ coreView.backgroundColorOfScene = color	}
 	}

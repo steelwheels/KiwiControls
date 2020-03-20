@@ -27,7 +27,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		mCondition   = cond
 		let tex      = SKTexture(image: img)
 		let psize    = mapper.logicalToPhysical(size: istat.size)
-		super.init(texture: tex, color: KCColor.white, size: psize)
+		super.init(texture: tex, color: CNColor.white, size: psize)
 
 		/* Apply status */
 		self.name = istat.name

@@ -48,7 +48,7 @@ open class KCSpriteViewCore: KCView
 		return scene.setLogicalSizeWithKeepingAspectRatio(width: val)
 	}
 
-	public var backgroundColorOfScene: KCColor {
+	public var backgroundColorOfScene: CNColor {
 		get        { return scene.backgroundColor }
 		set(newcol){ scene.backgroundColor = newcol }
 	}

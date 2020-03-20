@@ -5,14 +5,15 @@
  *   Copyright (C) 2020 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 extension UserDefaults
 {
-	public func color(forKey key: String) -> KCColor? {
+	public func color(forKey key: String) -> CNColor? {
 		do {
 			if let data = self.data(forKey: key) {
-				if let color = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [KCColor.self], from: data) as? KCColor {
+				if let color = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [CNColor.self], from: data) as? CNColor {
 					return color
 				}
 			}
@@ -23,7 +24,7 @@ extension UserDefaults
 		return nil
 	}
 
-	public func set(color colobj: KCColor, forKey key: String) {
+	public func set(color colobj: CNColor, forKey key: String) {
 		do {
 			let data = try NSKeyedArchiver.archivedData(withRootObject: colobj, requiringSecureCoding: false)
 			set(data, forKey: key)

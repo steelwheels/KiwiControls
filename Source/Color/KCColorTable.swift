@@ -19,27 +19,12 @@ public class KCColorTable
 {
 	static let sharedTable = KCColorTable()
 
-	private static func rgb(_ r:CGFloat, _ g:CGFloat, _ b:CGFloat) -> KCColor {
+	private static func rgb(_ r:CGFloat, _ g:CGFloat, _ b:CGFloat) -> CNColor {
 		#if os(iOS)
 		return UIColor(red: r, green: g, blue: b, alpha: 1.0)
 		#else
 		return NSColor(red: r, green: g, blue: b, alpha: 1.0)
 		#endif
-	}
-
-	public class func codeToColor(color code: CNColor) -> KCColor {
-		let result: KCColor
-		switch code {
-		case .Black:		result = KCColorTable.black
-		case .Red:		result = KCColorTable.red
-		case .Green:		result = KCColorTable.green
-		case .Yellow:		result = KCColorTable.yellow
-		case .Blue:		result = KCColorTable.blue
-		case .Magenta:		result = KCColorTable.magenta
-		case .Cyan:		result = KCColorTable.cyan
-		case .White:		result = KCColorTable.white
-		}
-		return result
 	}
 
 	public static let snow			= rgb(1.00, 0.98, 0.98)

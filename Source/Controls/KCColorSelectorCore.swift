@@ -15,7 +15,7 @@ import Foundation
 
 open class KCColorSelectorCore: KCView
 {
-	public typealias CallbackFunction = (_ color: KCColor) -> Void
+	public typealias CallbackFunction = (_ color: CNColor) -> Void
 
 	private let ColorItem		= "color"
 	private let defaultSize		= KCSize(width: 64, height: 40)
@@ -52,13 +52,13 @@ open class KCColorSelectorCore: KCView
 	}
 
 	#if os(OSX)
-	public var color: KCColor {
+	public var color: CNColor {
 		get {
 			if let well = mColorWell {
 				return well.color
 			} else {
 				NSLog("No color well for get")
-				return KCColor.black
+				return CNColor.black
 			}
 		}
 		set(newcol){
@@ -70,7 +70,7 @@ open class KCColorSelectorCore: KCView
 		}
 	}
 	#else
-	public var color: KCColor {
+	public var color: CNColor {
 		get {
 			if let button = mButton {
 				if let color = button.backgroundColor {
@@ -78,7 +78,7 @@ open class KCColorSelectorCore: KCView
 				}
 			}
 			NSLog("No color")
-			return KCColor.black
+			return CNColor.black
 		}
 		set(newcol){
 			if let button = mButton {

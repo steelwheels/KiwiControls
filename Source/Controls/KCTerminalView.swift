@@ -52,12 +52,12 @@ open class KCTerminalView : KCCoreView
 		get { return coreView.errorFileHandle }
 	}
 
-	public var foregroundTextColor: KCColor? {
+	public var foregroundTextColor: CNColor {
 		get		{ return coreView.foregroundTextColor }
 		set(newcol)	{ coreView.foregroundTextColor = newcol }
 	}
 
-	public var backgroundTextColor: KCColor? {
+	public var backgroundTextColor: CNColor {
 		get		{ return coreView.backgroundTextColor }
 		set(newcol)	{ coreView.backgroundTextColor = newcol }
 	}

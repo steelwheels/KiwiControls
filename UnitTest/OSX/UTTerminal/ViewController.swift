@@ -56,6 +56,15 @@ class ViewController: KCPlaneViewController
 		NSLog("Request to update the size of terminal")
 		termview.currentColumnNumbers	= 80
 		termview.currentRowNumbers	= 25
+
+		let red = CNEscapeCode.foregroundColor(CNColor.red).encode()
+		termview.outputFileHandle.write(string: red + "Red\n")
+
+		let blue = CNEscapeCode.foregroundColor(CNColor.blue).encode()
+		termview.outputFileHandle.write(string: blue + "Blue\n")
+
+		let green = CNEscapeCode.foregroundColor(CNColor.green).encode()
+		termview.outputFileHandle.write(string: green + "Green\n")
 	}
 
 	override var representedObject: Any? {

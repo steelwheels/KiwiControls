@@ -72,18 +72,18 @@ open class KCTextField : KCCoreView
 		set(font)	{ coreView.font = font }
 	}
 
-	public var textColor: KCColor? {
+	public var textColor: CNColor? {
 		get      { return coreView.textColor }
 		set(col) { coreView.textColor = col }
 	}
 
 	#if os(OSX)
-	public var backgroundColor: KCColor? {
+	public var backgroundColor: CNColor? {
 		get      { return coreView.backgroundColor }
 		set(col) { coreView.backgroundColor = col }
 	}
 	#else
-	public override var backgroundColor: KCColor? {
+	public override var backgroundColor: CNColor? {
 		get      { return coreView.backgroundColor }
 		set(col) { coreView.backgroundColor = col }
 	}
