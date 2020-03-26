@@ -58,6 +58,8 @@
 		0545D7BE23D9FF7000949357 /* KCTextViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0545D7BD23D9FF7000949357 /* KCTextViewCore.xib */; };
 		0545E9DE1DE5A00300605A09 /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EDB7FA1D8F792C00443B08 /* KiwiControls.framework */; };
 		05462E6A222B697D002BD57E /* KCAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05462E69222B697D002BD57E /* KCAttributedString.swift */; };
+		054FC217242CFC4A007B25E0 /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054FC216242CFC4A007B25E0 /* CoconutShell.framework */; };
+		054FC218242CFC4A007B25E0 /* CoconutShell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 054FC216242CFC4A007B25E0 /* CoconutShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0550C6141E48DD670000DD46 /* UTSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550C6121E48DD1A0000DD46 /* UTSymbol.swift */; };
 		055112621EB6006700CC75E8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055112611EB6006700CC75E8 /* KCCoreView.swift */; };
 		0554B6FD1E4A30F1003D5290 /* KCSelectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */; };
@@ -148,7 +150,6 @@
 		05B8662520D7A67D006CF515 /* KCTextEditCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B8662420D7A67D006CF515 /* KCTextEditCore.xib */; };
 		05B8662720D7A6F6006CF515 /* KCTextEditCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8662620D7A6F6006CF515 /* KCTextEditCore.swift */; };
 		05BCABF82413D15100BF1A6C /* KCExpansionAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCABF72413D15000BF1A6C /* KCExpansionAdjuster.swift */; };
-		05C811472304D00C0032C1FA /* CoconutShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C811462304D00C0032C1FA /* CoconutShell.framework */; };
 		05CEAB8622FFA87A00FFA8D8 /* KCTerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CEAB8522FFA87A00FFA8D8 /* KCTerminalView.swift */; };
 		05DB04AF2113542F0060CCA8 /* KCSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB04AE2113542F0060CCA8 /* KCSingleViewController.swift */; };
 		05DB04B72113566B0060CCA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB04B62113566B0060CCA8 /* AppDelegate.swift */; };
@@ -287,6 +288,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		054FC219242CFC4A007B25E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				054FC218242CFC4A007B25E0 /* CoconutShell.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		056C8F9421E9BC5100C7F0C6 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,6 +357,7 @@
 		0545BA6123518886008A245E /* KCLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogManager.swift; sourceTree = "<group>"; };
 		0545D7BD23D9FF7000949357 /* KCTextViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTextViewCore.xib; sourceTree = "<group>"; };
 		05462E69222B697D002BD57E /* KCAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAttributedString.swift; sourceTree = "<group>"; };
+		054FC216242CFC4A007B25E0 /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../local/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
 		0550C6121E48DD1A0000DD46 /* UTSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTSymbol.swift; sourceTree = "<group>"; };
 		055112611EB6006700CC75E8 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		0554B6FC1E4A30F1003D5290 /* KCSelectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSelectionLayer.swift; sourceTree = "<group>"; };
@@ -438,7 +451,6 @@
 		05BA2D8C1DEB10CE00A8EB62 /* UTGraphicsEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BB23AA1D8FBCB600C44B3F /* install_ios.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = install_ios.mk; path = ../Script/install_ios.mk; sourceTree = "<group>"; };
 		05BCABF72413D15000BF1A6C /* KCExpansionAdjuster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCExpansionAdjuster.swift; sourceTree = "<group>"; };
-		05C811462304D00C0032C1FA /* CoconutShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoconutShell.framework; path = ../../../Library/Frameworks/CoconutShell.framework; sourceTree = "<group>"; };
 		05CEAB8522FFA87A00FFA8D8 /* KCTerminalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTerminalView.swift; sourceTree = "<group>"; };
 		05DB04AE2113542F0060CCA8 /* KCSingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSingleViewController.swift; sourceTree = "<group>"; };
 		05DB04B42113566B0060CCA8 /* UTMultiViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -555,9 +567,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C811472304D00C0032C1FA /* CoconutShell.framework in Frameworks */,
 				05FAEB2021A5C8C000FE9130 /* SpriteKit.framework in Frameworks */,
 				05B75DF32124F0BE00D58B12 /* CoconutData.framework in Frameworks */,
+				054FC217242CFC4A007B25E0 /* CoconutShell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,7 +907,7 @@
 		05B70CF9209F538E00BAE1EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				05C811462304D00C0032C1FA /* CoconutShell.framework */,
+				054FC216242CFC4A007B25E0 /* CoconutShell.framework */,
 				05FAEB2121A5C8E100FE9130 /* KiwiControls.framework */,
 				05FAEB2621A5CAE000FE9130 /* KiwiControls.framework */,
 				05FAEB1F21A5C8BF00FE9130 /* SpriteKit.framework */,
@@ -1177,6 +1189,7 @@
 				05EDB7F61D8F792C00443B08 /* Frameworks */,
 				05EDB7F71D8F792C00443B08 /* Headers */,
 				05EDB7F81D8F792C00443B08 /* Resources */,
+				054FC219242CFC4A007B25E0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2245,6 +2258,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2280,6 +2294,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 			};
