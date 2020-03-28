@@ -6,15 +6,18 @@
 //  Copyright © 2019 Steel Wheels Project. All rights reserved.
 //
 
+import KiwiControls
 import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 
+	func applicationWillFinishLaunching(_ notification: Notification) {
+		UserDefaults.standard.applyDefaultSetting()
+	}
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
-		// Insert code here to initialize your application
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {

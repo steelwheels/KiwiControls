@@ -10,6 +10,14 @@ import Foundation
 
 extension UserDefaults
 {
+	/* Apply default setting. This method will be called from
+	 * "applicationWillFinishLaunching" method on AppDelegate object
+	 */
+	public func applyDefaultSetting() {
+		self.set(true, forKey: "NSDisabledDictationMenuItem")
+		self.set(true, forKey: "NSDisabledCharacterPaletteMenuItem")
+	}
+
 	public func color(forKey key: String) -> CNColor? {
 		do {
 			if let data = self.data(forKey: key) {
