@@ -23,6 +23,7 @@
 		051847C51E0DD4F700671A2D /* KCStepperCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051847C41E0DD4F700671A2D /* KCStepperCore.xib */; };
 		051847C71E0DD53E00671A2D /* KCStepperCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C61E0DD53E00671A2D /* KCStepperCore.swift */; };
 		051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C81E0DD76F00671A2D /* KCStepper.swift */; };
+		051A0792242F54ED00C12309 /* KCDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051A0791242F54ED00C12309 /* KCDocument.swift */; };
 		051C3AEB2275370800E172B3 /* KCPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C3AEA2275370800E172B3 /* KCPhysics.swift */; };
 		051E7C8423EECB7300C9E095 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E7C8323EECB7300C9E095 /* KCTerminalPreferenceView.swift */; };
 		051E7C8623EEDC6200C9E095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E7C8523EEDC6200C9E095 /* ViewController.swift */; };
@@ -393,6 +394,7 @@
 		051847C41E0DD4F700671A2D /* KCStepperCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStepperCore.xib; sourceTree = "<group>"; };
 		051847C61E0DD53E00671A2D /* KCStepperCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepperCore.swift; sourceTree = "<group>"; };
 		051847C81E0DD76F00671A2D /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
+		051A0791242F54ED00C12309 /* KCDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCDocument.swift; sourceTree = "<group>"; };
 		051C3AEA2275370800E172B3 /* KCPhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCPhysics.swift; sourceTree = "<group>"; };
 		051E7C8323EECB7300C9E095 /* KCTerminalPreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTerminalPreferenceView.swift; sourceTree = "<group>"; };
 		051E7C8523EEDC6200C9E095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 		05A4711A21D2876800E7C446 /* KCSpriteViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCSpriteViewCore.xib; sourceTree = "<group>"; };
 		05A4711C21D2877200E7C446 /* KCSpriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteView.swift; sourceTree = "<group>"; };
 		05A4711D21D2877200E7C446 /* KCSpriteViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSpriteViewCore.swift; sourceTree = "<group>"; };
+		05AC0CDC24303DF300AE6F0F /* UTControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTControl.entitlements; sourceTree = "<group>"; };
 		05ACEF581E0C2C3C009F10A7 /* KCButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCButton.swift; sourceTree = "<group>"; };
 		05ACEF5E1E0C3317009F10A7 /* UTControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05ACEF601E0C3317009F10A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -687,6 +690,7 @@
 		05043C121D856F910033FEC6 = {
 			isa = PBXGroup;
 			children = (
+				05AC0CDC24303DF300AE6F0F /* UTControl.entitlements */,
 				05386D3F1D857009004B8DDF /* Source */,
 				0569CCDC1D85CCA2005412C7 /* UnitTest */,
 				05043C1D1D856F910033FEC6 /* Products */,
@@ -746,6 +750,14 @@
 				055EA6ED23FC3D15007754E5 /* KCLabeledStackViewCore.xib */,
 			);
 			path = OSX;
+			sourceTree = "<group>";
+		};
+		051A0790242F54B900C12309 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				051A0791242F54ED00C12309 /* KCDocument.swift */,
+			);
+			path = Document;
 			sourceTree = "<group>";
 		};
 		051E7C8223EECB3300C9E095 /* Combination */ = {
@@ -847,12 +859,13 @@
 			isa = PBXGroup;
 			children = (
 				05386D401D85708E004B8DDF /* Basic */,
-				05DAE98620F662EC00782B5B /* Layout */,
 				0580438520957075009E20A9 /* Color */,
-				0580438A209570A0009E20A9 /* Font */,
+				051A0790242F54B900C12309 /* Document */,
 				0532F2B01F77B14D0024A1EA /* Window */,
 				05ACEF571E0C2BC9009F10A7 /* Controls */,
+				05DAE98620F662EC00782B5B /* Layout */,
 				051E7C8223EECB3300C9E095 /* Combination */,
+				0580438A209570A0009E20A9 /* Font */,
 				05331C5C226F4387000D2918 /* Sprite */,
 				055674C91DFB960100794510 /* GraphicsView */,
 				05213AF520956AAD00683720 /* Graphics */,
@@ -1720,6 +1733,7 @@
 				0509C52F20D7C81C00905B33 /* KCTextEdit.swift in Sources */,
 				058043962095874B009E20A9 /* KCGradientTable.swift in Sources */,
 				05978CC41E2228510023640E /* KCTextField.swift in Sources */,
+				051A0792242F54ED00C12309 /* KCDocument.swift in Sources */,
 				058043952095874B009E20A9 /* KCHexagon.swift in Sources */,
 				051C3AEB2275370800E172B3 /* KCPhysics.swift in Sources */,
 				05A352E323F2764C0094D0A7 /* KCPopupMenu.swift in Sources */,
@@ -2692,6 +2706,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UTControl.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -2711,6 +2726,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UTControl.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;

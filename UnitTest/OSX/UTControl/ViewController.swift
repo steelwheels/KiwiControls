@@ -29,7 +29,6 @@ class ViewController: KCPlaneViewController
 				NSLog("viewWillDisappear: Cancelled")
 			} else {
 				NSLog("viewWillDisappear: Save preference")
-				CNPreference.shared.save()
 			}
 		} else {
 			NSLog("viewWillDisappear: No window")

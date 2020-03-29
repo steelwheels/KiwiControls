@@ -16,6 +16,10 @@ public class KCTerminalPreferenceView: KCStackView
 {
 	public typealias CallbackFunction = KCColorSelectorCore.CallbackFunction
 
+	#if os(OSX)
+	private var	mHomeDirectoryField:		KCTextField?		= nil
+	private var 	mHomeSelectButton:		KCButton?		= nil
+	#endif
 	private var	mTerminalWidthField:		KCTextEdit?		= nil
 	private var	mTerminalHeightField:		KCTextEdit?		= nil
 	private var	mFontLabel:			KCTextField?		= nil
@@ -68,13 +72,25 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 
 		/* Allocate labeled subviews */
+		var subviews: Array<KCView> = []
+		#if os(OSX)
+			let homebox = allocateHomeDirectoryView()
+			subviews.append(homebox)
+		#endif
 		let sizebox = allocateSizeSelectorView()
 		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
 		let colbox  = allocateColorSelectorView()
-		super.addArrangedSubViews(subViews: [sizebox, fontbox, colbox])
+		subviews.append(contentsOf: [sizebox, fontbox, colbox])
+		super.addArrangedSubViews(subViews: subviews)
 
 		/* Set initial values */
 		let pref = CNPreference.shared.terminalPreference
+		#if os(OSX)
+		if let field = mHomeDirectoryField {
+			let url		= pref.homeDirectory
+			field.text	= url.path
+		}
+		#endif
 		if let field = mTerminalWidthField {
 			let num		= pref.columnNumber
 			field.text	= "\(num)"
@@ -90,6 +106,23 @@ public class KCTerminalPreferenceView: KCStackView
 		self.backgroundColor	= pref.backgroundTextColor
 
 		/* Set actions */
+		#if os(OSX)
+		if let button = mHomeSelectButton {
+			button.buttonPressedCallback = {
+				() -> Void in
+				if let url = URL.openPanel(title: "Select home directory",
+							selection: .SelectDirectory,
+							fileTypes: []) {
+					if let field = self.mHomeDirectoryField {
+						field.text = url.path
+					}
+					let pref = CNPreference.shared.terminalPreference
+					pref.homeDirectory = url
+				}
+			}
+		}
+		#endif
+
 		if let field = mTerminalWidthField {
 			field.callbackFunction = {
 				(_ value: CNValue) -> Void in
@@ -121,6 +154,29 @@ public class KCTerminalPreferenceView: KCStackView
 			}
 		}
 	}
+
+	#if os(OSX)
+	private func allocateHomeDirectoryView() -> KCLabeledStackView {
+		let pathfield    = KCTextField()
+		pathfield.set(format: .general)
+		pathfield.isEnabled = false
+		pathfield.text = "No home directory"
+		pathfield.backgroundColor = CNColor.white
+		mHomeDirectoryField = pathfield
+
+		let selectbutton = KCButton()
+		selectbutton.title = "Select"
+		mHomeSelectButton = selectbutton
+
+		let top = KCLabeledStackView()
+		top.title = "Home directory"
+		let content = top.contentsView
+		content.axis = .horizontal
+		content.addArrangedSubViews(subViews: [pathfield, selectbutton])
+
+		return top
+	}
+	#endif
 
 	private func allocateSizeSelectorView() -> KCLabeledStackView {
 		let widthfield = KCTextEdit()

@@ -63,6 +63,7 @@ public class KCWindowPreference: CNPreferenceTable
 
 public class KCTerminalPreference: CNPreferenceTable
 {
+	public let HomeDirectoryItem		= "homeDirectory"
 	public let ColumnNumberItem		= "colmunNumber"
 	public let RowNumberItem		= "rowNumber"
 	public let ForegroundTextColorItem	= "foregroundTextColor"
@@ -71,6 +72,16 @@ public class KCTerminalPreference: CNPreferenceTable
 
 	public init() {
 		super.init(sectionName: "TerminalPreference")
+
+		if let home = super.loadURLValue(forKey: HomeDirectoryItem) {
+			super.set(urlValue: home, forKey: HomeDirectoryItem)
+		} else {
+			#if os(OSX)
+				self.homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+			#else
+				self.homeDirectory = URL(fileURLWithPath: NSHomeDirectory())
+			#endif
+		}
 
 		if let num = super.loadIntValue(forKey: ColumnNumberItem) {
 			super.set(intValue: num, forKey: ColumnNumberItem)
@@ -104,6 +115,21 @@ public class KCTerminalPreference: CNPreferenceTable
 			} else {
 				font = CNFont.monospacedDigitSystemFont(ofSize: 14.0, weight: .regular)
 			}
+		}
+	}
+
+	public var homeDirectory: URL {
+		get {
+			if let val = super.urlValue(forKey: HomeDirectoryItem) {
+				return val
+			}
+			fatalError("Can not happen")
+		}
+		set(newval){
+			if newval != super.urlValue(forKey: HomeDirectoryItem) {
+				super.storeURLValue(urlValue: newval, forKey: HomeDirectoryItem)
+			}
+			super.set(urlValue: newval, forKey: HomeDirectoryItem)
 		}
 	}
 
