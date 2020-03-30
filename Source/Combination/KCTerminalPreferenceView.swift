@@ -84,26 +84,27 @@ public class KCTerminalPreferenceView: KCStackView
 		super.addArrangedSubViews(subViews: subviews)
 
 		/* Set initial values */
-		let pref = CNPreference.shared.terminalPreference
+		let termpref = CNPreference.shared.terminalPreference
+		let userpref = CNPreference.shared.userPreference
 		#if os(OSX)
 		if let field = mHomeDirectoryField {
-			let url		= pref.homeDirectory
+			let url		= userpref.homeDirectory
 			field.text	= url.path
 		}
 		#endif
 		if let field = mTerminalWidthField {
-			let num		= pref.columnNumber
+			let num		= termpref.columnNumber
 			field.text	= "\(num)"
 		}
 		if let field = mTerminalHeightField {
-			let num		= pref.rowNumber
+			let num		= termpref.rowNumber
 			field.text	= "\(num)"
 		}
 		if let label = mFontLabel {
-			label.text = pref.font.fontName
+			label.text = termpref.font.fontName
 		}
-		self.textColor		= pref.foregroundTextColor
-		self.backgroundColor	= pref.backgroundTextColor
+		self.textColor		= termpref.foregroundTextColor
+		self.backgroundColor	= termpref.backgroundTextColor
 
 		/* Set actions */
 		#if os(OSX)
@@ -116,8 +117,8 @@ public class KCTerminalPreferenceView: KCStackView
 					if let field = self.mHomeDirectoryField {
 						field.text = url.path
 					}
-					let pref = CNPreference.shared.terminalPreference
-					pref.homeDirectory = url
+					let userpref = CNPreference.shared.userPreference
+					userpref.homeDirectory = url
 				}
 			}
 		}
