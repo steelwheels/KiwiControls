@@ -19,6 +19,7 @@ public class KCTerminalPreferenceView: KCStackView
 	#if os(OSX)
 	private var	mHomeDirectoryField:		KCTextField?		= nil
 	private var 	mHomeSelectButton:		KCButton?		= nil
+	private var 	mHomeResetButton:		KCButton?		= nil
 	#endif
 	private var	mTerminalWidthField:		KCTextEdit?		= nil
 	private var	mTerminalHeightField:		KCTextEdit?		= nil
@@ -122,6 +123,22 @@ public class KCTerminalPreferenceView: KCStackView
 				}
 			}
 		}
+		if let button = mHomeResetButton {
+			button.buttonPressedCallback = {
+				() -> Void in
+				/* Use default home */
+				let url = URL(fileURLWithPath: NSHomeDirectory())
+				if let field = self.mHomeDirectoryField {
+					field.text = url.path
+				}
+				let userpref = CNPreference.shared.userPreference
+				userpref.homeDirectory = url
+				/* Reset bookmark */
+				let bookpref = CNBookmarkPreference.sharedPreference
+				bookpref.clear()
+				bookpref.synchronize()
+			}
+		}
 		#endif
 
 		if let field = mTerminalWidthField {
@@ -169,11 +186,19 @@ public class KCTerminalPreferenceView: KCStackView
 		selectbutton.title = "Select"
 		mHomeSelectButton = selectbutton
 
+		let resetbutton = KCButton()
+		resetbutton.title = "Reset"
+		mHomeResetButton = resetbutton
+
+		let buttons = KCStackView()
+		buttons.axis = .horizontal
+		buttons.addArrangedSubViews(subViews: [selectbutton, resetbutton])
+
 		let top = KCLabeledStackView()
 		top.title = "Home directory"
 		let content = top.contentsView
-		content.axis = .horizontal
-		content.addArrangedSubViews(subViews: [pathfield, selectbutton])
+		content.axis = .vertical
+		content.addArrangedSubViews(subViews: [pathfield, buttons])
 
 		return top
 	}
