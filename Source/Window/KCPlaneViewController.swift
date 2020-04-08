@@ -88,7 +88,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	}
 
 	open func loadViewContext(rootView root: KCRootView) -> KCSize {
-		NSLog("Override this method")
+		NSLog("\(#file) Override this method")
 		return root.frame.size
 	}
 

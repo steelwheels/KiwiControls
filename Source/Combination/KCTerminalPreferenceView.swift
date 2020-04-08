@@ -134,9 +134,8 @@ public class KCTerminalPreferenceView: KCStackView
 				let userpref = CNPreference.shared.userPreference
 				userpref.homeDirectory = url
 				/* Reset bookmark */
-				let bookpref = CNBookmarkPreference.sharedPreference
+				let bookpref = CNPreference.shared.bookmarkPreference
 				bookpref.clear()
-				bookpref.synchronize()
 			}
 		}
 		#endif
