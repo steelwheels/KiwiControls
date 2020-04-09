@@ -118,8 +118,12 @@ public class KCTerminalPreferenceView: KCStackView
 					if let field = self.mHomeDirectoryField {
 						field.text = url.path
 					}
+					/* Add to user preference */
 					let userpref = CNPreference.shared.userPreference
 					userpref.homeDirectory = url
+					/* Add to bookmark */
+					let bookpref = CNPreference.shared.bookmarkPreference
+					bookpref.add(URL: url)
 				}
 			}
 		}
