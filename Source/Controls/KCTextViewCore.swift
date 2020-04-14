@@ -269,11 +269,23 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			break
 		case .scrollDown:
 			break
+		case .boldCharacter(let flag):
+			NSLog("Bold character setting is ignored: \(flag)")
+		case .underlineCharacter(let flag):
+			NSLog("Underline character setting is ignored: \(flag)")
+		case .blinkCharacter(let flag):
+			NSLog("Blink character setting is ignored: \(flag)")
+		case .reverseCharacter(let flag):
+			NSLog("Reverse character setting is ignored: \(flag)")
 		case .foregroundColor(let fcol):
-			self.foregroundTextColor = fcol
+			mForegroundTextColor = fcol
+		case .defaultForegroundColor:
+			mForegroundTextColor = nil
 		case .backgroundColor(let bcol):
-			self.backgroundTextColor = bcol
-		case .setNormalAttributes:
+			mBackgroundTextColor = bcol
+		case .defaultBackgroundColor:
+			mBackgroundTextColor = nil
+		case .resetCharacterAttribute:
 			/* Reset to default */
 			mForegroundTextColor = nil
 			mBackgroundTextColor = nil

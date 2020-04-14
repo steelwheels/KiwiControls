@@ -26,8 +26,9 @@ class ViewController: KCPlaneViewController
 		let instrm  : CNFileStream = .fileHandle(termview.inputFileHandle)
 		let outstrm : CNFileStream = .fileHandle(termview.outputFileHandle)
 		let errstrm : CNFileStream = .fileHandle(termview.errorFileHandle)
+		let environment		   = CNEnvironment()
 		NSLog("Allocate shell")
-		let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm)
+		let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm, environment: environment)
 		mShell        = shell
 
 		return termview.fittingSize
