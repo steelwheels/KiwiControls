@@ -66,6 +66,15 @@ class ViewController: KCPlaneViewController
 
 		let green = CNEscapeCode.foregroundColor(CNColor.green).encode()
 		termview.outputFileHandle.write(string: green + "Green\n")
+
+		let reset = CNEscapeCode.resetCharacterAttribute.encode()
+		let under = CNEscapeCode.underlineCharacter(true).encode()
+		termview.outputFileHandle.write(string: reset + under + "Underline\n")
+
+		let bold = CNEscapeCode.boldCharacter(true).encode()
+		termview.outputFileHandle.write(string: bold + "Bold\n")
+
+		termview.outputFileHandle.write(string: reset)
 	}
 
 	override var representedObject: Any? {

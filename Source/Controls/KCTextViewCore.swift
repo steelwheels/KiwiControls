@@ -34,6 +34,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mCurrentIndex:		Int
 	private var mForegroundTextColor:	CNColor?
 	private var mBackgroundTextColor:	CNColor?
+	private var mDoBold:			Bool
+	private var mDoItalic:			Bool
+	private var mDoUnderline:		Bool
+	private var mDoReverse:			Bool
 	private var mFont:			CNFont
 	private var mCurrentColumnNumbers:	Int
 	private var mCurrentRowNumbers:		Int
@@ -45,6 +49,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mCurrentIndex			= 0
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
+		mDoBold				= false
+		mDoItalic			= false
+		mDoUnderline			= false
+		mDoReverse			= false
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
 		mCurrentColumnNumbers		= 10
 		mCurrentRowNumbers		= 10
@@ -58,6 +66,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mCurrentIndex			= 0
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
+		mDoBold				= false
+		mDoItalic			= false
+		mDoUnderline			= false
+		mDoReverse			= false
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
 		mCurrentColumnNumbers		= 10
 		mCurrentRowNumbers		= 10
@@ -233,10 +245,22 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				let storage = textStorage
 				storage.beginEditing()
 				for code in codes {
-					if let newidx = storage.execute(index:		 mCurrentIndex,
-									foregroundColor: foregroundTextColor,
-									backgroundColor: mBackgroundTextColor,
-									font: 		 mFont,
+					var foreground: CNColor = foregroundTextColor
+					var background: CNColor = backgroundTextColor
+					if mDoReverse {
+						let tmp    = foreground
+						foreground = background
+						background = tmp
+					}
+					let format  = CNStringFormat(foregroundColor:	foreground,
+								     backgroundColor:	background,
+								     doBold: 		mDoBold,
+								     doItalic:		mDoItalic,
+								     doUnderline:	mDoUnderline,
+								     doReverse:		mDoReverse)
+					if let newidx = storage.execute(index:		mCurrentIndex,
+									font:		mFont,
+									format: 	format,
 									escapeCode: code) {
 						mCurrentIndex = newidx
 					} else {
@@ -270,13 +294,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		case .scrollDown:
 			break
 		case .boldCharacter(let flag):
-			NSLog("Bold character setting is ignored: \(flag)")
+			mDoBold = flag
 		case .underlineCharacter(let flag):
-			NSLog("Underline character setting is ignored: \(flag)")
+			mDoUnderline = flag
 		case .blinkCharacter(let flag):
 			NSLog("Blink character setting is ignored: \(flag)")
 		case .reverseCharacter(let flag):
-			NSLog("Reverse character setting is ignored: \(flag)")
+			mDoReverse = flag
 		case .foregroundColor(let fcol):
 			mForegroundTextColor = fcol
 		case .defaultForegroundColor:
@@ -287,8 +311,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			mBackgroundTextColor = nil
 		case .resetCharacterAttribute:
 			/* Reset to default */
-			mForegroundTextColor = nil
-			mBackgroundTextColor = nil
+			mForegroundTextColor	= nil
+			mBackgroundTextColor	= nil
+			mDoBold			= false
+			mDoItalic		= false
+			mDoUnderline		= false
+			mDoReverse		= false
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.currentColumnNumbers, self.currentRowNumbers)
