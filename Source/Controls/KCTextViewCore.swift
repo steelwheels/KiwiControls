@@ -116,7 +116,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public var backgroundTextColor: CNColor {
-		get 		{
+		get {
 			if let col = mBackgroundTextColor {
 				return col
 			} else {
@@ -214,6 +214,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		pref.addObserver(observer: self, forKey: pref.ForegroundTextColorItem)
 		pref.addObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.addObserver(observer: self, forKey: pref.FontItem)
+
+		let syspref = CNPreference.shared.systemPreference
+		syspref.addObserver(observer: self, forKey: syspref.InterfaceStyleItem)
 	}
 
 	private var textStorage: NSTextStorage {
@@ -467,18 +470,20 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if let key = keyPath, let vals = change {
-			if let color = vals[.newKey] as? CNColor {
+			if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
 				switch key {
 				case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
 					//NSLog("Change foreground color")
+					let color = CNPreference.shared.terminalPreference.foregroundTextColor
 					updateDefaultForegroundColor(color: color)
 					self.foregroundTextColor = color
 				case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
 					//NSLog("Change background color")
+					let color = CNPreference.shared.terminalPreference.backgroundTextColor
 					updateDefaultBackgroundColor(color: color)
 					self.backgroundTextColor = color
 				default:
-					NSLog("Unknown key (1): \(key)")
+					NSLog("\(#file): Unknown key (2): \(key)")
 				}
 			} else if let font = vals[.newKey] as? CNFont {
 				switch key {
@@ -486,7 +491,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					//NSLog("Change font: \(font.fontName)")
 					self.font = font
 				default:
-					NSLog("Unknown key (2): \(key)")
+					NSLog("\(#file): Unknown key (3): \(key)")
 				}
 			} else if let num = vals[.newKey] as? NSNumber {
 				switch key {
@@ -496,8 +501,18 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				case CNPreference.shared.terminalPreference.RowNumberItem:
 					self.currentRowNumbers = num.intValue
 					//NSLog("currentRowNumbers = \(currentRowNumbers)")
+				case CNPreference.shared.systemPreference.InterfaceStyleItem:
+					NSLog("\(#file): Interface style")
+					/* Update foreground color */
+					let forecol = CNPreference.shared.terminalPreference.foregroundTextColor
+					updateDefaultForegroundColor(color: forecol)
+					self.foregroundTextColor = forecol
+					/* Update background color */
+					let backcol = CNPreference.shared.terminalPreference.backgroundTextColor
+					updateDefaultBackgroundColor(color: backcol)
+					self.backgroundTextColor = backcol
 				default:
-					NSLog("Unknown key (3): \(key)")
+					NSLog("\(#file): Unknown key (4): \(key)")
 				}
 			}
 		}

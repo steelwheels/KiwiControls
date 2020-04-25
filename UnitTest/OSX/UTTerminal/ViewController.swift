@@ -22,13 +22,14 @@ class ViewController: KCPlaneViewController
 
 		/* Allocate shell */
 		NSLog("Launch terminal")
-		let queue   : DispatchQueue = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
-		let instrm  : CNFileStream = .fileHandle(termview.inputFileHandle)
-		let outstrm : CNFileStream = .fileHandle(termview.outputFileHandle)
-		let errstrm : CNFileStream = .fileHandle(termview.errorFileHandle)
-		let environment		   = CNEnvironment()
+		let procmgr : CNProcessManager = CNProcessManager()
+		let queue   : DispatchQueue    = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
+		let instrm  : CNFileStream     = .fileHandle(termview.inputFileHandle)
+		let outstrm : CNFileStream     = .fileHandle(termview.outputFileHandle)
+		let errstrm : CNFileStream     = .fileHandle(termview.errorFileHandle)
+		let environment		       = CNEnvironment()
 		NSLog("Allocate shell")
-		let shell     = CNShellThread(queue: queue, input: instrm, output: outstrm, error: errstrm, environment: environment)
+		let shell     = CNShellThread(processManager: procmgr, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: environment)
 		mShell        = shell
 
 		return termview.fittingSize

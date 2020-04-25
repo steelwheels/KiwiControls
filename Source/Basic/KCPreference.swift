@@ -84,16 +84,18 @@ public class KCTerminalPreference: CNPreferenceTable
 			self.rowNumber = 25
 		}
 
-		if let col = super.loadColorValue(forKey: ForegroundTextColorItem) {
-			super.set(colorValue: col, forKey: ForegroundTextColorItem)
+		if let coldict = super.loadColorDictionaryValue(forKey: ForegroundTextColorItem) {
+			super.set(colorDictionaryValue: coldict, forKey: ForegroundTextColorItem)
 		} else {
-			self.foregroundTextColor = CNColor.black
+			let coldict: Dictionary<CNInterfaceStyle, CNColor> = [:]
+			super.set(colorDictionaryValue: coldict, forKey: ForegroundTextColorItem)
 		}
 
-		if let col = super.loadColorValue(forKey: BackgroundTextColorItem) {
-			super.set(colorValue: col, forKey: BackgroundTextColorItem)
+		if let coldict = super.loadColorDictionaryValue(forKey: BackgroundTextColorItem) {
+			super.set(colorDictionaryValue: coldict, forKey: BackgroundTextColorItem)
 		} else {
-			self.backgroundTextColor = CNColor.white
+			let coldict: Dictionary<CNInterfaceStyle, CNColor> = [:]
+			super.set(colorDictionaryValue: coldict, forKey: BackgroundTextColorItem)
 		}
 
 		if let newfont = super.loadFontValue(forKey: FontItem) {
@@ -139,27 +141,62 @@ public class KCTerminalPreference: CNPreferenceTable
 
 	public var foregroundTextColor: CNColor {
 		get {
-			if let color = super.colorValue(forKey: ForegroundTextColorItem) {
+			if let color = self.getColor(itemName: ForegroundTextColorItem) {
 				return color
+			} else {
+				let result: CNColor
+				switch CNPreference.shared.systemPreference.interfaceStyle {
+				case .dark:	result = CNColor.white
+				case .light:	result = CNColor.black
+				}
+				self.saveColor(itemName: ForegroundTextColorItem, color: result)
+				return result
 			}
-			fatalError("Can not happen")
 		}
 		set(newcol) {
-			super.set(colorValue: newcol, forKey: ForegroundTextColorItem)
-			super.storeColorValue(colorValue: newcol, forKey: ForegroundTextColorItem)
+			self.saveColor(itemName: ForegroundTextColorItem, color: newcol)
 		}
 	}
 
 	public var backgroundTextColor: CNColor {
 		get {
-			if let color = super.colorValue(forKey: BackgroundTextColorItem) {
+			if let color = self.getColor(itemName: BackgroundTextColorItem) {
 				return color
+			} else {
+				let result: CNColor
+				switch CNPreference.shared.systemPreference.interfaceStyle {
+				case .dark:	result = CNColor.black
+				case .light:	result = CNColor.white
+				}
+				self.saveColor(itemName: BackgroundTextColorItem, color: result)
+				return result
 			}
-			fatalError("Can not happen")
 		}
 		set(newcol) {
-			super.set(colorValue: newcol, forKey: BackgroundTextColorItem)
-			super.storeColorValue(colorValue: newcol, forKey: BackgroundTextColorItem)
+			self.saveColor(itemName: BackgroundTextColorItem, color: newcol)
+		}
+	}
+
+	private func getColor(itemName name: String) -> CNColor? {
+		let style = CNPreference.shared.systemPreference.interfaceStyle
+		if let dict = super.colorDictionaryValue(forKey: name) {
+			if let color = dict[style] {
+				return color
+			}
+		}
+		return nil
+	}
+
+	private func saveColor(itemName name: String, color col: CNColor) {
+		let style = CNPreference.shared.systemPreference.interfaceStyle
+		if var dict = super.colorDictionaryValue(forKey: name) {
+			dict[style] = col
+			super.set(colorDictionaryValue: dict, forKey: name)
+			super.storeColorDictionaryValue(dataDictionaryValue: dict, forKey: name)
+		} else {
+			let dict: Dictionary<CNInterfaceStyle, CNColor> = [style:col]
+			super.set(colorDictionaryValue: dict, forKey: name)
+			super.storeColorDictionaryValue(dataDictionaryValue: dict, forKey: name)
 		}
 	}
 

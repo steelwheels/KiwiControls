@@ -19,26 +19,18 @@ extension UserDefaults
 	}
 
 	public func color(forKey key: String) -> CNColor? {
-		do {
-			if let data = self.data(forKey: key) {
-				if let color = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [CNColor.self], from: data) as? CNColor {
-					return color
-				}
-			}
+		if let data = self.data(forKey: key) {
+			return CNColor.decode(fromData: data)
+		} else {
+			return nil
 		}
-		catch let err as NSError {
-			NSLog("\(err.description)")
-		}
-		return nil
 	}
 
-	public func set(color colobj: CNColor, forKey key: String) {
-		do {
-			let data = try NSKeyedArchiver.archivedData(withRootObject: colobj, requiringSecureCoding: false)
+	public func set(color col: CNColor, forKey key: String) {
+		if let data = col.toData() {
 			set(data, forKey: key)
-		}
-		catch let err as NSError {
-			NSLog("\(err.description)")
+		} else {
+			NSLog("\(#file): Failed to encode color")
 		}
 	}
 }
