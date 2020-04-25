@@ -2,7 +2,7 @@
  * @file	KCTextViewCore.swift
  * @brief Define KCTextViewCore class
  * @par Copyright
- *   Copyright (C) 2017-2022 Steel Wheels Project
+ *   Copyright (C) 2017-2020 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -149,7 +149,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		self.mCurrentColumnNumbers	= pref.columnNumber
 		self.mCurrentRowNumbers		= pref.rowNumber
 
-
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
 			mTextView.isVerticallyResizable   = true
@@ -230,15 +229,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				return self.mTextView.textStorage
 			#endif
 		}
-	}
-
-	private func updateDefaultForegroundColor(color col: CNColor) {
-		textStorage.changeOverallTextColor(targetColor: foregroundTextColor, newColor: col)
-	}
-
-	private func updateDefaultBackgroundColor(color col: CNColor) {
-		textStorage.changeOverallBackgroundColor(targetColor: backgroundTextColor, newColor: col)
-		mTextView.backgroundColor = col
 	}
 
 	private func receiveInputStream(inputData data: Data) {
@@ -473,15 +463,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
 				switch key {
 				case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
-					//NSLog("Change foreground color")
-					let color = CNPreference.shared.terminalPreference.foregroundTextColor
-					updateDefaultForegroundColor(color: color)
-					self.foregroundTextColor = color
+					self.updateForegroundColor()
 				case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
-					//NSLog("Change background color")
-					let color = CNPreference.shared.terminalPreference.backgroundTextColor
-					updateDefaultBackgroundColor(color: color)
-					self.backgroundTextColor = color
+					self.updateBackgroundColor()
 				default:
 					NSLog("\(#file): Unknown key (2): \(key)")
 				}
@@ -500,22 +484,39 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					//NSLog("currentColumnNumbers = \(currentColumnNumbers)")
 				case CNPreference.shared.terminalPreference.RowNumberItem:
 					self.currentRowNumbers = num.intValue
-					//NSLog("currentRowNumbers = \(currentRowNumbers)")
 				case CNPreference.shared.systemPreference.InterfaceStyleItem:
-					NSLog("\(#file): Interface style")
-					/* Update foreground color */
-					let forecol = CNPreference.shared.terminalPreference.foregroundTextColor
-					updateDefaultForegroundColor(color: forecol)
-					self.foregroundTextColor = forecol
-					/* Update background color */
-					let backcol = CNPreference.shared.terminalPreference.backgroundTextColor
-					updateDefaultBackgroundColor(color: backcol)
-					self.backgroundTextColor = backcol
+					self.updateForegroundColor()
+					self.updateBackgroundColor()
 				default:
 					NSLog("\(#file): Unknown key (4): \(key)")
 				}
 			}
 		}
+	}
+
+	private func updateForegroundColor() {
+		let newcol = CNPreference.shared.terminalPreference.foregroundTextColor
+		if let curcol = mTextView.textColor {
+			textStorage.changeOverallTextColor(targetColor: curcol, newColor: newcol)
+		}
+		self.foregroundTextColor	= newcol
+		#if os(OSX)
+			mTextView.insertionPointColor	= newcol
+		#endif
+	}
+
+	private func updateBackgroundColor() {
+		let newcol = CNPreference.shared.terminalPreference.backgroundTextColor
+		#if os(OSX)
+			let curcol = mTextView.backgroundColor
+			textStorage.changeOverallBackgroundColor(targetColor: curcol, newColor: newcol)
+		#else
+			if let curcol = mTextView.backgroundColor {
+				textStorage.changeOverallBackgroundColor(targetColor: curcol, newColor: newcol)
+			}
+		#endif
+		self.backgroundTextColor	= newcol
+		mTextView.backgroundColor	= newcol
 	}
 }
 

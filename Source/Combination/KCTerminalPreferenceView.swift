@@ -49,6 +49,11 @@ public class KCTerminalPreferenceView: KCStackView
 		NSLog("Not supported")
 	}
 
+	deinit {
+		let syspref = CNPreference.shared.systemPreference
+		syspref.removeObserver(observer: self, forKey: CNPreference.shared.systemPreference.InterfaceStyleItem)
+	}
+
 	public convenience init(){
 		#if os(OSX)
 		let frame = NSRect(x: 0.0, y: 0.0, width: 160, height: 60)
@@ -174,6 +179,10 @@ public class KCTerminalPreferenceView: KCStackView
 				self.updateFont(indexOfName: self.indexOfSelectedFontName, indexOfSize: index)
 			}
 		}
+
+		/* Observe interfaceStyle in the system preference */
+		let syspref = CNPreference.shared.systemPreference
+		syspref.addObserver(observer: self, forKey: CNPreference.shared.systemPreference.InterfaceStyleItem)
 	}
 
 	#if os(OSX)
@@ -294,6 +303,8 @@ public class KCTerminalPreferenceView: KCStackView
 		content.axis = .horizontal
 		content.addArrangedSubViews(subViews: [textbox, backbox])
 
+		mTextColorSelector 		= textsel
+		mBackgroundColorSelector	= backsel
 		return top
 	}
 
@@ -373,4 +384,23 @@ public class KCTerminalPreferenceView: KCStackView
 			sel.color = colp
 		}
 	}
+
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if let key = keyPath {
+			switch key {
+			case CNPreference.shared.systemPreference.InterfaceStyleItem:
+				let termpref = CNPreference.shared.terminalPreference
+				if let sel = mTextColorSelector {
+					sel.color = termpref.foregroundTextColor
+				}
+				if let sel = mBackgroundColorSelector {
+					sel.color = termpref.backgroundTextColor
+				}
+
+			default:
+				break
+			}
+		}
+	}
+
 }
