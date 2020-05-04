@@ -37,6 +37,12 @@ class ViewController: KCPlaneViewController
 
 	public override func viewDidAppear() {
 		super.viewDidAppear()
+
+		let manager = KCLogManager.shared
+		let cons    = manager.console
+		cons.print(string: "This is log message before opening log window\n")
+		manager.enable = true
+		cons.print(string: "This is log message after log window is opened\n")
 	}
 }
 

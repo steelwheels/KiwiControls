@@ -17,6 +17,8 @@ public class KCLogWindowController: NSWindowController
 		return KCLogWindowController(window: window, consoleView: console, clearButton: clearbtn, closeButton: closebtn)
 	}
 
+	public var console: CNConsole { get { return mConsoleView.consoleConnection }}
+
 	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton, closeButton closebtn: KCButton){
 		mConsoleView		= consview
 		super.init(window: win)
@@ -35,6 +37,16 @@ public class KCLogWindowController: NSWindowController
 		fatalError("init(coder:) has not been implemented")
 	}
 
+	public var isVisible: Bool {
+		get {
+			if let win = self.window {
+				return win.isVisible
+			} else {
+				return false
+			}
+		}
+	}
+
 	public func show() {
 		self.window?.orderFront(self.window)
 	}
@@ -43,6 +55,7 @@ public class KCLogWindowController: NSWindowController
 		self.window?.orderOut(self.window)
 	}
 
+	#if false
 	public func print(string str: String) {
 		let cons = mConsoleView.consoleConnection
 		cons.print(string: str)
@@ -52,6 +65,7 @@ public class KCLogWindowController: NSWindowController
 		let cons = mConsoleView.consoleConnection
 		cons.error(string: str)
 	}
+	#endif
 
 	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton, KCButton) {
 		if let newwin = NSWindow.loadWindow() {

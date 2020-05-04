@@ -51,7 +51,7 @@ class ViewController: KCPlaneViewController
 		/* Start shell */
 		if let shell = mShell {
 			NSLog("start shell")
-			shell.start(arguments: [])
+			shell.start(argument: .nullValue)
 		}
 
 		/* Update size */
