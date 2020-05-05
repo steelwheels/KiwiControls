@@ -87,6 +87,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.FontItem)
+
+		let syspref = CNPreference.shared.systemPreference
+		syspref.removeObserver(observer: self, forKey: syspref.InterfaceStyleItem)
 	}
 
 	public var inputFileHandle: FileHandle {
