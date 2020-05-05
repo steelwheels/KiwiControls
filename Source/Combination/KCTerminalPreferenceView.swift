@@ -191,7 +191,7 @@ public class KCTerminalPreferenceView: KCStackView
 		pathfield.set(format: .general)
 		pathfield.isEnabled = false
 		pathfield.text = "No home directory"
-		pathfield.backgroundColor = CNColor.white
+		pathfield.isBezeled = true
 		mHomeDirectoryField = pathfield
 
 		let selectbutton = KCButton()
@@ -396,7 +396,6 @@ public class KCTerminalPreferenceView: KCStackView
 				if let sel = mBackgroundColorSelector {
 					sel.color = termpref.backgroundTextColor
 				}
-
 			default:
 				break
 			}

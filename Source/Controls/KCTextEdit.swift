@@ -68,6 +68,11 @@ open class KCTextEdit : KCCoreView
 		set(v) { coreView.isEditable = v }
 	}
 
+	public var isBezeled: Bool {
+		get { return coreView.isBezeled }
+		set(v) { coreView.isBezeled = v }
+	}
+
 	public var callbackFunction: CallbackFunction? {
 		get { return coreView.callbackFunction	}
 		set(v) { coreView.callbackFunction = v 	}

@@ -153,6 +153,23 @@ open class KCTextEditCore : KCView
 		}
 	}
 
+	public var isBezeled: Bool {
+		get {
+			#if os(OSX)
+				return mTextEdit.isBezeled
+			#else
+				return mTextEdit.borderStyle == .bezel
+			#endif
+		}
+		set(newval) {
+			#if os(OSX)
+				mTextEdit.isBezeled = newval
+			#else
+				mTextEdit.borderStyle = .bezel
+			#endif
+		}
+	}
+
 	public var text: String {
 		get {
 			return getText()

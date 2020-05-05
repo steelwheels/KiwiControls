@@ -62,6 +62,11 @@ open class KCTextField : KCCoreView
 		set(v) { coreView.isEnabled = v }
 	}
 
+	public var isBezeled: Bool {
+		get { return coreView.isBezeled }
+		set(v) { coreView.isBezeled = v }
+	}
+
 	public var text: String {
 		get { return coreView.text }
 		set(newval){ coreView.text = newval }

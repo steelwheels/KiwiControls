@@ -110,6 +110,23 @@ open class KCTextFieldCore : KCView
 		}
 	}
 
+	public var isBezeled: Bool {
+		get {
+			#if os(OSX)
+				return mTextField.isBezeled
+			#else
+				return false
+			#endif
+		}
+		set(newval) {
+			#if os(OSX)
+				mTextField.isBezeled = newval
+			#else
+				// Ignored
+			#endif
+		}
+	}
+
 	public var text: String {
 		get {
 			return getText()
