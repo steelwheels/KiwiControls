@@ -389,6 +389,8 @@ public class KCTerminalPreferenceView: KCStackView
 		if let key = keyPath {
 			switch key {
 			case CNPreference.shared.systemPreference.InterfaceStyleItem:
+				//let style = CNPreference.shared.systemPreference.interfaceStyle
+				//NSLog("\(#file): style=\(style.description)")
 				let termpref = CNPreference.shared.terminalPreference
 				if let sel = mTextColorSelector {
 					sel.color = termpref.foregroundTextColor

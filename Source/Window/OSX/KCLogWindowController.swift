@@ -13,23 +13,17 @@ public class KCLogWindowController: NSWindowController
 	private var mConsoleView:	KCConsoleView
 
 	public class func allocateController() -> KCLogWindowController {
-		let (window, console, clearbtn, closebtn) = KCLogWindowController.loadWindow()
-		return KCLogWindowController(window: window, consoleView: console, clearButton: clearbtn, closeButton: closebtn)
+		let (window, console, clearbtn) = KCLogWindowController.loadWindow()
+		return KCLogWindowController(window: window, consoleView: console, clearButton: clearbtn)
 	}
 
 	public var console: CNConsole { get { return mConsoleView.consoleConnection }}
 
-	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton, closeButton closebtn: KCButton){
+	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton){
 		mConsoleView		= consview
 		super.init(window: win)
 		clearbtn.buttonPressedCallback = {
 			consview.clear()
-		}
-		closebtn.buttonPressedCallback = {
-			[weak self] () -> Void in
-			if let myself = self {
-				myself.hide()
-			}
 		}
 	}
 
@@ -67,7 +61,7 @@ public class KCLogWindowController: NSWindowController
 	}
 	#endif
 
-	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton, KCButton) {
+	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton) {
 		if let newwin = NSWindow.loadWindow() {
 			/* Setup window */
 			newwin.title = "Log"
@@ -78,20 +72,15 @@ public class KCLogWindowController: NSWindowController
 			/* Clear button */
 			let clearbtn = KCButton()
 			clearbtn.title = "Clear"
-			/* Close button */
-			let closebtn = KCButton()
-			closebtn.title = "Close"
 			/* Buttons box */
-			let btnwidth  = clearbtn.frame.size.width + closebtn.frame.size.width
-			let btnheight = max(clearbtn.frame.size.height, closebtn.frame.size.height)
-			let btnframe  = KCRect(origin: KCPoint.zero, size: KCSize(width: btnwidth, height: btnheight))
+			let btnframe  = KCRect(origin: KCPoint.zero, size: clearbtn.frame.size)
 			let btnbox    = KCStackView(frame: btnframe)
 			btnbox.axis = .horizontal
 			btnbox.distribution = .fillEqually
-			btnbox.addArrangedSubViews(subViews: [clearbtn, closebtn])
+			btnbox.addArrangedSubView(subView: clearbtn)
 			/* Log box */
-			let logwidth  = max(cons.frame.width, btnwidth)
-			let logheight = cons.frame.height + btnheight
+			let logwidth  = max(cons.frame.width, clearbtn.frame.width)
+			let logheight = cons.frame.height + clearbtn.frame.height
 			let logframe  = KCRect(origin: KCPoint.zero, size: KCSize(width: logwidth, height: logheight))
 			let logbox    = KCStackView(frame: logframe)
 			logbox.axis = .vertical
@@ -99,7 +88,7 @@ public class KCLogWindowController: NSWindowController
 			/* Add contents to window */
 			newwin.setRootView(view: logbox)
 			newwin.resize(size: logframe.size)
-			return (newwin, cons, clearbtn, closebtn)
+			return (newwin, cons, clearbtn)
 		} else {
 			fatalError("Failed to allocate window")
 		}
