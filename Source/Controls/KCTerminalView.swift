@@ -92,6 +92,10 @@ open class KCTerminalView : KCCoreView
 		set(newnum){ coreView.currentRowNumbers = newnum }
 	}
 
+	public func verticalOffset() -> Int {
+		return coreView.verticalOffset()
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(terminalView: self)
 	}

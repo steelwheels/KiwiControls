@@ -31,7 +31,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mInputPipe:			Pipe
 	private var mOutputPipe:		Pipe
 	private var mErrorPipe:			Pipe
-	private var mCurrentIndex:		Int
+	private var mCurrentIndex:		String.Index?
 	private var mForegroundTextColor:	CNColor?
 	private var mBackgroundTextColor:	CNColor?
 	private var mDoBold:			Bool
@@ -46,7 +46,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mInputPipe			= Pipe()
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
-		mCurrentIndex			= 0
+		mCurrentIndex			= nil
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mDoBold				= false
@@ -63,7 +63,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mInputPipe			= Pipe()
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
-		mCurrentIndex			= 0
+		mCurrentIndex			= nil
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mDoBold				= false
@@ -180,6 +180,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let storage = mTextView.textStorage
 		#endif
 		storage.delegate = self
+		mCurrentIndex = storage.string.startIndex
 
 		/* Set colors */
 		mTextView.textColor = pref.foregroundTextColor
@@ -238,6 +239,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		if let str = String(data: data, encoding: .utf8) {
 			switch CNEscapeCode.decode(string: str) {
 			case .ok(let codes):
+				guard var curidx = mCurrentIndex else {
+					NSLog("No current index")
+					return
+				}
+
 				let storage = textStorage
 				storage.beginEditing()
 				for code in codes {
@@ -254,19 +260,24 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 								     doItalic:		mDoItalic,
 								     doUnderline:	mDoUnderline,
 								     doReverse:		mDoReverse)
-					if let newidx = storage.execute(index:		mCurrentIndex,
+					let base = storage.string.index(storage.string.startIndex, offsetBy: verticalOffset())
+					if let newidx = storage.execute(base:		base,
+									index:		curidx,
+									doInsert: 	false,
 									font:		mFont,
 									format: 	format,
 									escapeCode: code) {
-						mCurrentIndex = newidx
+						curidx = newidx
 					} else {
 						executeCommandInView(escapeCode: code)
 					}
 				}
 				storage.endEditing()
 				/* Update selected range */
-				let range = NSRange(location: mCurrentIndex, length: 0)
+				let loc   = storage.string.distance(from: storage.string.startIndex, to: curidx)
+				let range = NSRange(location: loc, length: 0)
 				setSelectedRange(range: range)
+				mCurrentIndex = curidx
 			case .error(let err):
 				NSLog("Failed to decode escape code: \(err.description())")
 			}
@@ -416,6 +427,33 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			}
 		}
 		return nil
+	}
+
+	public func verticalOffset() -> Int {
+		#if os(OSX)
+			if let layoutmgr = mTextView.layoutManager, let container = mTextView.textContainer, let storage = mTextView.textStorage {
+				let visrange = layoutmgr.glyphRange(forBoundingRect: mTextView.visibleRect, in: container)
+				let visindex = layoutmgr.characterIndexForGlyph(at: visrange.location)
+				let str      = storage.string
+				let idx      = str.startIndex
+				let end      = str.index(idx, offsetBy: visindex)
+				return storage.string.lineCount(from: idx, to: end)
+			} else {
+				return 0
+			}
+		#else
+			let layoutmgr = mTextView.layoutManager
+			let container = mTextView.textContainer
+			let storage   = mTextView.textStorage
+
+			let visrect   = CGRect(origin: mTextView.contentOffset, size: mTextView.frame.size)
+			let visrange  = layoutmgr.glyphRange(forBoundingRect: visrect, in: container)
+			let visindex  = layoutmgr.characterIndexForGlyph(at: visrange.location)
+			let str       = storage.string
+			let idx       = str.startIndex
+			let end       = str.index(idx, offsetBy: visindex)
+			return storage.string.lineCount(from: idx, to: end)
+		#endif
 	}
 
 	public func fontSize() -> KCSize {

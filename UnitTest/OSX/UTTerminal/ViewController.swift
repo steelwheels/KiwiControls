@@ -10,6 +10,25 @@ import CoconutData
 import CoconutShell
 import Cocoa
 
+
+open class UTShellThread: CNShellThread
+{
+	public var terminalView: KCTerminalView? = nil
+
+	open override func execute(command cmd: String) -> Bool {
+		#if false
+		CNExecuteInMainThread(doSync: true, execute: {
+			() -> Void in
+			if let view = self.terminalView {
+				let offset = view.verticalOffset()
+				self.console.print(string: "vOffset = \(offset)\n")
+			}
+		})
+		#endif
+		return super.execute(command: cmd)
+	}
+}
+
 class ViewController: KCPlaneViewController
 {
 	private var	mTerminalView:	KCTerminalView? = nil
@@ -29,9 +48,10 @@ class ViewController: KCPlaneViewController
 		let errstrm : CNFileStream     = .fileHandle(termview.errorFileHandle)
 		let environment		       = CNEnvironment()
 		NSLog("Allocate shell")
-		let shell     = CNShellThread(processManager: procmgr, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: environment)
+		let shell     = UTShellThread(processManager: procmgr, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: environment)
 		mShell        = shell
-
+		shell.terminalView = mTerminalView
+		
 		return termview.fittingSize
 	}
 
