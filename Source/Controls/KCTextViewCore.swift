@@ -39,8 +39,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mDoUnderline:		Bool
 	private var mDoReverse:			Bool
 	private var mFont:			CNFont
-	private var mCurrentColumnNumbers:	Int
-	private var mCurrentRowNumbers:		Int
+	private var mTerminalAttribute:		CNTerminalAttribute
 
 	public override init(frame frameRect: KCRect) {
 		mInputPipe			= Pipe()
@@ -54,8 +53,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mDoUnderline			= false
 		mDoReverse			= false
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mCurrentColumnNumbers		= 10
-		mCurrentRowNumbers		= 10
+		mTerminalAttribute		= CNTerminalAttribute(width: 80, height: 25)
 		super.init(frame: frameRect)
 	}
 
@@ -71,8 +69,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mDoUnderline			= false
 		mDoReverse			= false
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mCurrentColumnNumbers		= 10
-		mCurrentRowNumbers		= 10
+		mTerminalAttribute		= CNTerminalAttribute(width: 80, height: 25)
 		super.init(coder: coder)
 	}
 
@@ -149,8 +146,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		let pref = CNPreference.shared.terminalPreference
 		self.font = pref.font
-		self.mCurrentColumnNumbers	= pref.columnNumber
-		self.mCurrentRowNumbers		= pref.rowNumber
+		self.mTerminalAttribute.width	= pref.columnNumber
+		self.mTerminalAttribute.height	= pref.rowNumber
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
@@ -261,11 +258,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 								     doUnderline:	mDoUnderline,
 								     doReverse:		mDoReverse)
 					let base = storage.string.index(storage.string.startIndex, offsetBy: verticalOffset())
-					if let newidx = storage.execute(base:		base,
-									index:		curidx,
-									doInsert: 	false,
-									font:		mFont,
-									format: 	format,
+					if let newidx = storage.execute(base:			base,
+									index:			curidx,
+									font:			mFont,
+									format: 		format,
+									terminalAttribute:	&mTerminalAttribute,
 									escapeCode: code) {
 						curidx = newidx
 					} else {
@@ -377,12 +374,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public var currentColumnNumbers: Int {
 		get {
-			return mCurrentColumnNumbers
+			return mTerminalAttribute.width
 		}
 		set(newnum){
 			if let num = self.adjustColumnNumbers(number: newnum) {
-				if self.mCurrentColumnNumbers != num {
-					self.mCurrentColumnNumbers = num
+				if mTerminalAttribute.width != num {
+					mTerminalAttribute.width = num
 					notify(viewControlEvent: .updateWindowSize)
 				}
 			}
@@ -391,14 +388,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public var currentRowNumbers: Int {
 		get {
-			return mCurrentRowNumbers
+			return mTerminalAttribute.height
 		}
 		set(newnum){
 			if let num = self.adjustRowNumbers(number: newnum) {
 				//NSLog("compare row num: \(self.mCurrentRowNumbers) <-> \(num)")
-				if self.mCurrentRowNumbers != num {
+				if mTerminalAttribute.height != num {
 					//NSLog("update row num: \(self.mCurrentRowNumbers) -> \(num)")
-					self.mCurrentRowNumbers = num
+					mTerminalAttribute.height = num
 					notify(viewControlEvent: .updateWindowSize)
 				}
 			}
@@ -477,8 +474,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	open override var fittingSize: KCSize {
 		get {
 			let fontsize   = fontSize()
-			let termsize   = KCSize(width:  fontsize.width  * CGFloat(mCurrentColumnNumbers),
-						height: fontsize.height * CGFloat(mCurrentRowNumbers))
+			let termsize   = KCSize(width:  fontsize.width  * CGFloat(mTerminalAttribute.width),
+						height: fontsize.height * CGFloat(mTerminalAttribute.height))
 			//NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(termsize.description)")
 			return termsize
 		}
