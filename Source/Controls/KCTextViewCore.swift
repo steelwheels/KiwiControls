@@ -35,7 +35,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mForegroundTextColor:	CNColor?
 	private var mBackgroundTextColor:	CNColor?
 	private var mFont:			CNFont
-	private var mStringAttribute:		CNStringAttribute
+	private var mTerminalInfo:		CNTerminalInfo
 
 	public override init(frame frameRect: KCRect) {
 		mInputPipe			= Pipe()
@@ -45,7 +45,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mStringAttribute		= CNStringAttribute(width: 80, height: 25)
+		mTerminalInfo			= CNTerminalInfo(width: 80, height: 25)
 		super.init(frame: frameRect)
 	}
 
@@ -57,7 +57,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mStringAttribute		= CNStringAttribute(width: 80, height: 25)
+		mTerminalInfo			= CNTerminalInfo(width: 80, height: 25)
 		super.init(coder: coder)
 	}
 
@@ -134,8 +134,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		let pref = CNPreference.shared.terminalPreference
 		self.font = pref.font
-		self.mStringAttribute.width		= pref.columnNumber
-		self.mStringAttribute.height		= pref.rowNumber
+		self.mTerminalInfo.width		= pref.columnNumber
+		self.mTerminalInfo.height		= pref.rowNumber
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
@@ -229,13 +229,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 				storage.beginEditing()
 				for code in codes {
-					mStringAttribute.foregroundColor = foregroundTextColor
-					mStringAttribute.backgroundColor = backgroundTextColor
+					mTerminalInfo.foregroundColor = foregroundTextColor
+					mTerminalInfo.backgroundColor = backgroundTextColor
 					let base = storage.string.index(storage.string.startIndex, offsetBy: verticalOffset())
 					if let newidx = storage.execute(base:			base,
 									index:			curidx,
 									font:			mFont,
-									attribute: 		&mStringAttribute,
+									terminalInfo: 		mTerminalInfo,
 									escapeCode: code) {
 						curidx = newidx
 					} else {
@@ -271,13 +271,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		case .scrollDown:
 			break
 		case .boldCharacter(let flag):
-			mStringAttribute.doBold = flag
+			mTerminalInfo.doBold = flag
 		case .underlineCharacter(let flag):
-			mStringAttribute.doUnderLine = flag
+			mTerminalInfo.doUnderLine = flag
 		case .blinkCharacter(let flag):
 			NSLog("Blink character setting is ignored: \(flag)")
 		case .reverseCharacter(let flag):
-			mStringAttribute.doReverse = flag
+			mTerminalInfo.doReverse = flag
 		case .foregroundColor(let fcol):
 			mForegroundTextColor = fcol
 		case .defaultForegroundColor:
@@ -290,10 +290,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			/* Reset to default */
 			mForegroundTextColor		= nil
 			mBackgroundTextColor		= nil
-			mStringAttribute.doBold		= false
-			mStringAttribute.doItalic	= false
-			mStringAttribute.doUnderLine	= false
-			mStringAttribute.doReverse	= false
+			mTerminalInfo.doBold		= false
+			mTerminalInfo.doItalic		= false
+			mTerminalInfo.doUnderLine	= false
+			mTerminalInfo.doReverse		= false
 		case .requestScreenSize:
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.currentColumnNumbers, self.currentRowNumbers)
@@ -347,12 +347,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public var currentColumnNumbers: Int {
 		get {
-			return mStringAttribute.width
+			return mTerminalInfo.width
 		}
 		set(newnum){
 			if let num = self.adjustColumnNumbers(number: newnum) {
-				if mStringAttribute.width != num {
-					mStringAttribute.width = num
+				if mTerminalInfo.width != num {
+					mTerminalInfo.width = num
 					notify(viewControlEvent: .updateWindowSize)
 				}
 			}
@@ -361,14 +361,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 	public var currentRowNumbers: Int {
 		get {
-			return mStringAttribute.height
+			return mTerminalInfo.height
 		}
 		set(newnum){
 			if let num = self.adjustRowNumbers(number: newnum) {
 				//NSLog("compare row num: \(self.mCurrentRowNumbers) <-> \(num)")
-				if mStringAttribute.height != num {
+				if mTerminalInfo.height != num {
 					//NSLog("update row num: \(self.mCurrentRowNumbers) -> \(num)")
-					mStringAttribute.height = num
+					mTerminalInfo.height = num
 					notify(viewControlEvent: .updateWindowSize)
 				}
 			}
@@ -407,7 +407,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				let str      = storage.string
 				let idx      = str.startIndex
 				let end      = str.index(idx, offsetBy: visindex)
-				return storage.string.lineCount(from: idx, to: end)
+				return storage.lineCount(from: idx, to: end)
 			} else {
 				return 0
 			}
@@ -422,7 +422,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let str       = storage.string
 			let idx       = str.startIndex
 			let end       = str.index(idx, offsetBy: visindex)
-			return storage.string.lineCount(from: idx, to: end)
+			return storage.lineCount(from: idx, to: end)
 		#endif
 	}
 
@@ -447,8 +447,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	open override var fittingSize: KCSize {
 		get {
 			let fontsize	= fontSize()
-			let termwidth	= CGFloat(mStringAttribute.width)
-			let termheight	= CGFloat(mStringAttribute.height)
+			let termwidth	= CGFloat(mTerminalInfo.width)
+			let termheight	= CGFloat(mTerminalInfo.height)
 			let termsize   = KCSize(width:  fontsize.width  * termwidth,
 						height: fontsize.height * termheight)
 			//NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(termsize.description)")
