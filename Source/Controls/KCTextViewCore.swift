@@ -461,6 +461,27 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 
+	#if os(OSX)
+	open override func resize(withOldSuperviewSize oldSize: NSSize) {
+		/* Update row/colmun numbers */
+		let fontsize   = fontSize()
+		let framesize  = self.frame.size
+		let width  = Int(framesize.width  / fontsize.width)
+		let height = Int(framesize.height / fontsize.height)
+
+		if mTerminalInfo.width != width || mTerminalInfo.height != height {
+			/* Sent the event */
+			let ackcode = CNEscapeCode.screenSize(width, height)
+			mInputPipe.fileHandleForWriting.write(string: ackcode.encode())
+			/* Update the size */
+			mTerminalInfo.width  = width
+			mTerminalInfo.height = height
+		}
+
+		super.resize(withOldSuperviewSize: oldSize)
+	}
+	#endif
+
 	open override func resize(_ size: KCSize) {
 		//NSLog("resize <- \(size.description)")
 		#if os(OSX)
