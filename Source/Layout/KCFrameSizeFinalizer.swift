@@ -27,6 +27,11 @@ public class KCFrameSizeFinalizer: KCViewVisitor
 		view.resize(view.frame.size)
 	}
 
+	open override func visit(terminalView view: KCTerminalView) {
+		view.resize(view.frame.size)
+		view.updateTerminalSize()
+	}
+
 	open override func visit(coreView view: KCCoreView){
 		view.resize(view.frame.size)
 	}

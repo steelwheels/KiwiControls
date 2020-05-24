@@ -42,13 +42,12 @@ class ViewController: KCPlaneViewController
 		/* Allocate shell */
 		NSLog("Launch terminal")
 		let procmgr : CNProcessManager = CNProcessManager()
-		let queue   : DispatchQueue    = DispatchQueue(label: "Terminal", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
 		let instrm  : CNFileStream     = .fileHandle(termview.inputFileHandle)
 		let outstrm : CNFileStream     = .fileHandle(termview.outputFileHandle)
 		let errstrm : CNFileStream     = .fileHandle(termview.errorFileHandle)
 		let environment		       = CNEnvironment()
 		NSLog("Allocate shell")
-		let shell     = UTShellThread(processManager: procmgr, queue: queue, input: instrm, output: outstrm, error: errstrm, environment: environment)
+		let shell     = UTShellThread(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: environment)
 		mShell        = shell
 		shell.terminalView = mTerminalView
 		

@@ -73,10 +73,6 @@ open class KCTerminalView : KCCoreView
 		}
 	}
 
-	public func setFontSize(pointSize size: CGFloat) {
-		coreView.setFontSize(pointSize: size)
-	}
-
 	public var font: CNFont {
 		get		{ return coreView.font	}
 		set(newfont)	{ coreView.font = newfont }
@@ -94,6 +90,10 @@ open class KCTerminalView : KCCoreView
 
 	public func verticalOffset() -> Int {
 		return coreView.verticalOffset()
+	}
+
+	public func updateTerminalSize() {
+		coreView.updateTerminalSize()
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
