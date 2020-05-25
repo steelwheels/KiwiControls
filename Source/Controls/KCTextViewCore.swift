@@ -338,8 +338,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		set(newnum){
 			if let num = self.adjustColumnNumbers(number: newnum) {
 				if mTerminalInfo.width != num {
-					mTerminalInfo.width = num
-					notify(viewControlEvent: .updateWindowSize)
+					CNExecuteInMainThread(doSync: false, execute: {
+						() -> Void in
+						self.mTerminalInfo.width = num
+						self.notify(viewControlEvent: .updateWindowSize)
+					})
 				}
 			}
 		}
@@ -351,11 +354,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 		set(newnum){
 			if let num = self.adjustRowNumbers(number: newnum) {
-				//NSLog("compare row num: \(self.mCurrentRowNumbers) <-> \(num)")
 				if mTerminalInfo.height != num {
-					//NSLog("update row num: \(self.mCurrentRowNumbers) -> \(num)")
-					mTerminalInfo.height = num
-					notify(viewControlEvent: .updateWindowSize)
+					CNExecuteInMainThread(doSync: false, execute: {
+						() -> Void in
+						self.mTerminalInfo.height = num
+						self.notify(viewControlEvent: .updateWindowSize)
+					})
 				}
 			}
 		}
