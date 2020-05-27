@@ -478,7 +478,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		let framesize  = mTextView.frame.size
 		let width      = Int(framesize.width  / fontsize.width)
 		let height     = Int(framesize.height / fontsize.height)
-		NSLog("terminal width: \(width), height: \(height)")
+		//NSLog("terminal width: \(width), height: \(height)")
 
 		if mTerminalInfo.width != width || mTerminalInfo.height != height {
 			/* Sent the event */
