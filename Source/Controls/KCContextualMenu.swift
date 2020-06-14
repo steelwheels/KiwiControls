@@ -8,7 +8,7 @@
 import Cocoa
 import Foundation
 
-public class KCContextualMenu
+open class KCContextualMenu
 {
 	public struct MenuItem {
 		var index:	Int
