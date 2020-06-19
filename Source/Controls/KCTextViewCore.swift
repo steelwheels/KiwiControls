@@ -229,7 +229,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				for code in codes {
 					mTerminalInfo.foregroundColor = foregroundTextColor
 					mTerminalInfo.backgroundColor = backgroundTextColor
-					let base = storage.string.index(storage.string.startIndex, offsetBy: verticalOffset())
+					let base = storage.string.index(storage.string.startIndex, offsetBy: leftTopOffset())
 					if let newidx = storage.execute(base:			base,
 									index:			curidx,
 									font:			mFont,
@@ -261,12 +261,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		#endif
 	}
 
-	private func executeCommandInView(escapeCode code: CNEscapeCode){
+	private func executeCommandInView(escapeCode code: CNEscapeCode) {
 		switch code {
-		case .scrollUp:
-			break
-		case .scrollDown:
-			break
 		case .boldCharacter(let flag):
 			mTerminalInfo.doBold = flag
 		case .underlineCharacter(let flag):
@@ -389,17 +385,15 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		return nil
 	}
 
-	public func verticalOffset() -> Int {
+	private func leftTopIndex() -> String.Index {
 		#if os(OSX)
 			if let layoutmgr = mTextView.layoutManager, let container = mTextView.textContainer, let storage = mTextView.textStorage {
 				let visrange = layoutmgr.glyphRange(forBoundingRect: mTextView.visibleRect, in: container)
 				let visindex = layoutmgr.characterIndexForGlyph(at: visrange.location)
 				let str      = storage.string
-				let idx      = str.startIndex
-				let end      = str.index(idx, offsetBy: visindex)
-				return storage.lineCount(from: idx, to: end)
+				return str.index(str.startIndex, offsetBy: visindex)
 			} else {
-				return 0
+				return textStorage.string.startIndex
 			}
 		#else
 			let layoutmgr = mTextView.layoutManager
@@ -411,9 +405,13 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let visindex  = layoutmgr.characterIndexForGlyph(at: visrange.location)
 			let str       = storage.string
 			let idx       = str.startIndex
-			let end       = str.index(idx, offsetBy: visindex)
-			return storage.lineCount(from: idx, to: end)
+			return str.index(idx, offsetBy: visindex)
 		#endif
+	}
+
+	public func leftTopOffset() -> Int {
+		let lefttop = leftTopIndex()
+		return textStorage.lineCount(from: self.textStorage.string.startIndex, to: lefttop)
 	}
 
 	public func fontSize() -> KCSize {

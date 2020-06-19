@@ -88,8 +88,8 @@ open class KCTerminalView : KCCoreView
 		set(newnum){ coreView.currentRowNumbers = newnum }
 	}
 
-	public func verticalOffset() -> Int {
-		return coreView.verticalOffset()
+	public func leftTopOffset() -> Int {
+		return coreView.leftTopOffset()
 	}
 
 	public func updateTerminalSize() {
