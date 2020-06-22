@@ -32,6 +32,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mOutputPipe:		Pipe
 	private var mErrorPipe:			Pipe
 	private var mCurrentIndex:		Int
+	private var mSavedIndex:		Int
 	private var mForegroundTextColor:	CNColor?
 	private var mBackgroundTextColor:	CNColor?
 	private var mFont:			CNFont
@@ -42,6 +43,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
 		mCurrentIndex			= 0
+		mSavedIndex			= 0
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
@@ -54,6 +56,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
 		mCurrentIndex			= 0
+		mSavedIndex			= 0
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
@@ -291,6 +294,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			/* Ack the size*/
 			let ackcode: CNEscapeCode = .screenSize(self.currentColumnNumbers, self.currentRowNumbers)
 			mInputPipe.fileHandleForWriting.write(string: ackcode.encode())
+		case .saveCursorPosition:
+			mSavedIndex = mCurrentIndex
+		case .restoreCursorPosition:
+			let str = self.textStorage.string
+			let endidx  = str.distance(from: str.startIndex, to: str.endIndex)
+			mCurrentIndex = min(mSavedIndex, endidx)
 		default:
 			let desc = code.description()
 			NSLog("Unexpected code: \(desc)")
