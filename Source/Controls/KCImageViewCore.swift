@@ -100,7 +100,6 @@ open class KCImageViewCore : KCView
 				result = CGSize(width: src.width / vratio, height: src.height / vratio)
 			}
 		}
-		NSLog("Adjusted image size: \(src.description) in \(bounds.description) -> \(result.description)")
 		return result
 	}
 }

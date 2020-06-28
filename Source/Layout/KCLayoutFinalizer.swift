@@ -28,7 +28,6 @@ public class KCLayoutFinalizer: CNLogging
 		#if os(OSX)
 			let decider = KCFirstResponderDecider(window: win, console: mConsole)
 			let _ = decider.decideFirstResponder(rootView: view)
-			//NSLog("Has responder: \(hasresp)")
 		#endif
 		//dump(view: view)
 	}

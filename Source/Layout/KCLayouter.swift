@@ -40,9 +40,6 @@ public class KCLayouter: CNLogging
 		log(type: .flow, string: "Allocate root frame size", file: #file, line: #line, function: #function)
 		let winupdator = KCWindowSizeUpdator(console: mConsole)
 		winupdator.updateContentSize(rootView: view, contentSize: content)
-		//dump(view: view)
-
-		//NSLog("Layout result size: \(view.frame.size.description)")
 	}
 
 	private func dump(view v: KCView) {

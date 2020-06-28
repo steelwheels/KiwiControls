@@ -30,8 +30,6 @@ public class KCFirstResponderDecider
 	private func searchFirstResponder(view base: KCViewBase) -> Bool {
 		if isTextView(view: base) {
 			if base.acceptsFirstResponder {
-				//let classname = String(describing: type(of: base))
-				//NSLog("makeFirstResponder(\(classname))")
 				mWindow.makeFirstResponder(base)
 				return true
 			}

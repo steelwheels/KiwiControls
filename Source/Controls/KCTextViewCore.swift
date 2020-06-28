@@ -426,7 +426,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	public func fontSize() -> KCSize {
 		let attr = [NSAttributedString.Key.font: mFont]
 		let str: String = " "
-		//NSLog("font size = \(str.size(withAttributes: attr).description)")
 		return str.size(withAttributes: attr)
 	}
 

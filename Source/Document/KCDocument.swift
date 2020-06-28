@@ -18,7 +18,6 @@ open class KCDocument: NSDocument
 		guard let action = item.action else {
 			return false
 		}
-		NSLog("act: \(action.description)")
 		switch action {
 		case #selector(save(_:)):
 			return false

@@ -337,7 +337,6 @@ public class KCTerminalPreferenceView: KCStackView
 			if iname != mPreviousNameIndex || isize != mPreviousSizeIndex {
 				let name = names[iname]
 				let size = sizes[isize]
-				//NSLog("Update font: \(name)@\(size)")
 
 				/* Update font */
 				if let font  = CNFont(name: name, size: size) {
@@ -389,8 +388,6 @@ public class KCTerminalPreferenceView: KCStackView
 		if let key = keyPath {
 			switch key {
 			case CNPreference.shared.systemPreference.InterfaceStyleItem:
-				//let style = CNPreference.shared.systemPreference.interfaceStyle
-				//NSLog("\(#file): style=\(style.description)")
 				let termpref = CNPreference.shared.terminalPreference
 				if let sel = mTextColorSelector {
 					sel.color = termpref.foregroundTextColor

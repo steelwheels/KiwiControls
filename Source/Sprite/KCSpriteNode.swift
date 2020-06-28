@@ -40,7 +40,6 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 
 		/* Set after physicsBody */
 		self.action   = iact
-		//NSLog("node: log=\(istat.size.description), phys=\(physize.description)")
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
