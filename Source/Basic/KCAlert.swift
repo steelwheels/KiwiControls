@@ -15,9 +15,8 @@ import CoconutData
 public class KCAlert : NSObject
 {
 	public enum AlertResponce {
-		case Stop
-		case Abort
-		case Continue
+		case OK
+		case Cancel
 	}
 
 	public enum SaveResponce {
@@ -33,14 +32,12 @@ public class KCAlert : NSObject
 		let alert = NSAlert(error: err)
 		alert.alertStyle = codeToStyle(error: err)
 		switch alert.runModal() {
-		case NSApplication.ModalResponse.stop:
-			result = .Stop
-		case NSApplication.ModalResponse.abort:
-			result = .Abort
-		case NSApplication.ModalResponse.continue:
-			result = .Continue
+		case .OK:
+			result = .OK
+		case .cancel:
+			result = .Cancel
 		default:
-			result = .Abort
+			result = .Cancel
 		}
 		return result
 	}
@@ -68,7 +65,7 @@ public class KCAlert : NSObject
 		})
 		alert.addAction(acttion)
 		viewcont.present(alert, animated: false, completion: nil)
-		return .Stop
+		return .Cancel
 	}
 	#endif
 
