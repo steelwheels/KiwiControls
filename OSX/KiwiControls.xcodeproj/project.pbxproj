@@ -19,7 +19,6 @@
 		0515CD581EACB37F00B4736D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0515CD571EACB37F00B4736D /* ViewController.swift */; };
 		0515CD5A1EACB37F00B4736D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0515CD591EACB37F00B4736D /* Assets.xcassets */; };
 		0515CD5D1EACB37F00B4736D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0515CD5B1EACB37F00B4736D /* Main.storyboard */; };
-		0516D35F2417D1CC00F23E19 /* KCUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0516D35E2417D1CC00F23E19 /* KCUserDefaults.swift */; };
 		051847C51E0DD4F700671A2D /* KCStepperCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051847C41E0DD4F700671A2D /* KCStepperCore.xib */; };
 		051847C71E0DD53E00671A2D /* KCStepperCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C61E0DD53E00671A2D /* KCStepperCore.swift */; };
 		051847C91E0DD76F00671A2D /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051847C81E0DD76F00671A2D /* KCStepper.swift */; };
@@ -390,7 +389,6 @@
 		0515CD591EACB37F00B4736D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0515CD5C1EACB37F00B4736D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0515CD5E1EACB37F00B4736D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0516D35E2417D1CC00F23E19 /* KCUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCUserDefaults.swift; sourceTree = "<group>"; };
 		051847C41E0DD4F700671A2D /* KCStepperCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStepperCore.xib; sourceTree = "<group>"; };
 		051847C61E0DD53E00671A2D /* KCStepperCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepperCore.swift; sourceTree = "<group>"; };
 		051847C81E0DD76F00671A2D /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
@@ -886,7 +884,6 @@
 				05C93F4420F0E5220057217F /* KCViewVisitor.swift */,
 				05C93F4620F0F1820057217F /* KCViewDumper.swift */,
 				0531C92C1FD404570020AD7D /* KCPreference.swift */,
-				0516D35E2417D1CC00F23E19 /* KCUserDefaults.swift */,
 				0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */,
 				0526C46F21C017E600EDC4E3 /* KCLayoutConstraint.swift */,
 			);
@@ -1771,7 +1768,6 @@
 				0502A22E2272032D00D8E36A /* KCSpriteScene.swift in Sources */,
 				0580439C20958AE3009E20A9 /* KCVertices.swift in Sources */,
 				0509B0F722A954D5001AD62B /* KCSpriteOperation.swift in Sources */,
-				0516D35F2417D1CC00F23E19 /* KCUserDefaults.swift in Sources */,
 				059101EA22A3729C000CBC9D /* KCScreen.swift in Sources */,
 				05F73B7F214964C500AD02B4 /* KCWindowSizeUpdator.swift in Sources */,
 				05F66D311F45C5A1004786FE /* KCTextViewCore.swift in Sources */,
