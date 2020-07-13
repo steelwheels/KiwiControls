@@ -45,9 +45,10 @@ class ViewController: KCPlaneViewController
 		let instrm  : CNFileStream     = .fileHandle(termview.inputFileHandle)
 		let outstrm : CNFileStream     = .fileHandle(termview.outputFileHandle)
 		let errstrm : CNFileStream     = .fileHandle(termview.errorFileHandle)
+		let compl:    CNComplementor   = CNComplementor()
 		let environment		       = CNEnvironment()
 		NSLog("Allocate shell")
-		let shell     = UTShellThread(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: environment)
+		let shell     = UTShellThread(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, complementor: compl, environment: environment)
 		mShell        = shell
 		shell.terminalView = mTerminalView
 		

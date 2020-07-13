@@ -224,15 +224,15 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	private func receiveInputStream(inputData data: Data) {
-		if let str = String(data: data, encoding: .utf8) {
+		if let str = String.stringFromData(data: data) {
 			switch CNEscapeCode.decode(string: str) {
 			case .ok(let codes):
 				let storage = self.textStorage
-				var curidx  = storage.string.index(storage.string.startIndex, offsetBy: mCurrentIndex)
+				var curidx  = mCurrentIndex
 				for code in codes {
 					mTerminalInfo.foregroundColor = foregroundTextColor
 					mTerminalInfo.backgroundColor = backgroundTextColor
-					let base = storage.string.index(storage.string.startIndex, offsetBy: leftTopOffset())
+					let base = leftTopOffset()
 					if let newidx = storage.execute(base:			base,
 									index:			curidx,
 									font:			mFont,
@@ -244,10 +244,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					}
 				}
 				/* Update selected range */
-				let loc     = storage.string.distance(from: storage.string.startIndex, to: curidx)
-				let range   = NSRange(location: loc, length: 0)
+				let range   = NSRange(location: curidx, length: 0)
 				setSelectedRange(range: range)
-				mCurrentIndex = storage.string.distance(from: storage.string.startIndex, to: curidx)
+				mCurrentIndex = curidx
 			case .error(let err):
 				NSLog("Failed to decode escape code: \(err.description())")
 			}
@@ -394,33 +393,29 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		return nil
 	}
 
-	private func leftTopIndex() -> String.Index {
+	private func leftTopIndex() -> Int {
 		#if os(OSX)
-			if let layoutmgr = mTextView.layoutManager, let container = mTextView.textContainer, let storage = mTextView.textStorage {
+			if let layoutmgr = mTextView.layoutManager, let container = mTextView.textContainer {
 				let visrange = layoutmgr.glyphRange(forBoundingRect: mTextView.visibleRect, in: container)
 				let visindex = layoutmgr.characterIndexForGlyph(at: visrange.location)
-				let str      = storage.string
-				return str.index(str.startIndex, offsetBy: visindex)
+				return visindex
 			} else {
-				return textStorage.string.startIndex
+				return 0
 			}
 		#else
 			let layoutmgr = mTextView.layoutManager
 			let container = mTextView.textContainer
-			let storage   = mTextView.textStorage
 
 			let visrect   = CGRect(origin: mTextView.contentOffset, size: mTextView.frame.size)
 			let visrange  = layoutmgr.glyphRange(forBoundingRect: visrect, in: container)
 			let visindex  = layoutmgr.characterIndexForGlyph(at: visrange.location)
-			let str       = storage.string
-			let idx       = str.startIndex
-			return str.index(idx, offsetBy: visindex)
+			return visindex
 		#endif
 	}
 
 	public func leftTopOffset() -> Int {
 		let lefttop = leftTopIndex()
-		return textStorage.lineCount(from: self.textStorage.string.startIndex, to: lefttop)
+		return textStorage.lineCount(from: 0, to: lefttop)
 	}
 
 	public func fontSize() -> KCSize {
