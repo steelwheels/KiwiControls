@@ -440,15 +440,20 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let fontsize   = fontSize()
 			let termwidth  = CGFloat(mTerminalInfo.width)  * fontsize.width
 			let termheight = CGFloat(mTerminalInfo.height) * fontsize.height
-			#if os(OSX)
-				let barwidth: CGFloat = NSScroller.scrollerWidth(for: .regular, scrollerStyle: .overlay)
-			#else
-				let barwidth: CGFloat = 0.0
-			#endif
+			let barwidth   = scrollerWidth()
 			let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
 			//NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(termsize.description)")
 			return termsize
 		}
+	}
+
+	private func scrollerWidth() -> CGFloat {
+		#if os(OSX)
+			let barwidth: CGFloat = NSScroller.scrollerWidth(for: .regular, scrollerStyle: .overlay)
+		#else
+			let barwidth: CGFloat = 0.0
+		#endif
+		return barwidth
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
@@ -477,7 +482,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		/* Update row/colmun numbers */
 		let fontsize   = fontSize()
 		let framesize  = mTextView.frame.size
-		let width      = Int(framesize.width  / fontsize.width)
+		let barwidth   = scrollerWidth()
+		let frmwidth   = max(framesize.width - barwidth, 0.0)
+		let width      = Int(frmwidth         / fontsize.width)
 		let height     = Int(framesize.height / fontsize.height)
 		//NSLog("terminal width: \(width), height: \(height)")
 
