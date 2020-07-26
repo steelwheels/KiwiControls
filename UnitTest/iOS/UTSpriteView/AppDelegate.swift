@@ -6,13 +6,13 @@
 //  Copyright © 2018 Steel Wheels Project. All rights reserved.
 //
 
+import CoconutData
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: CNApplicationDelegate {
 
 	var window: UIWindow?
-
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.

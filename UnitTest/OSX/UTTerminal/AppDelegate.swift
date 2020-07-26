@@ -7,16 +7,18 @@
 //
 
 import KiwiControls
+import CoconutData
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate
+class AppDelegate: CNApplicationDelegate
 {
 	func applicationWillFinishLaunching(_ notification: Notification) {
 		UserDefaults.standard.applyDefaultSetting()
 	}
 
-	func applicationDidFinishLaunching(_ aNotification: Notification) {
+	override func applicationDidFinishLaunching(_ aNotification: Notification) {
+		super.applicationDidFinishLaunching(aNotification)
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {

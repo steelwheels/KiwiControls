@@ -6,11 +6,12 @@
 //  Copyright © 2019 Steel Wheels Project. All rights reserved.
 //
 
+import CoconutData
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: CNApplicationDelegate
+{
 	var window: UIWindow?
 
 

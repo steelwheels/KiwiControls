@@ -95,7 +95,6 @@
 		05674B921F77D1CD006CB20F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05674B911F77D1CD006CB20F /* ViewController.swift */; };
 		05674B941F77D1CD006CB20F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05674B931F77D1CD006CB20F /* Assets.xcassets */; };
 		05674B971F77D1CD006CB20F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05674B951F77D1CD006CB20F /* Main.storyboard */; };
-		0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */; };
 		056AC50E22958D2A003AA1A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC50D22958D2A003AA1A8 /* AppDelegate.swift */; };
 		056AC51022958D2A003AA1A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC50F22958D2A003AA1A8 /* ViewController.swift */; };
 		056AC51222958D2B003AA1A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056AC51122958D2B003AA1A8 /* Assets.xcassets */; };
@@ -463,7 +462,6 @@
 		05674B961F77D1CD006CB20F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05674B981F77D1CD006CB20F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05674B991F77D1CD006CB20F /* UTWindowController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTWindowController.entitlements; sourceTree = "<group>"; };
-		0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		0568FDE321247B370048EA92 /* SampleImage0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SampleImage0.jpeg; sourceTree = "<group>"; };
 		056AC50B22958D2A003AA1A8 /* UTLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		056AC50D22958D2A003AA1A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../UnitTest/OSX/UTLayout/AppDelegate.swift; sourceTree = "<group>"; };
@@ -884,7 +882,6 @@
 				05C93F4420F0E5220057217F /* KCViewVisitor.swift */,
 				05C93F4620F0F1820057217F /* KCViewDumper.swift */,
 				0531C92C1FD404570020AD7D /* KCPreference.swift */,
-				0567E83D20A7C7F6002764D7 /* KCApplicationDelegate.swift */,
 				0526C46F21C017E600EDC4E3 /* KCLayoutConstraint.swift */,
 			);
 			path = Basic;
@@ -1785,7 +1782,6 @@
 				05954E75249466A200BC4F17 /* KCContextualMenu.swift in Sources */,
 				052CDEFA20D7AFB900CC184D /* KCTextEditCore.swift in Sources */,
 				05A03C0A1E1EAB5300156321 /* KCButtonBody.swift in Sources */,
-				0567E83E20A7C7F6002764D7 /* KCApplicationDelegate.swift in Sources */,
 				057C42CE1E4390D3001BD954 /* KCSelectionLayer.swift in Sources */,
 				0501F7A31E12D84300B68A98 /* KCCheckBoxCore.swift in Sources */,
 				056E4A1D21F765AF00ED7AD2 /* KCNavigationBar.swift in Sources */,
