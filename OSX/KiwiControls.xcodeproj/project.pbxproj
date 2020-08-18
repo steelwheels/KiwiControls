@@ -202,6 +202,7 @@
 		05F66D331F45C8B4004786FE /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F66D321F45C8B4004786FE /* KCConsoleView.swift */; };
 		05F73B7D21495FB500AD02B4 /* KCSizeMinimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F73B7C21495FB500AD02B4 /* KCSizeMinimizer.swift */; };
 		05F73B7F214964C500AD02B4 /* KCWindowSizeUpdator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F73B7E214964C500AD02B4 /* KCWindowSizeUpdator.swift */; };
+		05F9B42E24EB86BA00CB07AC /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F9B42D24EB86BA00CB07AC /* KCApplicationDelegate.swift */; };
 		05FB742B1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB742A1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -574,6 +575,7 @@
 		05F66D321F45C8B4004786FE /* KCConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsoleView.swift; sourceTree = "<group>"; };
 		05F73B7C21495FB500AD02B4 /* KCSizeMinimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSizeMinimizer.swift; sourceTree = "<group>"; };
 		05F73B7E214964C500AD02B4 /* KCWindowSizeUpdator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCWindowSizeUpdator.swift; sourceTree = "<group>"; };
+		05F9B42D24EB86BA00CB07AC /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		05FB742A1E40E7BA00B7A2C6 /* KCStrokeDrawerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStrokeDrawerLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -875,6 +877,7 @@
 		05386D401D85708E004B8DDF /* Basic */ = {
 			isa = PBXGroup;
 			children = (
+				05F9B42D24EB86BA00CB07AC /* KCApplicationDelegate.swift */,
 				055DA41C1F7651DE00005FD4 /* KCType.swift */,
 				05386D411D8570A4004B8DDF /* KCAlert.swift */,
 				05386D441D8570A4004B8DDF /* KCView.swift */,
@@ -1700,6 +1703,7 @@
 				055EA6F023FC3D36007754E5 /* KCLabeledStackViewCore.swift in Sources */,
 				0580438820957098009E20A9 /* KCColorPreference.swift in Sources */,
 				0529608A2115B26D00D9D739 /* KCMultiViewController.swift in Sources */,
+				05F9B42E24EB86BA00CB07AC /* KCApplicationDelegate.swift in Sources */,
 				0580438E209572A3009E20A9 /* KCImage.swift in Sources */,
 				0598D9B8212459A80018AA1D /* KCImageViewCore.swift in Sources */,
 				05BD996B20956B9000E468B7 /* KCRect.swift in Sources */,
