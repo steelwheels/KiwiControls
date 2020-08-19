@@ -16,7 +16,9 @@ open class KCApplicationDelegate: CNApplicationDelegate
 		/* Connect console to the event manager */
 		#if os(OSX)
 			let evtmgr = CNAppleEventManager.shared()
-			evtmgr.console = KCLogManager.shared.console
+			let logmgr = KCLogManager.shared
+			logmgr.enable = true
+			evtmgr.console = logmgr.console
 			evtmgr.dump()
 		#endif
 	}

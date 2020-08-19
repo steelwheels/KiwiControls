@@ -151,7 +151,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		switch md {
 		case .log:
 			mTextView.isEditable			= false
-			mTextView.isSelectable			= false
+			mTextView.isSelectable			= true
 		case .console:
 			mTextView.isEditable			= true
 			mTextView.isSelectable			= true

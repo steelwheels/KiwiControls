@@ -26,7 +26,7 @@ public class KCLayouter: CNLogging
 		log(type: .flow, string: "Minimize content size: " + content.description, file: #file, line: #line, function: #function)
 		let minimizer = KCSizeMinimizer(rootSize: content, console: mConsole)
 		view.accept(visitor: minimizer)
-		dump(view: view)
+		//dump(view: view)
 
 		log(type: .flow, string: "Adjust expandability ", file: #file, line: #line, function: #function)
 		let adjuster = KCExpansionAdjuster(console: mConsole)
