@@ -59,7 +59,7 @@ import Foundation
 	}
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		log(type: .flow, string: "Selected", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "Selected", file: #file, line: #line, function: #function)
 		if urls.count >= 1 {
 			switch mLoaderFunction {
 			case .none:
@@ -77,7 +77,7 @@ import Foundation
 	}
 
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		log(type: .flow, string: "Canceled", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "Canceled", file: #file, line: #line, function: #function)
 	}
 }
 

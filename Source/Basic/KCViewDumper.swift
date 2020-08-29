@@ -19,7 +19,7 @@ public class KCViewDumper: KCViewVisitor
 
 	public func dump(view v: KCView){
 		v.accept(visitor: self)
-		log(type: .flow, text: mSection, file: #file, line: #line, function: #function)
+		log(type: .debug, text: mSection, file: #file, line: #line, function: #function)
 	}
 
 	open override func visit(rootView view: KCRootView){

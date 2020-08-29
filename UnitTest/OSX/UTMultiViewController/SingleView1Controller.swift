@@ -34,20 +34,20 @@ public class SingleView1Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		log(type: .flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -55,7 +55,7 @@ public class SingleView1Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 
@@ -66,7 +66,7 @@ public class SingleView1Controller: KCSingleViewController
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear(animated)
 		doDumpView(message: "After viewDidAppear")
 	}
@@ -74,7 +74,7 @@ public class SingleView1Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			log(type: .flow, string: msg, file: #file, line: #line, function: #function)
+			log(type: .debug, string: msg, file: #file, line: #line, function: #function)
 			let dumper = KCViewDumper(console: console!)
 			dumper.dump(view: view)
 		} else {

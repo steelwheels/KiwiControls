@@ -112,7 +112,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 				/* Layout components */
 				let newsize = mTargetSize
 				if mPrevRootSize != newsize {
-					log(type: .flow, string: "Execute Layout", file: #file, line: #line, function: #function)
+					log(type: .debug, string: "Execute Layout", file: #file, line: #line, function: #function)
 					let layouter = KCLayouter(console: mConsole)
 					layouter.layout(rootView: root, contentSize: newsize)
 					mPrevRootSize = newsize

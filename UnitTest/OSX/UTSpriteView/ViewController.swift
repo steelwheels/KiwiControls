@@ -44,7 +44,7 @@ class ViewController: NSViewController, CNLogging
 		let cons = KCLogConsole.shared
 		mConsole = cons
 
-		log(type: .Flow, string: "Message from ViewController", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "Message from ViewController", file: #file, line: #line, function: #function)
 		mSpriteView.set(console: cons)
 
 		guard let blueurl = CNFilePath.URLForResourceFile(fileName: "blue-machine", fileExtension: "png") else {

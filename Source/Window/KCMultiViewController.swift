@@ -48,7 +48,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	}
 
 	open override func viewDidLoad() {
-		log(type: .flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		showTabBar(visible:false)
 
@@ -226,7 +226,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	}
 
 	public func pushViewController(byName name: String) -> Bool {
-		log(type: .flow, string: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 		if let idx = mIndexTable[name] {
 			mViewStack.push(name)
 			switchView(index: idx)
@@ -241,7 +241,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		if mViewStack.count > 1 {
 			let _ = mViewStack.pop()
 			if let name = mViewStack.peek() {
-				log(type: .flow, string:  "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+				log(type: .debug, string:  "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
 				if let idx = mIndexTable[name] {
 					switchView(index: idx)
 					return true

@@ -208,7 +208,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 						if status.energy > 0.0 {
 							if let nodeinfo = mNodes[name] {
 								nodeinfo.node.action = result
-								log(type: .flow, string: "action=\(result.angle)", file: #file, line: #line, function: #function)
+								log(type: .debug, string: "action=\(result.angle)", file: #file, line: #line, function: #function)
 							}
 						} else {
 							syncRemove(nodeName: name)

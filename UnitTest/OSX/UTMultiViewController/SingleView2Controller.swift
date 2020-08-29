@@ -14,7 +14,7 @@ public class SingleView2Controller: KCSingleViewController
 	private var mConsole = CNFileConsole()
 
 	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
-		log(type: .flow, string: "loadView", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "loadView", file: #file, line: #line, function: #function)
 
 		let dummyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
@@ -44,20 +44,20 @@ public class SingleView2Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		log(type: .flow, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewDidLoad", file: #file, line: #line, function: #function)
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		log(type: .flow, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -65,13 +65,13 @@ public class SingleView2Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		log(type: .flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		log(type: .Flow, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		log(type: .debug, string: "viewDidAppear", file: #file, line: #line, function: #function)
 		CNLog(type: .Normal, message: "viewDidAppear", place: #file)
 		super.viewDidAppear(animated)
 		doDumpView(message: "After viewDidAppear")
@@ -80,7 +80,7 @@ public class SingleView2Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			log(type: .flow, string: msg, file: #file, line: #line, function: #function)
+			log(type: .debug, string: msg, file: #file, line: #line, function: #function)
 			if let cons = console {
 				let dumper = KCViewDumper(console: cons)
 				dumper.dump(view: view)

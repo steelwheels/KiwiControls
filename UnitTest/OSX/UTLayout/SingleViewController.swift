@@ -103,7 +103,7 @@ public class SingleViewController: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView, let cons = console {
-			log(type: .Flow, string: msg, file: #file, line: #line, function: #function)
+			log(type: .debug, string: msg, file: #file, line: #line, function: #function)
 			let dumper = KCViewDumper(console: cons)
 			dumper.dump(view: view)
 		} else {
