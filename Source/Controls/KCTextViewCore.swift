@@ -77,7 +77,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		pref.removeObserver(observer: self, forKey: pref.FontItem)
 
 		let syspref = CNPreference.shared.systemPreference
-		syspref.removeObserver(observer: self, forKey: syspref.InterfaceStyleItem)
+		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	public var inputFileHandle: FileHandle {
@@ -207,7 +207,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		pref.addObserver(observer: self, forKey: pref.FontItem)
 
 		let syspref = CNPreference.shared.systemPreference
-		syspref.addObserver(observer: self, forKey: syspref.InterfaceStyleItem)
+		syspref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	private var textStorage: NSTextStorage {
@@ -524,7 +524,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					//NSLog("currentColumnNumbers = \(currentColumnNumbers)")
 				case CNPreference.shared.terminalPreference.RowNumberItem:
 					self.currentRowNumbers = num.intValue
-				case CNPreference.shared.systemPreference.InterfaceStyleItem:
+				case CNSystemPreference.InterfaceStyleItem:
 					self.updateForegroundColor()
 					self.updateBackgroundColor()
 				default:

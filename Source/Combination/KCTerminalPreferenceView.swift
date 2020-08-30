@@ -51,7 +51,7 @@ public class KCTerminalPreferenceView: KCStackView
 
 	deinit {
 		let syspref = CNPreference.shared.systemPreference
-		syspref.removeObserver(observer: self, forKey: CNPreference.shared.systemPreference.InterfaceStyleItem)
+		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	public convenience init(){
@@ -182,7 +182,7 @@ public class KCTerminalPreferenceView: KCStackView
 
 		/* Observe interfaceStyle in the system preference */
 		let syspref = CNPreference.shared.systemPreference
-		syspref.addObserver(observer: self, forKey: CNPreference.shared.systemPreference.InterfaceStyleItem)
+		syspref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	#if os(OSX)
@@ -387,7 +387,7 @@ public class KCTerminalPreferenceView: KCStackView
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if let key = keyPath {
 			switch key {
-			case CNPreference.shared.systemPreference.InterfaceStyleItem:
+			case CNSystemPreference.InterfaceStyleItem:
 				let termpref = CNPreference.shared.terminalPreference
 				if let sel = mTextColorSelector {
 					sel.color = termpref.foregroundTextColor

@@ -96,6 +96,9 @@ class ViewController: KCPlaneViewController
 		termview.outputFileHandle.write(string: bold + "Bold\n")
 
 		termview.outputFileHandle.write(string: reset)
+
+		/* Enable logging */
+		CNPreference.shared.systemPreference.logLevel = .error
 	}
 
 	override var representedObject: Any? {
