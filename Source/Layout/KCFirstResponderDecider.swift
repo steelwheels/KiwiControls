@@ -16,11 +16,9 @@ import Foundation
 public class KCFirstResponderDecider
 {
 	private var mWindow:	KCWindow
-	private var mConsole:	CNConsole
 
-	public init(window win: KCWindow, console cons: CNConsole){
+	public init(window win: KCWindow){
 		mWindow		= win
-		mConsole	= cons
 	}
 
 	public func decideFirstResponder(rootView view: KCRootView) -> Bool {

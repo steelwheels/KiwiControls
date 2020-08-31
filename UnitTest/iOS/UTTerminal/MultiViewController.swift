@@ -14,12 +14,8 @@ class MultiViewController: KCMultiViewController
 	override func loadView() {
 		super.loadView()
 
-		/* Allocate cosole */
-		let console = KCLogManager.shared.console
-		super.set(console: console)
-
 		/* Allocate terminal view */
-		let terminalcontroller = SingleViewController(parentViewController: self, console: console)
+		let terminalcontroller = SingleViewController(parentViewController: self)
 		self.add(name: "terminal", viewController: terminalcontroller)
 	}
 

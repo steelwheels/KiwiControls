@@ -86,7 +86,7 @@ public class KCStepperCore: KCView
 		if size.width > stpsize.width {
 			txtwidth = size.width - stpsize.width
 		} else {
-			log(type: .warning, string: "Too short text", file: #file, line: #line, function: #function)
+			CNLog(logLevel: .warning, message: "Too short text")
 			txtwidth = 1.0
 		}
 		let txtsize = KCSize(width: txtwidth, height: stpsize.height)

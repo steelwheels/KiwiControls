@@ -44,13 +44,6 @@ open class KCStackViewCore : KCView
 		#endif
 	}
 
-	public override func set(console cons: CNConsole?) {
-		for subview in self.arrangedSubviews() {
-			subview.set(console: cons)
-		}
-		super.set(console: cons)
-	}
-
 	public var axis: CNAxis {
 		get 		{ return getAxis()					}
 		set(newval)	{ set(axis: newval, alignment: getAlignment())		}
@@ -92,7 +85,7 @@ open class KCStackViewCore : KCView
 			case .right, .bottom:		result = .trailing
 			case .centerX, .centerY:	result = .center
 			default:
-				log(type: .error, string: "Unsupported alignment", file: #file, line: #line, function: #function)
+				CNLog(logLevel: .error, message: "Unsupported alignment")
 				result = .leading
 			}
 			return result
@@ -104,7 +97,7 @@ open class KCStackViewCore : KCView
 			case .center:			result = .center
 			case .fill:			result = .fill
 			default:
-				log(type: .error, string: "Unsupported alignment", file: #file, line: #line, function: #function)
+				CNLog(logLevel: .error, message: "Unsupported alignment")
 				result = .leading
 			}
 			return result
@@ -263,7 +256,6 @@ open class KCStackViewCore : KCView
 	private func addArrangedSubViewInMainThread(subView view: KCView){
 		/* Add subview */
 		self.mStackView.addArrangedSubview(view)
-		view.set(console: self.console)
 		/* Set constraints */
 		#if os(OSX)
 			switch axis {

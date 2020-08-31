@@ -23,7 +23,7 @@ open class KCSpriteViewCore: KCView
 	public func setup(frame frm: CGRect) {
 		KCView.setAutolayoutMode(views: [self, mSpriteView])
 
-		let scene       = KCSpriteScene(frame: frm, console: console)
+		let scene       = KCSpriteScene(frame: frm)
 		scene.scaleMode = .aspectFill
 		
 		mScene = scene

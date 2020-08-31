@@ -12,29 +12,25 @@ import Cocoa
 #endif
 import CoconutData
 
-open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewControlEventReceiver, CNLogging
+open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewControlEventReceiver
 {
 	private var mRootView:			KCRootView? = nil
 	private var mTargetSize:		KCSize
-	private var mConsole:			CNConsole
 
-	public init(console cons: CNConsole){
+	public init(){
 		mTargetSize	= KCSize.zero
-		mConsole     	= cons
 		super.init(nibName: nil, bundle: nil)
 	}
 
 	#if os(OSX)
 	public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
 		mRootView	= nil
-		mConsole	= KCLogManager.shared.console
 		mTargetSize	= KCSize.zero
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 	#else
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		mRootView	= nil
-		mConsole	= KCLogManager.shared.console
 		mTargetSize	= KCSize.zero
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
@@ -42,17 +38,12 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 
 	public required init?(coder: NSCoder) {
 		mRootView	= nil
-		mConsole	= KCLogManager.shared.console
 		mTargetSize	= KCSize.zero
 		super.init(coder: coder)
 	}
 
-	public var console: CNConsole? {
-		get { return mConsole }
-	}
-
 	open func allocateRootView() -> KCRootView {
-		return KCRootView(console: mConsole)
+		return KCRootView()
 	}
 
 	public var rootView: KCRootView? {
@@ -112,14 +103,14 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 				/* Layout components */
 				let newsize = mTargetSize
 				if mPrevRootSize != newsize {
-					log(type: .debug, string: "Execute Layout", file: #file, line: #line, function: #function)
-					let layouter = KCLayouter(console: mConsole)
+					CNLog(logLevel: .debug, message: "Execute Layout")
+					let layouter = KCLayouter()
 					layouter.layout(rootView: root, contentSize: newsize)
 					mPrevRootSize = newsize
 				}
 			}
 		} else {
-			log(type: .error, string: "No root view", file: #file, line: #line, function: #function)
+			CNLog(logLevel: .error, message: "No root view")
 		}
 	}
 
@@ -142,7 +133,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		}
 		if let root = mRootView {
 			if root.hasCoreView {
-				let finalizer = KCLayoutFinalizer(console: mConsole)
+				let finalizer = KCLayoutFinalizer()
 				finalizer.finalizeLayout(window: window, rootView: root)
 			}
 		}

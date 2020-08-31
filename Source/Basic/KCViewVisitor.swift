@@ -8,16 +8,9 @@
 import CoconutData
 import Foundation
 
-public class KCViewVisitor: CNLogging
+public class KCViewVisitor
 {
-	private var mConsole: CNConsole
-
-	public init(console cons: CNConsole){
-		mConsole = cons
-	}
-
-	public var console: CNConsole? {
-		get { return mConsole }
+	public init(){
 	}
 
 	open func visit(rootView view: KCRootView){

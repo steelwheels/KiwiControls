@@ -121,7 +121,7 @@ extension KCViewBase
 	}
 }
 
-open class KCView : KCViewBase, CNLogging
+open class KCView : KCViewBase
 {
 	public static var noIntrinsicValue: CGFloat {
 		get {
@@ -142,19 +142,6 @@ open class KCView : KCViewBase, CNLogging
 		for v in vs {
 			setAutolayoutMode(view: v)
 		}
-	}
-
-	/*
-	 * Logging
-	 */
-	private var mConsole: CNConsole? = nil
-
-	public var console: CNConsole? {
-		get { return mConsole }
-	}
-
-	public func set(console cons: CNConsole?){
-		mConsole = cons
 	}
 
 	/*

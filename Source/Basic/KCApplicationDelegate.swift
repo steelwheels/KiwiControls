@@ -13,6 +13,8 @@ open class KCApplicationDelegate: CNApplicationDelegate
 	open override func applicationDidFinishLaunching(_ notification: Notification) {
 		/* Call super class first */
 		super.applicationDidFinishLaunching(notification)
+		/* Allocate log manager */
+		let _ = KCLogManager.shared
 		/* Connect console to the event manager */
 		#if false //os(OSX)
 			let evtmgr = CNAppleEventManager.shared()

@@ -8,32 +8,25 @@
 import CoconutData
 import Foundation
 
-public class KCLayoutFinalizer: CNLogging
+public class KCLayoutFinalizer
 {
-	private var mConsole:		CNConsole
-
-	public required init(console cons: CNConsole){
-		mConsole	= cons
-	}
-
-	public var console: CNConsole? {
-		get { return mConsole }
+	public init(){
 	}
 
 	public func finalizeLayout(window win: KCWindow, rootView view: KCRootView){
-		log(type: .debug, string: "Frame size finalizer", file: #file, line: #line, function: #function)
-		let sizefinalizer = KCFrameSizeFinalizer(console: mConsole)
+		CNLog(logLevel: .debug, message: "Frame size finalizer")
+		let sizefinalizer = KCFrameSizeFinalizer()
 		view.accept(visitor: sizefinalizer)
 
 		#if os(OSX)
-			let decider = KCFirstResponderDecider(window: win, console: mConsole)
+			let decider = KCFirstResponderDecider(window: win)
 			let _ = decider.decideFirstResponder(rootView: view)
 		#endif
 		//dump(view: view)
 	}
 
 	private func dump(view v: KCView) {
-		let dumper = KCViewDumper(console: mConsole)
+		let dumper = KCViewDumper()
 		dumper.dump(view: v)
 	}
 }

@@ -12,9 +12,9 @@ public class KCSizeMinimizer: KCViewVisitor
 {
 	private var mRootSize:   KCSize
 
-	public init(rootSize root: KCSize, console cons: CNConsole) {
+	public init(rootSize root: KCSize) {
 		mRootSize = root
-		super.init(console: cons)
+		super.init()
 	}
 
 	open override func visit(rootView view: KCRootView){

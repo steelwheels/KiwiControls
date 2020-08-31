@@ -8,8 +8,10 @@
 import CoconutData
 import Foundation
 
-public class KCLogManager: CNLogManager
+@objc public class KCLogManager: NSObject
 {
+	public typealias LogLevel = CNConfig.LogLevel
+
 	public static var shared	= KCLogManager()
 	#if os(OSX)
 		private var		mWindowController: KCLogWindowController?
@@ -17,16 +19,35 @@ public class KCLogManager: CNLogManager
 		private weak var	mViewController: KCLogViewController?
 	#endif
 
-	public override init() {
+	private override init() {
 		#if os(OSX)
 			mWindowController	= nil
 		#else
 			mViewController		= nil
 		#endif
 		super.init()
+
+		/* Observe LogLevel item */
+		let syspref = CNPreference.shared.systemPreference
+		syspref.addObserver(observer: self, forKey: CNSystemPreference.LogLevelItem)
 	}
 
-	open override func updateLogLevel(logLevel lvl: CNLogManager.LogLevel) {
+	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		switch keyPath {
+		case CNSystemPreference.LogLevelItem:
+			if let vals = change {
+				if let newval = vals[.newKey] as? Int {
+					if let newlevel = CNSystemPreference.LogLevel(rawValue: newval) {
+						updateLogLevel(logLevel: newlevel)
+					}
+				}
+			}
+		default:
+			CNLog(logLevel: .error, message: "oV: \(String(describing: keyPath))")
+		}
+	}
+
+	private func updateLogLevel(logLevel lvl: LogLevel) {
 		let isvis = self.isVisible
 		let doen  = checkEnable(logLevel: lvl)
 		if !isvis && doen {
@@ -61,7 +82,9 @@ public class KCLogManager: CNLogManager
 				console = newcont.console
 				newcont.show()
 			}
-			super.setOutput(console: console)
+			/* Connect log buffer to this window */
+			let buf = CNLogBuffer.shared
+			buf.setOutput(console: console)
 		})
 		#endif
 	}
@@ -73,7 +96,9 @@ public class KCLogManager: CNLogManager
 			if let cont = self.mWindowController {
 				cont.hide()
 			}
-			super.setOutput(console: nil)
+			/* Connect log buffer to this window */
+			let buf = CNLogBuffer.shared
+			buf.resetOutput()
 		})
 		#endif
 	}

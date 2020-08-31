@@ -86,7 +86,7 @@ open class KCIconViewCore : KCView
 		if imgsize.width < size.width {
 			labsize = KCSize(width: size.width - imgsize.width, height: size.height)
 		} else {
-			log(type: .error, string: "Too short size", file: #file, line: #line, function: #function)
+			CNLog(logLevel: .error, message: "Too short size")
 			labsize = KCSize(width: 1.0, height: size.height)
 		}
 		mLabelView.frame.size         = labsize

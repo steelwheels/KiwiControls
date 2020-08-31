@@ -11,7 +11,7 @@ import CoconutData
 import UIKit
 import Foundation
 
-@objc public class KCDocumentPickerViewController: NSObject, CNLogging, UIDocumentPickerDelegate
+@objc public class KCDocumentPickerViewController: NSObject, UIDocumentPickerDelegate
 {
 	public enum LoaderFunction {
 		case none
@@ -22,21 +22,15 @@ import Foundation
 	private var mParentViewController:	KCMultiViewController
 	private var mPickerView:		UIDocumentPickerViewController?
 	private var mLoaderFunction:		LoaderFunction
-	private var mConsole:			CNConsole?
 
-	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole?) {
+	public init(parentViewController parent: KCMultiViewController) {
 		mParentViewController	= parent
-		mConsole		= cons
 		mPickerView		= nil
 		mLoaderFunction		= .none
 	}
 
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-
-	public var console: CNConsole? {
-		get { return mConsole }
 	}
 
 	public func setLoaderFunction(loader ldr: LoaderFunction){
@@ -59,7 +53,7 @@ import Foundation
 	}
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		log(type: .debug, string: "Selected", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "Selected")
 		if urls.count >= 1 {
 			switch mLoaderFunction {
 			case .none:
@@ -67,7 +61,7 @@ import Foundation
 			case .view(let ldrfunc):
 				if let viewname = ldrfunc(urls[0]) {
 					if !mParentViewController.pushViewController(byName: viewname) {
-						log(type: .error, string: "Failed to push view \"\(viewname)\"", file: #file, line: #line, function: #function)
+						CNLog(logLevel: .error, message: "Failed to push view \"\(viewname)\"")
 					}
 				}
 			case .url(let ldrfunc):
@@ -77,7 +71,7 @@ import Foundation
 	}
 
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		log(type: .debug, string: "Canceled", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "Canceled")
 	}
 }
 

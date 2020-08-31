@@ -10,10 +10,7 @@ import Foundation
 
 public class KCWindowSizeUpdator
 {
-	private var mConsole: CNConsole
-
-	public init(console cons: CNConsole) {
-		mConsole = cons
+	public init() {
 	}
 
 	public func updateContentSize(rootView root: KCRootView, contentSize content: KCSize) {

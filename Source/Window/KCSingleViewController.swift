@@ -16,9 +16,9 @@ open class KCSingleViewController: KCPlaneViewController
 {
 	private weak var mParentController:	KCMultiViewController?
 
-	public init(parentViewController parent: KCMultiViewController, console cons: CNConsole){
+	public init(parentViewController parent: KCMultiViewController){
 		mParentController	= parent
-		super.init(console: cons)
+		super.init()
 	}
 
 	public required init?(coder: NSCoder) {

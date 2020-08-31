@@ -11,14 +11,16 @@ import CoconutData
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: CNApplicationDelegate
+class AppDelegate: KCApplicationDelegate
 {
 	func applicationWillFinishLaunching(_ notification: Notification) {
+		NSLog("applicationWillFinishLaunching")
 		UserDefaults.standard.applyDefaultSetting()
 	}
 
 	override func applicationDidFinishLaunching(_ aNotification: Notification) {
 		super.applicationDidFinishLaunching(aNotification)
+		NSLog("applicationDidFinishLaunching")
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {

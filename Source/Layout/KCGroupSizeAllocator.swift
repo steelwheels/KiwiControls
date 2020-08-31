@@ -82,14 +82,14 @@ public class KCGroupSizeAllocator: KCViewVisitor
 			if sa.height > sb.height {
 				result = KCSize(width: sa.width, height: sa.height - sb.height)
 			} else {
-				log(type: .warning, string: "Height underflow", file: #file, line: #line, function: #function)
+				CNLog(logLevel: .warning, message: "Height underflow")
 				result = KCSize(width: sa.width, height: 0.0)
 			}
 		case .horizontal:
 			if sa.width > sb.width {
 				result = KCSize(width: sa.width - sb.height, height: sa.height)
 			} else {
-				log(type: .warning, string: "Width underflow", file: #file, line: #line, function: #function)
+				CNLog(logLevel: .warning, message: "Width underflow")
 				result = KCSize(width: 0.0, height: sa.height)
 			}
 		}

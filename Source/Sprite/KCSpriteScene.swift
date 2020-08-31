@@ -9,7 +9,7 @@ import CoconutData
 import SpriteKit
 import Foundation
 
-public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
+public class KCSpriteScene: SKScene, SKPhysicsContactDelegate
 {
 	public typealias ContactObserverHandler     	= (_ point: KCPoint, _ status: KCSpriteStatus) -> Void
 	public typealias ContinuationCheckerHandler	= (_ status: Array<KCSpriteStatus>) -> Bool
@@ -26,19 +26,15 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 
 	private var mQueue:		CNOperationQueue
 	private var mNodes:		Dictionary<String, NodeInfo>		// node-name, node-info
-	private var mConsole:		CNConsole?
 	private var mMapper:		CNGraphicsMapper
 	private var mDamageByWall:	Double
-
-	public var console: 		CNConsole? { get { return mConsole }}
 
 	public var contactObserverHandler:	ContactObserverHandler?
 	public var continuationCheckerHandler:	ContinuationCheckerHandler?
 
-	public init(frame frm: CGRect, console cons: CNConsole?){
+	public init(frame frm: CGRect){
 		mQueue			= CNOperationQueue()
 		mNodes   		= [:]
-		mConsole 		= cons
 		mMapper			= CNGraphicsMapper(physicalSize: frm.size)
 		mDamageByWall		= 0.0
 		contactObserverHandler	= nil
@@ -178,7 +174,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 					KCSpriteOperationContext.setStatus(context: ctxt, status: node.status)
 				}
 			} else {
-				log(type: .error, string: "Invalid properties", file: #file, line: #line, function: #function)
+				CNLog(logLevel: .error, message: "Invalid properties")
 			}
 		}
 
@@ -193,9 +189,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			/* Execute operations */
 			let nonexecs = mQueue.execute(operations: contexts, timeLimit: nil)
 			if nonexecs.count > 0 {
-				if let cons = console {
-					cons.error(string: "Failed to execute some operations\n")
-				}
+				CNLog(logLevel: .error, message: "Failed to execute some operations")
 			}
 			/* Wailt all operations are finished */
 			mQueue.waitOperations()
@@ -208,13 +202,13 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 						if status.energy > 0.0 {
 							if let nodeinfo = mNodes[name] {
 								nodeinfo.node.action = result
-								log(type: .debug, string: "action=\(result.angle)", file: #file, line: #line, function: #function)
+								CNLog(logLevel: .debug, message: "action=\(result.angle)")
 							}
 						} else {
 							syncRemove(nodeName: name)
 						}
 					} else {
-						log(type: .error, string: "The operation has no result", file: #file, line: #line, function: #function)
+						CNLog(logLevel: .error, message: "The operation has no result")
 					}
 				} else {
 					reportFailure(context: ctxt)
@@ -229,7 +223,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 			syncRemove(nodeName: name)
 			return // without errors
 		}
-		log(type: .error, string: "Internal error", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .error, message: "Internal error")
 	}
 
 	private func generateRadarInfo(for node: KCSpriteNode) -> KCSpriteRadar {
@@ -312,7 +306,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 				}
 			}
 		}
-		log(type: .error, string: "Operation is not found", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .error, message: "Operation is not found")
 		return nil
 	}
 
@@ -322,7 +316,7 @@ public class KCSpriteScene: SKScene, SKPhysicsContactDelegate, CNLogging
 				return nodeinfo.node
 			}
 		}
-		log(type: .error, string: "Node is not found", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .error, message: "Node is not found")
 		return nil
 	}
 }

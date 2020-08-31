@@ -18,7 +18,7 @@ import CoconutData
 	public typealias KCMultiViewControllerBase = NSTabViewController
 #endif
 
-open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, CNLogging
+open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 {
 	private var mIndexTable:	Dictionary<String, Int> = [:]	/* name -> index */
 	private var mViewStack:		CNStack = CNStack<String>()	/* name */
@@ -48,7 +48,8 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	}
 
 	open override func viewDidLoad() {
-		log(type: .debug, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewDidLoad")
+
 		super.viewDidLoad()
 		showTabBar(visible:false)
 
@@ -122,7 +123,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 			if let p = mPickerView {
 				picker = p
 			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self, console: mConsole)
+				picker = KCDocumentPickerViewController(parentViewController: self)
 				mPickerView = picker
 			}
 			picker.setLoaderFunction(loader: .url({
@@ -147,7 +148,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 			if let p = mPickerView {
 				picker = p
 			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self, console: mConsole)
+				picker = KCDocumentPickerViewController(parentViewController: self)
 				mPickerView = picker
 			}
 			picker.setLoaderFunction(loader: .view({
@@ -175,7 +176,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 				if let vcont = item.viewController as? KCSingleViewController {
 					result.append(vcont)
 				} else {
-					log(type: .error, string: "Unknown object", file: #file, line: #line, function: #function)
+					CNLog(logLevel: .error, message: "Unknown object")
 				}
 			}
 		#else
@@ -184,7 +185,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 					if let svcont = vcont as? KCSingleViewController {
 						result.append(svcont)
 					} else {
-						log(type: .error, string: "Unknown object", file: #file, line: #line, function: #function)
+						CNLog(logLevel: .error, message: "Unknown object")
 					}
 				}
 			}
@@ -226,13 +227,13 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 	}
 
 	public func pushViewController(byName name: String) -> Bool {
-		log(type: .debug, string: "pushViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "pushViewController named: \"\(name)\"")
 		if let idx = mIndexTable[name] {
 			mViewStack.push(name)
 			switchView(index: idx)
 			return true
 		} else {
-			log(type: .error, string: "No matched view", file: #file, line: #line, function: #function)
+			CNLog(logLevel: .error, message: "No matched view")
 			return false
 		}
 	}
@@ -241,14 +242,14 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		if mViewStack.count > 1 {
 			let _ = mViewStack.pop()
 			if let name = mViewStack.peek() {
-				log(type: .debug, string:  "popViewController named: \"\(name)\"", file: #file, line: #line, function: #function)
+				CNLog(logLevel: .debug, message: "popViewController named: \"\(name)\"")
 				if let idx = mIndexTable[name] {
 					switchView(index: idx)
 					return true
 				}
 			}
 		}
-		log(type: .error, string: "Can not happen", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .error, message: "Can not happen")
 		return false
 	}
 
@@ -259,7 +260,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate, 
 		} else {
 			oldname = "<none>"
 		}
-		log(type: .error, string: "replaceViewController origin: \(oldname) -> named: \"\(name)\"", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .error, message: "replaceViewController origin: \(oldname) -> named: \"\(name)\"")
 		return pushViewController(byName: name)
 	}
 

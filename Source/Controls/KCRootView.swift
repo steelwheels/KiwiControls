@@ -24,14 +24,13 @@ open class KCRootView: KCCoreView
 	}
 	#endif
 
-	public convenience init(console cons: CNConsole?){
+	public convenience init(){
 		#if os(OSX)
 		let frame = NSRect(x: 0.0, y: 0.0, width: 480, height: 272)
 		#else
 		let frame = CGRect(x: 0.0, y: 0.0, width: 256, height: 256)
 		#endif
 		self.init(frame: frame)
-		self.set(console: cons)
 	}
 
 	public required init?(coder: NSCoder) {
@@ -44,7 +43,6 @@ open class KCRootView: KCCoreView
 		self.addSubview(child)
 		super.allocateSubviewLayout(subView: child)
 		setCoreView(view: child)
-		child.set(console: self.console)
 		#if os(iOS)
 			self.backgroundColor = CNPreference.shared.windowPreference.backgroundColor
 		#endif

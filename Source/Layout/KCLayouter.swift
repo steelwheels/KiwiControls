@@ -8,47 +8,35 @@
 import CoconutData
 import Foundation
 
-public class KCLayouter: CNLogging
+public class KCLayouter
 {
-	private var mConsole:		CNConsole
-
-	public required init(console cons: CNConsole){
-		mConsole	= cons
-	}
-
-	public var console: CNConsole? {
-		get { return mConsole }
+	public init(){
 	}
 
 	public func layout(rootView view: KCRootView, contentSize content: KCSize){
-		log(type: .debug, string: "Get content size", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "Get content size: Minimize content size: " + content.description)
 
-		log(type: .debug, string: "Minimize content size: " + content.description, file: #file, line: #line, function: #function)
-		let minimizer = KCSizeMinimizer(rootSize: content, console: mConsole)
+		let minimizer = KCSizeMinimizer(rootSize: content)
 		view.accept(visitor: minimizer)
 		//dump(view: view)
 
-		log(type: .debug, string: "Adjust expandability ", file: #file, line: #line, function: #function)
-		let adjuster = KCExpansionAdjuster(console: mConsole)
+		CNLog(logLevel: .debug, message: "Adjust expandability ")
+		let adjuster = KCExpansionAdjuster()
 		view.accept(visitor: adjuster)
-		
-		log(type: .debug, string: "Decide distribution", file: #file, line: #line, function: #function)
-		let distdecider = KCDistributionDecider(console: mConsole)
+
+		CNLog(logLevel: .debug, message: "Decide distribution")
+		let distdecider = KCDistributionDecider()
 		view.accept(visitor: distdecider)
 		//dump(view: view)
 
-		log(type: .debug, string: "Allocate root frame size", file: #file, line: #line, function: #function)
-		let winupdator = KCWindowSizeUpdator(console: mConsole)
+		CNLog(logLevel: .debug, message: "Allocate root frame size")
+		let winupdator = KCWindowSizeUpdator()
 		winupdator.updateContentSize(rootView: view, contentSize: content)
 	}
 
 	private func dump(view v: KCView) {
-		if let cons = console {
-			let dumper = KCViewDumper(console: cons)
-			dumper.dump(view: v)
-		} else {
-			NSLog("No console")
-		}
+		let dumper = KCViewDumper()
+		dumper.dump(view: v)
 	}
 }
 

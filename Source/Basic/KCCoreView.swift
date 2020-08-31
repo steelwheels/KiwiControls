@@ -37,13 +37,6 @@ open class KCCoreView: KCView
 			fatalError("No core view")
 		}
 	}
-	
-	public override func set(console cons: CNConsole?) {
-		if let core = mCoreView {
-			core.set(console: cons)
-		}
-		super.set(console: cons)
-	}
 
 	open override var intrinsicContentSize: KCSize {
 		get {
