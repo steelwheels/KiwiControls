@@ -21,6 +21,7 @@ public class KCTerminalPreferenceView: KCStackView
 	private var 	mHomeSelectButton:		KCButton?		= nil
 	private var 	mHomeResetButton:		KCButton?		= nil
 	#endif
+	private var	mLogLevelMenu:			KCPopupMenu?		= nil
 	private var	mTerminalWidthField:		KCTextEdit?		= nil
 	private var	mTerminalHeightField:		KCTextEdit?		= nil
 	private var	mFontLabel:			KCTextField?		= nil
@@ -83,10 +84,11 @@ public class KCTerminalPreferenceView: KCStackView
 			let homebox = allocateHomeDirectoryView()
 			subviews.append(homebox)
 		#endif
+		let logbox  = allocateLogLevelView()
 		let sizebox = allocateSizeSelectorView()
 		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
 		let colbox  = allocateColorSelectorView()
-		subviews.append(contentsOf: [sizebox, fontbox, colbox])
+		subviews.append(contentsOf: [logbox, sizebox, fontbox, colbox])
 		super.addArrangedSubViews(subViews: subviews)
 
 		/* Set initial values */
@@ -148,7 +150,12 @@ public class KCTerminalPreferenceView: KCStackView
 			}
 		}
 		#endif
-
+		if let menu = mLogLevelMenu {
+			menu.callbackFunction = {
+				(_ index: Int, _ namep: String?) -> Void in
+				self.updateLogLevel(indexOfName: index, indexOfSize: self.indexOfSelectedLogLevel)
+			}
+		}
 		if let field = mTerminalWidthField {
 			field.callbackFunction = {
 				(_ value: CNValue) -> Void in
@@ -215,6 +222,29 @@ public class KCTerminalPreferenceView: KCStackView
 		return top
 	}
 	#endif
+
+	private func allocateLogLevelView() -> KCLabeledStackView {
+		let top = KCLabeledStackView()
+		top.title = "Log level"
+
+		let logmenu = KCPopupMenu()
+		var items: Array<String> = []
+		for i in CNConfig.LogLevel.min ... CNConfig.LogLevel.max {
+			if let lvl = CNConfig.LogLevel(rawValue: i) {
+				items.append(lvl.description)
+			} else {
+				NSLog("Invalid raw value for LogLevel")
+			}
+		}
+		logmenu.addItems(withTitles: items)
+		mLogLevelMenu = logmenu
+
+		let content = top.contentsView
+		content.axis = .vertical
+		content.addArrangedSubViews(subViews: [logmenu])
+
+		return top
+	}
 
 	private func allocateSizeSelectorView() -> KCLabeledStackView {
 		let widthfield = KCTextEdit()
@@ -308,6 +338,16 @@ public class KCTerminalPreferenceView: KCStackView
 		return top
 	}
 
+	private var indexOfSelectedLogLevel: Int {
+		get {
+			if let menu = mLogLevelMenu {
+				return menu.indexOfSelectedItem
+			} else {
+				return 0
+			}
+		}
+	}
+
 	private var indexOfSelectedFontName: Int {
 		get {
 			if let menu = mFontNameMenu {
@@ -330,6 +370,15 @@ public class KCTerminalPreferenceView: KCStackView
 
 	private var mPreviousNameIndex: Int = -1
 	private var mPreviousSizeIndex: Int = -1
+
+	private func updateLogLevel(indexOfName iname: Int, indexOfSize isize: Int) {
+		if let lvl = CNConfig.LogLevel(rawValue: iname) {
+			let syspref = CNPreference.shared.systemPreference
+			if syspref.logLevel != lvl {
+				syspref.logLevel = lvl	// Update log level
+			}
+		}
+	}
 
 	private func updateFont(indexOfName iname: Int, indexOfSize isize: Int) {
 		if let names = mFontNames, let sizes = mFontSizes {
