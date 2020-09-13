@@ -14,15 +14,13 @@ class ViewController: KCMultiViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let cons = KCLogManager.shared.console
-
-		let cont0 = SingleView0Controller(parentViewController: self, console: cons)
+		let cont0 = SingleView0Controller(parentViewController: self)
 		self.add(name: "cont0", viewController: cont0)
 
-		let cont1 = SingleView1Controller(parentViewController: self, console: cons)
+		let cont1 = SingleView1Controller(parentViewController: self)
 		self.add(name: "cont1", viewController: cont1)
 
-		let cont2 = SingleView2Controller(parentViewController: self, console: cons)
+		let cont2 = SingleView2Controller(parentViewController: self)
 		self.add(name: "cont2", viewController: cont2)
 
 		let _ = self.pushViewController(byName: "cont1")

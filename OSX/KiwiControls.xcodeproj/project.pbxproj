@@ -87,8 +87,6 @@
 		0562C95422FFA7B600ED5555 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0562C95322FFA7B600ED5555 /* ViewController.swift */; };
 		0562C95622FFA7B700ED5555 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0562C95522FFA7B700ED5555 /* Assets.xcassets */; };
 		0562C95922FFA7B700ED5555 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0562C95722FFA7B700ED5555 /* Main.storyboard */; };
-		05648A691D8EB1A500EABCD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05648A681D8EB1A500EABCD0 /* ViewController.swift */; };
-		05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05648A6A1D8EB1B100EABCD0 /* Main.storyboard */; };
 		0566C5B41E69B50B001F6FD7 /* KCTableViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0566C5B31E69B50B001F6FD7 /* KCTableViewCore.xib */; };
 		0566C5B81E69BE9B001F6FD7 /* KCTableViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566C5B71E69BE9B001F6FD7 /* KCTableViewCore.swift */; };
 		05674B901F77D1CD006CB20F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05674B8F1F77D1CD006CB20F /* AppDelegate.swift */; };
@@ -136,7 +134,6 @@
 		0580439A209588FB009E20A9 /* KCTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05804399209588FB009E20A9 /* KCTriangle.swift */; };
 		0580439C20958AE3009E20A9 /* KCVertices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580439B20958AE3009E20A9 /* KCVertices.swift */; };
 		05807D49212467B600614EAB /* KCImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05807D48212467B500614EAB /* KCImageView.swift */; };
-		0583542A1E4A219800468914 /* UTSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058354281E4A218E00468914 /* UTSymbol.swift */; };
 		0584B13F1EACA26F00A5E9B8 /* KCStackViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0584B13E1EACA26F00A5E9B8 /* KCStackViewCore.xib */; };
 		0584B1411EACA29500A5E9B8 /* KCStackViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584B1401EACA29500A5E9B8 /* KCStackViewCore.swift */; };
 		0584B1431EACAF9E00A5E9B8 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584B1421EACAF9E00A5E9B8 /* KCStackView.swift */; };
@@ -172,15 +169,9 @@
 		05B03B7F1E223194001656A0 /* KCTextFieldCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05978CC31E2228510023640E /* KCTextFieldCore.swift */; };
 		05B371B121AA37A500D31809 /* green-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B371AF21AA37A500D31809 /* green-machine.png */; };
 		05B371B221AA37A500D31809 /* blue-machine.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B371B021AA37A500D31809 /* blue-machine.png */; };
-		05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */; };
-		05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BCED131D8E67FE00EBEA0B /* Assets.xcassets */; };
 		05BD996B20956B9000E468B7 /* KCRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD996A20956B9000E468B7 /* KCRect.swift */; };
 		05BD996D20956C2A00E468B7 /* KCPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD996C20956C2A00E468B7 /* KCPoint.swift */; };
 		05BD996F20956C3100E468B7 /* KCSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD996E20956C3100E468B7 /* KCSize.swift */; };
-		05C20D5C1DEADEDE007EF254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C20D5B1DEADEDE007EF254 /* AppDelegate.swift */; };
-		05C20D5E1DEADEDE007EF254 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C20D5D1DEADEDE007EF254 /* ViewController.swift */; };
-		05C20D601DEADEDE007EF254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C20D5F1DEADEDE007EF254 /* Assets.xcassets */; };
-		05C20D631DEADEDE007EF254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C20D611DEADEDE007EF254 /* Main.storyboard */; };
 		05C93F4520F0E5220057217F /* KCViewVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C93F4420F0E5220057217F /* KCViewVisitor.swift */; };
 		05C93F4720F0F1820057217F /* KCViewDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C93F4620F0F1820057217F /* KCViewDumper.swift */; };
 		05D10C5A1DEDEFC700210470 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D10C591DEDEFC700210470 /* KCTimer.swift */; };
@@ -452,8 +443,6 @@
 		0562C95822FFA7B700ED5555 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0562C95A22FFA7B700ED5555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0562C95B22FFA7B700ED5555 /* UTTerminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTTerminal.entitlements; sourceTree = "<group>"; };
-		05648A681D8EB1A500EABCD0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		05648A6B1D8EB1B100EABCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0566C5B31E69B50B001F6FD7 /* KCTableViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTableViewCore.xib; sourceTree = "<group>"; };
 		0566C5B71E69BE9B001F6FD7 /* KCTableViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTableViewCore.swift; sourceTree = "<group>"; };
 		05674B8D1F77D1CD006CB20F /* UTWindowController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTWindowController.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,7 +500,6 @@
 		05804399209588FB009E20A9 /* KCTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTriangle.swift; sourceTree = "<group>"; };
 		0580439B20958AE3009E20A9 /* KCVertices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCVertices.swift; sourceTree = "<group>"; };
 		05807D48212467B500614EAB /* KCImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImageView.swift; sourceTree = "<group>"; };
-		058354281E4A218E00468914 /* UTSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UTSymbol.swift; path = ../../iOS/UTGraphicsView/UTSymbol.swift; sourceTree = "<group>"; };
 		0584B13E1EACA26F00A5E9B8 /* KCStackViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCStackViewCore.xib; sourceTree = "<group>"; };
 		0584B1401EACA29500A5E9B8 /* KCStackViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackViewCore.swift; sourceTree = "<group>"; };
 		0584B1421EACAF9E00A5E9B8 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
@@ -550,19 +538,10 @@
 		05B371AF21AA37A500D31809 /* green-machine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-machine.png"; sourceTree = "<group>"; };
 		05B371B021AA37A500D31809 /* blue-machine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-machine.png"; sourceTree = "<group>"; };
 		05BCED0D1D8E67FE00EBEA0B /* UTGraphicsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05BCED131D8E67FE00EBEA0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		05BCED181D8E67FE00EBEA0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05BCEEF9208A4A700010C424 /* UTGraphicsView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTGraphicsView.entitlements; sourceTree = "<group>"; };
 		05BD996A20956B9000E468B7 /* KCRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRect.swift; sourceTree = "<group>"; };
 		05BD996C20956C2A00E468B7 /* KCPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPoint.swift; sourceTree = "<group>"; };
 		05BD996E20956C3100E468B7 /* KCSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSize.swift; sourceTree = "<group>"; };
 		05C20D591DEADEDE007EF254 /* UTGraphicsEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphicsEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		05C20D5B1DEADEDE007EF254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05C20D5D1DEADEDE007EF254 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		05C20D5F1DEADEDE007EF254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		05C20D621DEADEDE007EF254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		05C20D641DEADEDE007EF254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C93F4420F0E5220057217F /* KCViewVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCViewVisitor.swift; sourceTree = "<group>"; };
 		05C93F4620F0F1820057217F /* KCViewDumper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCViewDumper.swift; sourceTree = "<group>"; };
 		05D10C591DEDEFC700210470 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimer.swift; sourceTree = "<group>"; };
@@ -950,8 +929,6 @@
 				05674B8E1F77D1CD006CB20F /* UTWindowController */,
 				0515CD541EACB37F00B4736D /* UTStackView */,
 				05ACEF5F1E0C3317009F10A7 /* UTControl */,
-				05C20D5A1DEADEDE007EF254 /* UTGraphicsEditor */,
-				05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */,
 				0536FFBB21A5C06F0069A6F0 /* UTSpriteView */,
 			);
 			path = OSX;
@@ -1117,32 +1094,6 @@
 				05B371AF21AA37A500D31809 /* green-machine.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		05BCED0E1D8E67FE00EBEA0B /* UTGraphicsView */ = {
-			isa = PBXGroup;
-			children = (
-				05BCEEF9208A4A700010C424 /* UTGraphicsView.entitlements */,
-				05648A6A1D8EB1B100EABCD0 /* Main.storyboard */,
-				05648A681D8EB1A500EABCD0 /* ViewController.swift */,
-				058354281E4A218E00468914 /* UTSymbol.swift */,
-				05BCED0F1D8E67FE00EBEA0B /* AppDelegate.swift */,
-				05BCED131D8E67FE00EBEA0B /* Assets.xcassets */,
-				05BCED181D8E67FE00EBEA0B /* Info.plist */,
-			);
-			path = UTGraphicsView;
-			sourceTree = "<group>";
-		};
-		05C20D5A1DEADEDE007EF254 /* UTGraphicsEditor */ = {
-			isa = PBXGroup;
-			children = (
-				05C20D5B1DEADEDE007EF254 /* AppDelegate.swift */,
-				05C20D5D1DEADEDE007EF254 /* ViewController.swift */,
-				05C20D5F1DEADEDE007EF254 /* Assets.xcassets */,
-				05C20D611DEADEDE007EF254 /* Main.storyboard */,
-				05C20D641DEADEDE007EF254 /* Info.plist */,
-			);
-			path = UTGraphicsEditor;
 			sourceTree = "<group>";
 		};
 		05D10C581DEDEFA300210470 /* Timer */ = {
@@ -1673,8 +1624,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05BCED141D8E67FE00EBEA0B /* Assets.xcassets in Resources */,
-				05648A6C1D8EB1B100EABCD0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1682,8 +1631,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C20D601DEADEDE007EF254 /* Assets.xcassets in Resources */,
-				05C20D631DEADEDE007EF254 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1884,9 +1831,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05648A691D8EB1A500EABCD0 /* ViewController.swift in Sources */,
-				0583542A1E4A219800468914 /* UTSymbol.swift in Sources */,
-				05BCED101D8E67FE00EBEA0B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1894,8 +1838,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C20D5E1DEADEDE007EF254 /* ViewController.swift in Sources */,
-				05C20D5C1DEADEDE007EF254 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2002,14 +1944,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		05648A6A1D8EB1B100EABCD0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05648A6B1D8EB1B100EABCD0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		05674B951F77D1CD006CB20F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2038,14 +1972,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				05ACEF671E0C3317009F10A7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		05C20D611DEADEDE007EF254 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05C20D621DEADEDE007EF254 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

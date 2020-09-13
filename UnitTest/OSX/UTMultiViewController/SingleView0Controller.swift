@@ -23,14 +23,14 @@ public class SingleView0Controller: KCSingleViewController
 		let box0 = KCStackView(frame: dmyrect)
 		box0.axis		= .horizontal
 		box0.alignment		= .fill
-		box0.distribution	= .fill // .fillEqually
+		box0.distribution	= .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, button0])
 
 		let edit1 = KCTextEdit(frame: dmyrect)
 		let box1  = KCStackView(frame: dmyrect)
 		box1.axis		= .vertical
 		box1.alignment		= .fill
-		box1.distribution	= .fill
+		box1.distribution	= .fillEqually
 		box1.addArrangedSubViews(subViews: [box0, edit1])
 
 		root.setup(childView: box1)
@@ -39,19 +39,19 @@ public class SingleView0Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		log(type: .debug, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewDidLoad")
 		super.viewDidLoad()
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewWillAppear")
 		super.viewWillAppear()
 		doDumpView(message: "Last viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewWillAppear")
 		super.viewWillAppear(animated)
 		doDumpView(message: "Last viewWillAppear")
 	}
@@ -59,13 +59,13 @@ public class SingleView0Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		log(type: .debug, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewDidAppear")
 		super.viewDidAppear()
 		doDumpView(message: "Last viewDidAppear")
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
-		log(type: .debug, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewDidAppear")
 		super.viewDidAppear(animated)
 		doDumpView(message: "Last viewDidAppear")
 	}
@@ -73,8 +73,8 @@ public class SingleView0Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			log(type: .debug, string: msg, file: #file, line: #line, function: #function)
-			let dumper = KCViewDumper(console: console!)
+			CNLog(logLevel: .debug, message: msg)
+			let dumper = KCViewDumper()
 			dumper.dump(view: view)
 		} else {
 			fatalError("No root view")

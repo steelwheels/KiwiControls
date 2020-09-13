@@ -5,10 +5,11 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+import KiwiControls
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: CNApplicationDelegate
+class AppDelegate: KCApplicationDelegate
 {
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Insert code here to initialize your application

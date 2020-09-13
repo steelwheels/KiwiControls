@@ -25,7 +25,7 @@ public class SingleView1Controller: KCSingleViewController
 		box0.addArrangedSubViews(subViews: [terminal])
 		//box0.addArrangedSubViews(subViews: [console])
 		box0.axis = .vertical
-		box0.distribution = .fill
+		box0.distribution = .fillEqually
 		box0.alignment = .center
 
 		root.setup(childView: box0)
@@ -34,20 +34,20 @@ public class SingleView1Controller: KCSingleViewController
 	}
 
 	public override func viewDidLoad() {
-		log(type: .debug, string: "viewDidLoad", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewDidLoad")
 		super.viewDidLoad()
 		doDumpView(message: "After viewDidLoad")
 	}
 
 	#if os(OSX)
 	public override func viewWillAppear() {
-		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewWillAppear")
 		super.viewWillAppear()
 		doDumpView(message: "After viewWillAppear")
 	}
 	#else
 	public override func viewWillAppear(_ animated: Bool) {
-		log(type: .debug, string: "viewWillAppear", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewWillAppear")
 		super.viewWillAppear(animated)
 		doDumpView(message: "After viewWillAppear")
 	}
@@ -55,13 +55,13 @@ public class SingleView1Controller: KCSingleViewController
 
 	#if os(OSX)
 	public override func viewDidAppear() {
-		log(type: .debug, string: "viewDidAppear", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .debug, message: "viewDidAppear")
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
 
 		/* Update terminal size */
 		if let termview = mTerminalView {
-			termview.minimumColumnNumbers = 10
+			termview.currentColumnNumbers = 10
 		}
 	}
 	#else
@@ -74,8 +74,8 @@ public class SingleView1Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			log(type: .debug, string: msg, file: #file, line: #line, function: #function)
-			let dumper = KCViewDumper(console: console!)
+			CNLog(logLevel: .debug, message: msg)
+			let dumper = KCViewDumper()
 			dumper.dump(view: view)
 		} else {
 			fatalError("No root view")

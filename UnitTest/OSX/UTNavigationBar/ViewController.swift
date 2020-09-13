@@ -10,7 +10,7 @@ import CoconutData
 import KiwiControls
 import Cocoa
 
-class ViewController: NSViewController, CNLogging
+class ViewController: NSViewController
 {
 	public var console: CNConsole? = nil
 
@@ -19,10 +19,6 @@ class ViewController: NSViewController, CNLogging
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		/* Allocate console */
-		let wincons = KCLogConsole.shared
-		console = wincons
-
 		// Do any additional setup after loading the view.
 		mNavigationBar.title = "Hello, World !!"
 
@@ -30,15 +26,18 @@ class ViewController: NSViewController, CNLogging
 		mNavigationBar.leftButtonTitle		= "Left"
 		mNavigationBar.leftButtonPressedCallback = {
 			() -> Void in
-			wincons.print(string: "Left button pressed\n")
+			CNLog(logLevel: .debug, message: "Left button pressed")
 		}
 
 		mNavigationBar.isRightButtonEnabled	= true
 		mNavigationBar.rightButtonTitle		= "Right"
 		mNavigationBar.rightButtonPressedCallback = {
 			() -> Void in
-			wincons.print(string: "Right button pressed\n")
+			CNLog(logLevel: .debug, message: "Right button pressed")
 		}
+
+		let _ = KCLogManager.shared
+		CNPreference.shared.systemPreference.logLevel = .detail
 	}
 
 	override var representedObject: Any? {

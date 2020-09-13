@@ -6,11 +6,12 @@
 //  Copyright © 2019 Steel Wheels Project. All rights reserved.
 //
 
+import KiwiControls
 import CoconutData
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: CNApplicationDelegate
+class AppDelegate: KCApplicationDelegate
 {
 	//func applicationDidFinishLaunching(_ aNotification: Notification) {
 	//	Insert code here to initialize your application
