@@ -7,6 +7,9 @@
 
 import Foundation
 import CoconutData
+#if os(iOS)
+import UIKit
+#endif
 
 open class KCRepetitiveLayer: KCLayer, KCDrawerLayerProtocol
 {

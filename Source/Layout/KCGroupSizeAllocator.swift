@@ -71,6 +71,8 @@ public class KCGroupSizeAllocator: KCViewVisitor
 				view.frame.size.height  = newbounds.height
 				view.bounds.size.height = newbounds.height
 			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "No axis type")
 		}
 		return newbounds
 	}
@@ -92,6 +94,9 @@ public class KCGroupSizeAllocator: KCViewVisitor
 				CNLog(logLevel: .warning, message: "Width underflow")
 				result = KCSize(width: 0.0, height: sa.height)
 			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "No axis type")
+			result = KCSize(width: 0.0, height: 0.0)
 		}
 		return result
 	}
@@ -109,6 +114,8 @@ public class KCGroupSizeAllocator: KCViewVisitor
 				result.width  += subview.frame.width
 				result.height  = max(result.height, subview.frame.height)
 			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "No axis type")
 		}
 		return result
 	}

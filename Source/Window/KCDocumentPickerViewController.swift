@@ -43,7 +43,7 @@ import Foundation
 		if let p = mPickerView {
 			picker = p
 		} else {
-			picker = UIDocumentPickerViewController(documentTypes: utis, in: .import)
+			picker = UIDocumentPickerViewController()
 			mPickerView = picker
 		}
 		picker.delegate			= self

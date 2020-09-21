@@ -5,6 +5,8 @@
  *   Copyright (C) 2020 Steel Wheels Project
  */
 
+#if os(OSX)
+
 import Cocoa
 import Foundation
 
@@ -52,4 +54,6 @@ open class KCContextualMenu
 		}
 	}
 }
+
+#endif // os(OSX)
 

@@ -7,6 +7,9 @@
 
 import CoconutData
 import Foundation
+#if os(iOS)
+import UIKit
+#endif
 
 extension KCRect
 {

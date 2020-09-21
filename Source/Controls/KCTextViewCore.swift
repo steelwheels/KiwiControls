@@ -249,6 +249,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				mCurrentIndex = curidx
 			case .error(let err):
 				NSLog("Failed to decode escape code: \(err.description())")
+			@unknown default:
+				NSLog("Failed to decode escape code: <unknown>")
 			}
 		} else {
 			NSLog("Failed to decode data: \(data)")

@@ -6,6 +6,11 @@
  */
 
 import CoconutData
+#if os(OSX)
+import AppKit
+#else
+import UIKit
+#endif
 import Foundation
 
 public class KCViewDumper: KCViewVisitor
@@ -80,16 +85,6 @@ public class KCViewDumper: KCViewVisitor
 
 		let righttitle = view.rightButtonTitle
 		mSection.add(string: "rightButtonTitle : " + righttitle)
-	}
-
-	open override func visit(spriteView view: KCSpriteView) {
-		visit(coreView: view)
-
-		let fsection = CNTextSection()
-		fsection.header = "field {" ; fsection.footer = "}"
-		fsection.add(text: CNTextLine(string: "physical_size: \(view.frame.size.description)"))
-		fsection.add(text: CNTextLine(string: "logical_size:  \(view.logicalSize.description)"))
-		mSection.add(text: fsection)
 	}
 
 	open override func visit(terminalView view: KCTerminalView) {

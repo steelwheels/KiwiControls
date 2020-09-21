@@ -5,6 +5,9 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
+#if os(iOS)
+import UIKit
+#endif
 import Foundation
 
 public func KCOrigin(origin elmorg: CGPoint, size elmsz: CGSize, frame frm: CGRect) -> CGPoint {

@@ -49,6 +49,9 @@ public class KCAlert : NSObject
 			style = .informational
 		case .InternalError, .ParseError, .FileError, .SerializeError, .UnknownError:
 			style = .critical
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown error code")
+			style = .critical
 		}
 		return style
 	}

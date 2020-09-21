@@ -7,9 +7,6 @@
 
 #if os(OSX)
 import Cocoa
-#else
-import UIKit
-#endif
 import Foundation
 
 open class KCDocument: NSDocument
@@ -38,4 +35,6 @@ open class KCDocument: NSDocument
 		}
 	}
 }
+
+#endif // os(OSX)
 

@@ -5,8 +5,14 @@
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
-import Foundation
+
 import CoconutData
+#if os(OSX)
+import AppKit
+#else
+import UIKit
+#endif
+import Foundation
 
 open class KCStrokeDrawerLayer: KCLayer, CALayerDelegate
 {

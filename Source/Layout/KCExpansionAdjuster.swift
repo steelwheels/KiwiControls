@@ -73,10 +73,6 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandability(holizontal: .High, vertical: .High)
 	}
 
-	open override func visit(spriteView view: KCSpriteView){
-		view.setExpandability(holizontal: .High, vertical: .High)
-	}
-
 	open override func visit(navigationBar view: KCNavigationBar){
 		view.setExpandability(holizontal: .High, vertical: .Fixed)
 	}
@@ -95,6 +91,8 @@ public class KCExpansionAdjuster: KCViewVisitor
 			view.setExpandability(holizontal: .Low, vertical: .High)
 		case .vertical:
 			view.setExpandability(holizontal: .High, vertical: .Low)
+		@unknown default:
+			NSLog("Unknown axis type")
 		}
 	}
 }

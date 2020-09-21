@@ -5,10 +5,11 @@
  *   Copyright (C) 2020 Steel Wheels Project
  */
 
-import CoconutData
-import Foundation
-
 #if os(OSX)
+
+import CoconutData
+import AppKit
+import Foundation
 
 /* Make first responder
  * reference: https://stackoverflow.com/questions/7263482/problems-setting-firstresponder-in-cocoa-mac-osx

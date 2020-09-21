@@ -5,6 +5,9 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
+#if os(iOS)
+import UIKit
+#endif
 import Foundation
 
 public struct KCVertices

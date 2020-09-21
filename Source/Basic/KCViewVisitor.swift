@@ -65,10 +65,6 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
-	open func visit(spriteView view: KCSpriteView){
-		visit(coreView: view)
-	}
-
 	open func visit(navigationBar view: KCNavigationBar){
 		visit(coreView: view)
 	}

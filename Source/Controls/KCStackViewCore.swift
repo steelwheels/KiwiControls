@@ -110,11 +110,13 @@ open class KCStackViewCore : KCView
 			switch axs {
 			case .vertical:	  mStackView.orientation = NSUserInterfaceLayoutOrientation.vertical
 			case .horizontal: mStackView.orientation = NSUserInterfaceLayoutOrientation.horizontal
+			@unknown default: CNLog(logLevel: .error, message: "Unknown axis (1)")
 			}
 		#else
 			switch axs {
 			case .vertical:   mStackView.axis = NSLayoutConstraint.Axis.vertical
 			case .horizontal: mStackView.axis = NSLayoutConstraint.Axis.horizontal
+			@unknown default: CNLog(logLevel: .error, message: "Unknown axis (2)")
 			}
 		#endif
 		/* Set alignment */
@@ -124,18 +126,23 @@ open class KCStackViewCore : KCView
 				switch axs {
 				case .horizontal:	mStackView.alignment = .top
 				case .vertical:		mStackView.alignment = .left
+				@unknown default:	CNLog(logLevel: .error, message: "Unknown axis (3)")
 				}
 				mIsFillAlignmentMode = (align == .fill)
 			case .trailing:
 				switch axs {
 				case .horizontal:	mStackView.alignment = .bottom
 				case .vertical:		mStackView.alignment = .right
+				@unknown default:	CNLog(logLevel: .error, message: "Unknown axis (4)")
 				}
 			case .center:
 				switch axs {
 				case .horizontal:	mStackView.alignment = .centerY
 				case .vertical:		mStackView.alignment = .centerX
+				@unknown default:	CNLog(logLevel: .error, message: "Unknown axis (5)")
 				}
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown align")
 			}
 		#else
 			switch align {
@@ -147,6 +154,8 @@ open class KCStackViewCore : KCView
 				mStackView.alignment = .fill
 			case .center:
 				mStackView.alignment = .center
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown align")
 			}
 		#endif
 	}
@@ -172,6 +181,9 @@ open class KCStackViewCore : KCView
 			case .fillProportinally: 	newdist = .fillProportionally
 			case .fillEqually:		newdist = .fillEqually
 			case .equalSpacing:		newdist = .equalSpacing
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown distribution")
+				return
 			}
 			mStackView.distribution = newdist
 		}
@@ -198,6 +210,8 @@ open class KCStackViewCore : KCView
 						merged.height += subsize.height + space
 					}
 					merged.height += space * CGFloat(subviews.count - 1)
+				@unknown default:
+					CNLog(logLevel: .error, message: "Unknown axis")
 				}
 			}
 			return merged
@@ -265,6 +279,8 @@ open class KCStackViewCore : KCView
 			case .vertical:
 				setConstraint(toView: view, attribute: .left)
 				setConstraint(toView: view, attribute: .right)
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown axis")
 			}
 		#endif
 	}
