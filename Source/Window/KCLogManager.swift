@@ -103,6 +103,20 @@ import Foundation
 		#endif
 	}
 
+	public var console: CNConsole? {
+		get {
+			#if os(OSX)
+				if let cont = mWindowController {
+					return cont.console
+				} else {
+					return nil
+				}
+			#else
+				return nil
+			#endif
+		}
+	}
+
 	public var isVisible: Bool {
 		get {
 			#if os(OSX)

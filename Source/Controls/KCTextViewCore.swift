@@ -444,7 +444,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			let termheight = CGFloat(mTerminalInfo.height) * fontsize.height
 			let barwidth   = scrollerWidth()
 			let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
-			//NSLog("fittingSize -> font:\(fontsize.width)x\(fontsize.height) size:\(mCurrentColumnNumbers)x\(mCurrentRowNumbers) -> \(termsize.description)")
 			return termsize
 		}
 	}
