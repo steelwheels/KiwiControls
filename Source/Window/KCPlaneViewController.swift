@@ -38,7 +38,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	}
 
 	open override func loadView() {
-		super.loadView()
+		//super.loadView() <- Do not call this because it load NIB file (it is NOT exist)
 		if mRootView == nil {
 			let root = allocateRootView()
 

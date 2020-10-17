@@ -235,6 +235,17 @@
 		056C0D6725177959003A9D7F /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0D5825177959003A9D7F /* KCLayer.swift */; };
 		056C0D6825177959003A9D7F /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0D5925177959003A9D7F /* KCRepetitiveLayer.swift */; };
 		056C0D6925177959003A9D7F /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0D5925177959003A9D7F /* KCRepetitiveLayer.swift */; };
+		05B750532539D2410034D8CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750522539D2410034D8CB /* AppDelegate.swift */; };
+		05B750552539D2410034D8CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750542539D2410034D8CB /* ViewController.swift */; };
+		05B750572539D2440034D8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B750562539D2440034D8CB /* Assets.xcassets */; };
+		05B7505A2539D2440034D8CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B750582539D2440034D8CB /* Main.storyboard */; };
+		05B750662539DCD00034D8CB /* SingleView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750632539DCCF0034D8CB /* SingleView2Controller.swift */; };
+		05B750672539DCD00034D8CB /* SingleView0Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleView0Controller.swift */; };
+		05B750682539DCD00034D8CB /* SingleView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750652539DCCF0034D8CB /* SingleView1Controller.swift */; };
+		05B7506A2539DD1C0034D8CB /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
+		05B7506B2539DD1C0034D8CB /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05B7506D2539DD1F0034D8CB /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
+		05B7506E2539DD1F0034D8CB /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +257,13 @@
 			remoteInfo = Install;
 		};
 		056451AE251851F6006C2430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0518974325176DD300487B45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05EB004425181E7300636C82;
+			remoteInfo = Install;
+		};
+		05B7506F2539DD7D0034D8CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0518974325176DD300487B45 /* Project object */;
 			proxyType = 1;
@@ -310,6 +328,18 @@
 			dstSubfolderSpec = 10;
 			files = (
 				056451B3251853F8006C2430 /* KiwiControls.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05B7506C2539DD1C0034D8CB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05B7506B2539DD1C0034D8CB /* KiwiControls.xcframework in Embed Frameworks */,
+				05B7506E2539DD1F0034D8CB /* CoconutData.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +491,16 @@
 		056C0D5725177959003A9D7F /* KCLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
 		056C0D5825177959003A9D7F /* KCLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayer.swift; sourceTree = "<group>"; };
 		056C0D5925177959003A9D7F /* KCRepetitiveLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveLayer.swift; sourceTree = "<group>"; };
+		05B750502539D2410034D8CB /* UTMultiView_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiView_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05B750522539D2410034D8CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05B750542539D2410034D8CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05B750562539D2440034D8CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05B750592539D2440034D8CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05B7505B2539D2440034D8CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiView_macOS.entitlements; sourceTree = "<group>"; };
+		05B750632539DCCF0034D8CB /* SingleView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView2Controller.swift; sourceTree = "<group>"; };
+		05B750642539DCCF0034D8CB /* SingleView0Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView0Controller.swift; sourceTree = "<group>"; };
+		05B750652539DCCF0034D8CB /* SingleView1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -497,6 +537,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05B7504D2539D2410034D8CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B7506A2539DD1C0034D8CB /* KiwiControls.xcframework in Frameworks */,
+				05B7506D2539DD1F0034D8CB /* CoconutData.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -519,6 +568,7 @@
 				0544EA5A25176E23002DE6A8 /* KiwiControls.framework */,
 				0564517A251836E0006C2430 /* UTTerminal_macOS.app */,
 				05645199251851E1006C2430 /* UTTerminal_iOS.app */,
+				05B750502539D2410034D8CB /* UTMultiView_macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -834,6 +884,22 @@
 			path = Layer;
 			sourceTree = "<group>";
 		};
+		05B750512539D2410034D8CB /* UTMultiView_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				05B750522539D2410034D8CB /* AppDelegate.swift */,
+				05B750542539D2410034D8CB /* ViewController.swift */,
+				05B750642539DCCF0034D8CB /* SingleView0Controller.swift */,
+				05B750652539DCCF0034D8CB /* SingleView1Controller.swift */,
+				05B750632539DCCF0034D8CB /* SingleView2Controller.swift */,
+				05B750562539D2440034D8CB /* Assets.xcassets */,
+				05B750582539D2440034D8CB /* Main.storyboard */,
+				05B7505B2539D2440034D8CB /* Info.plist */,
+				05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */,
+			);
+			path = UTMultiView_macOS;
+			sourceTree = "<group>";
+		};
 		05EB004C2518277B00636C82 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +913,7 @@
 		05EB004D2518279300636C82 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				05B750512539D2410034D8CB /* UTMultiView_macOS */,
 				0564517B251836E1006C2430 /* UTTerminal */,
 			);
 			path = OSX;
@@ -969,6 +1036,25 @@
 			productReference = 05645199251851E1006C2430 /* UTTerminal_iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		05B7504F2539D2410034D8CB /* UTMultiView_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05B7505F2539D2440034D8CB /* Build configuration list for PBXNativeTarget "UTMultiView_macOS" */;
+			buildPhases = (
+				05B7504C2539D2410034D8CB /* Sources */,
+				05B7504D2539D2410034D8CB /* Frameworks */,
+				05B7504E2539D2410034D8CB /* Resources */,
+				05B7506C2539DD1C0034D8CB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05B750702539DD7D0034D8CB /* PBXTargetDependency */,
+			);
+			name = UTMultiView_macOS;
+			productName = UTMultiView_macOS;
+			productReference = 05B750502539D2410034D8CB /* UTMultiView_macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -991,6 +1077,9 @@
 					};
 					05645198251851E1006C2430 = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					05B7504F2539D2410034D8CB = {
+						CreatedOnToolsVersion = 12.0.1;
 					};
 					05EB004425181E7300636C82 = {
 						CreatedOnToolsVersion = 12.0;
@@ -1015,6 +1104,7 @@
 				05EB004425181E7300636C82 /* Install */,
 				05645179251836E0006C2430 /* UTTerminal_macOS */,
 				05645198251851E1006C2430 /* UTTerminal_iOS */,
+				05B7504F2539D2410034D8CB /* UTMultiView_macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1081,6 +1171,15 @@
 				056451A8251851E2006C2430 /* LaunchScreen.storyboard in Resources */,
 				056451A5251851E2006C2430 /* Assets.xcassets in Resources */,
 				056451A3251851E1006C2430 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05B7504E2539D2410034D8CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B750572539D2440034D8CB /* Assets.xcassets in Resources */,
+				05B7505A2539D2440034D8CB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1295,6 +1394,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05B7504C2539D2410034D8CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B750552539D2410034D8CB /* ViewController.swift in Sources */,
+				05B750682539DCD00034D8CB /* SingleView1Controller.swift in Sources */,
+				05B750532539D2410034D8CB /* AppDelegate.swift in Sources */,
+				05B750662539DCD00034D8CB /* SingleView2Controller.swift in Sources */,
+				05B750672539DCD00034D8CB /* SingleView0Controller.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1307,6 +1418,11 @@
 			isa = PBXTargetDependency;
 			target = 05EB004425181E7300636C82 /* Install */;
 			targetProxy = 056451AE251851F6006C2430 /* PBXContainerItemProxy */;
+		};
+		05B750702539DD7D0034D8CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05EB004425181E7300636C82 /* Install */;
+			targetProxy = 05B7506F2539DD7D0034D8CB /* PBXContainerItemProxy */;
 		};
 		05EB004925181E7D00636C82 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1343,6 +1459,14 @@
 				056451A7251851E2006C2430 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		05B750582539D2440034D8CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05B750592539D2440034D8CB /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1966,6 +2090,151 @@
 			};
 			name = Release;
 		};
+		05B7505D2539D2440034D8CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTMultiView_macOS/UTMultiView_macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTMultiView_macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTMultiView-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		05B7505E2539D2440034D8CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTMultiView_macOS/UTMultiView_macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTMultiView_macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTMultiView-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		05EB004525181E7300636C82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2129,6 +2398,15 @@
 			buildConfigurations = (
 				056451AB251851E2006C2430 /* Debug */,
 				056451AC251851E2006C2430 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05B7505F2539D2440034D8CB /* Build configuration list for PBXNativeTarget "UTMultiView_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05B7505D2539D2440034D8CB /* Debug */,
+				05B7505E2539D2440034D8CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
