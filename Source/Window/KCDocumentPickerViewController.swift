@@ -15,7 +15,7 @@ import Foundation
 {
 	public enum LoaderFunction {
 		case none
-		case view(_ loader: (_ url: URL) -> String?)
+		case view(_ loader: (_ url: URL) -> KCViewController?)
 		case url(_ loader: (_ url: URL) -> Void)
 	}
 
@@ -59,10 +59,8 @@ import Foundation
 			case .none:
 				break
 			case .view(let ldrfunc):
-				if let viewname = ldrfunc(urls[0]) {
-					if !mParentViewController.pushViewController(byName: viewname) {
-						CNLog(logLevel: .error, message: "Failed to push view \"\(viewname)\"")
-					}
+				if let viewctrl = ldrfunc(urls[0]) {
+					mParentViewController.pushViewController(viewController: viewctrl)
 				}
 			case .url(let ldrfunc):
 				ldrfunc(urls[0])

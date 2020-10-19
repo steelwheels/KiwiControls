@@ -13,7 +13,13 @@ class ViewController: KCMultiViewController
 	open override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let cont0 = SingleView0Controller(parentViewController: self)
+		//let cont0 = SingleView0Controller(parentViewController: self)
+		//self.pushViewController(viewController: cont0)
+
+		let cont1 = SingleView0Controller(parentViewController: self)
+		self.pushViewController(viewController: cont1)
+
+		/*
 		self.add(name: "cont0", viewController: cont0)
 
 		let cont1 = SingleView1Controller(parentViewController: self)
@@ -23,6 +29,7 @@ class ViewController: KCMultiViewController
 		self.add(name: "cont2", viewController: cont2)
 
 		let _ = self.pushViewController(byName: "cont1")
+*/
 	}
 
 	override var representedObject: Any? {

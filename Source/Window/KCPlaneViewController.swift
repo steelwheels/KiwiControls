@@ -149,9 +149,6 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		}
 	}
 
-	public func windowDidResize(parentViewController parent: KCMultiViewController) {
-	}
-
 	public func updateWindowSize() {
 		if let root = mRootView {
 			let newsize = root.fittingSize
