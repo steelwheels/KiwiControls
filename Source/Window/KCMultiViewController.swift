@@ -115,12 +115,19 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 
 	public func pushViewController(viewController view: KCViewController) {
 		#if os(OSX)
+			/* Keep current view */
+			let orgview = currentViewController()
+			/* Add new item */
 			let idx   = mViewStack.count
 			let ident = viewIndexToIdentifer(index: idx)
 			let item  = NSTabViewItem(identifier: ident)
 			item.viewController = view
 			CNLog(logLevel: .debug, message: "pushViewController identifier: \"\(ident)\"")
 			self.addTabViewItem(item)
+			/* Suspend previous view */
+			if let prevview = orgview as? KCSingleViewController {
+				prevview.suspend()
+			}
 		#else
 			let newctrls: Array<KCViewController>
 			let idx: Int
@@ -151,6 +158,10 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		switchView(index: newidx)
 		/* Remove original view */
 		removeTabViewItem(index: orgidx)
+		/* Resume current view */
+		if let curview = currentViewController() as? KCSingleViewController {
+			curview.resume()
+		}
 		return true
 	}
 
@@ -182,150 +193,16 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 
 	private func currentViewController() -> KCViewController? {
 		#if os(OSX)
-			let item = self.tabViewItems[self.selectedTabViewItemIndex]
-			return item.viewController
+			let idx = self.selectedTabViewItemIndex
+			if 0 <= idx && idx < self.tabViewItems.count {
+				let item = self.tabViewItems[idx]
+				return item.viewController
+			} else {
+				return nil
+			}
 		#else
 			return super.selectedViewController
 		#endif
 	}
-
-	/*
-	public func dump(to cons: CNConsole){
-		cons.print(string: "multi-view: {\n")
-
-		let stackdesc = "[" + mViewStack.peekAll().joined(separator: ",") + "]"
-		cons.print(string: " stack: " + stackdesc + "\n")
-
-		var indices: Array<String> = []
-		for (key, value) in mIndexTable {
-			indices.append("\(key):\(value)")
-		}
-		cons.print(string: " index: " + indices.joined(separator: ",") + "\n")
-
-		cons.print(string: "}\n")
-	}
-
-	public func selectFile(title ttext: String, fileExtensions exts: [String], loaderFunction loader: @escaping (_ url: URL) -> Void) {
-		#if os(OSX)
-			if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
-				loader(url)
-			}
-		#else
-			let picker: KCDocumentPickerViewController
-			if let p = mPickerView {
-				picker = p
-			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self)
-				mPickerView = picker
-			}
-			picker.setLoaderFunction(loader: .url({
-				(_ url: URL) -> Void in
-				loader(url)
-			}))
-			let manager = CNDocumentTypeManager.shared
-			let utis    = manager.UTIs(forExtensions: exts)
-			picker.openPicker(UTIs: utis)
-		#endif
-	}
-
-	public func selectViewFile(title ttext: String, fileExtensions exts: [String], loaderFunction loader: @escaping (_ url: URL) -> String?) {
-		#if os(OSX)
-			if let url = URL.openPanel(title: ttext, selection: .SelectFile, fileTypes: exts) {
-				if let viewname = loader(url) {
-					let _ = self.pushViewController(byName: viewname)
-				}
-			}
-		#else
-			let picker: KCDocumentPickerViewController
-			if let p = mPickerView {
-				picker = p
-			} else {
-				picker = KCDocumentPickerViewController(parentViewController: self)
-				mPickerView = picker
-			}
-			picker.setLoaderFunction(loader: .view({
-				(_ url: URL) -> String? in
-				return loader(url)
-			}))
-			let manager = CNDocumentTypeManager.shared
-			let utis = manager.UTIs(forExtensions: exts)
-			picker.openPicker(UTIs: utis)
-		#endif
-	}
-
-
-
-	public func add(name nm: String, viewController vcont: KCSingleViewController) {
-		let index = numberOfViewControllers()
-		#if os(OSX)
-			let item = NSTabViewItem(identifier: nm)
-			item.viewController = vcont
-			self.addTabViewItem(item)
-		#else
-			var ctrls: Array<KCViewController>
-			if let orgctrls = viewControllers {
-				ctrls = orgctrls
-				ctrls.append(vcont)
-			} else {
-				ctrls = [vcont]
-			}
-			setViewControllers(ctrls, animated: false)
-		#endif
-		mIndexTable[nm] = index
-	}
-
-	private func numberOfViewControllers() -> Int {
-		#if os(OSX)
-			return tabViewItems.count
-		#else
-			var result: Int
-			if let ctrls = viewControllers {
-				result = ctrls.count
-			} else {
-				result = 0
-			}
-			return result
-		#endif
-	}
-
-	public func pushViewController(byName name: String) -> Bool {
-		CNLog(logLevel: .debug, message: "pushViewController named: \"\(name)\"")
-		if let idx = mIndexTable[name] {
-			mViewStack.push(name)
-			switchView(index: idx)
-			return true
-		} else {
-			CNLog(logLevel: .error, message: "No matched view")
-			return false
-		}
-	}
-
-	public func popViewController() -> Bool {
-		if mViewStack.count > 1 {
-			let _ = mViewStack.pop()
-			if let name = mViewStack.peek() {
-				CNLog(logLevel: .debug, message: "popViewController named: \"\(name)\"")
-				if let idx = mIndexTable[name] {
-					switchView(index: idx)
-					return true
-				}
-			}
-		}
-		CNLog(logLevel: .error, message: "Can not happen")
-		return false
-	}
-
-	public func replaceTopViewController(byName name: String) -> Bool {
-		var oldname: String
-		if let oname = mViewStack.pop() {
-			oldname = oname
-		} else {
-			oldname = "<none>"
-		}
-		CNLog(logLevel: .error, message: "replaceViewController origin: \(oldname) -> named: \"\(name)\"")
-		return pushViewController(byName: name)
-	}
-*/
-
 }
 

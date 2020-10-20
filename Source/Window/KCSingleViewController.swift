@@ -35,6 +35,14 @@ open class KCSingleViewController: KCPlaneViewController
 			}
 		}
 	}
+
+	open func suspend() {
+		/* Do nothing */
+	}
+
+	open func resume() {
+		/* Do nothing */
+	}
 }
 
 

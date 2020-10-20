@@ -61,8 +61,6 @@ open class KCTextEditCore : KCView
 		let value = CNValue(stringValue: self.text)
 		if let cbfunc = self.callbackFunction {
 			cbfunc(value)
-		} else {
-			NSLog("TextEdit: \(text)")
 		}
 	}
 	#endif
@@ -313,8 +311,6 @@ open class KCTextEditCore : KCView
 		/* */
 		if let cbfunc = parent.callbackFunction {
 			cbfunc(value)
-		} else {
-			NSLog("TextEdit: \(value.description)")
 		}
 	}
 }
