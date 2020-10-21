@@ -24,13 +24,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	private var mConsole:		CNConsole? = nil
 	private var mContentSize:	KCSize = KCSize.zero
 
-	/*
-	#if os(OSX)
-
-	private var mPickerView:	KCDocumentPickerViewController? = nil
-	#endif
-*/
-
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
