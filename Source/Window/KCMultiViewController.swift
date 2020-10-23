@@ -20,7 +20,6 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 {
-	private var mViewStack:		CNStack<KCViewController> = CNStack()
 	private var mConsole:		CNConsole? = nil
 	private var mContentSize:	KCSize = KCSize.zero
 
@@ -106,21 +105,15 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		#endif
 	}
 
-	public func pushViewController(viewController view: KCViewController) {
+	open func pushViewController(viewController view: KCViewController) {
 		#if os(OSX)
-			/* Keep current view */
-			let orgview = currentViewController()
 			/* Add new item */
-			let idx   = mViewStack.count
+			let idx   = self.tabViewItems.count
 			let ident = viewIndexToIdentifer(index: idx)
 			let item  = NSTabViewItem(identifier: ident)
 			item.viewController = view
 			CNLog(logLevel: .debug, message: "pushViewController identifier: \"\(ident)\"")
 			self.addTabViewItem(item)
-			/* Suspend previous view */
-			if let prevview = orgview as? KCSingleViewController {
-				prevview.suspend()
-			}
 		#else
 			let newctrls: Array<KCViewController>
 			let idx: Int
@@ -139,8 +132,17 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		switchView(index: idx)
 	}
 
-	public func popViewController() -> Bool {
-		let orgcnt = mViewStack.count
+	open func popViewController() -> Bool {
+		let orgcnt: Int
+		#if os(OSX)
+			orgcnt = tabViewItems.count
+		#else
+			if let viewcont = self.viewControllers {
+				orgcnt = viewcont.count
+			} else {
+				orgcnt = 0
+			}
+		#endif
 		guard orgcnt > 1 else {
 			CNLog(logLevel: .debug, message: "popViewController -> Failed")
 			return false
@@ -151,10 +153,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		switchView(index: newidx)
 		/* Remove original view */
 		removeTabViewItem(index: orgidx)
-		/* Resume current view */
-		if let curview = currentViewController() as? KCSingleViewController {
-			curview.resume()
-		}
 		return true
 	}
 
@@ -184,7 +182,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		#endif
 	}
 
-	private func currentViewController() -> KCViewController? {
+	public func currentViewController() -> KCViewController? {
 		#if os(OSX)
 			let idx = self.selectedTabViewItemIndex
 			if 0 <= idx && idx < self.tabViewItems.count {
