@@ -32,13 +32,20 @@ import Foundation
 		syspref.addObserver(observer: self, forKey: CNSystemPreference.LogLevelItem)
 	}
 
+	deinit {
+		let syspref = CNPreference.shared.systemPreference
+		syspref.removeObserver(observer: self, forKey: CNSystemPreference.LogLevelItem)
+	}
+
 	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		switch keyPath {
 		case CNSystemPreference.LogLevelItem:
 			if let vals = change {
 				if let newval = vals[.newKey] as? Int {
 					if let newlevel = CNSystemPreference.LogLevel(rawValue: newval) {
-						updateLogLevel(logLevel: newlevel)
+						CNExecuteInMainThread(doSync: false, execute: {
+							() -> Void in self.updateLogLevel(logLevel: newlevel)
+						})
 					}
 				}
 			}

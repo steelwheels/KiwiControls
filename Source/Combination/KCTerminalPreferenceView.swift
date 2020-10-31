@@ -434,20 +434,23 @@ public class KCTerminalPreferenceView: KCStackView
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if let key = keyPath {
-			switch key {
-			case CNSystemPreference.InterfaceStyleItem:
-				let termpref = CNPreference.shared.terminalPreference
-				if let sel = mTextColorSelector {
-					sel.color = termpref.foregroundTextColor
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			if let key = keyPath {
+				switch key {
+				case CNSystemPreference.InterfaceStyleItem:
+					let termpref = CNPreference.shared.terminalPreference
+					if let sel = self.mTextColorSelector {
+						sel.color = termpref.foregroundTextColor
+					}
+					if let sel = self.mBackgroundColorSelector {
+						sel.color = termpref.backgroundTextColor
+					}
+				default:
+					break
 				}
-				if let sel = mBackgroundColorSelector {
-					sel.color = termpref.backgroundTextColor
-				}
-			default:
-				break
 			}
-		}
+		})
 	}
 
 }

@@ -500,39 +500,42 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if let key = keyPath, let vals = change {
-			if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
-				switch key {
-				case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
-					self.updateForegroundColor()
-				case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
-					self.updateBackgroundColor()
-				default:
-					NSLog("\(#file): Unknown key (2): \(key)")
-				}
-			} else if let font = vals[.newKey] as? CNFont {
-				switch key {
-				case CNPreference.shared.terminalPreference.FontItem:
-					//NSLog("Change font: \(font.fontName)")
-					self.font = font
-				default:
-					NSLog("\(#file): Unknown key (3): \(key)")
-				}
-			} else if let num = vals[.newKey] as? NSNumber {
-				switch key {
-				case CNPreference.shared.terminalPreference.ColumnNumberItem:
-					self.currentColumnNumbers = num.intValue
-					//NSLog("currentColumnNumbers = \(currentColumnNumbers)")
-				case CNPreference.shared.terminalPreference.RowNumberItem:
-					self.currentRowNumbers = num.intValue
-				case CNSystemPreference.InterfaceStyleItem:
-					self.updateForegroundColor()
-					self.updateBackgroundColor()
-				default:
-					NSLog("\(#file): Unknown key (4): \(key)")
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			if let key = keyPath, let vals = change {
+				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
+					switch key {
+					case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
+						self.updateForegroundColor()
+					case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
+						self.updateBackgroundColor()
+					default:
+						NSLog("\(#file): Unknown key (2): \(key)")
+					}
+				} else if let font = vals[.newKey] as? CNFont {
+					switch key {
+					case CNPreference.shared.terminalPreference.FontItem:
+						//NSLog("Change font: \(font.fontName)")
+						self.font = font
+					default:
+						NSLog("\(#file): Unknown key (3): \(key)")
+					}
+				} else if let num = vals[.newKey] as? NSNumber {
+					switch key {
+					case CNPreference.shared.terminalPreference.ColumnNumberItem:
+						self.currentColumnNumbers = num.intValue
+						//NSLog("currentColumnNumbers = \(currentColumnNumbers)")
+					case CNPreference.shared.terminalPreference.RowNumberItem:
+						self.currentRowNumbers = num.intValue
+					case CNSystemPreference.InterfaceStyleItem:
+						self.updateForegroundColor()
+						self.updateBackgroundColor()
+					default:
+						NSLog("\(#file): Unknown key (4): \(key)")
+					}
 				}
 			}
-		}
+		})
 	}
 
 	private func updateForegroundColor() {
