@@ -200,9 +200,7 @@
 		0544EBC325177676002DE6A8 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB225177676002DE6A8 /* KCAlert.swift */; };
 		0544EBC425177676002DE6A8 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB225177676002DE6A8 /* KCAlert.swift */; };
 		0544EBCB251776E2002DE6A8 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
-		0544EBCC251776E2002DE6A8 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0544EBCF251776F7002DE6A8 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
-		0544EBD0251776F7002DE6A8 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0564517D251836E1006C2430 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564517C251836E1006C2430 /* AppDelegate.swift */; };
 		0564517F251836E1006C2430 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564517E251836E1006C2430 /* ViewController.swift */; };
 		05645181251836E3006C2430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05645180251836E3006C2430 /* Assets.xcassets */; };
@@ -287,28 +285,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0544EBCD251776E2002DE6A8 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0544EBCC251776E2002DE6A8 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0544EBD1251776F7002DE6A8 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0544EBD0251776F7002DE6A8 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0564518E25183789006C2430 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -968,7 +944,6 @@
 				0544EA4725176E06002DE6A8 /* Sources */,
 				0544EA4825176E06002DE6A8 /* Frameworks */,
 				0544EA4925176E06002DE6A8 /* Resources */,
-				0544EBCD251776E2002DE6A8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -987,7 +962,6 @@
 				0544EA5625176E23002DE6A8 /* Sources */,
 				0544EA5725176E23002DE6A8 /* Frameworks */,
 				0544EA5825176E23002DE6A8 /* Resources */,
-				0544EBD1251776F7002DE6A8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

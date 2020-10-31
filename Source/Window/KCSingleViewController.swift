@@ -26,6 +26,14 @@ open class KCSingleViewController: KCPlaneViewController
 		super.init(coder: coder)
 	}
 
+	open override func parentSize() -> KCSize? {
+		if let parctrl = mParentController {
+			return parctrl.view.frame.size
+		} else {
+			return nil
+		}
+	}
+
 	public var parentController: KCMultiViewController {
 		get {
 			if let controller = mParentController {

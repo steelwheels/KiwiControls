@@ -56,10 +56,17 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 					contentsize = UIScreen.main.bounds.size
 				}
 			#endif
-			mTargetSize = contentsize
 
-			root.frame.size  = contentsize
-			root.bounds.size = contentsize
+			let entiresize: KCSize
+			if let parentsize = parentSize() {
+				entiresize = KCMaxSize(sizeA: contentsize, sizeB: parentsize)
+			} else {
+				entiresize = contentsize
+			}
+			mTargetSize = entiresize
+
+			root.frame.size  = entiresize
+			root.bounds.size = entiresize
 			self.view = root
 			mRootView = root
 		}
@@ -68,6 +75,10 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	open func loadViewContext(rootView root: KCRootView) -> KCSize {
 		NSLog("\(#file) Override this method")
 		return root.frame.size
+	}
+
+	open func parentSize() -> KCSize? {
+		return nil
 	}
 
 	#if os(OSX)
@@ -107,15 +118,17 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Layout components */
-				dumpInfo(phase: "doViewWillLayouut (before) target=\(mTargetSize.description)", rootView: root)
 				let newsize = mTargetSize
 				if mPrevRootSize != newsize {
+					dumpInfo(phase: "doViewWillLayouut (before) target=\(mTargetSize.description)", rootView: root)
 					CNLog(logLevel: .debug, message: "- [Execute Layout]")
 					let layouter = KCLayouter()
 					layouter.layout(rootView: root, contentSize: newsize)
 					mPrevRootSize = newsize
+					dumpInfo(phase: "doViewWillLayouut (after) target=\(mTargetSize.description)", rootView: root)
+				} else {
+					dumpInfo(phase: "doViewWillLayouut (skipped) target=\(mTargetSize.description)", rootView: root)
 				}
-				dumpInfo(phase: "doViewWillLayouut (after) target=\(mTargetSize.description)", rootView: root)
 			}
 		} else {
 			CNLog(logLevel: .error, message: "No root view")
