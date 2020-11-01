@@ -12,7 +12,7 @@ import Foundation
 {
 	public typealias LogLevel = CNConfig.LogLevel
 
-	public static var shared	= KCLogManager()
+	public static let shared	= KCLogManager()
 	#if os(OSX)
 		private var		mWindowController: KCLogWindowController?
 	#else
@@ -56,7 +56,7 @@ import Foundation
 
 	private func updateLogLevel(logLevel lvl: LogLevel) {
 		let isvis = self.isVisible
-		let doen  = checkEnable(logLevel: lvl)
+		let doen  = (lvl != .nolog)
 		if !isvis && doen {
 			/* Set enable */
 			doShow()
@@ -66,47 +66,33 @@ import Foundation
 		}
 	}
 
-	private func checkEnable(logLevel lvl: LogLevel) -> Bool {
-		let result: Bool
-		switch lvl {
-		case .nolog:	result = false
-		default:	result = true
-		}
-		return result
-	}
-
 	private func doShow() {
 		#if os(OSX)
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			let console: CNConsole
-			if let cont = self.mWindowController {
-				console	= cont.console
-				cont.show()
-			} else {
-				let newcont = KCLogWindowController.allocateController()
-				self.mWindowController = newcont
-				console = newcont.console
-				newcont.show()
-			}
-			/* Connect log buffer to this window */
-			let buf = CNLogBuffer.shared
-			buf.setOutput(console: console)
-		})
+		let console: CNConsole
+		if let cont = self.mWindowController {
+			console	= cont.console
+			cont.show()
+		} else {
+			let newcont = KCLogWindowController.allocateController()
+			self.mWindowController = newcont
+			console = newcont.console
+			newcont.show()
+		}
+		/* Connect log buffer to this window */
+		let buf = CNLogBuffer.shared
+		buf.setOutput(console: console)
+		buf.flush()
 		#endif
 	}
 
 	private func doHide() {
 		#if os(OSX)
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			if let cont = self.mWindowController {
-				cont.hide()
-			}
-			/* Connect log buffer to this window */
-			let buf = CNLogBuffer.shared
-			buf.resetOutput()
-		})
+		if let cont = self.mWindowController {
+			cont.hide()
+		}
+		/* Connect log buffer to this window */
+		let buf = CNLogBuffer.shared
+		buf.resetOutput()
 		#endif
 	}
 

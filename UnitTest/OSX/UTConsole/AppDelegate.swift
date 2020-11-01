@@ -1,22 +1,24 @@
-//
-//  AppDelegate.swift
-//  UTConsole
-//
-//  Created by Tomoo Hamada on 2019/08/10.
-//  Copyright © 2019 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	ApplicationDelegate.swift
+ * @brief	Define ApplicationDelegate class
+ * @par Copyright
+ *   Copyright (C) 2020 Steel Wheels Project
+ */
 
+import KiwiControls
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: CNApplicationDelegate
-{
-	func applicationDidFinishLaunching(_ aNotification: Notification) {
+class AppDelegate: KCApplicationDelegate {
+
+	open override func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Insert code here to initialize your application
+		super.applicationDidFinishLaunching(aNotification)
 	}
 
-	func applicationWillTerminate(_ aNotification: Notification) {
+	open override func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
+		super.applicationWillTerminate(aNotification)
 	}
 }
 

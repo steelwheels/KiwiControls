@@ -11,11 +11,14 @@ import Foundation
 open class KCApplicationDelegate: CNApplicationDelegate
 {
 	#if os(OSX)
+	open override func applicationWillFinishLaunching(_ notification: Notification){
+		/* Call super class first */
+		super.applicationWillFinishLaunching(notification)
+	}
+
 	open override func applicationDidFinishLaunching(_ notification: Notification) {
 		/* Call super class first */
 		super.applicationDidFinishLaunching(notification)
-		/* Allocate log manager */
-		let _ = KCLogManager.shared
 	}
 	#endif
 }

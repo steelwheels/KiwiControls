@@ -97,8 +97,6 @@ class ViewController: KCPlaneViewController
 		termview.outputFileHandle.write(string: reset)
 
 		/* Enable logging */
-		NSLog("Enable logging")
-		let _ = KCLogManager.shared
 		CNPreference.shared.systemPreference.logLevel = .error
 		CNLog(logLevel: .error, message: "Hello Log Message !!")
 	}
