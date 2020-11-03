@@ -55,7 +55,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 					self.view.setFrameSize(size)
 					self.view.setBoundsSize(size)
 				} else {
-					NSLog("No window")
+					CNLog(logLevel: .error, message: "No window at \(#function)")
 				}
 			}
 		#endif

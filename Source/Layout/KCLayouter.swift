@@ -33,6 +33,11 @@ public class KCLayouter
 		let winupdator = KCWindowSizeUpdator()
 		winupdator.updateContentSize(rootView: view, contentSize: content)
 		dump(phase: "[Root size allocation]", view: view)
+
+		CNLog(logLevel: .debug, message: "Expand size of elements in the stack")
+		let expander = KCElementSizeExpander(parentSize: content)
+		view.accept(visitor: expander)
+		dump(phase: "[Element size expansion]", view: view)
 	}
 
 	private func dump(phase str: String, view v: KCView) {

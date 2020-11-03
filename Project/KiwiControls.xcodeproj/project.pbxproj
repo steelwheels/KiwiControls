@@ -252,6 +252,8 @@
 		05B7506B2539DD1C0034D8CB /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05B7506D2539DD1F0034D8CB /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
 		05B7506E2539DD1F0034D8CB /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05C0D32F25505530007979A1 /* KCElementSizeExpander.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D32E25505530007979A1 /* KCElementSizeExpander.swift */; };
+		05C0D33025505530007979A1 /* KCElementSizeExpander.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D32E25505530007979A1 /* KCElementSizeExpander.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -511,6 +513,7 @@
 		05B750632539DCCF0034D8CB /* SingleView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView2Controller.swift; sourceTree = "<group>"; };
 		05B750642539DCCF0034D8CB /* SingleView0Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView0Controller.swift; sourceTree = "<group>"; };
 		05B750652539DCCF0034D8CB /* SingleView1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
+		05C0D32E25505530007979A1 /* KCElementSizeExpander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCElementSizeExpander.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,6 +682,7 @@
 			isa = PBXGroup;
 			children = (
 				0544EAA425176FBE002DE6A8 /* KCDistributionDecider.swift */,
+				05C0D32E25505530007979A1 /* KCElementSizeExpander.swift */,
 				0544EAA025176FBE002DE6A8 /* KCExpansionAdjuster.swift */,
 				0544EAA325176FBE002DE6A8 /* KCFirstResponderDecider.swift */,
 				0544EA9B25176FBE002DE6A8 /* KCFrameSizeFinalizer.swift */,
@@ -1304,6 +1308,7 @@
 				0544EACE25176FF5002DE6A8 /* KCPoint.swift in Sources */,
 				0544EB36251775A3002DE6A8 /* KCColorSelector.swift in Sources */,
 				0544EB4E251775A3002DE6A8 /* KCCheckBox.swift in Sources */,
+				05C0D32F25505530007979A1 /* KCElementSizeExpander.swift in Sources */,
 				056C0D6425177959003A9D7F /* KCLayerView.swift in Sources */,
 				0544EADC25176FF5002DE6A8 /* KCVertices.swift in Sources */,
 				0544EB28251775A3002DE6A8 /* KCRootView.swift in Sources */,
@@ -1405,6 +1410,7 @@
 				0544EB31251775A3002DE6A8 /* KCStepper.swift in Sources */,
 				0544EB4B251775A3002DE6A8 /* KCTextField.swift in Sources */,
 				0544EAB225176FBE002DE6A8 /* KCSizeMinimizer.swift in Sources */,
+				05C0D33025505530007979A1 /* KCElementSizeExpander.swift in Sources */,
 				0544EB11251775A3002DE6A8 /* KCTableView.swift in Sources */,
 				0544EADF25176FF5002DE6A8 /* KCHexagon.swift in Sources */,
 				0544EA7B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift in Sources */,

@@ -13,17 +13,17 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: KCApplicationDelegate
 {
-	func applicationWillFinishLaunching(_ notification: Notification) {
+	open override func applicationWillFinishLaunching(_ notification: Notification) {
 		NSLog("applicationWillFinishLaunching")
 		UserDefaults.standard.applyDefaultSetting()
 	}
 
-	override func applicationDidFinishLaunching(_ aNotification: Notification) {
+	open override func applicationDidFinishLaunching(_ aNotification: Notification) {
 		super.applicationDidFinishLaunching(aNotification)
 		NSLog("applicationDidFinishLaunching")
 	}
 
-	func applicationWillTerminate(_ aNotification: Notification) {
+	open override func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
 }

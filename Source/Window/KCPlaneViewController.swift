@@ -108,36 +108,6 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	}
 	#endif
 
-	private func doViewDidLayout() {
-		CNLog(logLevel: .debug, message: "[viewDidLayout]")
-		if let root = mRootView {
-			dumpInfo(phase: "- [doViewDidLayout]", rootView: root)
-		}
-	}
-
-	var mPrevRootSize = KCSize.zero
-
-	private func doViewWillLayout() {
-		if let root = mRootView {
-			if root.hasCoreView {
-				/* Layout components */
-				let newsize = mTargetSize
-				if mPrevRootSize != newsize {
-					dumpInfo(phase: "doViewWillLayouut (before) target=\(mTargetSize.description)", rootView: root)
-					CNLog(logLevel: .debug, message: "- [Execute Layout]")
-					let layouter = KCLayouter()
-					layouter.layout(rootView: root, contentSize: newsize)
-					mPrevRootSize = newsize
-					dumpInfo(phase: "doViewWillLayouut (after) target=\(mTargetSize.description)", rootView: root)
-				} else {
-					dumpInfo(phase: "doViewWillLayouut (skipped) target=\(mTargetSize.description)", rootView: root)
-				}
-			}
-		} else {
-			CNLog(logLevel: .error, message: "No root view")
-		}
-	}
-
 	#if os(OSX)
 	open override func viewDidAppear() {
 		super.viewDidAppear()
@@ -150,19 +120,50 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	}
 	#endif
 
-	private func doViewDidAppear(){
-		CNLog(logLevel: .debug, message: "[viewDidAppear]")
-		guard let window = self.view.window else {
-			CNLog(logLevel: .error, message: "No window")
-			return
+	var mPrevRootSize = KCSize.zero
+
+	private func doViewWillLayout() {
+		if let root = mRootView {
+			if root.hasCoreView {
+				/* Layout components */
+				if mPrevRootSize != mTargetSize {
+					dumpInfo(phase: "doViewWillLayouut (before) target=\(mTargetSize.description)", rootView: root)
+					CNLog(logLevel: .debug, message: "- [Execute Layout]")
+					let layouter = KCLayouter()
+					layouter.layout(rootView: root, contentSize: mTargetSize)
+					mPrevRootSize = mTargetSize
+					dumpInfo(phase: "doViewWillLayouut (after) target=\(mTargetSize.description)", rootView: root)
+				} else {
+					dumpInfo(phase: "doViewWillLayouut (skipped) target=\(mTargetSize.description)", rootView: root)
+				}
+			}
+		} else {
+			CNLog(logLevel: .error, message: "No root view")
 		}
+	}
+
+	private func doViewDidLayout() {
+		CNLog(logLevel: .debug, message: "[viewDidLayout]")
+
 		if let root = mRootView {
 			if root.hasCoreView {
 				let finalizer = KCLayoutFinalizer()
-				finalizer.finalizeLayout(window: window, rootView: root)
+				finalizer.finalizeLayout(rootView: root)
 			}
-			dumpInfo(phase: "- [doViewDidAppear]", rootView: root)
+			dumpInfo(phase: "- [doViewDidLayout]", rootView: root)
 		}
+	}
+
+	private func doViewDidAppear() {
+		#if os(OSX)
+			if let window = self.view.window, let root = mRootView {
+				let decider = KCFirstResponderDecider(window: window)
+				let _ = decider.decideFirstResponder(rootView: root)
+				dumpInfo(phase: "- [doViewDidAppear]", rootView: root)
+			} else {
+				CNLog(logLevel: .error, message: "No window at \(#function)")
+			}
+		#endif
 	}
 
 	public func updateWindowSize() {

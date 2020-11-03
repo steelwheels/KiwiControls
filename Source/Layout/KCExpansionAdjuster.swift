@@ -2,7 +2,7 @@
  * @file	KCExpansionAdjuster.swift
  * @brief	Define KCExpansionAdjuster class
  * @par Copyright
- *   Copyright (C) 2022 Steel Wheels Project
+ *   Copyright (C) 2020 Steel Wheels Project
  */
 
 import CoconutData
