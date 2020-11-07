@@ -13,7 +13,7 @@ public class SingleView1Controller: KCSingleViewController
 {
 	private var mTerminalView:	KCTerminalView? = nil
 
-	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
+	public override func loadViewContext(rootView root: KCRootView) -> KCSize? {
 		let terminal  = KCTerminalView()
 		terminal.outputFileHandle.write(string: "Good, morning !!")
 		mTerminalView = terminal

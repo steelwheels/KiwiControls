@@ -46,12 +46,18 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 			let root = allocateRootView()
 
 			/* Allocate contents by super class */
-			let retsize = loadViewContext(rootView: root)
+			let viewsize: KCSize
+			if let vsize = loadViewContext(rootView: root) {
+				viewsize = vsize
+			} else {
+				NSLog("Failed to allocate view context")
+				viewsize = root.frame.size
+			}
 
 			/* Keep the size */
 			let contentsize: KCSize
 			#if os(OSX)
-				contentsize = retsize
+				contentsize = viewsize
 			#else
 				if let window = self.view.window {
 					contentsize = window.bounds.size
@@ -75,7 +81,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		}
 	}
 
-	open func loadViewContext(rootView root: KCRootView) -> KCSize {
+	open func loadViewContext(rootView root: KCRootView) -> KCSize? {
 		NSLog("\(#file) Override this method")
 		return root.frame.size
 	}

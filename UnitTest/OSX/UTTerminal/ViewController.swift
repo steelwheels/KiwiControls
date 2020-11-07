@@ -34,7 +34,7 @@ class ViewController: KCPlaneViewController
 	private var	mTerminalView:	KCTerminalView? = nil
 	private var	mShell: CNShellThread? = nil
 
-	open override func loadViewContext(rootView root: KCRootView) -> KCSize {
+	open override func loadViewContext(rootView root: KCRootView) -> KCSize? {
 		let termview = KCTerminalView()
 		root.setup(childView: termview)
 		mTerminalView = termview

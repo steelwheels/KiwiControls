@@ -175,11 +175,17 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	}
 
 	private func switchView(index idx: Int){
+		if let vctrl = currentViewController() as? KCSingleViewController {
+			vctrl.isInFront = false
+		}
 		#if os(OSX)
 			self.selectedTabViewItemIndex = idx
 		#else
 			self.selectedIndex = idx
 		#endif
+		if let vctrl = currentViewController() as? KCSingleViewController {
+			vctrl.isInFront = true
+		}
 	}
 
 	public func currentViewController() -> KCViewController? {

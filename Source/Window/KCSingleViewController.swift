@@ -14,15 +14,18 @@ import CoconutData
 
 open class KCSingleViewController: KCPlaneViewController
 {
-	private weak var mParentController:	KCMultiViewController?
+	private weak var	mParentController:	KCMultiViewController?
+	public var		isInFront:		Bool
 
 	public init(parentViewController parent: KCMultiViewController){
 		mParentController	= parent
+		isInFront		= false
 		super.init()
 	}
 
 	public required init?(coder: NSCoder) {
 		mParentController	= nil
+		isInFront		= false
 		super.init(coder: coder)
 	}
 

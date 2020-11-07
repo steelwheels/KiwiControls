@@ -13,7 +13,7 @@ public class SingleView2Controller: KCSingleViewController
 {
 	private var mConsole = CNFileConsole()
 
-	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
+	public override func loadViewContext(rootView root: KCRootView) -> KCSize? {
 		CNLog(logLevel: .debug, message: "loadView")
 
 		let dummyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
