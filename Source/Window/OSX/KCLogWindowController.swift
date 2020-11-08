@@ -54,18 +54,6 @@ public class KCLogWindowController: NSWindowController
 		self.window?.orderOut(self.window)
 	}
 
-	#if false
-	public func print(string str: String) {
-		let cons = mConsoleView.consoleConnection
-		cons.print(string: str)
-	}
-
-	public func error(string str: String) {
-		let cons = mConsoleView.consoleConnection
-		cons.error(string: str)
-	}
-	#endif
-
 	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton) {
 		if let newwin = NSWindow.loadWindow() {
 			/* Setup window */

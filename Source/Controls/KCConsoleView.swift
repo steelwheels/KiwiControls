@@ -15,16 +15,6 @@ import CoconutData
 open class KCConsoleView : KCCoreView
 {
 	private var mConsole:	CNFileConsole?	= nil
-
-	public var foregroundTextColor: CNColor {
-		get		{ return coreView.foregroundTextColor }
-		set(newcol)	{ coreView.foregroundTextColor = newcol }
-	}
-
-	public var backgroundTextColor: CNColor {
-		get		{ return coreView.backgroundTextColor }
-		set(newcol)	{ coreView.backgroundTextColor = newcol }
-	}
 	
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -65,6 +55,16 @@ open class KCConsoleView : KCCoreView
 				return newcons
 			}
 		}
+	}
+
+	public var foregroundTextColor: CNColor {
+		get		{ return coreView.foregroundTextColor }
+		set(newcol)	{ coreView.foregroundTextColor = newcol }
+	}
+
+	public var backgroundTextColor: CNColor {
+		get		{ return coreView.backgroundTextColor }
+		set(newcol)	{ coreView.backgroundTextColor = newcol }
 	}
 
 	private func setup(){

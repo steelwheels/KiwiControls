@@ -18,6 +18,20 @@ class ViewController: KCPlaneViewController {
 		syspref.logLevel = .detail
 
 		CNLog(logLevel: .error, message: "Hello, world !!")
+
+		for i in 0..<10 {
+			CNLog(logLevel: .warning, message: "Warning \(i)")
+		}
+	}
+
+	open override func loadViewContext(rootView root: KCRootView) -> KCSize? {
+		let button = KCButton()
+		button.buttonPressedCallback = {
+			() -> Void in
+			CNLog(logLevel: .debug, message: "Debug message")
+		}
+		root.setup(childView: button)
+		return button.fittingSize
 	}
 
 	override var representedObject: Any? {

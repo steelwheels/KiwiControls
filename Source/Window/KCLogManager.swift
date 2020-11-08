@@ -50,7 +50,7 @@ import Foundation
 				}
 			}
 		default:
-			CNLog(logLevel: .error, message: "oV: \(String(describing: keyPath))")
+			NSLog("Unexpected event:  \(String(describing: keyPath))")
 		}
 	}
 
