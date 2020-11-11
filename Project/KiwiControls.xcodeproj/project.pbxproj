@@ -195,8 +195,6 @@
 		0544EBBE25177676002DE6A8 /* KCViewDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBAF25177676002DE6A8 /* KCViewDumper.swift */; };
 		0544EBBF25177676002DE6A8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB025177676002DE6A8 /* KCCoreView.swift */; };
 		0544EBC025177676002DE6A8 /* KCCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB025177676002DE6A8 /* KCCoreView.swift */; };
-		0544EBC125177676002DE6A8 /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB125177676002DE6A8 /* KCApplicationDelegate.swift */; };
-		0544EBC225177676002DE6A8 /* KCApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB125177676002DE6A8 /* KCApplicationDelegate.swift */; };
 		0544EBC325177676002DE6A8 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB225177676002DE6A8 /* KCAlert.swift */; };
 		0544EBC425177676002DE6A8 /* KCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBB225177676002DE6A8 /* KCAlert.swift */; };
 		0544EBCB251776E2002DE6A8 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
@@ -468,7 +466,6 @@
 		0544EBAE25177676002DE6A8 /* KCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCView.swift; sourceTree = "<group>"; };
 		0544EBAF25177676002DE6A8 /* KCViewDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewDumper.swift; sourceTree = "<group>"; };
 		0544EBB025177676002DE6A8 /* KCCoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
-		0544EBB125177676002DE6A8 /* KCApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCApplicationDelegate.swift; sourceTree = "<group>"; };
 		0544EBB225177676002DE6A8 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
 		0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		0564517A251836E0006C2430 /* UTTerminal_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTerminal_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -836,7 +833,6 @@
 			isa = PBXGroup;
 			children = (
 				0544EBB225177676002DE6A8 /* KCAlert.swift */,
-				0544EBB125177676002DE6A8 /* KCApplicationDelegate.swift */,
 				0544EBB025177676002DE6A8 /* KCCoreView.swift */,
 				0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */,
 				0544EBAB25177676002DE6A8 /* KCPreference.swift */,
@@ -1292,7 +1288,6 @@
 				0544EA8225176EC6002DE6A8 /* KCScreen.swift in Sources */,
 				0544EB48251775A3002DE6A8 /* KCColorSelectorCore.swift in Sources */,
 				0544EB12251775A3002DE6A8 /* KCPopupMenu.swift in Sources */,
-				0544EBC125177676002DE6A8 /* KCApplicationDelegate.swift in Sources */,
 				0544EB1A251775A3002DE6A8 /* KCImageView.swift in Sources */,
 				0544EAD425176FF5002DE6A8 /* KCSize.swift in Sources */,
 				0544EB2E251775A3002DE6A8 /* KCConsoleView.swift in Sources */,
@@ -1357,7 +1352,6 @@
 				0544EB3B251775A3002DE6A8 /* KCPopupMenuCore.swift in Sources */,
 				0544EBBE25177676002DE6A8 /* KCViewDumper.swift in Sources */,
 				0544EB17251775A3002DE6A8 /* KCLabeledStackViewCore.swift in Sources */,
-				0544EBC225177676002DE6A8 /* KCApplicationDelegate.swift in Sources */,
 				0544EAEB2517718D002DE6A8 /* KCDocument.swift in Sources */,
 				056C0D6525177959003A9D7F /* KCLayerView.swift in Sources */,
 				0544EAB625176FBE002DE6A8 /* KCFirstResponderDecider.swift in Sources */,
