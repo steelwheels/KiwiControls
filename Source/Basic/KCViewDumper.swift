@@ -23,7 +23,10 @@ public class KCViewDumper: KCViewVisitor
 
 	public func dump(view v: KCView){
 		v.accept(visitor: self)
-		CNLog(logLevel: .debug, messages: mSection.toStrings(terminal: "", indent: 0))
+		//CNLog(logLevel: .debug, messages: mSection.toStrings(terminal: "", indent: 0))
+		for line in mSection.toStrings(terminal: "", indent: 0) {
+			NSLog(line)
+		}
 	}
 
 	open override func visit(rootView view: KCRootView){
@@ -92,9 +95,9 @@ public class KCViewDumper: KCViewVisitor
 
 		let fsection = CNTextSection()
 		fsection.header = "CLI {" ; fsection.footer = "}"
-		let colnum = view.currentColumnNumbers
-		let rownum = view.currentRowNumbers
-		fsection.add(text: CNTextLine(string: "colmun-num: \(colnum), row-num: \(rownum)"))
+		let width  = view.width
+		let height = view.height
+		fsection.add(text: CNTextLine(string: "width: \(width), height: \(height)"))
 		let font    = view.font
 		fsection.add(string: "font:\(font.fontName))")
 		mSection.add(text: fsection)

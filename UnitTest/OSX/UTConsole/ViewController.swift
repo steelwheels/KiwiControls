@@ -24,7 +24,7 @@ class ViewController: KCPlaneViewController {
 		}
 	}
 
-	open override func loadViewContext(rootView root: KCRootView) -> KCSize? {
+	open override func loadViewContext(rootView root: KCRootView) {
 		let button = KCButton()
 		button.buttonPressedCallback = {
 			() -> Void in

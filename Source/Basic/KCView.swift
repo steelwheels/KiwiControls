@@ -57,6 +57,7 @@ extension KCViewBase
 		self.needsDisplay = true
 	}
 #endif
+
 	/* for autolayout */
 	public enum ExpansionPriority {
 		case High
@@ -144,6 +145,10 @@ open class KCView : KCViewBase
 		}
 	}
 
+	open func requireLayout() {
+		self.setNeedsLayout()
+	}
+
 	/*
 	 * Event control
 	 */
@@ -216,39 +221,26 @@ open class KCView : KCViewBase
 		areaToBeDisplay = CGRect.zero
 	}
 
-	open override func setNeedsDisplay(_ invalidRect: KCRect)
-	{
-		if areaToBeDisplay.isEmpty {
-			areaToBeDisplay = invalidRect
-		} else {
-			areaToBeDisplay = areaToBeDisplay.union(invalidRect)
-		}
-		super.setNeedsDisplay(areaToBeDisplay)
-		//Swift.print("setNeedsDisplay: \(areaToBeDisplay.description)")
-	}
-
 	/*
 	 * layout
 	 */
-	private var mFixedSize:	KCSize?	= nil
-
-	public var hasFixedSize: Bool {
-		get { return mFixedSize != nil }
+	#if os(iOS)
+	open func setFrameSize(_ newsize: KCSize) {
+		self.frame.size = newsize
 	}
+	#endif
 
-	open func resize(_ size: KCSize){
-		mFixedSize       = size
-		self.frame.size  = size
-		self.bounds.size = size
+	public func setCoreFrameSize(core view: KCViewBase, size newsize: KCSize) {
+		#if os(OSX)
+			view.setFrameSize(newsize)
+		#else
+			view.frame.size = newsize
+		#endif
 	}
 
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if let s = mFixedSize {
-				return s
-			} else {
-				return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
-			}
+			return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
 		}
 	}
 
@@ -259,28 +251,6 @@ open class KCView : KCViewBase
 	open func expandability() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {
 		return expansionPriority()
 	}
-
-	open func rebounds(origin org: KCPoint, size sz: KCSize){
-		self.frame.origin  = org
-		self.bounds.origin = KCPoint.zero
-		resize(sz)
-	}
-
-	#if os(OSX)
-	open override var fittingSize: KCSize {
-		get {
-			NSLog("Must be override")
-			return KCSize.zero
-		}
-	}
-	#else
-	open var fittingSize: KCSize {
-		get {
-			NSLog("Must be override")
-			return KCSize.zero
-		}
-	}
-	#endif
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
 		sview.translatesAutoresizingMaskIntoConstraints = false
@@ -323,8 +293,6 @@ open class KCView : KCViewBase
 			let views = nib.instantiate(withOwner: nil, options: nil)
 			for view in views {
 				if let v = view as? KCView {
-					rebounds(origin: self.bounds.origin, size: self.bounds.size)
-					//addSubview(v) ;
 					return v ;
 				}
 			}
@@ -335,8 +303,6 @@ open class KCView : KCViewBase
 					if let views = viewsp {
 						for view in views {
 							if let v = view as? KCView {
-								rebounds(origin: self.bounds.origin, size: self.bounds.size)
-								//addSubview(v) ;
 								return v ;
 							}
 						}

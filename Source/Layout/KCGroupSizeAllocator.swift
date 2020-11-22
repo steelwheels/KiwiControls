@@ -28,7 +28,8 @@ public class KCGroupSizeAllocator: KCViewVisitor
 		for group in groups {
 			curbounds = allocate(group: group, axis: axis, in: curbounds)
 		}
-		view.resize(mergeElementSizes(stackView: view))
+		let size = mergeElementSizes(stackView: view)
+		view.setFrameSize(size)
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView){

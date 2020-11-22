@@ -30,7 +30,6 @@ open class KCStackViewCore : KCView
 
 	public func setup(frame frm: CGRect) {
 		KCView.setAutolayoutMode(views: [self, mStackView])
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		mStackView.spacing = CNPreference.shared.windowPreference.spacing
 		#if os(OSX)
@@ -189,62 +188,23 @@ open class KCStackViewCore : KCView
 		}
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			var merged   = KCSize.zero
-			let space    = CNPreference.shared.windowPreference.spacing
-			let subviews = self.arrangedSubviews()
-			if subviews.count > 0 {
-				switch self.axis {
-				case .horizontal:
-					for subview in subviews {
-						let subsize = subview.fittingSize
-						merged.width  += subsize.width
-						merged.height =  max(merged.height, subsize.height)
-					}
-					merged.width += space * CGFloat(subviews.count - 1)
-				case .vertical:
-					for subview in subviews {
-						let subsize = subview.fittingSize
-						merged.width  =  max(merged.width, subsize.width)
-						merged.height += subsize.height + space
-					}
-					merged.height += space * CGFloat(subviews.count - 1)
-				@unknown default:
-					CNLog(logLevel: .error, message: "Unknown axis")
-				}
-			}
-			return merged
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				let dovert = (axis == .vertical)
-				var result = KCSize(width: 0.0, height: 0.0)
-				let space  = CNPreference.shared.windowPreference.spacing
-				let subviews = arrangedSubviews()
-				for subview in subviews {
-					let size = subview.intrinsicContentSize
-					result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
-				}
-				return result
+			let dovert = (axis == .vertical)
+			var result = KCSize(width: 0.0, height: 0.0)
+			let space  = CNPreference.shared.windowPreference.spacing
+			let subviews = arrangedSubviews()
+			for subview in subviews {
+				let size = subview.intrinsicContentSize
+				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
 			}
+			return result
 		}
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mStackView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		mStackView.frame.size  = size
-		mStackView.bounds.size = size
-		super.resize(size)
 	}
 
 	public func addArrangedSubViews(subViews views:Array<KCView>){

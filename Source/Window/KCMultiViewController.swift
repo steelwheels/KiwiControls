@@ -21,7 +21,6 @@ import CoconutData
 open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 {
 	private var mConsole:		CNConsole? = nil
-	private var mContentSize:	KCSize = KCSize.zero
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -30,12 +29,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	public func set(console cons: CNConsole?){
 		mConsole = cons
 	}
-
-	#if os(OSX)
-	public var contentSize: KCSize {
-		get { return mContentSize }
-	}
-	#endif
 
 	public var console: CNConsole? {
 		get { return mConsole }
@@ -46,22 +39,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 
 		super.viewDidLoad()
 		showTabBar(visible:false)
-
-		/* Change window size */
-		#if os(OSX)
-			if let size = KCMultiViewController.preferenceWindowSize() {
-				if let window = self.view.window {
-					window.setContentSize(size)
-					self.view.setFrameSize(size)
-					self.view.setBoundsSize(size)
-				} else {
-					CNLog(logLevel: .error, message: "No window at \(#function)")
-				}
-			}
-		#endif
-
-		/* Keep initial size */
-		mContentSize = self.view.frame.size
 	}
 
 	#if os(OSX)
@@ -76,18 +53,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		if let win = self.view.window {
 			win.delegate = self
 		}
-	}
-	#endif
-
-	#if os(OSX)
-	public class func preferenceWindowSize() -> KCSize? {
-		let result: KCSize?
-		#if os(OSX)
-			result = CNPreference.shared.windowPreference.mainWindowSize
-		#else
-			result = UIScreen.main.bounds.size
-		#endif
-		return result
 	}
 	#endif
 

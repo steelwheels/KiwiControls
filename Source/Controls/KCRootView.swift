@@ -48,6 +48,14 @@ open class KCRootView: KCCoreView
 		#endif
 	}
 
+	public func updateContentSize() {
+		let newsize = self.frame.size
+		for subview in self.subviews {
+			subview.frame.size  = newsize
+			subview.bounds.size = newsize
+		}
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(rootView: self)
 	}

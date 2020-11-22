@@ -37,6 +37,13 @@ open class KCSingleViewController: KCPlaneViewController
 		}
 	}
 
+	public func setParentSize(_ size: KCSize) {
+		if let parctrl = mParentController {
+			parctrl.view.frame.size  = size
+			parctrl.view.bounds.size = size
+		}
+	}
+
 	public var parentController: KCMultiViewController {
 		get {
 			if let controller = mParentController {

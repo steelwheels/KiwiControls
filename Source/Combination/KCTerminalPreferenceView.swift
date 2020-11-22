@@ -101,11 +101,11 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 		#endif
 		if let field = mTerminalWidthField {
-			let num		= termpref.columnNumber
+			let num		= termpref.width
 			field.text	= "\(num)"
 		}
 		if let field = mTerminalHeightField {
-			let num		= termpref.rowNumber
+			let num		= termpref.height
 			field.text	= "\(num)"
 		}
 		if let label = mFontLabel {
@@ -161,7 +161,7 @@ public class KCTerminalPreferenceView: KCStackView
 				(_ value: CNValue) -> Void in
 				if let val = value.intValue {
 					let pref = CNPreference.shared.terminalPreference
-					pref.columnNumber = val
+					pref.width = val
 				}
 			}
 		}
@@ -170,7 +170,7 @@ public class KCTerminalPreferenceView: KCStackView
 				(_ value: CNValue) -> Void in
 				if let val = value.intValue {
 					let pref = CNPreference.shared.terminalPreference
-					pref.rowNumber = val
+					pref.height = val
 				}
 			}
 		}

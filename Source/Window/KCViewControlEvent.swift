@@ -18,7 +18,7 @@ public enum KCViewControlEvent {
 }
 
 public protocol KCViewControlEventReceiver {
-	func updateWindowSize()
+	func updateWindowSize(viewControlEvent event: KCViewControlEvent)
 }
 
 extension KCResponder {
@@ -26,12 +26,7 @@ extension KCResponder {
 		var responder: KCResponder? = self
 		while responder != nil {
 			if let receiver = responder as? KCViewControlEventReceiver {
-				switch event {
-				case .none:
-					break
-				case .updateWindowSize:
-					receiver.updateWindowSize()
-				}
+				let _ = receiver.updateWindowSize(viewControlEvent: event)
 			}
 			responder = responder?.next
 		}

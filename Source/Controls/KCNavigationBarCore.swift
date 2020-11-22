@@ -34,8 +34,6 @@ open class KCNavigationBarCore: KCView
 		KCView.setAutolayoutMode(views: [self, mNavigationBar])
 		#endif
 
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
-
 		self.title = ""
 
 		self.isLeftButtonEnabled		= false
@@ -156,10 +154,6 @@ open class KCNavigationBarCore: KCView
 		}
 	}
 
-	open override var fittingSize: KCSize {
-		return navigationBarSize()
-	}
-
 	private func navigationBarSize() -> KCSize {
 		#if os(OSX)
 			let navsize   = mNavigationItem.frame.size
@@ -176,11 +170,7 @@ open class KCNavigationBarCore: KCView
 	}
 
 	open override var intrinsicContentSize: KCSize {
-		if hasFixedSize {
-			return super.intrinsicContentSize
-		} else {
-			return navigationBarSize()
-		}
+		get { return navigationBarSize() }
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
@@ -191,33 +181,6 @@ open class KCNavigationBarCore: KCView
 			rightBarButton.setExpansionPriority(holizontal: .Low, vertical: .Fixed)
 		#endif
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		#if os(OSX)
-			let navsize   = mNavigationItem.frame.size
-			let leftsize  = leftBarButton.frame.size
-			let rightsize = rightBarButton.frame.size
-
-			let newnavsize: KCSize
-			if size.width > leftsize.width + rightsize.width {
-				newnavsize = KCSize(width: size.width - (leftsize.width + rightsize.width), height: navsize.height)
-			} else {
-				NSLog("Too short navigation size")
-				newnavsize = KCSize(width: 1.0, height: navsize.height)
-			}
-
-			mNavigationItem.frame.size        = newnavsize
-			mNavigationItem.bounds.size       = newnavsize
-			leftBarButton.frame.size.height   = newnavsize.height
-			leftBarButton.bounds.size.height  = newnavsize.height
-			rightBarButton.frame.size.height  = newnavsize.height
-			rightBarButton.bounds.size.height = newnavsize.height
-		#else
-			mNavigationBar.frame.size  = size
-			mNavigationBar.bounds.size = size
-		#endif
-		super.resize(size)
 	}
 }
 

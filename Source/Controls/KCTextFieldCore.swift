@@ -27,8 +27,6 @@ open class KCTextFieldCore : KCView
 
 	public func setup(frame frm: CGRect){
 		KCView.setAutolayoutMode(views: [self, mTextField])
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
-
 		#if os(OSX)
 			mTextField.usesSingleLineMode 		= false
 			mTextField.isBezeled			= false
@@ -57,24 +55,8 @@ open class KCTextFieldCore : KCView
 		#endif
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			#if os(OSX)
-				return mTextField.fittingSize
-			#else
-				return mTextField.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
-		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				return mTextField.intrinsicContentSize
-			}
-		}
+		get { return mTextField.intrinsicContentSize }
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
@@ -85,15 +67,6 @@ open class KCTextFieldCore : KCView
 		}
 		mTextField.setExpansionPriority(holizontal: holiz, vertical: corevert)
 		super.setExpandability(holizontal: holiz, vertical: corevert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		let width   = min(mTextField.frame.size.width,  size.width)
-		let newsize = KCSize(width: width, height: size.height)
-		mTextField.preferredMaxLayoutWidth = width
-		mTextField.frame.size  = newsize
-		mTextField.bounds.size = newsize
-		super.resize(newsize)
 	}
 
 	public var isEnabled: Bool {

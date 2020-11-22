@@ -11,7 +11,7 @@ import Foundation
 
 public class SingleView0Controller: KCSingleViewController
 {
-	public override func loadViewContext(rootView root: KCRootView) -> KCSize? {
+	public override func loadViewContext(rootView root: KCRootView) {
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
 		let label0    = KCTextField(frame: dmyrect)

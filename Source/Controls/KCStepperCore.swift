@@ -27,7 +27,6 @@ public class KCStepperCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void {
 		KCView.setAutolayoutMode(views: [self, mTextField, mStepper])
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
 		#if os(iOS)
 			mTextField.text = ""
 			mTextField.textAlignment = .center
@@ -37,35 +36,12 @@ public class KCStepperCore: KCView
 		#endif
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			let labelsize: KCSize
-			#if os(OSX)
-				labelsize = mTextField.fittingSize
-			#else
-				labelsize = mTextField.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-			let stepsize: KCSize
-			#if os(OSX)
-				stepsize = mStepper.fittingSize
-			#else
-				stepsize = mStepper.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-			let space = CNPreference.shared.windowPreference.spacing
-			return KCUnionSize(sizeA: labelsize, sizeB: stepsize, doVertical: false, spacing: space)
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				let fieldsize   = mTextField.intrinsicContentSize
-				let steppersize = mStepper.intrinsicContentSize
-				let space       = CNPreference.shared.windowPreference.spacing
-				return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
-			}
+			let fieldsize   = mTextField.intrinsicContentSize
+			let steppersize = mStepper.intrinsicContentSize
+			let space       = CNPreference.shared.windowPreference.spacing
+			return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
 		}
 	}
 
@@ -73,26 +49,6 @@ public class KCStepperCore: KCView
 		mTextField.setExpansionPriority(holizontal: holiz, vertical: vert)
 		mStepper.setExpansionPriority(holizontal: .Fixed, vertical: .Fixed)
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		let stpsize: KCSize
-		#if os(OSX)
-			stpsize = mStepper.fittingSize
-		#else
-			stpsize = mStepper.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-		#endif
-		let txtwidth: CGFloat
-		if size.width > stpsize.width {
-			txtwidth = size.width - stpsize.width
-		} else {
-			CNLog(logLevel: .warning, message: "Too short text")
-			txtwidth = 1.0
-		}
-		let txtsize = KCSize(width: txtwidth, height: stpsize.height)
-		mTextField.frame.size  = txtsize
-		mTextField.bounds.size = txtsize
-		super.resize(size)
 	}
 
 	private func updateTextField(value: Double){

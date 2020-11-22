@@ -32,8 +32,6 @@ open class KCTextEditCore : KCView
 
 	public func setup(frame frm: CGRect){
 		KCView.setAutolayoutMode(views: [self, mTextEdit])
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
-
 		#if os(OSX)
 			mTextEdit.usesSingleLineMode 	= false
 			mTextEdit.isBezeled		= true
@@ -86,24 +84,8 @@ open class KCTextEditCore : KCView
 		#endif
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			#if os(OSX)
-				return mTextEdit.fittingSize
-			#else
-				return mTextEdit.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
-		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				return mTextEdit.intrinsicContentSize
-			}
-		}
+		get { return mTextEdit.intrinsicContentSize }
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
@@ -114,17 +96,6 @@ open class KCTextEditCore : KCView
 		}
 		mTextEdit.setExpansionPriority(holizontal: holiz, vertical: corevert)
 		super.setExpandability(holizontal: holiz, vertical: corevert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		let width   = min(mTextEdit.frame.size.width,  size.width)
-		let newsize = KCSize(width: width, height: size.height)
-		mTextEdit.frame.size  = newsize
-		mTextEdit.bounds.size = newsize
-		#if os(OSX)
-			mTextEdit.preferredMaxLayoutWidth = width
-		#endif
-		super.resize(newsize)
 	}
 
 	public var isEnabled: Bool {

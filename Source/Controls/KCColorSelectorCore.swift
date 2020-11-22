@@ -34,8 +34,6 @@ open class KCColorSelectorCore: KCView
 		#else
 			KCView.setAutolayoutMode(views: [self, mButton])
 		#endif
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		super.resize(bounds.size)
 		connectObserver()
 	}
 
@@ -100,18 +98,8 @@ open class KCColorSelectorCore: KCView
 		}
 	}
 
-	open override var fittingSize: KCSize {
-		return defaultSize
-	}
-
 	open override var intrinsicContentSize: KCSize {
-		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				return defaultSize
-			}
-		}
+		get { return defaultSize }
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
@@ -121,10 +109,6 @@ open class KCColorSelectorCore: KCView
 			mButton.setExpansionPriority(holizontal: holiz, vertical: vert)
 		#endif
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		super.resize(size)
 	}
 }
 

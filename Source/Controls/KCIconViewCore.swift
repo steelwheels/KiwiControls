@@ -26,8 +26,6 @@ open class KCIconViewCore : KCView
 
 	public func setup(frame frm: CGRect) {
 		KCView.setAutolayoutMode(views: [self, mLayerView, mLabelView])
-		
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
 
 		let layerframe   = KCIconViewCore.calcLayerFrame(entireFrame: bounds, deltaHeight: mLabelView.frame.size.height)
 		let layercontent = CGRect(origin: CGPoint.zero, size: layerframe.size)
@@ -47,30 +45,12 @@ open class KCIconViewCore : KCView
 		return CGRect(origin: layerorigin, size: layersize)
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			#if os(OSX)
-			let labsize = mLabelView.fittingSize
-			let imgsize = mLayerView.fittingSize
-			#else
-			let labsize = mLabelView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			let imgsize = mLayerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-			let space   = CNPreference.shared.windowPreference.spacing
-			return KCUnionSize(sizeA: labsize, sizeB: imgsize, doVertical: true, spacing: space)
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				let layersize = mLayerView.intrinsicContentSize
-				let labelsize = mLabelView.intrinsicContentSize
-				let space     = CNPreference.shared.windowPreference.spacing
-				return KCUnionSize(sizeA: layersize, sizeB: labelsize, doVertical: true, spacing: space)
-			}
+			let layersize = mLayerView.intrinsicContentSize
+			let labelsize = mLabelView.intrinsicContentSize
+			let space     = CNPreference.shared.windowPreference.spacing
+			return KCUnionSize(sizeA: layersize, sizeB: labelsize, doVertical: true, spacing: space)
 		}
 	}
 
@@ -78,22 +58,6 @@ open class KCIconViewCore : KCView
 		mLayerView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		mLabelView.setExpansionPriority(holizontal: .Fixed, vertical: .Fixed)
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		let imgsize = mLayerView.frame.size
-		let labsize: KCSize
-		if imgsize.width < size.width {
-			labsize = KCSize(width: size.width - imgsize.width, height: size.height)
-		} else {
-			CNLog(logLevel: .error, message: "Too short size")
-			labsize = KCSize(width: 1.0, height: size.height)
-		}
-		mLabelView.frame.size         = labsize
-		mLabelView.bounds.size        = labsize
-		mLayerView.frame.size.height  = size.height
-		mLayerView.bounds.size.height = size.height
-		super.resize(size)
 	}
 
 	public var imageDrawer: KCImageDrawer? {

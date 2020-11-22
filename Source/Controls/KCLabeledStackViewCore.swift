@@ -33,28 +33,11 @@ open class KCLabeledStackViewCore : KCView
 		return KCSize(width: usize.width + space*2.0, height: usize.height + space)
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			#if os(OSX)
-			let textsize  = mTextField.fittingSize
-			let stacksize = mStackView.fittingSize
-			#else
-			let textsize  = mTextField.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			let stacksize = mStackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-			return unionSizes(textSize: textsize, stackSize: stacksize)
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				let textsize  = mTextField.intrinsicContentSize
-				let stacksize = mStackView.intrinsicContentSize
-				return unionSizes(textSize: textsize, stackSize: stacksize)
-			}
+			let textsize  = mTextField.intrinsicContentSize
+			let stacksize = mStackView.intrinsicContentSize
+			return unionSizes(textSize: textsize, stackSize: stacksize)
 		}
 	}
 
@@ -62,26 +45,6 @@ open class KCLabeledStackViewCore : KCView
 		mTextField.setExpansionPriority(holizontal: holiz, vertical: .Fixed)
 		mStackView.setExpandability(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		#if os(OSX)
-		var textsize = mTextField.fittingSize
-		#else
-		var textsize = mTextField.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-		#endif
-		textsize.width = size.width
-
-		let space = CNPreference.shared.windowPreference.spacing
-		let stackheight = max(0.0, size.height - textsize.height - space)
-		let stacksize   = KCSize(width: size.width, height: stackheight)
-
-		mTextField.frame.size  = textsize
-		mTextField.bounds.size = textsize
-		mStackView.frame.size  = stacksize
-		mStackView.bounds.size = stacksize
-
-		super.resize(size)
 	}
 
 	public var title: String {

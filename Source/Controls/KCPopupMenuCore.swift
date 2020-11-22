@@ -31,9 +31,6 @@ open class KCPopupMenuCore: KCView
 		#else
 			KCView.setAutolayoutMode(views: [self, mPickerView])
 		#endif
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		super.resize(bounds.size)
-
 		#if os(OSX)
 			mPopupButton.removeAllItems()
 		#else
@@ -106,7 +103,7 @@ open class KCPopupMenuCore: KCView
 		#endif
 	}
 
-	open override var fittingSize: KCSize {
+	open override var intrinsicContentSize: KCSize {
 		get {
 			let space = CNPreference.shared.windowPreference.spacing
 			#if os(OSX)
@@ -115,20 +112,6 @@ open class KCPopupMenuCore: KCView
 				let btnsize = mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 			#endif
 			return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
-		}
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				#if os(OSX)
-					return mPopupButton.intrinsicContentSize
-				#else
-					return mPickerView.intrinsicContentSize
-				#endif
-			}
 		}
 	}
 

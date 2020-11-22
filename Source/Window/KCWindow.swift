@@ -29,10 +29,10 @@ extension NSWindow
 	}
 
 	public func resize(size newsize: KCSize){
+		NSLog("window resize (before): \(self.frame.size.description)")
 		self.setContentSize(newsize)
-		if let root = self.contentView as? KCView {
-			root.resize(newsize)
-		}
+		NSLog("window resize (after):  \(self.frame.size.description)")
+		self.viewsNeedDisplay = true
 	}
 
 	public var titleBarHeight: CGFloat {

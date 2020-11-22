@@ -24,39 +24,16 @@ public class KCButtonCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void {
 		KCView.setAutolayoutMode(views: [self, mButton])
-		let bounds  = CGRect(origin: CGPoint.zero, size: frm.size)
-		super.resize(bounds.size)
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			#if os(OSX)
-				return mButton.fittingSize
-			#else
-				return mButton.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-		}
-	}
 
 	open override var intrinsicContentSize: KCSize {
-		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				return mButton.intrinsicContentSize
-			}
-		}
+		get { return mButton.intrinsicContentSize }
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mButton.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		mButton.frame.size  = size
-		mButton.bounds.size = size
-		super.resize(size)
 	}
 
 	#if os(iOS)

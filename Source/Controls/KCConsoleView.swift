@@ -59,17 +59,15 @@ open class KCConsoleView : KCCoreView
 
 	public var foregroundTextColor: CNColor {
 		get		{ return coreView.foregroundTextColor }
-		set(newcol)	{ coreView.foregroundTextColor = newcol }
 	}
 
 	public var backgroundTextColor: CNColor {
 		get		{ return coreView.backgroundTextColor }
-		set(newcol)	{ coreView.backgroundTextColor = newcol }
 	}
 
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
-		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTextViewCore") as? KCTextViewCore  {
+		if let newview = loadChildXib(thisClass: KCConsoleView.self, nibName: "KCTerminalViewCore") as? KCTerminalViewCore  {
 			setCoreView(view: newview)
 			newview.setup(mode: .log, frame: self.frame)
 			allocateSubviewLayout(subView: newview)
@@ -81,7 +79,6 @@ open class KCConsoleView : KCCoreView
 	
 	public var font: CNFont {
 		get		{ return coreView.font	}
-		set(newfont)	{ coreView.font = newfont }
 	}
 
 	public func clear(){
@@ -91,21 +88,19 @@ open class KCConsoleView : KCCoreView
 		}
 	}
 
-	public var currentColumnNumbers: Int {
-		get { return coreView.currentColumnNumbers }
-		set(newnum){ coreView.currentColumnNumbers = newnum }
+	public var width: Int {
+		get { return coreView.width }
 	}
 
-	public var currentRowNumbers: Int {
-		get { return coreView.currentRowNumbers }
-		set(newnum){ coreView.currentRowNumbers = newnum }
+	public var height: Int {
+		get { return coreView.height }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(consoleView: self)
 	}
 
-	private var coreView: KCTextViewCore {
+	private var coreView: KCTerminalViewCore {
 		get { return getCoreView() }
 	}
 }

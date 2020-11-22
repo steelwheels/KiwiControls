@@ -38,6 +38,13 @@ open class KCCoreView: KCView
 		}
 	}
 
+	public override func requireLayout() {
+		super.requireLayout()
+		if let core = mCoreView {
+			core.requireLayout()
+		}
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			if let core = mCoreView {
@@ -46,11 +53,6 @@ open class KCCoreView: KCView
 				return super.intrinsicContentSize
 			}
 		}
-	}
-
-	open override var fittingSize: KCSize {
-		let coreview: KCView = getCoreView()
-		return coreview.fittingSize
 	}
 
 	open override func expandability() -> (KCViewBase.ExpansionPriority, KCViewBase.ExpansionPriority) {
@@ -67,12 +69,11 @@ open class KCCoreView: KCView
 		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 
-	open override func resize(_ size: KCSize){
-		if hasCoreView {
-			let coreview: KCView = getCoreView()
-			coreview.resize(size)
+	open override func setFrameSize(_ newsize: KCSize) {
+		if let core = mCoreView {
+			core.setFrameSize(newsize)
 		}
-		super.resize(size)
+		super.setFrameSize(newsize)
 	}
 
 	public var isVisible: Bool {

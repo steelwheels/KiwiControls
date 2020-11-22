@@ -1,16 +1,18 @@
 //
 //  AppDelegate.swift
-//  UTSpriteView
+//  UTSimpleTerminal
 //
-//  Created by Tomoo Hamada on 2018/11/22.
-//  Copyright © 2018 Steel Wheels Project. All rights reserved.
+//  Created by Tomoo Hamada on 2020/11/19.
 //
 
 import Cocoa
 
-@NSApplicationMain
-class AppDelegate: CNApplicationDelegate
-{
+@main
+class AppDelegate: NSObject, NSApplicationDelegate {
+
+	
+
+
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Insert code here to initialize your application
 	}
@@ -18,5 +20,7 @@ class AppDelegate: CNApplicationDelegate
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
+
+
 }
 

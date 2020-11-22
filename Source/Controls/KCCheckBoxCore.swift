@@ -30,57 +30,19 @@ public class KCCheckBoxCore: KCView
 		#else
 			KCView.setAutolayoutMode(views: [self, mSwitch, mLabel])
 		#endif
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
-	}
-
-	open override var fittingSize: KCSize {
-		get {
-			#if os(OSX)
-				return mCheckBox.fittingSize
-			#else
-				let swsize  = mSwitch.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-				let labsize = mLabel.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-				let space   = CNPreference.shared.windowPreference.spacing
-				return KCUnionSize(sizeA: swsize, sizeB: labsize, doVertical: false, spacing: space)
-			#endif
-		}
 	}
 
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else {
-				#if os(iOS)
-					let labelsize  = mLabel.intrinsicContentSize
-					let switchsize = mSwitch.intrinsicContentSize
-					let space   = CNPreference.shared.windowPreference.spacing
-					return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
-				#else
-					return mCheckBox.intrinsicContentSize
-				#endif
-			}
+			#if os(iOS)
+				let labelsize  = mLabel.intrinsicContentSize
+				let switchsize = mSwitch.intrinsicContentSize
+				let space   = CNPreference.shared.windowPreference.spacing
+				return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
+			#else
+				return mCheckBox.intrinsicContentSize
+			#endif
 		}
-	}
-
-	open override func resize(_ size: KCSize) {
-		#if os(OSX)
-			mCheckBox.frame.size  = size
-			mCheckBox.bounds.size = size
-		#else
-			let swsize = mSwitch.frame.size
-			let labsize: KCSize
-			if size.width > swsize.width {
-				labsize = KCSize(width: size.width - swsize.width, height: size.height)
-			} else {
-				labsize = KCSize(width: 1.0, height: size.height)
-			}
-			mLabel.frame.size          = labsize
-			mLabel.bounds.size         = labsize
-			mSwitch.frame.size.height  = labsize.height
-			mSwitch.bounds.size.height = labsize.height
-		#endif
-		super.resize(size)
 	}
 
 	#if os(iOS)

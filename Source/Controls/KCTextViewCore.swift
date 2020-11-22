@@ -14,8 +14,8 @@ import CoconutData
 
 open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 {
-	private let MinimumColumnNumber		= 10
-	private let MinimumRowNumber		= 10
+	private let MinimumWidth		= 10
+	private let MinimumHeight		= 10
 
 	public enum TerminalMode {
 		case log
@@ -23,9 +23,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	#if os(OSX)
-		@IBOutlet var mTextView: NSTextView!
+	@IBOutlet var		mTextView: NSTextView!
+	@IBOutlet weak var	mScrollView: NSScrollView!
 	#else
-		@IBOutlet weak var mTextView: UITextView!
+	@IBOutlet weak var mTextView: UITextView!
 	#endif
 
 	private var mInputPipe:			Pipe
@@ -39,6 +40,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mTerminalInfo:		CNTerminalInfo
 
 	public override init(frame frameRect: KCRect) {
+		let tpref = CNPreference.shared.terminalPreference
 		mInputPipe			= Pipe()
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
@@ -47,11 +49,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mTerminalInfo			= CNTerminalInfo(width: 80, height: 25)
+		mTerminalInfo			= CNTerminalInfo(width: tpref.width, height: tpref.height)
 		super.init(frame: frameRect)
 	}
 
 	public required init?(coder: NSCoder) {
+		let tpref = CNPreference.shared.terminalPreference
 		mInputPipe			= Pipe()
 		mOutputPipe			= Pipe()
 		mErrorPipe			= Pipe()
@@ -60,7 +63,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mForegroundTextColor		= nil
 		mBackgroundTextColor		= nil
 		mFont				= CNFont.systemFont(ofSize: CNFont.systemFontSize)
-		mTerminalInfo			= CNTerminalInfo(width: 80, height: 25)
+		mTerminalInfo			= CNTerminalInfo(width: tpref.width, height: tpref.height)
 		super.init(coder: coder)
 	}
 
@@ -70,8 +73,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		/* Stop to observe */
 		let pref = CNPreference.shared.terminalPreference
-		pref.removeObserver(observer: self, forKey: pref.ColumnNumberItem)
-		pref.removeObserver(observer: self, forKey: pref.RowNumberItem)
+		pref.removeObserver(observer: self, forKey: pref.WidthItem)
+		pref.removeObserver(observer: self, forKey: pref.HeightItem)
 		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.removeObserver(observer: self, forKey: pref.FontItem)
@@ -137,8 +140,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		let pref = CNPreference.shared.terminalPreference
 		self.font = pref.font
-		self.mTerminalInfo.width		= pref.columnNumber
-		self.mTerminalInfo.height		= pref.rowNumber
+		self.mTerminalInfo.width		= pref.width
+		self.mTerminalInfo.height		= pref.height
 
 		#if os(OSX)
 			mTextView.drawsBackground	  = true
@@ -200,8 +203,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 
 		/* Start observe */
-		pref.addObserver(observer: self, forKey: pref.ColumnNumberItem)
-		pref.addObserver(observer: self, forKey: pref.RowNumberItem)
+		pref.addObserver(observer: self, forKey: pref.WidthItem)
+		pref.addObserver(observer: self, forKey: pref.HeightItem)
 		pref.addObserver(observer: self, forKey: pref.ForegroundTextColorItem)
 		pref.addObserver(observer: self, forKey: pref.BackgroundTextColorItem)
 		pref.addObserver(observer: self, forKey: pref.FontItem)
@@ -293,7 +296,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			mTerminalInfo.doReverse		= false
 		case .requestScreenSize:
 			/* Ack the size*/
-			let ackcode: CNEscapeCode = .screenSize(self.currentColumnNumbers, self.currentRowNumbers)
+			let ackcode: CNEscapeCode = .screenSize(self.currentWidth, self.currentHeight)
 			mInputPipe.fileHandleForWriting.write(string: ackcode.encode())
 		case .saveCursorPosition:
 			mSavedIndex = mCurrentIndex
@@ -337,62 +340,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 	#endif
 
-	public var currentColumnNumbers: Int {
-		get {
-			return mTerminalInfo.width
-		}
-		set(newnum){
-			if let num = self.adjustColumnNumbers(number: newnum) {
-				if mTerminalInfo.width != num {
-					CNExecuteInMainThread(doSync: false, execute: {
-						() -> Void in
-						self.mTerminalInfo.width = num
-						self.notify(viewControlEvent: .updateWindowSize)
-					})
-				}
-			}
-		}
+	public var currentWidth: Int {
+		get { return mTerminalInfo.width }
 	}
 
-	public var currentRowNumbers: Int {
-		get {
-			return mTerminalInfo.height
-		}
-		set(newnum){
-			if let num = self.adjustRowNumbers(number: newnum) {
-				if mTerminalInfo.height != num {
-					CNExecuteInMainThread(doSync: false, execute: {
-						() -> Void in
-						self.mTerminalInfo.height = num
-						self.notify(viewControlEvent: .updateWindowSize)
-					})
-				}
-			}
-		}
-	}
-
-	private func adjustColumnNumbers(number num: Int) -> Int? {
-		if num >= MinimumColumnNumber {
-			if let screensize = KCScreen.shared.contentSize {
-				let fontsize  = fontSize()
-				let maxnum    = Int(screensize.width / fontsize.width)
-				//NSLog("ScreenSize = \(screensize.description), fontwidth=\(fontsize.width), num=\(num), maxnum=\(maxnum)")
-				return min(maxnum, num)
-			}
-		}
-		return nil
-	}
-
-	private func adjustRowNumbers(number num: Int) -> Int? {
-		if num >= MinimumRowNumber {
-			if let screensize = KCScreen.shared.contentSize {
-				let fontsize   = fontSize()
-				let maxnum     = Int(screensize.height / fontsize.height)
-				//NSLog("ScreenSize = \(screensize.description) fontheight=\(fontsize.height), num=\(num), maxnum=\(maxnum)")
-				return min(maxnum, num)
-			}
-		}
-		return nil
+	public var currentHeight: Int {
+		get { return mTerminalInfo.height }
 	}
 
 	private func leftTopIndex() -> Int {
@@ -437,15 +390,18 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		#endif
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			let fontsize   = fontSize()
-			let termwidth  = CGFloat(mTerminalInfo.width)  * fontsize.width
-			let termheight = CGFloat(mTerminalInfo.height) * fontsize.height
-			let barwidth   = scrollerWidth()
-			let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
-			return termsize
-		}
+	open override var intrinsicContentSize: KCSize {
+		get { return targetSize() }
+	}
+
+	private func targetSize() -> KCSize {
+		let tpref      = CNPreference.shared.terminalPreference
+		let fontsize   = fontSize()
+		let termwidth  = CGFloat(tpref.width)  * fontsize.width
+		let termheight = CGFloat(tpref.height) * fontsize.height
+		let barwidth   = scrollerWidth()
+		let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
+		return termsize
 	}
 
 	private func scrollerWidth() -> CGFloat {
@@ -460,43 +416,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mTextView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	#if os(OSX)
-	open override func resize(withOldSuperviewSize oldSize: NSSize) {
-		updateTerminalSize()
-		super.resize(withOldSuperviewSize: oldSize)
-	}
-	#endif
-
-	open override func resize(_ size: KCSize) {
-		//NSLog("resize <- \(size.description)")
-		#if os(OSX)
-			mTextView.setConstrainedFrameSize(size)
-		#else
-			mTextView.contentSize = size
-		#endif
-		super.resize(size)
-	}
-
-	public func updateTerminalSize() {
-		/* Update row/colmun numbers */
-		let fontsize   = fontSize()
-		let framesize  = mTextView.frame.size
-		let barwidth   = scrollerWidth()
-		let frmwidth   = max(framesize.width - barwidth, 0.0)
-		let width      = Int(frmwidth         / fontsize.width)
-		let height     = Int(framesize.height / fontsize.height)
-		//NSLog("terminal width: \(width), height: \(height)")
-
-		if mTerminalInfo.width != width || mTerminalInfo.height != height {
-			/* Sent the event */
-			let ackcode = CNEscapeCode.screenSize(width, height)
-			mInputPipe.fileHandleForWriting.write(string: ackcode.encode())
-			/* Update the size */
-			mTerminalInfo.width  = width
-			mTerminalInfo.height = height
-		}
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -522,11 +441,24 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					}
 				} else if let num = vals[.newKey] as? NSNumber {
 					switch key {
-					case CNPreference.shared.terminalPreference.ColumnNumberItem:
-						self.currentColumnNumbers = num.intValue
-						//NSLog("currentColumnNumbers = \(currentColumnNumbers)")
-					case CNPreference.shared.terminalPreference.RowNumberItem:
-						self.currentRowNumbers = num.intValue
+					case CNPreference.shared.terminalPreference.WidthItem:
+						if self.currentWidth != num.intValue {
+							NSLog("Update terminal width:  \(self.currentWidth) -> \(num) at \(#function)")
+							/* Update terminal size */
+							self.mTerminalInfo.width = num.intValue
+							NSLog("observeValue: \(self.mTerminalInfo.width) \(self.mTerminalInfo.height)")
+							self.requireLayout()
+							self.notify(viewControlEvent: .updateWindowSize)
+						}
+					case CNPreference.shared.terminalPreference.HeightItem:
+						if self.currentHeight != num.intValue {
+							NSLog("Update terminal height:  \(self.currentHeight) -> \(num) at \(#function)")
+							/* Update terminal size */
+							self.mTerminalInfo.height = num.intValue
+							NSLog("observeValue: \(self.mTerminalInfo.width) \(self.mTerminalInfo.height)")
+							self.requireLayout()
+							self.notify(viewControlEvent: .updateWindowSize)
+						}
 					case CNSystemPreference.InterfaceStyleItem:
 						self.updateForegroundColor()
 						self.updateBackgroundColor()

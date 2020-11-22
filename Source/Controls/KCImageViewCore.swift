@@ -22,8 +22,6 @@ open class KCImageViewCore : KCView
 
 	public func setup(frame frm: CGRect){
 		KCView.setAutolayoutMode(views: [self, mImageView])
-		self.rebounds(origin: KCPoint.zero, size: frm.size)
-
 		#if os(OSX)
 			mImageView.imageScaling = .scaleProportionallyUpOrDown
 		#else
@@ -35,17 +33,9 @@ open class KCImageViewCore : KCView
 		mImageView.image = img
 	}
 
-	open override var fittingSize: KCSize {
-		get {
-			return imageSize
-		}
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
-			if hasFixedSize {
-				return super.intrinsicContentSize
-			} else if let image = mImageView.image {
+			if let image = mImageView.image {
 				return image.size
 			} else {
 				return KCSize.zero
@@ -56,14 +46,6 @@ open class KCImageViewCore : KCView
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mImageView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
-	}
-
-	open override func resize(_ size: KCSize) {
-		//NSLog("image: resize = \(size.description)")
-		if let image = mImageView.image {
-			mImageView.image = image.resize(size)
-		}
-		super.resize(size)
 	}
 
 	private var imageSize: CGSize {

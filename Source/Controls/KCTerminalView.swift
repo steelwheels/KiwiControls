@@ -54,17 +54,15 @@ open class KCTerminalView : KCCoreView
 
 	public var foregroundTextColor: CNColor {
 		get		{ return coreView.foregroundTextColor }
-		set(newcol)	{ coreView.foregroundTextColor = newcol }
 	}
 
 	public var backgroundTextColor: CNColor {
 		get		{ return coreView.backgroundTextColor }
-		set(newcol)	{ coreView.backgroundTextColor = newcol }
 	}
 	
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
-		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTextViewCore") as? KCTextViewCore  {
+		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTerminalViewCore") as? KCTerminalViewCore  {
 			setCoreView(view: newview)
 			newview.setup(mode: .console, frame: self.frame)
 			allocateSubviewLayout(subView: newview)
@@ -74,33 +72,38 @@ open class KCTerminalView : KCCoreView
 	}
 
 	public var font: CNFont {
-		get		{ return coreView.font	}
-		set(newfont)	{ coreView.font = newfont }
+		get { return coreView.font	}
 	}
 
-	public var currentColumnNumbers: Int {
-		get { return coreView.currentColumnNumbers }
-		set(newnum){ coreView.currentColumnNumbers = newnum }
+	public var width: Int {
+		get { return coreView.width }
 	}
 
-	public var currentRowNumbers: Int {
-		get { return coreView.currentRowNumbers }
-		set(newnum){ coreView.currentRowNumbers = newnum }
+	public var height: Int {
+		get { return coreView.height }
 	}
 
-	public func leftTopOffset() -> Int {
+	#if os(OSX)
+	open override func setFrameSize(_ newSize: NSSize) {
+		//NSLog("NSTerminalView: setFrameSize \(newSize.description)")
+		super.setFrameSize(newSize)
+	}
+
+	open override func setBoundsSize(_ newSize: NSSize) {
+		//NSLog("setBoudsSize")
+		super.setBoundsSize(newSize)
+	}
+	#endif
+
+	/*public func leftTopOffset() -> Int {
 		return coreView.leftTopOffset()
-	}
-
-	public func updateTerminalSize() {
-		coreView.updateTerminalSize()
-	}
+	}*/
 
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(terminalView: self)
 	}
 
-	private var coreView: KCTextViewCore {
+	private var coreView: KCTerminalViewCore {
 		get { return getCoreView() }
 	}
 }
