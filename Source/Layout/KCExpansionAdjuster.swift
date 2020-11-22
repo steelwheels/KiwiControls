@@ -66,7 +66,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(terminalView view: KCTerminalView){
-		view.setExpandability(holizontal: .High, vertical: .High)
+		view.setExpandability(holizontal: .Low, vertical: .Low)
 	}
 
 	open override func visit(imageView view: KCImageView){

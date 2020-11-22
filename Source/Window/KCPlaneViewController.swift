@@ -80,7 +80,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Layout components */
-				NSLog("doViewWillLayout ... exec")
+				//NSLog("doViewWillLayout ... exec")
 				//dumpInfo(phase: "doViewWillLayouut (before)", rootView: root)
 				CNLog(logLevel: .debug, message: "- [Execute Layout]")
 				let layouter    = KCLayouter()
@@ -95,7 +95,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	private func doViewDidAppear() {
 		#if os(OSX)
 			if let window = self.view.window, let root = mRootView {
-				NSLog("doViewDidAppear")
+				//NSLog("doViewDidAppear")
 				let decider = KCFirstResponderDecider(window: window)
 				let _ = decider.decideFirstResponder(rootView: root)
 				//dumpInfo(phase: "- [doViewDidAppear]", rootView: root)

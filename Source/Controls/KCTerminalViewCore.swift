@@ -42,6 +42,8 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		mCurrentIndex	= 0
 		mSavedIndex	= 0
 		mTerminalInfo	= CNTerminalInfo(width: tpref.width, height: tpref.height)
+		mTerminalInfo.foregroundColor = tpref.foregroundTextColor
+		mTerminalInfo.backgroundColor = tpref.backgroundTextColor
 		super.init(frame: frameRect)
 		setupObservers()
 		setupFileStream()
@@ -56,6 +58,8 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		mCurrentIndex	= 0
 		mSavedIndex	= 0
 		mTerminalInfo	= CNTerminalInfo(width: tpref.width, height: tpref.height)
+		mTerminalInfo.foregroundColor = tpref.foregroundTextColor
+		mTerminalInfo.backgroundColor = tpref.backgroundTextColor
 		super.init(coder: coder)
 		setupObservers()
 		setupFileStream()
