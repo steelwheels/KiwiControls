@@ -251,16 +251,12 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 			mTerminalInfo.doReverse = flag
 		case .foregroundColor(let fcol):
 			mTerminalInfo.foregroundColor	= fcol
-			updateForegroundColor()
 		case .defaultForegroundColor:
 			mTerminalInfo.foregroundColor	= tpref.foregroundTextColor
-			updateForegroundColor()
 		case .backgroundColor(let bcol):
 			mTerminalInfo.backgroundColor	= bcol
-			updateBackgroundColor()
 		case .defaultBackgroundColor:
 			mTerminalInfo.backgroundColor	= tpref.backgroundTextColor
-			updateBackgroundColor()
 		case .resetCharacterAttribute:
 			/* Reset to default */
 			mTerminalInfo.foregroundColor	= tpref.foregroundTextColor

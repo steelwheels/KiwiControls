@@ -68,6 +68,34 @@ extension KCViewBase
 			return [.Fixed, .Low, .High]
 		}
 
+		static public func fromValue(_ pri: KCLayoutPriority) -> ExpansionPriority {
+			let result: ExpansionPriority
+			if pri >= ExpansionPriority.Fixed.toValue() {
+				result = .Fixed
+			} else if pri >= ExpansionPriority.Low.toValue() {
+				result = .Low
+			} else {
+				result = .High
+			}
+			return result
+		}
+
+		public func toValue() -> KCLayoutPriority {
+			#if os(OSX)
+				switch self {
+				case .High:	return .windowSizeStayPut + 1		// = 500 + 1
+				case .Low:	return .defaultHigh			// = 750
+				case .Fixed:	return .required			// = 1000
+				}
+			#else
+				switch self {
+				case .High:	return .defaultLow
+				case .Low:	return .defaultHigh
+				case .Fixed:	return .required - 1
+				}
+			#endif
+		}
+
 		public func description() -> String {
 			let result: String
 			switch self {
@@ -80,45 +108,23 @@ extension KCViewBase
 	}
 
 	public func setExpansionPriority(holizontal holiz: ExpansionPriority, vertical vert: ExpansionPriority) {
-		let hval = expansionPriorityToValue(expansion: holiz)
+		let hval = holiz.toValue()
 		setContentHuggingPriority(hval, for: .horizontal)
 		setContentCompressionResistancePriority(hval, for: .horizontal)
 
-		let vval = expansionPriorityToValue(expansion: vert)
+		let vval = vert.toValue()
 		setContentHuggingPriority(vval, for: .vertical)
 		setContentCompressionResistancePriority(vval, for: .vertical)
 	}
 
 	public func expansionPriority() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {
 		let hval = contentHuggingPriority(for: .horizontal)
-		let hpri = valueToExpansionPriority(value: hval)
+		let hpri = ExpansionPriority.fromValue(hval)
 
 		let vval = contentHuggingPriority(for: .vertical)
-		let vpri = valueToExpansionPriority(value: vval)
+		let vpri = ExpansionPriority.fromValue(vval)
 
 		return (hpri, vpri)
-	}
-
-	private func expansionPriorityToValue(expansion exp: ExpansionPriority) -> KCLayoutPriority {
-		let result: KCLayoutPriority
-		switch exp {
-		case .Fixed:	result = .required - 1
-		case .Low:	result = .defaultHigh
-		case .High:	result = .defaultLow
-		}
-		return result
-	}
-
-	private func valueToExpansionPriority(value val: KCLayoutPriority) -> ExpansionPriority {
-		let result: ExpansionPriority
-		if val >= KCLayoutPriority.required - 1 {
-			result = .Fixed
-		} else if val >= KCLayoutPriority.defaultHigh {
-			result = .High
-		} else {
-			result = .Low
-		}
-		return result
 	}
 }
 

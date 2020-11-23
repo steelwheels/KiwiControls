@@ -248,16 +248,8 @@ open class KCStackViewCore : KCView
 	#if os(OSX)
 	private func setConstraint(toView toview: KCView, attribute attr: NSLayoutConstraint.Attribute){
 		let constr = NSLayoutConstraint(item: mStackView!, attribute: attr, relatedBy: .equal, toItem: toview, attribute: attr, multiplier: 1.0, constant: 0.0)
-		constr.isActive = mIsFillAlignmentMode
+		constr.isActive = true
 		mStackView.addConstraint(constr)
-	}
-	#endif
-
-	#if os(OSX)
-	private func activateConstraints(doActivate active: Bool) {
-		for constr in mStackView.constraints {
-			constr.isActive = active
-		}
 	}
 	#endif
 

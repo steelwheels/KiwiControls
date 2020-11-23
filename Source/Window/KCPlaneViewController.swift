@@ -120,8 +120,8 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 	}
 
 	private func dumpInfo(phase str: String, rootView root: KCRootView) {
-		let frame = root.frame
-		CNLog(logLevel: .debug, message: "[\(str)] root-frame: \(frame.description)")
+		let dumper = KCViewDumper()
+		dumper.dump(view: root)
 	}
 }
 
