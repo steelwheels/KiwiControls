@@ -60,13 +60,8 @@ open class KCTextFieldCore : KCView
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		let corevert: KCViewBase.ExpansionPriority
-		switch vert {
-		case .Fixed:		corevert = .Fixed
-		case .High, .Low:	corevert = .Low
-		}
-		mTextField.setExpansionPriority(holizontal: holiz, vertical: corevert)
-		super.setExpandability(holizontal: holiz, vertical: corevert)
+		mTextField.setExpansionPriority(holizontal: holiz, vertical: vert)
+		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 
 	public var isEnabled: Bool {

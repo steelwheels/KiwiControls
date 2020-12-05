@@ -55,6 +55,10 @@ open class KCImageView: KCCoreView
 		coreView.set(image: img)
 	}
 
+	public var imageSize: CGSize {
+		get { return coreView.imageSize }
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(imageView: self)
 	}

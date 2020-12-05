@@ -89,13 +89,8 @@ open class KCTextEditCore : KCView
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		let corevert: KCViewBase.ExpansionPriority
-		switch vert {
-		case .Fixed:		corevert = .Fixed
-		case .High, .Low:	corevert = .Low
-		}
-		mTextEdit.setExpansionPriority(holizontal: holiz, vertical: corevert)
-		super.setExpandability(holizontal: holiz, vertical: corevert)
+		mTextEdit.setExpansionPriority(holizontal: holiz, vertical: vert)
+		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 
 	public var isEnabled: Bool {

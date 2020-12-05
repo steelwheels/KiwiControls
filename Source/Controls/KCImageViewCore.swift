@@ -34,13 +34,7 @@ open class KCImageViewCore : KCView
 	}
 
 	open override var intrinsicContentSize: KCSize {
-		get {
-			if let image = mImageView.image {
-				return image.size
-			} else {
-				return KCSize.zero
-			}
-		}
+		get { return mImageView.intrinsicContentSize }
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
@@ -48,7 +42,7 @@ open class KCImageViewCore : KCView
 		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 
-	private var imageSize: CGSize {
+	public var imageSize: CGSize {
 		get {
 			let imgsize: CGSize
 			if let image = mImageView.image {
@@ -58,31 +52,6 @@ open class KCImageViewCore : KCView
 			}
 			return imgsize
 		}
-		set(newsize){
-			if let image = mImageView.image {
-				let newsize = fittingSize(source: image.size, in: newsize)
-				let newimg  = image.resize(newsize)
-				mImageView.image = newimg
-			}
-		}
-	}
-
-	private func fittingSize(source src: KCSize, in bounds: KCSize) -> KCSize {
-		let result: CGSize
-		if src.width == 0 || src.height == 0 || bounds.width == 0.0 || bounds.height == 0.0{
-			result = CGSize.zero
-		} else if src.width <= bounds.width && src.height <= bounds.height {
-			result = src
-		} else {
-			let hratio = src.width  / bounds.width
-			let vratio = src.height / bounds.height
-			if hratio >= vratio {
-				result = CGSize(width: src.width / hratio, height: src.height / hratio)
-			} else {
-				result = CGSize(width: src.width / vratio, height: src.height / vratio)
-			}
-		}
-		return result
 	}
 }
 
