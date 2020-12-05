@@ -35,11 +35,11 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(textField view: KCTextField){
-		visit(coreView: view)	// Use default
+		view.setExpandability(holizontal: .High, vertical: .High)
 	}
 
 	open override func visit(textEdit view: KCTextEdit){
-		visit(coreView: view)	// Use default
+		view.setExpandability(holizontal: .High, vertical: .High)
 	}
 
 	open override func visit(tableView view: KCTableView){
@@ -71,7 +71,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(imageView view: KCImageView){
-		view.setExpandability(holizontal: .High, vertical: .High)
+		view.setExpandability(holizontal: .Low, vertical: .Low)
 	}
 
 	open override func visit(navigationBar view: KCNavigationBar){
