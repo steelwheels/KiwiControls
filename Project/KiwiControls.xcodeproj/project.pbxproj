@@ -268,6 +268,8 @@
 		05B7506B2539DD1C0034D8CB /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05B7506D2539DD1F0034D8CB /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
 		05B7506E2539DD1F0034D8CB /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
+		05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05EB0E8C2567E3F100D28FD2 /* KCTerminalViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB0E8B2567E3F100D28FD2 /* KCTerminalViewCore.xib */; };
 		05EB0E932567E4C200D28FD2 /* KCTerminalViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB0E922567E4C200D28FD2 /* KCTerminalViewCore.swift */; };
 		05EB0EA02567E98200D28FD2 /* KCTerminalViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB0E922567E4C200D28FD2 /* KCTerminalViewCore.swift */; };
@@ -564,6 +566,7 @@
 		05B750632539DCCF0034D8CB /* SingleView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView2Controller.swift; sourceTree = "<group>"; };
 		05B750642539DCCF0034D8CB /* SingleView0Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView0Controller.swift; sourceTree = "<group>"; };
 		05B750652539DCCF0034D8CB /* SingleView1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
+		05CC333925789709001BA2F2 /* KCConsoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCConsoleManager.swift; sourceTree = "<group>"; };
 		05EB0E8B2567E3F100D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
 		05EB0E922567E4C200D28FD2 /* KCTerminalViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTerminalViewCore.swift; sourceTree = "<group>"; };
 		05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
@@ -736,6 +739,7 @@
 			children = (
 				0544EA8625176EDC002DE6A8 /* OSX */,
 				0544EA8D25176EFA002DE6A8 /* iOS */,
+				05CC333925789709001BA2F2 /* KCConsoleManager.swift */,
 				0544EA6B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift */,
 				0544EA6A25176EC6002DE6A8 /* KCLogManager.swift */,
 				0544EA6D25176EC6002DE6A8 /* KCMultiViewController.swift */,
@@ -1504,6 +1508,7 @@
 				0544EB14251775A3002DE6A8 /* KCTextEdit.swift in Sources */,
 				0544EB46251775A3002DE6A8 /* KCTextViewCore.swift in Sources */,
 				0544EB26251775A3002DE6A8 /* KCTerminalView.swift in Sources */,
+				05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */,
 				0544EA7C25176EC6002DE6A8 /* KCPreferenceWindow.swift in Sources */,
 				0544EAC825176FF5002DE6A8 /* KCImage.swift in Sources */,
 				056C0D5E25177959003A9D7F /* KCStrokeEditorLayer.swift in Sources */,
@@ -1667,6 +1672,7 @@
 				056C0D6725177959003A9D7F /* KCLayer.swift in Sources */,
 				0544EA7525176EC6002DE6A8 /* KCSingleViewController.swift in Sources */,
 				0544EA9725176F86002DE6A8 /* KCTimer.swift in Sources */,
+				05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */,
 				0544EACD25176FF5002DE6A8 /* KCTriangle.swift in Sources */,
 				0544EBC025177676002DE6A8 /* KCCoreView.swift in Sources */,
 			);

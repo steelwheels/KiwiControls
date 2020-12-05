@@ -15,18 +15,59 @@ import CoconutData
 open class KCSingleViewController: KCPlaneViewController
 {
 	private weak var	mParentController:	KCMultiViewController?
+	private var 		mHasOwnConsole:		Bool
 	public var		isInFront:		Bool
 
 	public init(parentViewController parent: KCMultiViewController){
 		mParentController	= parent
+		mHasOwnConsole		= false
 		isInFront		= false
 		super.init()
 	}
 
 	public required init?(coder: NSCoder) {
 		mParentController	= nil
+		mHasOwnConsole		= false
 		isInFront		= false
 		super.init(coder: coder)
+	}
+
+	public var globalConsole: CNFileConsole {
+		get {
+			if let mgr = parentController.consoleManager {
+				return mgr.console
+			} else {
+				NSLog("[Error] No console manager to get at \(#file)")
+				return CNFileConsole()
+			}
+		}
+		set(newcons) {
+			if let mgr = parentController.consoleManager {
+				if !mHasOwnConsole {
+					//NSLog("push global console")
+					mgr.push(console: newcons)
+					mHasOwnConsole = true
+				} else {
+					NSLog("[Error] Global cosole is already set \(#file)")
+				}
+			} else {
+				NSLog("[Error] No console manager to set at \(#file)")
+			}
+		}
+	}
+
+	open func viewWillPushed() {
+	}
+
+	open func viewWillPoped() {
+		if mHasOwnConsole {
+			if let mgr = parentController.consoleManager {
+				//NSLog("pop global console")
+				let _ = mgr.pop()
+			} else {
+				NSLog("[Error] No console manager to pop at \(#file)")
+			}
+		}
 	}
 
 	open override func parentSize() -> KCSize? {

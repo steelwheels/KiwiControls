@@ -20,18 +20,14 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 {
-	private var mConsole:		CNConsole? = nil
+	private var mConsoleManager: KCConsoleManager? = nil
+
+	public var consoleManager: KCConsoleManager? {
+		get { return mConsoleManager }
+	}
 
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-	}
-
-	public func set(console cons: CNConsole?){
-		mConsole = cons
-	}
-
-	public var console: CNConsole? {
-		get { return mConsole }
 	}
 
 	open override func viewDidLoad() {
@@ -39,6 +35,8 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 
 		super.viewDidLoad()
 		showTabBar(visible:false)
+
+		mConsoleManager = KCConsoleManager()
 	}
 
 	#if os(OSX)
@@ -71,6 +69,10 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	}
 
 	open func pushViewController(viewController view: KCViewController) {
+		/* Notify push */
+		if let sview = view as? KCSingleViewController {
+			sview.viewWillPushed()
+		}
 		#if os(OSX)
 			/* Add new item */
 			let idx   = self.tabViewItems.count
@@ -98,6 +100,10 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	}
 
 	open func popViewController() -> Bool {
+		/* nofify pop */
+		if let sview = currentViewController() as? KCSingleViewController {
+			sview.viewWillPoped()
+		}
 		let orgcnt: Int
 		#if os(OSX)
 			orgcnt = tabViewItems.count
