@@ -15,7 +15,7 @@ import Foundation
 {
 	public enum LoaderFunction {
 		case none
-		case view(_ loader: (_ url: URL) -> KCViewController?)
+		case view(_ loader: (_ url: URL) -> KCSingleViewController?)
 		case url(_ loader: (_ url: URL) -> Void)
 	}
 

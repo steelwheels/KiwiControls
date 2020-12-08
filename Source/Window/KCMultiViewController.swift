@@ -68,10 +68,10 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		#endif
 	}
 
-	open func pushViewController(viewController view: KCViewController) {
-		/* Notify push */
-		if let sview = view as? KCSingleViewController {
-			sview.viewWillPushed()
+	open func pushViewController(viewController view: KCSingleViewController) {
+		/* The current view become background view */
+		if let sview = currentViewController() {
+			sview.viewWillBecomeBackground()
 		}
 		#if os(OSX)
 			/* Add new item */
@@ -97,12 +97,16 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		#endif
 		/* Switch to new view */
 		switchView(index: idx)
+		/* The new view become background view */
+		if let sview = currentViewController() {
+			sview.viewWillBecomeForeground()
+		}
 	}
 
 	open func popViewController() -> Bool {
-		/* nofify pop */
-		if let sview = currentViewController() as? KCSingleViewController {
-			sview.viewWillPoped()
+		/* The current view will be removed  */
+		if let sview = currentViewController() {
+			sview.viewWillRemoved()
 		}
 		let orgcnt: Int
 		#if os(OSX)
@@ -124,6 +128,10 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		switchView(index: newidx)
 		/* Remove original view */
 		removeTabViewItem(index: orgidx)
+		/* The new view will be foreground */
+		if let sview = currentViewController() {
+			sview.viewWillBecomeForeground()
+		}
 		return true
 	}
 
@@ -146,30 +154,32 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	}
 
 	private func switchView(index idx: Int){
-		if let vctrl = currentViewController() as? KCSingleViewController {
-			vctrl.isInFront = false
-		}
 		#if os(OSX)
 			self.selectedTabViewItemIndex = idx
 		#else
 			self.selectedIndex = idx
 		#endif
-		if let vctrl = currentViewController() as? KCSingleViewController {
-			vctrl.isInFront = true
-		}
 	}
 
-	public func currentViewController() -> KCViewController? {
+	public func currentViewController() -> KCSingleViewController? {
 		#if os(OSX)
 			let idx = self.selectedTabViewItemIndex
 			if 0 <= idx && idx < self.tabViewItems.count {
 				let item = self.tabViewItems[idx]
-				return item.viewController
+				if let view = item.viewController as? KCSingleViewController {
+					return view
+				} else {
+					NSLog("Unknown view controller")
+				}
+			}
+			return nil
+		#else
+			if let view = super.selectedViewController as? KCSingleViewController {
+				return view
 			} else {
+				NSLog("Unknown view controller")
 				return nil
 			}
-		#else
-			return super.selectedViewController
 		#endif
 	}
 }
