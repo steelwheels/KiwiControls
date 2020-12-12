@@ -182,5 +182,31 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 			}
 		#endif
 	}
+
+	public func previousViewController() -> KCSingleViewController? {
+		#if os(OSX)
+			let idx = self.selectedTabViewItemIndex
+			if idx > 0 && idx < self.tabViewItems.count {
+				let item = self.tabViewItems[idx-1]
+				if let view = item.viewController as? KCSingleViewController {
+					return view
+				} else {
+					NSLog("Unknown view controller")
+				}
+			}
+		#else
+			if let ctrls = self.viewControllers {
+				let cnt   = ctrls.count
+				if cnt > 0 {
+					if let view = ctrls[cnt - 1] as? KCSingleViewController {
+						return view
+					} else {
+						NSLog("Unknown view controller")
+					}
+				}
+			}
+		#endif
+		return nil
+	}
 }
 

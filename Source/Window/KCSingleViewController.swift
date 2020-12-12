@@ -12,14 +12,13 @@ import Cocoa
 #endif
 import CoconutData
 
-@objc public class KCSingleViewState: NSObject {
-	public var isForeground: Bool
+public class KCSingleViewState {
+	public var readyToReturn:	Bool
 
-	public override init() {
-		isForeground = false
+	public init() {
+		readyToReturn = false
 	}
 }
-
 
 open class KCSingleViewController: KCPlaneViewController
 {
@@ -68,11 +67,10 @@ open class KCSingleViewController: KCPlaneViewController
 	}
 
 	open func viewWillBecomeForeground() {
-		mViewState.isForeground = true
 	}
 
 	open func viewWillBecomeBackground() {
-		mViewState.isForeground = false
+		mViewState.readyToReturn = true
 	}
 
 	open func viewWillRemoved() {

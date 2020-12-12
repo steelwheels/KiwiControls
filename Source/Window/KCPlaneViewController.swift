@@ -121,7 +121,11 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 
 	private func dumpInfo(phase str: String, rootView root: KCRootView) {
 		let dumper = KCViewDumper()
-		dumper.dump(view: root)
+		if let cons = KCLogManager.shared.console {
+			dumper.dump(view: root, console: cons)
+		} else {
+			NSLog("No log console at \(#function)")
+		}
 	}
 }
 

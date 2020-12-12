@@ -119,9 +119,7 @@ public class KCTerminalPreferenceView: KCStackView
 		if let button = mHomeSelectButton {
 			button.buttonPressedCallback = {
 				() -> Void in
-				if let url = URL.openPanel(title: "Select home directory",
-							selection: .SelectDirectory,
-							fileTypes: []) {
+				if let url = URL.openPanel(title: "Select home directory", type: .Directory, extensions: []){
 					if let field = self.mHomeDirectoryField {
 						field.text = url.path
 					}

@@ -25,10 +25,16 @@ public class KCLayouter
 		//dump(phase: "[Decide distribution]", view: view)
 	}
 
-	private func dump(phase str: String, view v: KCView) {
-		CNLog(logLevel: .debug, message: "Result of \(str)")
-		let dumper = KCViewDumper()
-		dumper.dump(view: v)
+	private func dump(logLevel level: CNConfig.LogLevel, phase str: String, view v: KCView) {
+		if CNPreference.shared.systemPreference.logLevel.isIncluded(in: level) {
+			if let cons = KCLogManager.shared.console {
+				cons.print(string: str + "\n")
+				let dumper = KCViewDumper()
+				dumper.dump(view: v, console: cons)
+			} else {
+				NSLog("No console log at \(#function)")
+			}
+		}
 	}
 }
 

@@ -21,12 +21,9 @@ public class KCViewDumper: KCViewVisitor
 		mSection	= CNTextSection()
 	}
 
-	public func dump(view v: KCView){
+	public func dump(view v: KCView, console cons: CNConsole){
 		v.accept(visitor: self)
-		//CNLog(logLevel: .debug, messages: mSection.toStrings(terminal: "", indent: 0))
-		for line in mSection.toStrings(terminal: "", indent: 0) {
-			NSLog(line)
-		}
+		mSection.print(console: cons, terminal: "")
 	}
 
 	open override func visit(rootView view: KCRootView){
