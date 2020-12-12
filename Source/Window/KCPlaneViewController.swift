@@ -37,15 +37,34 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 			let _ = KCLogManager.shared
 			/* Allocate contents by super class */
 			let root = KCRootView()
-			loadViewContext(rootView: root)
+			if let child = loadContext() {
+				root.setup(childView: child)
+			} else {
+				/* Use default root view to tell error */
+				let child = errorContext()
+				root.setup(childView: child)
+			}
 			/* Assign as root of this controller*/
 			self.view = root
 			mRootView = root
 		}
 	}
 
-	open func loadViewContext(rootView root: KCRootView) {
+	open func loadContext() -> KCView? {
 		NSLog("\(#file) Override this method")
+		return nil
+	}
+
+	open func errorContext() -> KCView {
+		CNLog(logLevel: .error, message: "Use error context instead of unacceptable user context")
+		let boxview = KCStackView()
+		boxview.axis = .vertical
+
+		let msgview = KCTextField()
+		msgview.text = "Failed to load context"
+		boxview.addArrangedSubView(subView: msgview)
+
+		return boxview
 	}
 
 	open func parentSize() -> KCSize? {

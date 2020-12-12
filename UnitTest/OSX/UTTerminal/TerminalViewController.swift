@@ -33,10 +33,8 @@ public class TerminalViewController: KCSingleViewController
 	private var mTerminalView:	KCTerminalView? = nil
 	private var mShell:		UTShellThread?  = nil
 
-	open override func loadViewContext(rootView root: KCRootView) {
+	open override func loadContext() -> KCView? {
 		let termview = KCTerminalView()
-		root.setup(childView: termview)
-
 		/* Allocate shell */
 		NSLog("Launch terminal")
 		let procmgr : CNProcessManager = CNProcessManager()
@@ -50,6 +48,7 @@ public class TerminalViewController: KCSingleViewController
 		shell.terminalView = termview
 
 		mTerminalView = termview
+		return termview
 	}
 
 	public override func viewDidAppear() {

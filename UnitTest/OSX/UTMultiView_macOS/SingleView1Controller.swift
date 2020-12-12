@@ -13,7 +13,7 @@ public class SingleView1Controller: KCSingleViewController
 {
 	private var mTerminalView:	KCTerminalView? = nil
 
-	public override func loadViewContext(rootView root: KCRootView) {
+	public override func loadContext() -> KCView? {
 		let terminal  = KCTerminalView()
 		terminal.outputFileHandle.write(string: "Good, morning !!")
 		mTerminalView = terminal
@@ -28,9 +28,7 @@ public class SingleView1Controller: KCSingleViewController
 		box0.distribution = .fillEqually
 		box0.alignment = .center
 
-		root.setup(childView: box0)
-
-		return box0.fittingSize
+		return box0
 	}
 
 	public override func viewDidLoad() {
@@ -58,11 +56,6 @@ public class SingleView1Controller: KCSingleViewController
 		CNLog(logLevel: .debug, message: "viewDidAppear")
 		super.viewDidAppear()
 		doDumpView(message: "After viewDidAppear")
-
-		/* Update terminal size */
-		if let termview = mTerminalView {
-			termview.currentColumnNumbers = 10
-		}
 	}
 	#else
 	public override func viewDidAppear(_ animated: Bool) {
@@ -74,9 +67,15 @@ public class SingleView1Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			CNLog(logLevel: .debug, message: msg)
-			let dumper = KCViewDumper()
-			dumper.dump(view: view)
+			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .debug) {
+				if let cons = KCLogManager.shared.console {
+					cons.print(string: msg + "\n")
+					let dumper = KCViewDumper()
+					dumper.dump(view: view, console: cons)
+				} else {
+					NSLog("No log console")
+				}
+			}
 		} else {
 			fatalError("No root view")
 		}

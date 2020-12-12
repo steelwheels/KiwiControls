@@ -11,7 +11,7 @@ import Foundation
 
 public class SingleView0Controller: KCSingleViewController
 {
-	public override func loadViewContext(rootView root: KCRootView) {
+	public override func loadContext() -> KCView? {
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
 		let label0    = KCTextField(frame: dmyrect)
@@ -33,9 +33,7 @@ public class SingleView0Controller: KCSingleViewController
 		box1.distribution	= .fillEqually
 		box1.addArrangedSubViews(subViews: [box0, edit1])
 
-		root.setup(childView: box1)
-
-		return box1.fittingSize
+		return box1
 	}
 
 	public override func viewDidLoad() {
@@ -73,9 +71,15 @@ public class SingleView0Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			CNLog(logLevel: .debug, message: msg)
-			let dumper = KCViewDumper()
-			dumper.dump(view: view)
+			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .debug) {
+				if let cons = KCLogManager.shared.console {
+					cons.print(string: msg + "\n")
+					let dumper = KCViewDumper()
+					dumper.dump(view: view, console: cons)
+				} else {
+					NSLog("No log console")
+				}
+			}
 		} else {
 			fatalError("No root view")
 		}

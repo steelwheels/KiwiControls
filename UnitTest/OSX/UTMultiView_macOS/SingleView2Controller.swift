@@ -13,7 +13,7 @@ public class SingleView2Controller: KCSingleViewController
 {
 	private var mConsole = CNFileConsole()
 
-	public override func loadViewContext(rootView root: KCRootView) {
+	public override func loadContext() -> KCView? {
 		CNLog(logLevel: .debug, message: "loadView")
 
 		let dummyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
@@ -38,9 +38,7 @@ public class SingleView2Controller: KCSingleViewController
 		box0.distribution = .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, text0, button0])
 
-		root.setup(childView: box0)
-
-		return box0.fittingSize
+		return box0
 	}
 
 	public override func viewDidLoad() {
@@ -80,9 +78,15 @@ public class SingleView2Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			CNLog(logLevel: .debug, message: msg)
-			let dumper = KCViewDumper()
-			dumper.dump(view: view)
+			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .debug) {
+				if let cons = KCLogManager.shared.console {
+					cons.print(string: msg + "\n")
+					let dumper = KCViewDumper()
+					dumper.dump(view: view, console: cons)
+				} else {
+					NSLog("No log console")
+				}
+			}
 		} else {
 			fatalError("No root view")
 		}
