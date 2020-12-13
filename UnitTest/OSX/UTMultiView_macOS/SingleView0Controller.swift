@@ -12,22 +12,20 @@ import Foundation
 public class SingleView0Controller: KCSingleViewController
 {
 	public override func loadContext() -> KCView? {
-		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
-
-		let label0    = KCTextField(frame: dmyrect)
+		let label0    = KCTextEdit()
 		label0.text   = "Hello, world. This is label0"
 
-		let button0   = KCButton(frame: dmyrect)
+		let button0   = KCButton()
 		button0.title = "OK"
 
-		let box0 = KCStackView(frame: dmyrect)
+		let box0 = KCStackView()
 		box0.axis		= .horizontal
 		box0.alignment		= .fill
 		box0.distribution	= .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, button0])
 
-		let edit1 = KCTextEdit(frame: dmyrect)
-		let box1  = KCStackView(frame: dmyrect)
+		let edit1 = KCTextEdit()
+		let box1  = KCStackView()
 		box1.axis		= .vertical
 		box1.alignment		= .fill
 		box1.distribution	= .fillEqually

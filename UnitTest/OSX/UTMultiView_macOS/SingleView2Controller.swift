@@ -16,18 +16,16 @@ public class SingleView2Controller: KCSingleViewController
 	public override func loadContext() -> KCView? {
 		CNLog(logLevel: .debug, message: "loadView")
 
-		let dummyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
-
-		let label0    = KCTextField(frame: dummyrect)
+		let label0    = KCTextEdit()
 		label0.text   = "Hello, world. This is label0"
 
-		let text0     = KCTextEdit(frame: dummyrect)
+		let text0     = KCTextEdit()
 		text0.text    = ""
 
-		let button0   = KCButton(frame: dummyrect)
+		let button0   = KCButton()
 		button0.title = "Press me"
 
-		let box0 = KCStackView(frame: dummyrect)
+		let box0 = KCStackView()
 		if false {
 			box0.axis = .vertical
 		} else {

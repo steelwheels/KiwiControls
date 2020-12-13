@@ -10,29 +10,39 @@ import Foundation
 
 public class KCLayouter
 {
-	public init(){
+	private var mConsole:	CNConsole?
+
+	public init(console cons: CNConsole?){
+		mConsole = cons
 	}
 
 	public func layout(rootView view: KCRootView){
-		CNLog(logLevel: .debug, message: "Adjust expandability ")
+		print(logLevel: .debug, message: "[Layout] Adjust expandability")
 		let adjuster = KCExpansionAdjuster()
 		view.accept(visitor: adjuster)
-		//dump(phase: "[Adjust expandability]", view: view)
+		dump(view: view)
 
-		CNLog(logLevel: .debug, message: "Decide distribution")
+		print(logLevel: .debug, message: "[Layout] Decide distribution")
 		let distdecider = KCDistributionDecider()
 		view.accept(visitor: distdecider)
-		//dump(phase: "[Decide distribution]", view: view)
+		dump(view: view)
 	}
 
-	private func dump(logLevel level: CNConfig.LogLevel, phase str: String, view v: KCView) {
-		if CNPreference.shared.systemPreference.logLevel.isIncluded(in: level) {
-			if let cons = KCLogManager.shared.console {
-				cons.print(string: str + "\n")
+	private func dump(view v: KCView) {
+		if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .detail) {
+			if let cons = mConsole {
 				let dumper = KCViewDumper()
 				dumper.dump(view: v, console: cons)
+			}
+		}
+	}
+
+	private func print(logLevel level: CNConfig.LogLevel, message msg: String) {
+		if CNPreference.shared.systemPreference.logLevel.isIncluded(in: level) {
+			if let cons = mConsole {
+				cons.print(string: msg + "\n")
 			} else {
-				NSLog("No console log at \(#function)")
+				CNLog(logLevel: level, message: msg)
 			}
 		}
 	}

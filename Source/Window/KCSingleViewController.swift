@@ -12,35 +12,22 @@ import Cocoa
 #endif
 import CoconutData
 
-public class KCSingleViewState {
-	public var readyToReturn:	Bool
-
-	public init() {
-		readyToReturn = false
-	}
-}
-
 open class KCSingleViewController: KCPlaneViewController
 {
 	private weak var	mParentController:	KCMultiViewController?
 	private var 		mHasOwnConsole:		Bool
-	private var		mViewState:		KCSingleViewState
 
 	public init(parentViewController parent: KCMultiViewController){
 		mParentController	= parent
 		mHasOwnConsole		= false
-		mViewState		= KCSingleViewState()
 		super.init()
 	}
 
 	public required init?(coder: NSCoder) {
 		mParentController	= nil
 		mHasOwnConsole		= false
-		mViewState		= KCSingleViewState()
 		super.init(coder: coder)
 	}
-
-	public var viewState: KCSingleViewState { get { return mViewState }}
 
 	public var globalConsole: CNFileConsole {
 		get {
@@ -70,7 +57,6 @@ open class KCSingleViewController: KCPlaneViewController
 	}
 
 	open func viewWillBecomeBackground() {
-		mViewState.readyToReturn = true
 	}
 
 	open func viewWillRemoved() {

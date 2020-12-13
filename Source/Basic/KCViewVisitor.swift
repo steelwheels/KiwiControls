@@ -33,10 +33,6 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
-	open func visit(textField view: KCTextField){
-		visit(coreView: view)
-	}
-
 	open func visit(textEdit view: KCTextEdit){
 		visit(coreView: view)
 	}

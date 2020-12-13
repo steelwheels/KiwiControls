@@ -12,81 +12,128 @@ import UIKit
 #endif
 import CoconutData
 
-open class KCTextEditCore : KCView
+#if os(iOS)
+public protocol NSTextFieldDelegate {
+
+}
+#endif
+
+open class KCTextEditCore : KCView, NSTextFieldDelegate
 {
 	public enum FormatterType {
 		case general
 		case decimal
 	}
 
+	public enum ModeType {
+		case label			/* 1 line text						*/
+		case value(FormatterType) 	/* Text as a value 	value: formatter		*/
+		case view			/* Not-editable text view				*/
+		case edit(Int)			/* Editable text field: 	value: max-colmun width	*/
+	}
+
 	public typealias CallbackFunction = (_ value: CNValue) -> Void
 
 	#if os(OSX)
 	@IBOutlet weak var mTextEdit: NSTextField!
-	private var	mTextEditDelegate:	KCTextEditDelegate? = nil
 	#else
 	@IBOutlet weak var mTextEdit: UITextField!
 	#endif
+
+	private var 	mMode:			ModeType = .edit(40)
 
 	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
 		KCView.setAutolayoutMode(views: [self, mTextEdit])
 		#if os(OSX)
-			mTextEdit.usesSingleLineMode 	= false
-			mTextEdit.isBezeled		= true
-			mTextEdit.maximumNumberOfLines	= 1
-			mTextEdit.lineBreakMode		= .byCharWrapping
-
-			if let cell = mTextEdit.cell {
-				cell.wraps		= true
-				cell.isScrollable	= false
-			}
+		if let cell = mTextEdit.cell {
+			cell.wraps		= true
+			cell.isScrollable	= false
+		}
 		#endif
 
-
 		#if os(OSX)
-			let delegate = KCTextEditDelegate(parent: self)
-			mTextEdit.delegate = delegate
-			mTextEditDelegate = delegate
+			mTextEdit.delegate = self
 		#else
 			mTextEdit.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 		#endif
 	}
 
-	#if os(iOS)
-	@objc public func textFieldDidChange(_ textField: KCTextField) {
-		let value = CNValue(stringValue: self.text)
-		if let cbfunc = self.callbackFunction {
-			cbfunc(value)
+	public var mode: ModeType {
+		get { return mMode }
+		set(newmode){
+			#if os(OSX)
+			set(mode: newmode)
+			#endif
+			mMode = newmode
+		}
+	}
+
+	#if os(OSX)
+	private func set(mode md: ModeType) {
+		switch md {
+		case .label:
+			mTextEdit.isEditable		= false
+			mTextEdit.isBezeled		= false
+			mTextEdit.usesSingleLineMode 	= true
+			mTextEdit.lineBreakMode		= .byWordWrapping
+			mTextEdit.formatter 		= nil
+		case .value(let format):
+			mTextEdit.isEditable		= false
+			mTextEdit.isBezeled		= true
+			mTextEdit.usesSingleLineMode 	= false
+			mTextEdit.lineBreakMode		= .byWordWrapping
+			switch format {
+			case .general:
+				mTextEdit.formatter = nil
+			case .decimal:
+				let numformatter = NumberFormatter()
+				numformatter.numberStyle           = .decimal
+				numformatter.maximumFractionDigits = 0
+				numformatter.minimumFractionDigits = 0
+				mTextEdit.formatter = numformatter
+			}
+		case .view:
+			mTextEdit.isEditable		= false
+			mTextEdit.isBezeled		= false
+			mTextEdit.usesSingleLineMode 	= false
+			mTextEdit.lineBreakMode		= .byWordWrapping
+			mTextEdit.formatter 		= nil
+		case .edit:
+			mTextEdit.isEditable		= true
+			mTextEdit.isBezeled		= false
+			mTextEdit.usesSingleLineMode 	= false
+			mTextEdit.lineBreakMode		= .byWordWrapping
+			mTextEdit.formatter 		= nil
 		}
 	}
 	#endif
 
-	public func set(format form: FormatterType){
-		#if os(OSX)
-		switch form {
-		case .general:
-			mTextEdit.formatter = nil
-		case .decimal:
-			let numformatter = NumberFormatter()
-			numformatter.numberStyle           = .decimal
-			numformatter.maximumFractionDigits = 0
-			numformatter.minimumFractionDigits = 0
-			mTextEdit.formatter = numformatter
-
-			mTextEdit.usesSingleLineMode 	= true
-			mTextEdit.maximumNumberOfLines	= 1
+	#if os(OSX)
+	open override var intrinsicContentSize: KCSize {
+		get {
+			let fixsize = mTextEdit.fittingSize
+			let result: KCSize
+			switch mMode {
+			case .label, .value, .view:
+				result = fixsize
+			case .edit(let colnum):
+				var width: CGFloat = fixsize.width
+				if let font = mTextEdit.font {
+					let newwidth = font.pointSize * CGFloat(colnum)
+					width = max(width, newwidth)
+				}
+				result = KCSize(width: width, height: fixsize.height)
+			}
+			return result
 		}
-		if let dlg = mTextEditDelegate {
-			dlg.format = form
-		}
-		#endif
 	}
-
+	#else
 	open override var intrinsicContentSize: KCSize {
 		get { return mTextEdit.intrinsicContentSize }
 	}
+	#endif
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mTextEdit.setExpansionPriority(holizontal: holiz, vertical: vert)
@@ -102,38 +149,6 @@ open class KCTextEditCore : KCView
 		}
 	}
 
-	public var isEditable: Bool {
-		get {
-			#if os(OSX)
-				return mTextEdit.isEditable
-			#else
-				return true
-			#endif
-		}
-		set(newval){
-			#if os(OSX)
-				mTextEdit.isEditable = newval
-			#endif
-		}
-	}
-
-	public var isBezeled: Bool {
-		get {
-			#if os(OSX)
-				return mTextEdit.isBezeled
-			#else
-				return mTextEdit.borderStyle == .bezel
-			#endif
-		}
-		set(newval) {
-			#if os(OSX)
-				mTextEdit.isBezeled = newval
-			#else
-				mTextEdit.borderStyle = .bezel
-			#endif
-		}
-	}
-
 	public var text: String {
 		get {
 			return getText()
@@ -143,6 +158,7 @@ open class KCTextEditCore : KCView
 				[weak self] () -> Void in
 				if let myself = self {
 					myself.setText(label: newval)
+					myself.invalidateIntrinsicContentSize()
 				}
 			})
 		}
@@ -209,13 +225,11 @@ open class KCTextEditCore : KCView
 		}
 	}
 
-	#if os(OSX)
-	public var lineBreak: KCLineBreakMode {
-		get {
-			return mTextEdit.lineBreakMode
-		}
-		set(mode) {
-			mTextEdit.lineBreakMode = mode
+	#if os(iOS)
+	@objc public func textFieldDidChange(_ textEdit: KCTextEdit) {
+		let value = CNValue(stringValue: self.text)
+		if let cbfunc = self.callbackFunction {
+			cbfunc(value)
 		}
 	}
 	#endif
@@ -238,7 +252,7 @@ open class KCTextEditCore : KCView
 	}
 }
 
-#if os(OSX)
+#if false
 @objc private class KCTextEditDelegate: NSObject, NSTextFieldDelegate
 {
 	public typealias FormatterType = KCTextEditCore.FormatterType

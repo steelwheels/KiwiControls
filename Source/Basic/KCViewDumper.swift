@@ -100,7 +100,7 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
-	open override func visit(textField view: KCTextField){
+	open override func visit(textEdit view: KCTextEdit){
 		visit(coreView: view)
 
 		let fsection = CNTextSection()

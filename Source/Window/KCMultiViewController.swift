@@ -20,7 +20,10 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 {
-	private var mConsoleManager: KCConsoleManager? = nil
+	public typealias ViewSwitchCallback = (_ val: CNNativeValue) -> Void
+
+	private var mCallbackStack:	CNStack<ViewSwitchCallback> = CNStack()
+	private var mConsoleManager:	KCConsoleManager? = nil
 
 	public var consoleManager: KCConsoleManager? {
 		get { return mConsoleManager }
@@ -68,11 +71,13 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		#endif
 	}
 
-	open func pushViewController(viewController view: KCSingleViewController) {
+	open func pushViewController(viewController view: KCSingleViewController, callback cbfunc: @escaping ViewSwitchCallback) {
 		/* The current view become background view */
 		if let sview = currentViewController() {
 			sview.viewWillBecomeBackground()
 		}
+		/* Push callback */
+		mCallbackStack.push(cbfunc)
 		#if os(OSX)
 			/* Add new item */
 			let idx   = self.tabViewItems.count
@@ -103,10 +108,14 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		}
 	}
 
-	open func popViewController() -> Bool {
+	open func popViewController(returnValue val: CNNativeValue) -> Bool {
 		/* The current view will be removed  */
 		if let sview = currentViewController() {
 			sview.viewWillRemoved()
+		}
+		/* Pop callback */
+		if let cbfunc = mCallbackStack.pop() {
+			cbfunc(val)
 		}
 		let orgcnt: Int
 		#if os(OSX)

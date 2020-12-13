@@ -14,7 +14,7 @@ import CoconutData
 
 open class KCTextEdit : KCCoreView
 {
-	public typealias FormatterType    = KCTextEditCore.FormatterType
+	public typealias ModeType	  = KCTextEditCore.ModeType
 	public typealias CallbackFunction = KCTextEditCore.CallbackFunction
 
 	#if os(OSX)
@@ -54,23 +54,14 @@ open class KCTextEdit : KCCoreView
 		}
 	}
 
-	public func set(format form: FormatterType){
-		coreView.set(format: form)
+	public var mode: ModeType {
+		get { return coreView.mode }
+		set(v) { coreView.mode = v }
 	}
 
 	public var isEnabled: Bool {
 		get { return coreView.isEnabled }
 		set(v) { coreView.isEnabled = v }
-	}
-
-	public var isEditable: Bool {
-		get { return coreView.isEditable }
-		set(v) { coreView.isEditable = v }
-	}
-
-	public var isBezeled: Bool {
-		get { return coreView.isBezeled }
-		set(v) { coreView.isBezeled = v }
 	}
 
 	public var callbackFunction: CallbackFunction? {

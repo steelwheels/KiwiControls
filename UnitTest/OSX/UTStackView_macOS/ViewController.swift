@@ -6,6 +6,7 @@
 //
 
 import KiwiControls
+import CoconutData
 import Cocoa
 
 class ViewController: KCMultiViewController
@@ -15,7 +16,17 @@ class ViewController: KCMultiViewController
 
 		// Do any additional setup after loading the view.
 		let stack = StackViewController(parentViewController: self)
-		self.pushViewController(viewController: stack)
+		let cbfunc: KCMultiViewController.ViewSwitchCallback = {
+			(_ val: CNNativeValue) -> Void in
+			let message: String
+			if let str = val.toString() {
+				message = str
+			} else {
+				message = "<uknown>"
+			}
+			NSLog("view is poped: \(message)")
+		}
+		self.pushViewController(viewController: stack, callback: cbfunc)
 	}
 
 	override var representedObject: Any? {

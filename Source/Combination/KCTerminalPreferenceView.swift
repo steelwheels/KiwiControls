@@ -17,14 +17,14 @@ public class KCTerminalPreferenceView: KCStackView
 	public typealias CallbackFunction = KCColorSelectorCore.CallbackFunction
 
 	#if os(OSX)
-	private var	mHomeDirectoryField:		KCTextField?		= nil
+	private var	mHomeDirectoryField:		KCTextEdit?		= nil
 	private var 	mHomeSelectButton:		KCButton?		= nil
 	private var 	mHomeResetButton:		KCButton?		= nil
 	#endif
 	private var	mLogLevelMenu:			KCPopupMenu?		= nil
 	private var	mTerminalWidthField:		KCTextEdit?		= nil
 	private var	mTerminalHeightField:		KCTextEdit?		= nil
-	private var	mFontLabel:			KCTextField?		= nil
+	private var	mFontLabel:			KCTextEdit?		= nil
 	private var	mFontNameMenu:			KCPopupMenu?		= nil
 	private var 	mFontSizeMenu:			KCPopupMenu?		= nil
 	private var	mTextColorSelector:		KCColorSelector?	= nil
@@ -192,11 +192,10 @@ public class KCTerminalPreferenceView: KCStackView
 
 	#if os(OSX)
 	private func allocateHomeDirectoryView() -> KCLabeledStackView {
-		let pathfield    = KCTextField()
-		pathfield.set(format: .general)
+		let pathfield   = KCTextEdit()
+		pathfield.mode	= .value(.general)
 		pathfield.isEnabled = false
 		pathfield.text = "No home directory"
-		pathfield.isBezeled = true
 		mHomeDirectoryField = pathfield
 
 		let selectbutton = KCButton()
@@ -246,8 +245,7 @@ public class KCTerminalPreferenceView: KCStackView
 
 	private func allocateSizeSelectorView() -> KCLabeledStackView {
 		let widthfield = KCTextEdit()
-		widthfield.set(format: .decimal)
-		widthfield.isEditable = true
+		widthfield.mode = .value(.decimal)
 		widthfield.isEnabled  = true
 		mTerminalWidthField = widthfield
 
@@ -256,8 +254,7 @@ public class KCTerminalPreferenceView: KCStackView
 		widthbox.contentsView.addArrangedSubView(subView: widthfield)
 
 		let heightfield = KCTextEdit()
-		heightfield.set(format: .decimal)
-		heightfield.isEditable = true
+		heightfield.mode = .value(.decimal)
 		heightfield.isEnabled  = true
 		mTerminalHeightField = heightfield
 

@@ -60,7 +60,8 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		let boxview = KCStackView()
 		boxview.axis = .vertical
 
-		let msgview = KCTextField()
+		let msgview = KCTextEdit()
+		msgview.mode = .view
 		msgview.text = "Failed to load context"
 		boxview.addArrangedSubView(subView: msgview)
 
@@ -99,12 +100,9 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Layout components */
-				//NSLog("doViewWillLayout ... exec")
-				//dumpInfo(phase: "doViewWillLayouut (before)", rootView: root)
 				CNLog(logLevel: .debug, message: "- [Execute Layout]")
-				let layouter    = KCLayouter()
+				let layouter    = KCLayouter(console: KCLogManager.shared.console)
 				layouter.layout(rootView: root)
-				//dumpInfo(phase: "doViewWillLayouut (after)", rootView: root)
 			}
 		} else {
 			CNLog(logLevel: .error, message: "No root view")

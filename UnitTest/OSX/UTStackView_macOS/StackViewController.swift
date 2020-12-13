@@ -10,13 +10,29 @@ import Foundation
 
 public class StackViewController: KCSingleViewController
 {
-	open override func loadViewContext(rootView root: KCRootView) {
+	open override func loadContext() -> KCView? {
 		let vbox  = KCStackView()
 		vbox.axis = .vertical
 
-		let label = KCTextField()
-		label.text = "Label0"
+		let label = KCTextEdit()
+		label.mode = .label
+		label.text = "Label"
 		vbox.addArrangedSubView(subView: label)
+
+		let value = KCTextEdit()
+		value.mode = .value(.decimal)
+		value.text = "123.4"
+		vbox.addArrangedSubView(subView: value)
+
+		let textview = KCTextEdit()
+		textview.mode = .value(.decimal)
+		textview.text = "This is text for viewing"
+		vbox.addArrangedSubView(subView: textview)
+
+		let textedit = KCTextEdit()
+		textedit.mode = .edit(40)
+		textedit.text = "This is text for editing"
+		vbox.addArrangedSubView(subView: textedit)
 
 		let terminal = KCTerminalView()
 		vbox.addArrangedSubView(subView: terminal)
@@ -31,6 +47,6 @@ public class StackViewController: KCSingleViewController
 		hbox.addArrangedSubView(subView: button1)
 		vbox.addArrangedSubView(subView: hbox)
 
-		root.setup(childView: vbox)
+		return vbox
 	}
 }

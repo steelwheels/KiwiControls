@@ -34,10 +34,6 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandability(holizontal: .Low, vertical: .Fixed)
 	}
 
-	open override func visit(textField view: KCTextField){
-		view.setExpandability(holizontal: .High, vertical: .High)
-	}
-
 	open override func visit(textEdit view: KCTextEdit){
 		view.setExpandability(holizontal: .High, vertical: .High)
 	}
