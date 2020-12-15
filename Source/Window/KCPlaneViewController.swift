@@ -61,7 +61,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		boxview.axis = .vertical
 
 		let msgview = KCTextEdit()
-		msgview.mode = .view
+		msgview.mode = .view(40)
 		msgview.text = "Failed to load context"
 		boxview.addArrangedSubView(subView: msgview)
 
@@ -100,7 +100,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		if let root = mRootView {
 			if root.hasCoreView {
 				/* Layout components */
-				CNLog(logLevel: .debug, message: "- [Execute Layout]")
+				CNLog(logLevel: .debug, message: "- [Execute Layout] (root-size=\(root.frame.size.description)")
 				let layouter    = KCLayouter(console: KCLogManager.shared.console)
 				layouter.layout(rootView: root)
 			}

@@ -69,6 +69,13 @@ open class KCTextEdit : KCCoreView
 		set(v) { coreView.callbackFunction = v 	}
 	}
 
+	#if os(OSX)
+	public var preferredTextFieldWidth: CGFloat {
+		get           { return coreView.preferredTextFieldWidth }
+		set(newwidth) { coreView.preferredTextFieldWidth = newwidth }
+	}
+	#endif
+
 	public var text: String {
 		get { return coreView.text }
 		set(newval){ coreView.text = newval }

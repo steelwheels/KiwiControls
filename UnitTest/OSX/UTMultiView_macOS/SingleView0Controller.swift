@@ -69,7 +69,7 @@ public class SingleView0Controller: KCSingleViewController
 
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
-			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .debug) {
+			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .detail) {
 				if let cons = KCLogManager.shared.console {
 					cons.print(string: msg + "\n")
 					let dumper = KCViewDumper()

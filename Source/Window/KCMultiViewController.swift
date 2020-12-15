@@ -34,8 +34,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	}
 
 	open override func viewDidLoad() {
-		CNLog(logLevel: .debug, message: "viewDidLoad")
-
 		super.viewDidLoad()
 		showTabBar(visible:false)
 

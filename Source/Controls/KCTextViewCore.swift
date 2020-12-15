@@ -447,7 +447,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 							/* Update terminal size */
 							self.mTerminalInfo.width = num.intValue
 							NSLog("observeValue: \(self.mTerminalInfo.width) \(self.mTerminalInfo.height)")
-							self.requireLayout()
 							self.notify(viewControlEvent: .updateWindowSize)
 						}
 					case CNPreference.shared.terminalPreference.HeightItem:
@@ -456,7 +455,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 							/* Update terminal size */
 							self.mTerminalInfo.height = num.intValue
 							NSLog("observeValue: \(self.mTerminalInfo.width) \(self.mTerminalInfo.height)")
-							self.requireLayout()
 							self.notify(viewControlEvent: .updateWindowSize)
 						}
 					case CNSystemPreference.InterfaceStyleItem:

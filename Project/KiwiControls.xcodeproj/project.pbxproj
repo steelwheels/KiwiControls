@@ -246,6 +246,8 @@
 		056C0D6725177959003A9D7F /* KCLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0D5825177959003A9D7F /* KCLayer.swift */; };
 		056C0D6825177959003A9D7F /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0D5925177959003A9D7F /* KCRepetitiveLayer.swift */; };
 		056C0D6925177959003A9D7F /* KCRepetitiveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C0D5925177959003A9D7F /* KCRepetitiveLayer.swift */; };
+		0577253325878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */; };
+		0577253425878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */; };
 		059A51A1254DA35C003B5B96 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
 		059A51A6254DA36F003B5B96 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
 		05A7755A254DA1AD00DF71DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A77559254DA1AD00DF71DE /* AppDelegate.swift */; };
@@ -541,6 +543,7 @@
 		056C0D5725177959003A9D7F /* KCLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
 		056C0D5825177959003A9D7F /* KCLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayer.swift; sourceTree = "<group>"; };
 		056C0D5925177959003A9D7F /* KCRepetitiveLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRepetitiveLayer.swift; sourceTree = "<group>"; };
+		0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSetPreferredWidth.swift; sourceTree = "<group>"; };
 		05A77557254DA1AD00DF71DE /* UTConsole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTConsole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A77559254DA1AD00DF71DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05A7755B254DA1AD00DF71DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -781,6 +784,7 @@
 				0544EA9E25176FBE002DE6A8 /* KCGroupMaker.swift */,
 				0544EAA225176FBE002DE6A8 /* KCGroupSizeAllocator.swift */,
 				0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */,
+				0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1293,7 +1297,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					05248491256A6097001BD219 = {
 						CreatedOnToolsVersion = 12.2;
@@ -1560,6 +1564,7 @@
 				0544EB3C251775A3002DE6A8 /* KCStackView.swift in Sources */,
 				0544EB3E251775A3002DE6A8 /* KCNavigationBarCore.swift in Sources */,
 				0544EB18251775A3002DE6A8 /* KCTableViewCore.swift in Sources */,
+				0577253325878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */,
 				0544EBB725177676002DE6A8 /* KCType.swift in Sources */,
 				0544EBA52517764A002DE6A8 /* KCColorTable.swift in Sources */,
 				0544EB22251775A3002DE6A8 /* KCContextualMenu.swift in Sources */,
@@ -1623,6 +1628,7 @@
 				0544EAB425176FBE002DE6A8 /* KCGroupSizeAllocator.swift in Sources */,
 				0544EBB825177676002DE6A8 /* KCType.swift in Sources */,
 				056C0D5D25177959003A9D7F /* KCStrokeDrawerLayer.swift in Sources */,
+				0577253425878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */,
 				0544EACF25176FF5002DE6A8 /* KCPoint.swift in Sources */,
 				0544EB37251775A3002DE6A8 /* KCColorSelector.swift in Sources */,
 				056C0D5F25177959003A9D7F /* KCStrokeEditorLayer.swift in Sources */,

@@ -28,7 +28,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	public enum ModeType {
 		case label			/* 1 line text						*/
 		case value(FormatterType) 	/* Text as a value 	value: formatter		*/
-		case view			/* Not-editable text view				*/
+		case view(Int)			/* Not-editable text view				*/
 		case edit(Int)			/* Editable text field: 	value: max-colmun width	*/
 	}
 
@@ -113,20 +113,23 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	#if os(OSX)
 	open override var intrinsicContentSize: KCSize {
 		get {
-			let fixsize = mTextEdit.fittingSize
-			let result: KCSize
+			let colnum: Int
 			switch mMode {
-			case .label, .value, .view:
-				result = fixsize
-			case .edit(let colnum):
-				var width: CGFloat = fixsize.width
-				if let font = mTextEdit.font {
-					let newwidth = font.pointSize * CGFloat(colnum)
-					width = max(width, newwidth)
-				}
-				result = KCSize(width: width, height: fixsize.height)
+			case .label, .value:
+				colnum = 20
+			case .view(let num):
+				colnum = num
+			case .edit(let num):
+				colnum = num
 			}
-			return result
+			let fitsize = mTextEdit.fittingSize
+			var width: CGFloat = fitsize.width
+			if let font = mTextEdit.font {
+				let newwidth = font.pointSize * CGFloat(colnum)
+				width = max(width, newwidth)
+			}
+			mTextEdit.preferredMaxLayoutWidth = width
+			return KCSize(width: width, height: fitsize.height)
 		}
 	}
 	#else
@@ -148,6 +151,13 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			mTextEdit.isEnabled = newval
 		}
 	}
+
+	#if os(OSX)
+	public var preferredTextFieldWidth: CGFloat {
+		get           { return mTextEdit.preferredMaxLayoutWidth }
+		set(newwidth) { mTextEdit.preferredMaxLayoutWidth = newwidth }
+	}
+	#endif
 
 	public var text: String {
 		get {
