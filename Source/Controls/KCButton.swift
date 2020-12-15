@@ -66,13 +66,6 @@ open class KCButton: KCCoreView
 		set(newstr){ coreView.title = newstr }
 	}
 
-	public func setColors(colors cols: KCColorPreference.ButtonColors){
-		coreView.setColors(colors: cols)
-		#if os(iOS)
-			self.backgroundColor = cols.background.normal
-		#endif
-	}
-
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(button: self)
 	}

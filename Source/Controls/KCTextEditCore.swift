@@ -243,23 +243,6 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		}
 	}
 	#endif
-	
-	public func setColors(colors cols: KCColorPreference.TextColors){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(OSX)
-					myself.mTextEdit.textColor       = cols.foreground
-					myself.mTextEdit.drawsBackground = true
-					myself.mTextEdit.backgroundColor = cols.background
-				#else
-					myself.mTextEdit.tintColor = cols.foreground
-					myself.mTextEdit.textColor = cols.foreground
-					myself.mTextEdit.backgroundColor = cols.background
-				#endif
-			}
-		})
-	}
 }
 
 #if false

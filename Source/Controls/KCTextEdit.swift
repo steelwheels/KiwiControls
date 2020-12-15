@@ -91,13 +91,6 @@ open class KCTextEdit : KCCoreView
 		set(align){ coreView.alignment = align }
 	}
 
-	public func setColors(colors cols: KCColorPreference.TextColors){
-		coreView.setColors(colors: cols)
-		#if os(iOS)
-		self.backgroundColor = cols.background
-		#endif
-	}
-
 	public func setDouble(value val: Double) {
 		let rval   = round(value: val, atPoint: 2)
 		let valstr = String(format: "%4.2lf", rval)

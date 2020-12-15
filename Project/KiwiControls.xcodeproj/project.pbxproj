@@ -169,8 +169,6 @@
 		0544EB96251775E5002DE6A8 /* KCConsoleViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EB86251775E5002DE6A8 /* KCConsoleViewCore.xib */; };
 		0544EB9C25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */; };
 		0544EB9D25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */; };
-		0544EBA32517764A002DE6A8 /* KCColorPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBA12517764A002DE6A8 /* KCColorPreference.swift */; };
-		0544EBA42517764A002DE6A8 /* KCColorPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBA12517764A002DE6A8 /* KCColorPreference.swift */; };
 		0544EBA52517764A002DE6A8 /* KCColorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBA22517764A002DE6A8 /* KCColorTable.swift */; };
 		0544EBA62517764A002DE6A8 /* KCColorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBA22517764A002DE6A8 /* KCColorTable.swift */; };
 		0544EBB325177676002DE6A8 /* KCLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */; };
@@ -487,7 +485,6 @@
 		0544EB85251775E5002DE6A8 /* KCTextViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTextViewCore.xib; sourceTree = "<group>"; };
 		0544EB86251775E5002DE6A8 /* KCConsoleViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCConsoleViewCore.xib; sourceTree = "<group>"; };
 		0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTerminalPreferenceView.swift; sourceTree = "<group>"; };
-		0544EBA12517764A002DE6A8 /* KCColorPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorPreference.swift; sourceTree = "<group>"; };
 		0544EBA22517764A002DE6A8 /* KCColorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorTable.swift; sourceTree = "<group>"; };
 		0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutConstraint.swift; sourceTree = "<group>"; };
 		0544EBAB25177676002DE6A8 /* KCPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreference.swift; sourceTree = "<group>"; };
@@ -919,7 +916,6 @@
 		0544EBA025177637002DE6A8 /* Color */ = {
 			isa = PBXGroup;
 			children = (
-				0544EBA12517764A002DE6A8 /* KCColorPreference.swift */,
 				0544EBA22517764A002DE6A8 /* KCColorTable.swift */,
 			);
 			path = Color;
@@ -1522,7 +1518,6 @@
 				0544EA7225176EC6002DE6A8 /* KCWindow.swift in Sources */,
 				0544EB32251775A3002DE6A8 /* KCLabeledStackView.swift in Sources */,
 				056C0D6625177959003A9D7F /* KCLayer.swift in Sources */,
-				0544EBA32517764A002DE6A8 /* KCColorPreference.swift in Sources */,
 				0544EA7825176EC6002DE6A8 /* KCLogManager.swift in Sources */,
 				0544EA8225176EC6002DE6A8 /* KCScreen.swift in Sources */,
 				0544EB48251775A3002DE6A8 /* KCColorSelectorCore.swift in Sources */,
@@ -1595,7 +1590,6 @@
 				0544EB27251775A3002DE6A8 /* KCTerminalView.swift in Sources */,
 				0544EA9125176F10002DE6A8 /* KCLogViewController.swift in Sources */,
 				0544EAC925176FF5002DE6A8 /* KCImage.swift in Sources */,
-				0544EBA42517764A002DE6A8 /* KCColorPreference.swift in Sources */,
 				0544EBBA25177676002DE6A8 /* KCViewVisitor.swift in Sources */,
 				056C0D6925177959003A9D7F /* KCRepetitiveLayer.swift in Sources */,
 				056C0D6325177959003A9D7F /* KCSelectionLayer.swift in Sources */,

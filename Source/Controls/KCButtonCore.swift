@@ -89,20 +89,5 @@ public class KCButtonCore: KCView
 			})
 		}
 	}
-
-	public func setColors(colors cols: KCColorPreference.ButtonColors){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(iOS)
-					myself.mButton.setTitleColor(cols.title, for: .normal)
-					myself.mButton.backgroundColor = cols.background.normal
-					myself.backgroundColor = cols.background.normal
-				#else
-					myself.mButton.colors = cols
-				#endif
-			}
-		})
-	}
 }
 
