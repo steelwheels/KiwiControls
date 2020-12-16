@@ -17,6 +17,7 @@ open class KCRootView: KCCoreView
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
+		self.wantsLayer = true
 	}
 	#else
 	public override init(frame: CGRect){
@@ -37,15 +38,51 @@ open class KCRootView: KCCoreView
 		super.init(coder: coder) ;
 	}
 
+	deinit {
+		/* Remove color observer */
+		let vpref = CNPreference.shared.viewPreference
+		vpref.removeObserver(observer: self, forKey: vpref.BackgroundColorItem)
+	}
+
 	public func setup(childView child: KCView){
 		KCView.setAutolayoutMode(view: self)
-		
+
 		self.addSubview(child)
 		super.allocateSubviewLayout(subView: child)
 		setCoreView(view: child)
-		#if os(iOS)
-			self.backgroundColor = CNPreference.shared.windowPreference.backgroundColor
+
+		let vpref = CNPreference.shared.viewPreference
+		setBackgroundColor(color: vpref.backgroundColor)
+
+		/* Add color observer */
+		vpref.addObserver(observer: self, forKey: vpref.BackgroundColorItem)
+	}
+
+	public func setBackgroundColor(color col: CNColor) {
+		#if os(OSX)
+		if let layer = self.layer {
+			layer.backgroundColor = col.cgColor
+		}
+		#else
+		self.backgroundColor = col
 		#endif
+	}
+
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			if let key = keyPath, let vals = change {
+				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
+					switch key {
+					case CNPreference.shared.viewPreference.BackgroundColorItem:
+						let vpref = CNPreference.shared.viewPreference
+						self.setBackgroundColor(color: vpref.backgroundColor)
+					default:
+						NSLog("\(#file): Unknown key: \(key)")
+					}
+				}
+			}
+		})
 	}
 
 	public func updateContentSize() {

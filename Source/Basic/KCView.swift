@@ -151,11 +151,6 @@ open class KCView : KCViewBase
 		}
 	}
 
-	open func requireLayout() {
-		CNLog(logLevel: .debug, message: "require window layout")
-		self.setNeedsLayout()
-	}
-
 	/*
 	 * Event control
 	 */
@@ -231,6 +226,11 @@ open class KCView : KCViewBase
 	/*
 	 * layout
 	 */
+	open func requireLayout() {
+		CNLog(logLevel: .debug, message: "require window layout")
+		self.setNeedsLayout()
+	}
+
 	#if os(iOS)
 	open func setFrameSize(_ newsize: KCSize) {
 		self.frame.size = newsize
