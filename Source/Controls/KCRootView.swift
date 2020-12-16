@@ -36,12 +36,17 @@ open class KCRootView: KCCoreView
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder) ;
+		#if os(OSX)
+		self.wantsLayer = true
+		#endif
 	}
 
 	deinit {
 		/* Remove color observer */
 		let vpref = CNPreference.shared.viewPreference
 		vpref.removeObserver(observer: self, forKey: vpref.BackgroundColorItem)
+		let spref = CNPreference.shared.systemPreference
+		spref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	public func setup(childView child: KCView){
@@ -56,6 +61,9 @@ open class KCRootView: KCCoreView
 
 		/* Add color observer */
 		vpref.addObserver(observer: self, forKey: vpref.BackgroundColorItem)
+
+		let spref = CNPreference.shared.systemPreference
+		spref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	public func setBackgroundColor(color col: CNColor) {
@@ -71,16 +79,28 @@ open class KCRootView: KCCoreView
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		CNExecuteInMainThread(doSync: false, execute: {
 			() -> Void in
+			NSLog("oV 0")
 			if let key = keyPath, let vals = change {
+				NSLog("oV 1")
 				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
+					NSLog("oV 2")
 					switch key {
 					case CNPreference.shared.viewPreference.BackgroundColorItem:
+						NSLog("oV 3")
 						let vpref = CNPreference.shared.viewPreference
 						self.setBackgroundColor(color: vpref.backgroundColor)
 					default:
-						NSLog("\(#file): Unknown key: \(key)")
+						NSLog("\(#file): Unknown key (1): \(key)")
 					}
+				} else if let _ = vals[.newKey] as? NSNumber {
+				switch key {
+				case CNSystemPreference.InterfaceStyleItem:
+					let tpref = CNPreference.shared.viewPreference
+					self.setBackgroundColor(color: tpref.backgroundColor)
+				default:
+					NSLog("\(#file): Unknown key (2): \(key)")
 				}
+			}
 			}
 		})
 	}
