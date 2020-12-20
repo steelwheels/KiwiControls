@@ -144,11 +144,29 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	}
 
 	public var isEnabled: Bool {
+		get	   { return mTextEdit.isEnabled		}
+		set(newval){ mTextEdit.isEnabled = newval	}
+	}
+
+	public var isBezeled: Bool {
 		get {
-			return mTextEdit.isEnabled
+			#if os(OSX)
+			return mTextEdit.isBezeled
+			#else
+			let result: Bool
+			switch mTextEdit.borderStyle {
+			case .bezel:	result = true
+			default:	result = false
+			}
+			return result
+			#endif
 		}
-		set(newval){
-			mTextEdit.isEnabled = newval
+		set(newval) {
+			#if os(OSX)
+			mTextEdit.isBezeled = newval
+			#else
+			mTextEdit.borderStyle = .bezel
+			#endif
 		}
 	}
 
