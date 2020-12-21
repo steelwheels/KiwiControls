@@ -29,8 +29,7 @@ open class KCLabeledStackViewCore : KCView
 
 	private func unionSizes(textSize tsize: KCSize, stackSize ssize: KCSize) -> KCSize {
 		let space = CNPreference.shared.windowPreference.spacing
-		let usize = KCUnionSize(sizeA: tsize, sizeB: ssize, doVertical: true, spacing: space)
-		return KCSize(width: usize.width + space*2.0, height: usize.height + space)
+		return KCUnionSize(sizeA: tsize, sizeB: ssize, doVertical: true, spacing: space)
 	}
 
 	open override var intrinsicContentSize: KCSize {
@@ -67,21 +66,13 @@ open class KCLabeledStackViewCore : KCView
 			#endif
 		}
 	}
-
-	public func sizeToContain(size content: KCSize) -> KCSize {
-		#if os(OSX)
-		let textsize = mTextField.fittingSize
-		#else
-		let textsize = mTextField.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-		#endif
-		let space    = CNPreference.shared.windowPreference.spacing
-		let width    = max(textsize.width, content.width)
-		let height   = textsize.height + space + content.height
-		return KCSize(width: width, height: height)
-	}
 	
 	public var contentsView: KCStackView {
 		get { return mStackView }
+	}
+
+	public var labelView: KCLabel {
+		get { return mTextField }
 	}
 }
 

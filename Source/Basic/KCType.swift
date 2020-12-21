@@ -21,6 +21,7 @@
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLayoutPriority	= UILayoutPriority
 	public typealias KCLineBreakMode	= NSLineBreakMode
+	public typealias KCLabel		= UILabel
 	public typealias KCWindow		= UIWindow
 #else
 	public typealias KCPoint		= NSPoint
@@ -33,6 +34,7 @@
 	public typealias KCLayoutPriority	= NSLayoutConstraint.Priority
 	public typealias KCLineBreakMode	= NSLineBreakMode
 	public typealias KCWindowDelegate 	= NSWindowDelegate
+	public typealias KCLabel		= NSTextField
 	public typealias KCWindow		= NSWindow
 #endif
 

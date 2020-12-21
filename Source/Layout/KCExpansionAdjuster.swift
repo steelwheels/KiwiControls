@@ -35,7 +35,12 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(textEdit view: KCTextEdit){
-		view.setExpandability(holizontal: .Fixed, vertical: .High)
+		switch view.mode {
+		case .label, .value(_, _):
+			view.setExpandability(holizontal: .Fixed, vertical: .Fixed)
+		case .edit(_), .view(_):
+			view.setExpandability(holizontal: .Fixed, vertical: .High)
+		}
 	}
 
 	open override func visit(tableView view: KCTableView){
@@ -55,6 +60,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {
+		view.labelView.setExpansionPriority(holizontal: .High, vertical: .Fixed)
 		view.contentsView.accept(visitor: self)
 		view.setExpandability(holizontal: .High, vertical: .High)
 	}

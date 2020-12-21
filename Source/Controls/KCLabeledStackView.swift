@@ -60,8 +60,8 @@ open class KCLabeledStackView: KCCoreView
 		get { return coreView.contentsView }
 	}
 
-	public func sizeToContain(size content: KCSize) -> KCSize {
-		return coreView.sizeToContain(size: content)
+	public var labelView: KCLabel {
+		get { return coreView.labelView}
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

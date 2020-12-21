@@ -26,10 +26,10 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	}
 
 	public enum ModeType {
-		case label			/* 1 line text						*/
-		case value(FormatterType) 	/* Text as a value 	value: formatter		*/
-		case view(Int)			/* Not-editable text view				*/
-		case edit(Int)			/* Editable text field: 	value: max-colmun width	*/
+		case label
+		case value(FormatterType, Bool) 	/* FormatType: format, Bool: isEditable			*/
+		case view(Int)				/* Int: Defautl colmun num				*/
+		case edit(Int)				/* Int: Defautl colmun num			*/
 	}
 
 	public typealias CallbackFunction = (_ value: CNValue) -> Void
@@ -79,8 +79,8 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			mTextEdit.usesSingleLineMode 	= true
 			mTextEdit.lineBreakMode		= .byWordWrapping
 			mTextEdit.formatter 		= nil
-		case .value(let format):
-			mTextEdit.isEditable		= false
+		case .value(let format, let editable):
+			mTextEdit.isEditable		= editable
 			mTextEdit.isBezeled		= true
 			mTextEdit.usesSingleLineMode 	= false
 			mTextEdit.lineBreakMode		= .byWordWrapping
@@ -116,7 +116,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			let colnum: Int
 			switch mMode {
 			case .label, .value:
-				colnum = 20
+				colnum = 40
 			case .view(let num):
 				colnum = num
 			case .edit(let num):
