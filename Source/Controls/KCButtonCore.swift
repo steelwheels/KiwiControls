@@ -71,6 +71,7 @@ public class KCButtonCore: KCView
 					#else
 						myself.mButton.title = newstr
 					#endif
+					myself.mButton.invalidateIntrinsicContentSize()
 				}
 			})
 		}

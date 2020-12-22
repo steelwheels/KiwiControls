@@ -79,8 +79,10 @@ public class KCCheckBoxCore: KCView
 				if let myself = self {
 					#if os(iOS)
 						myself.mLabel.text = newval
+						myself.mLabel.invalidateIntrinsicContentSize()
 					#else
 						myself.mCheckBox.title = newval
+						myself.mCheckBox.invalidateIntrinsicContentSize()
 					#endif
 				}
 			})

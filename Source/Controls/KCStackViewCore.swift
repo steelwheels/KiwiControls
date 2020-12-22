@@ -214,6 +214,7 @@ open class KCStackViewCore : KCView
 				for view in views {
 					myself.addArrangedSubViewInMainThread(subView: view)
 				}
+				myself.mStackView.invalidateIntrinsicContentSize()
 			}
 		})
 	}

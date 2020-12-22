@@ -61,8 +61,10 @@ open class KCLabeledStackViewCore : KCView
 		set(newstr){
 			#if os(OSX)
 				mTextField.stringValue = newstr
+				mTextField.invalidateIntrinsicContentSize()
 			#else
 				mTextField.text = newstr
+				mTextField.invalidateIntrinsicContentSize()
 			#endif
 		}
 	}

@@ -1,6 +1,6 @@
 /**
- * @file	KCTextViewCore.swift
- * @brief Define KCTextViewCore class
+ * @file	KCTerminalViewCore.swift
+ * @brief Define KCTerminalViewCore class
  * @par Copyright
  *   Copyright (C) 2017-2020 Steel Wheels Project
  */
@@ -449,6 +449,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	private func updateFont() {
 		let font = CNPreference.shared.terminalPreference.font
 		textStorage.changeOverallFont(font: font)
+		mTextView.invalidateIntrinsicContentSize()
 	}
 
 	private var textStorage: NSTextStorage {
