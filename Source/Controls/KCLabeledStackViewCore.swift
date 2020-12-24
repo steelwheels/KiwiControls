@@ -40,6 +40,12 @@ open class KCLabeledStackViewCore : KCView
 		}
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mTextField.invalidateIntrinsicContentSize()
+		mStackView.invalidateIntrinsicContentSize()
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mTextField.setExpansionPriority(holizontal: holiz, vertical: .fixed)
 		mStackView.setExpandability(holizontal: holiz, vertical: vert)
@@ -61,10 +67,8 @@ open class KCLabeledStackViewCore : KCView
 		set(newstr){
 			#if os(OSX)
 				mTextField.stringValue = newstr
-				mTextField.invalidateIntrinsicContentSize()
 			#else
 				mTextField.text = newstr
-				mTextField.invalidateIntrinsicContentSize()
 			#endif
 		}
 	}

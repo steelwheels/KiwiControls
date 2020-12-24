@@ -27,6 +27,11 @@ open class KCTableViewCore : KCView
 		get { return mTableView.intrinsicContentSize }
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mTableView.invalidateIntrinsicContentSize()
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mTableView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)

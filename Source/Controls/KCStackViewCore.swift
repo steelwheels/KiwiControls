@@ -202,6 +202,11 @@ open class KCStackViewCore : KCView
 		}
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mStackView.invalidateIntrinsicContentSize()
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mStackView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
@@ -214,7 +219,6 @@ open class KCStackViewCore : KCView
 				for view in views {
 					myself.addArrangedSubViewInMainThread(subView: view)
 				}
-				myself.mStackView.invalidateIntrinsicContentSize()
 			}
 		})
 	}

@@ -45,6 +45,16 @@ public class KCCheckBoxCore: KCView
 		}
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		#if os(iOS)
+			mLabel.invalidateIntrinsicContentSize()
+			mSwitch.invalidateIntrinsicContentSize()
+		#else
+			mCheckBox.invalidateIntrinsicContentSize()
+		#endif
+	}
+
 	#if os(iOS)
 	@IBAction func checkUpdated(_ sender: UISwitch) {
 		if let updatecallback = checkUpdatedCallback {
@@ -79,10 +89,8 @@ public class KCCheckBoxCore: KCView
 				if let myself = self {
 					#if os(iOS)
 						myself.mLabel.text = newval
-						myself.mLabel.invalidateIntrinsicContentSize()
 					#else
 						myself.mCheckBox.title = newval
-						myself.mCheckBox.invalidateIntrinsicContentSize()
 					#endif
 				}
 			})

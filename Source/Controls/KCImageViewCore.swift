@@ -37,6 +37,11 @@ open class KCImageViewCore : KCView
 		get { return mImageView.intrinsicContentSize }
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mImageView.invalidateIntrinsicContentSize()
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mImageView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)

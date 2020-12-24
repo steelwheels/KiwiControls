@@ -55,6 +55,13 @@ open class KCCoreView: KCView
 		}
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		if let core = mCoreView {
+			core.invalidateIntrinsicContentSize()
+		}
+	}
+
 	open override func expandability() -> (KCViewBase.ExpansionPriority, KCViewBase.ExpansionPriority) {
 		if let core = mCoreView {
 			return core.expandability()

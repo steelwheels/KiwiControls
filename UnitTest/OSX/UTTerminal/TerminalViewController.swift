@@ -46,9 +46,16 @@ public class TerminalViewController: KCSingleViewController
 		let shell     = UTShellThread(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: environment)
 		mShell        = shell
 		shell.terminalView = termview
-
 		mTerminalView = termview
-		return termview
+
+		#if true
+			let box = KCStackView()
+			box.axis = .vertical
+			box.addArrangedSubView(subView: termview)
+			return box
+		#else
+			return termview
+		#endif
 	}
 
 	public override func viewDidAppear() {

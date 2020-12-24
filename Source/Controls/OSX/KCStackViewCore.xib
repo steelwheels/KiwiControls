@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
@@ -21,11 +21,16 @@
                 <constraint firstItem="NA8-s6-shA" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="7Wk-sI-yas"/>
                 <constraint firstAttribute="trailing" secondItem="NA8-s6-shA" secondAttribute="trailing" id="L9d-zR-qkH"/>
                 <constraint firstItem="NA8-s6-shA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="P7a-Ce-QgP"/>
+                <constraint firstAttribute="trailing" secondItem="NA8-s6-shA" secondAttribute="trailing" id="QwY-p1-mnr"/>
                 <constraint firstAttribute="bottom" secondItem="NA8-s6-shA" secondAttribute="bottom" id="Rxx-UA-RIy"/>
+                <constraint firstItem="NA8-s6-shA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="U4R-33-jun"/>
+                <constraint firstItem="NA8-s6-shA" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="bFb-5B-awJ"/>
+                <constraint firstAttribute="bottom" secondItem="NA8-s6-shA" secondAttribute="bottom" id="oZ0-ho-smk"/>
             </constraints>
             <connections>
                 <outlet property="mStackView" destination="NA8-s6-shA" id="PcR-7k-BlS"/>
             </connections>
+            <point key="canvasLocation" x="-100" y="120"/>
         </customView>
     </objects>
 </document>

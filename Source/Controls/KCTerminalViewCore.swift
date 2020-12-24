@@ -334,15 +334,16 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public override var intrinsicContentSize: KCSize {
-		get {
-			let result = targetSize()
-			NSLog("KCTerminalViewCore intrinsic: \(result.description)")
-			return result
-		}
+		get { return targetSize() }
+	}
+
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mTextView.invalidateIntrinsicContentSize()
 	}
 
 	public override func setFrameSize(_ newsize: KCSize) {
-		//NSLog("NSTerminalViewCore: setFrameSize \(newsize.description)")
+		CNLog(logLevel: .debug, message: "KCTerminalViewCore: setFrameSize: \(newsize.description)")
 		setCoreFrameSize(core: mTextView,   size: newsize)
 		#if os(OSX)
 			setCoreFrameSize(core: mScrollView, size: newsize)
@@ -358,10 +359,9 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	private func targetSize() -> KCSize {
-		let tpref      = CNPreference.shared.terminalPreference
 		let fontsize   = fontSize()
-		let termwidth  = CGFloat(tpref.width)  * fontsize.width
-		let termheight = CGFloat(tpref.height) * fontsize.height
+		let termwidth  = CGFloat(mTerminalInfo.width)  * fontsize.width
+		let termheight = CGFloat(mTerminalInfo.height) * fontsize.height
 		let barwidth   = scrollerWidth()
 		let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
 		return termsize
@@ -375,18 +375,8 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		let newheight   = Int(viewsize.height / fontsize.height)
 		//NSLog("updateTerminalInfo: \(newwidth) \(newheight)")
 
-		var doinvalidate = false
-		if mTerminalInfo.width != newwidth {
-			mTerminalInfo.width	= newwidth
-			doinvalidate		= true
-		}
-		if mTerminalInfo.height != newheight {
-			mTerminalInfo.height	= newheight
-			doinvalidate		= true
-		}
-		if doinvalidate {
-			mTextView.invalidateIntrinsicContentSize()
-		}
+		mTerminalInfo.width	= newwidth
+		mTerminalInfo.height	= newheight
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -416,15 +406,17 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 					case CNPreference.shared.terminalPreference.WidthItem:
 						let newwidth = CNPreference.shared.terminalPreference.width
 						if mTerminalInfo.width != newwidth {
-							mTextView.invalidateIntrinsicContentSize()
-							mTextView.setNeedsLayout()
+							mTerminalInfo.width = newwidth
+							self.invalidateIntrinsicContentSize()
+							self.setNeedsLayout()
 							self.notify(viewControlEvent: .updateWindowSize)
 						}
 					case CNPreference.shared.terminalPreference.HeightItem:
 						let newheight = CNPreference.shared.terminalPreference.height
 						if mTerminalInfo.height != newheight {
-							mTextView.invalidateIntrinsicContentSize()
-							mTextView.setNeedsLayout()
+							mTerminalInfo.height = newheight
+							self.invalidateIntrinsicContentSize()
+							self.setNeedsLayout()
 							self.notify(viewControlEvent: .updateWindowSize)
 						}
 					case CNSystemPreference.InterfaceStyleItem:
@@ -469,7 +461,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	private func updateFont() {
 		let font = CNPreference.shared.terminalPreference.font
 		textStorage.changeOverallFont(font: font)
-		mTextView.invalidateIntrinsicContentSize()
+		self.invalidateIntrinsicContentSize()
 	}
 
 	private var textStorage: NSTextStorage {

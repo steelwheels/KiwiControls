@@ -138,6 +138,11 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	}
 	#endif
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mTextEdit.invalidateIntrinsicContentSize()
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mTextEdit.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
@@ -190,7 +195,6 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 					#else
 						myself.mTextEdit.text = newval
 					#endif
-					myself.mTextEdit.invalidateIntrinsicContentSize()
 				}
 			})
 		}

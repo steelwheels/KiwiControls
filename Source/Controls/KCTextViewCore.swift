@@ -394,6 +394,16 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		get { return targetSize() }
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		#if os(OSX)
+			mTextView.invalidateIntrinsicContentSize()
+			mScrollView.invalidateIntrinsicContentSize()
+		#else
+			mTextView.invalidateIntrinsicContentSize()
+		#endif
+	}
+
 	private func targetSize() -> KCSize {
 		let tpref      = CNPreference.shared.terminalPreference
 		let fontsize   = fontSize()

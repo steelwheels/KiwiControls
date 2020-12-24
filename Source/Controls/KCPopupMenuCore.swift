@@ -115,6 +115,15 @@ open class KCPopupMenuCore: KCView
 		}
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		#if os(OSX)
+			mPopupButton.invalidateIntrinsicContentSize()
+		#else
+			mPickerView.invalidateIntrinsicContentSize()
+		#endif
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		#if os(OSX)
 			mPopupButton.setExpansionPriority(holizontal: holiz, vertical: vert)

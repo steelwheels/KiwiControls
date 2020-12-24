@@ -54,6 +54,12 @@ open class KCIconViewCore : KCView
 		}
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mLayerView.invalidateIntrinsicContentSize()
+		mLabelView.invalidateIntrinsicContentSize()
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mLayerView.setExpansionPriority(holizontal: holiz, vertical: vert)
 		mLabelView.setExpansionPriority(holizontal: .fixed, vertical: .fixed)

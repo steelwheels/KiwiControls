@@ -15,7 +15,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCCoreView = view.getCoreView()
 		coreview.accept(visitor: self)
-		view.setExpandability(holizontal: .box, vertical: .box)
+		view.setExpandability(holizontal: .low, vertical: .low)
 	}
 
 	open override func visit(iconView view: KCIconView){

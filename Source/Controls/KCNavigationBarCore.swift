@@ -173,6 +173,16 @@ open class KCNavigationBarCore: KCView
 		get { return navigationBarSize() }
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mNavigationBar.invalidateIntrinsicContentSize()
+		#if os(OSX)
+		mNavigationItem.invalidateIntrinsicContentSize()
+		leftBarButton.invalidateIntrinsicContentSize()
+		rightBarButton.invalidateIntrinsicContentSize()
+		#endif
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		#if os(OSX)
 			mNavigationBar.setExpandability(holizontal: .low, vertical: .low)

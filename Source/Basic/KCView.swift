@@ -63,19 +63,16 @@ extension KCViewBase
 		case high
 		case middle
 		case low
-		case box
 		case fixed
 
 		public static func sortedPriorities() -> Array<ExpansionPriority> {
-			return [.fixed, .box, .low, .middle, .high]
+			return [.fixed, .low, .middle, .high]
 		}
 
 		static public func fromValue(_ pri: KCLayoutPriority) -> ExpansionPriority {
 			let result: ExpansionPriority
 			if pri >= ExpansionPriority.fixed.toValue() {
 				result = .fixed
-			} else if pri >= ExpansionPriority.box.toValue() {
-				result = .box
 			} else if pri >= ExpansionPriority.low.toValue() {
 				result = .low
 			} else if pri >= ExpansionPriority.middle.toValue() {
@@ -92,7 +89,6 @@ extension KCViewBase
 				case .high:	return .windowSizeStayPut - 1
 				case .middle:	return .windowSizeStayPut + 1		// = 500 + 1
 				case .low:	return .defaultHigh			// = 750
-				case .box:	return .defaultHigh + 10		// = 760
 				case .fixed:	return .required			// = 1000
 				}
 			#else
@@ -100,7 +96,6 @@ extension KCViewBase
 				case .high:	return .defaultLow - 1
 				case .middle:	return .defaultLow
 				case .low:	return .defaultHigh
-				case .box:	return .defaultHigh + 1
 				case .fixed:	return .required - 1
 				}
 			#endif
@@ -112,7 +107,6 @@ extension KCViewBase
 			case .high:	result = "high"
 			case .middle:	result = "middle"
 			case .low:	result = "low"
-			case .box:	result = "box"
 			case .fixed:	result = "fixed"
 			}
 			return result

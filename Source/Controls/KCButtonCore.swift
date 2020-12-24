@@ -31,6 +31,11 @@ public class KCButtonCore: KCView
 		get { return mButton.intrinsicContentSize }
 	}
 
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		mButton.invalidateIntrinsicContentSize()
+	}
+
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mButton.setExpansionPriority(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
@@ -71,7 +76,6 @@ public class KCButtonCore: KCView
 					#else
 						myself.mButton.title = newstr
 					#endif
-					myself.mButton.invalidateIntrinsicContentSize()
 				}
 			})
 		}
