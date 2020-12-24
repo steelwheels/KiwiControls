@@ -197,27 +197,6 @@
 		05515EA525655D4F00D9BE1B /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0564519125184C5A006C2430 /* CoconutShell.xcframework */; };
 		05515EAE2565615100D9BE1B /* Preference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05515EAD2565615100D9BE1B /* Preference.storyboard */; };
 		05515EB32565618A00D9BE1B /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05515EB22565618A00D9BE1B /* PreferenceViewController.swift */; };
-		0553914C2566AB5600757B45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553914B2566AB5600757B45 /* AppDelegate.swift */; };
-		0553914E2566AB5600757B45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553914D2566AB5600757B45 /* ViewController.swift */; };
-		055391502566AB5800757B45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0553914F2566AB5800757B45 /* Assets.xcassets */; };
-		055391532566AB5900757B45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055391512566AB5900757B45 /* Main.storyboard */; };
-		0553915E2566AB9900757B45 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
-		055391652566ABAB00757B45 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0564519125184C5A006C2430 /* CoconutShell.xcframework */; };
-		0553916B2566ABB900757B45 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
-		055391842566AED700757B45 /* Preference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055391832566AED700757B45 /* Preference.storyboard */; };
-		055391902566AF9B00757B45 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553918F2566AF9B00757B45 /* PreferenceViewController.swift */; };
-		055D5F562569345100E08923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D5F552569345100E08923 /* AppDelegate.swift */; };
-		055D5F582569345100E08923 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D5F572569345100E08923 /* SceneDelegate.swift */; };
-		055D5F5A2569345100E08923 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D5F592569345100E08923 /* ViewController.swift */; };
-		055D5F5D2569345100E08923 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055D5F5B2569345100E08923 /* Main.storyboard */; };
-		055D5F5F2569345200E08923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055D5F5E2569345200E08923 /* Assets.xcassets */; };
-		055D5F622569345200E08923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055D5F602569345200E08923 /* LaunchScreen.storyboard */; };
-		055D5F73256935A200E08923 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
-		055D5F74256935A200E08923 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		055D5F75256935A200E08923 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0564519125184C5A006C2430 /* CoconutShell.xcframework */; };
-		055D5F76256935A200E08923 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0564519125184C5A006C2430 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		055D5F7D256935AA00E08923 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
-		055D5F7E256935AA00E08923 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0564519C251851E1006C2430 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564519B251851E1006C2430 /* AppDelegate.swift */; };
 		0564519E251851E1006C2430 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564519D251851E1006C2430 /* SceneDelegate.swift */; };
 		056451A0251851E1006C2430 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564519F251851E1006C2430 /* ViewController.swift */; };
@@ -284,20 +263,6 @@
 			remoteGlobalIDString = 05EB004425181E7300636C82;
 			remoteInfo = Install;
 		};
-		055391AA2566B33400757B45 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0518974325176DD300487B45 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05EB004425181E7300636C82;
-			remoteInfo = Install;
-		};
-		055D5F892569371800E08923 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0518974325176DD300487B45 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05EB004425181E7300636C82;
-			remoteInfo = Install;
-		};
 		056451AE251851F6006C2430 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0518974325176DD300487B45 /* Project object */;
@@ -336,19 +301,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		055D5F77256935A300E08923 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				055D5F76256935A200E08923 /* CoconutShell.xcframework in Embed Frameworks */,
-				055D5F7E256935AA00E08923 /* KiwiControls.xcframework in Embed Frameworks */,
-				055D5F74256935A200E08923 /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		056451B4251853F8006C2430 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -502,23 +454,6 @@
 		05515EA025655CB900D9BE1B /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		05515EAD2565615100D9BE1B /* Preference.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preference.storyboard; sourceTree = "<group>"; };
 		05515EB22565618A00D9BE1B /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
-		055391492566AB5600757B45 /* UTSimpleTerminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTSimpleTerminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0553914B2566AB5600757B45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0553914D2566AB5600757B45 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0553914F2566AB5800757B45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		055391522566AB5900757B45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		055391542566AB5900757B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		055391552566AB5900757B45 /* UTSimpleTerminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTSimpleTerminal.entitlements; sourceTree = "<group>"; };
-		055391832566AED700757B45 /* Preference.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preference.storyboard; sourceTree = "<group>"; };
-		0553918F2566AF9B00757B45 /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
-		055D5F532569345100E08923 /* UTSimpleTerminal_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTSimpleTerminal_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		055D5F552569345100E08923 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		055D5F572569345100E08923 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		055D5F592569345100E08923 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		055D5F5C2569345100E08923 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		055D5F5E2569345200E08923 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		055D5F612569345200E08923 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		055D5F632569345200E08923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0564519125184C5A006C2430 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		05645199251851E1006C2430 /* UTTerminal_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTerminal_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0564519B251851E1006C2430 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -595,26 +530,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		055391462566AB5600757B45 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				055391652566ABAB00757B45 /* CoconutShell.xcframework in Frameworks */,
-				0553916B2566ABB900757B45 /* KiwiControls.xcframework in Frameworks */,
-				0553915E2566AB9900757B45 /* CoconutData.xcframework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		055D5F502569345100E08923 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				055D5F75256935A200E08923 /* CoconutShell.xcframework in Frameworks */,
-				055D5F7D256935AA00E08923 /* KiwiControls.xcframework in Frameworks */,
-				055D5F73256935A200E08923 /* CoconutData.xcframework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05645196251851E1006C2430 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,8 +594,6 @@
 				05B750502539D2410034D8CB /* UTMultiView_macOS.app */,
 				05A77557254DA1AD00DF71DE /* UTConsole.app */,
 				05515E6C256552E800D9BE1B /* UTTerminal.app */,
-				055391492566AB5600757B45 /* UTSimpleTerminal.app */,
-				055D5F532569345100E08923 /* UTSimpleTerminal_iOS.app */,
 				05248492256A6097001BD219 /* UTStackView_macOS.app */,
 			);
 			name = Products;
@@ -958,39 +871,9 @@
 			path = UTTerminal;
 			sourceTree = "<group>";
 		};
-		0553914A2566AB5600757B45 /* UTSimpleTerminal */ = {
-			isa = PBXGroup;
-			children = (
-				0553914B2566AB5600757B45 /* AppDelegate.swift */,
-				0553914D2566AB5600757B45 /* ViewController.swift */,
-				0553918F2566AF9B00757B45 /* PreferenceViewController.swift */,
-				0553914F2566AB5800757B45 /* Assets.xcassets */,
-				055391512566AB5900757B45 /* Main.storyboard */,
-				055391832566AED700757B45 /* Preference.storyboard */,
-				055391542566AB5900757B45 /* Info.plist */,
-				055391552566AB5900757B45 /* UTSimpleTerminal.entitlements */,
-			);
-			path = UTSimpleTerminal;
-			sourceTree = "<group>";
-		};
-		055D5F542569345100E08923 /* UTSimpleTerminal_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				055D5F552569345100E08923 /* AppDelegate.swift */,
-				055D5F572569345100E08923 /* SceneDelegate.swift */,
-				055D5F592569345100E08923 /* ViewController.swift */,
-				055D5F5B2569345100E08923 /* Main.storyboard */,
-				055D5F5E2569345200E08923 /* Assets.xcassets */,
-				055D5F602569345200E08923 /* LaunchScreen.storyboard */,
-				055D5F632569345200E08923 /* Info.plist */,
-			);
-			path = UTSimpleTerminal_iOS;
-			sourceTree = "<group>";
-		};
 		0564519425185019006C2430 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				055D5F542569345100E08923 /* UTSimpleTerminal_iOS */,
 				0564519A251851E1006C2430 /* UTTerminal */,
 			);
 			path = iOS;
@@ -1068,7 +951,6 @@
 			isa = PBXGroup;
 			children = (
 				05248493256A6097001BD219 /* UTStackView_macOS */,
-				0553914A2566AB5600757B45 /* UTSimpleTerminal */,
 				05A77558254DA1AD00DF71DE /* UTConsole */,
 				05B750512539D2410034D8CB /* UTMultiView_macOS */,
 				05515E6D256552E800D9BE1B /* UTTerminal */,
@@ -1189,43 +1071,6 @@
 			productReference = 05515E6C256552E800D9BE1B /* UTTerminal.app */;
 			productType = "com.apple.product-type.application";
 		};
-		055391482566AB5600757B45 /* UTSimpleTerminal */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 055391562566AB5900757B45 /* Build configuration list for PBXNativeTarget "UTSimpleTerminal" */;
-			buildPhases = (
-				055391452566AB5600757B45 /* Sources */,
-				055391462566AB5600757B45 /* Frameworks */,
-				055391472566AB5600757B45 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				055391AB2566B33400757B45 /* PBXTargetDependency */,
-			);
-			name = UTSimpleTerminal;
-			productName = UTSimpleTerminal;
-			productReference = 055391492566AB5600757B45 /* UTSimpleTerminal.app */;
-			productType = "com.apple.product-type.application";
-		};
-		055D5F522569345100E08923 /* UTSimpleTerminal_iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 055D5F662569345200E08923 /* Build configuration list for PBXNativeTarget "UTSimpleTerminal_iOS" */;
-			buildPhases = (
-				055D5F4F2569345100E08923 /* Sources */,
-				055D5F502569345100E08923 /* Frameworks */,
-				055D5F512569345100E08923 /* Resources */,
-				055D5F77256935A300E08923 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				055D5F8A2569371800E08923 /* PBXTargetDependency */,
-			);
-			name = UTSimpleTerminal_iOS;
-			productName = UTSimpleTerminal_iOS;
-			productReference = 055D5F532569345100E08923 /* UTSimpleTerminal_iOS.app */;
-			productType = "com.apple.product-type.application";
-		};
 		05645198251851E1006C2430 /* UTTerminal_iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 056451AA251851E2006C2430 /* Build configuration list for PBXNativeTarget "UTTerminal_iOS" */;
@@ -1305,12 +1150,6 @@
 					05515E6B256552E800D9BE1B = {
 						CreatedOnToolsVersion = 12.2;
 					};
-					055391482566AB5600757B45 = {
-						CreatedOnToolsVersion = 12.2;
-					};
-					055D5F522569345100E08923 = {
-						CreatedOnToolsVersion = 12.2;
-					};
 					05645198251851E1006C2430 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -1345,8 +1184,6 @@
 				05B7504F2539D2410034D8CB /* UTMultiView_macOS */,
 				05A77556254DA1AD00DF71DE /* UTConsole */,
 				05515E6B256552E800D9BE1B /* UTTerminal */,
-				055391482566AB5600757B45 /* UTSimpleTerminal */,
-				055D5F522569345100E08923 /* UTSimpleTerminal_iOS */,
 				05248491256A6097001BD219 /* UTStackView_macOS */,
 			);
 		};
@@ -1415,26 +1252,6 @@
 				05515E73256552E900D9BE1B /* Assets.xcassets in Resources */,
 				05515E76256552E900D9BE1B /* Main.storyboard in Resources */,
 				05515EAE2565615100D9BE1B /* Preference.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		055391472566AB5600757B45 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				055391502566AB5800757B45 /* Assets.xcassets in Resources */,
-				055391532566AB5900757B45 /* Main.storyboard in Resources */,
-				055391842566AED700757B45 /* Preference.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		055D5F512569345100E08923 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				055D5F622569345200E08923 /* LaunchScreen.storyboard in Resources */,
-				055D5F5F2569345200E08923 /* Assets.xcassets in Resources */,
-				055D5F5D2569345100E08923 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,26 +1484,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		055391452566AB5600757B45 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				055391902566AF9B00757B45 /* PreferenceViewController.swift in Sources */,
-				0553914E2566AB5600757B45 /* ViewController.swift in Sources */,
-				0553914C2566AB5600757B45 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		055D5F4F2569345100E08923 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				055D5F5A2569345100E08923 /* ViewController.swift in Sources */,
-				055D5F562569345100E08923 /* AppDelegate.swift in Sources */,
-				055D5F582569345100E08923 /* SceneDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05645195251851E1006C2430 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1731,16 +1528,6 @@
 			target = 05EB004425181E7300636C82 /* Install */;
 			targetProxy = 05515E85256553F500D9BE1B /* PBXContainerItemProxy */;
 		};
-		055391AB2566B33400757B45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05EB004425181E7300636C82 /* Install */;
-			targetProxy = 055391AA2566B33400757B45 /* PBXContainerItemProxy */;
-		};
-		055D5F8A2569371800E08923 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05EB004425181E7300636C82 /* Install */;
-			targetProxy = 055D5F892569371800E08923 /* PBXContainerItemProxy */;
-		};
 		056451AF251851F6006C2430 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05EB004425181E7300636C82 /* Install */;
@@ -1783,30 +1570,6 @@
 				05515E75256552E900D9BE1B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		055391512566AB5900757B45 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				055391522566AB5900757B45 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		055D5F5B2569345100E08923 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				055D5F5C2569345100E08923 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		055D5F602569345200E08923 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				055D5F612569345200E08923 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		056451A1251851E1006C2430 /* Main.storyboard */ = {
@@ -2432,199 +2195,6 @@
 			};
 			name = Release;
 		};
-		055391572566AB5900757B45 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTSimpleTerminal/UTSimpleTerminal.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = ../UnitTest/OSX/UTSimpleTerminal/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTSimpleTerminal;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		055391582566AB5900757B45 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTSimpleTerminal/UTSimpleTerminal.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = ../UnitTest/OSX/UTSimpleTerminal/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTSimpleTerminal;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		055D5F642569345200E08923 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = ../UnitTest/iOS/UTSimpleTerminal_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTSimpleTerminal-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		055D5F652569345200E08923 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TR2DNF3P93;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = ../UnitTest/iOS/UTSimpleTerminal_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTSimpleTerminal-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		056451AB251851E2006C2430 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3179,24 +2749,6 @@
 			buildConfigurations = (
 				05515E7A256552E900D9BE1B /* Debug */,
 				05515E7B256552E900D9BE1B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		055391562566AB5900757B45 /* Build configuration list for PBXNativeTarget "UTSimpleTerminal" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				055391572566AB5900757B45 /* Debug */,
-				055391582566AB5900757B45 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		055D5F662569345200E08923 /* Build configuration list for PBXNativeTarget "UTSimpleTerminal_iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				055D5F642569345200E08923 /* Debug */,
-				055D5F652569345200E08923 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
