@@ -46,8 +46,6 @@
 		0544EAAC25176FBE002DE6A8 /* KCGroupMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA9E25176FBE002DE6A8 /* KCGroupMaker.swift */; };
 		0544EAAF25176FBE002DE6A8 /* KCExpansionAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAA025176FBE002DE6A8 /* KCExpansionAdjuster.swift */; };
 		0544EAB025176FBE002DE6A8 /* KCExpansionAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAA025176FBE002DE6A8 /* KCExpansionAdjuster.swift */; };
-		0544EAB325176FBE002DE6A8 /* KCGroupSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAA225176FBE002DE6A8 /* KCGroupSizeAllocator.swift */; };
-		0544EAB425176FBE002DE6A8 /* KCGroupSizeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAA225176FBE002DE6A8 /* KCGroupSizeAllocator.swift */; };
 		0544EAB525176FBE002DE6A8 /* KCFirstResponderDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAA325176FBE002DE6A8 /* KCFirstResponderDecider.swift */; };
 		0544EAB625176FBE002DE6A8 /* KCFirstResponderDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAA325176FBE002DE6A8 /* KCFirstResponderDecider.swift */; };
 		0544EAB725176FBE002DE6A8 /* KCDistributionDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAA425176FBE002DE6A8 /* KCDistributionDecider.swift */; };
@@ -409,7 +407,6 @@
 		0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayouter.swift; sourceTree = "<group>"; };
 		0544EA9E25176FBE002DE6A8 /* KCGroupMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupMaker.swift; sourceTree = "<group>"; };
 		0544EAA025176FBE002DE6A8 /* KCExpansionAdjuster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCExpansionAdjuster.swift; sourceTree = "<group>"; };
-		0544EAA225176FBE002DE6A8 /* KCGroupSizeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupSizeAllocator.swift; sourceTree = "<group>"; };
 		0544EAA325176FBE002DE6A8 /* KCFirstResponderDecider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCFirstResponderDecider.swift; sourceTree = "<group>"; };
 		0544EAA425176FBE002DE6A8 /* KCDistributionDecider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCDistributionDecider.swift; sourceTree = "<group>"; };
 		0544EABC25176FF5002DE6A8 /* KCImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImage.swift; sourceTree = "<group>"; };
@@ -779,7 +776,6 @@
 				0544EAA025176FBE002DE6A8 /* KCExpansionAdjuster.swift */,
 				0544EAA325176FBE002DE6A8 /* KCFirstResponderDecider.swift */,
 				0544EA9E25176FBE002DE6A8 /* KCGroupMaker.swift */,
-				0544EAA225176FBE002DE6A8 /* KCGroupSizeAllocator.swift */,
 				0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */,
 				0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */,
 			);
@@ -1532,7 +1528,6 @@
 				0544EADA25176FF5002DE6A8 /* KCStroke.swift in Sources */,
 				0544EBBB25177676002DE6A8 /* KCView.swift in Sources */,
 				0544EBB525177676002DE6A8 /* KCPreference.swift in Sources */,
-				0544EAB325176FBE002DE6A8 /* KCGroupSizeAllocator.swift in Sources */,
 				056C0D6825177959003A9D7F /* KCRepetitiveLayer.swift in Sources */,
 				0544EACE25176FF5002DE6A8 /* KCPoint.swift in Sources */,
 				0544EB36251775A3002DE6A8 /* KCColorSelector.swift in Sources */,
@@ -1619,7 +1614,6 @@
 				056C0D6125177959003A9D7F /* KCImageDrawerLayer.swift in Sources */,
 				0544EADB25176FF5002DE6A8 /* KCStroke.swift in Sources */,
 				0544EBB425177676002DE6A8 /* KCLayoutConstraint.swift in Sources */,
-				0544EAB425176FBE002DE6A8 /* KCGroupSizeAllocator.swift in Sources */,
 				0544EBB825177676002DE6A8 /* KCType.swift in Sources */,
 				056C0D5D25177959003A9D7F /* KCStrokeDrawerLayer.swift in Sources */,
 				0577253425878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */,

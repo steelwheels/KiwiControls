@@ -41,7 +41,7 @@ open class KCLabeledStackViewCore : KCView
 	}
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mTextField.setExpansionPriority(holizontal: holiz, vertical: .Fixed)
+		mTextField.setExpansionPriority(holizontal: holiz, vertical: .fixed)
 		mStackView.setExpandability(holizontal: holiz, vertical: vert)
 		super.setExpandability(holizontal: holiz, vertical: vert)
 	}

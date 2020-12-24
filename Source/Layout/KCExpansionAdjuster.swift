@@ -15,32 +15,40 @@ public class KCExpansionAdjuster: KCViewVisitor
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCCoreView = view.getCoreView()
 		coreview.accept(visitor: self)
-		coreview.setExpandability(holizontal: .High, vertical: .High)
+		view.setExpandability(holizontal: .box, vertical: .box)
 	}
 
 	open override func visit(iconView view: KCIconView){
-		view.setExpandability(holizontal: .Low, vertical: .Low)
+		view.setExpandability(holizontal: .low, vertical: .low)
 	}
 
 	open override func visit(button view: KCButton){
-		view.setExpandability(holizontal: .Low, vertical: .Fixed)
+		view.setExpandability(holizontal: .low, vertical: .fixed)
 	}
 
 	open override func visit(checkBox view: KCCheckBox){
-		view.setExpandability(holizontal: .Low, vertical: .Fixed)
+		view.setExpandability(holizontal: .low, vertical: .fixed)
 	}
 
 	open override func visit(stepper view: KCStepper){
-		view.setExpandability(holizontal: .Low, vertical: .Fixed)
+		view.setExpandability(holizontal: .low, vertical: .fixed)
 	}
 
 	open override func visit(textEdit view: KCTextEdit){
 		switch view.mode {
 		case .label, .value(_, _):
-			view.setExpandability(holizontal: .Fixed, vertical: .Fixed)
+			view.setExpandability(holizontal: .fixed, vertical: .fixed)
 		case .edit(_), .view(_):
-			view.setExpandability(holizontal: .Fixed, vertical: .High)
+			view.setExpandability(holizontal: .fixed, vertical: .middle)
 		}
+	}
+
+	open override func visit(consoleView view: KCConsoleView){
+		view.setExpandability(holizontal: .fixed, vertical: .fixed)
+	}
+
+	open override func visit(terminalView view: KCTerminalView){
+		view.setExpandability(holizontal: .fixed, vertical: .fixed)
 	}
 
 	open override func visit(tableView view: KCTableView){
@@ -56,45 +64,37 @@ public class KCExpansionAdjuster: KCViewVisitor
 		}
 		/* Restrore axis */
 		axis = prevaxis
-		view.setExpandability(holizontal: .High, vertical: .High)
+		view.setExpandability(holizontal: .high, vertical: .high)
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {
-		view.labelView.setExpansionPriority(holizontal: .High, vertical: .Fixed)
+		view.labelView.setExpansionPriority(holizontal: .middle, vertical: .fixed)
 		view.contentsView.accept(visitor: self)
-		view.setExpandability(holizontal: .High, vertical: .High)
-	}
-
-	open override func visit(consoleView view: KCConsoleView){
-		view.setExpandability(holizontal: .Fixed, vertical: .Fixed)
-	}
-
-	open override func visit(terminalView view: KCTerminalView){
-		view.setExpandability(holizontal: .Low, vertical: .Low)
+		view.setExpandability(holizontal: .high, vertical: .high)
 	}
 
 	open override func visit(imageView view: KCImageView){
-		view.setExpandability(holizontal: .Fixed, vertical: .Fixed)
+		view.setExpandability(holizontal: .fixed, vertical: .fixed)
 	}
 
 	open override func visit(navigationBar view: KCNavigationBar){
-		view.setExpandability(holizontal: .High, vertical: .Fixed)
+		view.setExpandability(holizontal: .middle, vertical: .fixed)
 	}
 
 	open override func visit(colorSelector view: KCColorSelector){
-		view.setExpandability(holizontal: .Low, vertical: .Fixed)
+		view.setExpandability(holizontal: .low, vertical: .fixed)
 	}
 
 	open override func visit(popupMenu view: KCPopupMenu){
-		view.setExpandability(holizontal: .Low, vertical: .Fixed)
+		view.setExpandability(holizontal: .low, vertical: .fixed)
 	}
 
 	open override func visit(coreView view: KCCoreView){
 		switch axis {
 		case .horizontal:
-			view.setExpandability(holizontal: .Low, vertical: .High)
+			view.setExpandability(holizontal: .low, vertical: .middle)
 		case .vertical:
-			view.setExpandability(holizontal: .High, vertical: .Low)
+			view.setExpandability(holizontal: .middle, vertical: .low)
 		@unknown default:
 			NSLog("Unknown axis type")
 		}

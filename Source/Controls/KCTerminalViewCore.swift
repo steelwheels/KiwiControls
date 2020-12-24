@@ -417,12 +417,14 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 						let newwidth = CNPreference.shared.terminalPreference.width
 						if mTerminalInfo.width != newwidth {
 							mTextView.invalidateIntrinsicContentSize()
+							mTextView.setNeedsLayout()
 							self.notify(viewControlEvent: .updateWindowSize)
 						}
 					case CNPreference.shared.terminalPreference.HeightItem:
 						let newheight = CNPreference.shared.terminalPreference.height
 						if mTerminalInfo.height != newheight {
 							mTextView.invalidateIntrinsicContentSize()
+							mTextView.setNeedsLayout()
 							self.notify(viewControlEvent: .updateWindowSize)
 						}
 					case CNSystemPreference.InterfaceStyleItem:

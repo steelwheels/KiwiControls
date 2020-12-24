@@ -56,7 +56,7 @@ open class KCIconViewCore : KCView
 
 	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
 		mLayerView.setExpansionPriority(holizontal: holiz, vertical: vert)
-		mLabelView.setExpansionPriority(holizontal: .Fixed, vertical: .Fixed)
+		mLabelView.setExpansionPriority(holizontal: .fixed, vertical: .fixed)
 		super.setExpandability(holizontal: holiz, vertical: vert)
 	}
 

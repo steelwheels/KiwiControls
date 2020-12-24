@@ -60,22 +60,28 @@ extension KCViewBase
 
 	/* for autolayout */
 	public enum ExpansionPriority {
-		case High
-		case Low
-		case Fixed
+		case high
+		case middle
+		case low
+		case box
+		case fixed
 
 		public static func sortedPriorities() -> Array<ExpansionPriority> {
-			return [.Fixed, .Low, .High]
+			return [.fixed, .box, .low, .middle, .high]
 		}
 
 		static public func fromValue(_ pri: KCLayoutPriority) -> ExpansionPriority {
 			let result: ExpansionPriority
-			if pri >= ExpansionPriority.Fixed.toValue() {
-				result = .Fixed
-			} else if pri >= ExpansionPriority.Low.toValue() {
-				result = .Low
+			if pri >= ExpansionPriority.fixed.toValue() {
+				result = .fixed
+			} else if pri >= ExpansionPriority.box.toValue() {
+				result = .box
+			} else if pri >= ExpansionPriority.low.toValue() {
+				result = .low
+			} else if pri >= ExpansionPriority.middle.toValue() {
+				result = .middle
 			} else {
-				result = .High
+				result = .high
 			}
 			return result
 		}
@@ -83,15 +89,19 @@ extension KCViewBase
 		public func toValue() -> KCLayoutPriority {
 			#if os(OSX)
 				switch self {
-				case .High:	return .windowSizeStayPut + 1		// = 500 + 1
-				case .Low:	return .defaultHigh			// = 750
-				case .Fixed:	return .required			// = 1000
+				case .high:	return .windowSizeStayPut - 1
+				case .middle:	return .windowSizeStayPut + 1		// = 500 + 1
+				case .low:	return .defaultHigh			// = 750
+				case .box:	return .defaultHigh + 10		// = 760
+				case .fixed:	return .required			// = 1000
 				}
 			#else
 				switch self {
-				case .High:	return .defaultLow
-				case .Low:	return .defaultHigh
-				case .Fixed:	return .required - 1
+				case .high:	return .defaultLow - 1
+				case .middle:	return .defaultLow
+				case .low:	return .defaultHigh
+				case .box:	return .defaultHigh + 1
+				case .fixed:	return .required - 1
 				}
 			#endif
 		}
@@ -99,9 +109,11 @@ extension KCViewBase
 		public func description() -> String {
 			let result: String
 			switch self {
-			case .High:	result = "high"
-			case .Low:	result = "low"
-			case .Fixed:	result = "fixed"
+			case .high:	result = "high"
+			case .middle:	result = "middle"
+			case .low:	result = "low"
+			case .box:	result = "box"
+			case .fixed:	result = "fixed"
 			}
 			return result
 		}
