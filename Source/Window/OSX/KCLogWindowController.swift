@@ -55,7 +55,7 @@ public class KCLogWindowController: NSWindowController
 	}
 
 	private class func loadWindow() -> (NSWindow, KCConsoleView, KCButton) {
-		if let newwin = NSWindow.loadWindow() {
+		if let newwin = loadWindow() {
 			/* Setup window */
 			newwin.title = "Log"
 
@@ -79,12 +79,21 @@ public class KCLogWindowController: NSWindowController
 			logbox.axis = .vertical
 			logbox.addArrangedSubViews(subViews: [cons, btnbox])
 			/* Add contents to window */
-			newwin.setRootView(view: logbox)
-			newwin.resize(size: logframe.size)
+			if let root = newwin.contentView as? KCView {
+				root.addSubview(logbox)
+				root.allocateSubviewLayout(subView: logbox)
+			}
+
 			return (newwin, cons, clearbtn)
 		} else {
 			fatalError("Failed to allocate window")
 		}
+	}
+
+	private class func loadWindow() -> NSWindow?
+	{
+		let viewcont = KCViewController.loadViewController(name: "KCEmptyViewController")
+		return NSWindow(contentViewController: viewcont)
 	}
 }
 

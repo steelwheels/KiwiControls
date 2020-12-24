@@ -32,7 +32,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		case edit(Int)				/* Int: Defautl colmun num			*/
 	}
 
-	public typealias CallbackFunction = (_ value: CNValue) -> Void
+	public typealias CallbackFunction = (_ value: CNNativeValue) -> Void
 
 	#if os(OSX)
 	@IBOutlet weak var mTextEdit: NSTextField!
@@ -185,8 +185,12 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			CNExecuteInMainThread(doSync: false, execute: {
 				[weak self] () -> Void in
 				if let myself = self {
-					myself.setText(label: newval)
-					myself.invalidateIntrinsicContentSize()
+					#if os(OSX)
+						myself.mTextEdit.stringValue = newval
+					#else
+						myself.mTextEdit.text = newval
+					#endif
+					myself.mTextEdit.invalidateIntrinsicContentSize()
 				}
 			})
 		}
@@ -215,6 +219,33 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 				#endif
 			}
 		})
+	}
+
+	public var value: CNNativeValue {
+		get {
+			let result: CNNativeValue
+			switch mMode {
+			case .edit(_), .label, .view(_):
+				result = .stringValue(getText())
+			case .value(let format, _):
+				switch format {
+				case .decimal:
+					if let val = Int(getText()) {
+						result = .numberValue(NSNumber(integerLiteral: val))
+					} else {
+						result = .nullValue
+					}
+				case .general:
+					result = .stringValue(getText())
+				}
+			}
+			return result
+		}
+		set(newval) {
+			let txt = newval.toText()
+			let str = txt.toStrings(terminal: "").joined(separator: "\n")
+			setText(label: str)
+		}
 	}
 
 	public var font: CNFont? {
@@ -253,14 +284,27 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		}
 	}
 
-	#if os(iOS)
+	#if os(OSX)
+	public func controlTextDidEndEditing(_ obj: Notification) {
+		notifyTextDidEndEditing()
+	}
+	#else
 	@objc public func textFieldDidChange(_ textEdit: KCTextEdit) {
-		let value = CNValue(stringValue: self.text)
-		if let cbfunc = self.callbackFunction {
-			cbfunc(value)
-		}
+		notifyTextDidEndEditing()
 	}
 	#endif
+
+	public func notifyTextDidEndEditing() {
+		let val = self.value
+		switch val {
+		case .nullValue:
+			break
+		default:
+			if let cbfunc = self.callbackFunction {
+				cbfunc(val)
+			}
+		}
+	}
 }
 
 #if false

@@ -12,7 +12,7 @@ import Cocoa
 #endif
 import CoconutData
 
-open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewControlEventReceiver
+open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 {
 	private var mRootView:			KCRootView?
 
@@ -128,11 +128,11 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 			case .none:
 				break
 			case .updateWindowSize:
+				CNLog(logLevel: .debug, message: "Require layout")
 				root.requireLayout()
 			}
-			//dumpInfo(phase: "updateWindowSize (setNeedsToLayout) ", rootView: root)
 		} else {
-			NSLog("updateWindowSize ... skipped")
+			CNLog(logLevel: .error, message: "updateWindowSize ... skipped")
 		}
 	}
 
@@ -141,7 +141,7 @@ open class KCPlaneViewController: KCViewController, KCWindowDelegate, KCViewCont
 		if let cons = KCLogManager.shared.console {
 			dumper.dump(view: root, console: cons)
 		} else {
-			NSLog("No log console at \(#function)")
+			CNLog(logLevel: .error, message: "No log console")
 		}
 	}
 }

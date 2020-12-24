@@ -7,11 +7,9 @@
 
 #if os(OSX)
 import AppKit
-#else
-import UIKit
-#endif
 import Foundation
 
+/*
 #if os(OSX)
 extension NSWindow
 {
@@ -49,7 +47,8 @@ extension NSWindow
 	}
 }
 
-#endif
+*/
 
+#endif
 
 

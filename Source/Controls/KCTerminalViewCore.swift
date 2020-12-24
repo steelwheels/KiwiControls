@@ -336,7 +336,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	public override var intrinsicContentSize: KCSize {
 		get {
 			let result = targetSize()
-			//NSLog("intrinsic: \(result.description)")
+			NSLog("KCTerminalViewCore intrinsic: \(result.description)")
 			return result
 		}
 	}
@@ -375,8 +375,18 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		let newheight   = Int(viewsize.height / fontsize.height)
 		//NSLog("updateTerminalInfo: \(newwidth) \(newheight)")
 
-		mTerminalInfo.width	= newwidth
-		mTerminalInfo.height	= newheight
+		var doinvalidate = false
+		if mTerminalInfo.width != newwidth {
+			mTerminalInfo.width	= newwidth
+			doinvalidate		= true
+		}
+		if mTerminalInfo.height != newheight {
+			mTerminalInfo.height	= newheight
+			doinvalidate		= true
+		}
+		if doinvalidate {
+			mTextView.invalidateIntrinsicContentSize()
+		}
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -404,9 +414,17 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 				} else if let _ = vals[.newKey] as? NSNumber {
 					switch key {
 					case CNPreference.shared.terminalPreference.WidthItem:
-						break
+						let newwidth = CNPreference.shared.terminalPreference.width
+						if mTerminalInfo.width != newwidth {
+							mTextView.invalidateIntrinsicContentSize()
+							self.notify(viewControlEvent: .updateWindowSize)
+						}
 					case CNPreference.shared.terminalPreference.HeightItem:
-						break
+						let newheight = CNPreference.shared.terminalPreference.height
+						if mTerminalInfo.height != newheight {
+							mTextView.invalidateIntrinsicContentSize()
+							self.notify(viewControlEvent: .updateWindowSize)
+						}
 					case CNSystemPreference.InterfaceStyleItem:
 						self.updateForegroundColor()
 						self.updateBackgroundColor()
