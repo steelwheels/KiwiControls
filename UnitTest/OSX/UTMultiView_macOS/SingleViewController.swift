@@ -76,7 +76,7 @@ public class SingleViewController: KCSingleViewController
 		imgview0.set(image: img0)
 
 		let edit1  = KCTextEdit()
-		edit1.mode = .view(40)
+		edit1.mode = .view(20)
 		edit1.text = "This is label"
 
 		let button1   = KCButton()

@@ -125,7 +125,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			let colnum: Int
 			switch mMode {
 			case .label, .value:
-				colnum = 40
+				colnum = 20
 			case .view(let num):
 				colnum = num
 			case .edit(let num):
