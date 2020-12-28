@@ -33,6 +33,41 @@ open class KCImageViewCore : KCView
 		mImageView.image = img
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		let modsize = fitInAspect(in: newsize)
+		#if os(OSX)
+		mImageView.setFrameSize(modsize)
+		#else
+		mImageView.setFrameSize(size: modsize)
+		#endif
+	}
+
+	private func fitInAspect(in newsize: KCSize) -> KCSize {
+		guard let img = self.mImageView.image else {
+			return newsize
+		}
+		let imgwidth  = img.size.width
+		let imgheight = img.size.height
+		let imgaspect = imgwidth / imgheight
+
+		let newwidth  = newsize.width
+		let newheight = newsize.height
+		guard newwidth > 0.0 && newheight > 0.0 else {
+			return newsize
+		}
+
+		let mod0height = newheight
+		let mod0width  = mod0height * imgaspect
+		if mod0height <= newsize.height && mod0width <= newsize.width {
+			return KCSize(width: mod0width, height: mod0height)
+		}
+
+		let mod1width  = newwidth
+		let mod1height = mod1width / imgaspect
+		return KCSize(width: mod1width, height: mod1height)
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get { return mImageView.intrinsicContentSize }
 	}
@@ -42,9 +77,9 @@ open class KCImageViewCore : KCView
 		mImageView.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mImageView.setExpansionPriority(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mImageView.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	public var imageSize: CGSize {

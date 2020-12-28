@@ -390,6 +390,16 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		#endif
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(OSX)
+			mTextView.setFrameSize(newsize)
+			mScrollView.setFrameSize(newsize)
+		#else
+			mTextView.setFrameSize(size: newsize)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get { return targetSize() }
 	}
@@ -423,9 +433,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		return barwidth
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mTextView.setExpansionPriority(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mTextView.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

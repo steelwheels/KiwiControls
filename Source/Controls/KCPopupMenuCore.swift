@@ -124,13 +124,13 @@ open class KCPopupMenuCore: KCView
 		#endif
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		#if os(OSX)
-			mPopupButton.setExpansionPriority(holizontal: holiz, vertical: vert)
+			mPopupButton.setExpansionPriorities(priorities: prival)
 		#else
-			mPickerView.setExpansionPriority(holizontal: holiz, vertical: vert)
+			mPickerView.setExpansionPriorities(priorities: prival)
 		#endif
-		super.setExpandability(holizontal: holiz, vertical: vert)
+		super.setExpandabilities(priorities: prival)
 	}
 }
 

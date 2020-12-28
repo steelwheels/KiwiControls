@@ -23,6 +23,15 @@ open class KCTableViewCore : KCView
 		KCView.setAutolayoutMode(views: [self, mTableView])
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(OSX)
+			mTableView.setFrameSize(newsize)
+		#else
+			mTableView.setFrameSize(size: newsize)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get { return mTableView.intrinsicContentSize }
 	}
@@ -32,9 +41,9 @@ open class KCTableViewCore : KCView
 		mTableView.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mTableView.setExpansionPriority(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mTableView.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 }
 

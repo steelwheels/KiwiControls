@@ -10,45 +10,84 @@ import Foundation
 
 public class KCExpansionAdjuster: KCViewVisitor
 {
+	public typealias ExpansionPriorities = KCView.ExpansionPriorities
+
 	var axis: CNAxis = .vertical
 
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCCoreView = view.getCoreView()
 		coreview.accept(visitor: self)
-		view.setExpandability(holizontal: .low, vertical: .low)
+
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.low,
+						 verticalCompression:	.low)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(iconView view: KCIconView){
-		view.setExpandability(holizontal: .low, vertical: .low)
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.low,
+						 verticalCompression:	.low)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(button view: KCButton){
-		view.setExpandability(holizontal: .low, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(checkBox view: KCCheckBox){
-		view.setExpandability(holizontal: .low, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(stepper view: KCStepper){
-		view.setExpandability(holizontal: .low, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(textEdit view: KCTextEdit){
 		switch view.mode {
 		case .label, .value(_, _):
-			view.setExpandability(holizontal: .fixed, vertical: .fixed)
+			let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
+							 holizontalCompression: .fixed,
+							 verticalHugging: 	.fixed,
+							 verticalCompression:	.fixed)
+			view.setExpandabilities(priorities: prival)
 		case .edit(_), .view(_):
-			view.setExpandability(holizontal: .fixed, vertical: .middle)
+			let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
+							 holizontalCompression: .fixed,
+							 verticalHugging: 	.middle,
+							 verticalCompression:	.middle)
+			view.setExpandabilities(priorities: prival)
 		}
 	}
 
 	open override func visit(consoleView view: KCConsoleView){
-		view.setExpandability(holizontal: .fixed, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(terminalView view: KCTerminalView){
-		view.setExpandability(holizontal: .fixed, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(tableView view: KCTableView){
@@ -64,40 +103,61 @@ public class KCExpansionAdjuster: KCViewVisitor
 		}
 		/* Restrore axis */
 		axis = prevaxis
-		view.setExpandability(holizontal: .high, vertical: .high)
+		let prival = ExpansionPriorities(holizontalHugging: 	.high,
+						 holizontalCompression: .high,
+						 verticalHugging: 	.high,
+						 verticalCompression:	.high)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {
-		view.labelView.setExpansionPriority(holizontal: .middle, vertical: .fixed)
+		let labval = ExpansionPriorities(holizontalHugging: .middle,
+						 holizontalCompression: .middle,
+						 verticalHugging: .fixed,
+						 verticalCompression: .fixed)
+		view.labelView.setExpansionPriorities(priorities: labval)
 		view.contentsView.accept(visitor: self)
-		view.setExpandability(holizontal: .high, vertical: .high)
+		let stkval = ExpansionPriorities(holizontalHugging: 	.high,
+						 holizontalCompression: .high,
+						 verticalHugging: 	.high,
+						 verticalCompression:	.high)
+		view.setExpandabilities(priorities: stkval)
 	}
 
 	open override func visit(imageView view: KCImageView){
-		view.setExpandability(holizontal: .fixed, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(navigationBar view: KCNavigationBar){
-		view.setExpandability(holizontal: .middle, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.middle,
+						 holizontalCompression: .middle,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(colorSelector view: KCColorSelector){
-		view.setExpandability(holizontal: .low, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(popupMenu view: KCPopupMenu){
-		view.setExpandability(holizontal: .low, vertical: .fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		switch axis {
-		case .horizontal:
-			view.setExpandability(holizontal: .low, vertical: .middle)
-		case .vertical:
-			view.setExpandability(holizontal: .middle, vertical: .low)
-		@unknown default:
-			NSLog("Unknown axis type")
-		}
+		NSLog("KCExpansionAdjustor.visit(coreView)")
 	}
 }
 

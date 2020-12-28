@@ -7,11 +7,40 @@
 
 import CoconutData
 import KiwiControls
+import Cocoa
 import Foundation
 
-public class SingleView0Controller: KCSingleViewController
+public class SingleViewController: KCSingleViewController
 {
+	public enum Mode {
+		case vertBox
+		case horizBox
+	}
+
+	private var mMode:	Mode
+
+	public init(parentViewController parent: KCMultiViewController, mode md: Mode){
+		mMode = md
+		super.init(parentViewController: parent)
+	}
+
+	public required init?(coder: NSCoder) {
+		mMode = .vertBox
+		super.init(coder: coder)
+	}
+
 	public override func loadContext() -> KCView? {
+		let result: KCView?
+		switch mMode {
+		case .vertBox:
+			result = loadVertContext()
+		case .horizBox:
+			result = loadHolizContext()
+		}
+		return result
+	}
+
+	private func loadVertContext() -> KCView? {
 		let label0    = KCTextEdit()
 		label0.text   = "Hello, world. This is label0"
 
@@ -32,6 +61,42 @@ public class SingleView0Controller: KCSingleViewController
 		box1.addArrangedSubViews(subViews: [box0, edit1])
 
 		return box1
+	}
+
+	private func loadHolizContext() -> KCView? {
+		guard let imgurl = CNFilePath.URLForResourceFile(fileName: "amber-icon-128x128", fileExtension: "png") else {
+			NSLog("No resource file")
+			return nil
+		}
+		guard let img0 = NSImage(contentsOf: imgurl) else {
+			NSLog("No image at \(imgurl.path)")
+			return nil
+		}
+		let imgview0 = KCImageView()
+		imgview0.set(image: img0)
+
+		let edit1  = KCTextEdit()
+		edit1.mode = .view(40)
+		edit1.text = "This is label"
+
+		let button1   = KCButton()
+		button1.title = "Select Home Directory"
+
+		let box1 = KCStackView()
+		box1.axis		= .horizontal
+		box1.alignment		= .fill
+		box1.distribution	= .fillProportinally
+		box1.addArrangedSubViews(subViews: [edit1, button1])
+
+		let button2   = KCButton()
+		button2.title = "OK"
+
+		let box2 = KCStackView()
+		box2.axis = .vertical
+		box2.addArrangedSubViews(subViews: [imgview0, box1, button2])
+		//box2.addArrangedSubViews(subViews: [box1, button2])
+
+		return box2
 	}
 
 	public override func viewDidLoad() {

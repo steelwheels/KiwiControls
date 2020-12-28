@@ -69,11 +69,11 @@ open class KCCoreView: KCView
 			return super.expandability()
 		}
 	}
-	open override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+	open override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		if let core = mCoreView {
-			core.setExpandability(holizontal: holiz, vertical: vert)
+			core.setExpandabilities(priorities: prival)
 		}
-		super.setExpandability(holizontal: holiz, vertical: vert)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	open override func setFrameSize(_ newsize: KCSize) {

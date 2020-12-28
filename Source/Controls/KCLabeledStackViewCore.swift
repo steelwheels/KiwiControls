@@ -32,6 +32,28 @@ open class KCLabeledStackViewCore : KCView
 		return KCUnionSize(sizeA: tsize, sizeB: ssize, doVertical: true, spacing: space)
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+
+		let space = CNPreference.shared.windowPreference.spacing
+		let totalheight = newsize.height
+		var labelheight = mTextField.frame.size.height
+		var stackheight = totalheight - labelheight - space
+		if stackheight <= 0.0 {
+			labelheight = totalheight / 2.0
+			stackheight = totalheight / 2.0
+		}
+		let labelsize = KCSize(width: newsize.width, height: labelheight)
+		let stacksize = KCSize(width: newsize.width, height: stackheight)
+		#if os(OSX)
+			mTextField.setFrameSize(labelsize)
+			mStackView.setFrameSize(stacksize)
+		#else
+			mTextField.setFrameSize(size: labelsize)
+			mStackView.setFrameSize(size: stacksize)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			let textsize  = mTextField.intrinsicContentSize
@@ -46,10 +68,10 @@ open class KCLabeledStackViewCore : KCView
 		mStackView.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mTextField.setExpansionPriority(holizontal: holiz, vertical: .fixed)
-		mStackView.setExpandability(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mTextField.setExpansionPriorities(priorities: prival)
+		mStackView.setExpandabilities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	public var title: String {

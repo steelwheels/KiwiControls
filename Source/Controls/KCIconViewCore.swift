@@ -45,6 +45,24 @@ open class KCIconViewCore : KCView
 		return CGRect(origin: layerorigin, size: layersize)
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		let totalheight = newsize.height
+		var labelheight = mLabelView.frame.height
+		var layerheight = totalheight - labelheight
+		if layerheight < 0.0 {
+			labelheight = totalheight / 2.0
+			layerheight = totalheight / 2.0
+		}
+		#if os(OSX)
+			mLayerView.setFrameSize(KCSize(width: newsize.width, height: layerheight))
+			mLabelView.setFrameSize(KCSize(width: newsize.width, height: labelheight))
+		#else
+			mLayerView.setFrameSize(size: KCSize(width: newsize.width, height: layerheight))
+			mLabelView.setFrameSize(size: KCSize(width: newsize.width, height: labelheight))
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			let layersize = mLayerView.intrinsicContentSize
@@ -60,10 +78,10 @@ open class KCIconViewCore : KCView
 		mLabelView.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mLayerView.setExpansionPriority(holizontal: holiz, vertical: vert)
-		mLabelView.setExpansionPriority(holizontal: .fixed, vertical: .fixed)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mLayerView.setExpansionPriorities(priorities: prival)
+		mLabelView.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	public var imageDrawer: KCImageDrawer? {

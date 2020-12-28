@@ -344,18 +344,20 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 
 	public override func setFrameSize(_ newsize: KCSize) {
 		CNLog(logLevel: .debug, message: "KCTerminalViewCore: setFrameSize: \(newsize.description)")
-		setCoreFrameSize(core: mTextView,   size: newsize)
 		#if os(OSX)
-			setCoreFrameSize(core: mScrollView, size: newsize)
+			mTextView.setFrameSize(newsize)
+			mScrollView.setFrameSize(newsize)
+		#else
+			mTextView.setFrameSize(size: newsize)
 		#endif
 		super.setFrameSize(newsize)
 		/* Update terminal size info */
 		updateTerminalSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mTextView.setExpansionPriority(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mTextView.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	private func targetSize() -> KCSize {

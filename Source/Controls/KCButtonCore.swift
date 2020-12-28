@@ -26,6 +26,14 @@ public class KCButtonCore: KCView
 		KCView.setAutolayoutMode(views: [self, mButton])
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(OSX)
+			mButton.setFrameSize(newsize)
+		#else
+			mButton.setFrameSize(size: newsize)
+		#endif
+	}
 
 	open override var intrinsicContentSize: KCSize {
 		get { return mButton.intrinsicContentSize }
@@ -36,9 +44,9 @@ public class KCButtonCore: KCView
 		mButton.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mButton.setExpansionPriority(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mButton.setExpansionPriorities(priorities: prival)
+		super.setExpansionPriorities(priorities: prival)
 	}
 
 	#if os(iOS)

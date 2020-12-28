@@ -188,6 +188,15 @@ open class KCStackViewCore : KCView
 		}
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(OSX)
+			mStackView.setFrameSize(newsize)
+		#else
+			mStackView.setFrameSize(size: newsize)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			let dovert = (axis == .vertical)
@@ -207,9 +216,9 @@ open class KCStackViewCore : KCView
 		mStackView.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mStackView.setExpansionPriority(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mStackView.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	public func addArrangedSubViews(subViews views:Array<KCView>){

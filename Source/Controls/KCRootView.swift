@@ -79,14 +79,10 @@ open class KCRootView: KCCoreView
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		CNExecuteInMainThread(doSync: false, execute: {
 			() -> Void in
-			NSLog("oV 0")
 			if let key = keyPath, let vals = change {
-				NSLog("oV 1")
 				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
-					NSLog("oV 2")
 					switch key {
 					case CNPreference.shared.viewPreference.BackgroundColorItem:
-						NSLog("oV 3")
 						let vpref = CNPreference.shared.viewPreference
 						self.setBackgroundColor(color: vpref.backgroundColor)
 					default:

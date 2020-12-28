@@ -36,6 +36,27 @@ public class KCStepperCore: KCView
 		#endif
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+
+		let totalwidth   = newsize.width
+		var stepperwidth = mStepper.frame.size.width
+		var fieldwidth   = totalwidth - stepperwidth
+		if fieldwidth <= 0.0 {
+			stepperwidth = totalwidth / 2.0
+			fieldwidth   = totalwidth / 2.0
+		}
+		let steppersize = KCSize(width: stepperwidth, height: newsize.height)
+		let fieldsize   = KCSize(width: fieldwidth,   height: newsize.height)
+		#if os(OSX)
+			mStepper.setFrameSize(steppersize)
+			mTextField.setFrameSize(fieldsize)
+		#else
+			mStepper.setFrameSize(size: steppersize)
+			mTextField.setFrameSize(size: fieldsize)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			let fieldsize   = mTextField.intrinsicContentSize
@@ -51,10 +72,10 @@ public class KCStepperCore: KCView
 		mStepper.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mTextField.setExpansionPriority(holizontal: holiz, vertical: vert)
-		mStepper.setExpansionPriority(holizontal: .fixed, vertical: .fixed)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mTextField.setExpansionPriorities(priorities: prival)
+		mStepper.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	private func updateTextField(value: Double){

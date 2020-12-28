@@ -44,7 +44,7 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 
 extension KCViewBase
 {
-#if os(OSX)
+	#if os(OSX)
 	public func setNeedsLayout() {
 		self.needsLayout = true
 	}
@@ -56,7 +56,7 @@ extension KCViewBase
 	public func setNeedsDisplay(){
 		self.needsDisplay = true
 	}
-#endif
+	#endif
 
 	/* for autolayout */
 	public enum ExpansionPriority {
@@ -113,14 +113,36 @@ extension KCViewBase
 		}
 	}
 
-	public func setExpansionPriority(holizontal holiz: ExpansionPriority, vertical vert: ExpansionPriority) {
-		let hval = holiz.toValue()
-		setContentHuggingPriority(hval, for: .horizontal)
-		setContentCompressionResistancePriority(hval, for: .horizontal)
+	public struct ExpansionPriorities {
+		public var holizontalHugging:		ExpansionPriority
+		public var holizontalCompression:	ExpansionPriority
+		public var verticalHugging:		ExpansionPriority
+		public var verticalCompression:		ExpansionPriority
 
-		let vval = vert.toValue()
-		setContentHuggingPriority(vval, for: .vertical)
-		setContentCompressionResistancePriority(vval, for: .vertical)
+		public init(holizontalHugging 		hh: ExpansionPriority,
+			    holizontalCompression	hc: ExpansionPriority,
+			    verticalHugging		vh: ExpansionPriority,
+			    verticalCompression		vc: ExpansionPriority){
+			holizontalHugging	= hh
+			holizontalCompression	= hc
+			verticalHugging		= vh
+			verticalCompression	= vc
+		}
+	}
+
+	#if os(iOS)
+	public func setFrameSize(size sz: KCSize) {
+		self.frame.size  = sz
+		self.bounds.size = sz
+	}
+	#endif
+
+	public func setExpansionPriorities(priorities prival: ExpansionPriorities) {
+		setContentHuggingPriority(prival.holizontalHugging.toValue(), for: .horizontal)
+		setContentCompressionResistancePriority(prival.holizontalCompression.toValue(), for: .horizontal)
+
+		setContentHuggingPriority(prival.verticalHugging.toValue(), for: .vertical)
+		setContentCompressionResistancePriority(prival.verticalCompression.toValue(), for: .vertical)
 	}
 
 	public func expansionPriority() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {
@@ -243,22 +265,14 @@ open class KCView : KCViewBase
 	}
 	#endif
 
-	public func setCoreFrameSize(core view: KCViewBase, size newsize: KCSize) {
-		#if os(OSX)
-			view.setFrameSize(newsize)
-		#else
-			view.frame.size = newsize
-		#endif
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
 		}
 	}
 
-	open func setExpandability(holizontal holiz: ExpansionPriority, vertical vert: ExpansionPriority) {
-		setExpansionPriority(holizontal: holiz, vertical: vert)
+	open func setExpandabilities(priorities prival: ExpansionPriorities) {
+		setExpansionPriorities(priorities: prival)
 	}
 
 	open func expandability() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {

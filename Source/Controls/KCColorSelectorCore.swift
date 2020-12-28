@@ -98,6 +98,15 @@ open class KCColorSelectorCore: KCView
 		}
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(OSX)
+			mColorWell.setFrameSize(newsize)
+		#else
+			mButton.setFrameSize(size: newsize)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get { return defaultSize }
 	}
@@ -112,13 +121,13 @@ open class KCColorSelectorCore: KCView
 
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+	public override func setExpandabilities(priorities prival: ExpansionPriorities) {
 		#if os(OSX)
-			mColorWell.setExpansionPriority(holizontal: holiz, vertical: vert)
+			mColorWell.setExpansionPriorities(priorities: prival)
 		#else
-			mButton.setExpansionPriority(holizontal: holiz, vertical: vert)
+			mButton.setExpansionPriorities(priorities: prival)
 		#endif
-		super.setExpandability(holizontal: holiz, vertical: vert)
+		super.setExpandabilities(priorities: prival)
 	}
 }
 

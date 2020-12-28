@@ -32,6 +32,23 @@ public class KCCheckBoxCore: KCView
 		#endif
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(iOS)
+			let totalwidth  = newsize.width
+			var labelwidth  = mLabel.intrinsicContentSize.width
+			var switchwidth = totalwidth - labelwidth
+			if switchwidth < 0.0 {
+				labelwidth  = totalwidth / 2.0
+				switchwidth = totalwidth / 2.0
+			}
+			mSwitch.setFrameSize(size: KCSize(width: switchwidth, height: newsize.height))
+			mLabel.setFrameSize(size: KCSize(width: labelwidth, height: newsize.height))
+		#else
+			mCheckBox.setFrameSize(newsize)
+		#endif
+	}
+
 	open override var intrinsicContentSize: KCSize {
 		get {
 			#if os(iOS)
@@ -144,14 +161,14 @@ public class KCCheckBoxCore: KCView
 		}
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		#if os(OSX)
-			mCheckBox.setExpansionPriority(holizontal: holiz, vertical: .low)
+			mCheckBox.setExpansionPriorities(priorities: prival)
 		#else
-			mSwitch.setExpansionPriority(holizontal: holiz, vertical: .low)
-			mLabel.setExpansionPriority(holizontal: holiz, vertical: .low)
+			mSwitch.setExpansionPriorities(priorities: prival)
+			mLabel.setExpansionPriorities(priorities: prival)
 		#endif
-		super.setExpandability(holizontal: holiz, vertical: vert)
+		super.setExpandabilities(priorities: prival)
 	}
 }
 

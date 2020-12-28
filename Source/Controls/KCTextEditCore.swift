@@ -110,6 +110,15 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	}
 	#endif
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(OSX)
+			mTextEdit.setFrameSize(newsize)
+		#else
+			mTextEdit.setFrameSize(size: newsize)
+		#endif
+	}
+
 	#if os(OSX)
 	open override var intrinsicContentSize: KCSize {
 		get {
@@ -143,9 +152,9 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		mTextEdit.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandability(holizontal holiz: KCViewBase.ExpansionPriority, vertical vert: KCViewBase.ExpansionPriority) {
-		mTextEdit.setExpansionPriority(holizontal: holiz, vertical: vert)
-		super.setExpandability(holizontal: holiz, vertical: vert)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		mTextEdit.setExpansionPriorities(priorities: prival)
+		super.setExpandabilities(priorities: prival)
 	}
 
 	public var isEnabled: Bool {

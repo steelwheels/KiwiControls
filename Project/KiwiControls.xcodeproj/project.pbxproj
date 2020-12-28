@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -225,6 +225,7 @@
 		0577253425878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */; };
 		059A51A1254DA35C003B5B96 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
 		059A51A6254DA36F003B5B96 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
+		059FA2BA2598952E0080ED34 /* amber-icon-128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 05086D9725988C50008CA70D /* amber-icon-128x128.png */; };
 		05A7755A254DA1AD00DF71DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A77559254DA1AD00DF71DE /* AppDelegate.swift */; };
 		05A7755C254DA1AD00DF71DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7755B254DA1AD00DF71DE /* ViewController.swift */; };
 		05A7755E254DA1AE00DF71DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755D254DA1AE00DF71DE /* Assets.xcassets */; };
@@ -233,13 +234,7 @@
 		05B750552539D2410034D8CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750542539D2410034D8CB /* ViewController.swift */; };
 		05B750572539D2440034D8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B750562539D2440034D8CB /* Assets.xcassets */; };
 		05B7505A2539D2440034D8CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B750582539D2440034D8CB /* Main.storyboard */; };
-		05B750662539DCD00034D8CB /* SingleView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750632539DCCF0034D8CB /* SingleView2Controller.swift */; };
-		05B750672539DCD00034D8CB /* SingleView0Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleView0Controller.swift */; };
-		05B750682539DCD00034D8CB /* SingleView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750652539DCCF0034D8CB /* SingleView1Controller.swift */; };
-		05B7506A2539DD1C0034D8CB /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
-		05B7506B2539DD1C0034D8CB /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05B7506D2539DD1F0034D8CB /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
-		05B7506E2539DD1F0034D8CB /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05B750672539DCD00034D8CB /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleViewController.swift */; };
 		05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05EB0E8C2567E3F100D28FD2 /* KCTerminalViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB0E8B2567E3F100D28FD2 /* KCTerminalViewCore.xib */; };
@@ -312,21 +307,10 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		05B7506C2539DD1C0034D8CB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				05B7506B2539DD1C0034D8CB /* KiwiControls.xcframework in Embed Frameworks */,
-				05B7506E2539DD1F0034D8CB /* CoconutData.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05086D9725988C50008CA70D /* amber-icon-128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "amber-icon-128x128.png"; sourceTree = "<group>"; };
 		05248492256A6097001BD219 /* UTStackView_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTStackView_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05248494256A6097001BD219 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05248496256A6097001BD219 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -487,9 +471,7 @@
 		05B750592539D2440034D8CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05B7505B2539D2440034D8CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiView_macOS.entitlements; sourceTree = "<group>"; };
-		05B750632539DCCF0034D8CB /* SingleView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView2Controller.swift; sourceTree = "<group>"; };
-		05B750642539DCCF0034D8CB /* SingleView0Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView0Controller.swift; sourceTree = "<group>"; };
-		05B750652539DCCF0034D8CB /* SingleView1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleView1Controller.swift; sourceTree = "<group>"; };
+		05B750642539DCCF0034D8CB /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		05CC333925789709001BA2F2 /* KCConsoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCConsoleManager.swift; sourceTree = "<group>"; };
 		05EB0E8B2567E3F100D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
 		05EB0E922567E4C200D28FD2 /* KCTerminalViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTerminalViewCore.swift; sourceTree = "<group>"; };
@@ -551,14 +533,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B7506A2539DD1C0034D8CB /* KiwiControls.xcframework in Frameworks */,
-				05B7506D2539DD1F0034D8CB /* CoconutData.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05086D9625988BD4008CA70D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				05086D9725988C50008CA70D /* amber-icon-128x128.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		0518974225176DD300487B45 = {
 			isa = PBXGroup;
 			children = (
@@ -926,9 +914,7 @@
 			children = (
 				05B750522539D2410034D8CB /* AppDelegate.swift */,
 				05B750542539D2410034D8CB /* ViewController.swift */,
-				05B750642539DCCF0034D8CB /* SingleView0Controller.swift */,
-				05B750652539DCCF0034D8CB /* SingleView1Controller.swift */,
-				05B750632539DCCF0034D8CB /* SingleView2Controller.swift */,
+				05B750642539DCCF0034D8CB /* SingleViewController.swift */,
 				05B750562539D2440034D8CB /* Assets.xcassets */,
 				05B750582539D2440034D8CB /* Main.storyboard */,
 				05B7505B2539D2440034D8CB /* Info.plist */,
@@ -942,6 +928,7 @@
 			children = (
 				0564519425185019006C2430 /* iOS */,
 				05EB004D2518279300636C82 /* OSX */,
+				05086D9625988BD4008CA70D /* Resource */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -1115,7 +1102,6 @@
 				05B7504C2539D2410034D8CB /* Sources */,
 				05B7504D2539D2410034D8CB /* Frameworks */,
 				05B7504E2539D2410034D8CB /* Resources */,
-				05B7506C2539DD1C0034D8CB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1165,7 +1151,7 @@
 				};
 			};
 			buildConfigurationList = 0518974625176DD300487B45 /* Build configuration list for PBXProject "KiwiControls" */;
-			compatibilityVersion = "Xcode 11.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1280,6 +1266,7 @@
 			files = (
 				05B750572539D2440034D8CB /* Assets.xcassets in Resources */,
 				05B7505A2539D2440034D8CB /* Main.storyboard in Resources */,
+				059FA2BA2598952E0080ED34 /* amber-icon-128x128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1508,10 +1495,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05B750552539D2410034D8CB /* ViewController.swift in Sources */,
-				05B750682539DCD00034D8CB /* SingleView1Controller.swift in Sources */,
 				05B750532539D2410034D8CB /* AppDelegate.swift in Sources */,
-				05B750662539DCD00034D8CB /* SingleView2Controller.swift in Sources */,
-				05B750672539DCD00034D8CB /* SingleView0Controller.swift in Sources */,
+				05B750672539DCD00034D8CB /* SingleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2473,8 +2458,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTMultiView_macOS/UTMultiView_macOS.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2482,6 +2467,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2499,6 +2485,7 @@
 				INFOPLIST_FILE = ../UnitTest/OSX/UTMultiView_macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(HOME)/Library/Frameworks",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -2551,8 +2538,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTMultiView_macOS/UTMultiView_macOS.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2560,6 +2547,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2571,6 +2559,7 @@
 				INFOPLIST_FILE = ../UnitTest/OSX/UTMultiView_macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(HOME)/Library/Frameworks",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
