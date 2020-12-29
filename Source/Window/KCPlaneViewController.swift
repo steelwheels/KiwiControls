@@ -15,14 +15,23 @@ import CoconutData
 open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 {
 	private var mRootView:			KCRootView?
+	#if os(OSX)
+	private var mHasPreferedContentSize:	Bool
+	#endif
 
 	public init(){
-		mRootView	= nil
+		mRootView		= nil
+		#if os(OSX)
+			mHasPreferedContentSize	= false
+		#endif
 		super.init(nibName: nil, bundle: nil)
 	}
 	
 	public required init?(coder: NSCoder) {
-		mRootView	= nil
+		mRootView		= nil
+		#if os(OSX)
+			mHasPreferedContentSize	= false
+		#endif
 		super.init(coder: coder)
 	}
 
@@ -85,6 +94,18 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 	#endif
 
 	#if os(OSX)
+	open override func viewDidLayout() {
+		super.viewDidLayout()
+		doViewDidLayout()
+	}
+	#else
+	open override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		doViewDidLayout()
+	}
+	#endif
+
+	#if os(OSX)
 	open override func viewDidAppear() {
 		super.viewDidAppear()
 		doViewDidAppear()
@@ -98,6 +119,13 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 
 	private func doViewWillLayout() {
 		if let root = mRootView {
+			#if os(OSX)
+			if mHasPreferedContentSize {
+				if let win = root.window {
+					win.setContentSize(self.preferredContentSize)
+				}
+			}
+			#endif
 			if root.hasCoreView {
 				/* Layout components */
 				CNLog(logLevel: .debug, message: "- [Execute Layout] (root-size=\(root.frame.size.description)")
@@ -109,10 +137,22 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		}
 	}
 
+	private func doViewDidLayout() {
+		/* Keep prefered size */
+		if let root = mRootView {
+			#if os(OSX)
+				self.preferredContentSize = root.frame.size
+				mHasPreferedContentSize   = true
+			#endif
+		} else {
+			CNLog(logLevel: .error, message: "No root view")
+		}
+	}
+
 	private func doViewDidAppear() {
 		#if os(OSX)
 			if let window = self.view.window, let root = mRootView {
-				//NSLog("doViewDidAppear")
+				/* decide 1st responder */
 				let decider = KCFirstResponderDecider(window: window)
 				let _ = decider.decideFirstResponder(rootView: root)
 				//dumpInfo(phase: "- [doViewDidAppear]", rootView: root)
