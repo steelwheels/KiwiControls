@@ -92,7 +92,8 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 				numformatter.numberStyle           = .decimal
 				numformatter.maximumFractionDigits = 0
 				numformatter.minimumFractionDigits = 0
-				mTextEdit.formatter = numformatter
+				mTextEdit.formatter	= numformatter
+				mTextEdit.font		= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
 			}
 		case .view:
 			mTextEdit.isEditable		= false
@@ -100,12 +101,14 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			mTextEdit.usesSingleLineMode 	= false
 			mTextEdit.lineBreakMode		= .byWordWrapping
 			mTextEdit.formatter 		= nil
+			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
 		case .edit:
 			mTextEdit.isEditable		= true
 			mTextEdit.isBezeled		= false
 			mTextEdit.usesSingleLineMode 	= false
 			mTextEdit.lineBreakMode		= .byWordWrapping
 			mTextEdit.formatter 		= nil
+			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
 		}
 	}
 	#endif
