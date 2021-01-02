@@ -83,10 +83,10 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(terminalView view: KCTerminalView){
-		let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
-						 holizontalCompression: .fixed,
-						 verticalHugging: 	.fixed,
-						 verticalCompression:	.fixed)
+		let prival = ExpansionPriorities(holizontalHugging: 	.high,
+						 holizontalCompression: .high,
+						 verticalHugging: 	.high,
+						 verticalCompression:	.high)
 		view.setExpandabilities(priorities: prival)
 	}
 

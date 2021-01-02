@@ -161,6 +161,11 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 
 		/* Set delegate */
 		mTextView.delegate = self
+
+		/* Set scroll bar */
+		#if os(OSX)
+			mScrollView.scrollerStyle = .overlay
+		#endif
 	}
 
 	public var inputFileHandle: FileHandle {
@@ -364,16 +369,14 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		let fontsize   = fontSize()
 		let termwidth  = CGFloat(mTerminalInfo.width)  * fontsize.width
 		let termheight = CGFloat(mTerminalInfo.height) * fontsize.height
-		let barwidth   = scrollerWidth()
-		let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
+		let termsize   = KCSize(width: termwidth, height: termheight)
 		return termsize
 	}
 
 	private func updateTerminalSize() {
 		let viewsize	= mTextView.frame.size
 		let fontsize	= fontSize()
-		let barwidth	= scrollerWidth()
-		let newwidth	= Int((viewsize.width - barwidth) / fontsize.width)
+		let newwidth	= Int(viewsize.width  / fontsize.width )
 		let newheight   = Int(viewsize.height / fontsize.height)
 		//NSLog("updateTerminalInfo: \(newwidth) \(newheight)")
 
@@ -483,15 +486,6 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		let attr = [NSAttributedString.Key.font: self.font]
 		let str: String = " "
 		return str.size(withAttributes: attr)
-	}
-
-	private func scrollerWidth() -> CGFloat {
-		#if os(OSX)
-			let barwidth: CGFloat = NSScroller.scrollerWidth(for: .regular, scrollerStyle: .overlay)
-		#else
-			let barwidth: CGFloat = 0.0
-		#endif
-		return barwidth
 	}
 
 	private func scrollToBottom(){
