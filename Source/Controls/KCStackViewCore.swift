@@ -35,11 +35,11 @@ open class KCStackViewCore : KCView
 		#if os(OSX)
 			mStackView.orientation  = .vertical
 			mStackView.alignment    = .centerX
-			mStackView.distribution = .fill
+			mStackView.distribution = .fillProportionally
 		#else
 			mStackView.axis		= .vertical
 			mStackView.alignment	= .center
-			mStackView.distribution = .fill
+			mStackView.distribution = .fillProportionally
 		#endif
 	}
 

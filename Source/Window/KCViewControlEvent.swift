@@ -14,7 +14,7 @@ import CoconutData
 
 public enum KCViewControlEvent {
 	case none
-	case updateWindowSize
+	case updateSize
 }
 
 public protocol KCViewControlEventReceiver {

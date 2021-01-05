@@ -10,6 +10,7 @@ import Foundation
 
 public class KCExpansionAdjuster: KCViewVisitor
 {
+	public typealias ExpansionPriority   = KCViewBase.ExpansionPriority
 	public typealias ExpansionPriorities = KCView.ExpansionPriorities
 
 	var axis: CNAxis = .vertical
@@ -83,10 +84,40 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(terminalView view: KCTerminalView){
-		let prival = ExpansionPriorities(holizontalHugging: 	.high,
-						 holizontalCompression: .high,
-						 verticalHugging: 	.high,
-						 verticalCompression:	.high)
+		let targsize = view.intrinsicContentSize
+		let cursize  = view.frame.size
+
+		let hhug:  ExpansionPriority
+		let hcomp: ExpansionPriority
+		if targsize.width > cursize.width {
+			hhug  = .high
+			hcomp = .fixed
+		} else if targsize.width == cursize.width {
+			hhug  = .fixed
+			hcomp = .fixed
+		} else { // newinfo.width < curinfo.width
+			hhug  = .fixed
+			hcomp = .high
+		}
+
+		let vhug:  ExpansionPriority
+		let vcomp: ExpansionPriority
+		if targsize.height > cursize.height {
+			vhug  = .high
+			vcomp = .fixed
+		} else if targsize.height == cursize.height {
+			vhug  = .fixed
+			vcomp = .fixed
+		} else { // newinfo.height < curinfo.height
+			vhug  = .fixed
+			vcomp = .high
+		}
+
+		let prival = ExpansionPriorities(holizontalHugging: 	hhug,
+						 holizontalCompression: hcomp,
+						 verticalHugging: 	vhug,
+						 verticalCompression:	vcomp)
+		CNLog(logLevel: .debug, message: "ExpansionPriorities \(hhug.description()) \(hcomp.description()) \(vhug.description()) \(vcomp.description()) at \(#function)")
 		view.setExpandabilities(priorities: prival)
 	}
 

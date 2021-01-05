@@ -18,13 +18,11 @@ open class KCStackView : KCCoreView
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
 		setup()
-		setupLayout()
 	}
 	#else
 	public override init(frame: CGRect){
 		super.init(frame: frame)
 		setup()
-		setupLayout()
 	}
 	#endif
 
@@ -38,9 +36,8 @@ open class KCStackView : KCCoreView
 	}
 
 	public required init?(coder: NSCoder) {
-		super.init(coder: coder) ;
-		setup() ;
-		setupLayout()
+		super.init(coder: coder)
+		setup()
 	}
 
 	private func setup(){
@@ -52,10 +49,6 @@ open class KCStackView : KCCoreView
 		} else {
 			fatalError("Can not load KCStackCore")
 		}
-	}
-
-	private func setupLayout(){
-		self.distribution = .fillProportinally
 	}
 
 	public var axis: CNAxis {

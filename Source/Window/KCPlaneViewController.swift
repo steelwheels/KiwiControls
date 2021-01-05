@@ -167,7 +167,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			switch event {
 			case .none:
 				break
-			case .updateWindowSize:
+			case .updateSize:
 				CNLog(logLevel: .debug, message: "Require layout")
 				root.requireLayout()
 			}

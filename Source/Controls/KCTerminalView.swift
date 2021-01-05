@@ -59,7 +59,7 @@ open class KCTerminalView : KCCoreView
 	public var backgroundTextColor: CNColor {
 		get		{ return coreView.backgroundTextColor }
 	}
-	
+
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTerminalView.self, nibName: "KCTerminalViewCore") as? KCTerminalViewCore  {

@@ -379,7 +379,6 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		let newwidth	= Int(viewsize.width  / fontsize.width )
 		let newheight   = Int(viewsize.height / fontsize.height)
 		//NSLog("updateTerminalInfo: \(newwidth) \(newheight)")
-
 		mTerminalInfo.width	= newwidth
 		mTerminalInfo.height	= newheight
 	}
@@ -402,7 +401,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 					case CNPreference.shared.terminalPreference.FontItem:
 						NSLog("Change font: \(font.fontName)")
 						self.updateFont()
-						self.notify(viewControlEvent: .updateWindowSize)
+						self.notify(viewControlEvent: .updateSize)
 					default:
 						NSLog("\(#file): Unknown key (3): \(key)")
 					}
@@ -414,7 +413,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 							mTerminalInfo.width = newwidth
 							self.invalidateIntrinsicContentSize()
 							self.setNeedsLayout()
-							self.notify(viewControlEvent: .updateWindowSize)
+							self.notify(viewControlEvent: .updateSize)
 						}
 					case CNPreference.shared.terminalPreference.HeightItem:
 						let newheight = CNPreference.shared.terminalPreference.height
@@ -422,7 +421,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 							mTerminalInfo.height = newheight
 							self.invalidateIntrinsicContentSize()
 							self.setNeedsLayout()
-							self.notify(viewControlEvent: .updateWindowSize)
+							self.notify(viewControlEvent: .updateSize)
 						}
 					case CNSystemPreference.InterfaceStyleItem:
 						self.updateForegroundColor()
