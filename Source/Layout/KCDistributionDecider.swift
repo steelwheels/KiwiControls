@@ -36,7 +36,7 @@ public class KCDistributionDecider: KCViewVisitor
 		if groups.count <= 1 {
 			view.distribution = .fillEqually
 		} else {
-			view.distribution = .fillProportinally
+			view.distribution = .fill
 		}
 	}
 }

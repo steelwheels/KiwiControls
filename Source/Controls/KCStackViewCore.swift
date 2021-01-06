@@ -35,11 +35,11 @@ open class KCStackViewCore : KCView
 		#if os(OSX)
 			mStackView.orientation  = .vertical
 			mStackView.alignment    = .centerX
-			mStackView.distribution = .fillProportionally
+			mStackView.distribution = .fill
 		#else
 			mStackView.axis		= .vertical
 			mStackView.alignment	= .center
-			mStackView.distribution = .fillProportionally
+			mStackView.distribution = .fill
 		#endif
 	}
 
@@ -163,6 +163,7 @@ open class KCStackViewCore : KCView
 		get {
 			let result: CNDistribution
 			switch mStackView.distribution {
+			case .fill:			result = .fill
 			case .fillProportionally:	result = .fillProportinally
 			case .fillEqually:		result = .fillEqually
 			case .equalSpacing:		result = .equalSpacing
@@ -177,6 +178,7 @@ open class KCStackViewCore : KCView
 				let newdist: UIStackView.Distribution
 			#endif
 			switch newval {
+			case .fill:			newdist = .fill
 			case .fillProportinally: 	newdist = .fillProportionally
 			case .fillEqually:		newdist = .fillEqually
 			case .equalSpacing:		newdist = .equalSpacing

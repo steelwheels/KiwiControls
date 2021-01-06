@@ -165,6 +165,9 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		/* Set scroll bar */
 		#if os(OSX)
 			mScrollView.scrollerStyle = .overlay
+			if let scrl = mScrollView.verticalScroller {
+				scrl.scrollerStyle = .overlay
+			}
 		#endif
 	}
 
@@ -335,11 +338,44 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public var font: CNFont {
-		get { return CNPreference.shared.terminalPreference.font	}
+		get {
+			if let fnt = mTextView.font {
+				return fnt
+			} else {
+				return CNPreference.shared.terminalPreference.font
+			}
+		}
 	}
 
 	public override var intrinsicContentSize: KCSize {
 		get { return targetSize() }
+	}
+
+	private func targetSize() -> KCSize {
+		let fontsize   = fontSize()
+		let termwidth  = CGFloat(mTerminalInfo.width)  * fontsize.width
+		let termheight = CGFloat(mTerminalInfo.height) * fontsize.height
+		let barwidth   = scrollBarWidth()
+		let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
+		return termsize
+	}
+
+	private func scrollBarWidth() -> CGFloat {
+		#if os(OSX)
+			if let scrl = mScrollView.verticalScroller {
+				return scrl.frame.size.width
+			} else {
+				return 0.0
+			}
+		#else
+			return 0.0
+		#endif
+	}
+
+	private func fontSize() -> KCSize {
+		let attr = [NSAttributedString.Key.font: self.font]
+		let str: String = " "
+		return str.size(withAttributes: attr)
 	}
 
 	public override func invalidateIntrinsicContentSize() {
@@ -350,8 +386,10 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	public override func setFrameSize(_ newsize: KCSize) {
 		CNLog(logLevel: .debug, message: "KCTerminalViewCore: setFrameSize: \(newsize.description)")
 		#if os(OSX)
-			mTextView.setFrameSize(newsize)
 			mScrollView.setFrameSize(newsize)
+			let barwidth = scrollBarWidth()
+			let txtsize  = KCSize(width: max(newsize.width - barwidth, 0), height: newsize.height)
+			mTextView.setFrameSize(txtsize)
 		#else
 			mTextView.setFrameSize(size: newsize)
 		#endif
@@ -365,18 +403,11 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		super.setExpandabilities(priorities: prival)
 	}
 
-	private func targetSize() -> KCSize {
-		let fontsize   = fontSize()
-		let termwidth  = CGFloat(mTerminalInfo.width)  * fontsize.width
-		let termheight = CGFloat(mTerminalInfo.height) * fontsize.height
-		let termsize   = KCSize(width: termwidth, height: termheight)
-		return termsize
-	}
-
 	private func updateTerminalSize() {
 		let viewsize	= mTextView.frame.size
 		let fontsize	= fontSize()
-		let newwidth	= Int(viewsize.width  / fontsize.width )
+		let barwidth    = scrollBarWidth()
+		let newwidth	= Int(max(viewsize.width - barwidth, 0.0)  / fontsize.width )
 		let newheight   = Int(viewsize.height / fontsize.height)
 		//NSLog("updateTerminalInfo: \(newwidth) \(newheight)")
 		mTerminalInfo.width	= newwidth
@@ -479,12 +510,6 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 				return self.mTextView.textStorage
 			#endif
 		}
-	}
-
-	private func fontSize() -> KCSize {
-		let attr = [NSAttributedString.Key.font: self.font]
-		let str: String = " "
-		return str.size(withAttributes: attr)
 	}
 
 	private func scrollToBottom(){

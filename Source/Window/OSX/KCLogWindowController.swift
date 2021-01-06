@@ -69,7 +69,7 @@ public class KCLogWindowController: NSWindowController
 			let btnframe  = KCRect(origin: KCPoint.zero, size: clearbtn.frame.size)
 			let btnbox    = KCStackView(frame: btnframe)
 			btnbox.axis = .horizontal
-			btnbox.distribution = .fillEqually
+			btnbox.distribution = .fill
 			btnbox.addArrangedSubView(subView: clearbtn)
 			/* Log box */
 			let logwidth  = max(cons.frame.width, clearbtn.frame.width)
