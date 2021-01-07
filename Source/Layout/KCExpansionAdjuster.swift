@@ -132,13 +132,15 @@ public class KCExpansionAdjuster: KCViewVisitor
 		for subview in view.arrangedSubviews() {
 			subview.accept(visitor: self)
 		}
-		/* Restrore axis */
+		/* Calc expansion priority */
+		var exppri = ExpansionPriorities(holizontalHugging: .fixed, holizontalCompression: .fixed, verticalHugging: .fixed, verticalCompression: .fixed)
+		for subview in view.arrangedSubviews() {
+			exppri = ExpansionPriorities.union(exppri, subview.expansionPriority())
+		}
+		CNLog(logLevel: .detail, message: "Stack: ExpansionPriorities \(exppri.holizontalHugging.description()) \(exppri.holizontalCompression.description()) \(exppri.verticalHugging.description()) \(exppri.verticalCompression.description()) at \(#function)")
+		view.setExpandabilities(priorities: exppri)
+		/* Keep axis */
 		axis = prevaxis
-		let prival = ExpansionPriorities(holizontalHugging: 	.high,
-						 holizontalCompression: .high,
-						 verticalHugging: 	.high,
-						 verticalCompression:	.high)
-		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {

@@ -59,7 +59,7 @@ extension KCViewBase
 	#endif
 
 	/* for autolayout */
-	public enum ExpansionPriority {
+	public enum ExpansionPriority: Int {
 		case high
 		case middle
 		case low
@@ -101,6 +101,12 @@ extension KCViewBase
 			#endif
 		}
 
+		public static func union(_ s0: ExpansionPriority, _ s1: ExpansionPriority) -> ExpansionPriority {
+			let v0 = s0.toValue()
+			let v1 = s1.toValue()
+			return fromValue(min(v0, v1))
+		}
+
 		public func description() -> String {
 			let result: String
 			switch self {
@@ -128,6 +134,15 @@ extension KCViewBase
 			verticalHugging		= vh
 			verticalCompression	= vc
 		}
+
+		public static func union(_ s0: ExpansionPriorities, _ s1: ExpansionPriorities) -> ExpansionPriorities {
+			let hh = ExpansionPriority.union(s0.holizontalHugging, s1.holizontalHugging)
+			let hc = ExpansionPriority.union(s0.holizontalCompression, s1.holizontalCompression)
+			let vh = ExpansionPriority.union(s0.verticalHugging, s1.verticalHugging)
+			let vc = ExpansionPriority.union(s0.verticalCompression, s1.verticalCompression)
+			return ExpansionPriorities(holizontalHugging: hh, holizontalCompression: hc, verticalHugging: vh, verticalCompression: vc)
+		}
+
 	}
 
 	#if os(iOS)
@@ -145,14 +160,23 @@ extension KCViewBase
 		setContentCompressionResistancePriority(prival.verticalCompression.toValue(), for: .vertical)
 	}
 
-	public func expansionPriority() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {
-		let hval = contentHuggingPriority(for: .horizontal)
-		let hpri = ExpansionPriority.fromValue(hval)
+	public func expansionPriority() -> ExpansionPriorities {
+		let hhval = contentHuggingPriority(for: .horizontal)
+		let hhpri = ExpansionPriority.fromValue(hhval)
 
-		let vval = contentHuggingPriority(for: .vertical)
-		let vpri = ExpansionPriority.fromValue(vval)
+		let hcval = contentCompressionResistancePriority(for: .horizontal)
+		let hcpri = ExpansionPriority.fromValue(hcval)
 
-		return (hpri, vpri)
+		let vhval = contentHuggingPriority(for: .vertical)
+		let vhpri = ExpansionPriority.fromValue(vhval)
+
+		let vcval = contentCompressionResistancePriority(for: .vertical)
+		let vcpri = ExpansionPriority.fromValue(vcval)
+
+		return ExpansionPriorities(holizontalHugging: hhpri,
+					   holizontalCompression: hcpri,
+					   verticalHugging: vhpri,
+					   verticalCompression: vcpri)
 	}
 }
 
@@ -273,10 +297,6 @@ open class KCView : KCViewBase
 
 	open func setExpandabilities(priorities prival: ExpansionPriorities) {
 		setExpansionPriorities(priorities: prival)
-	}
-
-	open func expandability() -> (/* Holizontal */ ExpansionPriority, /* Vertical */ ExpansionPriority) {
-		return expansionPriority()
 	}
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){

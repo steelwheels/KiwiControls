@@ -62,13 +62,6 @@ open class KCCoreView: KCView
 		}
 	}
 
-	open override func expandability() -> (KCViewBase.ExpansionPriority, KCViewBase.ExpansionPriority) {
-		if let core = mCoreView {
-			return core.expandability()
-		} else {
-			return super.expandability()
-		}
-	}
 	open override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		if let core = mCoreView {
 			core.setExpandabilities(priorities: prival)

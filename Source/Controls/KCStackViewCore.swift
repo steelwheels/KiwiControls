@@ -35,11 +35,11 @@ open class KCStackViewCore : KCView
 		#if os(OSX)
 			mStackView.orientation  = .vertical
 			mStackView.alignment    = .centerX
-			mStackView.distribution = .fill
+			mStackView.distribution = .fillProportionally
 		#else
 			mStackView.axis		= .vertical
 			mStackView.alignment	= .center
-			mStackView.distribution = .fill
+			mStackView.distribution = .fillProportionally
 		#endif
 	}
 
@@ -209,6 +209,7 @@ open class KCStackViewCore : KCView
 				let size = subview.intrinsicContentSize
 				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
 			}
+			CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
 			return result
 		}
 	}

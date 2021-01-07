@@ -170,9 +170,13 @@ public class KCViewDumper: KCViewVisitor
 			section.add(text: CNTextLine(string: "responder: is1st=\(is1stresp)"))
 		#endif
 
-		let (hexp, vexp) = view.expandability()
-		section.add(text: CNTextLine(string: "expansion-priority: h:\(hexp.description()) "
-								       + "v:\(vexp.description())"))
+		let exppri = view.expansionPriority()
+		section.add(text: CNTextLine(string: "expansion-priority: "
+			+ "holiz-hug:\(exppri.holizontalHugging.description()) "
+			+ "holiz-comp:\(exppri.holizontalCompression.description()) "
+			+ "vert-hug:\(exppri.verticalHugging.description())"
+			+ "vert-comp:\(exppri.verticalCompression.description())"
+		))
 
 		let constsect = CNTextSection()
 		constsect.header = "constraints {"

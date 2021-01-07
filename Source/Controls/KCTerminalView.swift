@@ -85,12 +85,10 @@ open class KCTerminalView : KCCoreView
 
 	#if os(OSX)
 	open override func setFrameSize(_ newSize: NSSize) {
-		//NSLog("NSTerminalView: setFrameSize \(newSize.description)")
 		super.setFrameSize(newSize)
 	}
 
 	open override func setBoundsSize(_ newSize: NSSize) {
-		//NSLog("setBoudsSize")
 		super.setBoundsSize(newSize)
 	}
 	#endif
