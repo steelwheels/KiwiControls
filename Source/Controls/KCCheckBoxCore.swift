@@ -161,6 +161,23 @@ public class KCCheckBoxCore: KCView
 		}
 	}
 
+	public var status: Bool {
+		get {
+			let result: Bool
+			#if os(OSX)
+				switch mCheckBox.state {
+				case .mixed:	result = false
+				case .off:	result = false
+				case .on:	result = true
+				default:	result = false
+				}
+			#else
+				result = mSwitch.isOn
+			#endif
+			return result
+		}
+	}
+
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		#if os(OSX)
 			mCheckBox.setExpansionPriorities(priorities: prival)

@@ -386,7 +386,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public override func setFrameSize(_ newsize: KCSize) {
-		CNLog(logLevel: .debug, message: "KCTerminalViewCore: setFrameSize: \(newsize.description)")
+		//CNLog(logLevel: .debug, message: "KCTerminalViewCore: setFrameSize: \(newsize.description)")
 		#if os(OSX)
 			mScrollView.setFrameSize(newsize)
 			let barwidth = scrollBarWidth()
