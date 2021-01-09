@@ -67,7 +67,8 @@ open class KCCheckBox: KCCoreView
 	}
 
 	public var status: Bool {
-		get { return coreView.status }
+		get 		{ return coreView.status }
+		set(newval)	{ coreView.status = newval }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

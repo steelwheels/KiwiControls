@@ -176,6 +176,13 @@ public class KCCheckBoxCore: KCView
 			#endif
 			return result
 		}
+		set(newval) {
+			#if os(OSX)
+				mCheckBox.state = newval ? .on : .off
+			#else
+				mSwitch.isOn = newval
+			#endif
+		}
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
