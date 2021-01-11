@@ -102,8 +102,8 @@
 		0544EB27251775A3002DE6A8 /* KCTerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFA251775A2002DE6A8 /* KCTerminalView.swift */; };
 		0544EB28251775A3002DE6A8 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFB251775A2002DE6A8 /* KCRootView.swift */; };
 		0544EB29251775A3002DE6A8 /* KCRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFB251775A2002DE6A8 /* KCRootView.swift */; };
-		0544EB2A251775A3002DE6A8 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFC251775A2002DE6A8 /* KCIconViewCore.swift */; };
-		0544EB2B251775A3002DE6A8 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFC251775A2002DE6A8 /* KCIconViewCore.swift */; };
+		0544EB2A251775A3002DE6A8 /* KCLabeledLayerViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFC251775A2002DE6A8 /* KCLabeledLayerViewCore.swift */; };
+		0544EB2B251775A3002DE6A8 /* KCLabeledLayerViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFC251775A2002DE6A8 /* KCLabeledLayerViewCore.swift */; };
 		0544EB2E251775A3002DE6A8 /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFE251775A2002DE6A8 /* KCConsoleView.swift */; };
 		0544EB2F251775A3002DE6A8 /* KCConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFE251775A2002DE6A8 /* KCConsoleView.swift */; };
 		0544EB30251775A3002DE6A8 /* KCStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAFF251775A2002DE6A8 /* KCStepper.swift */; };
@@ -114,8 +114,8 @@
 		0544EB35251775A3002DE6A8 /* KCTextEditCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB01251775A2002DE6A8 /* KCTextEditCore.swift */; };
 		0544EB36251775A3002DE6A8 /* KCColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB02251775A3002DE6A8 /* KCColorSelector.swift */; };
 		0544EB37251775A3002DE6A8 /* KCColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB02251775A3002DE6A8 /* KCColorSelector.swift */; };
-		0544EB38251775A3002DE6A8 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB03251775A3002DE6A8 /* KCIconView.swift */; };
-		0544EB39251775A3002DE6A8 /* KCIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB03251775A3002DE6A8 /* KCIconView.swift */; };
+		0544EB38251775A3002DE6A8 /* KCLabeledLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB03251775A3002DE6A8 /* KCLabeledLayerView.swift */; };
+		0544EB39251775A3002DE6A8 /* KCLabeledLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB03251775A3002DE6A8 /* KCLabeledLayerView.swift */; };
 		0544EB3A251775A3002DE6A8 /* KCPopupMenuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB04251775A3002DE6A8 /* KCPopupMenuCore.swift */; };
 		0544EB3B251775A3002DE6A8 /* KCPopupMenuCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB04251775A3002DE6A8 /* KCPopupMenuCore.swift */; };
 		0544EB3C251775A3002DE6A8 /* KCStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB05251775A3002DE6A8 /* KCStackView.swift */; };
@@ -368,13 +368,13 @@
 		0544EAF8251775A2002DE6A8 /* KCContextualMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCContextualMenu.swift; sourceTree = "<group>"; };
 		0544EAFA251775A2002DE6A8 /* KCTerminalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTerminalView.swift; sourceTree = "<group>"; };
 		0544EAFB251775A2002DE6A8 /* KCRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRootView.swift; sourceTree = "<group>"; };
-		0544EAFC251775A2002DE6A8 /* KCIconViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
+		0544EAFC251775A2002DE6A8 /* KCLabeledLayerViewCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLabeledLayerViewCore.swift; sourceTree = "<group>"; };
 		0544EAFE251775A2002DE6A8 /* KCConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCConsoleView.swift; sourceTree = "<group>"; };
 		0544EAFF251775A2002DE6A8 /* KCStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStepper.swift; sourceTree = "<group>"; };
 		0544EB00251775A2002DE6A8 /* KCLabeledStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLabeledStackView.swift; sourceTree = "<group>"; };
 		0544EB01251775A2002DE6A8 /* KCTextEditCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTextEditCore.swift; sourceTree = "<group>"; };
 		0544EB02251775A3002DE6A8 /* KCColorSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorSelector.swift; sourceTree = "<group>"; };
-		0544EB03251775A3002DE6A8 /* KCIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
+		0544EB03251775A3002DE6A8 /* KCLabeledLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLabeledLayerView.swift; sourceTree = "<group>"; };
 		0544EB04251775A3002DE6A8 /* KCPopupMenuCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPopupMenuCore.swift; sourceTree = "<group>"; };
 		0544EB05251775A3002DE6A8 /* KCStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCStackView.swift; sourceTree = "<group>"; };
 		0544EB06251775A3002DE6A8 /* KCNavigationBarCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCNavigationBarCore.swift; sourceTree = "<group>"; };
@@ -726,12 +726,12 @@
 				0544EB0B251775A3002DE6A8 /* KCColorSelectorCore.swift */,
 				0544EAFE251775A2002DE6A8 /* KCConsoleView.swift */,
 				0544EAF8251775A2002DE6A8 /* KCContextualMenu.swift */,
-				0544EB03251775A3002DE6A8 /* KCIconView.swift */,
-				0544EAFC251775A2002DE6A8 /* KCIconViewCore.swift */,
 				0544EAF4251775A2002DE6A8 /* KCImageView.swift */,
 				0544EB0D251775A3002DE6A8 /* KCImageViewCore.swift */,
 				0544EB00251775A2002DE6A8 /* KCLabeledStackView.swift */,
 				0544EAF2251775A2002DE6A8 /* KCLabeledStackViewCore.swift */,
+				0544EB03251775A3002DE6A8 /* KCLabeledLayerView.swift */,
+				0544EAFC251775A2002DE6A8 /* KCLabeledLayerViewCore.swift */,
 				0544EB09251775A3002DE6A8 /* KCNavigationBar.swift */,
 				0544EB06251775A3002DE6A8 /* KCNavigationBarCore.swift */,
 				0544EAF0251775A2002DE6A8 /* KCPopupMenu.swift */,
@@ -1298,7 +1298,7 @@
 				0544EB1E251775A3002DE6A8 /* KCStackViewCore.swift in Sources */,
 				0544EAD025176FF5002DE6A8 /* KCRect.swift in Sources */,
 				0544EAD625176FF5002DE6A8 /* KCContext.swift in Sources */,
-				0544EB38251775A3002DE6A8 /* KCIconView.swift in Sources */,
+				0544EB38251775A3002DE6A8 /* KCLabeledLayerView.swift in Sources */,
 				0544EA8025176EC6002DE6A8 /* KCViewControlEvent.swift in Sources */,
 				056C0D5C25177959003A9D7F /* KCStrokeDrawerLayer.swift in Sources */,
 				0544EAAF25176FBE002DE6A8 /* KCExpansionAdjuster.swift in Sources */,
@@ -1338,7 +1338,7 @@
 				0544EA7625176EC6002DE6A8 /* KCViewController.swift in Sources */,
 				0544EAAB25176FBE002DE6A8 /* KCGroupMaker.swift in Sources */,
 				056C0D6025177959003A9D7F /* KCImageDrawerLayer.swift in Sources */,
-				0544EB2A251775A3002DE6A8 /* KCIconViewCore.swift in Sources */,
+				0544EB2A251775A3002DE6A8 /* KCLabeledLayerViewCore.swift in Sources */,
 				0544EAA725176FBE002DE6A8 /* KCLayouter.swift in Sources */,
 				0544EB42251775A3002DE6A8 /* KCStepperCore.swift in Sources */,
 				0544EB50251775A3002DE6A8 /* KCButton.swift in Sources */,
@@ -1387,7 +1387,7 @@
 				0544EB1F251775A3002DE6A8 /* KCStackViewCore.swift in Sources */,
 				0544EAD125176FF5002DE6A8 /* KCRect.swift in Sources */,
 				0544EAD725176FF5002DE6A8 /* KCContext.swift in Sources */,
-				0544EB39251775A3002DE6A8 /* KCIconView.swift in Sources */,
+				0544EB39251775A3002DE6A8 /* KCLabeledLayerView.swift in Sources */,
 				0544EA7125176EC6002DE6A8 /* KCPlaneViewController.swift in Sources */,
 				0544EAB025176FBE002DE6A8 /* KCExpansionAdjuster.swift in Sources */,
 				0544EB21251775A3002DE6A8 /* KCButtonCore.swift in Sources */,
@@ -1423,7 +1423,7 @@
 				0544EADF25176FF5002DE6A8 /* KCHexagon.swift in Sources */,
 				0544EA7B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift in Sources */,
 				0544EAAC25176FBE002DE6A8 /* KCGroupMaker.swift in Sources */,
-				0544EB2B251775A3002DE6A8 /* KCIconViewCore.swift in Sources */,
+				0544EB2B251775A3002DE6A8 /* KCLabeledLayerViewCore.swift in Sources */,
 				0544EB9D25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */,
 				0544EAA825176FBE002DE6A8 /* KCLayouter.swift in Sources */,
 				0544EBC425177676002DE6A8 /* KCAlert.swift in Sources */,

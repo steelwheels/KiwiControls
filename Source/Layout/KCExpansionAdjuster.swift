@@ -26,7 +26,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
-	open override func visit(iconView view: KCIconView){
+	open override func visit(iconView view: KCLabeledLayerView){
 		let prival = ExpansionPriorities(holizontalHugging: 	.low,
 						 holizontalCompression: .low,
 						 verticalHugging: 	.low,

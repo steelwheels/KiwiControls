@@ -17,7 +17,7 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
-	open func visit(iconView view: KCIconView){
+	open func visit(iconView view: KCLabeledLayerView){
 		visit(coreView: view)
 	}
 

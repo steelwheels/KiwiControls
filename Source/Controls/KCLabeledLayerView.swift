@@ -1,6 +1,6 @@
 /**
- * @file	KCIconView.swift
- * @brief	Define KCIconView class
+ * @file	KCLabeledLayerView.swift
+ * @brief	Define KCLabeledLayerView class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
@@ -11,7 +11,7 @@
 	import UIKit
 #endif
 
-open class KCIconView: KCCoreView
+open class KCLabeledLayerView: KCCoreView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -41,13 +41,13 @@ open class KCIconView: KCCoreView
 
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
-		if let newview = loadChildXib(thisClass: KCIconView.self, nibName: "KCIconViewCore") as? KCIconViewCore {
+		if let newview = loadChildXib(thisClass: KCLabeledLayerView.self, nibName: "KCLabeledLayerViewCore") as? KCLabeledLayerViewCore {
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
 
 		} else {
-			fatalError("Can not load KCIconViewCore")
+			fatalError("Can not load KCLabeledLayerViewCore")
 		}
 	}
 
@@ -65,7 +65,7 @@ open class KCIconView: KCCoreView
 		vis.visit(iconView: self)
 	}
 
-	private var coreView: KCIconViewCore {
+	private var coreView: KCLabeledLayerViewCore {
 		get { return super.getCoreView() }
 	}
 }

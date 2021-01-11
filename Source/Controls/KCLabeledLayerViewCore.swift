@@ -1,6 +1,6 @@
 /**
- * @file	KCIconViewCore.swift
- * @brief	Define KCIconViewCore class
+ * @file	KCLabeledLayerViewCore.swift
+ * @brief	Define KCLabeledLayerViewCore class
  * @par Copyright
  *   Copyright (C) 017 Steel Wheels Project
  */
@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCIconViewCore : KCView
+open class KCLabeledLayerViewCore : KCView
 {
 	#if os(OSX)
 	@IBOutlet weak var mLayerView: KCLayerView!
@@ -27,7 +27,7 @@ open class KCIconViewCore : KCView
 	public func setup(frame frm: CGRect) {
 		KCView.setAutolayoutMode(views: [self, mLayerView, mLabelView])
 
-		let layerframe   = KCIconViewCore.calcLayerFrame(entireFrame: bounds, deltaHeight: mLabelView.frame.size.height)
+		let layerframe   = KCLabeledLayerViewCore.calcLayerFrame(entireFrame: bounds, deltaHeight: mLabelView.frame.size.height)
 		let layercontent = CGRect(origin: CGPoint.zero, size: layerframe.size)
 		let drawer  = KCImageDrawerLayer(frame: layerframe, contentRect: layercontent)
 		mLayerView.rootLayer.addSublayer(drawer)
