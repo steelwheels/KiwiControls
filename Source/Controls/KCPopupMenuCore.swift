@@ -45,7 +45,7 @@ open class KCPopupMenuCore: KCView
 		if let cbfunc = callbackFunction {
 			cbfunc(indexOfSelectedItem, titleOfSelectedItem)
 		} else {
-			NSLog("Popup menu pressed")
+			CNLog(logLevel: .detail, message: "Popup menu pressed")
 		}
 	}
 	#endif

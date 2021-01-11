@@ -190,7 +190,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		NSLog("KCExpansionAdjustor.visit(coreView)")
+		CNLog(logLevel: .error, message: "KCExpansionAdjustor.visit(coreView)")
 	}
 }
 

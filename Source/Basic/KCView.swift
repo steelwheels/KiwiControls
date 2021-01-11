@@ -373,7 +373,7 @@ open class KCView : KCViewBase
 	 * Visitor
 	 */
 	open func accept(visitor vis: KCViewVisitor){
-		NSLog("Unaccepted visitor in KCViewVisitor: \(vis)")
+		CNLog(logLevel: .error, message: "Unaccepted visitor in KCViewVisitor: \(vis)")
 	}
 }
 

@@ -207,9 +207,9 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 			setSelectedRange(range: range)
 			mCurrentIndex = curidx
 		case .error(let err):
-			NSLog("Failed to decode escape code: \(err.description())")
+			CNLog(logLevel: .error, message: "Failed to decode escape code: \(err.description())")
 		@unknown default:
-			NSLog("Failed to decode escape code: <unknown>")
+			CNLog(logLevel: .error, message: "Failed to decode escape code: <unknown>")
 		}
 	}
 
@@ -427,7 +427,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 					case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
 						self.updateBackgroundColor()
 					default:
-						NSLog("\(#file): Unknown key (2): \(key)")
+						CNLog(logLevel: .error, message: "\(#file): Unknown key (2): \(key)")
 					}
 				} else if let font = vals[.newKey] as? CNFont {
 					switch key {
@@ -460,7 +460,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 						self.updateForegroundColor()
 						self.updateBackgroundColor()
 					default:
-						NSLog("\(#file): Unknown key (4): \(key)")
+						CNLog(logLevel: .debug, message: "\(#file): Unknown key (4): \(key)")
 					}
 				}
 			}

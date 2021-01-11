@@ -41,7 +41,7 @@ public class KCSetPrefferedWidth: KCViewVisitor
 		case .vertical:
 			break
 		@unknown default:
-			NSLog("Unknown case: \(#function)")
+			CNLog(logLevel: .error, message: "Unknown case: \(#function)")
 		}
 	}
 

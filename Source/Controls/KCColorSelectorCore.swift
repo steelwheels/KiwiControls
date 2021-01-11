@@ -55,7 +55,7 @@ open class KCColorSelectorCore: KCView
 			if let well = mColorWell {
 				return well.color
 			} else {
-				NSLog("No color well for get")
+				CNLog(logLevel: .error, message: "No color well for get")
 				return CNColor.black
 			}
 		}
@@ -63,7 +63,7 @@ open class KCColorSelectorCore: KCView
 			if let well = mColorWell {
 				well.color = newcol
 			} else {
-				NSLog("No color well for set")
+				CNLog(logLevel: .error, message: "No color well for set")
 			}
 		}
 	}
@@ -75,7 +75,7 @@ open class KCColorSelectorCore: KCView
 					return color
 				}
 			}
-			NSLog("No color")
+			CNLog(logLevel: .error, message: "No color")
 			return CNColor.black
 		}
 		set(newcol){

@@ -72,7 +72,7 @@ open class KCConsoleView : KCCoreView
 			newview.setup(mode: .log, frame: self.frame)
 			allocateSubviewLayout(subView: newview)
 		} else {
-			NSLog("Failed to load resource")
+			CNLog(logLevel: .error, message: "Failed to load resource")
 			return
 		}
 	}

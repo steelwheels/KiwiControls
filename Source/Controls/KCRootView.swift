@@ -86,7 +86,7 @@ open class KCRootView: KCCoreView
 						let vpref = CNPreference.shared.viewPreference
 						self.setBackgroundColor(color: vpref.backgroundColor)
 					default:
-						NSLog("\(#file): Unknown key (1): \(key)")
+						CNLog(logLevel: .error, message: "\(#file): Unknown key (1): \(key)")
 					}
 				} else if let _ = vals[.newKey] as? NSNumber {
 				switch key {
@@ -94,7 +94,7 @@ open class KCRootView: KCCoreView
 					let tpref = CNPreference.shared.viewPreference
 					self.setBackgroundColor(color: tpref.backgroundColor)
 				default:
-					NSLog("\(#file): Unknown key (2): \(key)")
+					CNLog(logLevel: .error, message: "\(#file): Unknown key (2): \(key)")
 				}
 			}
 			}

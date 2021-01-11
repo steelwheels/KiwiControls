@@ -352,7 +352,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 				if let intval = Int(text) {
 					value = CNValue(intValue: intval)
 				} else {
-					NSLog("Failed to convert int: \(text)")
+					CNLog(logLevel: .error, message: "Failed to convert int: \(text)")
 					value = CNValue(intValue: 0)
 				}
 			}
