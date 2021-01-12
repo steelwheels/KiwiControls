@@ -109,6 +109,16 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
+	open override func visit(iconView view: KCIconView){
+		visit(coreView: view)
+
+		let fsection = CNTextSection()
+		fsection.header = "icon {" ; fsection.footer = "}"
+		fsection.add(string: "image-size:\(view.imageSize.description))")
+		fsection.add(string: "label-size:\(view.labelSize.description))")
+		mSection.add(text: fsection)
+	}
+
 	open override func visit(imageView view: KCImageView){
 		visit(coreView: view)
 		let fsection = CNTextSection()

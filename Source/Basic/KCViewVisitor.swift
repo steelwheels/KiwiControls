@@ -57,6 +57,10 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
+	open func visit(iconView view: KCIconView){
+		visit(coreView: view)
+	}
+
 	open func visit(imageView view: KCImageView){
 		visit(coreView: view)
 	}

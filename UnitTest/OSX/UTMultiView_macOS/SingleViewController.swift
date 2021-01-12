@@ -53,12 +53,13 @@ public class SingleViewController: KCSingleViewController
 		box0.distribution	= .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, button0])
 
-		let edit1 = KCTextEdit()
-		let box1  = KCStackView()
+		let edit1   = KCTextEdit()
+		let icon1   = allocateIcon()
+		let box1    = KCStackView()
 		box1.axis		= .vertical
 		box1.alignment		= .fill
 		box1.distribution	= .fillEqually
-		box1.addArrangedSubViews(subViews: [box0, edit1])
+		box1.addArrangedSubViews(subViews: [box0, icon1, edit1])
 
 		return box1
 	}
@@ -88,15 +89,29 @@ public class SingleViewController: KCSingleViewController
 		box1.distribution	= .fillProportinally
 		box1.addArrangedSubViews(subViews: [edit1, button1])
 
+		let icon1     = allocateIcon()
 		let button2   = KCButton()
 		button2.title = "OK"
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
-		box2.addArrangedSubViews(subViews: [imgview0, box1, button2])
+		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, button2])
 		//box2.addArrangedSubViews(subViews: [box1, button2])
 
 		return box2
+	}
+
+	private func allocateIcon() -> KCIconView {
+		let icon   = KCIconView()
+		icon.label = "Icon Label"
+		if let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png") {
+			NSLog("URL of Icon: \(imgurl.path)")
+			icon.image = CNImage.init(contentsOfFile: imgurl.path)
+			icon.scale = 0.2
+		} else {
+			NSLog("Invalid URL of image")
+		}
+		return icon
 	}
 
 	public override func viewDidLoad() {

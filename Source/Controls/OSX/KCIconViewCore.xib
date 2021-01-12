@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="mImageView" destination="Hfh-YW-Q0x" id="h7P-bj-5EB"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe" customClass="KCLabeledLayerViewCore" customModule="KiwiControls" customModuleProvider="target">
+        <customView id="c22-O7-iKe" customClass="KCIconViewCore" customModule="KiwiControls" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bK9-12-ocO">
-                    <rect key="frame" x="-2" y="0.0" width="484" height="17"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xdv-ZY-wuA">
+                    <rect key="frame" x="-2" y="0.0" width="484" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="17" id="eqU-Zn-gPv"/>
+                        <constraint firstAttribute="height" constant="32" id="YTo-K0-eD8"/>
                     </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="nfo-9Q-cJQ">
-                        <font key="font" metaFont="system"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="bbO-0O-cHS">
+                        <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="g1p-Zi-s11" customClass="KCLayerView" customModule="KiwiControls" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="20" width="480" height="252"/>
-                </customView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hfh-YW-Q0x">
+                    <rect key="frame" x="0.0" y="40" width="480" height="232"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="9bG-NJ-TS3"/>
+                </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="g1p-Zi-s11" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="3fa-Tr-CC8"/>
-                <constraint firstItem="bK9-12-ocO" firstAttribute="top" secondItem="g1p-Zi-s11" secondAttribute="bottom" constant="3" id="NES-pQ-zih"/>
-                <constraint firstAttribute="trailing" secondItem="bK9-12-ocO" secondAttribute="trailing" id="gOS-wt-TEw"/>
-                <constraint firstAttribute="bottom" secondItem="bK9-12-ocO" secondAttribute="bottom" id="gfr-aj-ITI"/>
-                <constraint firstItem="bK9-12-ocO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="iV6-9a-BMN"/>
-                <constraint firstAttribute="trailing" secondItem="g1p-Zi-s11" secondAttribute="trailing" id="j2w-DE-0B7"/>
-                <constraint firstItem="g1p-Zi-s11" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="yqh-bH-sP6"/>
+                <constraint firstAttribute="bottom" secondItem="xdv-ZY-wuA" secondAttribute="bottom" id="0es-tA-coy"/>
+                <constraint firstItem="xdv-ZY-wuA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ARQ-Iz-6ul"/>
+                <constraint firstItem="xdv-ZY-wuA" firstAttribute="top" secondItem="Hfh-YW-Q0x" secondAttribute="bottom" constant="8" symbolic="YES" id="QnE-J2-XaF"/>
+                <constraint firstItem="Hfh-YW-Q0x" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="TEM-wV-fye"/>
+                <constraint firstItem="Hfh-YW-Q0x" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="YUc-tz-vB6"/>
+                <constraint firstAttribute="trailing" secondItem="Hfh-YW-Q0x" secondAttribute="trailing" id="fe0-bc-fDy"/>
+                <constraint firstAttribute="trailing" secondItem="xdv-ZY-wuA" secondAttribute="trailing" id="rS2-lB-yf8"/>
             </constraints>
             <connections>
-                <outlet property="mLabelView" destination="bK9-12-ocO" id="gsH-F0-Jte"/>
-                <outlet property="mLayerView" destination="g1p-Zi-s11" id="qhr-uD-0v7"/>
+                <outlet property="mImageView" destination="Hfh-YW-Q0x" id="Chf-55-Klr"/>
+                <outlet property="mLabelView" destination="xdv-ZY-wuA" id="eaj-KV-3pW"/>
             </connections>
+            <point key="canvasLocation" x="-100" y="121"/>
         </customView>
     </objects>
 </document>
