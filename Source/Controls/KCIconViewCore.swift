@@ -15,27 +15,50 @@ import CoconutData
 open class KCIconViewCore : KCView
 {
 	#if os(OSX)
-	@IBOutlet weak var mImageView: NSImageView!
+	@IBOutlet weak var mImageButton: NSButton!
 	@IBOutlet weak var mLabelView: NSTextField!
 	#else
-	@IBOutlet weak var mImageView: UIImageView!
+	@IBOutlet weak var mImageButton: UIButton!
 	@IBOutlet weak var mLabelView: UILabel!
 	#endif
 
 	private var mScale: CGFloat	= 1.0
+	private var mOriginalImageSize	= KCSize.zero
 
 	public func setup(frame frm: CGRect){
-		KCView.setAutolayoutMode(views: [self, mImageView])
+		KCView.setAutolayoutMode(views: [self, mImageButton])
+		self.label = "Untitled"
 		#if os(OSX)
-			mImageView.imageScaling = .scaleProportionallyUpOrDown
+		mImageButton.imageScaling	= .scaleProportionallyUpOrDown
+		mImageButton.imagePosition	= .imageOnly
+		mLabelView.isEditable		= false
+		mLabelView.isSelectable		= false
 		#else
-			mImageView.contentMode = .scaleAspectFit
+		mImageButton.contentMode	= .scaleAspectFit
+		//mImageButton.imagePosition	= .imageAbove
 		#endif
 	}
 
 	public var image: CNImage? {
-		get		{ return mImageView.image }
-		set(newimg)	{ mImageView.image = newimg}
+		get {
+			#if os(OSX)
+				return mImageButton.image
+			#else
+				return mImageButton.image(for: .normal)
+			#endif
+		}
+		set(newimg)	{
+			guard let img = newimg else {
+				CNLog(logLevel: .error, message: "No image")
+				return
+			}
+			#if os(OSX)
+				mImageButton.image = img
+			#else
+				mImageButton.setImage(img, for: .normal)
+			#endif
+			mOriginalImageSize = img.size
+		}
 	}
 
 	public var label: String {
@@ -64,99 +87,49 @@ open class KCIconViewCore : KCView
 		set(newscale)	{ mScale = newscale }
 	}
 
-	private func divideFrame(entireSize size: KCSize) -> (KCSize, KCSize) { // (size-for-image, size-for-label)
-		let space = CNPreference.shared.windowPreference.spacing
-
-		if size.height > mLabelView.frame.size.height + space {
-			let labheight = mLabelView.frame.size.height
-			let imgheight = size.height - labheight - space
-			return (KCSize(width: size.width, height: imgheight),
-				KCSize(width: size.width, height: labheight))
-		} else {
-			let half = KCSize(width: size.width, height: size.height/2.0)
-			return (half, half)
-		}
-	}
-
-	private func fitInAspect(in newsize: KCSize) -> KCSize {
-		guard let img = self.mImageView.image else {
-			return newsize
-		}
-		let imgwidth  = img.size.width
-		let imgheight = img.size.height
-		let imgaspect = imgwidth / imgheight
-
-		let newwidth  = newsize.width
-		let newheight = newsize.height
-		guard newwidth > 0.0 && newheight > 0.0 else {
-			return newsize
-		}
-
-		let mod0height = newheight
-		let mod0width  = mod0height * imgaspect
-		if mod0height <= newsize.height && mod0width <= newsize.width {
-			return KCSize(width: mod0width, height: mod0height)
-		}
-
-		let mod1width  = newwidth
-		let mod1height = mod1width / imgaspect
-		return KCSize(width: mod1width, height: mod1height)
-	}
-
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
-		let (imgsize, labsize) = divideFrame(entireSize: newsize)
-		let iconsize = fitInAspect(in: imgsize)
-		#if os(OSX)
-			mImageView.setFrameSize(imgsize)
-			mLabelView.setFrameSize(labsize)
-		#else
-			mImageView.setFrameSize(size: imgsize)
-			mLabelView.setFrameSize(size: labsize)
-		#endif
-		if let img = mImageView.image {
-			let _ = img.resize(iconsize)
+
+		var labheight = mLabelView.frame.size.height
+		var imgheight = newsize.height - labheight
+		if imgheight < 0.0 {
+			labheight = newsize.height / 2.0
+			imgheight = labheight
 		}
+		let labsize = KCSize(width: newsize.width, height: labheight)
+		let imgsize = KCSize(width: newsize.width, height: imgheight)
+		#if os(OSX)
+		mImageButton.setFrameSize(imgsize)
+		mLabelView.setFrameSize(labsize)
+		#else
+		mImageButton.setFrameSize(size: imgsize)
+		mLabelView.setFrameSize(size: labsize)
+		#endif
 	}
 
 	open override var intrinsicContentSize: KCSize {
 		get {
-			let space = CNPreference.shared.windowPreference.spacing
-			let imgsize: KCSize
-			if let img = mImageView.image {
-				imgsize = KCSize(width: img.size.width * mScale, height: img.size.height * mScale)
-			} else {
-				imgsize = KCSize.zero
+			/* Get image size */
+			let sclsize = KCSize(width:  mOriginalImageSize.width  * mScale,
+					     height: mOriginalImageSize.height * mScale)
+			if let img = self.image {
+				let _ = img.resize(sclsize)
 			}
+			let imgsize = mImageButton.intrinsicContentSize
+			/* Get label size */
 			let labsize = mLabelView.intrinsicContentSize
-			return KCUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: space)
+			return KCUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
 		}
 	}
 
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
-		mImageView.invalidateIntrinsicContentSize()
+		mImageButton.invalidateIntrinsicContentSize()
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mImageView.setExpansionPriorities(priorities: prival)
+		mImageButton.setExpansionPriorities(priorities: prival)
 		super.setExpandabilities(priorities: prival)
-	}
-
-	public var imageSize: KCSize {
-		get {
-			let imgsize: KCSize
-			if let image = mImageView.image {
-				imgsize = image.size
-			} else {
-				imgsize = KCSize.zero
-			}
-			return imgsize
-		}
-	}
-
-	public var labelSize: KCSize {
-		get { return mLabelView.frame.size }
 	}
 }
 

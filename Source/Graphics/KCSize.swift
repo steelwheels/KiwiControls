@@ -39,6 +39,16 @@ public func KCMinSize(sizeA a: KCSize, sizeB b: KCSize) -> KCSize
 	return KCSize(width: width, height: height)
 }
 
+public func KCExpandSize(size sz: KCSize, delta dlt: CGFloat) -> KCSize {
+	return KCSize(width: sz.width + dlt * 2.0, height: sz.height + dlt * 2.0)
+}
+
+public func KCShrinkSize(size sz: KCSize, delta dlt: CGFloat) -> KCSize {
+	let width  = max(sz.width  - dlt * 2.0, 0.0)
+	let height = max(sz.height - dlt * 2.0, 0.0)
+	return KCSize(width: width, height: height)
+}
+
 public func KCUnionSize(sizeA a: KCSize, sizeB b: KCSize, doVertical vert: Bool, spacing space: CGFloat) -> KCSize
 {
 	if vert {

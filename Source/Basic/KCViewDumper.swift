@@ -114,8 +114,7 @@ public class KCViewDumper: KCViewVisitor
 
 		let fsection = CNTextSection()
 		fsection.header = "icon {" ; fsection.footer = "}"
-		fsection.add(string: "image-size:\(view.imageSize.description))")
-		fsection.add(string: "label-size:\(view.labelSize.description))")
+		fsection.add(string: "size:\(view.frame.size.description))")
 		mSection.add(text: fsection)
 	}
 

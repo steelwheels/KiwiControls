@@ -10,8 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
             <connections>
-                <outlet property="mImageView" destination="C2m-CL-Cbr" id="uVk-zY-EHy"/>
-                <outlet property="mLabelView" destination="pCt-QK-u5c" id="Fcc-IX-eVA"/>
+                <outlet property="mImageButton" destination="JDU-ea-gLY" id="1qM-8J-D6l"/>
+                <outlet property="mLabelView" destination="m8M-aq-s5B" id="q01-O0-Gcd"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,26 +19,30 @@
             <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCt-QK-u5c">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDU-ea-gLY">
+                    <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8M-aq-s5B">
                     <rect key="frame" x="0.0" y="139" width="128" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Lm8-ZJ-MbZ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C2m-CL-Cbr">
-                    <rect key="frame" x="0.0" y="0.0" width="128" height="131"/>
-                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="DV8-c6-vWv"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="pCt-QK-u5c" firstAttribute="top" secondItem="C2m-CL-Cbr" secondAttribute="bottom" constant="8" symbolic="YES" id="0Eu-Mz-TCu"/>
-                <constraint firstItem="pCt-QK-u5c" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="JRJ-Ny-eLs"/>
-                <constraint firstItem="pCt-QK-u5c" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="Q8H-ah-L6b"/>
-                <constraint firstItem="pCt-QK-u5c" firstAttribute="bottom" secondItem="DV8-c6-vWv" secondAttribute="bottom" id="Yv2-li-bPt"/>
-                <constraint firstItem="C2m-CL-Cbr" firstAttribute="top" secondItem="PnB-mV-ZfF" secondAttribute="top" id="buB-YN-JIN"/>
-                <constraint firstItem="C2m-CL-Cbr" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="v08-Fx-onB"/>
-                <constraint firstItem="C2m-CL-Cbr" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="vaE-Jc-1u9"/>
+                <constraint firstItem="DV8-c6-vWv" firstAttribute="bottom" secondItem="JDU-ea-gLY" secondAttribute="bottom" id="1h7-Kb-9qL"/>
+                <constraint firstItem="JDU-ea-gLY" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="6e2-II-cly"/>
+                <constraint firstItem="m8M-aq-s5B" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="dxy-7H-yHp"/>
+                <constraint firstItem="JDU-ea-gLY" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="lw9-rv-gk7"/>
+                <constraint firstItem="m8M-aq-s5B" firstAttribute="bottom" secondItem="DV8-c6-vWv" secondAttribute="bottom" id="oLX-EH-Xge"/>
+                <constraint firstItem="m8M-aq-s5B" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="uJY-Hk-bbV"/>
+                <constraint firstItem="JDU-ea-gLY" firstAttribute="top" secondItem="PnB-mV-ZfF" secondAttribute="top" id="z1W-kf-bwN"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

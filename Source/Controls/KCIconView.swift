@@ -66,14 +66,6 @@ open class KCIconView: KCCoreView
 		set(newscale)	{ coreView.scale = newscale	}
 	}
 
-	public var imageSize: CGSize {
-		get { return coreView.imageSize }
-	}
-
-	public var labelSize: CGSize {
-		get { return coreView.labelSize }
-	}
-
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(iconView: self)
 	}
