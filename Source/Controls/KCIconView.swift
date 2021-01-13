@@ -51,14 +51,19 @@ open class KCIconView: KCCoreView
 		}
 	}
 
+	public var buttonPressedCallback: (() -> Void)? {
+		get	   { return coreView.buttonPressedCallback 	}
+		set(newcb) { coreView.buttonPressedCallback = newcb	}
+	}
+
 	public var image: CNImage? {
 		get		{ return coreView.image }
 		set(newimg)	{ coreView.image = newimg}
 	}
 
-	public var label: String {
-		get 		{ return coreView.label		}
-		set(newlab)	{ coreView.label = newlab	}
+	public var title: String {
+		get 		{ return coreView.title		}
+		set(newstr)	{ coreView.title = newstr	}
 	}
 
 	public var scale: CGFloat {

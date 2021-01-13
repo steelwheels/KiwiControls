@@ -19,6 +19,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="buttonPressed:" target="c22-O7-iKe" id="7Uv-9f-nTo"/>
+                    </connections>
                 </button>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DMW-2f-o2x">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="32"/>

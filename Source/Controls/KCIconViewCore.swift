@@ -14,6 +14,8 @@ import CoconutData
 
 open class KCIconViewCore : KCView
 {
+	public var buttonPressedCallback: (() -> Void)? = nil
+
 	#if os(OSX)
 	@IBOutlet weak var mImageButton: NSButton!
 	@IBOutlet weak var mLabelView: NSTextField!
@@ -27,7 +29,7 @@ open class KCIconViewCore : KCView
 
 	public func setup(frame frm: CGRect){
 		KCView.setAutolayoutMode(views: [self, mImageButton])
-		self.label = "Untitled"
+		self.title = "Untitled"
 		#if os(OSX)
 		mImageButton.imageScaling	= .scaleProportionallyUpOrDown
 		mImageButton.imagePosition	= .imageOnly
@@ -38,6 +40,20 @@ open class KCIconViewCore : KCView
 		//mImageButton.imagePosition	= .imageAbove
 		#endif
 	}
+
+	#if os(OSX)
+	@IBAction func buttonPressed(_ sender: Any) {
+		if let callback = buttonPressedCallback {
+			callback()
+		}
+	}
+	#else
+	@IBAction func buttonPressed(_ sender: Any) {
+		if let callback = buttonPressedCallback {
+			callback()
+		}
+	}
+	#endif
 
 	public var image: CNImage? {
 		get {
@@ -61,7 +77,7 @@ open class KCIconViewCore : KCView
 		}
 	}
 
-	public var label: String {
+	public var title: String {
 		get {
 			#if os(OSX)
 				return mLabelView.stringValue
@@ -73,11 +89,11 @@ open class KCIconViewCore : KCView
 				}
 			#endif
 		}
-		set(newlab){
+		set(newstr){
 			#if os(OSX)
-				mLabelView.stringValue = newlab
+				mLabelView.stringValue = newstr
 			#else
-				mLabelView.text = newlab
+				mLabelView.text = newstr
 			#endif
 		}
 	}

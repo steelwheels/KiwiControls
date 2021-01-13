@@ -103,11 +103,15 @@ public class SingleViewController: KCSingleViewController
 
 	private func allocateIcon() -> KCIconView {
 		let icon   = KCIconView()
-		icon.label = "Icon Label"
+		icon.title = "Icon Title"
 		if let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png") {
 			NSLog("URL of Icon: \(imgurl.path)")
 			icon.image = CNImage.init(contentsOfFile: imgurl.path)
 			icon.scale = 0.2
+			icon.buttonPressedCallback = {
+				() -> Void in
+				NSLog("Icon pressed")
+			}
 		} else {
 			NSLog("Invalid URL of image")
 		}

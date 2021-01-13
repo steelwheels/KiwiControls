@@ -22,6 +22,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDU-ea-gLY">
                     <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
                     <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="49e-b6-P24"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8M-aq-s5B">
                     <rect key="frame" x="0.0" y="139" width="128" height="21"/>
