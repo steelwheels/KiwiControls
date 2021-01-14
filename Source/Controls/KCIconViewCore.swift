@@ -12,6 +12,14 @@ import UIKit
 #endif
 import CoconutData
 
+#if os(OSX)
+public class KCIconButtonCell: NSButtonCell {
+	public override func highlight(_ flag: Bool, withFrame cellFrame: NSRect, in controlView: NSView) {
+		self.isHighlighted = flag
+	}
+}
+#endif
+
 open class KCIconViewCore : KCView
 {
 	public var buttonPressedCallback: (() -> Void)? = nil
