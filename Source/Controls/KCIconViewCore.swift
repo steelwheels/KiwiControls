@@ -33,6 +33,7 @@ open class KCIconViewCore : KCView
 		#if os(OSX)
 		mImageButton.imageScaling	= .scaleProportionallyUpOrDown
 		mImageButton.imagePosition	= .imageOnly
+		mImageButton.isTransparent	= true
 		mLabelView.isEditable		= false
 		mLabelView.isSelectable		= false
 		#else
