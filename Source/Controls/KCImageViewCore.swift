@@ -20,6 +20,8 @@ open class KCImageViewCore : KCView
 	@IBOutlet weak var mImageView: UIImageView!
 	#endif
 
+	private var mScale: CGFloat = 1.0
+
 	public func setup(frame frm: CGRect){
 		KCView.setAutolayoutMode(views: [self, mImageView])
 		#if os(OSX)
@@ -33,16 +35,22 @@ open class KCImageViewCore : KCView
 		mImageView.image = img
 	}
 
+	public var scale: CGFloat {
+		get		{ return mScale }
+		set(newval)	{ mScale = newval}
+	}
+
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
-		let modsize = fitInAspect(in: newsize)
+		//let modsize = fitInAspect(in: newsize)
 		#if os(OSX)
-		mImageView.setFrameSize(modsize)
+		mImageView.setFrameSize(newsize)
 		#else
-		mImageView.setFrameSize(size: modsize)
+		mImageView.setFrameSize(size: newsize)
 		#endif
 	}
 
+	/*
 	private func fitInAspect(in newsize: KCSize) -> KCSize {
 		guard let img = self.mImageView.image else {
 			return newsize
@@ -66,10 +74,13 @@ open class KCImageViewCore : KCView
 		let mod1width  = newwidth
 		let mod1height = mod1width / imgaspect
 		return KCSize(width: mod1width, height: mod1height)
-	}
+	}*/
 
 	open override var intrinsicContentSize: KCSize {
-		get { return mImageView.intrinsicContentSize }
+		get {
+			let imgsize = imageSize
+			return KCSize(width: imgsize.width * mScale, height: imgsize.height * mScale)
+		}
 	}
 
 	public override func invalidateIntrinsicContentSize() {
@@ -82,7 +93,7 @@ open class KCImageViewCore : KCView
 		super.setExpandabilities(priorities: prival)
 	}
 
-	public var imageSize: CGSize {
+	private var imageSize: CGSize {
 		get {
 			let imgsize: CGSize
 			if let image = mImageView.image {

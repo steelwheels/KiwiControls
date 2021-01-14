@@ -122,7 +122,7 @@ public class KCViewDumper: KCViewVisitor
 		visit(coreView: view)
 		let fsection = CNTextSection()
 		fsection.header = "image {" ; fsection.footer = "}"
-		fsection.add(string: "size:\(view.imageSize.description))")
+		fsection.add(string: "size:\(view.frame.size.description))")
 		mSection.add(text: fsection)
 	}
 

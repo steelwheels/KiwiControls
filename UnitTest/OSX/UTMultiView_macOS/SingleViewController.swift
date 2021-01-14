@@ -90,12 +90,13 @@ public class SingleViewController: KCSingleViewController
 		box1.addArrangedSubViews(subViews: [edit1, button1])
 
 		let icon1     = allocateIcon()
+		let lstack    = allocateLabeledStack(image: img0)
 		let button2   = KCButton()
 		button2.title = "OK"
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
-		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, button2])
+		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, button2])
 		//box2.addArrangedSubViews(subViews: [box1, button2])
 
 		return box2
@@ -116,6 +117,17 @@ public class SingleViewController: KCSingleViewController
 			NSLog("Invalid URL of image")
 		}
 		return icon
+	}
+
+	private func allocateLabeledStack(image img: CNImage) -> KCLabeledStackView {
+		let imgview = KCImageView()
+		imgview.set(image: img)
+		imgview.scale = 2.0
+
+		let lstack  = KCLabeledStackView()
+		lstack.title = "Labeled Stack"
+		lstack.contentsView.addArrangedSubView(subView: imgview)
+		return lstack
 	}
 
 	public override func viewDidLoad() {
