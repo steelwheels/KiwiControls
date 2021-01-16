@@ -91,12 +91,13 @@ public class SingleViewController: KCSingleViewController
 
 		let icon1     = allocateIcon()
 		let lstack    = allocateLabeledStack(image: img0)
+		let table     = allocateTableView()
 		let button2   = KCButton()
 		button2.title = "OK"
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
-		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, button2])
+		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, table, button2])
 		//box2.addArrangedSubViews(subViews: [box1, button2])
 
 		return box2
@@ -122,12 +123,30 @@ public class SingleViewController: KCSingleViewController
 	private func allocateLabeledStack(image img: CNImage) -> KCLabeledStackView {
 		let imgview = KCImageView()
 		imgview.set(image: img)
-		imgview.scale = 2.0
+		imgview.scale = 0.5
 
 		let lstack  = KCLabeledStackView()
 		lstack.title = "Labeled Stack"
 		lstack.contentsView.addArrangedSubView(subView: imgview)
 		return lstack
+	}
+
+	private func allocateTableView() -> KCTableView {
+		let table = KCTableView()
+		let data  = CNTableData()
+
+		let col0  = CNColumnData(title: "Hello")
+		col0.append(data: .numberValue(NSNumber(integerLiteral: 1)))
+		col0.append(data: .numberValue(NSNumber(integerLiteral: 2)))
+		data.add(column: col0)
+
+		let col1  = CNColumnData(title: "Goodbye")
+		col1.append(data: .stringValue("a"))
+		col1.append(data: .stringValue("b"))
+		data.add(column: col1)
+
+		table.setDataTable(tableData: data)
+		return table
 	}
 
 	public override func viewDidLoad() {

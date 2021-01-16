@@ -51,6 +51,20 @@ open class KCTableView : KCCoreView
 		}
 	}
 
+	public func setDataTable(tableData tdata: CNTableData) {
+		coreView.setDataTable(tableData: tdata)
+	}
+
+	public var visibleColmunNum: Int {
+		get         { return coreView.visibleColmunNum }
+		set(newval) { coreView.visibleColmunNum = newval }
+	}
+
+	public var visibleRowNum: Int {
+		get         { return coreView.visibleRowNum }
+		set(newval) { coreView.visibleRowNum = newval }
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(tableView: self)
 	}
