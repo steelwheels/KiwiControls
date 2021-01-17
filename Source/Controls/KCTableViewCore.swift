@@ -13,12 +13,14 @@ import CoconutData
 #endif
 
 #if os(OSX)
-	public typealias KCTableViewDelegate = NSTableViewDelegate
+	public typealias KCTableViewDelegate    = NSTableViewDelegate
+	public typealias KCTableViewDataSource  = NSTableViewDataSource
 #else
-	public typealias KCTableViewDelegate = UITableViewDelegate
+	public typealias KCTableViewDelegate    = UITableViewDelegate
+	public typealias KCTableViewDataSource  = UITableViewDataSource
 #endif
 
-open class KCTableViewCore : KCView, KCTableViewDelegate
+open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 {
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
@@ -26,48 +28,128 @@ open class KCTableViewCore : KCView, KCTableViewDelegate
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
-	private var mTableData:		CNTableData? = nil
-	public var  visibleColmunNum:	Int = 0
-	public var  visibleRowNum:	Int = 0
+	private var mDataInterface		= CNTableDataInterface()
+
+	public var  numberOfVisibleColmuns:	Int = 0
+	public var  numberOfVisibleRows:	Int = 0
+	public var  cellPressedCallback: ((_ column: String, _ row: Int) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) {
 		KCView.setAutolayoutMode(views: [self, mTableView])
-		mTableView.delegate = self
-	}
-
-	public func setDataTable(tableData tdata: CNTableData) {
-		/* Set data source */
-		mTableData = tdata
-		let source = KCTableDataSource(tableData: tdata)
-		mTableView.dataSource = source
+		mTableView.delegate   = self
+		mTableView.dataSource = self
 
 		#if os(OSX)
+			mTableView.target = self
+			mTableView.doubleAction = #selector(doubleClicked)
+		#endif
+	}
+
+	public var dataStorage: CNTableDataStorage? {
+		get {
+			return mDataInterface.storage
+		}
+		set(strg) {
+			mDataInterface.storage = strg
+			updateTable()
+		}
+	}
+
+	private func updateTable() {
+		#if os(OSX)
 		/* Remove current columns */
-		for col in mTableView.tableColumns {
+		while mTableView.tableColumns.count > 0 {
+			let col = mTableView.tableColumns[0]
 			mTableView.removeTableColumn(col)
 		}
-		/* Add new columns */
-		for col in tdata.columns() {
-			let newcol = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: col.title))
-			newcol.title      = col.title
-			newcol.isEditable = col.isEditable
-			mTableView.addTableColumn(newcol)
+		/* Add columns */
+		let colnum = mDataInterface.numberOfColumns
+		for i in 0..<colnum {
+			if let colname = mDataInterface.readColumnTitle(index: i) {
+				let newcol = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
+				newcol.title      = colname
+				newcol.isEditable = false
+				mTableView.addTableColumn(newcol)
+			}
 		}
-		#endif
+		/* Request reload */
+		mTableView.reloadData()
 		self.invalidateIntrinsicContentSize()
+		#endif
 	}
 
 	#if os(OSX)
+	@objc func doubleClicked(sender: AnyObject) {
+		let rowidx = mTableView.clickedRow
+		let colidx = mTableView.clickedColumn
+		if let cbfunc = self.cellPressedCallback {
+			if colidx < mTableView.tableColumns.count {
+				let col = mTableView.tableColumns[colidx]
+				cbfunc(col.title, rowidx)
+			}
+		} else {
+			print("row double clicked col:\(colidx) row:\(rowidx)")
+		}
+	}
+	#endif
+
+	/*
+	 * Delegate
+	 */
+	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		if let col = tableColumn, let table = mTableData {
-			if let cdata = table.column(name: col.title) {
-				if let val = cdata.get(index: row) {
-					return valueToView(value: val)
-				}
+		if let col = tableColumn {
+			let idx = CNTableDataIndex(name: col.title, index: row)
+			if let val = mDataInterface.read(index: idx) {
+				return valueToView(value: val)
 			}
 		}
 		CNLog(logLevel: .error, message: "No matched view: \(String(describing: tableColumn?.title)) \(row) at \(#function)")
 		return nil
+	}
+	#endif
+
+	/*
+	 * DataSource
+	 */
+	#if os(OSX)
+	public func numberOfRows(in tableView: NSTableView) -> Int {
+		return mDataInterface.maxNumberOfRows
+	}
+
+	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+		if let col = tableColumn {
+			let idx = CNTableDataIndex(name: col.title, index: row)
+			return mDataInterface.read(index: idx)
+		} else {
+			CNLog(logLevel: .error, message: "No valid column")
+			return nil
+		}
+	}
+
+	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+		if let col = tableColumn {
+			if let val = object as? CNNativeValue {
+				let idx = CNTableDataIndex(name: col.title, index: row)
+				if !mDataInterface.write(index: idx, value: val) {
+					CNLog(logLevel: .error, message: "Failed to write value at \(#function)")
+				}
+			} else {
+				CNLog(logLevel: .error, message: "Invalid parameter object")
+			}
+		} else {
+			CNLog(logLevel: .error, message: "No valid column")
+		}
+	}
+
+	#else
+	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return mDataInterface.maxNumberOfRows
+	}
+
+	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+		return cell
 	}
 	#endif
 
@@ -131,14 +213,15 @@ open class KCTableViewCore : KCView, KCTableViewDelegate
 	open override var intrinsicContentSize: KCSize {
 		get {
 			#if os(OSX)
+
 			let spacing = mTableView.intercellSpacing
 
 			var width: CGFloat = 0.0
 			let colnum: Int
-			if self.visibleColmunNum > 0 {
-				colnum = self.visibleColmunNum
+			if self.numberOfVisibleColmuns > 0 {
+				colnum = self.numberOfVisibleColmuns
 			} else {
-				colnum = self.columnNum
+				colnum = self.numberOfColumns
 			}
 			for i in 0..<colnum {
 				if let view = mTableView.view(atColumn: i, row: 0, makeIfNecessary: false) {
@@ -152,10 +235,10 @@ open class KCTableViewCore : KCView, KCTableViewDelegate
 
 			var height: CGFloat = mTableView.intrinsicContentSize.height
 			let rownum: Int
-			if self.visibleRowNum > 0 {
-				rownum = self.visibleRowNum
+			if self.numberOfVisibleRows > 0 {
+				rownum = self.numberOfVisibleRows
 			} else {
-				rownum = self.rowNum
+				rownum = self.numberOfRows
 			}
 			for i in 0..<rownum {
 				if let view = mTableView.view(atColumn: 0, row: i, makeIfNecessary: false) {
@@ -175,23 +258,23 @@ open class KCTableViewCore : KCView, KCTableViewDelegate
 		}
 	}
 
-	public var rowNum: Int {
+	public var numberOfRows: Int {
 		get {
-			if let table = mTableData {
-				return table.numberOfRows
-			} else {
-				return 0
-			}
+			#if os(OSX)
+				return mTableView.numberOfRows
+			#else
+				return mTableView.numberOfRows(inSection: 0)
+			#endif
 		}
 	}
 
-	public var columnNum: Int {
+	public var numberOfColumns: Int {
 		get {
-			if let table = mTableData {
-				return table.numberOfColmns
-			} else {
-				return 0
-			}
+			#if os(OSX)
+				return mTableView.numberOfColumns
+			#else
+				return 1
+			#endif
 		}
 	}
 

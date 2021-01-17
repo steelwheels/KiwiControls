@@ -47,7 +47,7 @@ public class KCTerminalPreferenceView: KCStackView
 
 	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		NSLog("Not supported")
+		CNLog(logLevel: .error, message: "Not supported")
 	}
 
 	deinit {
@@ -229,7 +229,7 @@ public class KCTerminalPreferenceView: KCStackView
 			if let lvl = CNConfig.LogLevel(rawValue: i) {
 				items.append(lvl.description)
 			} else {
-				NSLog("Invalid raw value for LogLevel")
+				CNLog(logLevel: .error, message: "Invalid raw value for LogLevel")
 			}
 		}
 		logmenu.addItems(withTitles: items)
@@ -414,7 +414,7 @@ public class KCTerminalPreferenceView: KCStackView
 		if let sel = selector {
 			return sel.color
 		} else {
-			NSLog("No selector")
+			CNLog(logLevel: .error, message: "No selector")
 			return CNColor.black
 		}
 	}

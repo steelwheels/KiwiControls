@@ -232,8 +232,6 @@
 		05B750572539D2440034D8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B750562539D2440034D8CB /* Assets.xcassets */; };
 		05B7505A2539D2440034D8CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B750582539D2440034D8CB /* Main.storyboard */; };
 		05B750672539DCD00034D8CB /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleViewController.swift */; };
-		05C3F1B925B04C7F000988CA /* KCTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F1B825B04C7F000988CA /* KCTableDataSource.swift */; };
-		05C3F1BA25B04C7F000988CA /* KCTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F1B825B04C7F000988CA /* KCTableDataSource.swift */; };
 		05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05D0388625AC84370022E242 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D0388525AC84370022E242 /* KCIconViewCore.xib */; };
@@ -486,7 +484,6 @@
 		05B7505B2539D2440034D8CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiView_macOS.entitlements; sourceTree = "<group>"; };
 		05B750642539DCCF0034D8CB /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
-		05C3F1B825B04C7F000988CA /* KCTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTableDataSource.swift; sourceTree = "<group>"; };
 		05CC333925789709001BA2F2 /* KCConsoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCConsoleManager.swift; sourceTree = "<group>"; };
 		05D0388525AC84370022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		05D0388D25AC846D0022E242 /* KCIconViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
@@ -942,7 +939,6 @@
 			isa = PBXGroup;
 			children = (
 				0544EBA22517764A002DE6A8 /* KCColorTable.swift */,
-				05C3F1B825B04C7F000988CA /* KCTableDataSource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1376,7 +1372,6 @@
 				0544EB28251775A3002DE6A8 /* KCRootView.swift in Sources */,
 				0544EB30251775A3002DE6A8 /* KCStepper.swift in Sources */,
 				0544EBB325177676002DE6A8 /* KCLayoutConstraint.swift in Sources */,
-				05C3F1B925B04C7F000988CA /* KCTableDataSource.swift in Sources */,
 				0544EBC325177676002DE6A8 /* KCAlert.swift in Sources */,
 				0544EB10251775A3002DE6A8 /* KCTableView.swift in Sources */,
 				0544EADE25176FF5002DE6A8 /* KCHexagon.swift in Sources */,
@@ -1493,7 +1488,6 @@
 				0544EA9725176F86002DE6A8 /* KCTimer.swift in Sources */,
 				05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */,
 				0544EACD25176FF5002DE6A8 /* KCTriangle.swift in Sources */,
-				05C3F1BA25B04C7F000988CA /* KCTableDataSource.swift in Sources */,
 				0544EBC025177676002DE6A8 /* KCCoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,14 +18,17 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private var mMode:	Mode
+	private var mDatabase:	CNTableDatabase
 
 	public init(parentViewController parent: KCMultiViewController, mode md: Mode){
-		mMode = md
+		mMode     = md
+		mDatabase = CNTableDatabase()
 		super.init(parentViewController: parent)
 	}
 
 	public required init?(coder: NSCoder) {
-		mMode = .vertBox
+		mMode     = .vertBox
+		mDatabase = CNTableDatabase()
 		super.init(coder: coder)
 	}
 
@@ -132,21 +135,35 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private func allocateTableView() -> KCTableView {
-		let table = KCTableView()
-		let data  = CNTableData()
+		let view = KCTableView()
 
-		let col0  = CNColumnData(title: "Hello")
-		col0.append(data: .numberValue(NSNumber(integerLiteral: 1)))
-		col0.append(data: .numberValue(NSNumber(integerLiteral: 2)))
-		data.add(column: col0)
-
-		let col1  = CNColumnData(title: "Goodbye")
-		col1.append(data: .stringValue("a"))
-		col1.append(data: .stringValue("b"))
-		data.add(column: col1)
-
-		table.setDataTable(tableData: data)
-		return table
+		let name0 = "a"
+		NSLog("Add column (0.0)")
+		if mDatabase.addColumn(title: name0) {
+			for i in 0..<10 {
+				if !mDatabase.append(columnName: name0, value: .numberValue(NSNumber(integerLiteral: 10 + i))) {
+					NSLog("Failed to add (0.1)")
+				}
+			}
+		}
+		let name1 = "b"
+		NSLog("Add column (1.0)")
+		if mDatabase.addColumn(title: name1) {
+			if !mDatabase.append(columnName: name1, value: .numberValue(NSNumber(integerLiteral: 3))) {
+				NSLog("Failed to add (1.1)")
+			}
+			if !mDatabase.append(columnName: name1, value: .numberValue(NSNumber(integerLiteral: 4))) {
+				NSLog("Failed to add (1.2)")
+			}
+		}
+		NSLog("Set database")
+		view.dataStorage         = mDatabase
+		view.numberOfVisibleRows = 2
+		view.cellPressedCallback = {
+			(_ column: String, _ row: Int) -> Void in
+			NSLog("Double cliked col=\(column) row=\(row)")
+		}
+		return view
 	}
 
 	public override func viewDidLoad() {
