@@ -123,8 +123,8 @@ public class KCExpansionAdjuster: KCViewVisitor
 
 	open override func visit(tableView view: KCTableView){
 		let prival = ExpansionPriorities(holizontalHugging: 	.low,
-						 holizontalCompression: .low,
-						 verticalHugging: 	.fixed,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.low,
 						 verticalCompression:	.fixed)
 		view.setExpandabilities(priorities: prival)
 	}

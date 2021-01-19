@@ -158,7 +158,7 @@ public class SingleViewController: KCSingleViewController
 		}
 		NSLog("Set database")
 		view.dataStorage         = mDatabase
-		view.numberOfVisibleRows = 2
+		view.numberOfVisibleRows = 4
 		view.cellPressedCallback = {
 			(_ column: String, _ row: Int) -> Void in
 			NSLog("Double cliked col=\(column) row=\(row)")
