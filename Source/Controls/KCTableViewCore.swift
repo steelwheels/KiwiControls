@@ -28,7 +28,8 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
-	private var mDataInterface		= CNTableDataInterface()
+	private var mDataInterface			= CNTableDataInterface()
+	private var mConverter: KCTableCellConverting	= KCTableCellCoverter()
 
 	public var  numberOfVisibleColmuns:	Int = 0
 	public var  numberOfVisibleRows:	Int = 0
@@ -52,6 +53,15 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		set(strg) {
 			mDataInterface.storage = strg
 			updateTable()
+		}
+	}
+
+	public var cellConverter: KCTableCellConverting {
+		get {
+			return mConverter
+		}
+		set(conv) {
+			mConverter = conv
 		}
 	}
 
@@ -83,12 +93,15 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
 		if let cbfunc = self.cellPressedCallback {
-			if colidx < mTableView.tableColumns.count {
-				let col = mTableView.tableColumns[colidx]
-				cbfunc(col.title, rowidx)
+			let colnum = mDataInterface.numberOfColumns
+			if let rownum = mDataInterface.numberOfRows(columnIndex: colidx) {
+				if colidx < colnum && rowidx < rownum {
+					let col = mTableView.tableColumns[colidx]
+					cbfunc(col.title, rowidx)
+				}
 			}
 		} else {
-			print("row double clicked col:\(colidx) row:\(rowidx)")
+			print("double clicked col:\(colidx) row:\(rowidx)")
 		}
 	}
 	#endif
@@ -101,7 +114,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		if let col = tableColumn {
 			let idx = CNTableDataIndex(name: col.title, index: row)
 			if let val = mDataInterface.read(index: idx) {
-				return valueToView(value: val)
+				return mConverter.covertToView(value: val)
 			}
 		}
 		CNLog(logLevel: .error, message: "No matched view: \(String(describing: tableColumn?.title)) \(row) at \(#function)")
@@ -153,54 +166,6 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 	#endif
 
-	open func valueToView(value val: CNNativeValue) -> KCView? {
-		let result: KCView?
-		switch val {
-		case .URLValue(let url):
-			result = valueToView(string: url.path)
-		case .imageValue(let img):
-			result = valueToView(image: img)
-		case .dateValue(let date):
-			result = valueToView(string: date.description)
-		case .enumValue(let str, let val):
-			let lab = "\(str)(\(val))"
-			result = valueToView(string: lab)
-		case .nullValue:
-			result = valueToView(string: "")
-		case .numberValue(let num):
-			result = valueToView(string: num.description(withLocale: nil))
-		case .pointValue(let pt):
-			result = valueToView(string: pt.description)
-		case .rangeValue(let rng):
-			result = valueToView(string: rng.description)
-		case .sizeValue(let size):
-			result = valueToView(string: size.description)
-		case .stringValue(let str):
-			result = valueToView(string: str)
-		case .rectValue(let rect):
-			result = valueToView(string: rect.description)
-		case .anyObjectValue(_), .arrayValue(_), .colorValue(_), .dictionaryValue(_):
-			result = nil
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown case at \(#function)")
-			result = nil
-		}
-		return result
-	}
-
-	public func valueToView(string val: String) -> KCTextEdit {
-		let textview  = KCTextEdit()
-		textview.mode = .label
-		textview.text = val
-		return textview
-	}
-
-	public func valueToView(image val: CNImage) -> KCImageView {
-		let imgview = KCImageView()
-		imgview.set(image: val)
-		return imgview
-	}
-
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
 		#if os(OSX)
@@ -240,6 +205,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			} else {
 				rownum = self.numberOfRows
 			}
+			
 			for i in 0..<rownum {
 				if let view = mTableView.view(atColumn: 0, row: i, makeIfNecessary: false) {
 					let vsize = view.intrinsicContentSize

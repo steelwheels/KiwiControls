@@ -56,6 +56,11 @@ open class KCTableView : KCCoreView
 		set(strg) { coreView.dataStorage = strg	}
 	}
 
+	public var cellConverter: KCTableCellConverting {
+		get          { return coreView.cellConverter }
+		set(newconv) { coreView.cellConverter = newconv }
+	}
+
 	public var numberOfVisibleColmuns: Int {
 		get         { return coreView.numberOfVisibleColmuns}
 		set(newval) { coreView.numberOfVisibleColmuns = newval }
