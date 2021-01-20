@@ -234,8 +234,8 @@
 		05B750672539DCD00034D8CB /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleViewController.swift */; };
 		05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
-		05CFF4CF25B684DB00996D13 /* KCTableCellConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFF4CE25B684DB00996D13 /* KCTableCellConverter.swift */; };
-		05CFF4D025B684DB00996D13 /* KCTableCellConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFF4CE25B684DB00996D13 /* KCTableCellConverter.swift */; };
+		05CFF4CF25B684DB00996D13 /* KCCellTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFF4CE25B684DB00996D13 /* KCCellTable.swift */; };
+		05CFF4D025B684DB00996D13 /* KCCellTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFF4CE25B684DB00996D13 /* KCCellTable.swift */; };
 		05D0388625AC84370022E242 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D0388525AC84370022E242 /* KCIconViewCore.xib */; };
 		05D0388E25AC846D0022E242 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D0388D25AC846D0022E242 /* KCIconViewCore.swift */; };
 		05D0388F25AC846D0022E242 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D0388D25AC846D0022E242 /* KCIconViewCore.swift */; };
@@ -487,7 +487,7 @@
 		05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiView_macOS.entitlements; sourceTree = "<group>"; };
 		05B750642539DCCF0034D8CB /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		05CC333925789709001BA2F2 /* KCConsoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCConsoleManager.swift; sourceTree = "<group>"; };
-		05CFF4CE25B684DB00996D13 /* KCTableCellConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTableCellConverter.swift; sourceTree = "<group>"; };
+		05CFF4CE25B684DB00996D13 /* KCCellTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCellTable.swift; sourceTree = "<group>"; };
 		05D0388525AC84370022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		05D0388D25AC846D0022E242 /* KCIconViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
 		05D038B625AC86DF0022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
@@ -942,7 +942,7 @@
 			isa = PBXGroup;
 			children = (
 				0544EBA22517764A002DE6A8 /* KCColorTable.swift */,
-				05CFF4CE25B684DB00996D13 /* KCTableCellConverter.swift */,
+				05CFF4CE25B684DB00996D13 /* KCCellTable.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1328,7 +1328,7 @@
 				0544EBBD25177676002DE6A8 /* KCViewDumper.swift in Sources */,
 				0544EB34251775A3002DE6A8 /* KCTextEditCore.swift in Sources */,
 				0544EB14251775A3002DE6A8 /* KCTextEdit.swift in Sources */,
-				05CFF4CF25B684DB00996D13 /* KCTableCellConverter.swift in Sources */,
+				05CFF4CF25B684DB00996D13 /* KCCellTable.swift in Sources */,
 				05D038C525AC8E830022E242 /* KCIconView.swift in Sources */,
 				0544EB26251775A3002DE6A8 /* KCTerminalView.swift in Sources */,
 				05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */,
@@ -1414,7 +1414,7 @@
 			files = (
 				05EB0EA02567E98200D28FD2 /* KCTerminalViewCore.swift in Sources */,
 				0544EB3B251775A3002DE6A8 /* KCPopupMenuCore.swift in Sources */,
-				05CFF4D025B684DB00996D13 /* KCTableCellConverter.swift in Sources */,
+				05CFF4D025B684DB00996D13 /* KCCellTable.swift in Sources */,
 				0544EBBE25177676002DE6A8 /* KCViewDumper.swift in Sources */,
 				0544EB17251775A3002DE6A8 /* KCLabeledStackViewCore.swift in Sources */,
 				0544EAEB2517718D002DE6A8 /* KCDocument.swift in Sources */,

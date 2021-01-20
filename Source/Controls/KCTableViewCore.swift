@@ -28,9 +28,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
-	private var mDataInterface			= CNTableDataInterface()
-	private var mConverter: KCTableCellConverting	= KCTableCellCoverter()
-
+	private var mCellTable:			KCCellTableInterface?
 	public var  numberOfVisibleColmuns:	Int = 0
 	public var  numberOfVisibleRows:	Int = 0
 	public var  cellPressedCallback: ((_ column: String, _ row: Int) -> Void)? = nil
@@ -46,26 +44,19 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		#endif
 	}
 
-	public var dataStorage: CNTableDataStorage? {
+	public var cellTable: KCCellTableInterface? {
 		get {
-			return mDataInterface.storage
+			return mCellTable
 		}
-		set(strg) {
-			mDataInterface.storage = strg
-			updateTable()
+		set(tbl) {
+			mCellTable = tbl
+			if let t = tbl {
+				updateTable(cellTable: t)
+			}
 		}
 	}
 
-	public var cellConverter: KCTableCellConverting {
-		get {
-			return mConverter
-		}
-		set(conv) {
-			mConverter = conv
-		}
-	}
-
-	private func updateTable() {
+	private func updateTable(cellTable ctable: KCCellTableInterface) {
 		#if os(OSX)
 		/* Remove current columns */
 		while mTableView.tableColumns.count > 0 {
@@ -73,9 +64,9 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			mTableView.removeTableColumn(col)
 		}
 		/* Add columns */
-		let colnum = mDataInterface.numberOfColumns
+		let colnum = ctable.numberOfColumns()
 		for i in 0..<colnum {
-			if let colname = mDataInterface.readColumnTitle(index: i) {
+			if let colname = ctable.columnTitle(index: i) {
 				let newcol = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
 				newcol.title      = colname
 				newcol.isEditable = false
@@ -92,9 +83,9 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	@objc func doubleClicked(sender: AnyObject) {
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
-		if let cbfunc = self.cellPressedCallback {
-			let colnum = mDataInterface.numberOfColumns
-			if let rownum = mDataInterface.numberOfRows(columnIndex: colidx) {
+		if let cbfunc = self.cellPressedCallback, let ctable = mCellTable {
+			let colnum = ctable.numberOfColumns()
+			if let rownum = ctable.numberOfRows(columnIndex: colidx) {
 				if colidx < colnum && rowidx < rownum {
 					let col = mTableView.tableColumns[colidx]
 					cbfunc(col.title, rowidx)
@@ -111,11 +102,8 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	 */
 	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		if let col = tableColumn {
-			let idx = CNTableDataIndex(name: col.title, index: row)
-			if let val = mDataInterface.read(index: idx) {
-				return mConverter.covertToView(value: val)
-			}
+		if let col = tableColumn, let ctable = mCellTable {
+			return ctable.view(colmunName: col.title, rowIndex: row)
 		}
 		CNLog(logLevel: .error, message: "No matched view: \(String(describing: tableColumn?.title)) \(row) at \(#function)")
 		return nil
@@ -127,13 +115,16 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	 */
 	#if os(OSX)
 	public func numberOfRows(in tableView: NSTableView) -> Int {
-		return mDataInterface.maxNumberOfRows
+		if let ctable = mCellTable {
+			return ctable.maxNumberOfRows()
+		} else {
+			return 0
+		}
 	}
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-		if let col = tableColumn {
-			let idx = CNTableDataIndex(name: col.title, index: row)
-			return mDataInterface.read(index: idx)
+		if let col = tableColumn, let ctable = mCellTable {
+			return ctable.view(colmunName: col.title, rowIndex: row)
 		} else {
 			CNLog(logLevel: .error, message: "No valid column")
 			return nil
@@ -141,15 +132,8 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-		if let col = tableColumn {
-			if let val = object as? CNNativeValue {
-				let idx = CNTableDataIndex(name: col.title, index: row)
-				if !mDataInterface.write(index: idx, value: val) {
-					CNLog(logLevel: .error, message: "Failed to write value at \(#function)")
-				}
-			} else {
-				CNLog(logLevel: .error, message: "Invalid parameter object")
-			}
+		if let col = tableColumn, let ctable = mCellTable  {
+			ctable.set(colmunName: col.title, rowIndex: row, data: object)
 		} else {
 			CNLog(logLevel: .error, message: "No valid column")
 		}
@@ -157,7 +141,11 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	#else
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return mDataInterface.maxNumberOfRows
+		if let ctable = mCellTable {
+			return ctable.maxNumberOfRows()
+		} else {
+			return 0
+		}
 	}
 
 	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

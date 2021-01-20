@@ -18,17 +18,17 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private var mMode:	Mode
-	private var mDatabase:	CNTableDatabase
+	private var mCellTable:	KCCellTable
 
 	public init(parentViewController parent: KCMultiViewController, mode md: Mode){
-		mMode     = md
-		mDatabase = CNTableDatabase()
+		mMode      = md
+		mCellTable = KCCellTable()
 		super.init(parentViewController: parent)
 	}
 
 	public required init?(coder: NSCoder) {
-		mMode     = .vertBox
-		mDatabase = CNTableDatabase()
+		mMode      = .vertBox
+		mCellTable = KCCellTable()
 		super.init(coder: coder)
 	}
 
@@ -139,25 +139,19 @@ public class SingleViewController: KCSingleViewController
 
 		let name0 = "a"
 		NSLog("Add column (0.0)")
-		if mDatabase.addColumn(title: name0) {
-			for i in 0..<10 {
-				if !mDatabase.append(columnName: name0, value: .numberValue(NSNumber(integerLiteral: 10 + i))) {
-					NSLog("Failed to add (0.1)")
-				}
-			}
+		let _ = mCellTable.addColumn(title: name0)
+		for i in 0..<10 {
+			mCellTable.append(colmunName: name0, value: .numberValue(NSNumber(integerLiteral: 10 + i)))
 		}
+
 		let name1 = "b"
 		NSLog("Add column (1.0)")
-		if mDatabase.addColumn(title: name1) {
-			if !mDatabase.append(columnName: name1, value: .numberValue(NSNumber(integerLiteral: 3))) {
-				NSLog("Failed to add (1.1)")
-			}
-			if !mDatabase.append(columnName: name1, value: .numberValue(NSNumber(integerLiteral: 4))) {
-				NSLog("Failed to add (1.2)")
-			}
-		}
+		let _ = mCellTable.addColumn(title: name1)
+		mCellTable.append(colmunName: name1, value: .numberValue(NSNumber(integerLiteral: 3)))
+		mCellTable.append(colmunName: name1, value: .numberValue(NSNumber(integerLiteral: 4)))
+
 		NSLog("Set database")
-		view.dataStorage         = mDatabase
+		view.cellTable           = mCellTable
 		view.numberOfVisibleRows = 4
 		view.cellPressedCallback = {
 			(_ column: String, _ row: Int) -> Void in

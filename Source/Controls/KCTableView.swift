@@ -51,14 +51,9 @@ open class KCTableView : KCCoreView
 		}
 	}
 
-	public var dataStorage: CNTableDataStorage? {
-		get	  { return coreView.dataStorage	}
-		set(strg) { coreView.dataStorage = strg	}
-	}
-
-	public var cellConverter: KCTableCellConverting {
-		get          { return coreView.cellConverter }
-		set(newconv) { coreView.cellConverter = newconv }
+	public var cellTable: KCCellTableInterface? {
+		get	  { return coreView.cellTable	}
+		set(strg) { coreView.cellTable = strg	}
 	}
 
 	public var numberOfVisibleColmuns: Int {
