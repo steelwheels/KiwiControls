@@ -125,8 +125,9 @@ public class KCCellTable: KCCellTableInterface
 			} else if ridx == cnum {
 				col.values.append(val)
 			}
+		} else {
+			NSLog("KCCellTable: Failed to set: \(cname)")
 		}
-		NSLog("KCCellTable: Failed to set")
 	}
 
 	public func append(colmunName cname: String, data dat: Any?) {
@@ -139,10 +140,11 @@ public class KCCellTable: KCCellTableInterface
 
 	public func append(colmunName cname: String, value val: CNNativeValue) {
 		if let cidx = mTitles[cname] {
-			let col  = mColumns[cidx]
+			let col = mColumns[cidx]
 			col.values.append(val)
+		} else {
+			NSLog("KCCellTable: Failed to append: \(cname)")
 		}
-		NSLog("KCCellTable: Failed to append")
 	}
 
 	public func covertToView(value val: CNNativeValue) -> KCView? {
