@@ -103,7 +103,6 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		if let col = tableColumn, let ctable = mCellTable {
-			NSLog("tableView(viewFor tableColumn)")
 			return ctable.view(colmunName: col.title, rowIndex: row)
 		}
 		CNLog(logLevel: .error, message: "No matched view: \(String(describing: tableColumn?.title)) \(row) at \(#function)")
