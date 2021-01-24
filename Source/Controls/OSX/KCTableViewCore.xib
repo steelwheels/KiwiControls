@@ -16,11 +16,11 @@
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGi-c7-VeO">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                     <clipView key="contentView" id="f8A-wD-Box">
-                        <rect key="frame" x="1" y="0.0" width="478" height="271"/>
+                        <rect key="frame" x="1" y="1" width="478" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="AVA-Yi-zES" viewBased="YES" id="lnc-rb-lWj">
-                                <rect key="frame" x="0.0" y="0.0" width="478" height="248"/>
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" usesAutomaticRowHeights="YES" viewBased="YES" id="lnc-rb-lWj">
+                                <rect key="frame" x="0.0" y="0.0" width="478" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -63,24 +63,24 @@
                         </subviews>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="VkC-Y7-NcQ">
-                        <rect key="frame" x="1" y="254" width="448" height="16"/>
+                        <rect key="frame" x="1" y="255" width="478" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="iVv-wk-HGx">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <tableHeaderView key="headerView" id="AVA-Yi-zES">
-                        <rect key="frame" x="0.0" y="0.0" width="478" height="23"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </tableHeaderView>
                 </scrollView>
             </subviews>
             <constraints>
                 <constraint firstItem="DGi-c7-VeO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="G0S-GK-rLn"/>
                 <constraint firstAttribute="bottom" secondItem="DGi-c7-VeO" secondAttribute="bottom" id="KPs-cu-lA9"/>
+                <constraint firstAttribute="trailing" secondItem="DGi-c7-VeO" secondAttribute="trailing" id="SbA-a3-MSv"/>
+                <constraint firstAttribute="bottom" secondItem="DGi-c7-VeO" secondAttribute="bottom" id="WlC-gl-V5T"/>
                 <constraint firstItem="DGi-c7-VeO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="eaD-Zo-h3T"/>
+                <constraint firstItem="DGi-c7-VeO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="jTh-4X-JR9"/>
                 <constraint firstAttribute="trailing" secondItem="DGi-c7-VeO" secondAttribute="trailing" id="n3f-n3-5xS"/>
+                <constraint firstItem="DGi-c7-VeO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="wXa-Rw-zYs"/>
             </constraints>
             <connections>
                 <outlet property="mTableView" destination="lnc-rb-lWj" id="kJW-is-d5G"/>

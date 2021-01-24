@@ -358,7 +358,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		let termheight = CGFloat(tpref.height) * fontsize.height
 		let barwidth   = scrollBarWidth()
 		let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
-		CNLog(logLevel: .detail, message: "KCTerminalViewCore: target size \(termsize.description)")
+		//CNLog(logLevel: .detail, message: "KCTerminalViewCore: target size \(termsize.description)")
 		return termsize
 	}
 

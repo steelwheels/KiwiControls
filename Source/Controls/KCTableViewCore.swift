@@ -169,42 +169,36 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 			let spacing = mTableView.intercellSpacing
 
-			var width: CGFloat = 0.0
-			let colnum: Int
+			let viscolnum: Int
 			if self.numberOfVisibleColmuns > 0 {
-				colnum = self.numberOfVisibleColmuns
+				viscolnum = self.numberOfVisibleColmuns
+			} else if let ctable = mCellTable {
+				viscolnum = ctable.numberOfColumns()
 			} else {
-				colnum = self.numberOfColumns
-			}
-			for i in 0..<colnum {
-				if let view = mTableView.view(atColumn: i, row: 0, makeIfNecessary: false) {
-					let vsize = view.intrinsicContentSize
-					width += vsize.width
-				}
-			}
-			if colnum >= 1 {
-				width += spacing.width * CGFloat(colnum)
+				viscolnum = 1
 			}
 
-			var height: CGFloat = mTableView.intrinsicContentSize.height
-			let rownum: Int
+			let visrownum: Int
 			if self.numberOfVisibleRows > 0 {
-				rownum = self.numberOfVisibleRows
+				visrownum = self.numberOfVisibleRows
+			} else if let ctable = mCellTable {
+				visrownum = ctable.maxNumberOfRows()
 			} else {
-				rownum = self.numberOfRows
-			}
-			
-			for i in 0..<rownum {
-				if let view = mTableView.view(atColumn: 0, row: i, makeIfNecessary: false) {
-					let vsize = view.intrinsicContentSize
-					height += vsize.height
-				}
-			}
-			if rownum >= 1 {
-				height += spacing.height * CGFloat(rownum)
+				visrownum = 1
 			}
 
-			let result = KCSize(width: width, height: height)
+			let result: KCSize
+			if let view = mTableView.view(atColumn: 0, row: 0, makeIfNecessary: false) {
+				let vsize  = view.intrinsicContentSize
+				let width  = vsize.width * CGFloat(viscolnum)
+				             + spacing.width  * CGFloat(viscolnum + 1)
+				let height = vsize.height * CGFloat(visrownum)
+					     + spacing.height * CGFloat(visrownum + 1)
+				result = KCSize(width: width, height: height)
+			} else {
+				result = KCSize(width: -1.0, height: 14)
+			}
+			//NSLog("intrinsicContentsSize: \(viscolnum)x\(visrownum) -> \(result.description)")
 			return result
 			#else
 			return mTableView.intrinsicContentSize

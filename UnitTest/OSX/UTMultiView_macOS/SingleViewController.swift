@@ -141,18 +141,19 @@ public class SingleViewController: KCSingleViewController
 		NSLog("Add column (0.0)")
 		let _ = mCellTable.addColumn(title: name0)
 		for i in 0..<10 {
-			mCellTable.append(colmunName: name0, value: .numberValue(NSNumber(integerLiteral: 10 + i)))
+			mCellTable.append(colmunName: name0, value: .numberValue(NSNumber(integerLiteral: i)))
 		}
 
 		let name1 = "b"
 		NSLog("Add column (1.0)")
 		let _ = mCellTable.addColumn(title: name1)
-		mCellTable.append(colmunName: name1, value: .numberValue(NSNumber(integerLiteral: 3)))
-		mCellTable.append(colmunName: name1, value: .numberValue(NSNumber(integerLiteral: 4)))
+		for i in 0..<10 {
+			mCellTable.append(colmunName: name1, value: .numberValue(NSNumber(integerLiteral: 10 + i)))
+		}
 
 		NSLog("Set database")
-		view.cellTable           = mCellTable
 		view.numberOfVisibleRows = 4
+		view.cellTable           = mCellTable
 		view.cellPressedCallback = {
 			(_ column: String, _ row: Int) -> Void in
 			NSLog("Double cliked col=\(column) row=\(row)")

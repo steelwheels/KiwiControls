@@ -83,6 +83,7 @@ open class KCIconViewCore : KCView
 				mImageButton.setImage(img, for: .normal)
 			#endif
 			mOriginalImageSize = img.size
+			mImageButton.invalidateIntrinsicContentSize()
 		}
 	}
 
@@ -104,6 +105,7 @@ open class KCIconViewCore : KCView
 			#else
 				mLabelView.text = newstr
 			#endif
+			mLabelView.invalidateIntrinsicContentSize()
 		}
 	}
 

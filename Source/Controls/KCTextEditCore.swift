@@ -207,6 +207,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 					#else
 						myself.mTextEdit.text = newval
 					#endif
+					myself.mTextEdit.invalidateIntrinsicContentSize()
 				}
 			})
 		}
@@ -222,19 +223,6 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			return ""
 		}
 		#endif
-	}
-
-	private func setText(label str:String){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(OSX)
-					myself.mTextEdit.stringValue = str
-				#else
-					myself.mTextEdit.text = str
-				#endif
-			}
-		})
 	}
 
 	public var value: CNNativeValue {
@@ -260,7 +248,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		set(newval) {
 			let txt = newval.toText()
 			let str = txt.toStrings(terminal: "").joined(separator: "\n")
-			setText(label: str)
+			self.text = str
 		}
 	}
 
