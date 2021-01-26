@@ -31,7 +31,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	private var mCellTable:			KCCellTableInterface?
 	public var  numberOfVisibleColmuns:	Int = 0
 	public var  numberOfVisibleRows:	Int = 0
-	public var  cellPressedCallback: ((_ column: String, _ row: Int) -> Void)? = nil
+	public var  cellPressedCallback: ((_ col: Int, _ row: Int) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) {
 		KCView.setAutolayoutMode(views: [self, mTableView])
@@ -39,8 +39,13 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		mTableView.dataSource = self
 
 		#if os(OSX)
-			mTableView.target = self
-			mTableView.doubleAction = #selector(doubleClicked)
+			mTableView.target			= self
+			mTableView.doubleAction 		= #selector(doubleClicked)
+			mTableView.allowsColumnReordering	= false
+			mTableView.allowsColumnResizing		= false
+			mTableView.allowsColumnSelection	= true
+			mTableView.allowsMultipleSelection	= false
+			mTableView.allowsEmptySelection		= true
 		#endif
 	}
 
@@ -87,8 +92,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			let colnum = ctable.numberOfColumns()
 			if let rownum = ctable.numberOfRows(columnIndex: colidx) {
 				if colidx < colnum && rowidx < rownum {
-					let col = mTableView.tableColumns[colidx]
-					cbfunc(col.title, rowidx)
+					cbfunc(colidx, rowidx)
 				}
 			}
 		} else {
@@ -189,11 +193,12 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 			let result: KCSize
 			if let view = mTableView.view(atColumn: 0, row: 0, makeIfNecessary: false) {
+				let inset: CGFloat = 10.0
 				let vsize  = view.intrinsicContentSize
 				let width  = vsize.width * CGFloat(viscolnum)
-				             + spacing.width  * CGFloat(viscolnum + 1)
+					   + spacing.width  * CGFloat(viscolnum + 1) + (inset*2.0)
 				let height = vsize.height * CGFloat(visrownum)
-					     + spacing.height * CGFloat(visrownum + 1)
+					   + spacing.height * CGFloat(visrownum + 1) + (inset*2.0)
 				result = KCSize(width: width, height: height)
 			} else {
 				result = KCSize(width: -1.0, height: 14)
@@ -224,6 +229,14 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 				return 1
 			#endif
 		}
+	}
+
+	public func view(atColumn col: Int, row rw: Int) -> KCView? {
+		#if os(OSX)
+			return mTableView.view(atColumn: col, row: rw, makeIfNecessary: false) as? KCView
+		#else
+			return nil
+		#endif
 	}
 
 	public override func invalidateIntrinsicContentSize() {

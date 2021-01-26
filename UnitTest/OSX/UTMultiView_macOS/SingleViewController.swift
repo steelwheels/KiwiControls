@@ -155,8 +155,8 @@ public class SingleViewController: KCSingleViewController
 		view.numberOfVisibleRows = 4
 		view.cellTable           = mCellTable
 		view.cellPressedCallback = {
-			(_ column: String, _ row: Int) -> Void in
-			NSLog("Double cliked col=\(column) row=\(row)")
+			(_ col: Int, _ row: Int) -> Void in
+			NSLog("Double cliked col=\(col) row=\(row)")
 		}
 		return view
 	}

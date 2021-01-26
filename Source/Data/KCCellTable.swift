@@ -25,7 +25,9 @@ public protocol KCCellTableInterface
 	func numberOfRows(columnName colname: String) -> Int?
 	func maxNumberOfRows() -> Int
 
-	func view(colmunName cname: String, rowIndex ridx: Int) -> KCView?
+	func view(colmunName  cname: String, rowIndex ridx: Int) -> KCView?
+	func view(colmunIndex cidx: Int, rowIndex ridx: Int) -> KCView?
+
 	func set(colmunName cname: String, rowIndex ridx: Int, data dat: Any?)
 	func append(colmunName cname: String, data dat: Any?)
 }
@@ -100,6 +102,16 @@ public class KCCellTable: KCCellTableInterface
 
 	public func view(colmunName name: String, rowIndex ridx: Int) -> KCView? {
 		if let cidx = mTitles[name] {
+			let col = mColumns[cidx]
+			if 0<=ridx && ridx<col.values.count {
+				return covertToView(value: col.values[ridx])
+			}
+		}
+		return nil
+	}
+
+	public func view(colmunIndex cidx: Int, rowIndex ridx: Int) -> KCView? {
+		if 0<=cidx && cidx<mColumns.count {
 			let col = mColumns[cidx]
 			if 0<=ridx && ridx<col.values.count {
 				return covertToView(value: col.values[ridx])

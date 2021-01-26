@@ -66,9 +66,13 @@ open class KCTableView : KCCoreView
 		set(newval) { coreView.numberOfVisibleRows = newval }
 	}
 
-	public var cellPressedCallback: ((_ column: String, _ row: Int) -> Void)? {
+	public var cellPressedCallback: ((_ col: Int, _ row: Int) -> Void)? {
 		get         { return coreView.cellPressedCallback   }
 		set(cbfunc) { coreView.cellPressedCallback = cbfunc }
+	}
+
+	public func view(atColumn col: Int, row rw: Int) -> KCView? {
+		return coreView.view(atColumn: col, row: rw)
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
