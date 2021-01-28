@@ -138,6 +138,12 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
+	open override func visit(graphics2DView view: KCGraphics2DView){
+		let fsection = CNTextSection()
+		fsection.header = "graphics2D {" ; fsection.footer = "}"
+		mSection.add(text: fsection)
+	}
+
 	open override func visit(coreView view: KCCoreView){
 		let section = CNTextSection()
 

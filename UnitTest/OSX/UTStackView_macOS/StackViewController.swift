@@ -6,6 +6,7 @@
  */
 
 import KiwiControls
+import CoconutData
 import Foundation
 
 public class StackViewController: KCSingleViewController
@@ -19,23 +20,10 @@ public class StackViewController: KCSingleViewController
 		label.text = "Label"
 		vbox.addArrangedSubView(subView: label)
 
-		let value = KCTextEdit()
-		value.mode = .value(.decimal)
-		value.text = "123.4"
-		vbox.addArrangedSubView(subView: value)
-
-		let textview = KCTextEdit()
-		textview.mode = .value(.decimal)
-		textview.text = "This is text for viewing"
-		vbox.addArrangedSubView(subView: textview)
-
-		let textedit = KCTextEdit()
-		textedit.mode = .edit(40)
-		textedit.text = "This is text for editing"
-		vbox.addArrangedSubView(subView: textedit)
-
-		let terminal = KCTerminalView()
-		vbox.addArrangedSubView(subView: terminal)
+		let gr2d = UTGraphics2DView()
+		gr2d.minimumSize  = KCSize(width: 256.0, height: 256.0)
+		gr2d.logicalFrame = CGRect(x: -1.0, y: -1.0, width: 2.0, height: 2.0)
+		vbox.addArrangedSubView(subView: gr2d)
 
 		let hbox = KCStackView()
 		hbox.axis = .horizontal
@@ -48,5 +36,17 @@ public class StackViewController: KCSingleViewController
 		vbox.addArrangedSubView(subView: hbox)
 
 		return vbox
+	}
+}
+
+public class UTGraphics2DView: KCGraphics2DView
+{
+	open override func draw(context ctxt: CNGraphicsContext) {
+		NSLog("[UTGraphics2DView] draw")
+		ctxt.setFillColor(color: CGColor.black)
+		ctxt.setStrokeColor(color: CGColor.black)
+		ctxt.setLineWidth(width: 0.1)
+		ctxt.move(to: CGPoint(x: -1.0, y: -1.0))
+		ctxt.line(to: CGPoint(x:  1.0, y:  1.0))
 	}
 }

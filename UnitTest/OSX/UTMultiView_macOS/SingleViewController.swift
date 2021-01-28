@@ -83,6 +83,8 @@ public class SingleViewController: KCSingleViewController
 		edit1.mode = .view(20)
 		edit1.text = "This is label"
 
+		let gr2d1  = allocateGraphics2DView()
+
 		let button1   = KCButton()
 		button1.title = "Select Home Directory"
 
@@ -90,7 +92,7 @@ public class SingleViewController: KCSingleViewController
 		box1.axis		= .horizontal
 		box1.alignment		= .fill
 		box1.distribution	= .fillProportinally
-		box1.addArrangedSubViews(subViews: [edit1, button1])
+		box1.addArrangedSubViews(subViews: [edit1, gr2d1, button1])
 
 		let icon1     = allocateIcon()
 		let lstack    = allocateLabeledStack(image: img0)
@@ -159,6 +161,11 @@ public class SingleViewController: KCSingleViewController
 			NSLog("Double cliked col=\(col) row=\(row)")
 		}
 		return view
+	}
+
+	private func allocateGraphics2DView() -> KCGraphics2DView {
+		let newview = KCGraphics2DView()
+		return newview
 	}
 
 	public override func viewDidLoad() {
