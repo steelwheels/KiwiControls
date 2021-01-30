@@ -18,12 +18,17 @@ open class KCGraphics2DView: KCView
 	private var mContext:		CNGraphicsContext
 	private var mMinimumSize:	KCSize
 	private var mLogicalFrame:	CGRect
+	private var mForegroundColor:	CNColor
 
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mContext     	= CNGraphicsContext()
 		mMinimumSize 	= KCSize(width: 128.0, height: 128.0)
 		mLogicalFrame	= CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+
+		let pref = CNPreference.shared.viewPreference
+		mForegroundColor = pref.foregroundColor
+
 		super.init(frame: frame)
 	}
 	#else
@@ -31,6 +36,10 @@ open class KCGraphics2DView: KCView
 		mContext     	= CNGraphicsContext()
 		mMinimumSize	= KCSize(width: 128.0, height: 128.0)
 		mLogicalFrame	= CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+
+		let pref = CNPreference.shared.viewPreference
+		mForegroundColor = pref.foregroundColor
+
 		super.init(frame: frame)
 	}
 	#endif
@@ -66,9 +75,15 @@ open class KCGraphics2DView: KCView
 		}
 	}
 
+	public var foregroundColor: CNColor { get { return mForegroundColor }}
+
 	public override func draw(_ dirtyRect: KCRect) {
 		super.draw(dirtyRect)
 		mContext.begin(context: self.coreContext, logicalFrame: mLogicalFrame, physicalFrame: self.frame)
+		/* Set default parameters */
+		mContext.setFillColor(color:   mForegroundColor.cgColor)
+		mContext.setStrokeColor(color: mForegroundColor.cgColor)
+		mContext.setLineWidth(width: mLogicalFrame.size.width / 10.0)
 		draw(context: mContext)
 		mContext.end()
 	}

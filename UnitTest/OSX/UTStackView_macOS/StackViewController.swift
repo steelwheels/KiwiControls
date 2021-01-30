@@ -43,9 +43,6 @@ public class UTGraphics2DView: KCGraphics2DView
 {
 	open override func draw(context ctxt: CNGraphicsContext) {
 		NSLog("[UTGraphics2DView] draw")
-		ctxt.setFillColor(color: CGColor.black)
-		ctxt.setStrokeColor(color: CGColor.black)
-		ctxt.setLineWidth(width: 0.1)
 		ctxt.move(to: CGPoint(x: -1.0, y: -1.0))
 		ctxt.line(to: CGPoint(x:  1.0, y:  1.0))
 	}
