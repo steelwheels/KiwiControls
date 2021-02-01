@@ -83,7 +83,7 @@ open class KCGraphics2DView: KCView
 		/* Set default parameters */
 		mContext.setFillColor(color:   mForegroundColor.cgColor)
 		mContext.setStrokeColor(color: mForegroundColor.cgColor)
-		mContext.setLineWidth(width: mLogicalFrame.size.width / 100.0)
+		mContext.setPenSize(width: mLogicalFrame.size.width / 100.0)
 		draw(context: mContext)
 		mContext.end()
 	}
