@@ -185,6 +185,14 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
+	open override func visit(bitmapView view: KCBitmapView){
+		let prival = ExpansionPriorities(holizontalHugging: 	.high,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.high,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
+	}
+
 	open override func visit(graphics2DView view: KCGraphics2DView){
 		let prival = ExpansionPriorities(holizontalHugging: 	.high,
 						 holizontalCompression: .fixed,
