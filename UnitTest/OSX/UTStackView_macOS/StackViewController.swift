@@ -23,6 +23,7 @@ public class StackViewController: KCSingleViewController
 		let gr2d = UTGraphics2DView()
 		gr2d.minimumSize  = KCSize(width: 256.0, height: 256.0)
 		gr2d.logicalFrame = CGRect(x: -1.0, y: -1.0, width: 2.0, height: 2.0)
+		gr2d.animation(interval: 1.0, endTime: 1.0)
 		vbox.addArrangedSubView(subView: gr2d)
 
 		let hbox = KCStackView()
@@ -41,9 +42,12 @@ public class StackViewController: KCSingleViewController
 
 public class UTGraphics2DView: KCGraphics2DView
 {
-	open override func draw(context ctxt: CNGraphicsContext) {
-		NSLog("[UTGraphics2DView] draw")
+	open override func draw(graphicsContext ctxt: CNGraphicsContext, count cnt: Int32) {
+		NSLog("[UTGraphics2DView] draw: \(cnt)")
+		let mod = cnt % 10
+		let x   = -1.0 + (2.0 / CGFloat(mod + 1))
+
 		ctxt.move(to: CGPoint(x: -1.0, y: -1.0))
-		ctxt.line(to: CGPoint(x:  1.0, y:  1.0))
+		ctxt.line(to: CGPoint(x:    x, y:  1.0))
 	}
 }

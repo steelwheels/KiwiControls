@@ -164,7 +164,8 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private func allocateGraphics2DView() -> KCGraphics2DView {
-		let newview = KCGraphics2DView()
+		let newview = UTGraphics2DView()
+		//newview.setTimer(doUse: true, interval: 1.0)
 		return newview
 	}
 
@@ -218,3 +219,9 @@ public class SingleViewController: KCSingleViewController
 	}
 }
 
+
+public class UTGraphics2DView: KCGraphics2DView {
+	open override func draw(graphicsContext ctxt: CNGraphicsContext, count cnt: Int32) {
+		NSLog("UTGraphics2DView: \(cnt)")
+	}
+}

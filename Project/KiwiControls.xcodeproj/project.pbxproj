@@ -38,8 +38,6 @@
 		0544EA8A25176EF0002DE6A8 /* KCLogWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA8825176EF0002DE6A8 /* KCLogWindowController.swift */; };
 		0544EA9025176F10002DE6A8 /* KCEmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EA8E25176F10002DE6A8 /* KCEmptyViewController.xib */; };
 		0544EA9125176F10002DE6A8 /* KCLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA8F25176F10002DE6A8 /* KCLogViewController.swift */; };
-		0544EA9625176F86002DE6A8 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA9525176F86002DE6A8 /* KCTimer.swift */; };
-		0544EA9725176F86002DE6A8 /* KCTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA9525176F86002DE6A8 /* KCTimer.swift */; };
 		0544EAA725176FBE002DE6A8 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */; };
 		0544EAA825176FBE002DE6A8 /* KCLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */; };
 		0544EAAB25176FBE002DE6A8 /* KCGroupMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA9E25176FBE002DE6A8 /* KCGroupMaker.swift */; };
@@ -203,6 +201,8 @@
 		059F11A425C0429500F4A5C9 /* KCGraphics2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */; };
 		059F11A525C0429500F4A5C9 /* KCGraphics2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */; };
 		059FA2BA2598952E0080ED34 /* amber-icon-128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 05086D9725988C50008CA70D /* amber-icon-128x128.png */; };
+		05A3F78D25CE951900A62BF8 /* KCLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3F78C25CE951900A62BF8 /* KCLayerView.swift */; };
+		05A3F78E25CE951900A62BF8 /* KCLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A3F78C25CE951900A62BF8 /* KCLayerView.swift */; };
 		05A7755A254DA1AD00DF71DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A77559254DA1AD00DF71DE /* AppDelegate.swift */; };
 		05A7755C254DA1AD00DF71DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7755B254DA1AD00DF71DE /* ViewController.swift */; };
 		05A7755E254DA1AE00DF71DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755D254DA1AE00DF71DE /* Assets.xcassets */; };
@@ -335,7 +335,6 @@
 		0544EA8825176EF0002DE6A8 /* KCLogWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogWindowController.swift; sourceTree = "<group>"; };
 		0544EA8E25176F10002DE6A8 /* KCEmptyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCEmptyViewController.xib; sourceTree = "<group>"; };
 		0544EA8F25176F10002DE6A8 /* KCLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogViewController.swift; sourceTree = "<group>"; };
-		0544EA9525176F86002DE6A8 /* KCTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTimer.swift; sourceTree = "<group>"; };
 		0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayouter.swift; sourceTree = "<group>"; };
 		0544EA9E25176FBE002DE6A8 /* KCGroupMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGroupMaker.swift; sourceTree = "<group>"; };
 		0544EAA025176FBE002DE6A8 /* KCExpansionAdjuster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCExpansionAdjuster.swift; sourceTree = "<group>"; };
@@ -440,6 +439,7 @@
 		056451B1251853F8006C2430 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
 		0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSetPreferredWidth.swift; sourceTree = "<group>"; };
 		059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCGraphics2DView.swift; sourceTree = "<group>"; };
+		05A3F78C25CE951900A62BF8 /* KCLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
 		05A77557254DA1AD00DF71DE /* UTConsole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTConsole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A77559254DA1AD00DF71DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05A7755B254DA1AD00DF71DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -605,7 +605,6 @@
 				0544EAE22517715A002DE6A8 /* Font */,
 				0544EABB25176FDF002DE6A8 /* Graphics */,
 				0544EA9A25176FA6002DE6A8 /* Layout */,
-				0544EA9425176F74002DE6A8 /* Timer */,
 				0544EA6525176EA5002DE6A8 /* Window */,
 			);
 			name = Source;
@@ -648,14 +647,6 @@
 				0544EA8F25176F10002DE6A8 /* KCLogViewController.swift */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		0544EA9425176F74002DE6A8 /* Timer */ = {
-			isa = PBXGroup;
-			children = (
-				0544EA9525176F86002DE6A8 /* KCTimer.swift */,
-			);
-			path = Timer;
 			sourceTree = "<group>";
 		};
 		0544EA9A25176FA6002DE6A8 /* Layout */ = {
@@ -726,6 +717,7 @@
 				0544EB0D251775A3002DE6A8 /* KCImageViewCore.swift */,
 				0544EB00251775A2002DE6A8 /* KCLabeledStackView.swift */,
 				0544EAF2251775A2002DE6A8 /* KCLabeledStackViewCore.swift */,
+				05A3F78C25CE951900A62BF8 /* KCLayerView.swift */,
 				0544EB09251775A3002DE6A8 /* KCNavigationBar.swift */,
 				0544EB06251775A3002DE6A8 /* KCNavigationBarCore.swift */,
 				0544EAF0251775A2002DE6A8 /* KCPopupMenu.swift */,
@@ -1294,6 +1286,7 @@
 				0544EB20251775A3002DE6A8 /* KCButtonCore.swift in Sources */,
 				0544EAD825176FF5002DE6A8 /* KCCoodinate.swift in Sources */,
 				0544EBB925177676002DE6A8 /* KCViewVisitor.swift in Sources */,
+				05A3F78D25CE951900A62BF8 /* KCLayerView.swift in Sources */,
 				0544EA7225176EC6002DE6A8 /* KCWindow.swift in Sources */,
 				0544EB32251775A3002DE6A8 /* KCLabeledStackView.swift in Sources */,
 				0544EA7825176EC6002DE6A8 /* KCLogManager.swift in Sources */,
@@ -1342,7 +1335,6 @@
 				0544EA8A25176EF0002DE6A8 /* KCLogWindowController.swift in Sources */,
 				0544EB6B251775C7002DE6A8 /* KCButtonBody.swift in Sources */,
 				0544EBBF25177676002DE6A8 /* KCCoreView.swift in Sources */,
-				0544EA9625176F86002DE6A8 /* KCTimer.swift in Sources */,
 				0544EACC25176FF5002DE6A8 /* KCTriangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1399,6 +1391,7 @@
 				0544EB29251775A3002DE6A8 /* KCRootView.swift in Sources */,
 				0544EB31251775A3002DE6A8 /* KCStepper.swift in Sources */,
 				0544EB11251775A3002DE6A8 /* KCTableView.swift in Sources */,
+				05A3F78E25CE951900A62BF8 /* KCLayerView.swift in Sources */,
 				0544EADF25176FF5002DE6A8 /* KCHexagon.swift in Sources */,
 				0544EA7B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift in Sources */,
 				0544EAAC25176FBE002DE6A8 /* KCGroupMaker.swift in Sources */,
@@ -1421,7 +1414,6 @@
 				0544EB4D251775A3002DE6A8 /* KCImageViewCore.swift in Sources */,
 				0544EAE52517716D002DE6A8 /* KCFontTable.swift in Sources */,
 				0544EA7525176EC6002DE6A8 /* KCSingleViewController.swift in Sources */,
-				0544EA9725176F86002DE6A8 /* KCTimer.swift in Sources */,
 				05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */,
 				0544EACD25176FF5002DE6A8 /* KCTriangle.swift in Sources */,
 				0544EBC025177676002DE6A8 /* KCCoreView.swift in Sources */,

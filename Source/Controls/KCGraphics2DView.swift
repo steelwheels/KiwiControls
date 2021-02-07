@@ -13,102 +13,18 @@ import Cocoa
 import UIKit
 #endif
 
-open class KCBaseGraphicsView: KCView
-{
-	private var mMinimumSize:	KCSize
-	private var mLogicalFrame:	CGRect
-
-	#if os(OSX)
-	public override init(frame: NSRect) {
-		mMinimumSize 	= KCSize(width: 128.0, height: 128.0)
-		mLogicalFrame	= CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
-		super.init(frame: frame)
-	}
-	#else
-	public override init(frame: CGRect) {
-		mMinimumSize 	= KCSize(width: 128.0, height: 128.0)
-		mLogicalFrame	= CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
-		super.init(frame: frame)
-	}
-	#endif
-
-	public convenience init(){
-		let frame = KCRect(x: 0.0, y: 0.0, width: 480, height: 270)
-		self.init(frame: frame)
-	}
-
-	required public init?(coder: NSCoder) {
-		mMinimumSize 	= KCSize(width: 128.0, height: 128.0)
-		mLogicalFrame	= CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
-		fatalError("init(coder:) has not been implemented")
-	}
-
-	public var minimumSize: KCSize {
-		get { return mMinimumSize }
-		set(newsize) {
-			if newsize.width > 0.0 && newsize.height > 0.0 {
-				mMinimumSize = newsize
-				self.invalidateIntrinsicContentSize()
-			}
-		}
-	}
-
-	public var logicalFrame: CGRect {
-		get { return mLogicalFrame }
-		set(newfrm) {
-			if newfrm.size.width > 0.0 && newfrm.size.height > 0.0 {
-				mLogicalFrame = newfrm
-			} else {
-				NSLog("Invalid frame size")
-			}
-		}
-	}
-
-	public override var intrinsicContentSize: KCSize {
-		get { return mMinimumSize }
-	}
-
-	public var cgContext: CGContext {
-		get {
-			#if os(OSX)
-			if let ctxt = NSGraphicsContext.current {
-				return ctxt.cgContext
-			} else {
-				fatalError("Can not happen")
-			}
-			#else
-			if let ctxt = UIGraphicsGetCurrentContext() {
-				return ctxt
-			} else {
-				fatalError("Can not happen")
-			}
-			#endif
-		}
-	}
-}
-
-open class KCGraphics2DView: KCBaseGraphicsView
+open class KCGraphics2DView: KCLayerView
 {
 	private var mContext:		CNGraphicsContext
 	private var mForegroundColor:	CNColor
 
-	#if os(OSX)
-	public override init(frame : NSRect){
+	public override init(frame : KCRect){
 		mContext     	= CNGraphicsContext()
 		let pref = CNPreference.shared.viewPreference
 		mForegroundColor = pref.foregroundColor
 
 		super.init(frame: frame)
 	}
-	#else
-	public override init(frame: CGRect){
-		mContext = CNGraphicsContext()
-		let pref = CNPreference.shared.viewPreference
-		mForegroundColor = pref.foregroundColor
-
-		super.init(frame: frame)
-	}
-	#endif
 
 	public convenience init(){
 		let frame = KCRect(x: 0.0, y: 0.0, width: 480, height: 270)
@@ -124,19 +40,20 @@ open class KCGraphics2DView: KCBaseGraphicsView
 
 	public var foregroundColor: CNColor { get { return mForegroundColor }}
 
-	public override func draw(_ dirtyRect: KCRect) {
-		super.draw(dirtyRect)
-		mContext.begin(context: self.cgContext, logicalFrame: logicalFrame, physicalFrame: self.frame)
+	open override func draw(context ctxt: CGContext, count cnt: Int32) {
+		self.mContext.begin(context: ctxt, logicalFrame: self.logicalFrame, physicalFrame: self.frame)
 		/* Set default parameters */
-		mContext.setFillColor(color:   mForegroundColor.cgColor)
-		mContext.setStrokeColor(color: mForegroundColor.cgColor)
-		mContext.setPenSize(width: logicalFrame.size.width / 100.0)
-		draw(context: mContext)
-		mContext.end()
+		if cnt == 0 {
+			self.mContext.setFillColor(color:   self.mForegroundColor.cgColor)
+			self.mContext.setStrokeColor(color: self.mForegroundColor.cgColor)
+			self.mContext.setPenSize(width: self.logicalFrame.size.width / 100.0)
+		}
+		self.draw(graphicsContext: self.mContext, count: cnt)
+		self.mContext.end()
 	}
 
-	open func draw(context ctxt: CNGraphicsContext) {
-		NSLog("must be override at \(#function)")
+	open func draw(graphicsContext ctxt: CNGraphicsContext, count cnt: Int32) {
+		NSLog("must be override at \(#function) \(cnt)")
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
@@ -144,27 +61,18 @@ open class KCGraphics2DView: KCBaseGraphicsView
 	}
 }
 
-open class KCBitmapView: KCBaseGraphicsView
+open class KCBitmapView: KCLayerView
 {
 	private var mContext:		CNBitmapContext
 	private var mRowCount:		Int
 	private var mColumnCount:	Int
 
-	#if os(OSX)
-	public override init(frame : NSRect){
+	public override init(frame : KCRect){
 		mContext = CNBitmapContext()
 		mRowCount     = 10
 		mColumnCount  = 10
 		super.init(frame: frame)
 	}
-	#else
-	public override init(frame: CGRect){
-		mContext = CNBitmapContext()
-		mRowCount     = 10
-		mColumnCount  = 10
-		super.init(frame: frame)
-	}
-	#endif
 
 	public convenience init(){
 		let frame = KCRect(x: 0.0, y: 0.0, width: 480, height: 270)
@@ -188,16 +96,14 @@ open class KCBitmapView: KCBaseGraphicsView
 		set(newval)	{ mColumnCount = newval }
 	}
 
-	public override func draw(_ dirtyRect: KCRect) {
-		super.draw(dirtyRect)
-		mContext.begin(context: self.cgContext, physicalFrame: self.frame, width: mColumnCount, height: mRowCount)
-		/* Set default parameters */
-		draw(context: mContext)
-		mContext.end()
+	open override func draw(context ctxt: CGContext, count cnt: Int32) {
+		self.mContext.begin(context: ctxt, physicalFrame: self.frame, width: self.mColumnCount, height: self.mRowCount)
+		self.draw(bitmapContext: self.mContext, count: cnt)
+		self.mContext.end()
 	}
 
-	open func draw(context ctxt: CNBitmapContext) {
-		NSLog("must be override at \(#function)")
+	open func draw(bitmapContext ctxt: CNBitmapContext, count cnt: Int32) {
+		NSLog("must be override at \(#function) \(cnt)")
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
