@@ -38,17 +38,23 @@ open class KCLayerView: KCView, KCLayerDelegate
 	private var mMinimumSize:	KCSize
 	private var mLogicalFrame:	CGRect
 	private var mDrawCount:		Int32
+	private var mPausedSpeed:	Float
 
 	public override init(frame: KCRect) {
 		mMinimumSize	= KCSize(width: 128.0, height: 128.0)
 		mLogicalFrame	= KCRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
 		mDrawCount	= 0
+		mPausedSpeed	= 1.0
 		super.init(frame: frame)
 		setup()
 	}
 
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+
+	deinit {
+		stop()
 	}
 
 	private func setup() {
@@ -62,6 +68,19 @@ open class KCLayerView: KCView, KCLayerDelegate
 		self.wantsLayer   = true
 		#endif
 	}
+
+	private func getLayer() -> CALayer {
+		#if os(OSX)
+			if let lay = self.layer {
+				return lay
+			} else {
+				fatalError("Can not happen at \(#function)")
+			}
+		#else
+			return self.layer
+		#endif
+	}
+
 
 	public var minimumSize: KCSize {
 		get { return mMinimumSize }
@@ -84,25 +103,60 @@ open class KCLayerView: KCView, KCLayerDelegate
 		}
 	}
 	
-	public func animation(interval intvl: TimeInterval, endTime etime: Float) {
+	public func start(interval intvl: TimeInterval, endTime etime: Float) {
 		let timer = CABasicAnimation(keyPath: KCLayer.RepeatCountKey)
-		timer.duration	  = intvl
-		timer.repeatCount = etime
+		timer.duration	  		= intvl
+		timer.repeatCount 		= etime
+		timer.isRemovedOnCompletion	= true
 
-		#if os(OSX)
-		if let mylayer = self.layer {
-			CATransaction.begin()
-			mylayer.add(timer, forKey: KCLayer.RepeatCountKey)
-			CATransaction.commit()
-		} else {
-			NSLog("[Error] No layer at \(#function)")
-		}
-		#else
-		let mylayer = self.layer
+		let lay = getLayer()
 		CATransaction.begin()
-		mylayer.add(timer, forKey: KCLayer.RepeatCountKey)
+		lay.add(timer, forKey: KCLayer.RepeatCountKey)
 		CATransaction.commit()
-		#endif
+	}
+
+	public func stop() {
+		let mylayer = getLayer()
+		mylayer.removeAllAnimations()
+	}
+
+	public var isRunning: Bool {
+		let mylayer = getLayer()
+		if let keys = mylayer.animationKeys() {
+			return keys.count > 0
+		} else {
+			return false
+		}
+	}
+
+	/* reference: https://stackoverflow.com/questions/2306870/is-there-a-way-to-pause-a-cabasicanimation */
+	public var isPaused: Bool {
+		get {
+			if self.isRunning {
+				let mylayer = getLayer()
+				return (mylayer.speed == 0.0)
+			} else {
+				return false
+			}
+		}
+	}
+
+	public func pause(){
+		let mylayer = getLayer()
+		let pausedTime     = mylayer.convertTime(CACurrentMediaTime(), from: nil)
+		mPausedSpeed	   = mylayer.speed
+		mylayer.speed      = 0
+		mylayer.timeOffset = pausedTime
+	}
+
+	public func resume(){
+		let mylayer		= getLayer()
+		let pausedTime  	= mylayer.timeOffset
+		mylayer.speed   	= mPausedSpeed
+		mylayer.timeOffset	= 0.0
+		mylayer.beginTime	= 0.0
+		let timeSincePause	= mylayer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+		mylayer.beginTime	= timeSincePause
 	}
 
 	open override func draw(_ dirtyRect: KCRect) {

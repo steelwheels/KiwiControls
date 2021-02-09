@@ -23,7 +23,7 @@ public class StackViewController: KCSingleViewController
 		let gr2d = UTGraphics2DView()
 		gr2d.minimumSize  = KCSize(width: 256.0, height: 256.0)
 		gr2d.logicalFrame = CGRect(x: -1.0, y: -1.0, width: 2.0, height: 2.0)
-		gr2d.animation(interval: 1.0, endTime: 1.0)
+
 		vbox.addArrangedSubView(subView: gr2d)
 
 		let hbox = KCStackView()
@@ -35,6 +35,9 @@ public class StackViewController: KCSingleViewController
 		button1.title = "Cancel"
 		hbox.addArrangedSubView(subView: button1)
 		vbox.addArrangedSubView(subView: hbox)
+
+		/* Start animation */
+		gr2d.start(interval: 1.0, endTime: 1.0)
 
 		return vbox
 	}
