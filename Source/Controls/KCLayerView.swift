@@ -3,6 +3,7 @@
  * @brief	Define KCLayerView class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
+ * reference: https://stackoverflow.com/questions/2306870/is-there-a-way-to-pause-a-cabasicanimation
  */
 
 import CoconutData
@@ -14,7 +15,7 @@ import UIKit
 #endif
 
 #if os(OSX)
-public protocol KCLayerDelegate: CALayerDelegate {
+public protocol KCLayerDelegate: CALayerDelegate, CAAnimationDelegate {
 }
 #else
 public protocol KCLayerDelegate {
@@ -35,16 +36,18 @@ public class KCLayer: CALayer {
 
 open class KCLayerView: KCView, KCLayerDelegate
 {
+	private let LayerSpeed: Float	= 1.0
+
 	private var mMinimumSize:	KCSize
 	private var mLogicalFrame:	CGRect
+	private var mAnimationState:	CNAnimationState
 	private var mDrawCount:		Int32
-	private var mPausedSpeed:	Float
 
 	public override init(frame: KCRect) {
 		mMinimumSize	= KCSize(width: 128.0, height: 128.0)
 		mLogicalFrame	= KCRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+		mAnimationState	= .idle
 		mDrawCount	= 0
-		mPausedSpeed	= 1.0
 		super.init(frame: frame)
 		setup()
 	}
@@ -54,33 +57,29 @@ open class KCLayerView: KCView, KCLayerDelegate
 	}
 
 	deinit {
-		stop()
+		stopAsync()
 	}
 
 	private func setup() {
 		#if os(OSX)
-		self.layer = KCLayer()
-		if let mylayer = self.layer {
-			mylayer.delegate = self
-		} else {
-			NSLog("Error: No layer at \(#function)")
-		}
+		let newlayer	  = KCLayer()
+		self.layer        = newlayer
+		newlayer.delegate = self
 		self.wantsLayer   = true
 		#endif
 	}
 
 	private func getLayer() -> CALayer {
 		#if os(OSX)
-			if let lay = self.layer {
-				return lay
-			} else {
-				fatalError("Can not happen at \(#function)")
-			}
+		if let lay = self.layer {
+			return lay
+		} else {
+			fatalError("Can not happen at \(#function)")
+		}
 		#else
-			return self.layer
+		return self.layer
 		#endif
 	}
-
 
 	public var minimumSize: KCSize {
 		get { return mMinimumSize }
@@ -102,61 +101,124 @@ open class KCLayerView: KCView, KCLayerDelegate
 			}
 		}
 	}
+
+	public var state: CNAnimationState {
+		get { return mAnimationState }
+	}
 	
 	public func start(interval intvl: TimeInterval, endTime etime: Float) {
+		switch mAnimationState {
+		case .idle:
+			CNExecuteInMainThread(doSync: false, execute: {
+				() -> Void in
+				self.startAsync(interval: intvl, endTime: etime)
+			})
+		case .run, .pause:
+			NSLog("Already running: \(mAnimationState.description)")
+		@unknown default:
+			NSLog("Unknown state")
+		}
+	}
+
+	public func stop() {
+		switch mAnimationState {
+		case .idle:
+			NSLog("Already stopped")
+		case .run, .pause:
+			CNExecuteInMainThread(doSync: false, execute: {
+				() -> Void in
+				self.stopAsync()
+			})
+		@unknown default:
+			NSLog("Unknown state")
+		}
+	}
+
+	public func suspend(){
+		switch mAnimationState {
+		case .idle:
+			NSLog("Already idle")
+		case .pause:
+			NSLog("Already pause")
+		case .run:
+			CNExecuteInMainThread(doSync: false, execute: {
+				() -> Void in
+				self.suspendAsync()
+			})
+		@unknown default:
+			NSLog("Unknown state")
+		}
+	}
+
+	public func resume(){
+		switch mAnimationState {
+		case .idle:
+			NSLog("Already idle")
+		case .run:
+			NSLog("Already run")
+		case .pause:
+			CNExecuteInMainThread(doSync: false, execute: {
+				() -> Void in
+				self.resumeAsync()
+			})
+		@unknown default:
+			NSLog("Unknown state")
+		}
+	}
+
+	private func startAsync(interval intvl: TimeInterval, endTime etime: Float) {
+		mAnimationState = .run
+
 		let timer = CABasicAnimation(keyPath: KCLayer.RepeatCountKey)
 		timer.duration	  		= intvl
 		timer.repeatCount 		= etime
-		timer.isRemovedOnCompletion	= true
+		//timer.isRemovedOnCompletion	= true
+		#if os(OSX)
+		timer.delegate			= self
+		#endif
 
-		let lay = getLayer()
+		let lay		= getLayer()
+		lay.speed   	= LayerSpeed
 		CATransaction.begin()
 		lay.add(timer, forKey: KCLayer.RepeatCountKey)
 		CATransaction.commit()
 	}
 
-	public func stop() {
-		let mylayer = getLayer()
-		mylayer.removeAllAnimations()
+	private func stopAsync() {
+		mAnimationState = .idle
+		let lay		= getLayer()
+		lay.removeAllAnimations()
+		lay.speed   	= LayerSpeed
 	}
 
-	public var isRunning: Bool {
-		let mylayer = getLayer()
-		if let keys = mylayer.animationKeys() {
-			return keys.count > 0
-		} else {
-			return false
-		}
+	private func suspendAsync() {
+		mAnimationState	   = .pause
+
+		let lay		   	= getLayer()
+		let pausedTime     	= lay.convertTime(CACurrentMediaTime(), from: nil)
+		lay.speed         	= 0.0
+		lay.timeOffset 	   	= pausedTime
 	}
 
-	/* reference: https://stackoverflow.com/questions/2306870/is-there-a-way-to-pause-a-cabasicanimation */
-	public var isPaused: Bool {
-		get {
-			if self.isRunning {
-				let mylayer = getLayer()
-				return (mylayer.speed == 0.0)
-			} else {
-				return false
-			}
-		}
+	private func resumeAsync() {
+		mAnimationState		= .run
+
+		let lay			= getLayer()
+		let pausedTime  	= lay.timeOffset
+		lay.speed   		= LayerSpeed
+		lay.timeOffset		= 0.0
+		let timeSincePause	= lay.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+		lay.beginTime		= timeSincePause
+
 	}
 
-	public func pause(){
-		let mylayer = getLayer()
-		let pausedTime     = mylayer.convertTime(CACurrentMediaTime(), from: nil)
-		mPausedSpeed	   = mylayer.speed
-		mylayer.speed      = 0
-		mylayer.timeOffset = pausedTime
+	public func animationDidStart(_ anim: CAAnimation) {
+		NSLog("didstart")
 	}
 
-	public func resume(){
-		let mylayer		= getLayer()
-		let pausedTime  	= mylayer.timeOffset
-		mylayer.speed   	= mPausedSpeed
-		mylayer.timeOffset	= 0.0
-		mylayer.beginTime	= 0.0
-		let timeSincePause	= mylayer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
-		mylayer.beginTime	= timeSincePause
+	public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+		NSLog("didstop finished:\(flag)")
+		stopAsync()
 	}
 
 	open override func draw(_ dirtyRect: KCRect) {
