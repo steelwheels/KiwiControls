@@ -36,17 +36,21 @@ public class KCLayer: CALayer {
 
 open class KCLayerView: KCView, KCLayerDelegate
 {
+	public typealias UpdateStateCallback = (_ state: CNAnimationState) -> Void
+
 	private let LayerSpeed: Float	= 1.0
 
 	private var mMinimumSize:	KCSize
 	private var mLogicalFrame:	CGRect
 	private var mAnimationState:	CNAnimationState
+	private var mStateCallback:	UpdateStateCallback?
 	private var mDrawCount:		Int32
 
 	public override init(frame: KCRect) {
 		mMinimumSize	= KCSize(width: 128.0, height: 128.0)
 		mLogicalFrame	= KCRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
 		mAnimationState	= .idle
+		mStateCallback	= nil
 		mDrawCount	= 0
 		super.init(frame: frame)
 		setup()
@@ -102,8 +106,21 @@ open class KCLayerView: KCView, KCLayerDelegate
 		}
 	}
 
+	public func setCallback(updateStateCallback cbfunc: @escaping UpdateStateCallback) {
+		mStateCallback = cbfunc
+	}
+
 	public var state: CNAnimationState {
 		get { return mAnimationState }
+	}
+
+	private func updateState(state stat: CNAnimationState) {
+		if mAnimationState != stat {
+			mAnimationState = stat
+			if let cbfunc = mStateCallback {
+				cbfunc(stat)
+			}
+		}
 	}
 	
 	public func start(interval intvl: TimeInterval, endTime etime: Float) {
@@ -167,8 +184,6 @@ open class KCLayerView: KCView, KCLayerDelegate
 	}
 
 	private func startAsync(interval intvl: TimeInterval, endTime etime: Float) {
-		mAnimationState = .run
-
 		let timer = CABasicAnimation(keyPath: KCLayer.RepeatCountKey)
 		timer.duration	  		= intvl
 		timer.repeatCount 		= etime
@@ -182,27 +197,28 @@ open class KCLayerView: KCView, KCLayerDelegate
 		CATransaction.begin()
 		lay.add(timer, forKey: KCLayer.RepeatCountKey)
 		CATransaction.commit()
+
+		updateState(state: .run)
 	}
 
 	private func stopAsync() {
-		mAnimationState = .idle
 		let lay		= getLayer()
 		lay.removeAllAnimations()
 		lay.speed   	= LayerSpeed
+
+		updateState(state: .idle)
 	}
 
 	private func suspendAsync() {
-		mAnimationState	   = .pause
-
 		let lay		   	= getLayer()
 		let pausedTime     	= lay.convertTime(CACurrentMediaTime(), from: nil)
 		lay.speed         	= 0.0
 		lay.timeOffset 	   	= pausedTime
+
+		updateState(state: .pause)
 	}
 
 	private func resumeAsync() {
-		mAnimationState		= .run
-
 		let lay			= getLayer()
 		let pausedTime  	= lay.timeOffset
 		lay.speed   		= LayerSpeed
@@ -210,6 +226,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 		let timeSincePause	= lay.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
 		lay.beginTime		= timeSincePause
 
+		updateState(state: .run)
 	}
 
 	public func animationDidStart(_ anim: CAAnimation) {
