@@ -179,7 +179,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 
 	open override func visit(popupMenu view: KCPopupMenu){
 		let prival = ExpansionPriorities(holizontalHugging: 	.low,
-						 holizontalCompression: .low,
+						 holizontalCompression: .fixed,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
 		view.setExpandabilities(priorities: prival)

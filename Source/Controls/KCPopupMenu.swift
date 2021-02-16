@@ -74,6 +74,10 @@ open class KCPopupMenu : KCCoreView
 		coreView.addItems(withTitles: titles)
 	}
 
+	public func removeAllItems() {
+		coreView.removeAllItems()
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(popupMenu: self)
 	}

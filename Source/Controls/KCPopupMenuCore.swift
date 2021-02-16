@@ -103,14 +103,35 @@ open class KCPopupMenuCore: KCView
 		#endif
 	}
 
+	public func removeAllItems() {
+		#if os(OSX)
+			mPopupButton.removeAllItems()
+		#else
+			mDelegate.removeAllItems()
+		#endif
+	}
+
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(OSX)
+			mPopupButton.setFrameSize(newsize)
+		#else
+			mPickerView.setFrameSize(size: newsize)
+		#endif
+	}
+	
 	open override var intrinsicContentSize: KCSize {
 		get {
-			let space = CNPreference.shared.windowPreference.spacing
 			#if os(OSX)
-				let btnsize = mPopupButton.fittingSize
+				var btnsize = mPopupButton.intrinsicContentSize
+				if let font = mPopupButton.font {
+					btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(15))
+					btnsize.height = max(btnsize.height, font.pointSize * 1.2        )
+				}
 			#else
 				let btnsize = mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 			#endif
+			let space = CNPreference.shared.windowPreference.spacing
 			return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
 		}
 	}
@@ -162,6 +183,10 @@ open class KCPopupMenuCore: KCView
 
 	public func addItems(withTitles titles: Array<String>) {
 		mItems.append(contentsOf: titles)
+	}
+
+	public func removeAllItems() {
+		mItems = []
 	}
 
 	public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

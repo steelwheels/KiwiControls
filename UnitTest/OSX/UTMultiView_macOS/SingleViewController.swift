@@ -84,6 +84,7 @@ public class SingleViewController: KCSingleViewController
 		edit1.text = "This is label"
 
 		let gr2d1  = allocateGraphics2DView()
+		let pmenu  = allocatePopupMenu()
 
 		let button1   = KCButton()
 		button1.title = "Select Home Directory"
@@ -92,7 +93,7 @@ public class SingleViewController: KCSingleViewController
 		box1.axis		= .horizontal
 		box1.alignment		= .fill
 		box1.distribution	= .fillProportinally
-		box1.addArrangedSubViews(subViews: [edit1, gr2d1, button1])
+		box1.addArrangedSubViews(subViews: [edit1, gr2d1, pmenu, button1])
 
 		let icon1     = allocateIcon()
 		let lstack    = allocateLabeledStack(image: img0)
@@ -167,6 +168,16 @@ public class SingleViewController: KCSingleViewController
 		let newview = UTGraphics2DView()
 		//newview.setTimer(doUse: true, interval: 1.0)
 		return newview
+	}
+
+	private func allocatePopupMenu() -> KCPopupMenu {
+		let newmenu = KCPopupMenu()
+		newmenu.addItems(withTitles: ["hello", "good morning"])
+		newmenu.callbackFunction = {
+			(_ index: Int, _ title: String?) -> Void in
+			NSLog("PopupMenu: select idx=\(index) title=\(String(describing: title))")
+		}
+		return newmenu ;
 	}
 
 	public override func viewDidLoad() {
