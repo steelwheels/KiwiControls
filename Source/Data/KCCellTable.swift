@@ -185,7 +185,7 @@ public class KCCellTable: KCCellTableInterface
 			result = valueToView(string: str)
 		case .rectValue(let rect):
 			result = valueToView(string: rect.description)
-		case .anyObjectValue(_), .arrayValue(_), .colorValue(_), .dictionaryValue(_):
+		case .objectValue(_), .arrayValue(_), .colorValue(_), .dictionaryValue(_):
 			result = nil
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown case at \(#function)")
