@@ -184,10 +184,13 @@ open class KCLayerView: KCView, KCLayerDelegate
 	}
 
 	private func startAsync(interval intvl: TimeInterval, endTime etime: Float) {
+		/* Reset the count */
+		mDrawCount = 0
+
 		let timer = CABasicAnimation(keyPath: KCLayer.RepeatCountKey)
 		timer.duration	  		= intvl
 		timer.repeatCount 		= etime
-		//timer.isRemovedOnCompletion	= true
+		timer.isRemovedOnCompletion	= true
 		#if os(OSX)
 		timer.delegate			= self
 		#endif
