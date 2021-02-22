@@ -20,9 +20,9 @@ open class KCBitmapView: KCLayerView
 	private var mColumnCount:	Int
 
 	public override init(frame : KCRect){
-		mContext = CNBitmapContext()
-		mRowCount     = 10
-		mColumnCount  = 10
+		mContext     = CNBitmapContext()
+		mRowCount    = 10
+		mColumnCount = 10
 		super.init(frame: frame)
 	}
 
@@ -32,9 +32,9 @@ open class KCBitmapView: KCLayerView
 	}
 
 	required public init?(coder: NSCoder) {
-		mContext = CNBitmapContext()
-		mRowCount     = 10
-		mColumnCount  = 10
+		mContext     = CNBitmapContext()
+		mRowCount    = 10
+		mColumnCount = 10
 		super.init(coder: coder)
 	}
 
