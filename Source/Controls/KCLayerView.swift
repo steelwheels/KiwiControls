@@ -142,10 +142,10 @@ open class KCLayerView: KCView, KCLayerDelegate
 		case .idle:
 			NSLog("Already stopped")
 		case .run, .pause:
-			CNExecuteInMainThread(doSync: false, execute: {
+			DispatchQueue.main.async {
 				() -> Void in
 				self.stopAsync()
-			})
+			}
 		@unknown default:
 			NSLog("Unknown state")
 		}
@@ -184,52 +184,81 @@ open class KCLayerView: KCView, KCLayerDelegate
 	}
 
 	private func startAsync(interval intvl: TimeInterval, endTime etime: Float) {
-		/* Reset the count */
-		mDrawCount = 0
+		switch mAnimationState {
+		case .idle:
+			/* Reset the count */
+			mDrawCount = 0
 
-		let timer = CABasicAnimation(keyPath: KCLayer.RepeatCountKey)
-		timer.duration	  		= intvl
-		timer.repeatCount 		= etime
-		timer.isRemovedOnCompletion	= true
-		#if os(OSX)
-		timer.delegate			= self
-		#endif
+			let timer = CABasicAnimation(keyPath: KCLayer.RepeatCountKey)
+			timer.duration	  		= intvl
+			timer.repeatCount 		= etime
+			timer.isRemovedOnCompletion	= true
+			#if os(OSX)
+			timer.delegate			= self
+			#endif
 
-		let lay		= getLayer()
-		lay.speed   	= LayerSpeed
-		CATransaction.begin()
-		lay.add(timer, forKey: KCLayer.RepeatCountKey)
-		CATransaction.commit()
+			let lay		= getLayer()
+			lay.speed   	= LayerSpeed
+			CATransaction.begin()
+			lay.add(timer, forKey: KCLayer.RepeatCountKey)
+			CATransaction.commit()
 
-		updateState(state: .run)
+			updateState(state: .run)
+		case .pause, .run:
+			NSLog("Not idle state at \(#function)")
+		@unknown default:
+			NSLog("Unknown state at \(#function)")
+		}
 	}
 
 	private func stopAsync() {
-		let lay		= getLayer()
-		lay.removeAllAnimations()
-		lay.speed   	= LayerSpeed
+		switch mAnimationState {
+		case .idle, .pause:
+			NSLog("Not run state at \(#function)")
+		case .run:
+			let lay		= getLayer()
+			lay.speed   	= 0.0		/* Stop animation */
+			lay.removeAllAnimations()
 
-		updateState(state: .idle)
+			updateState(state: .idle)
+		@unknown default:
+			NSLog("Unknown state at \(#function)")
+		}
 	}
 
 	private func suspendAsync() {
-		let lay		   	= getLayer()
-		let pausedTime     	= lay.convertTime(CACurrentMediaTime(), from: nil)
-		lay.speed         	= 0.0
-		lay.timeOffset 	   	= pausedTime
+		switch mAnimationState {
+		case .run:
+			let lay		   	= getLayer()
+			let pausedTime     	= lay.convertTime(CACurrentMediaTime(), from: nil)
+			lay.speed         	= 0.0	/* Stop animation */
+			lay.timeOffset 	   	= pausedTime
 
-		updateState(state: .pause)
+			updateState(state: .pause)
+		case .idle, .pause:
+			NSLog("Not run state at \(#function)")
+		@unknown default:
+			NSLog("Unknown state at \(#function)")
+		}
+
 	}
 
 	private func resumeAsync() {
-		let lay			= getLayer()
-		let pausedTime  	= lay.timeOffset
-		lay.speed   		= LayerSpeed
-		lay.timeOffset		= 0.0
-		let timeSincePause	= lay.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
-		lay.beginTime		= timeSincePause
+		switch mAnimationState {
+		case .pause:
+			let lay			= getLayer()
+			let pausedTime  	= lay.timeOffset
+			lay.speed   		= LayerSpeed
+			lay.timeOffset		= 0.0
+			let timeSincePause	= lay.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+			lay.beginTime		= timeSincePause
 
-		updateState(state: .run)
+			updateState(state: .run)
+		case .idle, .run:
+			NSLog("Not pause state at \(#function)")
+		@unknown default:
+			NSLog("Unknown state at \(#function)")
+		}
 	}
 
 	public func animationDidStart(_ anim: CAAnimation) {
