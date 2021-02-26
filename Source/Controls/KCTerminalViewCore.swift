@@ -87,21 +87,21 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 			(_ hdl: FileHandle) -> Void in
 			let data = hdl.availableData
 			if let str = String.stringFromData(data: data) {
-				CNExecuteInMainThread(doSync: false, execute: {
+				DispatchQueue.main.async {
 					() -> Void in
 					self.receiveInputStream(string: str)
 					self.scrollToBottom()
-				})
+				}
 			}
 		}
 		mErrorPipe.fileHandleForReading.readabilityHandler = {
 			(_ hdl: FileHandle) -> Void in
 			let data = hdl.availableData
 			if let str = String.stringFromData(data: data) {
-				CNExecuteInMainThread(doSync: false, execute: {
+				DispatchQueue.main.async {
 					self.receiveInputStream(string: str)
 					self.scrollToBottom()
-				})
+				}
 			}
 		}
 	}
@@ -417,7 +417,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		CNExecuteInMainThread(doSync: false, execute: { [self]
+		DispatchQueue.main.async {
 			() -> Void in
 			if let key = keyPath, let vals = change {
 				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
@@ -442,16 +442,16 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 					switch key {
 					case CNPreference.shared.terminalPreference.WidthItem:
 						let newwidth = CNPreference.shared.terminalPreference.width
-						if mTerminalInfo.width != newwidth {
-							mTerminalInfo.width = newwidth
+						if self.mTerminalInfo.width != newwidth {
+							self.mTerminalInfo.width = newwidth
 							self.invalidateIntrinsicContentSize()
 							self.setNeedsLayout()
 							self.notify(viewControlEvent: .updateSize)
 						}
 					case CNPreference.shared.terminalPreference.HeightItem:
 						let newheight = CNPreference.shared.terminalPreference.height
-						if mTerminalInfo.height != newheight {
-							mTerminalInfo.height = newheight
+						if self.mTerminalInfo.height != newheight {
+							self.mTerminalInfo.height = newheight
 							self.invalidateIntrinsicContentSize()
 							self.setNeedsLayout()
 							self.notify(viewControlEvent: .updateSize)
@@ -464,7 +464,8 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 					}
 				}
 			}
-		})
+
+		}
 	}
 
 	private func updateForegroundColor() {
