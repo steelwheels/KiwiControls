@@ -196,33 +196,24 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 
 	public var text: String {
 		get {
-			return getText()
+			#if os(OSX)
+			return mTextEdit.stringValue
+			#else
+			if let t = mTextEdit.text {
+				return t
+			} else {
+				return ""
+			}
+			#endif
 		}
 		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					#if os(OSX)
-						myself.mTextEdit.stringValue = newval
-					#else
-						myself.mTextEdit.text = newval
-					#endif
-					myself.mTextEdit.invalidateIntrinsicContentSize()
-				}
-			})
+			#if os(OSX)
+				mTextEdit.stringValue = newval
+			#else
+				mTextEdit.text = newval
+			#endif
+			mTextEdit.invalidateIntrinsicContentSize()
 		}
-	}
-
-	private func getText() -> String {
-		#if os(OSX)
-		return mTextEdit.stringValue
-		#else
-		if let t = mTextEdit.text {
-			return t
-		} else {
-			return ""
-		}
-		#endif
 	}
 
 	public var value: CNNativeValue {
@@ -230,24 +221,24 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			let result: CNNativeValue
 			switch mMode {
 			case .edit(_), .label, .view(_):
-				result = .stringValue(getText())
+				result = .stringValue(self.text)
 			case .value(let format, _):
 				switch format {
 				case .decimal:
-					if let val = Int(getText()) {
+					if let val = Int(self.text) {
 						result = .numberValue(NSNumber(integerLiteral: val))
 					} else {
 						result = .nullValue
 					}
 				case .general:
-					result = .stringValue(getText())
+					result = .stringValue(self.text)
 				}
 			}
 			return result
 		}
 		set(newval) {
-			let txt = newval.toText()
-			let str = txt.toStrings(terminal: "").joined(separator: "\n")
+			let txt    = newval.toText()
+			let str    = txt.toStrings(terminal: "").joined(separator: "\n")
 			self.text = str
 		}
 	}
@@ -257,12 +248,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			return mTextEdit.font
 		}
 		set(font){
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					myself.mTextEdit.font = font
-				}
-			})
+			mTextEdit.font = font
 		}
 	}
 
@@ -275,16 +261,11 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			#endif
 		}
 		set(align){
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					#if os(OSX)
-						myself.mTextEdit.alignment = align
-					#else
-						myself.mTextEdit.textAlignment = align
-					#endif
-				}
-			})
+			#if os(OSX)
+				mTextEdit.alignment = align
+			#else
+				mTextEdit.textAlignment = align
+			#endif
 		}
 	}
 

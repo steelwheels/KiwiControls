@@ -109,7 +109,7 @@ public class KCTerminalPreferenceView: KCStackView
 			field.text	= "\(num)"
 		}
 		if let label = mFontLabel {
-			label.text = termpref.font.fontName
+			label.text	= termpref.font.fontName
 		}
 		self.textColor		= termpref.foregroundTextColor
 		self.backgroundColor	= termpref.backgroundTextColor

@@ -123,12 +123,12 @@ open class KCLayerView: KCView, KCLayerDelegate
 		}
 	}
 	
-	public func start(interval intvl: TimeInterval, endTime etime: Float) {
+	public func start(duration durval: TimeInterval, repeatCount count: Int) {
 		switch mAnimationState {
 		case .idle:
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in
-				self.startAsync(interval: intvl, endTime: etime)
+				self.startAsync(duration: durval, repeatCount: count)
 			})
 		case .run, .pause:
 			NSLog("Already running: \(mAnimationState.description)")
@@ -183,22 +183,22 @@ open class KCLayerView: KCView, KCLayerDelegate
 		}
 	}
 
-	private func startAsync(interval intvl: TimeInterval, endTime etime: Float) {
+	private func startAsync(duration durval: TimeInterval, repeatCount count: Int) {
 		switch mAnimationState {
 		case .idle:
 			/* Reset the count */
 			mDrawCount = 0
 
 			let timer = CABasicAnimation(keyPath: KCLayer.RepeatCountKey)
-			timer.duration	  		= intvl
-			timer.repeatCount 		= etime
+			timer.duration	  		= durval
+			timer.repeatCount 		= Float(count)
 			timer.isRemovedOnCompletion	= true
 			#if os(OSX)
 			timer.delegate			= self
 			#endif
 
-			let lay		= getLayer()
-			lay.speed   	= LayerSpeed
+			let lay				= getLayer()
+			lay.speed   			= LayerSpeed
 			CATransaction.begin()
 			lay.add(timer, forKey: KCLayer.RepeatCountKey)
 			CATransaction.commit()
