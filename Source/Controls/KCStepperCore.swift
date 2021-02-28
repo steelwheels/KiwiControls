@@ -80,16 +80,11 @@ public class KCStepperCore: KCView
 
 	private func updateTextField(value: Double){
 		let str = String(format: "%.*lf", numberOfDecimalPlaces, value)
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				#if os(iOS)
-					myself.mTextField.text = str
-				#else
-					myself.mTextField.stringValue = str
-				#endif
-			}
-		})
+		#if os(iOS)
+			mTextField.text = str
+		#else
+			mTextField.stringValue = str
+		#endif
 	}
 
 	public var maxValue: Double {
@@ -159,20 +154,15 @@ public class KCStepperCore: KCView
 			#endif
 		}
 		set(newval) {
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					#if os(iOS)
-						myself.mStepper.stepValue = newval
-					#else
-						myself.mStepper.increment = newval
-					#endif
-				}
-			})
+			#if os(iOS)
+				mStepper.stepValue = newval
+			#else
+				mStepper.increment = newval
+			#endif
 		}
 	}
 
-	public var isEnabled2: Bool {
+	public var isEnabled: Bool {
 		get {
 			return mStepper.isEnabled
 		}
