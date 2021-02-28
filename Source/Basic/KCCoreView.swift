@@ -86,9 +86,7 @@ open class KCCoreView: KCView
 		}
 		set(newval){
 			if let core = mCoreView {
-				CNExecuteInMainThread(doSync: false, execute: { () -> Void in
-					core.isHidden   = !newval
-				})
+				core.isHidden   = !newval
 			}
 		}
 	}

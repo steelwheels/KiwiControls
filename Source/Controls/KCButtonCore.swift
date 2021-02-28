@@ -76,16 +76,11 @@ public class KCButtonCore: KCView
 			#endif
 		}
 		set(newstr){
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					#if os(iOS)
-						myself.mButton.setTitle(newstr, for: .normal)
-					#else
-						myself.mButton.title = newstr
-					#endif
-				}
-			})
+			#if os(iOS)
+				self.mButton.setTitle(newstr, for: .normal)
+			#else
+				self.mButton.title = newstr
+			#endif
 		}
 	}
 
@@ -94,12 +89,7 @@ public class KCButtonCore: KCView
 			return mButton.isEnabled
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					myself.mButton.isEnabled   = newval
-				}
-			})
+			self.mButton.isEnabled   = newval
 		}
 	}
 }

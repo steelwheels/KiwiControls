@@ -101,16 +101,11 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					#if os(iOS)
-						myself.mLabel.text = newval
-					#else
-						myself.mCheckBox.title = newval
-					#endif
-				}
-			})
+			#if os(iOS)
+				self.mLabel.text = newval
+			#else
+				self.mCheckBox.title = newval
+			#endif
 		}
 	}
 
@@ -123,17 +118,12 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					#if os(iOS)
-						myself.mSwitch.isEnabled = newval
-						myself.mLabel.isEnabled  = newval
-					#else
-						myself.mCheckBox.isEnabled   = newval
-					#endif
-				}
-			})
+			#if os(iOS)
+				self.mSwitch.isEnabled = newval
+				self.mLabel.isEnabled  = newval
+			#else
+				self.mCheckBox.isEnabled   = newval
+			#endif
 		}
 	}
 
@@ -146,18 +136,12 @@ public class KCCheckBoxCore: KCView
 			#endif
 		}
 		set(newval){
-			CNExecuteInMainThread(doSync: false, execute: {
-				[weak self] () -> Void in
-				if let myself = self {
-					let nnewval = !newval
-					#if os(iOS)
-						myself.mSwitch.isHidden   = nnewval
-						myself.mLabel.isHidden    = nnewval
-					#else
-						myself.mCheckBox.isHidden = nnewval
-					#endif
-				}
-			})
+			#if os(iOS)
+				self.mSwitch.isHidden   = !newval
+				self.mLabel.isHidden    = !newval
+			#else
+				self.mCheckBox.isHidden = !newval
+			#endif
 		}
 	}
 

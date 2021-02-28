@@ -56,9 +56,9 @@ public class KCStepper: KCCoreView
 		set(newval){ coreView.updateValueCallback = newval }
 	}
 
-	public var isEnabled: Bool {
-		get { return coreView.isEnabled }
-		set(v) { coreView.isEnabled = v }
+	public var isEnabled2: Bool {
+		get { return coreView.isEnabled2 }
+		set(v) { coreView.isEnabled2 = v }
 	}
 
 	public override var isVisible: Bool {
