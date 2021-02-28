@@ -225,26 +225,12 @@ open class KCStackViewCore : KCView
 	}
 
 	public func addArrangedSubViews(subViews views:Array<KCView>){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				for view in views {
-					myself.addArrangedSubViewInMainThread(subView: view)
-				}
-			}
-		})
+		for view in views {
+			addArrangedSubView(subView: view)
+		}
 	}
 
 	public func addArrangedSubView(subView view: KCView){
-		CNExecuteInMainThread(doSync: false, execute: {
-			[weak self] () -> Void in
-			if let myself = self {
-				myself.addArrangedSubViewInMainThread(subView: view)
-			}
-		})
-	}
-
-	private func addArrangedSubViewInMainThread(subView view: KCView){
 		/* Add subview */
 		self.mStackView.addArrangedSubview(view)
 		/* Set constraints */

@@ -87,21 +87,21 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 			(_ hdl: FileHandle) -> Void in
 			let data = hdl.availableData
 			if let str = String.stringFromData(data: data) {
-				DispatchQueue.main.async {
+				CNExecuteInMainThread(doSync: false, execute: {
 					() -> Void in
 					self.receiveInputStream(string: str)
 					self.scrollToBottom()
-				}
+				})
 			}
 		}
 		mErrorPipe.fileHandleForReading.readabilityHandler = {
 			(_ hdl: FileHandle) -> Void in
 			let data = hdl.availableData
 			if let str = String.stringFromData(data: data) {
-				DispatchQueue.main.async {
+				CNExecuteInMainThread(doSync: false, execute: {
 					self.receiveInputStream(string: str)
 					self.scrollToBottom()
-				}
+				})
 			}
 		}
 	}
@@ -417,7 +417,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		DispatchQueue.main.async {
+		CNExecuteInMainThread(doSync: false, execute: {
 			() -> Void in
 			if let key = keyPath, let vals = change {
 				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
@@ -464,8 +464,7 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 					}
 				}
 			}
-
-		}
+		})
 	}
 
 	private func updateForegroundColor() {

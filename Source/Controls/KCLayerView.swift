@@ -142,10 +142,10 @@ open class KCLayerView: KCView, KCLayerDelegate
 		case .idle:
 			NSLog("Already stopped")
 		case .run, .pause:
-			DispatchQueue.main.async {
+			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in
 				self.stopAsync()
-			}
+			})
 		@unknown default:
 			NSLog("Unknown state")
 		}
