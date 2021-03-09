@@ -83,10 +83,6 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	private func setupFileStream() {
-		if mInputPipe.fileHandleForReading.setRawMode(enable: true) != 0 {
-			NSLog("Failed to set raw mode on KCTerminalViewCore")
-		}
-
 		mOutputPipe.fileHandleForReading.readabilityHandler = {
 			(_ hdl: FileHandle) -> Void in
 			let data = hdl.availableData
