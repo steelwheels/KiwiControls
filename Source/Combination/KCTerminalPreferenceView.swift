@@ -119,17 +119,20 @@ public class KCTerminalPreferenceView: KCStackView
 		if let button = mHomeSelectButton {
 			button.buttonPressedCallback = {
 				() -> Void in
-				if let url = URL.openPanel(title: "Select home directory", type: .Directory, extensions: []) {
-					if let field = self.mHomeDirectoryField {
-						field.text = url.path
+				URL.openPanel(title: "Select home directory", type: .Directory, extensions: [], callback: {
+					(_ urlp: URL?) -> Void in
+					if let url = urlp {
+						if let field = self.mHomeDirectoryField {
+							field.text = url.path
+						}
+						/* Add to user preference */
+						let userpref = CNPreference.shared.userPreference
+						userpref.homeDirectory = url
+						/* Add to bookmark */
+						let bookpref = CNPreference.shared.bookmarkPreference
+						bookpref.add(URL: url)
 					}
-					/* Add to user preference */
-					let userpref = CNPreference.shared.userPreference
-					userpref.homeDirectory = url
-					/* Add to bookmark */
-					let bookpref = CNPreference.shared.bookmarkPreference
-					bookpref.add(URL: url)
-				}
+				})
 			}
 		}
 		if let button = mHomeResetButton {
