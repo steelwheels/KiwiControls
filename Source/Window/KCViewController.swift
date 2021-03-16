@@ -68,9 +68,5 @@ public extension KCViewController
 			return result
 		}
 	}
-
-	func alert(error err: NSError){
-		let _ = KCAlert.runModal(error: err, in: self)
-	}
 }
 

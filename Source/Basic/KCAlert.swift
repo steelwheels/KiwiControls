@@ -14,9 +14,9 @@ import CoconutData
 
 public class KCAlert : NSObject
 {
-	public enum AlertResponce {
-		case OK
-		case Cancel
+	public enum AlertType {
+		case	error
+		case	information
 	}
 
 	public enum SaveResponce {
@@ -25,21 +25,46 @@ public class KCAlert : NSObject
 		case DontSave
 	}
 
+	public class func alert(type typ: AlertType, messgage msg: String, in viewcont: KCViewController, callback cbfunc: @escaping (_ buttonid: Int) -> Void) {
+		#if os(OSX)
+			let alert = NSAlert()
+			switch typ {
+			  case .error:		alert.alertStyle = .critical
+			  case .information:	alert.alertStyle = .informational
+			}
+			alert.messageText = msg
+			alert.addButton(withTitle: "OK")
+			switch alert.runModal() {
+			  case .alertFirstButtonReturn:		cbfunc(0)
+			  case .alertSecondButtonReturn:	cbfunc(1)
+			  case .alertThirdButtonReturn:		cbfunc(2)
+			  default:				cbfunc(-1)
+			}
+		#else
+			let title   = "Error"
+			let alert   = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+			let action = UIAlertAction(title: "OK", style: .default, handler: {
+				(action:UIAlertAction!) -> Void in
+			})
+			alert.addAction(action)
+			viewcont.present(alert, animated: false, completion: {
+				() -> Void in
+				cbfunc(0)
+			})
+		#endif
+	}
+
+/*
 	#if os(OSX)
-	public class func runModal(error err: NSError, in viewcont: NSViewController) -> AlertResponce
-	{
-		var result: AlertResponce
+	public class func alert(error err: NSError, in viewcont: NSViewController, callback cbfunc: @escaping (_ buttonid: Int) -> Void) {
 		let alert = NSAlert(error: err)
 		alert.alertStyle = codeToStyle(error: err)
 		switch alert.runModal() {
-		case .OK:
-			result = .OK
-		case .cancel:
-			result = .Cancel
-		default:
-			result = .Cancel
+		case .alertFirstButtonReturn:	cbfunc(0)
+		case .alertSecondButtonReturn:	cbfunc(1)
+		case .alertThirdButtonReturn:	cbfunc(2)
+		default:			cbfunc(-1)
 		}
-		return result
 	}
 
 	private class func codeToStyle(error err: NSError) -> NSAlert.Style {
@@ -55,24 +80,24 @@ public class KCAlert : NSObject
 		}
 		return style
 	}
-
 	#else
-	public class func runModal(error err: NSError, in viewcont: UIViewController) -> AlertResponce
-	{
+	public class func alert(error err: NSError, in viewcont: UIViewController, callback cbfunc: @escaping (_ buttonid: Int) -> Void) {
 		let title   = "Error"
 		let message = err.toString()
 		let alert   = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		let acttion = UIAlertAction(title: "OK", style: .default, handler: {
+		let action = UIAlertAction(title: "OK", style: .default, handler: {
 			(action:UIAlertAction!) -> Void in
-			/* Do nothing */
 		})
-		alert.addAction(acttion)
-		viewcont.present(alert, animated: false, completion: nil)
-		return .Cancel
+		alert.addAction(action)
+		viewcont.present(alert, animated: false, completion: {
+			() -> Void in
+			cbfunc(0)
+		})
 	}
 	#endif
+*/
 
-	#if os(OSX)
+	#if false
 	public class func recommendSaveModal(fileName fname: String) -> SaveResponce
 	{
 		let alert = NSAlert()
