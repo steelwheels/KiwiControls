@@ -48,13 +48,14 @@ open class KCBitmapView: KCLayerView
 		set(newval)	{ mColumnCount = newval }
 	}
 
-	open override func draw(context ctxt: CGContext, count cnt: Int32) {
-		self.mContext.begin(context: ctxt, physicalFrame: self.frame, width: self.mColumnCount, height: self.mRowCount)
-		self.draw(bitmapContext: self.mContext, count: cnt)
-		self.mContext.end()
+	public override func draw(context ctxt: CGContext, count cnt: Int32) {
+		/* Draw the bitmap */
+		self.mContext.draw(context: ctxt, physicalFrame: self.frame, width: self.mColumnCount, height: self.mRowCount)
+		/* Update the content of bitmap */
+		self.update(bitmapContext: self.mContext, count: cnt)
 	}
 
-	open func draw(bitmapContext ctxt: CNBitmapContext, count cnt: Int32) {
+	open func update(bitmapContext ctxt: CNBitmapContext, count cnt: Int32) {
 		NSLog("must be override at \(#function) \(cnt)")
 	}
 
