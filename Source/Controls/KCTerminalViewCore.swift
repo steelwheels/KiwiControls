@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
+open class KCTerminalViewCore : KCView, KCTerminalViewDelegate, NSTextStorageDelegate
 {
 	public enum TerminalMode {
 		case log

@@ -153,7 +153,6 @@
 		0544EB92251775E5002DE6A8 /* KCTableViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EB82251775E5002DE6A8 /* KCTableViewCore.xib */; };
 		0544EB93251775E5002DE6A8 /* KCImageViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EB83251775E5002DE6A8 /* KCImageViewCore.xib */; };
 		0544EB94251775E5002DE6A8 /* KCCheckBoxCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EB84251775E5002DE6A8 /* KCCheckBoxCore.xib */; };
-		0544EB95251775E5002DE6A8 /* KCTextViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EB85251775E5002DE6A8 /* KCTextViewCore.xib */; };
 		0544EB96251775E5002DE6A8 /* KCConsoleViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EB86251775E5002DE6A8 /* KCConsoleViewCore.xib */; };
 		0544EB9C25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */; };
 		0544EB9D25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */; };
@@ -406,7 +405,6 @@
 		0544EB82251775E5002DE6A8 /* KCTableViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTableViewCore.xib; sourceTree = "<group>"; };
 		0544EB83251775E5002DE6A8 /* KCImageViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCImageViewCore.xib; sourceTree = "<group>"; };
 		0544EB84251775E5002DE6A8 /* KCCheckBoxCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCCheckBoxCore.xib; sourceTree = "<group>"; };
-		0544EB85251775E5002DE6A8 /* KCTextViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTextViewCore.xib; sourceTree = "<group>"; };
 		0544EB86251775E5002DE6A8 /* KCConsoleViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCConsoleViewCore.xib; sourceTree = "<group>"; };
 		0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTerminalPreferenceView.swift; sourceTree = "<group>"; };
 		0544EBA22517764A002DE6A8 /* KCColorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorTable.swift; sourceTree = "<group>"; };
@@ -780,7 +778,6 @@
 				0544EB82251775E5002DE6A8 /* KCTableViewCore.xib */,
 				0544EB7E251775E5002DE6A8 /* KCTextEditCore.xib */,
 				0544EB7A251775E4002DE6A8 /* KCTextFieldCore.xib */,
-				0544EB85251775E5002DE6A8 /* KCTextViewCore.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1196,7 +1193,6 @@
 				0544EB88251775E5002DE6A8 /* KCStepperCore.xib in Resources */,
 				0544EB91251775E5002DE6A8 /* KCColorSelectorCore.xib in Resources */,
 				0544EB8C251775E5002DE6A8 /* KCLabeledStackViewCore.xib in Resources */,
-				0544EB95251775E5002DE6A8 /* KCTextViewCore.xib in Resources */,
 				0544EB93251775E5002DE6A8 /* KCImageViewCore.xib in Resources */,
 				0544EB8B251775E5002DE6A8 /* KCNavigationBarCore.xib in Resources */,
 				05EB0EC62567EC6A00D28FD2 /* KCTerminalViewCore.xib in Resources */,

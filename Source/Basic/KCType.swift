@@ -16,7 +16,7 @@
 	public typealias KCSize			= CGSize
 	public typealias KCRect			= CGRect
 	public typealias KCResponder		= UIResponder
-	public typealias KCTextViewDelegate	= UITextViewDelegate
+	public typealias KCTerminalViewDelegate	= UITextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLayoutPriority	= UILayoutPriority
@@ -28,7 +28,7 @@
 	public typealias KCSize			= NSSize
 	public typealias KCRect			= NSRect
 	public typealias KCResponder		= NSResponder
-	public typealias KCTextViewDelegate	= NSTextViewDelegate
+	public typealias KCTerminalViewDelegate	= NSTextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
 	public typealias KCLayoutRelation	= NSLayoutConstraint.Relation
 	public typealias KCLayoutPriority	= NSLayoutConstraint.Priority
