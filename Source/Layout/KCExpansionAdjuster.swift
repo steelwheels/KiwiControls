@@ -75,7 +75,15 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
+	open override func visit(textView view: KCTextView){
+		visitTextView(textView: view)
+	}
+
 	open override func visit(terminalView view: KCTerminalView){
+		visitTextView(textView: view)
+	}
+
+	private func visitTextView(textView view: KCView){
 		let targsize = view.intrinsicContentSize
 		let cursize  = view.frame.size
 
