@@ -516,7 +516,8 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 
 	private func scrollToBottom(){
 		#if os(OSX)
-			mTextView.scrollToEndOfDocument(self)
+			let cursrange = NSRange(location: mCurrentIndex, length: 0)
+			mTextView.scrollRangeToVisible(cursrange)
 		#else
 			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
 			let scrollY = mTextView.contentSize.height - mTextView.bounds.height

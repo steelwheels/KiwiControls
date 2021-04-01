@@ -14,7 +14,7 @@ open class UTShellThread: CNShellThread
 {
 	public var terminalView: KCTerminalView? = nil
 
-	open override func execute(command cmd: String) -> Bool {
+	open override func execute(command cmd: String) {
 		#if false
 		CNExecuteInMainThread(doSync: true, execute: {
 			() -> Void in
@@ -24,7 +24,6 @@ open class UTShellThread: CNShellThread
 			}
 		})
 		#endif
-		return super.execute(command: cmd)
 	}
 }
 

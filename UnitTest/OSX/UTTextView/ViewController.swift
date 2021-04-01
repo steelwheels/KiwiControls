@@ -16,12 +16,25 @@ class ViewController: NSViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		mTextView.isEditable = true
+
+		var longstr: String = ""
+		for i in 0..<1024 {
+			longstr += "\(i) "
+		}
+
 		let codes: Array<CNEscapeCode> = [
 			.string("Hello, World !!\n"),
 			.boldCharacter(true),
 			.string("Good "),
 			.boldCharacter(false),
-			.string("Morning")
+			.string("Morning,"),
+			.foregroundColor(CNColor.yellow),
+			.backgroundColor(CNColor.blue),
+			.string("Good Evening"),
+			.defaultForegroundColor,
+			.defaultBackgroundColor,
+			.string(longstr),
 		]
 		mTextView.execute(escapeCodes: codes)
 	}

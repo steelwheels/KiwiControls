@@ -58,12 +58,29 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 	}
 
+	public var isEditable: Bool {
+		get {
+			return mTextView.isEditable
+		}
+		set(newval) {
+			if newval {
+				mTextView.isEditable	= true
+				mTextView.isSelectable	= true
+			} else {
+				mTextView.isEditable	= false
+				mTextView.isSelectable	= true
+			}
+		}
+	}
+
 	public func setup(frame frm: CGRect){
 		let tpref = CNPreference.shared.terminalPreference
 
+		/* Delegate */
 		mTextView.delegate = self
 
 		KCView.setAutolayoutMode(view: self)
+
 		/* Default setting */
 		#if os(OSX)
 			mTextView.drawsBackground		= true
@@ -74,6 +91,17 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			mTextView.isScrollEnabled		= true
 		#endif
 
+		/* Set editable */
+		self.isEditable = true
+
+		/* Set colors */
+		mTextView.textColor	  = tpref.foregroundTextColor
+		mTextView.backgroundColor = tpref.backgroundTextColor
+		#if os(OSX)
+		mTextView.insertionPointColor = tpref.foregroundTextColor
+		#endif
+
+		/* Set font */
 		self.font = tpref.font
 	}
 
@@ -98,7 +126,8 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public func executeInSync(escapeCodes codes: Array<CNEscapeCode>) {
-		let storage = self.textStorage
+		let orgindex = mCurrentIndex
+		let storage  = self.textStorage
 		for code in codes {
 			switch code {
 			case .string(let str):
@@ -209,9 +238,15 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				NSLog("Unknown escape code")
 			}
 		}
+		if orgindex != mCurrentIndex {
+			/* Update selected range */
+			let range = NSRange(location: mCurrentIndex, length: 0)
+			setSelectedRange(range: range)
+		}
+		scrollToBottom()
 	}
 
-	public func ack(escapeCode code: CNEscapeCode) {
+	open func ack(escapeCode code: CNEscapeCode) {
 	}
 
 	public override var intrinsicContentSize: KCSize {
@@ -236,6 +271,57 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		mTextView.setExpansionPriorities(priorities: prival)
 		super.setExpandabilities(priorities: prival)
+	}
+
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			if let key = keyPath, let vals = change {
+				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
+					switch key {
+					case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
+						self.updateForegroundColor()
+					case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
+						self.updateBackgroundColor()
+					default:
+						CNLog(logLevel: .error, message: "\(#file): Unknown key (2): \(key)")
+					}
+				} else if let font = vals[.newKey] as? CNFont {
+					switch key {
+					case CNPreference.shared.terminalPreference.FontItem:
+						NSLog("Change font: \(font.fontName)")
+						self.updateFont()
+						self.notify(viewControlEvent: .updateSize)
+					default:
+						NSLog("\(#file): Unknown key (3): \(key)")
+					}
+				} else if let _ = vals[.newKey] as? NSNumber {
+					switch key {
+					case CNPreference.shared.terminalPreference.WidthItem:
+						let newwidth = CNPreference.shared.terminalPreference.width
+						if self.mTerminalInfo.width != newwidth {
+							self.mTerminalInfo.width = newwidth
+							self.invalidateIntrinsicContentSize()
+							self.setNeedsLayout()
+							self.notify(viewControlEvent: .updateSize)
+						}
+					case CNPreference.shared.terminalPreference.HeightItem:
+						let newheight = CNPreference.shared.terminalPreference.height
+						if self.mTerminalInfo.height != newheight {
+							self.mTerminalInfo.height = newheight
+							self.invalidateIntrinsicContentSize()
+							self.setNeedsLayout()
+							self.notify(viewControlEvent: .updateSize)
+						}
+					case CNSystemPreference.InterfaceStyleItem:
+						self.updateForegroundColor()
+						self.updateBackgroundColor()
+					default:
+						CNLog(logLevel: .debug, message: "\(#file): Unknown key (4): \(key)")
+					}
+				}
+			}
+		})
 	}
 
 	private func targetSize() -> KCSize {
@@ -276,6 +362,59 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		//NSLog("updateTerminalInfo: \(newwidth) \(newheight)")
 		mTerminalInfo.width	= newwidth
 		mTerminalInfo.height	= newheight
+	}
+
+	private func updateForegroundColor() {
+		let newcol  = CNPreference.shared.terminalPreference.foregroundTextColor
+		let storage = self.textStorage
+		if let curcol = mTextView.textColor {
+			storage.changeOverallTextColor(targetColor: curcol, newColor: newcol)
+		}
+		mTerminalInfo.foregroundColor = newcol
+		#if os(OSX)
+			mTextView.insertionPointColor	= newcol
+		#endif
+	}
+
+	private func updateBackgroundColor() {
+		let newcol = CNPreference.shared.terminalPreference.backgroundTextColor
+		#if os(OSX)
+			let curcol = mTextView.backgroundColor
+			let storage = self.textStorage
+			storage.changeOverallBackgroundColor(targetColor: curcol, newColor: newcol)
+		#else
+			if let curcol = mTextView.backgroundColor {
+				let storage = self.textStorage
+				storage.changeOverallBackgroundColor(targetColor: curcol, newColor: newcol)
+			}
+		#endif
+		mTerminalInfo.backgroundColor	= newcol
+		mTextView.backgroundColor	= newcol
+	}
+
+	private func updateFont() {
+		let font = CNPreference.shared.terminalPreference.font
+		textStorage.changeOverallFont(font: font)
+		self.invalidateIntrinsicContentSize()
+	}
+
+	private func setSelectedRange(range rng: NSRange){
+		#if os(OSX)
+			mTextView.setSelectedRange(rng)
+		#else
+			mTextView.selectedRange = rng
+		#endif
+	}
+
+	private func scrollToBottom(){
+		#if os(OSX)
+			mTextView.scrollToEndOfDocument(self)
+		#else
+			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
+			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
+			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
+			mTextView.setContentOffset(scrollPoint, animated: true)
+		#endif
 	}
 }
 

@@ -40,6 +40,11 @@ open class KCTextView : KCCoreView
 		setup() ;
 	}
 
+	public var isEditable: Bool {
+		get         { return coreView.isEditable   }
+		set(newval) { coreView.isEditable = newval }
+	}
+
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTextView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
