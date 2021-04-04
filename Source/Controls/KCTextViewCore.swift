@@ -206,9 +206,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			case .eraceFromCursorToLeft:
 				mCurrentIndex = storage.deleteBackwardAllCharacters(from: mCurrentIndex)
 			case .scrollUp(let line):
-				mCurrentIndex = storage.scrollUp(lines: line, font: self.font, terminalInfo: mTerminalInfo)
+				mCurrentIndex = storage.moveCursorToPreviousLineStart(from: mCurrentIndex, number: line)
 			case .scrollDown(let line):
-				mCurrentIndex = storage.scrollDown(lines: line, font: self.font, terminalInfo: mTerminalInfo)
+				let (newidx, _) = storage.moveCursorToNextLineStart(from: mCurrentIndex, number: line)
+				mCurrentIndex = newidx
 			case .resetAll:
 				storage.clear(font: self.font, terminalInfo: mTerminalInfo)
 				mTerminalInfo.reset()
@@ -259,8 +260,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		/* Update selected range */
 		let range = NSRange(location: mCurrentIndex, length: 0)
 		setSelectedRange(range: range)
-
-		scrollToBottom()
+		mTextView.scrollRangeToVisible(range)
 	}
 
 	open func ack(escapeCodes codes: Array<CNEscapeCode>) {
@@ -449,17 +449,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			mTextView.setSelectedRange(rng)
 		#else
 			mTextView.selectedRange = rng
-		#endif
-	}
-
-	private func scrollToBottom(){
-		#if os(OSX)
-			mTextView.scrollToEndOfDocument(self)
-		#else
-			mTextView.selectedRange = NSRange(location: mTextView.text.count, length: 0)
-			let scrollY = mTextView.contentSize.height - mTextView.bounds.height
-			let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
-			mTextView.setContentOffset(scrollPoint, animated: true)
 		#endif
 	}
 }
