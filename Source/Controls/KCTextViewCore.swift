@@ -24,13 +24,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	private var mCurrentIndex:	Int
 	private var mSavedIndex:	Int?
 	private var mTerminalInfo:	CNTerminalInfo
-
+	private var mAckCallback:	((_ codes: Array<CNEscapeCode>) -> Void)?
 
 	public override init(frame frameRect: KCRect) {
 		let tpref = CNPreference.shared.terminalPreference
 		mCurrentIndex = 0
 		mSavedIndex   = nil
 		mTerminalInfo = CNTerminalInfo(width: tpref.width, height: tpref.height)
+		mAckCallback  = nil
 		super.init(frame: frameRect)
 	}
 
@@ -39,6 +40,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mCurrentIndex = 0
 		mSavedIndex   = nil
 		mTerminalInfo = CNTerminalInfo(width: tpref.width, height: tpref.height)
+		mAckCallback  = nil
 		super.init(coder: coder)
 	}
 
@@ -73,12 +75,21 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		}
 	}
 
+	public var terminalInfo: CNTerminalInfo {
+		get { return mTerminalInfo }
+	}
+
+	public func setAckCallback(callback cbfunc: ((_ codes: Array<CNEscapeCode>) -> Void)?) {
+		mAckCallback = cbfunc
+	}
+
 	public func setup(frame frm: CGRect){
 		let tpref = CNPreference.shared.terminalPreference
 
-		/* Delegate */
+		/* Set delegate */
 		mTextView.delegate = self
 
+		/* Set layout */
 		KCView.setAutolayoutMode(view: self)
 
 		/* Default setting */
@@ -126,7 +137,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public func executeInSync(escapeCodes codes: Array<CNEscapeCode>) {
-		let orgindex = mCurrentIndex
+		let tpref    = CNPreference.shared.terminalPreference
 		let storage  = self.textStorage
 		for code in codes {
 			switch code {
@@ -153,9 +164,14 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			case .cursorBackward(let colnum):
 				mCurrentIndex = storage.moveCursorBackward(from: mCurrentIndex, number: colnum)
 			case .cursorNextLine(let rownum):
-				mCurrentIndex = storage.moveCursorUpOrDown(from: mCurrentIndex, doUp: false, number: rownum)
+				let (newidx, donewline) = storage.moveCursorToNextLineStart(from: mCurrentIndex, number: rownum)
+				if donewline {
+					mCurrentIndex = storage.append(string: "\n", font: self.font, terminalInfo: self.mTerminalInfo)
+				} else {
+					mCurrentIndex = newidx
+				}
 			case .cursorPreviousLine(let rownum):
-				mCurrentIndex = storage.moveCursorUpOrDown(from: mCurrentIndex, doUp: true, number: rownum)
+				mCurrentIndex = storage.moveCursorToPreviousLineStart(from: mCurrentIndex, number: rownum)
 			case .cursorHolizontalAbsolute(let pos):
 				if pos >= 1 {
 					mCurrentIndex = storage.moveCursorTo(from: mCurrentIndex, x: pos-1)
@@ -172,9 +188,9 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				}
 			case .cursorPosition(let row, let col):
 				if row>=1 && col>=1 {
-					mCurrentIndex = storage.moveCursorTo(base: mCurrentIndex, x: col-1, y: row-1)
+					mCurrentIndex = storage.moveCursorTo(x: col-1, y: row-1)
 				} else {
-					NSLog("cursorHolizontalAbsolute: Underflow")
+					NSLog("cursorPosition: Underflow")
 				}
 			case .eraceFromCursorToEnd:
 				mCurrentIndex = storage.deleteForwardAllCharacters(from: mCurrentIndex)
@@ -196,8 +212,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			case .resetAll:
 				storage.clear(font: self.font, terminalInfo: mTerminalInfo)
 				mTerminalInfo.reset()
+				updateForegroundColor()
+				updateBackgroundColor()
 				mCurrentIndex = 0
-				self.setNeedsLayout()
+				self.setNeedsDisplay()
 			case .resetCharacterAttribute:
 				mTerminalInfo.reset()
 				self.setNeedsDisplay()
@@ -214,7 +232,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				mTerminalInfo.foregroundColor = color
 				self.setNeedsDisplay()
 			case .defaultForegroundColor:
-				let tpref = CNPreference.shared.terminalPreference
 				mTerminalInfo.foregroundColor = tpref.foregroundTextColor
 				self.setNeedsDisplay()
 			case .backgroundColor(let color):
@@ -227,7 +244,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			case .requestScreenSize:
 				/* Ack the size*/
 				let ackcode: CNEscapeCode = .screenSize(self.mTerminalInfo.width, self.mTerminalInfo.height)
-				self.ack(escapeCode: ackcode)
+				self.ack(escapeCodes: [ackcode])
 			case .screenSize(let width, let height):
 				self.mTerminalInfo.width  = width
 				self.mTerminalInfo.height = height
@@ -238,15 +255,18 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				NSLog("Unknown escape code")
 			}
 		}
-		if orgindex != mCurrentIndex {
-			/* Update selected range */
-			let range = NSRange(location: mCurrentIndex, length: 0)
-			setSelectedRange(range: range)
-		}
+
+		/* Update selected range */
+		let range = NSRange(location: mCurrentIndex, length: 0)
+		setSelectedRange(range: range)
+
 		scrollToBottom()
 	}
 
-	open func ack(escapeCode code: CNEscapeCode) {
+	open func ack(escapeCodes codes: Array<CNEscapeCode>) {
+		if let cbfunc = mAckCallback {
+			cbfunc(codes)
+		}
 	}
 
 	public override var intrinsicContentSize: KCSize {
@@ -323,6 +343,32 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			}
 		})
 	}
+
+	/* Delegate of text view */
+	#if os(OSX)
+	public func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+		if let keybind = CNKeyBinding.decode(selectorName: commandSelector.description) {
+			if let ecodes = keybind.toEscapeCode() {
+				self.ack(escapeCodes: ecodes)
+			}
+		}
+		return true // the command is processed in this method
+	}
+	#endif
+
+	#if os(OSX)
+	public func textView(_ textView: NSTextView, shouldChangeTextIn range: NSRange, replacementString: String?) -> Bool {
+		if let str = replacementString {
+			self.ack(escapeCodes: [.string(str)])
+		}
+		return false // the command is processed in this method
+	}
+	#else
+	public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+		self.ack(escapeCodes: [.string(text)])
+		return false // the command is processed in this method
+	}
+	#endif
 
 	private func targetSize() -> KCSize {
 		let tpref      = CNPreference.shared.terminalPreference

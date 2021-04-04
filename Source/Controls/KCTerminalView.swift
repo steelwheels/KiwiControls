@@ -12,6 +12,129 @@
 #endif
 import CoconutData
 
+open class KCTerminalView : KCTextView
+{
+	private var mInputPipe:			Pipe
+	private var mOutputPipe:		Pipe
+	private var mErrorPipe:			Pipe
+
+	#if os(OSX)
+	public override init(frame : NSRect){
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
+		super.init(frame: frame)
+		setup()
+	}
+	#else
+	public override init(frame: CGRect){
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
+		super.init(frame: frame)
+		setup()
+	}
+	#endif
+
+	public required init?(coder: NSCoder) {
+		mInputPipe	= Pipe()
+		mOutputPipe	= Pipe()
+		mErrorPipe	= Pipe()
+		super.init(coder: coder)
+		setup()
+	}
+
+	public convenience init(){
+		#if os(OSX)
+			let frame = NSRect(x: 0.0, y: 0.0, width: 480, height: 270)
+		#else
+			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 22)
+		#endif
+		self.init(frame: frame)
+	}
+
+	deinit {
+		removeObservers()
+	}
+
+	private func setup() {
+		/* Start observe */
+		let tpref = CNPreference.shared.terminalPreference
+		tpref.addObserver(observer: self, forKey: tpref.WidthItem)
+		tpref.addObserver(observer: self, forKey: tpref.HeightItem)
+		tpref.addObserver(observer: self, forKey: tpref.ForegroundTextColorItem)
+		tpref.addObserver(observer: self, forKey: tpref.BackgroundTextColorItem)
+		tpref.addObserver(observer: self, forKey: tpref.FontItem)
+
+		let spref = CNPreference.shared.systemPreference
+		spref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+
+		mOutputPipe.fileHandleForReading.readabilityHandler = {
+			(_ hdl: FileHandle) -> Void in
+			let data = hdl.availableData
+			if let str = String.stringFromData(data: data) {
+				self.execute(string: str)
+			}
+		}
+		mErrorPipe.fileHandleForReading.readabilityHandler = {
+			(_ hdl: FileHandle) -> Void in
+			let data = hdl.availableData
+			if let str = String.stringFromData(data: data) {
+				self.execute(string: str)
+			}
+		}
+
+		self.setAckCallback(callback: {
+			(_ codes: Array<CNEscapeCode>) -> Void in
+			var encstr: String = ""
+			for code in codes {
+				encstr += code.encode()
+			}
+			self.mInputPipe.fileHandleForWriting.write(string: encstr)
+		})
+	}
+
+	private func removeObservers() {
+		mOutputPipe.fileHandleForReading.readabilityHandler = nil
+		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+
+		/* Stop to observe */
+		let pref = CNPreference.shared.terminalPreference
+		pref.removeObserver(observer: self, forKey: pref.WidthItem)
+		pref.removeObserver(observer: self, forKey: pref.HeightItem)
+		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
+		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
+		pref.removeObserver(observer: self, forKey: pref.FontItem)
+
+		let syspref = CNPreference.shared.systemPreference
+		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+	}
+
+	public var inputFileHandle: FileHandle {
+		get { return mInputPipe.fileHandleForReading }
+	}
+
+	public var outputFileHandle: FileHandle {
+		get { return mOutputPipe.fileHandleForWriting }
+	}
+
+	public var errorFileHandle: FileHandle {
+		get { return mErrorPipe.fileHandleForWriting }
+	}
+
+	public func execute(string str: String) {
+		switch CNEscapeCode.decode(string: str) {
+		case .ok(let codes):
+			super.execute(escapeCodes: codes)
+		case .error(let err):
+			CNLog(logLevel: .error, message: "Failed to decode escape code: \(err.description())")
+		@unknown default:
+			CNLog(logLevel: .error, message: "Failed to decode escape code: <unknown>")
+		}
+	}
+}
+
+/*
 open class KCTerminalView : KCCoreView
 {
 	#if os(OSX)
@@ -105,4 +228,5 @@ open class KCTerminalView : KCCoreView
 		get { return getCoreView() }
 	}
 }
+*/
 

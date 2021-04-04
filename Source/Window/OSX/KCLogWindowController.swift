@@ -16,20 +16,28 @@ import Foundation
 public class KCLogWindowController: NSWindowController
 {
 	private var mConsoleView:	KCConsoleView
+	private var mConsole:		CNFileConsole
 
 	public class func allocateController() -> KCLogWindowController {
 		let (window, console, clearbtn) = KCLogWindowController.loadWindow()
 		return KCLogWindowController(window: window, consoleView: console, clearButton: clearbtn)
 	}
 
-	public var console: CNConsole { get { return mConsoleView.consoleConnection }}
-
 	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton){
 		mConsoleView		= consview
+		mConsole		= CNFileConsole(input: FileHandle.standardInput,
+							output: consview.outputFileHandle,
+							error:  consview.errorFileHandle)
 		super.init(window: win)
 		clearbtn.buttonPressedCallback = {
-			consview.clear()
+			/* Send erace entire buffer command */
+			let clearcmd = CNEscapeCode.eraceEntireBuffer
+			self.mConsoleView.outputFileHandle.write(string: clearcmd.encode())
 		}
+	}
+
+	public var console: CNConsole {
+		get { return mConsole }
 	}
 
 	public required init?(coder: NSCoder) {

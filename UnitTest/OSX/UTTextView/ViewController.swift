@@ -19,9 +19,10 @@ class ViewController: NSViewController
 		mTextView.isEditable = true
 
 		var longstr: String = ""
-		for i in 0..<1024 {
-			longstr += "\(i) "
+		for i in 0..<40 {
+			longstr += "\(i % 10)"
 		}
+		longstr += "\n"
 
 		let codes: Array<CNEscapeCode> = [
 			.string("Hello, World !!\n"),
@@ -31,10 +32,20 @@ class ViewController: NSViewController
 			.string("Morning,"),
 			.foregroundColor(CNColor.yellow),
 			.backgroundColor(CNColor.blue),
-			.string("Good Evening"),
+			.string("Good Evening\n"),
 			.defaultForegroundColor,
 			.defaultBackgroundColor,
 			.string(longstr),
+			.string(longstr),
+			.string(longstr),
+			.cursorUp(2),
+			.cursorForward(20),
+			.eraceEntireLine,
+			.cursorForward(20),
+			.eraceFromCursorToEnd,
+			.string("*"),
+			.cursorBackward(1),
+			.eraceFromCursorToBegin
 		]
 		mTextView.execute(escapeCodes: codes)
 	}

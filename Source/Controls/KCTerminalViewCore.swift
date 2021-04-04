@@ -12,6 +12,7 @@
 #endif
 import CoconutData
 
+/*
 open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 {
 	public enum TerminalMode {
@@ -526,4 +527,6 @@ open class KCTerminalViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegat
 		#endif
 	}
 }
+
+*/
 

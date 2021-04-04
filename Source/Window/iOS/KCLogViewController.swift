@@ -47,7 +47,9 @@ open class KCLogViewController: KCSingleViewController
 		if let root = super.rootView {
 			root.setup(childView: stack)
 			mConsoleView = consoleview
-			mConsole.outputConsole = consoleview.consoleConnection
+			mConsole.outputConsole = CNFileConsole(input:  FileHandle.standardInput,
+							       output: consoleview.outputFileHandle,
+							       error:  consoleview.errorFileHandle)
 		} else {
 			NSLog("\(#function) [Error] Can not allocate console view")
 		}

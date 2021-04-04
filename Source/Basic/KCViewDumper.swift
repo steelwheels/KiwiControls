@@ -91,12 +91,12 @@ public class KCViewDumper: KCViewVisitor
 		visit(coreView: view)
 
 		let fsection = CNTextSection()
+
+		let terminfo = view.terminalInfo
 		fsection.header = "CLI {" ; fsection.footer = "}"
-		let width  = view.width
-		let height = view.height
+		let width  = terminfo.width
+		let height = terminfo.height
 		fsection.add(text: CNTextLine(string: "width: \(width), height: \(height)"))
-		let font    = view.font
-		fsection.add(string: "font:\(font.fontName))")
 		mSection.add(text: fsection)
 	}
 

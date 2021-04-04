@@ -45,6 +45,14 @@ open class KCTextView : KCCoreView
 		set(newval) { coreView.isEditable = newval }
 	}
 
+	public var terminalInfo: CNTerminalInfo {
+		get { return coreView.terminalInfo }
+	}
+
+	public func setAckCallback(callback cbfunc: ((_ codes: Array<CNEscapeCode>) -> Void)?) {
+		coreView.setAckCallback(callback: cbfunc)
+	}
+
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTextView.self, nibName: "KCTextViewCore") as? KCTextViewCore {
