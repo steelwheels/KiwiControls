@@ -307,6 +307,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			/* Save current storage */
 			mNormalStorage.setAttributedString(self.textStorage)
 			mNormalIndex = mCurrentIndex
+			/* Resize */
+			mAlternativeStorage.resize(width:  mTerminalInfo.width,
+						   height: mTerminalInfo.height,
+						   font:   self.font,
+						   terminalInfo: mTerminalInfo)
 			/* Set new storage */
 			let storage = self.textStorage
 			storage.beginEditing()
