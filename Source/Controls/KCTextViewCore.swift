@@ -22,25 +22,45 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	#endif
 
 	private var mCurrentIndex:	Int
-	private var mSavedIndex:	Int?
 	private var mTerminalInfo:	CNTerminalInfo
+
+	private var mIsAlternativeScreen:	Bool
+	private var mNormalStorage:		NSTextStorage
+	private var mNormalIndex:		Int
+	private var mNormalSavedIndex:		Int?
+	private var mAlternativeStorage:	NSTextStorage
+	private var mAlternativeIndex:		Int
+	private var mAlternativeSavedIndex:	Int?
+
 	private var mAckCallback:	((_ codes: Array<CNEscapeCode>) -> Void)?
 
 	public override init(frame frameRect: KCRect) {
 		let tpref = CNPreference.shared.terminalPreference
-		mCurrentIndex = 0
-		mSavedIndex   = nil
-		mTerminalInfo = CNTerminalInfo(width: tpref.width, height: tpref.height)
-		mAckCallback  = nil
+		mCurrentIndex 		= 0
+		mTerminalInfo 		= CNTerminalInfo(width: tpref.width, height: tpref.height)
+		mAckCallback  		= nil
+		mIsAlternativeScreen	= false
+		mNormalStorage		= NSTextStorage()
+		mNormalIndex		= 0
+		mNormalSavedIndex	= nil
+		mAlternativeStorage	= NSTextStorage()
+		mAlternativeIndex	= 0
+		mAlternativeSavedIndex	= nil
 		super.init(frame: frameRect)
 	}
 
 	public required init?(coder: NSCoder) {
 		let tpref = CNPreference.shared.terminalPreference
-		mCurrentIndex = 0
-		mSavedIndex   = nil
-		mTerminalInfo = CNTerminalInfo(width: tpref.width, height: tpref.height)
-		mAckCallback  = nil
+		mCurrentIndex		= 0
+		mTerminalInfo		= CNTerminalInfo(width: tpref.width, height: tpref.height)
+		mAckCallback  		= nil
+		mIsAlternativeScreen	= false
+		mNormalStorage		= NSTextStorage()
+		mNormalIndex		= 0
+		mNormalSavedIndex	= nil
+		mAlternativeStorage	= NSTextStorage()
+		mAlternativeIndex	= 0
+		mAlternativeSavedIndex	= nil
 		super.init(coder: coder)
 	}
 
@@ -179,12 +199,22 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					NSLog("cursorHolizontalAbsolute: Underflow")
 				}
 			case .saveCursorPosition:
-				mSavedIndex = mCurrentIndex
+				if mIsAlternativeScreen {
+					mAlternativeIndex = mCurrentIndex
+				} else {
+					mNormalSavedIndex = mCurrentIndex
+				}
 			case .restoreCursorPosition:
-				if let savedidx = mSavedIndex {
+				var nextidx: Int? = nil
+				if mIsAlternativeScreen {
+					nextidx = mAlternativeSavedIndex
+				} else {
+					nextidx = mNormalSavedIndex
+				}
+				if let nidx = nextidx {
 					let str = self.textStorage.string
 					let endidx  = str.distance(from: str.startIndex, to: str.endIndex)
-					mCurrentIndex = min(savedidx, endidx)
+					mCurrentIndex = min(nidx, endidx)
 				}
 			case .cursorPosition(let row, let col):
 				if row>=1 && col>=1 {
@@ -250,8 +280,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				self.mTerminalInfo.width  = width
 				self.mTerminalInfo.height = height
 				self.mTextView.setNeedsLayout()
-			case .selectAltScreen(_):
-				NSLog("Not supported: \(code.description())")
+			case .selectAltScreen(let doalt):
+				if mIsAlternativeScreen != doalt {
+					swapTextStorage(doAlternative: doalt)
+					mIsAlternativeScreen = doalt
+				}
 			@unknown default:
 				NSLog("Unknown escape code")
 			}
@@ -267,6 +300,34 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		if let cbfunc = mAckCallback {
 			cbfunc(codes)
 		}
+	}
+
+	private func swapTextStorage(doAlternative doalt: Bool){
+		if doalt {
+			/* Save current storage */
+			mNormalStorage.setAttributedString(self.textStorage)
+			mNormalIndex = mCurrentIndex
+			/* Set new storage */
+			let storage = self.textStorage
+			storage.beginEditing()
+				storage.setAttributedString(mAlternativeStorage)
+				self.mCurrentIndex = mAlternativeIndex
+			storage.endEditing()
+		} else {
+			/* Save current storage */
+			mAlternativeStorage.setAttributedString(self.textStorage)
+			mAlternativeIndex = mCurrentIndex
+			/* Set new storage */
+			let storage = self.textStorage
+			storage.beginEditing()
+				storage.setAttributedString(mNormalStorage)
+				self.mCurrentIndex = mNormalIndex
+			storage.endEditing()
+		}
+		/* Update selected range */
+		let range = NSRange(location: mCurrentIndex, length: 0)
+		setSelectedRange(range: range)
+		mTextView.scrollRangeToVisible(range)
 	}
 
 	public override var intrinsicContentSize: KCSize {
