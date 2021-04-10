@@ -101,6 +101,28 @@ public class TerminalViewController: KCSingleViewController
 		termview.outputFileHandle.write(string: bold + "Bold\n")
 
 		termview.outputFileHandle.write(string: reset)
+
+		let terminfo = termview.terminalInfo
+		//let width    = terminfo.width
+		//let height   = terminfo.height
+		let console  = CNFileConsole(input:  termview.inputFileHandle,
+					     output: termview.outputFileHandle,
+					     error:  termview.errorFileHandle)
+		let curses  = CNCurses(console: console, terminalInfo: terminfo)
+		curses.begin()
+		curses.fill(x: 0, y: 0, width: terminfo.width, height: terminfo.height, char: "x")
+		/*
+		for i in 0..<10 {
+			curses.moveTo(x: i, y: i)
+			curses.put(string: "o")
+		}
+		for x in 0..<width {
+			curses.moveTo(x: x, y: 0)
+			console.print(string: "+")
+
+			curses.moveTo(x: x, y: height-1)
+			console.print(string: "+")
+		}*/
 	}
 
 }

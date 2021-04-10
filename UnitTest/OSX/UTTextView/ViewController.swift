@@ -45,9 +45,26 @@ class ViewController: NSViewController
 			.eraceFromCursorToEnd,
 			.string("*"),
 			.cursorBackward(1),
-			.eraceFromCursorToBegin
+			.eraceFromCursorToBegin,
+
 		]
 		mTextView.execute(escapeCodes: codes)
+
+		let terminfo = mTextView.terminalInfo
+
+		let width    = terminfo.width
+		let height   = terminfo.height
+		var codes2: Array<CNEscapeCode> = []
+		codes2.append(.selectAltScreen(true))
+		for y in 0..<height-1 {
+			for x in 0..<width-1 {
+				NSLog("cursorPosition(\(x), \(y))")
+				let c = x % 10
+				codes2.append(.cursorPosition(y+1, x+1))
+				codes2.append(.string("\(c)"))
+			}
+		}
+		mTextView.execute(escapeCodes: codes2)
 	}
 
 	override var representedObject: Any? {

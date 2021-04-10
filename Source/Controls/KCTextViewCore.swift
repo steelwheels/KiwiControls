@@ -162,19 +162,19 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		for code in codes {
 			switch code {
 			case .string(let str):
-				mCurrentIndex = storage.write(string: str, at: mCurrentIndex, font: self.font, terminalInfo: mTerminalInfo)
+				mCurrentIndex = writeString(storage: storage, string: str, index: mCurrentIndex)
 			case .eot:
 				break
 			case .newline:
-				mCurrentIndex = storage.write(string: "\n", at: mCurrentIndex, font: self.font, terminalInfo: mTerminalInfo)
+				mCurrentIndex = writeNewline(storage: storage, index: mCurrentIndex)
 			case .tab:
-				mCurrentIndex = storage.write(string: "\t", at: mCurrentIndex, font: self.font, terminalInfo: mTerminalInfo)
+				mCurrentIndex = writeString(storage: storage, string: "\t", index: mCurrentIndex)
 			case .backspace:
 				/* move left */
 				mCurrentIndex = storage.moveCursorBackward(from: mCurrentIndex, number: 1)
 			case .delete:
 				/* Delete left 1 character	*/
-				mCurrentIndex = storage.deleteBackwardCharacters(from: mCurrentIndex, number: 1)
+				mCurrentIndex = deleteBackward(storage: storage, from: mCurrentIndex, number: 1)
 			case .cursorUp(let rownum):
 				mCurrentIndex = storage.moveCursorUpOrDown(from: mCurrentIndex, doUp: true, number: rownum)
 			case .cursorDown(let rownum):
@@ -186,7 +186,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 			case .cursorNextLine(let rownum):
 				let (newidx, donewline) = storage.moveCursorToNextLineStart(from: mCurrentIndex, number: rownum)
 				if donewline {
-					mCurrentIndex = storage.append(string: "\n", font: self.font, terminalInfo: self.mTerminalInfo)
+					if !mIsAlternativeScreen {
+						mCurrentIndex = storage.append(string: "\n", font: self.font, terminalInfo: self.mTerminalInfo)
+					} else {
+						mCurrentIndex = newidx
+					}
 				} else {
 					mCurrentIndex = newidx
 				}
@@ -217,8 +221,12 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					mCurrentIndex = min(nidx, endidx)
 				}
 			case .cursorPosition(let row, let col):
-				if row>=1 && col>=1 {
-					mCurrentIndex = storage.moveCursorTo(x: col-1, y: row-1)
+				if row>=1 && col>=1 && row<=mTerminalInfo.height && col<=mTerminalInfo.width {
+					if mIsAlternativeScreen {
+						mCurrentIndex = ((terminalInfo.width + 1) * (row - 1)) + (col - 1)
+					} else {
+						mCurrentIndex = storage.moveCursorTo(x: col-1, y: row-1)
+					}
 				} else {
 					NSLog("cursorPosition: Underflow")
 				}
@@ -300,6 +308,55 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		if let cbfunc = mAckCallback {
 			cbfunc(codes)
 		}
+	}
+
+	private func writeString(storage strg: NSTextStorage, string str: String, index idx: Int) -> Int {
+		let newidx: Int
+		if mIsAlternativeScreen {
+			let linelen = strg.distanceFromLineStart(to: idx)
+			if linelen < mTerminalInfo.width {
+				let restlen = mTerminalInfo.width - linelen
+				let substr  = str.prefix(restlen)
+				newidx = strg.write(string: String(substr), at: idx, font: self.font, terminalInfo: mTerminalInfo)
+			} else {
+				NSLog("[Error] Unexpected line {index=\(idx), width=\(linelen)} in {\(mTerminalInfo.width)x\(mTerminalInfo.height)} at \(#function)")
+				newidx = idx
+			}
+		} else {
+			newidx = strg.write(string: str, at: idx, font: self.font, terminalInfo: mTerminalInfo)
+		}
+		return newidx
+	}
+
+	private func writeNewline(storage strg: NSTextStorage, index idx: Int) -> Int {
+		let newidx: Int
+		if mIsAlternativeScreen {
+			if let nxtidx = strg.moveCursorToNextLineStart(from: idx) {
+				newidx = nxtidx
+			} else {
+				newidx = idx
+			}
+		} else {
+			newidx = strg.write(string: "\n", at: idx, font: self.font, terminalInfo: mTerminalInfo)
+		}
+		return newidx
+	}
+
+	private func deleteBackward(storage strg: NSTextStorage, from idx: Int, number num: Int) -> Int {
+		let newidx: Int
+		if mIsAlternativeScreen {
+			newidx = strg.deleteBackwardCharacters(from: idx, number: num)
+			let addlen = idx - newidx
+			if addlen > 0 {
+				/* Add spaces to the end of the line */
+				let endidx = strg.moveCursorToLineEnd(from: newidx)
+				let addstr = String(repeating: " ", count: addlen)
+				_ = strg.insert(string: addstr, at: endidx, font: self.font, terminalInfo: mTerminalInfo)
+			}
+		} else {
+			newidx = strg.deleteBackwardCharacters(from: idx, number: num)
+		}
+		return newidx
 	}
 
 	private func swapTextStorage(doAlternative doalt: Bool){
@@ -443,7 +500,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		let termheight = CGFloat(tpref.height) * fontsize.height
 		let barwidth   = scrollBarWidth()
 		let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
-		//CNLog(logLevel: .detail, message: "KCTerminalViewCore: target size \(termsize.description)")
 		return termsize
 	}
 
@@ -471,7 +527,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		let barwidth    = scrollBarWidth()
 		let newwidth	= Int(max(viewsize.width - barwidth, 0.0)  / fontsize.width )
 		let newheight   = Int(viewsize.height / fontsize.height)
-		//NSLog("updateTerminalInfo: \(newwidth) \(newheight)")
 		mTerminalInfo.width	= newwidth
 		mTerminalInfo.height	= newheight
 	}
