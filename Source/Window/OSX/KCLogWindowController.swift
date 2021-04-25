@@ -24,15 +24,16 @@ public class KCLogWindowController: NSWindowController
 	}
 
 	public required init(window win: NSWindow, consoleView consview: KCConsoleView, clearButton clearbtn: KCButton){
+		let standards = CNStandardFiles.shared
 		mConsoleView		= consview
-		mConsole		= CNFileConsole(input: FileHandle.standardInput,
-							output: consview.outputFileHandle,
-							error:  consview.errorFileHandle)
+		mConsole		= CNFileConsole(input:  standards.input,
+							output: consview.outputFile,
+							error:  consview.errorFile)
 		super.init(window: win)
 		clearbtn.buttonPressedCallback = {
 			/* Send erace entire buffer command */
 			let clearcmd = CNEscapeCode.eraceEntireBuffer
-			self.mConsoleView.outputFileHandle.write(string: clearcmd.encode())
+			self.mConsole.print(string: clearcmd.encode())
 		}
 	}
 
