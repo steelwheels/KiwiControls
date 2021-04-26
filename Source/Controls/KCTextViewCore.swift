@@ -64,6 +64,10 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		super.init(coder: coder)
 	}
 
+	deinit {
+		removeObservers()
+	}
+
 	public var font: CNFont {
 		get {
 			if let fnt = mTextView.font {
@@ -134,6 +138,29 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 
 		/* Set font */
 		self.font = tpref.font
+
+		/* Start observe */
+		tpref.addObserver(observer: self, forKey: tpref.WidthItem)
+		tpref.addObserver(observer: self, forKey: tpref.HeightItem)
+		tpref.addObserver(observer: self, forKey: tpref.ForegroundTextColorItem)
+		tpref.addObserver(observer: self, forKey: tpref.BackgroundTextColorItem)
+		tpref.addObserver(observer: self, forKey: tpref.FontItem)
+
+		let spref = CNPreference.shared.systemPreference
+		spref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+	}
+
+	private func removeObservers() {
+		/* Stop to observe */
+		let pref = CNPreference.shared.terminalPreference
+		pref.removeObserver(observer: self, forKey: pref.WidthItem)
+		pref.removeObserver(observer: self, forKey: pref.HeightItem)
+		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
+		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
+		pref.removeObserver(observer: self, forKey: pref.FontItem)
+
+		let syspref = CNPreference.shared.systemPreference
+		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	private var textStorage: NSTextStorage {

@@ -78,17 +78,6 @@ open class KCTerminalView : KCTextView
 	}
 
 	private func setup() {
-		/* Start observe */
-		let tpref = CNPreference.shared.terminalPreference
-		tpref.addObserver(observer: self, forKey: tpref.WidthItem)
-		tpref.addObserver(observer: self, forKey: tpref.HeightItem)
-		tpref.addObserver(observer: self, forKey: tpref.ForegroundTextColorItem)
-		tpref.addObserver(observer: self, forKey: tpref.BackgroundTextColorItem)
-		tpref.addObserver(observer: self, forKey: tpref.FontItem)
-
-		let spref = CNPreference.shared.systemPreference
-		spref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
-
 		mOutputPipe.fileHandleForReading.readabilityHandler = {
 			(_ hdl: FileHandle) -> Void in
 			let data = hdl.availableData
@@ -117,17 +106,6 @@ open class KCTerminalView : KCTextView
 	private func removeObservers() {
 		mOutputPipe.fileHandleForReading.readabilityHandler = nil
 		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
-
-		/* Stop to observe */
-		let pref = CNPreference.shared.terminalPreference
-		pref.removeObserver(observer: self, forKey: pref.WidthItem)
-		pref.removeObserver(observer: self, forKey: pref.HeightItem)
-		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
-		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
-		pref.removeObserver(observer: self, forKey: pref.FontItem)
-
-		let syspref = CNPreference.shared.systemPreference
-		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	public func execute(string str: String) {

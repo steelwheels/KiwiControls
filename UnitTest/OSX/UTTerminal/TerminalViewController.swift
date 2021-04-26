@@ -37,12 +37,13 @@ public class TerminalViewController: KCSingleViewController
 		/* Allocate shell */
 		NSLog("Launch terminal")
 		let procmgr : CNProcessManager = CNProcessManager()
-		let instrm  : CNFileStream     = .fileHandle(termview.inputFileHandle)
-		let outstrm : CNFileStream     = .fileHandle(termview.outputFileHandle)
-		let errstrm : CNFileStream     = .fileHandle(termview.errorFileHandle)
-		let environment		       = CNEnvironment()
+		let infile  : CNFile = termview.inputFile
+		let outfile : CNFile = termview.outputFile
+		let errfile : CNFile = termview.errorFile
+		let terminfo         = CNTerminalInfo(width: 80, height: 25)
+		let environment      = CNEnvironment()
 		NSLog("Allocate shell")
-		let shell     = UTShellThread(processManager: procmgr, input: instrm, output: outstrm, error: errstrm, environment: environment)
+		let shell     = UTShellThread(processManager: procmgr, input: infile, output: outfile, error: errfile, terminalInfo: terminfo, environment: environment)
 		mShell        = shell
 		shell.terminalView = termview
 		mTerminalView = termview
@@ -72,43 +73,32 @@ public class TerminalViewController: KCSingleViewController
 		}
 
 		/* Receive key input */
-		let inhdl = termview.inputFileHandle
-		inhdl.readabilityHandler = {
-			(_ hdl: FileHandle) -> Void in
-			let data = hdl.availableData
-			if let str = String.stringFromData(data: data) {
-				NSLog("input data from keyboard: \(str)")
-			} else {
-				NSLog("Invalid data from keyboard")
-			}
-		}
+		let infile  = termview.inputFile
+		let outfile = termview.outputFile
+		let errfile = termview.errorFile
 
 		/* Print to output */
 		let red = CNEscapeCode.foregroundColor(CNColor.red).encode()
-		termview.outputFileHandle.write(string: red + "Red\n")
+		outfile.put(string: red + "Red\n")
 
 		let blue = CNEscapeCode.foregroundColor(CNColor.blue).encode()
-		termview.outputFileHandle.write(string: blue + "Blue\n")
+		outfile.put(string: blue + "Blue\n")
 
 		let green = CNEscapeCode.foregroundColor(CNColor.green).encode()
-		termview.outputFileHandle.write(string: green + "Green\n")
+		outfile.put(string: green + "Green\n")
 
 		let reset = CNEscapeCode.resetCharacterAttribute.encode()
 		let under = CNEscapeCode.underlineCharacter(true).encode()
-		termview.outputFileHandle.write(string: reset + under + "Underline\n")
+		outfile.put(string: reset + under + "Underline\n")
 
 		let bold = CNEscapeCode.boldCharacter(true).encode()
-		termview.outputFileHandle.write(string: bold + "Bold\n")
-
-		termview.outputFileHandle.write(string: reset)
+		outfile.put(string: bold + "Bold\n" + reset)
 
 		let terminfo = termview.terminalInfo
-		//let width    = terminfo.width
-		//let height   = terminfo.height
-		let console  = CNFileConsole(input:  termview.inputFileHandle,
-					     output: termview.outputFileHandle,
-					     error:  termview.errorFileHandle)
-		let curses  = CNCurses(console: console, terminalInfo: terminfo)
+		//let width  = terminfo.width
+		//let height = terminfo.height
+		let console  = CNFileConsole(input: infile, output: outfile, error: errfile)
+		let curses   = CNCurses(console: console, terminalInfo: terminfo)
 		curses.begin()
 		curses.fill(x: 0, y: 0, width: terminfo.width, height: terminfo.height, char: "x")
 		/*
