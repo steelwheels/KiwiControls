@@ -196,7 +196,7 @@ public class KCCellTable: KCCellTableInterface
 
 	private func valueToView(string val: String) -> KCTextEdit {
 		let textview  = KCTextEdit()
-		textview.mode = .label
+		textview.mode = .edit(8)
 		textview.text = val
 		return textview
 	}
