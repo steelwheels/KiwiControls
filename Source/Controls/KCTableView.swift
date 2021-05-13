@@ -51,19 +51,13 @@ open class KCTableView : KCCoreView
 		}
 	}
 
+	public func reload() {
+		coreView.reload()
+	}
+
 	public var cellTable: KCCellTableInterface? {
 		get	  { return coreView.cellTable	}
 		set(strg) { coreView.cellTable = strg	}
-	}
-
-	public var numberOfVisibleColmuns: Int {
-		get         { return coreView.numberOfVisibleColmuns}
-		set(newval) { coreView.numberOfVisibleColmuns = newval }
-	}
-
-	public var numberOfVisibleRows: Int {
-		get         { return coreView.numberOfVisibleRows}
-		set(newval) { coreView.numberOfVisibleRows = newval }
 	}
 
 	public var cellPressedCallback: ((_ col: Int, _ row: Int) -> Void)? {

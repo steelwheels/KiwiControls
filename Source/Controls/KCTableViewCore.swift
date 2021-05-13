@@ -29,8 +29,6 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#endif
 
 	private var mCellTable:			KCCellTableInterface?
-	public var  numberOfVisibleColmuns:	Int = 0
-	public var  numberOfVisibleRows:	Int = 0
 	public var  cellPressedCallback: ((_ col: Int, _ row: Int) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) {
@@ -68,20 +66,37 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			let col = mTableView.tableColumns[0]
 			mTableView.removeTableColumn(col)
 		}
-		/* Add columns */
-		let colnum = ctable.numberOfColumns()
+
+		/* Give column names if it is not defined yet */
+		let colnum = ctable.columnCount
 		for i in 0..<colnum {
-			if let colname = ctable.columnTitle(index: i) {
+			if ctable.title(column: i) == nil {
+				ctable.setTitle(column: i, title: "__\(i)")
+			}
+		}
+
+		/* Add columns */
+		for i in 0..<colnum {
+			if let colname = ctable.title(column: i) {
 				let newcol = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
 				newcol.title      = colname
 				newcol.isEditable = false
 				mTableView.addTableColumn(newcol)
 			}
 		}
+
+		self.reload()
+		#endif
+	}
+
+	public func reload() {
 		/* Request reload */
+		#if os(OSX)
+		mTableView.noteNumberOfRowsChanged()
+		#endif
 		mTableView.reloadData()
 		self.invalidateIntrinsicContentSize()
-		#endif
+		//NSLog("invalidate intrinsic contents size at \(#function)")
 	}
 
 	#if os(OSX)
@@ -89,11 +104,10 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
 		if let cbfunc = self.cellPressedCallback, let ctable = mCellTable {
-			let colnum = ctable.numberOfColumns()
-			if let rownum = ctable.numberOfRows(columnIndex: colidx) {
-				if colidx < colnum && rowidx < rownum {
-					cbfunc(colidx, rowidx)
-				}
+			let colnum = ctable.columnCount
+			let rownum = ctable.rowCount
+			if colidx < colnum && rowidx < rownum {
+				cbfunc(colidx, rowidx)
 			}
 		} else {
 			print("double clicked col:\(colidx) row:\(rowidx)")
@@ -120,8 +134,9 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#if os(OSX)
 	public func numberOfRows(in tableView: NSTableView) -> Int {
 		if let ctable = mCellTable {
-			return ctable.maxNumberOfRows()
+			return ctable.rowCount
 		} else {
+			NSLog("No cell table (0) at \(#function)")
 			return 0
 		}
 	}
@@ -146,8 +161,9 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#else
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let ctable = mCellTable {
-			return ctable.maxNumberOfRows()
+			return ctable.rowCount
 		} else {
+			NSLog("No cell table (1) at \(#function)")
 			return 0
 		}
 	}
@@ -167,49 +183,50 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		#endif
 	}
 
-	open override var intrinsicContentSize: KCSize {
-		get {
-			#if os(OSX)
+	open override var intrinsicContentSize: KCSize { get {
+		#if os(OSX)
+		let spacing = mTableView.intercellSpacing
 
-			let spacing = mTableView.intercellSpacing
-
-			let viscolnum: Int
-			if self.numberOfVisibleColmuns > 0 {
-				viscolnum = self.numberOfVisibleColmuns
-			} else if let ctable = mCellTable {
-				viscolnum = ctable.numberOfColumns()
-			} else {
-				viscolnum = 1
-			}
-
-			let visrownum: Int
-			if self.numberOfVisibleRows > 0 {
-				visrownum = self.numberOfVisibleRows
-			} else if let ctable = mCellTable {
-				visrownum = ctable.maxNumberOfRows()
-			} else {
-				visrownum = 1
-			}
-
-			let result: KCSize
-			if let view = mTableView.view(atColumn: 0, row: 0, makeIfNecessary: false) {
-				let inset: CGFloat = 10.0
-				let vsize  = view.intrinsicContentSize
-				let width  = vsize.width * CGFloat(viscolnum)
-					   + spacing.width  * CGFloat(viscolnum + 1) + (inset*2.0)
-				let height = vsize.height * CGFloat(visrownum)
-					   + spacing.height * CGFloat(visrownum + 1) + (inset*2.0)
-				result = KCSize(width: width, height: height)
-			} else {
-				result = KCSize(width: -1.0, height: 14)
-			}
-			//NSLog("intrinsicContentsSize: \(viscolnum)x\(visrownum) -> \(result.description)")
-			return result
-			#else
-			return mTableView.intrinsicContentSize
-			#endif
+		let viscolnum: Int
+		let visrownum: Int
+		if let ctable = mCellTable {
+			viscolnum = ctable.columnCount
+			visrownum = ctable.rowCount
+		} else {
+			viscolnum = 1
+			visrownum = 1
 		}
-	}
+
+		var result = KCSize.zero
+		NSLog("iCS (b)")
+		for x in 0..<viscolnum {
+			var maxwidth:    CGFloat = 0.0
+			var totalheight: CGFloat = 0.0
+			NSLog("iCS (0) x=\(x)")
+			for y in 0..<visrownum {
+				NSLog("iCS (1): y=\(y)")
+				if let view = mTableView.view(atColumn: x, row: y, makeIfNecessary: false) {
+					let vsize = view.intrinsicContentSize
+					NSLog("iCS (2): vsize=\(vsize.description)")
+					maxwidth    =  max(maxwidth, vsize.width + spacing.width)
+					totalheight += vsize.height + spacing.height
+				}
+
+			}
+			result.width  += maxwidth
+			result.height =  max(result.height, totalheight)
+			NSLog("iCS (3): result=\(result.description)")
+		}
+		NSLog("iCS (e): result=\(result.description)")
+		result.width  += spacing.width
+		result.height += spacing.height
+
+		NSLog("intrinsicContentsSize: \(viscolnum)x\(visrownum) -> \(result.description) at \(#function)")
+		return result
+		#else
+		return mTableView.intrinsicContentSize
+		#endif
+	}}
 
 	public var numberOfRows: Int {
 		get {
@@ -233,7 +250,9 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	public func view(atColumn col: Int, row rw: Int) -> KCView? {
 		#if os(OSX)
-			return mTableView.view(atColumn: col, row: rw, makeIfNecessary: false) as? KCView
+			let view = mTableView.view(atColumn: col, row: rw, makeIfNecessary: false) as? KCView
+			NSLog("view: \(view)")
+			return view
 		#else
 			return nil
 		#endif

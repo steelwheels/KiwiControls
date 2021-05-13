@@ -2,9 +2,7 @@
  * @file	KCTableCellConverted.m
  * @brief	Define KCTableCellConvcerter class
  * @par Copyright
- *   Copyright (C) 2014-2016 Steel Wheels Project
- * @par Reference
- *   <a href="http://lowlife.jp/yasusii/static/color_chart.html">RGB Color Chart</a>
+ *   Copyright (C) 2021 Steel Wheels Project
  */
 
 import CoconutData
@@ -17,149 +15,47 @@ import UIKit
 
 public protocol KCCellTableInterface
 {
-	func addColumn(title ttl: String) -> Bool
-	func columnTitle(index idx: Int) -> String?
-	func numberOfColumns() -> Int
+	func title(column cidx: Int) -> String?
+	func setTitle(column cidx: Int, title str: String)
 
-	func numberOfRows(columnIndex colidx: Int) -> Int?
-	func numberOfRows(columnName colname: String) -> Int?
-	func maxNumberOfRows() -> Int
+	func set(colmunName cname: String, rowIndex ridx: Int, data dat: Any?)
+
+	var rowCount: Int { get }
+	var columnCount: Int { get }
 
 	func view(colmunName  cname: String, rowIndex ridx: Int) -> KCView?
 	func view(colmunIndex cidx: Int, rowIndex ridx: Int) -> KCView?
-
-	func set(colmunName cname: String, rowIndex ridx: Int, data dat: Any?)
-	func append(colmunName cname: String, data dat: Any?)
 }
 
-private class KCCellColumn {
-	public var	title:		String
-	public var	values:		Array<CNNativeValue>
-
-	public init(title ttl: String){
-		title	= ttl
-		values	= []
-	}
-}
-
-public class KCCellTable: KCCellTableInterface
+public class KCNativeValueTable: CNNativeValueTable, KCCellTableInterface
 {
-	private var mTitles: 	Dictionary<String, Int>		// <Name, Index>
-	private var mColumns:	Array<KCCellColumn>
-
-	public init(){
-		mTitles		= [:]
-		mColumns	= []
+	public override init(){
 	}
 
-	public func addColumn(title ttl: String) -> Bool {
-		if mTitles[ttl] == nil {
-			let idx = mTitles.count
-			mTitles[ttl] = idx
-			let newcell = KCCellColumn(title: ttl)
-			mColumns.append(newcell)
-			return true
+	public func set(colmunName cname: String, rowIndex ridx: Int, data dat: Any?){
+		if let cidx = self.titleIndex(by: cname), let val = dat as? CNNativeValue {
+			super.setValue(column: cidx, row: ridx, value: val)
 		} else {
-			return false
+			NSLog("Failed to set at \(#function)")
 		}
 	}
 
-	public func columnTitle(index idx: Int) -> String? {
-		if 0<=idx && 0<mColumns.count {
-			return mColumns[idx].title
+	public func view(colmunName cname: String, rowIndex ridx: Int) -> KCView? {
+		if let cidx = self.titleIndex(by: cname) {
+			let val = super.value(column: cidx, row: ridx)
+			return convertToView(value: val)
 		} else {
-			return nil
+			NSLog("Failed to set at \(#function)")
+			return convertToView(value: .nullValue)
 		}
-	}
-
-	public func numberOfColumns() -> Int {
-		return mColumns.count
-	}
-
-	public func numberOfRows(columnIndex idx: Int) -> Int? {
-		if 0<=idx && idx<mColumns.count {
-			return mColumns[idx].values.count
-		} else {
-			return nil
-		}
-	}
-
-	public func numberOfRows(columnName name: String) -> Int? {
-		if let idx = mTitles[name] {
-			return mColumns[idx].values.count
-		} else {
-			return nil
-		}
-	}
-
-	public func maxNumberOfRows() -> Int {
-		var maxnum = 0
-		for col in mColumns {
-			maxnum = max(maxnum, col.values.count)
-		}
-		return maxnum
-	}
-
-	public func view(colmunName name: String, rowIndex ridx: Int) -> KCView? {
-		if let cidx = mTitles[name] {
-			let col = mColumns[cidx]
-			if 0<=ridx && ridx<col.values.count {
-				return covertToView(value: col.values[ridx])
-			}
-		}
-		return nil
 	}
 
 	public func view(colmunIndex cidx: Int, rowIndex ridx: Int) -> KCView? {
-		if 0<=cidx && cidx<mColumns.count {
-			let col = mColumns[cidx]
-			if 0<=ridx && ridx<col.values.count {
-				return covertToView(value: col.values[ridx])
-			}
-		}
-		return nil
+		let val = super.value(column: cidx, row: ridx)
+		return convertToView(value: val)
 	}
 
-	public func set(colmunName cname: String, rowIndex ridx: Int, data dat: Any?) {
-		if let val = dat as? CNNativeValue {
-			set(colmunName: cname, rowIndex: ridx, value: val)
-		} else {
-			NSLog("KCCellTable: set \(String(describing: dat))")
-		}
-	}
-
-	public func set(colmunName cname: String, rowIndex ridx: Int, value val: CNNativeValue) {
-		if let cidx = mTitles[cname] {
-			let col  = mColumns[cidx]
-			let cnum = col.values.count
-			if 0<=ridx && ridx<cnum {
-				col.values[ridx] = val
-			} else if ridx == cnum {
-				col.values.append(val)
-			}
-		} else {
-			NSLog("KCCellTable: Failed to set: \(cname)")
-		}
-	}
-
-	public func append(colmunName cname: String, data dat: Any?) {
-		if let val = dat as? CNNativeValue {
-			append(colmunName: cname, value: val)
-		} else {
-			NSLog("KCCellTable: append \(String(describing: dat))")
-		}
-	}
-
-	public func append(colmunName cname: String, value val: CNNativeValue) {
-		if let cidx = mTitles[cname] {
-			let col = mColumns[cidx]
-			col.values.append(val)
-		} else {
-			NSLog("KCCellTable: Failed to append: \(cname)")
-		}
-	}
-
-	public func covertToView(value val: CNNativeValue) -> KCView? {
+	public func convertToView(value val: CNNativeValue) -> KCView? {
 		let result: KCView?
 		switch val {
 		case .URLValue(let url):

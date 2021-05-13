@@ -33,7 +33,7 @@ public class StackViewController: KCSingleViewController
 		button0.title = "Start"
 		button0.buttonPressedCallback = {
 			() -> Void in
-			gr2d.start(interval: 1.0, endTime: 10.0)
+			gr2d.start(duration: 1.0, repeatCount: 20)
 		}
 		hbox.addArrangedSubView(subView: button0)
 
@@ -57,6 +57,8 @@ public class StackViewController: KCSingleViewController
 			case .run:
 				gr2d.suspend()
 				button2.title = "Pause Off"
+			@unknown default:
+				NSLog("Unexpected state: \(gr2d.state.description)")
 			}
 		}
 
