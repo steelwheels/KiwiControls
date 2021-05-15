@@ -208,6 +208,14 @@
 		056451B3251853F8006C2430 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0577253325878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */; };
 		0577253425878C8B0029F200 /* KCSetPreferredWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */; };
+		058EBF17264DE39F0031F306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EBF16264DE39F0031F306 /* AppDelegate.swift */; };
+		058EBF19264DE39F0031F306 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EBF18264DE39F0031F306 /* ViewController.swift */; };
+		058EBF1B264DE3A20031F306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058EBF1A264DE3A20031F306 /* Assets.xcassets */; };
+		058EBF1E264DE3A20031F306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058EBF1C264DE3A20031F306 /* Main.storyboard */; };
+		058EBF32264DE52B0031F306 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
+		058EBF33264DE52B0031F306 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		058EBF3B264DE6500031F306 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
+		058EBF3C264DE6500031F306 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		059A51A1254DA35C003B5B96 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
 		059A51A6254DA36F003B5B96 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
 		059F11A425C0429500F4A5C9 /* KCGraphics2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */; };
@@ -226,8 +234,6 @@
 		05B750672539DCD00034D8CB /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleViewController.swift */; };
 		05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
-		05CFF4CF25B684DB00996D13 /* KCCellTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFF4CE25B684DB00996D13 /* KCCellTable.swift */; };
-		05CFF4D025B684DB00996D13 /* KCCellTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFF4CE25B684DB00996D13 /* KCCellTable.swift */; };
 		05D0388625AC84370022E242 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D0388525AC84370022E242 /* KCIconViewCore.xib */; };
 		05D0388E25AC846D0022E242 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D0388D25AC846D0022E242 /* KCIconViewCore.swift */; };
 		05D0388F25AC846D0022E242 /* KCIconViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D0388D25AC846D0022E242 /* KCIconViewCore.swift */; };
@@ -262,6 +268,13 @@
 			remoteInfo = Install;
 		};
 		056451AE251851F6006C2430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0518974325176DD300487B45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05EB004425181E7300636C82;
+			remoteInfo = Install;
+		};
+		058EBF4F264E280A0031F306 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0518974325176DD300487B45 /* Project object */;
 			proxyType = 1;
@@ -318,6 +331,18 @@
 			dstSubfolderSpec = 10;
 			files = (
 				056451B3251853F8006C2430 /* KiwiControls.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		058EBF34264DE52C0031F306 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				058EBF33264DE52B0031F306 /* KiwiControls.xcframework in Embed Frameworks */,
+				058EBF3C264DE6500031F306 /* CoconutData.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +501,13 @@
 		056451A9251851E2006C2430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056451B1251853F8006C2430 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
 		0577253225878C8B0029F200 /* KCSetPreferredWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCSetPreferredWidth.swift; sourceTree = "<group>"; };
+		058EBF14264DE39F0031F306 /* UTTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		058EBF16264DE39F0031F306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		058EBF18264DE39F0031F306 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		058EBF1A264DE3A20031F306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		058EBF1D264DE3A20031F306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		058EBF1F264DE3A20031F306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		058EBF20264DE3A20031F306 /* UTTable.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTTable.entitlements; sourceTree = "<group>"; };
 		059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCGraphics2DView.swift; sourceTree = "<group>"; };
 		05A3F78C25CE951900A62BF8 /* KCLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
 		05A77557254DA1AD00DF71DE /* UTConsole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTConsole.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,7 +526,6 @@
 		05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiView_macOS.entitlements; sourceTree = "<group>"; };
 		05B750642539DCCF0034D8CB /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		05CC333925789709001BA2F2 /* KCConsoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCConsoleManager.swift; sourceTree = "<group>"; };
-		05CFF4CE25B684DB00996D13 /* KCCellTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCellTable.swift; sourceTree = "<group>"; };
 		05D0388525AC84370022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		05D0388D25AC846D0022E242 /* KCIconViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
 		05D038B625AC86DF0022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
@@ -552,6 +583,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				056451B2251853F8006C2430 /* KiwiControls.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		058EBF11264DE39F0031F306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058EBF32264DE52B0031F306 /* KiwiControls.xcframework in Frameworks */,
+				058EBF3B264DE6500031F306 /* CoconutData.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +659,7 @@
 				05515E6C256552E800D9BE1B /* UTTerminal.app */,
 				05248492256A6097001BD219 /* UTStackView_macOS.app */,
 				05589A9226120E2100774D41 /* UTTextView.app */,
+				058EBF14264DE39F0031F306 /* UTTable.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -913,6 +954,19 @@
 			path = UTTerminal;
 			sourceTree = "<group>";
 		};
+		058EBF15264DE39F0031F306 /* UTTable */ = {
+			isa = PBXGroup;
+			children = (
+				058EBF16264DE39F0031F306 /* AppDelegate.swift */,
+				058EBF18264DE39F0031F306 /* ViewController.swift */,
+				058EBF1A264DE3A20031F306 /* Assets.xcassets */,
+				058EBF1C264DE3A20031F306 /* Main.storyboard */,
+				058EBF1F264DE3A20031F306 /* Info.plist */,
+				058EBF20264DE3A20031F306 /* UTTable.entitlements */,
+			);
+			path = UTTable;
+			sourceTree = "<group>";
+		};
 		05A77558254DA1AD00DF71DE /* UTConsole */ = {
 			isa = PBXGroup;
 			children = (
@@ -945,7 +999,6 @@
 			isa = PBXGroup;
 			children = (
 				0544EBA22517764A002DE6A8 /* KCColorTable.swift */,
-				05CFF4CE25B684DB00996D13 /* KCCellTable.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -967,6 +1020,7 @@
 				05248493256A6097001BD219 /* UTStackView_macOS */,
 				05A77558254DA1AD00DF71DE /* UTConsole */,
 				05B750512539D2410034D8CB /* UTMultiView_macOS */,
+				058EBF15264DE39F0031F306 /* UTTable */,
 				05515E6D256552E800D9BE1B /* UTTerminal */,
 				05589A9326120E2100774D41 /* UTTextView */,
 			);
@@ -1132,6 +1186,25 @@
 			productReference = 05645199251851E1006C2430 /* UTTerminal_iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		058EBF13264DE39F0031F306 /* UTTable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 058EBF23264DE3A20031F306 /* Build configuration list for PBXNativeTarget "UTTable" */;
+			buildPhases = (
+				058EBF10264DE39F0031F306 /* Sources */,
+				058EBF11264DE39F0031F306 /* Frameworks */,
+				058EBF12264DE39F0031F306 /* Resources */,
+				058EBF34264DE52C0031F306 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				058EBF50264E280A0031F306 /* PBXTargetDependency */,
+			);
+			name = UTTable;
+			productName = UTTable;
+			productReference = 058EBF14264DE39F0031F306 /* UTTable.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05A77556254DA1AD00DF71DE /* UTConsole */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05A77566254DA1AE00DF71DE /* Build configuration list for PBXNativeTarget "UTConsole" */;
@@ -1198,6 +1271,9 @@
 					05645198251851E1006C2430 = {
 						CreatedOnToolsVersion = 12.0;
 					};
+					058EBF13264DE39F0031F306 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					05A77556254DA1AD00DF71DE = {
 						CreatedOnToolsVersion = 12.1;
 					};
@@ -1231,6 +1307,7 @@
 				05515E6B256552E800D9BE1B /* UTTerminal */,
 				05248491256A6097001BD219 /* UTStackView_macOS */,
 				05589A9126120E2100774D41 /* UTTextView */,
+				058EBF13264DE39F0031F306 /* UTTable */,
 			);
 		};
 /* End PBXProject section */
@@ -1319,6 +1396,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058EBF12264DE39F0031F306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058EBF1B264DE3A20031F306 /* Assets.xcassets in Resources */,
+				058EBF1E264DE3A20031F306 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05A77555254DA1AD00DF71DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1362,7 +1448,6 @@
 				0544EBBD25177676002DE6A8 /* KCViewDumper.swift in Sources */,
 				0544EB34251775A3002DE6A8 /* KCTextEditCore.swift in Sources */,
 				0544EB14251775A3002DE6A8 /* KCTextEdit.swift in Sources */,
-				05CFF4CF25B684DB00996D13 /* KCCellTable.swift in Sources */,
 				05D038C525AC8E830022E242 /* KCIconView.swift in Sources */,
 				0544EB26251775A3002DE6A8 /* KCTerminalView.swift in Sources */,
 				05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */,
@@ -1440,7 +1525,6 @@
 			files = (
 				05064F5E25D5791400987FA5 /* KCBitmapView.swift in Sources */,
 				0544EB3B251775A3002DE6A8 /* KCPopupMenuCore.swift in Sources */,
-				05CFF4D025B684DB00996D13 /* KCCellTable.swift in Sources */,
 				0544EBBE25177676002DE6A8 /* KCViewDumper.swift in Sources */,
 				0544EB17251775A3002DE6A8 /* KCLabeledStackViewCore.swift in Sources */,
 				05589AC726120F7F00774D41 /* KCTextView.swift in Sources */,
@@ -1546,6 +1630,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058EBF10264DE39F0031F306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058EBF19264DE39F0031F306 /* ViewController.swift in Sources */,
+				058EBF17264DE39F0031F306 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05A77553254DA1AD00DF71DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1587,6 +1680,11 @@
 			isa = PBXTargetDependency;
 			target = 05EB004425181E7300636C82 /* Install */;
 			targetProxy = 056451AE251851F6006C2430 /* PBXContainerItemProxy */;
+		};
+		058EBF50264E280A0031F306 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05EB004425181E7300636C82 /* Install */;
+			targetProxy = 058EBF4F264E280A0031F306 /* PBXContainerItemProxy */;
 		};
 		05A7756B254DA1B900DF71DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1649,6 +1747,14 @@
 				056451A7251851E2006C2430 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		058EBF1C264DE3A20031F306 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				058EBF1D264DE3A20031F306 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		05A7755F254DA1AE00DF71DE /* Main.storyboard */ = {
@@ -2494,6 +2600,100 @@
 			};
 			name = Release;
 		};
+		058EBF21264DE3A20031F306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTTable/UTTable.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTTable/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		058EBF22264DE3A20031F306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTTable/UTTable.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTTable/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		05A77564254DA1AE00DF71DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2928,6 +3128,15 @@
 			buildConfigurations = (
 				056451AB251851E2006C2430 /* Debug */,
 				056451AC251851E2006C2430 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		058EBF23264DE3A20031F306 /* Build configuration list for PBXNativeTarget "UTTable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058EBF21264DE3A20031F306 /* Debug */,
+				058EBF22264DE3A20031F306 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

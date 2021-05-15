@@ -40,6 +40,9 @@ open class KCTableView : KCCoreView
 		setup() ;
 	}
 
+	public var numberOfColumns: Int { get { return coreView.numberOfColumns }}
+	public var numberOfRows: Int 	{ get { return coreView.numberOfRows    }}
+
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
@@ -55,9 +58,9 @@ open class KCTableView : KCCoreView
 		coreView.reload()
 	}
 
-	public var cellTable: KCCellTableInterface? {
-		get	  { return coreView.cellTable	}
-		set(strg) { coreView.cellTable = strg	}
+	public var tableDelegate: KCTableDelegate {
+		get      { return coreView.tableDelegate }
+		set(dlg) { coreView.tableDelegate = dlg}
 	}
 
 	public var cellPressedCallback: ((_ col: Int, _ row: Int) -> Void)? {
