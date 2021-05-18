@@ -2,7 +2,7 @@
  * @file	KCTextEditCore.swift
  * @brief	Define KCTextEditCore class
  * @par Copyright
- *   Copyright (C) 2018-2020 Steel Wheels Project
+ *   Copyright (C) 2018-2021 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -125,6 +125,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	#if os(OSX)
 	open override var intrinsicContentSize: KCSize {
 		get {
+			let curnum = mTextEdit.stringValue.count
 			let colnum: Int
 			switch mMode {
 			case .label, .value:
@@ -134,14 +135,19 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 			case .edit(let num):
 				colnum = num
 			}
+			let newnum   = max(curnum, colnum)
+
 			let fitsize = mTextEdit.fittingSize
-			var width: CGFloat = fitsize.width
-			if let font = mTextEdit.font {
-				let newwidth = font.pointSize * CGFloat(colnum)
-				width = max(width, newwidth)
+
+			let newwidth:  CGFloat
+			if let fontsize = self.fontSize() {
+				newwidth = fontsize.width * CGFloat(newnum)
+			} else {
+				newwidth = fitsize.width
 			}
-			mTextEdit.preferredMaxLayoutWidth = width
-			return KCSize(width: width, height: fitsize.height)
+
+			mTextEdit.preferredMaxLayoutWidth = newwidth
+			return KCSize(width: newwidth, height: fitsize.height)
 		}
 	}
 	#else
@@ -149,6 +155,16 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		get { return mTextEdit.intrinsicContentSize }
 	}
 	#endif
+
+	private func fontSize() -> KCSize? {
+		if let font = mTextEdit.font {
+			let attr = [NSAttributedString.Key.font: font]
+			let str: String = " "
+			return str.size(withAttributes: attr)
+		} else {
+			return nil
+		}
+	}
 
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()

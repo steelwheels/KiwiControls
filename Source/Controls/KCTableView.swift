@@ -54,8 +54,8 @@ open class KCTableView : KCCoreView
 		}
 	}
 
-	public func reload() {
-		coreView.reload()
+	public func updateContents() {
+		coreView.updateContents()
 	}
 
 	public var tableDelegate: KCTableDelegate {

@@ -108,7 +108,10 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		get      { return mTableDelegate }
 		set(dlg) {
 			mTableDelegate = dlg
-			reload()
+			CNExecuteInMainThread(doSync: false, execute: {
+				() -> Void in
+				self.updateContents()
+			})
 		}
 	}
 
@@ -126,12 +129,13 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			mTableView.allowsMultipleSelection	= false
 			mTableView.allowsEmptySelection		= true
 		#endif
-
-		reload()
 	}
 
-	public func reload() {
+	public func updateContents(){
 		#if os(OSX)
+
+		mTableView.beginUpdates()
+
 		/* Remove current columns */
 		while mTableView.tableColumns.count > 0 {
 			let col = mTableView.tableColumns[0]
@@ -148,14 +152,11 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			mTableView.addTableColumn(newcol)
 		}
 
-		/* Request reload */
-		#if os(OSX)
-		mTableView.noteNumberOfRowsChanged()
-		#endif
+		mTableView.endUpdates()
+
 		mTableView.reloadData()
 		self.invalidateIntrinsicContentSize()
-		mTableView.setNeedsLayout()
-		//NSLog("invalidate intrinsic contents size at \(#function)")
+		self.setNeedsDisplay()
 		#endif
 	}
 
@@ -235,30 +236,23 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	open override var intrinsicContentSize: KCSize { get {
 		#if os(OSX)
-		let spacing = mTableView.intercellSpacing
-
-		let colnum = mTableDelegate.columnCount
-		let rownum = mTableDelegate.rowCount
-
-		var result = KCSize.zero
-
-		for x in 0..<colnum {
-			var maxwidth:    CGFloat = 0.0
-			var totalheight: CGFloat = 0.0
-			for y in 0..<rownum {
-				if let view = mTableView.view(atColumn: x, row: y, makeIfNecessary: false) {
-					let vsize = view.intrinsicContentSize
-					maxwidth    =  max(maxwidth, vsize.width + spacing.width)
-					totalheight += vsize.height + spacing.height
+		let space = mTableView.intercellSpacing
+		var result: KCSize = KCSize.zero
+		for cidx in 0..<mTableView.numberOfColumns {
+			var width:  CGFloat = 0.0
+			var height: CGFloat = 0.0
+			for ridx in 0..<mTableView.numberOfRows {
+				if let view = mTableView.view(atColumn: cidx, row: ridx, makeIfNecessary: false) {
+					let fsize = view.intrinsicContentSize
+					NSLog("KCTableView: \(cidx) \(ridx) \(fsize.description)")
+					width  =  max(width, fsize.width + space.width)
+					height += fsize.height + space.height
 				}
 			}
-			result.width  += maxwidth
-			result.height =  max(result.height, totalheight)
+			result.width  += width
+			result.height =  max(result.height, height)
 		}
-		result.width  += spacing.width
-		result.height += spacing.height
-
-		//NSLog("intrinsicContentsSize: \(colnum)x\(rownum) -> \(result.description) at \(#function)")
+		NSLog("KCTableView: intrinsicContentSize=\(result.description)")
 		return result
 		#else
 		return mTableView.intrinsicContentSize

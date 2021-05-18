@@ -19,10 +19,10 @@ public class KCExpansionAdjuster: KCViewVisitor
 		let coreview: KCCoreView = view.getCoreView()
 		coreview.accept(visitor: self)
 
-		let prival = ExpansionPriorities(holizontalHugging: 	.low,
-						 holizontalCompression: .low,
-						 verticalHugging: 	.low,
-						 verticalCompression:	.low)
+		let prival = ExpansionPriorities(holizontalHugging: 	.high,
+						 holizontalCompression: .high,
+						 verticalHugging: 	.high,
+						 verticalCompression:	.high)
 		view.setExpandabilities(priorities: prival)
 	}
 
@@ -122,6 +122,17 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(tableView view: KCTableView){
+		/* Visit children 1st */
+		let colnum = view.numberOfColumns
+		let rownum = view.numberOfRows
+		for cidx in 0..<colnum {
+			for ridx in 0..<rownum {
+				if let child = view.view(atColumn: cidx, row: ridx) {
+					child.accept(visitor: self)
+				}
+			}
+		}
+		/* Visit it self */
 		let prival = ExpansionPriorities(holizontalHugging: 	.low,
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.low,
@@ -154,10 +165,10 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 verticalCompression: .fixed)
 		view.labelView.setExpansionPriorities(priorities: labval)
 		view.contentsView.accept(visitor: self)
-		let stkval = ExpansionPriorities(holizontalHugging: 	.high,
-						 holizontalCompression: .high,
-						 verticalHugging: 	.high,
-						 verticalCompression:	.high)
+		let stkval = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.low,
+						 verticalCompression:	.fixed)
 		view.setExpandabilities(priorities: stkval)
 	}
 

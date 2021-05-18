@@ -43,6 +43,10 @@ public class UTTableData: KCTableDelegate
 		NSLog("UTTableData: View: name=\(cname) \(ridx)")
 		let view  = KCTextEdit()
 		view.text = "\(cname)/\(ridx)"
+		NSLog(" -> view size (0): \(view.frame.size)")
+		let size  = view.fittingSize
+		view.setFrameSize(size)
+		NSLog(" -> view size (1): \(view.frame.size)")
 		return view
 	}
 
@@ -50,6 +54,10 @@ public class UTTableData: KCTableDelegate
 		NSLog("UTTableData: View: cidx=\(cidx) \(ridx)")
 		let view  = KCTextEdit()
 		view.text = "\(cidx)/\(ridx)"
+		NSLog(" -> view size (0): \(view.frame.size)")
+		let size  = view.fittingSize
+		view.setFrameSize(size)
+		NSLog(" -> view size (1): \(view.frame.size)")
 		return view
 	}
 }
@@ -60,8 +68,6 @@ class ViewController: NSViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		// Do any additional setup after loading the view.
 		mTableView.tableDelegate = UTTableData()
 	}
 
