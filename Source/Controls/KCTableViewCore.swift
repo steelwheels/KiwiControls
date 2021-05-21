@@ -176,6 +176,44 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 	#endif
 
+	public var hasGrid: Bool {
+		get {
+			#if os(OSX)
+				if mTableView.gridStyleMask.contains(.solidHorizontalGridLineMask) {
+					return true
+				} else {
+					return false
+				}
+			#else
+				if mTableView.separatorStyle == .none {
+					return false
+				} else {
+					return true
+				}
+			#endif
+		}
+		set(doenable){
+			#if os(OSX)
+				if doenable {
+					let pref = CNPreference.shared.viewPreference
+					mTableView.gridStyleMask.insert(.solidHorizontalGridLineMask)
+					mTableView.gridStyleMask.insert(.solidVerticalGridLineMask)
+					mTableView.gridColor = pref.foregroundColor
+				} else {
+					mTableView.gridStyleMask.remove(.solidHorizontalGridLineMask)
+					mTableView.gridStyleMask.remove(.solidVerticalGridLineMask)
+				}
+			#else
+				if doenable {
+					mTableView.separatorStyle = .singleLine
+				} else {
+					mTableView.separatorStyle = .none
+				}
+			#endif
+
+		}
+	}
+
 	/*
 	 * Delegate
 	 */

@@ -43,6 +43,11 @@ open class KCTableView : KCCoreView
 	public var numberOfColumns: Int { get { return coreView.numberOfColumns }}
 	public var numberOfRows: Int 	{ get { return coreView.numberOfRows    }}
 
+	public var hasGrid: Bool {
+		get		{ return coreView.hasGrid }
+		set(newval)	{ coreView.hasGrid = true}
+	}
+
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {

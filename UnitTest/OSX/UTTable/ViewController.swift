@@ -43,6 +43,7 @@ public class UTTableData: KCTableDelegate
 		NSLog("UTTableData: View: name=\(cname) \(ridx)")
 		let view  = KCTextEdit()
 		view.text = "\(cname)/\(ridx)"
+		view.isBezeled = false
 		NSLog(" -> view size (0): \(view.frame.size)")
 		let size  = view.fittingSize
 		view.setFrameSize(size)
@@ -54,6 +55,7 @@ public class UTTableData: KCTableDelegate
 		NSLog("UTTableData: View: cidx=\(cidx) \(ridx)")
 		let view  = KCTextEdit()
 		view.text = "\(cidx)/\(ridx)"
+		view.isBezeled = false
 		NSLog(" -> view size (0): \(view.frame.size)")
 		let size  = view.fittingSize
 		view.setFrameSize(size)
@@ -69,6 +71,8 @@ class ViewController: NSViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		mTableView.tableDelegate = UTTableData()
+
+		mTableView.hasGrid = true
 	}
 
 	override var representedObject: Any? {
