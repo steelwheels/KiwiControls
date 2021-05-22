@@ -110,7 +110,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			mTableDelegate = dlg
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in
-				self.updateContents()
+				self.reloadData()
 			})
 		}
 	}
@@ -131,7 +131,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		#endif
 	}
 
-	public func updateContents(){
+	public func reloadData(){
 		#if os(OSX)
 
 		mTableView.beginUpdates()
@@ -153,10 +153,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		}
 
 		mTableView.endUpdates()
-
 		mTableView.reloadData()
-		self.invalidateIntrinsicContentSize()
-		self.setNeedsDisplay()
 		#endif
 	}
 
@@ -282,7 +279,6 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			for ridx in 0..<mTableView.numberOfRows {
 				if let view = mTableView.view(atColumn: cidx, row: ridx, makeIfNecessary: false) {
 					let fsize = view.intrinsicContentSize
-					NSLog("KCTableView: \(cidx) \(ridx) \(fsize.description)")
 					width  =  max(width, fsize.width + space.width)
 					height += fsize.height + space.height
 				}
@@ -290,7 +286,6 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			result.width  += width
 			result.height =  max(result.height, height)
 		}
-		NSLog("KCTableView: intrinsicContentSize=\(result.description)")
 		return result
 		#else
 		return mTableView.intrinsicContentSize
