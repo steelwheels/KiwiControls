@@ -58,6 +58,22 @@ extension KCViewBase
 	}
 	#endif
 
+	public func rootView() -> KCRootView? {
+		var curview: KCViewBase = self
+		while true {
+			if let sview = curview.superview {
+				if let root = sview as? KCRootView {
+					return root
+				} else {
+					curview = sview
+				}
+			} else {
+				break
+			}
+		}
+		return nil
+	}
+
 	/* for autolayout */
 	public enum ExpansionPriority: Int {
 		case high

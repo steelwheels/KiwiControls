@@ -134,19 +134,27 @@ open class KCIconViewCore : KCView
 		#endif
 	}
 
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return iconViewSize() }
+	}
+	#endif
+
 	open override var intrinsicContentSize: KCSize {
-		get {
-			/* Get image size */
-			let sclsize = KCSize(width:  mOriginalImageSize.width  * mScale,
-					     height: mOriginalImageSize.height * mScale)
-			if let img = self.image {
-				let _ = img.resize(sclsize)
-			}
-			let imgsize = mImageButton.intrinsicContentSize
-			/* Get label size */
-			let labsize = mLabelView.intrinsicContentSize
-			return KCUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
+		get { return iconViewSize() }
+	}
+
+	private func iconViewSize() -> KCSize {
+		/* Get image size */
+		let sclsize = KCSize(width:  mOriginalImageSize.width  * mScale,
+				     height: mOriginalImageSize.height * mScale)
+		if let img = self.image {
+			let _ = img.resize(sclsize)
 		}
+		let imgsize = mImageButton.intrinsicContentSize
+		/* Get label size */
+		let labsize = mLabelView.intrinsicContentSize
+		return KCUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
 	}
 
 	public override func invalidateIntrinsicContentSize() {

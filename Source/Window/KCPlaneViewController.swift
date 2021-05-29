@@ -168,7 +168,11 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			case .none:
 				break
 			case .updateSize:
-				CNLog(logLevel: .debug, message: "Require layout")
+				NSLog("KCPlaneViewController: updateWindowSize")
+				#if os(OSX)
+					mHasPreferedContentSize = false
+				#endif
+				root.invalidateIntrinsicContentSize()
 				root.requireLayout()
 			}
 		} else {

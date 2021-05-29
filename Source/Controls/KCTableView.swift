@@ -52,20 +52,26 @@ open class KCTableView : KCCoreView
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
 			setCoreView(view: newview)
-			newview.setup(frame: self.frame)
+			newview.setup(frame: self.frame, viewAllocator: {
+				(_ val: CNNativeValue) -> KCView? in
+				return self.valueToView(value: val)
+			})
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTableViewCore")
 		}
 	}
 
-	public func reloadData() {
-		coreView.reloadData()
+	public func reloadTable() {
+		self.coreView.reloadTable()
 	}
 
-	public var tableDelegate: KCTableDelegate {
-		get      { return coreView.tableDelegate }
-		set(dlg) { coreView.tableDelegate = dlg}
+	public var valueTable: CNNativeValueTable {
+		get { return coreView.valueTable }
+	}
+
+	public func view(atColumn col: Int, row rw: Int) -> KCView? {
+		return coreView.view(atColumn: col, row: rw)
 	}
 
 	public var cellPressedCallback: ((_ col: Int, _ row: Int) -> Void)? {
@@ -73,8 +79,8 @@ open class KCTableView : KCCoreView
 		set(cbfunc) { coreView.cellPressedCallback = cbfunc }
 	}
 
-	public func view(atColumn col: Int, row rw: Int) -> KCView? {
-		return coreView.view(atColumn: col, row: rw)
+	open func valueToView(value val: CNNativeValue) -> KCView? {
+		return nil
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

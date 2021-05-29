@@ -141,20 +141,17 @@ public class SingleViewController: KCSingleViewController
 		let view = KCTableView()
 
 		let name0 = "a"
-		NSLog("Add column (0.0)")
 		let _ = mCellTable.addColumn(title: name0)
 		for i in 0..<10 {
 			mCellTable.append(colmunName: name0, value: .numberValue(NSNumber(integerLiteral: i)))
 		}
 
 		let name1 = "b"
-		NSLog("Add column (1.0)")
 		let _ = mCellTable.addColumn(title: name1)
 		for i in 0..<10 {
 			mCellTable.append(colmunName: name1, value: .numberValue(NSNumber(integerLiteral: 10 + i)))
 		}
 
-		NSLog("Set database")
 		view.numberOfVisibleRows = 4
 		view.cellTable           = mCellTable
 		view.cellPressedCallback = {
