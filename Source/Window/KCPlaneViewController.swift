@@ -60,7 +60,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 	}
 
 	open func loadContext() -> KCView? {
-		NSLog("\(#file) Override this method")
+		CNLog(logLevel: .error, message: "Override this method", atFunction: #function, inFile: #file)
 		return nil
 	}
 
@@ -128,8 +128,8 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			#endif
 			if root.hasCoreView {
 				/* Layout components */
-				CNLog(logLevel: .debug, message: "- [Execute Layout] (root-size=\(root.frame.size.description)")
-				let layouter    = KCLayouter(console: KCLogManager.shared.console)
+				CNLog(logLevel: .detail, message: "- [Execute Layout] (root-size=\(root.frame.size.description)")
+				let layouter    = KCLayouter()
 				layouter.layout(rootView: root)
 			}
 		} else {
@@ -168,7 +168,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			case .none:
 				break
 			case .updateSize:
-				NSLog("KCPlaneViewController: updateWindowSize")
+				CNLog(logLevel: .detail, message: "Update window size", atFunction: #function, inFile: #file)
 				#if os(OSX)
 					mHasPreferedContentSize = false
 				#endif
@@ -176,17 +176,14 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 				root.requireLayout()
 			}
 		} else {
-			CNLog(logLevel: .error, message: "updateWindowSize ... skipped")
+			CNLog(logLevel: .error, message: "updateWindowSize ... skipped", atFunction: #function, inFile: #file)
 		}
 	}
 
 	private func dumpInfo(phase str: String, rootView root: KCRootView) {
 		let dumper = KCViewDumper()
-		if let cons = KCLogManager.shared.console {
-			dumper.dump(view: root, console: cons)
-		} else {
-			CNLog(logLevel: .error, message: "No log console")
-		}
+		let cons = CNLogManager.shared.console
+		dumper.dump(view: root, console: cons)
 	}
 }
 

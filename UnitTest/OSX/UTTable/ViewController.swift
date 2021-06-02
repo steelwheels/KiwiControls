@@ -16,7 +16,13 @@ class ViewController: NSViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		NSLog("UTTable: setup value table")
+		/* Start logging */
+		NSLog("Start logging ... begin")
+		let _ = KCLogManager.shared // init
+		CNPreference.shared.systemPreference.logLevel = .debug
+		NSLog("Start logging ... end")
+
+		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
 		let table = mTableView.valueTable
 		for y in 0..<2 {
 			for x in 0..<3 {
@@ -25,7 +31,7 @@ class ViewController: NSViewController
 			}
 		}
 
-		NSLog("UTTable: reload data")
+		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
 		mTableView.reloadTable()
 
 		mTableView.hasGrid = true

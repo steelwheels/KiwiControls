@@ -101,7 +101,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 			if newfrm.size.width > 0.0 && newfrm.size.height > 0.0 {
 				mLogicalFrame = newfrm
 			} else {
-				NSLog("[Error] Invalid frame size at \(#function)")
+				CNLog(logLevel: .error, message: "Invalid frame size: \(newfrm)", atFunction: #function, inFile: #file)
 			}
 		}
 	}
@@ -131,55 +131,55 @@ open class KCLayerView: KCView, KCLayerDelegate
 				self.startAsync(duration: durval, repeatCount: count)
 			})
 		case .run, .pause:
-			NSLog("Already running: \(mAnimationState.description)")
+			CNLog(logLevel: .error, message: "Already running: \(mAnimationState.description)", atFunction: #function, inFile: #file)
 		@unknown default:
-			NSLog("Unknown state")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
 		}
 	}
 
 	public func stop() {
 		switch mAnimationState {
 		case .idle:
-			NSLog("Already stopped")
+			CNLog(logLevel: .error, message: "Already stopped", atFunction: #function, inFile: #file)
 		case .run, .pause:
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in
 				self.stopAsync()
 			})
 		@unknown default:
-			NSLog("Unknown state")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
 		}
 	}
 
 	public func suspend(){
 		switch mAnimationState {
 		case .idle:
-			NSLog("Already idle")
+			CNLog(logLevel: .error, message: "Already idle", atFunction: #function, inFile: #file)
 		case .pause:
-			NSLog("Already pause")
+			CNLog(logLevel: .error, message: "Already pause", atFunction: #function, inFile: #file)
 		case .run:
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in
 				self.suspendAsync()
 			})
 		@unknown default:
-			NSLog("Unknown state")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
 		}
 	}
 
 	public func resume(){
 		switch mAnimationState {
 		case .idle:
-			NSLog("Already idle")
+			CNLog(logLevel: .error, message: "Already idle", atFunction: #function, inFile: #file)
 		case .run:
-			NSLog("Already run")
+			CNLog(logLevel: .error, message: "Already run", atFunction: #function, inFile: #file)
 		case .pause:
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in
 				self.resumeAsync()
 			})
 		@unknown default:
-			NSLog("Unknown state")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -205,16 +205,17 @@ open class KCLayerView: KCView, KCLayerDelegate
 
 			updateState(state: .run)
 		case .pause, .run:
-			NSLog("Not idle state at \(#function)")
+			CNLog(logLevel: .error, message: "Not idle state", atFunction: #function, inFile: #file)
 		@unknown default:
-			NSLog("Unknown state at \(#function)")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
+
 		}
 	}
 
 	private func stopAsync() {
 		switch mAnimationState {
 		case .idle, .pause:
-			NSLog("Not run state at \(#function)")
+			CNLog(logLevel: .error, message: "Not run state", atFunction: #function, inFile: #file)
 		case .run:
 			let lay		= getLayer()
 			lay.speed   	= 0.0		/* Stop animation */
@@ -222,7 +223,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 
 			updateState(state: .idle)
 		@unknown default:
-			NSLog("Unknown state at \(#function)")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -236,9 +237,9 @@ open class KCLayerView: KCView, KCLayerDelegate
 
 			updateState(state: .pause)
 		case .idle, .pause:
-			NSLog("Not run state at \(#function)")
+			CNLog(logLevel: .error, message: "Not run state", atFunction: #function, inFile: #file)
 		@unknown default:
-			NSLog("Unknown state at \(#function)")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
 		}
 
 	}
@@ -255,18 +256,18 @@ open class KCLayerView: KCView, KCLayerDelegate
 
 			updateState(state: .run)
 		case .idle, .run:
-			NSLog("Not pause state at \(#function)")
+			CNLog(logLevel: .error, message: "Not pause state", atFunction: #function, inFile: #file)
 		@unknown default:
-			NSLog("Unknown state at \(#function)")
+			CNLog(logLevel: .error, message: "Unknown state", atFunction: #function, inFile: #file)
 		}
 	}
 
 	public func animationDidStart(_ anim: CAAnimation) {
-		NSLog("didstart")
+		CNLog(logLevel: .detail, message: "Did start", atFunction: #function, inFile: #file)
 	}
 
 	public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-		NSLog("didstop finished:\(flag)")
+		CNLog(logLevel: .detail, message: "Did stop finished", atFunction: #function, inFile: #file)
 		stopAsync()
 	}
 
@@ -275,7 +276,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 			draw(context: ctxt, count: mDrawCount)
 			mDrawCount = (mDrawCount == Int32.max) ? 1 : mDrawCount + 1
 		} else {
-			NSLog("[Error] No context at \(#function)")
+			CNLog(logLevel: .error, message: "No context", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -290,7 +291,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 	#endif
 
 	open func draw(context ctxt: CGContext, count cnt: Int32) {
-		NSLog("draw layer: \(cnt)")
+		CNLog(logLevel: .detail, message: "Draw layer: \(cnt)", atFunction: #function, inFile: #file)
 	}
 
 	public override var intrinsicContentSize: KCSize {

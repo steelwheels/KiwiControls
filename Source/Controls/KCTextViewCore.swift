@@ -227,7 +227,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				if pos >= 1 {
 					mCurrentIndex = storage.moveCursorTo(from: mCurrentIndex, x: pos-1)
 				} else {
-					NSLog("cursorHolizontalAbsolute: Underflow")
+					CNLog(logLevel: .error, message: "cursorHolizontalAbsolute: Underflow", atFunction: #function, inFile: #file)
 				}
 			case .saveCursorPosition:
 				if mIsAlternativeScreen {
@@ -255,7 +255,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 						mCurrentIndex = storage.moveCursorTo(x: col-1, y: row-1)
 					}
 				} else {
-					NSLog("cursorPosition: Underflow")
+					CNLog(logLevel: .error, message: "cursorPosition: Underflow", atFunction: #function, inFile: #file)
 				}
 			case .eraceFromCursorToEnd:
 				mCurrentIndex = storage.deleteForwardAllCharacters(from: mCurrentIndex)
@@ -293,7 +293,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				self.setNeedsDisplay()
 			case .blinkCharacter(_),
 			     .reverseCharacter(_):
-				NSLog("Not supported: \(code.description())")
+				CNLog(logLevel: .error, message: "Not supported", atFunction: #function, inFile: #file)
 			case .foregroundColor(let color):
 				mTerminalInfo.foregroundColor = color
 				self.setNeedsDisplay()
@@ -321,7 +321,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 					mIsAlternativeScreen = doalt
 				}
 			@unknown default:
-				NSLog("Unknown escape code")
+				CNLog(logLevel: .error, message: "Unknown escape code", atFunction: #function, inFile: #file)
 			}
 		}
 
@@ -346,7 +346,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				let substr  = str.prefix(restlen)
 				newidx = strg.write(string: String(substr), at: idx, font: self.font, terminalInfo: mTerminalInfo)
 			} else {
-				NSLog("[Error] Unexpected line {index=\(idx), width=\(linelen)} in {\(mTerminalInfo.width)x\(mTerminalInfo.height)} at \(#function)")
+				CNLog(logLevel: .error, message: "Unexpected line {index=\(idx), width=\(linelen)} in {\(mTerminalInfo.width)x\(mTerminalInfo.height)}", atFunction: #function, inFile: #file)
 				newidx = idx
 			}
 		} else {
@@ -424,7 +424,6 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public override func setFrameSize(_ newsize: KCSize) {
-		//CNLog(logLevel: .debug, message: "KCTerminalViewCore: setFrameSize: \(newsize.description)")
 		#if os(OSX)
 			mScrollView.setFrameSize(newsize)
 			let barwidth = scrollBarWidth()
@@ -459,11 +458,11 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 				} else if let font = vals[.newKey] as? CNFont {
 					switch key {
 					case CNPreference.shared.terminalPreference.FontItem:
-						NSLog("Change font: \(font.fontName)")
+						CNLog(logLevel: .detail, message: "Change font: \(font.fontName)", atFunction: #function, inFile: #file)
 						self.updateFont()
 						self.notify(viewControlEvent: .updateSize)
 					default:
-						NSLog("\(#file): Unknown key (3): \(key)")
+						CNLog(logLevel: .detail, message: "Unknown key: \(key)", atFunction: #function, inFile: #file)
 					}
 				} else if let _ = vals[.newKey] as? NSNumber {
 					switch key {
@@ -487,7 +486,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 						self.updateForegroundColor()
 						self.updateBackgroundColor()
 					default:
-						CNLog(logLevel: .debug, message: "\(#file): Unknown key (4): \(key)")
+						CNLog(logLevel: .detail, message: "\(#file): Unknown key (4): \(key)")
 					}
 				}
 			}

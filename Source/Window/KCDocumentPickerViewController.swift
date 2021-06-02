@@ -53,7 +53,7 @@ import Foundation
 	}
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		CNLog(logLevel: .debug, message: "Selected")
+		CNLog(logLevel: .detail, message: "Selected")
 		if urls.count >= 1 {
 			switch mLoaderFunction {
 			case .none:
@@ -70,7 +70,7 @@ import Foundation
 	}
 
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		CNLog(logLevel: .debug, message: "Canceled")
+		CNLog(logLevel: .detail, message: "Canceled")
 	}
 }
 

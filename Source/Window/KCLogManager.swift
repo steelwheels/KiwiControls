@@ -37,6 +37,11 @@ import Foundation
 		syspref.removeObserver(observer: self, forKey: CNSystemPreference.LogLevelItem)
 	}
 
+	public func start() {
+		let level = CNPreference.shared.systemPreference.logLevel
+		updateLogLevel(logLevel: level)
+	}
+
 	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		switch keyPath {
 		case CNSystemPreference.LogLevelItem:
@@ -50,7 +55,7 @@ import Foundation
 				}
 			}
 		default:
-			NSLog("Unexpected event:  \(String(describing: keyPath))")
+			CNLog(logLevel: .detail, message: "Unexpected event:  \(String(describing: keyPath))", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -79,9 +84,7 @@ import Foundation
 			newcont.show()
 		}
 		/* Connect log buffer to this window */
-		let buf = CNLogBuffer.shared
-		buf.setOutput(console: console)
-		buf.flush()
+		CNLogManager.shared.pushConsone(console: console)
 		#endif
 	}
 
@@ -91,23 +94,8 @@ import Foundation
 			cont.hide()
 		}
 		/* Connect log buffer to this window */
-		let buf = CNLogBuffer.shared
-		buf.resetOutput()
+		CNLogManager.shared.popConsole()
 		#endif
-	}
-
-	public var console: CNConsole? {
-		get {
-			#if os(OSX)
-				if let cont = mWindowController {
-					return cont.console
-				} else {
-					return nil
-				}
-			#else
-				return nil
-			#endif
-		}
 	}
 
 	public var isVisible: Bool {

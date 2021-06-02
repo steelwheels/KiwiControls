@@ -34,21 +34,20 @@ open class KCSingleViewController: KCPlaneViewController
 			if let mgr = parentController.consoleManager {
 				return mgr.console
 			} else {
-				NSLog("[Error] No console manager to get at \(#file)")
+				CNLog(logLevel: .error, message: "No console manager", atFunction: #function, inFile: #file)
 				return CNFileConsole()
 			}
 		}
 		set(newcons) {
 			if let mgr = parentController.consoleManager {
 				if !mHasOwnConsole {
-					//NSLog("push global console")
 					mgr.push(console: newcons)
 					mHasOwnConsole = true
 				} else {
-					NSLog("[Error] Global cosole is already set \(#file)")
+					CNLog(logLevel: .error, message: "Global cosole is already set", atFunction: #function, inFile: #file)
 				}
 			} else {
-				NSLog("[Error] No console manager to set at \(#file)")
+				CNLog(logLevel: .error, message: "No console manager", atFunction: #function, inFile: #file)
 			}
 		}
 	}
@@ -62,10 +61,9 @@ open class KCSingleViewController: KCPlaneViewController
 	open func viewWillRemoved() {
 		if mHasOwnConsole {
 			if let mgr = parentController.consoleManager {
-				//NSLog("pop global console")
 				let _ = mgr.pop()
 			} else {
-				NSLog("[Error] No console manager to pop at \(#file)")
+				CNLog(logLevel: .error, message: "No console manager", atFunction: #function, inFile: #file)
 			}
 		}
 	}

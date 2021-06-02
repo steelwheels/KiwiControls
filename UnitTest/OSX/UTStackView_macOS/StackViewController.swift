@@ -50,7 +50,7 @@ public class StackViewController: KCSingleViewController
 			() -> Void in
 			switch gr2d.state {
 			case .idle:
-				NSLog("Unexpected state: \(gr2d.state.description)")
+				CNLog(logLevel: .detail, message: "Unexpected state: \(gr2d.state.description)", atFunction: #function, inFile: #file)
 			case .pause:
 				gr2d.resume()
 				button2.title = "Pause ON"
@@ -58,7 +58,7 @@ public class StackViewController: KCSingleViewController
 				gr2d.suspend()
 				button2.title = "Pause Off"
 			@unknown default:
-				NSLog("Unexpected state: \(gr2d.state.description)")
+				CNLog(logLevel: .detail, message: "Unexpected state: \(gr2d.state.description)", atFunction: #function, inFile: #file)
 			}
 		}
 

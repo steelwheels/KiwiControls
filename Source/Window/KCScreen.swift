@@ -5,6 +5,7 @@
  *   Copyright (C) 2019 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 #if os(OSX)
 import Cocoa
@@ -47,14 +48,14 @@ public class KCScreen
 			if let screen = NSScreen.main {
 				result = screen.backingScaleFactor
 			} else {
-				NSLog("[Error] No main screen")
+				CNLog(logLevel: .error, message: "No main screen", atFunction: #function, inFile: #file)
 				result = 1.0
 			}
 		#else
 			result = UIScreen.main.scale
 		#endif
 		if result == 0.0 {
-			NSLog("[Error] Invalid scale")
+			CNLog(logLevel: .error, message: "Invalid scale", atFunction: #function, inFile: #file)
 			result = 1.0
 		}
 		return result

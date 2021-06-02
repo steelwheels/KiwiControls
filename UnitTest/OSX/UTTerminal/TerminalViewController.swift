@@ -35,14 +35,14 @@ public class TerminalViewController: KCSingleViewController
 	open override func loadContext() -> KCView? {
 		let termview = KCTerminalView()
 		/* Allocate shell */
-		NSLog("Launch terminal")
+		CNLog(logLevel: .detail, message: "Launch terminal")
 		let procmgr : CNProcessManager = CNProcessManager()
 		let infile  : CNFile = termview.inputFile
 		let outfile : CNFile = termview.outputFile
 		let errfile : CNFile = termview.errorFile
 		let terminfo         = CNTerminalInfo(width: 80, height: 25)
 		let environment      = CNEnvironment()
-		NSLog("Allocate shell")
+		CNLog(logLevel: .detail, message: "Allocate shell")
 		let shell     = UTShellThread(processManager: procmgr, input: infile, output: outfile, error: errfile, terminalInfo: terminfo, environment: environment)
 		mShell        = shell
 		shell.terminalView = termview
@@ -62,13 +62,13 @@ public class TerminalViewController: KCSingleViewController
 		super.viewDidAppear()
 
 		guard let termview = mTerminalView else {
-			NSLog("No terminal view")
+			CNLog(logLevel: .error, message: "No terminal view")
 			return
 		}
 
 		/* Start shell */
 		if let shell = mShell {
-			NSLog("start shell")
+			CNLog(logLevel: .detail, message: "Start shell")
 			shell.start(argument: .nullValue)
 		}
 

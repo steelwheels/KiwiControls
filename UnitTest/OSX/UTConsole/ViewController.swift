@@ -28,7 +28,7 @@ class ViewController: KCPlaneViewController {
 		let button = KCButton()
 		button.buttonPressedCallback = {
 			() -> Void in
-			CNLog(logLevel: .debug, message: "Debug message")
+			CNLog(logLevel: .detail, message: "Debug message")
 		}
 		root.setup(childView: button)
 		return button.fittingSize

@@ -53,7 +53,7 @@ open class KCGraphics2DView: KCLayerView
 	}
 
 	open func draw(graphicsContext ctxt: CNGraphicsContext, count cnt: Int32) {
-		NSLog("must be override at \(#function) \(cnt)")
+		CNLog(logLevel: .error, message: "must be override", atFunction: #function, inFile: #file)
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

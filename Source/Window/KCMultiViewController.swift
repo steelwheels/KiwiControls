@@ -82,7 +82,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 			let ident = viewIndexToIdentifer(index: idx)
 			let item  = NSTabViewItem(identifier: ident)
 			item.viewController = view
-			CNLog(logLevel: .debug, message: "pushViewController identifier: \"\(ident)\"")
+			CNLog(logLevel: .detail, message: "pushViewController identifier: \"\(ident)\"")
 			self.addTabViewItem(item)
 		#else
 			let newctrls: Array<KCViewController>
@@ -126,7 +126,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 			}
 		#endif
 		guard orgcnt > 1 else {
-			CNLog(logLevel: .debug, message: "popViewController -> Failed")
+			CNLog(logLevel: .detail, message: "popViewController -> Failed")
 			return false
 		}
 		/* Switch to previous view */
@@ -176,7 +176,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 				if let view = item.viewController as? KCSingleViewController {
 					return view
 				} else {
-					NSLog("Unknown view controller")
+					CNLog(logLevel: .error, message: "Unknown view controller", atFunction: #function, inFile: #file)
 				}
 			}
 			return nil
@@ -184,7 +184,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 			if let view = super.selectedViewController as? KCSingleViewController {
 				return view
 			} else {
-				NSLog("Unknown view controller")
+				CNLog(logLevel: .error, message: "Unknown view controller", atFunction: #function, inFile: #file)
 				return nil
 			}
 		#endif

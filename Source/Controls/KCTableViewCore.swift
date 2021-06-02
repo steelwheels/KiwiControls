@@ -59,7 +59,7 @@ private class KCViewTable
 		if 0<=cidx && cidx<mColumnCount && 0<=ridx && ridx<mRowCount {
 			mTable[ridx][cidx] = v
 		} else {
-			NSLog("[Error] Failed to set: cidx=\(cidx), ridx=\(ridx)")
+			CNLog(logLevel: .error, message: "Failed to set: cidx=\(cidx), ridx=\(ridx)", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -241,7 +241,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		if let cidx = mValueTable.titleIndex(by: title) {
 			mViewTable.set(column: cidx, row: ridx, view: newview)
 		} else {
-			NSLog("Failed to set new view")
+			CNLog(logLevel: .error, message: "Failed to set new view", atFunction: #function, inFile: #file)
 		}
 	}
 

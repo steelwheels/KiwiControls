@@ -56,7 +56,7 @@ open class KCBitmapView: KCLayerView
 	}
 
 	open func update(bitmapContext ctxt: CNBitmapContext, count cnt: Int32) {
-		NSLog("must be override at \(#function) \(cnt)")
+		CNLog(logLevel: .error, message: "must be override", atFunction: #function, inFile: #file)
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

@@ -24,7 +24,7 @@ class ViewController: KCMultiViewController
 			} else {
 				message = "<uknown>"
 			}
-			NSLog("view is poped: \(message)")
+			CNLog(logLevel: .error, message: "view is poped: \(message)", atFunction: #function, inFile: #file)
 		}
 		self.pushViewController(viewController: stack, callback: cbfunc)
 	}

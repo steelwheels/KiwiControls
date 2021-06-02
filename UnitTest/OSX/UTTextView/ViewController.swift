@@ -58,7 +58,7 @@ class ViewController: NSViewController
 		codes2.append(.selectAltScreen(true))
 		for y in 0..<height-1 {
 			for x in 0..<width-1 {
-				NSLog("cursorPosition(\(x), \(y))")
+				CNLog(logLevel: .detail, message: "cursorPosition(\(x), \(y))")
 				let c = x % 10
 				codes2.append(.cursorPosition(y+1, x+1))
 				codes2.append(.string("\(c)"))

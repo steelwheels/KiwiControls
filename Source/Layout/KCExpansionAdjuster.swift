@@ -117,7 +117,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: hcomp,
 						 verticalHugging: 	vhug,
 						 verticalCompression:	vcomp)
-		CNLog(logLevel: .debug, message: "ExpansionPriorities \(hhug.description()) \(hcomp.description()) \(vhug.description()) \(vcomp.description()) at \(#function)")
+		CNLog(logLevel: .detail, message: "ExpansionPriorities \(hhug.description()) \(hcomp.description()) \(vhug.description()) \(vcomp.description()) at \(#function)")
 		view.setExpandabilities(priorities: prival)
 	}
 
@@ -152,7 +152,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 		for subview in view.arrangedSubviews() {
 			exppri = ExpansionPriorities.union(exppri, subview.expansionPriority())
 		}
-		CNLog(logLevel: .debug, message: "Stack: ExpansionPriorities \(exppri.holizontalHugging.description()) \(exppri.holizontalCompression.description()) \(exppri.verticalHugging.description()) \(exppri.verticalCompression.description()) at \(#function)")
+		CNLog(logLevel: .detail, message: "Stack: ExpansionPriorities \(exppri.holizontalHugging.description()) \(exppri.holizontalCompression.description()) \(exppri.verticalHugging.description()) \(exppri.verticalCompression.description()) at \(#function)")
 		view.setExpandabilities(priorities: exppri)
 		/* Keep axis */
 		axis = prevaxis
