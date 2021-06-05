@@ -182,6 +182,12 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		/* Allocate view table */
 		mViewTable = KCViewTable(columnCount: colnum, rowCount: mValueTable.rowCount)
 
+		if mValueTable.hasHeader {
+			mTableView.headerView = NSTableHeaderView()
+		} else {
+			mTableView.headerView = nil
+		}
+
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
 		mIsReloading = true
@@ -241,7 +247,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		if let cidx = mValueTable.titleIndex(by: title) {
 			mViewTable.set(column: cidx, row: ridx, view: newview)
 		} else {
-			CNLog(logLevel: .error, message: "Failed to set new view", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "Failed to set new view: title=\(title)", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -287,6 +293,14 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			}
 			result.width  += width
 			result.height =  max(result.height, height)
+		}
+		if let header = mTableView.headerView {
+			var height: CGFloat = 0.0
+			for cidx in 0..<numberOfColumns {
+				let colsize = header.headerRect(ofColumn: cidx)
+				height = max(height, colsize.height)
+			}
+			result.height += height
 		}
 		return result
 	}
