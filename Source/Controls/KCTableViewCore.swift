@@ -261,7 +261,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			view.set(image: img)
 			result = view
 		default:
-			let str = val.toText().toStrings(terminal: "").joined(separator: "\n")
+			let str = val.toText().toStrings().joined(separator: "\n")
 			result = textToView(text: str)
 		}
 		#if os(OSX)

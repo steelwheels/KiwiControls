@@ -254,7 +254,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		}
 		set(newval) {
 			let txt    = newval.toText()
-			let str    = txt.toStrings(terminal: "").joined(separator: "\n")
+			let str    = txt.toStrings().joined(separator: "\n")
 			self.text = str
 		}
 	}

@@ -23,7 +23,8 @@ public class KCViewDumper: KCViewVisitor
 
 	public func dump(view v: KCView, console cons: CNConsole){
 		v.accept(visitor: self)
-		mSection.print(console: cons, terminal: "")
+		let txt = mSection.toStrings().joined(separator: "\n")
+		cons.print(string: txt + "\n")
 	}
 
 	open override func visit(rootView view: KCRootView){
