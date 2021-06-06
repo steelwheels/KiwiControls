@@ -367,15 +367,21 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row ridx: Int) -> NSView? {
 		if let col = tableColumn {
 			let result = allocateView(title: col.title, row: ridx)
-			if mIsReloading && mViewTable.isFilled() {
-				self.invalidateIntrinsicContentSize()
-				self.notify(viewControlEvent: .updateSize)
-				mIsReloading = false
-			}
+			requestLayoutIfAllViewsHadBeenAllocated()
 			return result
 		}
 		CNLog(logLevel: .error, message: "No matched view: \(String(describing: tableColumn?.title)) \(ridx) at \(#function)")
 		return nil
+	}
+
+	public func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+		NSLog("shouldSelectRow: \(row)")
+		return false
+	}
+
+	public func tableView(_ tableView: NSTableView, shouldSelect tableColumn: NSTableColumn?) -> Bool {
+		NSLog("shouldSelectColumn: \(String(describing: tableColumn?.description))")
+		return false
 	}
 	#endif
 
@@ -457,8 +463,19 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 
 	public func view(atColumn cidx: Int, row ridx: Int) -> KCView? {
-		return allocateView(column: cidx, row: ridx)
+		let newview = allocateView(column: cidx, row: ridx)
+		requestLayoutIfAllViewsHadBeenAllocated()
+		return newview
 	}
+
+	private func requestLayoutIfAllViewsHadBeenAllocated() {
+		if mIsReloading && mViewTable.isFilled() {
+			self.invalidateIntrinsicContentSize()
+			self.notify(viewControlEvent: .updateSize)
+			mIsReloading = false
+		}
+	}
+
 
 	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, heightOfRow ridx: Int) -> CGFloat {

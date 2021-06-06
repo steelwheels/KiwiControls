@@ -180,6 +180,14 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
+	open override func visit(iconView view: KCIconView){
+		let prival = ExpansionPriorities(holizontalHugging: 	.middle,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.middle,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
+	}
+
 	open override func visit(navigationBar view: KCNavigationBar){
 		let prival = ExpansionPriorities(holizontalHugging: 	.middle,
 						 holizontalCompression: .middle,
@@ -221,7 +229,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(coreView view: KCCoreView){
-		CNLog(logLevel: .error, message: "KCExpansionAdjustor.visit(coreView)")
+		CNLog(logLevel: .error, message: "KCExpansionAdjustor.visit(coreView) : \(view.description)")
 	}
 }
 

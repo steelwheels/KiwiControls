@@ -17,18 +17,18 @@ public class SingleViewController: KCSingleViewController
 		case horizBox
 	}
 
-	private var mMode:	Mode
-	private var mCellTable:	KCCellTable
+	private var mMode:		Mode
+	private var mTableView:		KCTableView
 
 	public init(parentViewController parent: KCMultiViewController, mode md: Mode){
 		mMode      = md
-		mCellTable = KCCellTable()
+		mTableView = KCTableView()
 		super.init(parentViewController: parent)
 	}
 
 	public required init?(coder: NSCoder) {
 		mMode      = .vertBox
-		mCellTable = KCCellTable()
+		mTableView = KCTableView()
 		super.init(coder: coder)
 	}
 
@@ -68,7 +68,7 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private func loadHolizContext() -> KCView? {
-		guard let imgurl = CNFilePath.URLForResourceFile(fileName: "amber-icon-128x128", fileExtension: "png") else {
+		guard let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png", subdirectory: nil, forClass: SingleViewController.self) else {
 			CNLog(logLevel: .error, message: "No resource file", atFunction: #function, inFile: #file)
 			return nil
 		}
@@ -78,6 +78,7 @@ public class SingleViewController: KCSingleViewController
 		}
 		let imgview0 = KCImageView()
 		imgview0.set(image: img0)
+		imgview0.scale = 0.2
 
 		let edit1  = KCTextEdit()
 		edit1.mode = .view(20)
@@ -97,14 +98,12 @@ public class SingleViewController: KCSingleViewController
 
 		let icon1     = allocateIcon()
 		let lstack    = allocateLabeledStack(image: img0)
-		let table     = allocateTableView()
 		let button2   = KCButton()
 		button2.title = "OK"
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
-		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, table, button2])
-		//box2.addArrangedSubViews(subViews: [box1, button2])
+		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, button2])
 
 		return box2
 	}
@@ -112,7 +111,7 @@ public class SingleViewController: KCSingleViewController
 	private func allocateIcon() -> KCIconView {
 		let icon   = KCIconView()
 		icon.title = "Icon Title"
-		if let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png") {
+		if let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png", subdirectory: nil, forClass: SingleViewController.self) {
 			CNLog(logLevel: .detail, message: "URL of Icon: \(imgurl.path)")
 			icon.image = CNImage.init(contentsOfFile: imgurl.path)
 			icon.scale = 0.2
@@ -135,30 +134,6 @@ public class SingleViewController: KCSingleViewController
 		lstack.title = "Labeled Stack"
 		lstack.contentsView.addArrangedSubView(subView: imgview)
 		return lstack
-	}
-
-	private func allocateTableView() -> KCTableView {
-		let view = KCTableView()
-
-		let name0 = "a"
-		let _ = mCellTable.addColumn(title: name0)
-		for i in 0..<10 {
-			mCellTable.append(colmunName: name0, value: .numberValue(NSNumber(integerLiteral: i)))
-		}
-
-		let name1 = "b"
-		let _ = mCellTable.addColumn(title: name1)
-		for i in 0..<10 {
-			mCellTable.append(colmunName: name1, value: .numberValue(NSNumber(integerLiteral: 10 + i)))
-		}
-
-		view.numberOfVisibleRows = 4
-		view.cellTable           = mCellTable
-		view.cellPressedCallback = {
-			(_ col: Int, _ row: Int) -> Void in
-			CNLog(logLevel: .error, message: "Double cliked col=\(col) row=\(row)")
-		}
-		return view
 	}
 
 	private func allocateGraphics2DView() -> KCGraphics2DView {
@@ -213,13 +188,10 @@ public class SingleViewController: KCSingleViewController
 	private func doDumpView(message msg: String){
 		if let view = self.rootView {
 			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .detail) {
-				if let cons = KCLogManager.shared.console {
-					cons.print(string: msg + "\n")
-					let dumper = KCViewDumper()
-					dumper.dump(view: view, console: cons)
-				} else {
-					CNLog(logLevel: .error, message: "No log console")
-				}
+				let cons = CNLogManager.shared.console
+				cons.print(string: msg + "\n")
+				let dumper = KCViewDumper()
+				dumper.dump(view: view, console: cons)
 			}
 		} else {
 			fatalError("No root view")

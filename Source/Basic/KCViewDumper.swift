@@ -75,6 +75,14 @@ public class KCViewDumper: KCViewVisitor
 		mSection = cursection
 	}
 
+	open override func visit(tableView view: KCTableView){
+		visit(coreView: view)
+
+		let rownum = view.numberOfRows
+		let colnum = view.numberOfColumns
+		mSection.add(string: "{rownum: \(rownum), colnum: \(colnum)}")
+	}
+
 	open override func visit(navigationBar view: KCNavigationBar) {
 		visit(coreView: view)
 

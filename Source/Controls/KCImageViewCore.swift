@@ -20,7 +20,8 @@ open class KCImageViewCore : KCView
 	@IBOutlet weak var mImageView: UIImageView!
 	#endif
 
-	private var mScale: CGFloat = 1.0
+	private var mOriginalImage:	CNImage? = nil
+	private var mScale: 		CGFloat  = 1.0
 
 	public func setup(frame frm: CGRect){
 		KCView.setAutolayoutMode(views: [self, mImageView])
@@ -32,17 +33,31 @@ open class KCImageViewCore : KCView
 	}
 
 	public func set(image img: CNImage) {
-		mImageView.image = img
+		mOriginalImage	 = img
+		updateImage()
 	}
 
 	public var scale: CGFloat {
-		get		{ return mScale }
-		set(newval)	{ mScale = newval}
+		get {
+			return mScale
+		}
+		set(newval) {
+			mScale = newval
+			updateImage()
+		}
+	}
+
+	private func updateImage() {
+		if let orgimg = mOriginalImage {
+			let orgsize = orgimg.size
+			let imgsize = KCSize(width:  orgsize.width *  mScale,
+					     height: orgsize.height * mScale)
+			mImageView.image = orgimg.resize(imgsize)
+		}
 	}
 
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
-		//let modsize = fitInAspect(in: newsize)
 		#if os(OSX)
 		mImageView.setFrameSize(newsize)
 		#else
@@ -50,37 +65,8 @@ open class KCImageViewCore : KCView
 		#endif
 	}
 
-	/*
-	private func fitInAspect(in newsize: KCSize) -> KCSize {
-		guard let img = self.mImageView.image else {
-			return newsize
-		}
-		let imgwidth  = img.size.width
-		let imgheight = img.size.height
-		let imgaspect = imgwidth / imgheight
-
-		let newwidth  = newsize.width
-		let newheight = newsize.height
-		guard newwidth > 0.0 && newheight > 0.0 else {
-			return newsize
-		}
-
-		let mod0height = newheight
-		let mod0width  = mod0height * imgaspect
-		if mod0height <= newsize.height && mod0width <= newsize.width {
-			return KCSize(width: mod0width, height: mod0height)
-		}
-
-		let mod1width  = newwidth
-		let mod1height = mod1width / imgaspect
-		return KCSize(width: mod1width, height: mod1height)
-	}*/
-
 	open override var intrinsicContentSize: KCSize {
-		get {
-			let imgsize = imageSize
-			return KCSize(width: imgsize.width * mScale, height: imgsize.height * mScale)
-		}
+		get { return imageSize }
 	}
 
 	public override func invalidateIntrinsicContentSize() {
