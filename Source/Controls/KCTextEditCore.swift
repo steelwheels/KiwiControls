@@ -20,16 +20,10 @@ public protocol NSTextFieldDelegate {
 
 open class KCTextEditCore : KCView, NSTextFieldDelegate
 {
-	public enum FormatterType {
-		case general
+	public enum Format {
+		case text
+		case line
 		case decimal
-	}
-
-	public enum ModeType {
-		case label
-		case value(FormatterType, Bool) 	/* FormatType: format, Bool: isEditable			*/
-		case view(Int)				/* Int: Defautl colmun num				*/
-		case edit(Int)				/* Int: Defautl colmun num			*/
 	}
 
 	public typealias CallbackFunction = (_ value: CNNativeValue) -> Void
@@ -40,8 +34,8 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	@IBOutlet weak var mTextEdit: UITextField!
 	#endif
 
-	private var 	mMode:			ModeType = .edit(40)
-
+	private var 	mFormat:		Format = .text
+	private var 	mDefaultLength:		Int    = 40
 	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
@@ -58,60 +52,61 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		#else
 			mTextEdit.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 		#endif
+
+		setModes()
 	}
 
-	public var mode: ModeType {
-		get { return mMode }
-		set(newmode){
+	public var format: Format {
+		get		{ return mFormat }
+		set(newform)	{ mFormat = newform }
+	}
+
+	public var defaultLength: Int {
+		get		{ return mDefaultLength }
+		set(newlen)	{ mDefaultLength = newlen }
+	}
+
+	public var isEditable: Bool {
+		get {
 			#if os(OSX)
-			set(mode: newmode)
+				return mTextEdit.isEditable
+			#else
+				return false
 			#endif
-			mMode = newmode
+		}
+		set(newval) {
+			#if os(OSX)
+				mTextEdit.isEditable = newval
+			#endif
 		}
 	}
 
-	#if os(OSX)
-	private func set(mode md: ModeType) {
-		switch md {
-		case .label:
-			mTextEdit.isEditable		= false
-			mTextEdit.isBezeled		= false
+	private func setModes() {
+		#if os(OSX)
+		/* Common setting */
+		mTextEdit.isBezeled	= false
+		mTextEdit.lineBreakMode	= .byWordWrapping
+		/* Format setting */
+		switch mFormat {
+		case .text:
+			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
+			mTextEdit.usesSingleLineMode 	= false
+			mTextEdit.formatter		= nil
+		case .line:
+			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
 			mTextEdit.usesSingleLineMode 	= true
-			mTextEdit.lineBreakMode		= .byWordWrapping
-			mTextEdit.formatter 		= nil
-		case .value(let format, let editable):
-			mTextEdit.isEditable		= editable
-			mTextEdit.isBezeled		= true
-			mTextEdit.usesSingleLineMode 	= false
-			mTextEdit.lineBreakMode		= .byWordWrapping
-			switch format {
-			case .general:
-				mTextEdit.formatter = nil
-			case .decimal:
-				let numformatter = NumberFormatter()
-				numformatter.numberStyle           = .decimal
-				numformatter.maximumFractionDigits = 0
-				numformatter.minimumFractionDigits = 0
-				mTextEdit.formatter	= numformatter
-				mTextEdit.font		= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
-			}
-		case .view:
-			mTextEdit.isEditable		= false
-			mTextEdit.isBezeled		= false
-			mTextEdit.usesSingleLineMode 	= false
-			mTextEdit.lineBreakMode		= .byWordWrapping
-			mTextEdit.formatter 		= nil
-			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
-		case .edit:
-			mTextEdit.isEditable		= true
-			mTextEdit.isBezeled		= false
-			mTextEdit.usesSingleLineMode 	= false
-			mTextEdit.lineBreakMode		= .byWordWrapping
-			mTextEdit.formatter 		= nil
-			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
+			mTextEdit.formatter		= nil
+		case .decimal:
+			mTextEdit.font			= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+			mTextEdit.usesSingleLineMode 	= true
+			let numform = NumberFormatter()
+			numform.numberStyle		= .decimal
+			numform.maximumFractionDigits	= 0
+			numform.minimumFractionDigits	= 0
+			mTextEdit.formatter		= numform
 		}
+		#endif
 	}
-	#endif
 
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
@@ -126,16 +121,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	open override var intrinsicContentSize: KCSize {
 		get {
 			let curnum = mTextEdit.stringValue.count
-			let colnum: Int
-			switch mMode {
-			case .label, .value:
-				colnum = 20
-			case .view(let num):
-				colnum = num
-			case .edit(let num):
-				colnum = num
-			}
-			let newnum   = max(curnum, colnum)
+			let newnum = max(curnum, mDefaultLength)
 
 			let fitsize = mTextEdit.fittingSize
 
@@ -235,19 +221,14 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	public var value: CNNativeValue {
 		get {
 			let result: CNNativeValue
-			switch mMode {
-			case .edit(_), .label, .view(_):
+			switch mFormat {
+			case .line, .text:
 				result = .stringValue(self.text)
-			case .value(let format, _):
-				switch format {
-				case .decimal:
-					if let val = Int(self.text) {
-						result = .numberValue(NSNumber(integerLiteral: val))
-					} else {
-						result = .nullValue
-					}
-				case .general:
-					result = .stringValue(self.text)
+			case .decimal:
+				if let val = Int(self.text) {
+					result = .numberValue(NSNumber(integerLiteral: val))
+				} else {
+					result = .nullValue
 				}
 			}
 			return result

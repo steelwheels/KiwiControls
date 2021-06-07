@@ -70,8 +70,9 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		boxview.axis = .vertical
 
 		let msgview = KCTextEdit()
-		msgview.mode = .view(40)
-		msgview.text = "Failed to load context"
+		msgview.format = .line
+		msgview.isEditable = false
+		msgview.text   = "Failed to load context"
 		boxview.addArrangedSubView(subView: msgview)
 
 		return boxview

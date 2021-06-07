@@ -51,20 +51,11 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(textEdit view: KCTextEdit){
-		switch view.mode {
-		case .label, .value(_, _):
-			let prival = ExpansionPriorities(holizontalHugging: 	.middle,
-							 holizontalCompression: .fixed,
-							 verticalHugging: 	.middle,
-							 verticalCompression:	.fixed)
-			view.setExpandabilities(priorities: prival)
-		case .edit(_), .view(_):
-			let prival = ExpansionPriorities(holizontalHugging: 	.middle,
-							 holizontalCompression: .fixed,
-							 verticalHugging: 	.middle,
-							 verticalCompression:	.fixed)
-			view.setExpandabilities(priorities: prival)
-		}
+		let prival = ExpansionPriorities(holizontalHugging: 	.middle,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.middle,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(consoleView view: KCConsoleView){

@@ -196,7 +196,8 @@ public class KCTerminalPreferenceView: KCStackView
 	#if os(OSX)
 	private func allocateHomeDirectoryView() -> KCLabeledStackView {
 		let pathfield   = KCTextEdit()
-		pathfield.mode	= .value(.general, false)
+		pathfield.format = .line
+		pathfield.isEditable = false
 		pathfield.text = "No home directory"
 		mHomeDirectoryField = pathfield
 
@@ -247,7 +248,8 @@ public class KCTerminalPreferenceView: KCStackView
 
 	private func allocateSizeSelectorView() -> KCLabeledStackView {
 		let widthfield = KCTextEdit()
-		widthfield.mode = .value(.decimal, true)
+		widthfield.format = .decimal
+		widthfield.isEditable = true
 		mTerminalWidthField = widthfield
 
 		let widthbox = KCLabeledStackView()
@@ -255,7 +257,8 @@ public class KCTerminalPreferenceView: KCStackView
 		widthbox.contentsView.addArrangedSubView(subView: widthfield)
 
 		let heightfield = KCTextEdit()
-		heightfield.mode = .value(.decimal, true)
+		heightfield.format = .decimal
+		heightfield.isEditable = true
 		mTerminalHeightField = heightfield
 
 		let heightbox = KCLabeledStackView()
