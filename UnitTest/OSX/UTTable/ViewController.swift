@@ -22,12 +22,15 @@ class ViewController: NSViewController
 		CNPreference.shared.systemPreference.logLevel = .debug
 		NSLog("Start logging ... end")
 
+		/* Set editable */
+		mTableView.isEditable = true
+
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
 		let table = mTableView.valueTable
 		for y in 0..<2 {
 			for x in 0..<3 {
 				let str = "\(x)/\(y)"
-				table.setValue(column: x, row: y, value: .stringValue(str))
+				table.setValue(columnIndex: .number(x), row: y, value: .stringValue(str))
 			}
 		}
 

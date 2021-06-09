@@ -152,6 +152,16 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 		}
 	}
 
+	#if os(OSX)
+	public override var acceptsFirstResponder: Bool { get {
+		return mTextEdit.acceptsFirstResponder
+	}}
+	#endif
+
+	public override func becomeFirstResponder() -> Bool {
+		return mTextEdit.becomeFirstResponder()
+	}
+
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
 		mTextEdit.invalidateIntrinsicContentSize()

@@ -62,6 +62,24 @@ open class KCCoreView: KCView
 		}
 	}
 
+	#if os(OSX)
+	public override var acceptsFirstResponder: Bool { get {
+		if let core = mCoreView {
+			return core.acceptsFirstResponder
+		} else {
+			return false
+		}
+	}}
+	#endif
+
+	public override func becomeFirstResponder() -> Bool {
+		if let core = mCoreView {
+			return core.becomeFirstResponder()
+		} else {
+			return false
+		}
+	}
+
 	open override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		if let core = mCoreView {
 			core.setExpandabilities(priorities: prival)

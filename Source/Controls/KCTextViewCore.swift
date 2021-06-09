@@ -419,6 +419,16 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 		mTextView.scrollRangeToVisible(range)
 	}
 
+	#if os(OSX)
+	public override var acceptsFirstResponder: Bool { get {
+		return mTextView.acceptsFirstResponder
+	}}
+	#endif
+
+	public override func becomeFirstResponder() -> Bool {
+		return mTextView.becomeFirstResponder()
+	}
+
 	public override var intrinsicContentSize: KCSize {
 		get { return targetSize() }
 	}

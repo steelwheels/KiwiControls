@@ -80,7 +80,7 @@ private class KCViewTable
 
 open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 {
-	public typealias ViewAllocator = (_ value: CNNativeValue) -> KCView?
+	public typealias ViewAllocator = (_ value: CNNativeValue, _ iseditable: Bool) -> KCView?
 
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
@@ -89,6 +89,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#endif
 
 	private var	mValueTable:		CNNativeValueTable
+	private var	mIsEditable:		Bool
 	private var 	mIsReloading:		Bool
 	private var 	mViewTable:		KCViewTable
 	private var	mViewAllocator:		ViewAllocator?
@@ -98,6 +99,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mValueTable	= CNNativeValueTable()
+		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
 		mViewAllocator	= nil
@@ -106,6 +108,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#else
 	public override init(frame: CGRect){
 		mValueTable	= CNNativeValueTable()
+		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
 		mViewAllocator	= nil
@@ -124,6 +127,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	public required init?(coder: NSCoder) {
 		mValueTable	= CNNativeValueTable()
+		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
 		mViewAllocator	= nil
@@ -134,6 +138,11 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		get      { return mValueTable	}
 	}
 
+	public var isEditable: Bool {
+		get	 { return mIsEditable	}
+		set(val) { mIsEditable = val 	}
+	}
+
 	public func setup(frame frm: CGRect, viewAllocator valloc: @escaping ViewAllocator) {
 		mViewAllocator = valloc
 
@@ -141,7 +150,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		mTableView.delegate   = self
 		mTableView.dataSource = self
 
-		mValueTable.setValue(column: 0, row: 0, value: .nullValue)
+		mValueTable.setValue(columnIndex: .number(0), row: 0, value: .nullValue)
 
 		#if os(OSX)
 			mTableView.target			= self
@@ -195,18 +204,35 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		#endif
 	}
 
+	private func allocateView(columnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) -> KCView {
+		if let view = viewInTable(columnIndex: cidx, rowIndex: ridx) {
+			return view
+		}
+		let val = mValueTable.value(columnIndex: cidx, row: ridx)
+		if let valloc = mViewAllocator {
+			if let view = valloc(val, mIsEditable) {
+				setViewToTable(columnIndex: cidx, rowIndex: ridx, view: view)
+				return view
+			}
+		}
+		let newview = valueToView(value: val, isEditable: mIsEditable)
+		setViewToTable(columnIndex: cidx, rowIndex: ridx, view: newview)
+		return newview
+	}
+
+	/*
 	private func allocateView(title ttl: String, row ridx: Int) -> KCView {
 		if let view = viewInTable(columnTitle: ttl, rowIndex: ridx) {
 			return view
 		}
 		let val = mValueTable.value(title: ttl, row: ridx)
 		if let valloc = mViewAllocator {
-			if let view = valloc(val) {
+			if let view = valloc(val, mIsEditable) {
 				setViewToTable(columnTitle: ttl, rowIndex: ridx, view: view)
 				return view
 			}
 		}
-		let newview = valueToView(value: val)
+		let newview = valueToView(value: val, isEditable: mIsEditable)
 		setViewToTable(columnTitle: ttl, rowIndex: ridx, view: newview)
 		return newview
 	}
@@ -217,45 +243,55 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		}
 		let val = mValueTable.value(column: cidx, row: ridx)
 		if let valloc = mViewAllocator {
-			if let view = valloc(val) {
+			if let view = valloc(val, mIsEditable) {
 				setViewToTable(columnIndex: cidx, rowIndex: ridx, view: view)
 				return view
 			}
 		}
-		let newview = valueToView(value: val)
+		let newview = valueToView(value: val, isEditable: mIsEditable)
 		setViewToTable(columnIndex: cidx, rowIndex: ridx, view: newview)
 		return newview
-	}
+	}*/
 
-	private func viewInTable(columnIndex cidx: Int, rowIndex ridx: Int) -> KCView? {
-		return mViewTable.get(column: cidx, row: ridx)
-	}
-
-	private func viewInTable(columnTitle title: String, rowIndex ridx: Int) -> KCView? {
-		if let cidx = mValueTable.titleIndex(by: title) {
-			return mViewTable.get(column: cidx, row: ridx)
-		} else {
+	private func viewInTable(columnIndex cidx: CNNativeValueTable.ColumnIndex, rowIndex ridx: Int) -> KCView? {
+		switch cidx {
+		case .number(let num):
+			return mViewTable.get(column: num, row: ridx)
+		case .title(let str):
+			if let num = mValueTable.titleIndex(by: str) {
+				return mViewTable.get(column: num, row: ridx)
+			} else {
+				return nil
+			}
+		@unknown default:
+			NSLog("Can not happen")
 			return nil
 		}
+
 	}
 
-	private func setViewToTable(columnIndex cidx: Int, rowIndex ridx: Int, view newview: KCView){
-		mViewTable.set(column: cidx, row: ridx, view: newview)
-	}
-
-	private func setViewToTable(columnTitle title: String, rowIndex ridx: Int, view newview: KCView){
-		if let cidx = mValueTable.titleIndex(by: title) {
-			mViewTable.set(column: cidx, row: ridx, view: newview)
-		} else {
-			CNLog(logLevel: .error, message: "Failed to set new view: title=\(title)", atFunction: #function, inFile: #file)
+	private func setViewToTable(columnIndex cidx: CNNativeValueTable.ColumnIndex, rowIndex ridx: Int, view newview: KCView){
+		switch cidx {
+		case .number(let num):
+			mViewTable.set(column: num, row: ridx, view: newview)
+		case .title(let str):
+			if let num = mValueTable.titleIndex(by: str) {
+				mViewTable.set(column: num, row: ridx, view: newview)
+			} else {
+				CNLog(logLevel: .error, message: "Failed to set new view: title=\(str)", atFunction: #function, inFile: #file)
+			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 		}
 	}
 
-	private func valueToView(value val: CNNativeValue) -> KCView {
+	private func valueToView(value val: CNNativeValue, isEditable edt: Bool) -> KCView {
 		let result: KCView
 		switch val {
 		case .stringValue(let str):
-			result = textToView(text: str)
+			let view = textToView(text: str)
+			view.isEditable = edt
+			result = view
 		case .imageValue(let img):
 			let view = KCImageView()
 			view.set(image: img)
@@ -271,7 +307,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		return result
 	}
 
-	private func textToView(text txt: String) -> KCView {
+	private func textToView(text txt: String) -> KCTextEdit {
 		let textview  = KCTextEdit()
 		textview.text = txt
 		textview.isBezeled = false
@@ -286,7 +322,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			var width:  CGFloat = 0.0
 			var height: CGFloat = 0.0
 			for ridx in 0..<mTableView.numberOfRows {
-				let view  = allocateView(column: cidx, row: ridx)
+				let view  = allocateView(columnIndex: .number(cidx), row: ridx)
 				let fsize = view.intrinsicContentSize
 				width     = max(width, fsize.width + space.width)
 				height    += fsize.height + space.height
@@ -304,9 +340,17 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		}
 		return result
 	}
-	#endif
 
-	#if os(OSX)
+	@IBAction func mCellAction(_ sender: Any) {
+		if mIsEditable {
+			let cidx = mTableView.clickedColumn
+			let ridx = mTableView.clickedRow
+			if let view = mViewTable.get(column: cidx, row: ridx) {
+				view.becomeFirstResponder()
+			}
+		}
+	}
+
 	@objc func doubleClicked(sender: AnyObject) {
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
@@ -319,6 +363,19 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		} else {
 			print("double clicked col:\(colidx) row:\(rowidx)")
 		}
+	}
+
+	public override var acceptsFirstResponder: Bool {
+		get { return mIsEditable }
+	}
+
+	public override func becomeFirstResponder() -> Bool {
+		let cidx = mTableView.clickedColumn
+		let ridx = mTableView.clickedRow
+		if let view = mViewTable.get(column: cidx, row: ridx) {
+			return view.becomeFirstResponder()
+		}
+		return false
 	}
 	#endif
 
@@ -366,7 +423,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row ridx: Int) -> NSView? {
 		if let col = tableColumn {
-			let result = allocateView(title: col.title, row: ridx)
+			let result = allocateView(columnIndex: .title(col.title), row: ridx)
 			requestLayoutIfAllViewsHadBeenAllocated()
 			return result
 		}
@@ -375,12 +432,10 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 
 	public func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		NSLog("shouldSelectRow: \(row)")
 		return false
 	}
 
 	public func tableView(_ tableView: NSTableView, shouldSelect tableColumn: NSTableColumn?) -> Bool {
-		NSLog("shouldSelectColumn: \(String(describing: tableColumn?.description))")
 		return false
 	}
 	#endif
@@ -395,7 +450,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 		if let col = tableColumn {
-			return mValueTable.value(title: col.title, row: row)
+			return mValueTable.value(columnIndex: .title(col.title), row: row)
 		} else {
 			CNLog(logLevel: .error, message: "No valid column")
 			return nil
@@ -404,7 +459,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
 		if let col = tableColumn, let val = object as? CNNativeValue {
-			mValueTable.setValue(title: col.title, row: row, value: val)
+			mValueTable.setValue(columnIndex: .title(col.title), row: row, value: val)
 		} else {
 			CNLog(logLevel: .error, message: "No valid column")
 		}
@@ -463,7 +518,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 
 	public func view(atColumn cidx: Int, row ridx: Int) -> KCView? {
-		let newview = allocateView(column: cidx, row: ridx)
+		let newview = allocateView(columnIndex: .number(cidx), row: ridx)
 		requestLayoutIfAllViewsHadBeenAllocated()
 		return newview
 	}
@@ -479,13 +534,13 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, heightOfRow ridx: Int) -> CGFloat {
-		let view = allocateView(column: 0, row: ridx)
+		let view = allocateView(columnIndex: .number(0), row: ridx)
 		let size = view.intrinsicContentSize
 		return size.height
 	}
 
 	public func tableView(_ tableView: NSTableView, sizeToFitWidthOfColumn cidx: Int) -> CGFloat {
-		let view = allocateView(column: cidx, row: 0)
+		let view = allocateView(columnIndex: .number(cidx), row: 0)
 		let size = view.intrinsicContentSize
 		return size.width
 	}

@@ -53,8 +53,8 @@ open class KCTableView : KCCoreView
 		if let newview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
 			setCoreView(view: newview)
 			newview.setup(frame: self.frame, viewAllocator: {
-				(_ val: CNNativeValue) -> KCView? in
-				return self.valueToView(value: val)
+				(_ val: CNNativeValue, _ editable: Bool) -> KCView? in
+				return self.valueToView(value: val, isEditable: editable)
 			})
 			allocateSubviewLayout(subView: newview)
 		} else {
@@ -70,6 +70,11 @@ open class KCTableView : KCCoreView
 		get { return coreView.valueTable }
 	}
 
+	public var isEditable: Bool {
+		get      { return coreView.isEditable }
+		set(val) { coreView.isEditable = val }
+	}
+
 	public func view(atColumn col: Int, row rw: Int) -> KCView? {
 		return coreView.view(atColumn: col, row: rw)
 	}
@@ -79,7 +84,7 @@ open class KCTableView : KCCoreView
 		set(cbfunc) { coreView.cellPressedCallback = cbfunc }
 	}
 
-	open func valueToView(value val: CNNativeValue) -> KCView? {
+	open func valueToView(value val: CNNativeValue, isEditable edt: Bool) -> KCView? {
 		return nil
 	}
 
