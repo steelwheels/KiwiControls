@@ -75,6 +75,44 @@ private class KCViewTable
 		}
 		return filled
 	}
+
+	#if os(OSX)
+	public func linkResponders() {
+		var prevresponder: KCResponder? = nil
+		for ridx in 0..<mRowCount {
+			for cidx in 0..<mColumnCount {
+				if let view = self.get(column: cidx, row: ridx) {
+					if view.acceptsFirstResponder {
+						if let prev = prevresponder {
+							prev.nextResponder = view
+						}
+						prevresponder = view
+					}
+				}
+			}
+		}
+	}
+
+	public func selectNextView(verticalDir vert: Bool, column cidx: Int, row ridx: Int) -> KCView? {
+		if vert {
+			if ridx + 1 < mRowCount {
+				return self.get(column: cidx,     row: ridx + 1)
+			} else if cidx + 1 < mColumnCount {
+				return self.get(column: cidx + 1, row: 0       )
+			} else {
+				return nil
+			}
+		} else {
+			if cidx + 1 < mColumnCount {
+				return self.get(column: cidx + 1, row: ridx    )
+			} else if ridx + 1 < mRowCount {
+				return self.get(column: 0,        row: ridx + 1)
+			} else {
+				return nil
+			}
+		}
+	}
+	#endif
 }
 
 
@@ -215,43 +253,10 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 				return view
 			}
 		}
-		let newview = valueToView(value: val, isEditable: mIsEditable)
+		let newview = valueToView(value: val, isEditable: mIsEditable, atColumnIndex: cidx, row: ridx)
 		setViewToTable(columnIndex: cidx, rowIndex: ridx, view: newview)
 		return newview
 	}
-
-	/*
-	private func allocateView(title ttl: String, row ridx: Int) -> KCView {
-		if let view = viewInTable(columnTitle: ttl, rowIndex: ridx) {
-			return view
-		}
-		let val = mValueTable.value(title: ttl, row: ridx)
-		if let valloc = mViewAllocator {
-			if let view = valloc(val, mIsEditable) {
-				setViewToTable(columnTitle: ttl, rowIndex: ridx, view: view)
-				return view
-			}
-		}
-		let newview = valueToView(value: val, isEditable: mIsEditable)
-		setViewToTable(columnTitle: ttl, rowIndex: ridx, view: newview)
-		return newview
-	}
-
-	private func allocateView(column cidx: Int, row ridx: Int) -> KCView {
-		if let view = viewInTable(columnIndex: cidx, rowIndex: ridx) {
-			return view
-		}
-		let val = mValueTable.value(column: cidx, row: ridx)
-		if let valloc = mViewAllocator {
-			if let view = valloc(val, mIsEditable) {
-				setViewToTable(columnIndex: cidx, rowIndex: ridx, view: view)
-				return view
-			}
-		}
-		let newview = valueToView(value: val, isEditable: mIsEditable)
-		setViewToTable(columnIndex: cidx, rowIndex: ridx, view: newview)
-		return newview
-	}*/
 
 	private func viewInTable(columnIndex cidx: CNNativeValueTable.ColumnIndex, rowIndex ridx: Int) -> KCView? {
 		switch cidx {
@@ -267,7 +272,6 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			NSLog("Can not happen")
 			return nil
 		}
-
 	}
 
 	private func setViewToTable(columnIndex cidx: CNNativeValueTable.ColumnIndex, rowIndex ridx: Int, view newview: KCView){
@@ -285,12 +289,11 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		}
 	}
 
-	private func valueToView(value val: CNNativeValue, isEditable edt: Bool) -> KCView {
+	private func valueToView(value val: CNNativeValue, isEditable edt: Bool, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) -> KCView {
 		let result: KCView
 		switch val {
 		case .stringValue(let str):
-			let view = textToView(text: str)
-			view.isEditable = edt
+			let view = textToView(text: str, atColumnIndex: cidx, row: ridx, isEditable: edt)
 			result = view
 		case .imageValue(let img):
 			let view = KCImageView()
@@ -298,7 +301,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			result = view
 		default:
 			let str = val.toText().toStrings().joined(separator: "\n")
-			result = textToView(text: str)
+			result = textToView(text: str, atColumnIndex: cidx, row: ridx, isEditable: edt)
 		}
 		#if os(OSX)
 		let size = result.fittingSize
@@ -307,12 +310,35 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 		return result
 	}
 
-	private func textToView(text txt: String) -> KCTextEdit {
+	private func textToView(text txt: String, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int, isEditable edt: Bool) -> KCTextEdit {
 		let textview  = KCTextEdit()
-		textview.text = txt
-		textview.isBezeled = false
+		textview.text       = txt
+		textview.isEditable = edt
+		textview.isBezeled  = false
+		textview.callbackFunction = {
+			(_ value: CNNativeValue) -> Void in
+			self.didEndEditing(value: value, atColumnIndex: cidx, row: ridx)
+			#if os(OSX)
+			self.selectNextResponder(verticalDir: true, column: cidx, row: ridx)
+			#endif
+		}
 		return textview
 	}
+
+	public var firstResponderView: KCView? { get {
+		if mIsEditable {
+			#if os(OSX)
+			let cidx = max(mTableView.selectedColumn, 0)
+			let ridx = max(mTableView.selectedRow, 0)
+			#else
+			let cidx = 0
+			let ridx = 0
+			#endif
+			return mViewTable.get(column: cidx, row: ridx)
+		} else {
+			return nil
+		}
+	}}
 
 	#if os(OSX)
 	private func calcContentSize() -> KCSize {
@@ -346,7 +372,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 			let cidx = mTableView.clickedColumn
 			let ridx = mTableView.clickedRow
 			if let view = mViewTable.get(column: cidx, row: ridx) {
-				view.becomeFirstResponder()
+				notify(viewControlEvent: .switchFirstResponder(view))
 			}
 		}
 	}
@@ -370,15 +396,34 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 
 	public override func becomeFirstResponder() -> Bool {
-		let cidx = mTableView.clickedColumn
-		let ridx = mTableView.clickedRow
-		if let view = mViewTable.get(column: cidx, row: ridx) {
-			return view.becomeFirstResponder()
-		}
-		return false
+		return mTableView.becomeFirstResponder()
 	}
+
+	private func selectNextResponder(verticalDir vert: Bool, column cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) {
+		switch cidx {
+		case .number(let cnum):
+			if let nxtview = mViewTable.selectNextView(verticalDir: vert, column: cnum, row: ridx) {
+				notify(viewControlEvent: .switchFirstResponder(nxtview))
+			}
+		case .title(let str):
+			if let cnum = mValueTable.titleIndex(by: str) {
+				if let nxtview = mViewTable.selectNextView(verticalDir: vert, column: cnum, row: ridx) {
+					notify(viewControlEvent: .switchFirstResponder(nxtview))
+				}
+			} else {
+				CNLog(logLevel: .error, message: "Invalid column index", atFunction: #function, inFile: #file)
+			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+		}
+	}
+
 	#endif
 
+	open func didEndEditing(value val: CNNativeValue, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) {
+		NSLog("KCTableViewCore] DidEndEditing \(val.toText().toStrings().joined(separator: "\n"))")
+	}
+	
 	public var hasGrid: Bool {
 		get {
 			#if os(OSX)
@@ -525,12 +570,16 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 
 	private func requestLayoutIfAllViewsHadBeenAllocated() {
 		if mIsReloading && mViewTable.isFilled() {
+			/* Link responder chain */
+			#if os(OSX)
+			mViewTable.linkResponders()
+			#endif
+			/* Request reload*/
 			self.invalidateIntrinsicContentSize()
 			self.notify(viewControlEvent: .updateSize)
 			mIsReloading = false
 		}
 	}
-
 
 	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, heightOfRow ridx: Int) -> CGFloat {

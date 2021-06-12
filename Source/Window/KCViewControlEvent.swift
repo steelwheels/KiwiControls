@@ -15,10 +15,11 @@ import CoconutData
 public enum KCViewControlEvent {
 	case none
 	case updateSize
+	case switchFirstResponder(KCView)
 }
 
 public protocol KCViewControlEventReceiver {
-	func updateWindowSize(viewControlEvent event: KCViewControlEvent)
+	func notifyControlEvent(viewControlEvent event: KCViewControlEvent)
 }
 
 extension KCResponder {
@@ -26,7 +27,7 @@ extension KCResponder {
 		var responder: KCResponder? = self
 		while responder != nil {
 			if let receiver = responder as? KCViewControlEventReceiver {
-				let _ = receiver.updateWindowSize(viewControlEvent: event)
+				let _ = receiver.notifyControlEvent(viewControlEvent: event)
 			}
 			responder = responder?.next
 		}

@@ -9,7 +9,7 @@ import KiwiControls
 import CoconutData
 import Cocoa
 
-class ViewController: NSViewController
+class ViewController: KCViewController, KCViewControlEventReceiver
 {
 	@IBOutlet weak var mTableView: KCTableView!
 
@@ -43,6 +43,38 @@ class ViewController: NSViewController
 	override var representedObject: Any? {
 		didSet {
 		// Update the view, if already loaded.
+		}
+	}
+
+	public override func viewDidAppear() {
+		if let window = self.view.window {
+			/* decide 1st responder */
+			if let resp = mTableView.firstResponderView {
+				window.makeFirstResponder(resp)
+			}
+		} else {
+			CNLog(logLevel: .error, message: "No window at \(#function)")
+		}
+	}
+
+	public func notifyControlEvent(viewControlEvent event: KCViewControlEvent) {
+		switch event {
+		case .none:
+			CNLog(logLevel: .detail, message: "Control event: none", atFunction: #function, inFile: #file)
+		case .updateSize:
+			CNLog(logLevel: .detail, message: "Update window size", atFunction: #function, inFile: #file)
+		case .switchFirstResponder(let newview):
+			NSLog("switchFirstResponder (0)")
+			if let window = self.view.window {
+				NSLog("switchFirstResponder (1)")
+				if window.makeFirstResponder(newview) {
+					NSLog("makeFirstResponder -> Succeess")
+				} else {
+					NSLog("makeFirstResponder -> Fail")
+				}
+			} else {
+				CNLog(logLevel: .error, message: "Failed to switch first responder", atFunction: #function, inFile: #file)
+			}
 		}
 	}
 }

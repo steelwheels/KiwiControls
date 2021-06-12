@@ -163,7 +163,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		#endif
 	}
 
-	public func updateWindowSize(viewControlEvent event: KCViewControlEvent) {
+	public func notifyControlEvent(viewControlEvent event: KCViewControlEvent) {
 		if let root = mRootView {
 			switch event {
 			case .none:
@@ -175,9 +175,19 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 				#endif
 				root.invalidateIntrinsicContentSize()
 				root.requireLayout()
+			case .switchFirstResponder(let newview):
+				#if os(OSX)
+					if let window = self.view.window {
+						window.makeFirstResponder(newview)
+					} else {
+						CNLog(logLevel: .error, message: "Failed to switch first responder", atFunction: #function, inFile: #file)
+					}
+				#else
+					newview.becomeFirstResponder()
+				#endif
 			}
 		} else {
-			CNLog(logLevel: .error, message: "updateWindowSize ... skipped", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "No root view", atFunction: #function, inFile: #file)
 		}
 	}
 

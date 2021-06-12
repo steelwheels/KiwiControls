@@ -32,6 +32,11 @@ public class KCFirstResponderDecider
 				mWindow.makeFirstResponder(base)
 				return true
 			}
+		} else if let table = base as? KCTableView {
+			if let resp = table.firstResponderView {
+				mWindow.makeFirstResponder(resp)
+				return true
+			}
 		}
 		for view in base.subviews {
 			if searchFirstResponder(view: view) {
@@ -41,7 +46,6 @@ public class KCFirstResponderDecider
 		return false
 	}
 
-	#if os(OSX)
 	private func isTextView(view v: KCViewBase) -> Bool {
 		let result: Bool
 		if let t = v as? NSTextField {
@@ -53,7 +57,6 @@ public class KCFirstResponderDecider
 		}
 		return result
 	}
-	#endif
 }
 
 #endif // os(OSX)

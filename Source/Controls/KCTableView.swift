@@ -75,6 +75,10 @@ open class KCTableView : KCCoreView
 		set(val) { coreView.isEditable = val }
 	}
 
+	public var firstResponderView: KCView? { get {
+		return coreView.firstResponderView
+	}}
+
 	public func view(atColumn col: Int, row rw: Int) -> KCView? {
 		return coreView.view(atColumn: col, row: rw)
 	}
