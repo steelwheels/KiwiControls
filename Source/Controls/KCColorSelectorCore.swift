@@ -13,7 +13,7 @@ import UIKit
 import CoconutData
 import Foundation
 
-open class KCColorSelectorCore: KCView
+open class KCColorSelectorCore: KCCoreView
 {
 	public typealias CallbackFunction = (_ color: CNColor) -> Void
 
@@ -30,8 +30,10 @@ open class KCColorSelectorCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void {
 		#if os(OSX)
+			super.setup(coreView: mColorWell)
 			KCView.setAutolayoutMode(views: [self, mColorWell])
 		#else
+			super.setup(coreView: mButton)
 			KCView.setAutolayoutMode(views: [self, mButton])
 		#endif
 		connectObserver()

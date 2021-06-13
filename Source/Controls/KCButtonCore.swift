@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-public class KCButtonCore: KCView
+public class KCButtonCore: KCCoreView
 {
 	#if os(iOS)
 	@IBOutlet weak var mButton: UIButton!
@@ -23,6 +23,7 @@ public class KCButtonCore: KCView
 	public var buttonPressedCallback: (() -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
+		super.setup(coreView: mButton)
 		KCView.setAutolayoutMode(views: [self, mButton])
 	}
 

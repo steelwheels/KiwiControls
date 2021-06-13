@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-public class KCStepperCore: KCView
+public class KCStepperCore: KCCoreView
 {
 	#if os(iOS)
 	@IBOutlet weak var	mTextField:	UILabel!
@@ -26,6 +26,7 @@ public class KCStepperCore: KCView
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
+		super.setup(coreView: mStepper)
 		KCView.setAutolayoutMode(views: [self, mTextField, mStepper])
 		#if os(iOS)
 			mTextField.text = ""

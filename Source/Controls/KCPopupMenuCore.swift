@@ -13,7 +13,7 @@ import UIKit
 import CoconutData
 import Foundation
 
-open class KCPopupMenuCore: KCView
+open class KCPopupMenuCore: KCCoreView
 {
 	public typealias CallbackFunction = (_ index: Int, _ title: String?) -> Void
 
@@ -27,8 +27,10 @@ open class KCPopupMenuCore: KCView
 
 	public func setup(frame frm: CGRect) -> Void {
 		#if os(OSX)
+			super.setup(coreView: mPopupButton)
 			KCView.setAutolayoutMode(views: [self, mPopupButton])
 		#else
+			super.setup(coreView: mPickerView)
 			KCView.setAutolayoutMode(views: [self, mPickerView])
 		#endif
 		#if os(OSX)

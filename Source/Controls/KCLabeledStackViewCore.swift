@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCLabeledStackViewCore : KCView
+open class KCLabeledStackViewCore : KCCoreView
 {
 	#if os(OSX)
 	@IBOutlet weak var mTextField: NSTextField!
@@ -23,6 +23,7 @@ open class KCLabeledStackViewCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect) -> Void {
+		super.setup(coreView: mStackView)
 		KCView.setAutolayoutMode(views: [self, mTextField, mStackView])
 		self.title = "Title"
 	}

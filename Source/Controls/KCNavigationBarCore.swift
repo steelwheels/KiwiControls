@@ -9,7 +9,7 @@ import CoconutData
 import SpriteKit
 import Foundation
 
-open class KCNavigationBarCore: KCView
+open class KCNavigationBarCore: KCCoreView
 {
 	public var leftBarButtonPressedCallback		: (() -> Void)? = nil
 	public var rightBarButtonPressedCallback	: (() -> Void)? = nil
@@ -28,6 +28,7 @@ open class KCNavigationBarCore: KCView
 
 
 	public func setup(frame frm: CGRect){
+		super.setup(coreView: mNavigationBar)
 		#if os(OSX)
 		KCView.setAutolayoutMode(views: [self, mNavigationBar, mNavigationItem, leftBarButton, rightBarButton])
 		#else

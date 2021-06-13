@@ -18,7 +18,7 @@ public protocol NSTextFieldDelegate {
 }
 #endif
 
-open class KCTextEditCore : KCView, NSTextFieldDelegate
+open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 {
 	public enum Format {
 		case text
@@ -39,6 +39,7 @@ open class KCTextEditCore : KCView, NSTextFieldDelegate
 	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
+		super.setup(coreView: mTextEdit)
 		KCView.setAutolayoutMode(views: [self, mTextEdit])
 		#if os(OSX)
 		if let cell = mTextEdit.cell {

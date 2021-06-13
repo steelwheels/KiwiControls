@@ -20,7 +20,7 @@ public class KCIconButtonCell: NSButtonCell {
 }
 #endif
 
-open class KCIconViewCore : KCView
+open class KCIconViewCore : KCCoreView
 {
 	public var buttonPressedCallback: (() -> Void)? = nil
 
@@ -36,6 +36,7 @@ open class KCIconViewCore : KCView
 	private var mOriginalImageSize	= KCSize.zero
 
 	public func setup(frame frm: CGRect){
+		super.setup(coreView: mImageButton)
 		KCView.setAutolayoutMode(views: [self, mImageButton])
 		self.title = "Untitled"
 		#if os(OSX)

@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
+open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegate
 {
 	#if os(OSX)
 	@IBOutlet var mTextView: NSTextView!
@@ -108,6 +108,7 @@ open class KCTextViewCore : KCView, KCTextViewDelegate, NSTextStorageDelegate
 	}
 
 	public func setup(frame frm: CGRect){
+		super.setup(coreView: mTextView)
 		let tpref = CNPreference.shared.terminalPreference
 
 		/* Set delegate */

@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCStackViewCore : KCView
+open class KCStackViewCore : KCCoreView
 {
 	#if os(OSX)
 	@IBOutlet weak var mStackView: NSStackView!
@@ -29,6 +29,7 @@ open class KCStackViewCore : KCView
 	#endif
 
 	public func setup(frame frm: CGRect) {
+		super.setup(coreView: mStackView)
 		KCView.setAutolayoutMode(views: [self, mStackView])
 
 		mStackView.spacing = CNPreference.shared.windowPreference.spacing

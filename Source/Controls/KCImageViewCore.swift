@@ -12,7 +12,7 @@ import UIKit
 #endif
 import CoconutData
 
-open class KCImageViewCore : KCView
+open class KCImageViewCore : KCCoreView
 {
 	#if os(OSX)
 	@IBOutlet weak var mImageView: NSImageView!
@@ -24,6 +24,7 @@ open class KCImageViewCore : KCView
 	private var mScale: 		CGFloat  = 1.0
 
 	public func setup(frame frm: CGRect){
+		super.setup(coreView: mImageView)
 		KCView.setAutolayoutMode(views: [self, mImageView])
 		#if os(OSX)
 			mImageView.imageScaling = .scaleProportionallyUpOrDown

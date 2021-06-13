@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-public class KCCheckBoxCore: KCView
+public class KCCheckBoxCore: KCCoreView
 {
 	#if os(iOS)
 	@IBOutlet weak var mSwitch: UISwitch!
@@ -26,8 +26,10 @@ public class KCCheckBoxCore: KCView
 	public func setup(frame frm: CGRect) -> Void
 	{
 		#if os(OSX)
+			super.setup(coreView: mCheckBox)
 			KCView.setAutolayoutMode(views: [self, mCheckBox])
 		#else
+			super.setup(coreView: mSwitch)
 			KCView.setAutolayoutMode(views: [self, mSwitch, mLabel])
 		#endif
 	}

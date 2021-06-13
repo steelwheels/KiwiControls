@@ -116,7 +116,7 @@ private class KCViewTable
 }
 
 
-open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
+open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSource
 {
 	public typealias ViewAllocator = (_ value: CNNativeValue, _ iseditable: Bool) -> KCView?
 
@@ -182,6 +182,7 @@ open class KCTableViewCore : KCView, KCTableViewDelegate, KCTableViewDataSource
 	}
 
 	public func setup(frame frm: CGRect, viewAllocator valloc: @escaping ViewAllocator) {
+		super.setup(coreView: mTableView)
 		mViewAllocator = valloc
 
 		KCView.setAutolayoutMode(views: [self, mTableView])
