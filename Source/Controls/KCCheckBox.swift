@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCCheckBox: KCInterfaceView
+open class KCCheckBox: KCCoreView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){

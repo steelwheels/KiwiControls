@@ -12,7 +12,7 @@ import UIKit
 #endif
 import CoconutData
 
-open class KCNavigationBar : KCInterfaceView
+open class KCNavigationBar : KCCoreView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){

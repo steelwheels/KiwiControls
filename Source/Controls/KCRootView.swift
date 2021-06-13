@@ -12,7 +12,7 @@ import Cocoa
 import UIKit
 #endif
 
-open class KCRootView: KCInterfaceView
+open class KCRootView: KCCoreView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){

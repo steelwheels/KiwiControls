@@ -10,7 +10,7 @@ import Foundation
 public class KCDistributionDecider: KCViewVisitor
 {
 	open override func visit(rootView view: KCRootView){
-		let coreview: KCInterfaceView = view.getCoreView()
+		let coreview: KCCoreView = view.getCoreView()
 		coreview.accept(visitor: self)
 	}
 
@@ -27,7 +27,7 @@ public class KCDistributionDecider: KCViewVisitor
 		view.contentsView.accept(visitor: self)
 	}
 
-	open override func visit(coreView view: KCInterfaceView){
+	open override func visit(coreView view: KCCoreView){
 		/* Do nothing */
 	}
 

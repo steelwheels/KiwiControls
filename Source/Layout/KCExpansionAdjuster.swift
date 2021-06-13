@@ -16,7 +16,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	var axis: CNAxis = .vertical
 
 	open override func visit(rootView view: KCRootView){
-		let coreview: KCInterfaceView = view.getCoreView()
+		let coreview: KCCoreView = view.getCoreView()
 		coreview.accept(visitor: self)
 
 		let prival = ExpansionPriorities(holizontalHugging: 	.high,
@@ -219,7 +219,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
-	open override func visit(coreView view: KCInterfaceView){
+	open override func visit(coreView view: KCCoreView){
 		CNLog(logLevel: .error, message: "KCExpansionAdjustor.visit(coreView) : \(view.description)")
 	}
 }

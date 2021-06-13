@@ -162,7 +162,7 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
-	open override func visit(coreView view: KCInterfaceView){
+	open override func visit(coreView view: KCCoreView){
 		let section = CNTextSection()
 
 		section.header = "class :" + String(describing: type(of: view)) + " {"
@@ -223,7 +223,7 @@ public class KCViewDumper: KCViewVisitor
 		mSection = section
 	}
 
-	private func constraintDescription(constraint constr: NSLayoutConstraint, ownerView owner: KCInterfaceView, coreView core: KCView) -> CNText {
+	private func constraintDescription(constraint constr: NSLayoutConstraint, ownerView owner: KCCoreView, coreView core: KCView) -> CNText {
 		var result = "{"
 		if constr.isActive {
 			if let item = constr.firstItem as? KCView {
@@ -241,7 +241,7 @@ public class KCViewDumper: KCViewVisitor
 		return CNTextLine(string: result)
 	}
 
-	private func constraintItemDescription(item view: KCView, attribute attr: NSLayoutConstraint.Attribute, ownerView owner: KCInterfaceView, coreView core: KCView) -> String {
+	private func constraintItemDescription(item view: KCView, attribute attr: NSLayoutConstraint.Attribute, ownerView owner: KCCoreView, coreView core: KCView) -> String {
 		let ident: String
 		if view == owner {
 			ident = "self"

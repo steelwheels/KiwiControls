@@ -12,7 +12,7 @@ import UIKit
 #endif
 import CoconutData
 
-open class KCImageView: KCInterfaceView
+open class KCImageView: KCCoreView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){

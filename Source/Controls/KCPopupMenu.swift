@@ -12,7 +12,7 @@ import UIKit
 #endif
 import CoconutData
 
-open class KCPopupMenu : KCInterfaceView
+open class KCPopupMenu : KCCoreView
 {
 	public typealias CallbackFunction = KCPopupMenuCore.CallbackFunction
 
