@@ -83,7 +83,7 @@ public class KCViewVisitor
 	open func visit(bitmapView view: KCBitmapView){
 	}
 
-	open func visit(coreView view: KCCoreView){
+	open func visit(coreView view: KCInterfaceView){
 	}
 }
 

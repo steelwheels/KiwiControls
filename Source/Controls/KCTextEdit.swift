@@ -12,7 +12,7 @@ import UIKit
 #endif
 import CoconutData
 
-open class KCTextEdit : KCCoreView
+open class KCTextEdit : KCInterfaceView
 {
 	public typealias Format		  = KCTextEditCore.Format
 	public typealias CallbackFunction = KCTextEditCore.CallbackFunction

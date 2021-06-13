@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCTableView : KCCoreView
+open class KCTableView : KCInterfaceView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){
