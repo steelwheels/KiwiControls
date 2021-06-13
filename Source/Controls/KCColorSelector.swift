@@ -12,7 +12,7 @@ import UIKit
 #endif
 import CoconutData
 
-open class KCColorSelector : KCCoreView
+open class KCColorSelector : KCInterfaceView
 {
 	public typealias CallbackFunction = KCColorSelectorCore.CallbackFunction
 

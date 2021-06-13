@@ -1,8 +1,8 @@
 /**
- * @file	KCCoreView.swift
- * @brief	Define KCCoreView class
+ * @file	KCInterfaceView.swift
+ * @brief	Define KCInterfaceView class
  * @par Copyright
- *   Copyright (C) 2017-2020 Steel Wheels Project
+ *   Copyright (C) 2017-2021 Steel Wheels Project
  */
 
 import Foundation
@@ -13,7 +13,7 @@ import CoconutData
 	import UIKit
 #endif
 
-open class KCCoreView: KCView
+open class KCInterfaceView: KCView
 {
 	private var mCoreView:	KCView? = nil
 

@@ -12,7 +12,7 @@
 #endif
 import CoconutData
 
-open class KCButton: KCCoreView
+open class KCButton: KCInterfaceView
 {
 	#if os(OSX)
 	public override init(frame : NSRect){
