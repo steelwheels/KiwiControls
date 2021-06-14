@@ -23,7 +23,7 @@ open class KCLabeledStackViewCore : KCCoreView
 	#endif
 
 	public func setup(frame frm: CGRect) -> Void {
-		super.setup(coreView: mStackView)
+		super.setup(isSingleView: false, coreView: mStackView)
 		KCView.setAutolayoutMode(views: [self, mTextField, mStackView])
 		self.title = "Title"
 	}
@@ -35,7 +35,6 @@ open class KCLabeledStackViewCore : KCCoreView
 
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
-
 		let space = CNPreference.shared.windowPreference.spacing
 		let totalheight = newsize.height
 		var labelheight = mTextField.frame.size.height
@@ -66,7 +65,6 @@ open class KCLabeledStackViewCore : KCCoreView
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
 		mTextField.invalidateIntrinsicContentSize()
-		mStackView.invalidateIntrinsicContentSize()
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {

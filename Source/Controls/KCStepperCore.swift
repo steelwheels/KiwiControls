@@ -26,7 +26,7 @@ public class KCStepperCore: KCCoreView
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
-		super.setup(coreView: mStepper)
+		super.setup(isSingleView: false, coreView: mStepper)
 		KCView.setAutolayoutMode(views: [self, mTextField, mStepper])
 		#if os(iOS)
 			mTextField.text = ""
@@ -70,7 +70,6 @@ public class KCStepperCore: KCCoreView
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
 		mTextField.invalidateIntrinsicContentSize()
-		mStepper.invalidateIntrinsicContentSize()
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {

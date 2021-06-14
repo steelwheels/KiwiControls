@@ -23,26 +23,12 @@ public class KCButtonCore: KCCoreView
 	public var buttonPressedCallback: (() -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
-		super.setup(coreView: mButton)
+		super.setup(isSingleView: true, coreView: mButton)
 		KCView.setAutolayoutMode(views: [self, mButton])
-	}
-
-	open override func setFrameSize(_ newsize: KCSize) {
-		super.setFrameSize(newsize)
-		#if os(OSX)
-			mButton.setFrameSize(newsize)
-		#else
-			mButton.setFrameSize(size: newsize)
-		#endif
 	}
 
 	open override var intrinsicContentSize: KCSize {
 		get { return mButton.intrinsicContentSize }
-	}
-
-	public override func invalidateIntrinsicContentSize() {
-		super.invalidateIntrinsicContentSize()
-		mButton.invalidateIntrinsicContentSize()
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {

@@ -29,7 +29,7 @@ open class KCStackViewCore : KCCoreView
 	#endif
 
 	public func setup(frame frm: CGRect) {
-		super.setup(coreView: mStackView)
+		super.setup(isSingleView: true, coreView: mStackView)
 		KCView.setAutolayoutMode(views: [self, mStackView])
 
 		mStackView.spacing = CNPreference.shared.windowPreference.spacing
@@ -191,15 +191,6 @@ open class KCStackViewCore : KCCoreView
 		}
 	}
 
-	open override func setFrameSize(_ newsize: KCSize) {
-		super.setFrameSize(newsize)
-		#if os(OSX)
-			mStackView.setFrameSize(newsize)
-		#else
-			mStackView.setFrameSize(size: newsize)
-		#endif
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get {
 			let dovert = (axis == .vertical)
@@ -213,11 +204,6 @@ open class KCStackViewCore : KCCoreView
 			CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
 			return result
 		}
-	}
-
-	public override func invalidateIntrinsicContentSize() {
-		super.invalidateIntrinsicContentSize()
-		mStackView.invalidateIntrinsicContentSize()
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {

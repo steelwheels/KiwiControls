@@ -108,7 +108,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public func setup(frame frm: CGRect){
-		super.setup(coreView: mTextView)
+		super.setup(isSingleView: false, coreView: mTextView)
 		let tpref = CNPreference.shared.terminalPreference
 
 		/* Set delegate */
@@ -435,6 +435,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
 		#if os(OSX)
 			mScrollView.setFrameSize(newsize)
 			let barwidth = scrollBarWidth()
@@ -443,7 +444,6 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		#else
 			mTextView.setFrameSize(size: newsize)
 		#endif
-		super.setFrameSize(newsize)
 		/* Update terminal size info */
 		updateTerminalSize()
 	}

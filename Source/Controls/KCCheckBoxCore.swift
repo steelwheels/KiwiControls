@@ -26,10 +26,10 @@ public class KCCheckBoxCore: KCCoreView
 	public func setup(frame frm: CGRect) -> Void
 	{
 		#if os(OSX)
-			super.setup(coreView: mCheckBox)
+			super.setup(isSingleView: true, coreView: mCheckBox)
 			KCView.setAutolayoutMode(views: [self, mCheckBox])
 		#else
-			super.setup(coreView: mSwitch)
+			super.setup(isSingleView: false, coreView: mSwitch)
 			KCView.setAutolayoutMode(views: [self, mSwitch, mLabel])
 		#endif
 	}
@@ -46,8 +46,6 @@ public class KCCheckBoxCore: KCCoreView
 			}
 			mSwitch.setFrameSize(size: KCSize(width: switchwidth, height: newsize.height))
 			mLabel.setFrameSize(size: KCSize(width: labelwidth, height: newsize.height))
-		#else
-			mCheckBox.setFrameSize(newsize)
 		#endif
 	}
 
@@ -68,9 +66,6 @@ public class KCCheckBoxCore: KCCoreView
 		super.invalidateIntrinsicContentSize()
 		#if os(iOS)
 			mLabel.invalidateIntrinsicContentSize()
-			mSwitch.invalidateIntrinsicContentSize()
-		#else
-			mCheckBox.invalidateIntrinsicContentSize()
 		#endif
 	}
 

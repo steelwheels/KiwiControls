@@ -36,7 +36,7 @@ open class KCIconViewCore : KCCoreView
 	private var mOriginalImageSize	= KCSize.zero
 
 	public func setup(frame frm: CGRect){
-		super.setup(coreView: mImageButton)
+		super.setup(isSingleView: false, coreView: mImageButton)
 		KCView.setAutolayoutMode(views: [self, mImageButton])
 		self.title = "Untitled"
 		#if os(OSX)
@@ -117,7 +117,6 @@ open class KCIconViewCore : KCCoreView
 
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
-
 		var labheight = mLabelView.frame.size.height
 		var imgheight = newsize.height - labheight
 		if imgheight < 0.0 {
@@ -127,11 +126,11 @@ open class KCIconViewCore : KCCoreView
 		let labsize = KCSize(width: newsize.width, height: labheight)
 		let imgsize = KCSize(width: newsize.width, height: imgheight)
 		#if os(OSX)
-		mImageButton.setFrameSize(imgsize)
-		mLabelView.setFrameSize(labsize)
+			mImageButton.setFrameSize(imgsize)
+			mLabelView.setFrameSize(labsize)
 		#else
-		mImageButton.setFrameSize(size: imgsize)
-		mLabelView.setFrameSize(size: labsize)
+			mImageButton.setFrameSize(size: imgsize)
+			mLabelView.setFrameSize(size: labsize)
 		#endif
 	}
 
@@ -160,7 +159,7 @@ open class KCIconViewCore : KCCoreView
 
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
-		mImageButton.invalidateIntrinsicContentSize()
+		// The size of image is NOT invalidated
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {

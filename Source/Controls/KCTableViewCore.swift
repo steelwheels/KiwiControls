@@ -182,7 +182,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public func setup(frame frm: CGRect, viewAllocator valloc: @escaping ViewAllocator) {
-		super.setup(coreView: mTableView)
+		super.setup(isSingleView: true, coreView: mTableView)
 		mViewAllocator = valloc
 
 		KCView.setAutolayoutMode(views: [self, mTableView])
@@ -522,15 +522,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#endif
 
-	open override func setFrameSize(_ newsize: KCSize) {
-		super.setFrameSize(newsize)
-		#if os(OSX)
-			mTableView.setFrameSize(newsize)
-		#else
-			mTableView.setFrameSize(size: newsize)
-		#endif
-	}
-
 	open override var intrinsicContentSize: KCSize { get {
 		#if os(OSX)
 		if mViewTable.isFilled() {
@@ -595,11 +586,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		return size.width
 	}
 	#endif
-
-	public override func invalidateIntrinsicContentSize() {
-		super.invalidateIntrinsicContentSize()
-		mTableView.invalidateIntrinsicContentSize()
-	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		mTableView.setExpansionPriorities(priorities: prival)

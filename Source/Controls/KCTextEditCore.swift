@@ -39,7 +39,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
-		super.setup(coreView: mTextEdit)
+		super.setup(isSingleView: true, coreView: mTextEdit)
 		KCView.setAutolayoutMode(views: [self, mTextEdit])
 		#if os(OSX)
 		if let cell = mTextEdit.cell {
@@ -109,15 +109,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		#endif
 	}
 
-	open override func setFrameSize(_ newsize: KCSize) {
-		super.setFrameSize(newsize)
-		#if os(OSX)
-			mTextEdit.setFrameSize(newsize)
-		#else
-			mTextEdit.setFrameSize(size: newsize)
-		#endif
-	}
-
 	#if os(OSX)
 	open override var intrinsicContentSize: KCSize {
 		get {
@@ -161,11 +152,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 
 	public override func becomeFirstResponder() -> Bool {
 		return mTextEdit.becomeFirstResponder()
-	}
-
-	public override func invalidateIntrinsicContentSize() {
-		super.invalidateIntrinsicContentSize()
-		mTextEdit.invalidateIntrinsicContentSize()
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {

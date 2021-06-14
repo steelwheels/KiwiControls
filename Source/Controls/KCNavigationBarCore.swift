@@ -28,7 +28,7 @@ open class KCNavigationBarCore: KCCoreView
 
 
 	public func setup(frame frm: CGRect){
-		super.setup(coreView: mNavigationBar)
+		super.setup(isSingleView: true, coreView: mNavigationBar)
 		#if os(OSX)
 		KCView.setAutolayoutMode(views: [self, mNavigationBar, mNavigationItem, leftBarButton, rightBarButton])
 		#else
@@ -176,7 +176,6 @@ open class KCNavigationBarCore: KCCoreView
 
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
-		mNavigationBar.invalidateIntrinsicContentSize()
 		#if os(OSX)
 		mNavigationItem.invalidateIntrinsicContentSize()
 		leftBarButton.invalidateIntrinsicContentSize()

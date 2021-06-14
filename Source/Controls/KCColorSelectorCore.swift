@@ -30,10 +30,10 @@ open class KCColorSelectorCore: KCCoreView
 
 	public func setup(frame frm: CGRect) -> Void {
 		#if os(OSX)
-			super.setup(coreView: mColorWell)
+			super.setup(isSingleView: true, coreView: mColorWell)
 			KCView.setAutolayoutMode(views: [self, mColorWell])
 		#else
-			super.setup(coreView: mButton)
+			super.setup(isSingleView: true, coreView: mButton)
 			KCView.setAutolayoutMode(views: [self, mButton])
 		#endif
 		connectObserver()
@@ -100,27 +100,8 @@ open class KCColorSelectorCore: KCCoreView
 		}
 	}
 
-	open override func setFrameSize(_ newsize: KCSize) {
-		super.setFrameSize(newsize)
-		#if os(OSX)
-			mColorWell.setFrameSize(newsize)
-		#else
-			mButton.setFrameSize(size: newsize)
-		#endif
-	}
-
 	open override var intrinsicContentSize: KCSize {
 		get { return defaultSize }
-	}
-
-	public override func invalidateIntrinsicContentSize() {
-		super.invalidateIntrinsicContentSize()
-		#if os(OSX)
-			mColorWell.invalidateIntrinsicContentSize()
-		#else
-			mButton.invalidateIntrinsicContentSize()
-		#endif
-
 	}
 
 	public override func setExpandabilities(priorities prival: ExpansionPriorities) {

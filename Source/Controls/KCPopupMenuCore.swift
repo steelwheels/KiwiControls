@@ -27,10 +27,10 @@ open class KCPopupMenuCore: KCCoreView
 
 	public func setup(frame frm: CGRect) -> Void {
 		#if os(OSX)
-			super.setup(coreView: mPopupButton)
+			super.setup(isSingleView: true, coreView: mPopupButton)
 			KCView.setAutolayoutMode(views: [self, mPopupButton])
 		#else
-			super.setup(coreView: mPickerView)
+			super.setup(isSingleView: true, coreView: mPickerView)
 			KCView.setAutolayoutMode(views: [self, mPickerView])
 		#endif
 		#if os(OSX)
@@ -112,15 +112,6 @@ open class KCPopupMenuCore: KCCoreView
 			mDelegate.removeAllItems()
 		#endif
 	}
-
-	open override func setFrameSize(_ newsize: KCSize) {
-		super.setFrameSize(newsize)
-		#if os(OSX)
-			mPopupButton.setFrameSize(newsize)
-		#else
-			mPickerView.setFrameSize(size: newsize)
-		#endif
-	}
 	
 	open override var intrinsicContentSize: KCSize {
 		get {
@@ -136,15 +127,6 @@ open class KCPopupMenuCore: KCCoreView
 			let space = CNPreference.shared.windowPreference.spacing
 			return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
 		}
-	}
-
-	public override func invalidateIntrinsicContentSize() {
-		super.invalidateIntrinsicContentSize()
-		#if os(OSX)
-			mPopupButton.invalidateIntrinsicContentSize()
-		#else
-			mPickerView.invalidateIntrinsicContentSize()
-		#endif
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
