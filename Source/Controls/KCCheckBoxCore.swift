@@ -34,41 +34,6 @@ public class KCCheckBoxCore: KCCoreView
 		#endif
 	}
 
-	open override func setFrameSize(_ newsize: KCSize) {
-		super.setFrameSize(newsize)
-		#if os(iOS)
-			let totalwidth  = newsize.width
-			var labelwidth  = mLabel.intrinsicContentSize.width
-			var switchwidth = totalwidth - labelwidth
-			if switchwidth < 0.0 {
-				labelwidth  = totalwidth / 2.0
-				switchwidth = totalwidth / 2.0
-			}
-			mSwitch.setFrameSize(size: KCSize(width: switchwidth, height: newsize.height))
-			mLabel.setFrameSize(size: KCSize(width: labelwidth, height: newsize.height))
-		#endif
-	}
-
-	open override var intrinsicContentSize: KCSize {
-		get {
-			#if os(iOS)
-				let labelsize  = mLabel.intrinsicContentSize
-				let switchsize = mSwitch.intrinsicContentSize
-				let space   = CNPreference.shared.windowPreference.spacing
-				return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
-			#else
-				return mCheckBox.intrinsicContentSize
-			#endif
-		}
-	}
-
-	public override func invalidateIntrinsicContentSize() {
-		super.invalidateIntrinsicContentSize()
-		#if os(iOS)
-			mLabel.invalidateIntrinsicContentSize()
-		#endif
-	}
-
 	#if os(iOS)
 	@IBAction func checkUpdated(_ sender: UISwitch) {
 		if let updatecallback = checkUpdatedCallback {
@@ -166,14 +131,53 @@ public class KCCheckBoxCore: KCCoreView
 		}
 	}
 
+	open override func setFrameSize(_ newsize: KCSize) {
+		super.setFrameSize(newsize)
+		#if os(iOS)
+			let totalwidth  = newsize.width
+			var labelwidth  = mLabel.intrinsicContentSize.width
+			var switchwidth = totalwidth - labelwidth
+			if switchwidth < 0.0 {
+				labelwidth  = totalwidth / 2.0
+				switchwidth = totalwidth / 2.0
+			}
+			mSwitch.setFrameSize(size: KCSize(width: switchwidth, height: newsize.height))
+			mLabel.setFrameSize(size: KCSize(width: labelwidth, height: newsize.height))
+		#endif
+	}
+	
+	open override var intrinsicContentSize: KCSize {
+		get {
+			#if os(iOS)
+				let labelsize  = mLabel.intrinsicContentSize
+				let switchsize = mSwitch.intrinsicContentSize
+				let space   = CNPreference.shared.windowPreference.spacing
+				return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
+			#else
+				return super.intrinsicContentSize
+			#endif
+		}
+	}
+
+	public override func invalidateIntrinsicContentSize() {
+		super.invalidateIntrinsicContentSize()
+		#if os(iOS)
+			mLabel.invalidateIntrinsicContentSize()
+		#endif
+	}
+
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		super.setExpandabilities(priorities: prival)
 		#if os(OSX)
 			mCheckBox.setExpansionPriorities(priorities: prival)
 		#else
-			mSwitch.setExpansionPriorities(priorities: prival)
+			let fixpri = KCViewBase.ExpansionPriorities(holizontalHugging: .fixed,
+								    holizontalCompression: .fixed,
+								    verticalHugging: .fixed,
+								    verticalCompression: .fixed)
+			mSwitch.setExpansionPriorities(priorities: fixpri)
 			mLabel.setExpansionPriorities(priorities: prival)
 		#endif
-		super.setExpandabilities(priorities: prival)
 	}
 }
 

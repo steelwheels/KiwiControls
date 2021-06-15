@@ -16,8 +16,9 @@ public class StackViewController: KCSingleViewController
 		vbox.axis = .vertical
 
 		let label = KCTextEdit()
-		label.mode = .label
-		label.text = "Label"
+		label.format     = .line
+		label.isEditable = false
+		label.text       = "Label"
 		vbox.addArrangedSubView(subView: label)
 
 		let gr2d = UTGraphics2DView()

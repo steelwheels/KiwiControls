@@ -27,15 +27,6 @@ public class KCButtonCore: KCCoreView
 		KCView.setAutolayoutMode(views: [self, mButton])
 	}
 
-	open override var intrinsicContentSize: KCSize {
-		get { return mButton.intrinsicContentSize }
-	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mButton.setExpansionPriorities(priorities: prival)
-		super.setExpansionPriorities(priorities: prival)
-	}
-
 	#if os(iOS)
 	@IBAction func buttonPressed(_ sender: UIButton) {
 		if let callback = buttonPressedCallback {

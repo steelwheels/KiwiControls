@@ -44,20 +44,6 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 
 extension KCViewBase
 {
-	#if os(OSX)
-	public func setNeedsLayout() {
-		self.needsLayout = true
-	}
-
-	public func setNeedsUpdateConstraints() {
-		self.needsUpdateConstraints = true
-	}
-
-	public func setNeedsDisplay(){
-		self.needsDisplay = true
-	}
-	#endif
-
 	public func rootView() -> KCRootView? {
 		var curview: KCViewBase = self
 		while true {
@@ -296,7 +282,11 @@ open class KCView : KCViewBase
 	 */
 	open func requireLayout() {
 		CNLog(logLevel: .detail, message: "require window layout")
-		self.setNeedsLayout()
+		#if os(OSX)
+			self.needsLayout = true
+		#else
+			self.setNeedsLayout()
+		#endif
 	}
 
 	#if os(iOS)

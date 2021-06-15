@@ -522,18 +522,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize { get {
-		#if os(OSX)
-		if mViewTable.isFilled() {
-			return calcContentSize()
-		} else {
-			return mTableView.intrinsicContentSize
-		}
-		#else
-		return mTableView.intrinsicContentSize
-		#endif
-	}}
-
 	public var numberOfRows: Int {
 		get {
 			#if os(OSX)
@@ -587,9 +575,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#endif
 
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mTableView.setExpansionPriorities(priorities: prival)
-		super.setExpandabilities(priorities: prival)
-	}
+	open override var intrinsicContentSize: KCSize { get {
+		#if os(OSX)
+		if mViewTable.isFilled() {
+			return calcContentSize()
+		} else {
+			return mTableView.intrinsicContentSize
+		}
+		#else
+		return mTableView.intrinsicContentSize
+		#endif
+	}}
 }
 

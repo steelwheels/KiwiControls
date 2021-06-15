@@ -57,15 +57,6 @@ open class KCImageViewCore : KCCoreView
 		}
 	}
 
-	open override var intrinsicContentSize: KCSize {
-		get { return imageSize }
-	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mImageView.setExpansionPriorities(priorities: prival)
-		super.setExpandabilities(priorities: prival)
-	}
-
 	private var imageSize: CGSize {
 		get {
 			let imgsize: CGSize
@@ -76,6 +67,10 @@ open class KCImageViewCore : KCCoreView
 			}
 			return imgsize
 		}
+	}
+
+	open override var intrinsicContentSize: KCSize {
+		get { return imageSize }
 	}
 }
 

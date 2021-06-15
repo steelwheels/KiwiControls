@@ -115,6 +115,25 @@ open class KCIconViewCore : KCCoreView
 		set(newscale)	{ mScale = newscale }
 	}
 
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return iconViewSize() }
+	}
+	#endif
+
+	private func iconViewSize() -> KCSize {
+		/* Get image size */
+		let sclsize = KCSize(width:  mOriginalImageSize.width  * mScale,
+				     height: mOriginalImageSize.height * mScale)
+		if let img = self.image {
+			let _ = img.resize(sclsize)
+		}
+		let imgsize = mImageButton.intrinsicContentSize
+		/* Get label size */
+		let labsize = mLabelView.intrinsicContentSize
+		return KCUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
+	}
+
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
 		var labheight = mLabelView.frame.size.height
@@ -134,37 +153,23 @@ open class KCIconViewCore : KCCoreView
 		#endif
 	}
 
-	#if os(OSX)
-	open override var fittingSize: KCSize {
-		get { return iconViewSize() }
-	}
-	#endif
-
-	open override var intrinsicContentSize: KCSize {
-		get { return iconViewSize() }
-	}
-
-	private func iconViewSize() -> KCSize {
-		/* Get image size */
-		let sclsize = KCSize(width:  mOriginalImageSize.width  * mScale,
-				     height: mOriginalImageSize.height * mScale)
-		if let img = self.image {
-			let _ = img.resize(sclsize)
-		}
-		let imgsize = mImageButton.intrinsicContentSize
-		/* Get label size */
-		let labsize = mLabelView.intrinsicContentSize
-		return KCUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
-	}
-
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
 		// The size of image is NOT invalidated
 	}
 
+	open override var intrinsicContentSize: KCSize {
+		get { return iconViewSize() }
+	}
+
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mImageButton.setExpansionPriorities(priorities: prival)
 		super.setExpandabilities(priorities: prival)
+		mImageButton.setExpansionPriorities(priorities: prival)
+		let labpri = KCViewBase.ExpansionPriorities(holizontalHugging: prival.holizontalHugging,
+							    holizontalCompression: prival.holizontalCompression,
+							    verticalHugging: .low,
+							    verticalCompression: .low)
+		mLabelView.setExpansionPriorities(priorities: labpri)
 	}
 }
 

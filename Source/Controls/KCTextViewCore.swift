@@ -282,32 +282,64 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 				updateForegroundColor()
 				updateBackgroundColor()
 				mCurrentIndex = 0
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .resetCharacterAttribute:
 				mTerminalInfo.reset()
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .boldCharacter(let flag):
 				mTerminalInfo.doBold = flag
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .underlineCharacter(let flag):
 				mTerminalInfo.doUnderLine = flag
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .blinkCharacter(_),
 			     .reverseCharacter(_):
 				CNLog(logLevel: .error, message: "Not supported", atFunction: #function, inFile: #file)
 			case .foregroundColor(let color):
 				mTerminalInfo.foregroundColor = color
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .defaultForegroundColor:
 				mTerminalInfo.foregroundColor = tpref.foregroundTextColor
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .backgroundColor(let color):
 				mTerminalInfo.backgroundColor = color
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .defaultBackgroundColor:
 				let tpref = CNPreference.shared.terminalPreference
 				mTerminalInfo.backgroundColor = tpref.backgroundTextColor
-				self.setNeedsDisplay()
+				#if os(OSX)
+					self.needsDisplay = true
+				#else
+					self.setNeedsDisplay()
+				#endif
 			case .requestScreenSize:
 				/* Ack the size*/
 				let ackcode: CNEscapeCode = .screenSize(self.mTerminalInfo.width, self.mTerminalInfo.height)
@@ -315,7 +347,11 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 			case .screenSize(let width, let height):
 				self.mTerminalInfo.width  = width
 				self.mTerminalInfo.height = height
-				self.mTextView.setNeedsLayout()
+				#if os(OSX)
+					self.mTextView.needsLayout = true
+				#else
+					self.mTextView.setNeedsLayout()
+				#endif
 			case .selectAltScreen(let doalt):
 				if mIsAlternativeScreen != doalt {
 					swapTextStorage(doAlternative: doalt)
@@ -449,8 +485,8 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mTextView.setExpansionPriorities(priorities: prival)
 		super.setExpandabilities(priorities: prival)
+		mTextView.setExpansionPriorities(priorities: prival)
 	}
 
 	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -482,7 +518,11 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 						if self.mTerminalInfo.width != newwidth {
 							self.mTerminalInfo.width = newwidth
 							self.invalidateIntrinsicContentSize()
-							self.setNeedsLayout()
+							#if os(OSX)
+								self.needsLayout = true
+							#else
+								self.setNeedsLayout()
+							#endif
 							self.notify(viewControlEvent: .updateSize)
 						}
 					case CNPreference.shared.terminalPreference.HeightItem:
@@ -490,7 +530,11 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 						if self.mTerminalInfo.height != newheight {
 							self.mTerminalInfo.height = newheight
 							self.invalidateIntrinsicContentSize()
-							self.setNeedsLayout()
+							#if os(OSX)
+								self.needsLayout = true
+							#else
+								self.setNeedsLayout()
+							#endif
 							self.notify(viewControlEvent: .updateSize)
 						}
 					case CNSystemPreference.InterfaceStyleItem:

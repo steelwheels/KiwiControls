@@ -81,7 +81,8 @@ public class SingleViewController: KCSingleViewController
 		imgview0.scale = 0.2
 
 		let edit1  = KCTextEdit()
-		edit1.mode = .view(20)
+		edit1.format = .line
+		edit1.isEditable = false
 		edit1.text = "This is label"
 
 		let gr2d1  = allocateGraphics2DView()

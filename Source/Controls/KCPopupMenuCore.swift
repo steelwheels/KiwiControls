@@ -128,15 +128,6 @@ open class KCPopupMenuCore: KCCoreView
 			return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
 		}
 	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		#if os(OSX)
-			mPopupButton.setExpansionPriorities(priorities: prival)
-		#else
-			mPickerView.setExpansionPriorities(priorities: prival)
-		#endif
-		super.setExpandabilities(priorities: prival)
-	}
 }
 
 #if os(iOS)

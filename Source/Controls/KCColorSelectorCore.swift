@@ -103,14 +103,5 @@ open class KCColorSelectorCore: KCCoreView
 	open override var intrinsicContentSize: KCSize {
 		get { return defaultSize }
 	}
-
-	public override func setExpandabilities(priorities prival: ExpansionPriorities) {
-		#if os(OSX)
-			mColorWell.setExpansionPriorities(priorities: prival)
-		#else
-			mButton.setExpansionPriorities(priorities: prival)
-		#endif
-		super.setExpandabilities(priorities: prival)
-	}
 }
 

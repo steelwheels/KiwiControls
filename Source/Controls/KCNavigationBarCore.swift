@@ -184,12 +184,13 @@ open class KCNavigationBarCore: KCCoreView
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		super.setExpandabilities(priorities: prival)
 		#if os(OSX)
 		let lowpri = KCViewBase.ExpansionPriorities(holizontalHugging: 		.low,
 							    holizontalCompression: 	.low,
 							    verticalHugging: 		.low,
 							    verticalCompression: 	.low)
-		mNavigationBar.setExpandabilities(priorities: lowpri)
+		super.setExpandabilities(priorities: lowpri)
 
 		let fixedpri = KCViewBase.ExpansionPriorities(holizontalHugging: 	.fixed,
 							      holizontalCompression: 	.fixed,
@@ -199,7 +200,6 @@ open class KCNavigationBarCore: KCCoreView
 		leftBarButton.setExpansionPriorities(priorities: fixedpri)
 		rightBarButton.setExpansionPriorities(priorities: fixedpri)
 		#endif
-		super.setExpandabilities(priorities: prival)
 	}
 }
 

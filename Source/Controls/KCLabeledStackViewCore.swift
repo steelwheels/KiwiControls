@@ -33,6 +33,35 @@ open class KCLabeledStackViewCore : KCCoreView
 		return KCUnionSize(sizeA: tsize, sizeB: ssize, doVertical: true, spacing: space)
 	}
 
+	public var title: String {
+		get {
+			#if os(OSX)
+				return mTextField.stringValue
+			#else
+				if let title = mTextField.text {
+					return title
+				} else {
+					return ""
+				}
+			#endif
+		}
+		set(newstr){
+			#if os(OSX)
+				mTextField.stringValue = newstr
+			#else
+				mTextField.text = newstr
+			#endif
+		}
+	}
+	
+	public var contentsView: KCStackView {
+		get { return mStackView }
+	}
+
+	public var labelView: KCLabel {
+		get { return mTextField }
+	}
+
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
 		let space = CNPreference.shared.windowPreference.spacing
@@ -68,38 +97,13 @@ open class KCLabeledStackViewCore : KCCoreView
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mTextField.setExpansionPriorities(priorities: prival)
-		mStackView.setExpandabilities(priorities: prival)
 		super.setExpandabilities(priorities: prival)
-	}
-
-	public var title: String {
-		get {
-			#if os(OSX)
-				return mTextField.stringValue
-			#else
-				if let title = mTextField.text {
-					return title
-				} else {
-					return ""
-				}
-			#endif
-		}
-		set(newstr){
-			#if os(OSX)
-				mTextField.stringValue = newstr
-			#else
-				mTextField.text = newstr
-			#endif
-		}
-	}
-	
-	public var contentsView: KCStackView {
-		get { return mStackView }
-	}
-
-	public var labelView: KCLabel {
-		get { return mTextField }
+		mStackView.setExpandabilities(priorities: prival)
+		let txtpri = KCViewBase.ExpansionPriorities(holizontalHugging: prival.holizontalHugging,
+							    holizontalCompression: prival.holizontalCompression,
+							    verticalHugging: .low,
+							    verticalCompression: .low)
+		mTextField.setExpansionPriorities(priorities: txtpri)
 	}
 }
 

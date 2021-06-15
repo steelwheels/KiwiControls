@@ -154,11 +154,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		return mTextEdit.becomeFirstResponder()
 	}
 
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mTextEdit.setExpansionPriorities(priorities: prival)
-		super.setExpandabilities(priorities: prival)
-	}
-
 	public var isEnabled: Bool {
 		get	   { return mTextEdit.isEnabled		}
 		set(newval){ mTextEdit.isEnabled = newval	}

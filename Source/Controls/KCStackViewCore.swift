@@ -191,26 +191,6 @@ open class KCStackViewCore : KCCoreView
 		}
 	}
 
-	open override var intrinsicContentSize: KCSize {
-		get {
-			let dovert = (axis == .vertical)
-			var result = KCSize(width: 0.0, height: 0.0)
-			let space  = CNPreference.shared.windowPreference.spacing
-			let subviews = arrangedSubviews()
-			for subview in subviews {
-				let size = subview.intrinsicContentSize
-				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
-			}
-			CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
-			return result
-		}
-	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		mStackView.setExpansionPriorities(priorities: prival)
-		super.setExpandabilities(priorities: prival)
-	}
-
 	public func addArrangedSubViews(subViews views:Array<KCView>){
 		for view in views {
 			addArrangedSubView(subView: view)
@@ -245,5 +225,20 @@ open class KCStackViewCore : KCCoreView
 
 	open func arrangedSubviews() -> Array<KCView> {
 		return mStackView.arrangedSubviews as! Array<KCView>
+	}
+
+	open override var intrinsicContentSize: KCSize {
+		get {
+			let dovert = (axis == .vertical)
+			var result = KCSize(width: 0.0, height: 0.0)
+			let space  = CNPreference.shared.windowPreference.spacing
+			let subviews = arrangedSubviews()
+			for subview in subviews {
+				let size = subview.intrinsicContentSize
+				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
+			}
+			CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
+			return result
+		}
 	}
 }
