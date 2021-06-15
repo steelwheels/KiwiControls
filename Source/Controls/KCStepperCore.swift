@@ -181,13 +181,25 @@ public class KCStepperCore: KCCoreView
 		#endif
 	}
 
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return contentSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return contentSize()
+	}
+	#endif
+
 	open override var intrinsicContentSize: KCSize {
-		get {
-			let fieldsize   = mTextField.intrinsicContentSize
-			let steppersize = mStepper.intrinsicContentSize
-			let space       = CNPreference.shared.windowPreference.spacing
-			return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
-		}
+		get { return contentSize() }
+	}
+
+	private func contentSize() -> KCSize {
+		let fieldsize   = mTextField.intrinsicContentSize
+		let steppersize = mStepper.intrinsicContentSize
+		let space       = CNPreference.shared.windowPreference.spacing
+		return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
 	}
 
 	public override func invalidateIntrinsicContentSize() {

@@ -227,18 +227,30 @@ open class KCStackViewCore : KCCoreView
 		return mStackView.arrangedSubviews as! Array<KCView>
 	}
 
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return contentsSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return contentsSize()
+	}
+	#endif
+
 	open override var intrinsicContentSize: KCSize {
-		get {
-			let dovert = (axis == .vertical)
-			var result = KCSize(width: 0.0, height: 0.0)
-			let space  = CNPreference.shared.windowPreference.spacing
-			let subviews = arrangedSubviews()
-			for subview in subviews {
-				let size = subview.intrinsicContentSize
-				result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
-			}
-			CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
-			return result
+		get { return contentsSize() }
+	}
+
+	private func contentsSize() -> KCSize {
+		let dovert = (axis == .vertical)
+		var result = KCSize(width: 0.0, height: 0.0)
+		let space  = CNPreference.shared.windowPreference.spacing
+		let subviews = arrangedSubviews()
+		for subview in subviews {
+			let size = subview.intrinsicContentSize
+			result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
 		}
+		CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
+		return result
 	}
 }

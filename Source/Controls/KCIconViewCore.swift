@@ -115,12 +115,6 @@ open class KCIconViewCore : KCCoreView
 		set(newscale)	{ mScale = newscale }
 	}
 
-	#if os(OSX)
-	open override var fittingSize: KCSize {
-		get { return iconViewSize() }
-	}
-	#endif
-
 	private func iconViewSize() -> KCSize {
 		/* Get image size */
 		let sclsize = KCSize(width:  mOriginalImageSize.width  * mScale,
@@ -157,6 +151,16 @@ open class KCIconViewCore : KCCoreView
 		super.invalidateIntrinsicContentSize()
 		// The size of image is NOT invalidated
 	}
+
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return iconViewSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return iconViewSize()
+	}
+	#endif
 
 	open override var intrinsicContentSize: KCSize {
 		get { return iconViewSize() }

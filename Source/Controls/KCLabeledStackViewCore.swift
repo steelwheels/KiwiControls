@@ -83,12 +83,24 @@ open class KCLabeledStackViewCore : KCCoreView
 		#endif
 	}
 
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return contentSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return contentSize()
+	}
+	#endif
+
 	open override var intrinsicContentSize: KCSize {
-		get {
-			let textsize  = mTextField.intrinsicContentSize
-			let stacksize = mStackView.intrinsicContentSize
-			return unionSizes(textSize: textsize, stackSize: stacksize)
-		}
+		get { return contentSize() }
+	}
+
+	private func contentSize() -> KCSize {
+		let textsize  = mTextField.intrinsicContentSize
+		let stacksize = mStackView.intrinsicContentSize
+		return unionSizes(textSize: textsize, stackSize: stacksize)
 	}
 
 	public override func invalidateIntrinsicContentSize() {

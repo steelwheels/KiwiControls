@@ -170,6 +170,16 @@ open class KCNavigationBarCore: KCCoreView
 		#endif
 	}
 
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return navigationBarSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return navigationBarSize()
+	}
+	#endif
+
 	open override var intrinsicContentSize: KCSize {
 		get { return navigationBarSize() }
 	}

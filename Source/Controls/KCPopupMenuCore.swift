@@ -112,21 +112,33 @@ open class KCPopupMenuCore: KCCoreView
 			mDelegate.removeAllItems()
 		#endif
 	}
-	
+
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return contentSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return contentSize()
+	}
+	#endif
+
 	open override var intrinsicContentSize: KCSize {
-		get {
-			#if os(OSX)
-				var btnsize = mPopupButton.intrinsicContentSize
-				if let font = mPopupButton.font {
-					btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(15))
-					btnsize.height = max(btnsize.height, font.pointSize * 1.2        )
-				}
-			#else
-				let btnsize = mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			#endif
-			let space = CNPreference.shared.windowPreference.spacing
-			return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
-		}
+		get { return contentSize() }
+	}
+
+	private func contentSize() -> KCSize {
+		#if os(OSX)
+			var btnsize = mPopupButton.intrinsicContentSize
+			if let font = mPopupButton.font {
+				btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(15))
+				btnsize.height = max(btnsize.height, font.pointSize * 1.2        )
+			}
+		#else
+			let btnsize = mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+		#endif
+		let space = CNPreference.shared.windowPreference.spacing
+		return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
 	}
 }
 

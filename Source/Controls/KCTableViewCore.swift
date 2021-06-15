@@ -575,7 +575,21 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize { get {
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return contentSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return contentSize()
+	}
+	#endif
+
+	open override var intrinsicContentSize: KCSize {
+		get { return contentSize() }
+	}
+
+	private func contentSize() -> KCSize {
 		#if os(OSX)
 		if mViewTable.isFilled() {
 			return calcContentSize()
@@ -585,6 +599,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#else
 		return mTableView.intrinsicContentSize
 		#endif
-	}}
+	}
 }
 

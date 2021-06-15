@@ -69,6 +69,16 @@ open class KCImageViewCore : KCCoreView
 		}
 	}
 
+	#if os(OSX)
+	open override var fittingSize: KCSize {
+		get { return imageSize }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return imageSize
+	}
+	#endif
+
 	open override var intrinsicContentSize: KCSize {
 		get { return imageSize }
 	}
