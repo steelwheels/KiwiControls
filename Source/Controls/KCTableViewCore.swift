@@ -20,6 +20,7 @@ import CoconutData
 	public typealias KCTableViewDataSource  = UITableViewDataSource
 #endif
 
+
 private class KCViewTable
 {
 	private var mTable: 		Array<Array<KCView?>>
@@ -59,7 +60,7 @@ private class KCViewTable
 		if 0<=cidx && cidx<mColumnCount && 0<=ridx && ridx<mRowCount {
 			mTable[ridx][cidx] = v
 		} else {
-			CNLog(logLevel: .error, message: "Failed to set: cidx=\(cidx), ridx=\(ridx)", atFunction: #function, inFile: #file)
+			CNLog(logLevel: .error, message: "Failed to set: cidx=\(cidx), ridx=\(ridx) columnCount=\(mColumnCount) rowCount=\(mRowCount)", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -75,44 +76,6 @@ private class KCViewTable
 		}
 		return filled
 	}
-
-	#if os(OSX)
-	public func linkResponders() {
-		var prevresponder: KCResponder? = nil
-		for ridx in 0..<mRowCount {
-			for cidx in 0..<mColumnCount {
-				if let view = self.get(column: cidx, row: ridx) {
-					if view.acceptsFirstResponder {
-						if let prev = prevresponder {
-							prev.nextResponder = view
-						}
-						prevresponder = view
-					}
-				}
-			}
-		}
-	}
-
-	public func selectNextView(verticalDir vert: Bool, column cidx: Int, row ridx: Int) -> KCView? {
-		if vert {
-			if ridx + 1 < mRowCount {
-				return self.get(column: cidx,     row: ridx + 1)
-			} else if cidx + 1 < mColumnCount {
-				return self.get(column: cidx + 1, row: 0       )
-			} else {
-				return nil
-			}
-		} else {
-			if cidx + 1 < mColumnCount {
-				return self.get(column: cidx + 1, row: ridx    )
-			} else if ridx + 1 < mRowCount {
-				return self.get(column: 0,        row: ridx + 1)
-			} else {
-				return nil
-			}
-		}
-	}
-	#endif
 }
 
 
@@ -130,6 +93,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private var	mIsEditable:		Bool
 	private var 	mIsReloading:		Bool
 	private var 	mViewTable:		KCViewTable
+	private var	mPreviousTable:		KCViewTable?
 	private var	mViewAllocator:		ViewAllocator?
 
 	public var 	cellPressedCallback: 	((_ col: Int, _ row: Int) -> Void)? = nil
@@ -140,6 +104,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
+		mPreviousTable	= nil
 		mViewAllocator	= nil
 		super.init(frame: frame)
 	}
@@ -149,6 +114,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
+		mPreviousTable	= nil
 		mViewAllocator	= nil
 		super.init(frame: frame)
 	}
@@ -168,6 +134,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
+		mPreviousTable	= nil
 		mViewAllocator	= nil
 		super.init(coder: coder)
 	}
@@ -189,6 +156,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mTableView.delegate   = self
 		mTableView.dataSource = self
 
+		/* Add dummy cell */
 		mValueTable.setValue(columnIndex: .number(0), row: 0, value: .nullValue)
 
 		#if os(OSX)
@@ -202,10 +170,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			mTableView.usesAutomaticRowHeights	= true
 			//mTableView.columnAutoresizingStyle	= .noColumnAutoresizing
 		#endif
+
+		reloadTable()
 	}
 
 	public func reloadTable() {
 		#if os(OSX)
+		/* Allocate view table. This must be allocate before modifying views
+		 */
+		mPreviousTable = mViewTable
+		mViewTable     = KCViewTable(columnCount: mValueTable.columnCount, rowCount: mValueTable.rowCount)
 
 		mTableView.beginUpdates()
 
@@ -216,25 +190,21 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		/* Add columns */
-		let colnum = mValueTable.columnCount
-		for i in 0..<colnum {
-			let colname = mValueTable.title(column: i)
-			let newcol  = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
+		for i in 0..<mValueTable.columnCount {
+			let colname       = mValueTable.title(column: i)
+			let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
 			newcol.title      = colname
 			newcol.isEditable = false
 			mTableView.addTableColumn(newcol)
 		}
-
-		mTableView.endUpdates()
-
-		/* Allocate view table */
-		mViewTable = KCViewTable(columnCount: colnum, rowCount: mValueTable.rowCount)
 
 		if mValueTable.hasHeader {
 			mTableView.headerView = NSTableHeaderView()
 		} else {
 			mTableView.headerView = nil
 		}
+
+		mTableView.endUpdates()
 
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
@@ -270,7 +240,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 				return nil
 			}
 		@unknown default:
-			NSLog("Can not happen")
+			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 			return nil
 		}
 	}
@@ -319,9 +289,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		textview.callbackFunction = {
 			(_ value: CNNativeValue) -> Void in
 			self.didEndEditing(value: value, atColumnIndex: cidx, row: ridx)
-			#if os(OSX)
-			self.selectNextResponder(verticalDir: true, column: cidx, row: ridx)
-			#endif
 		}
 		return textview
 	}
@@ -399,26 +366,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public override func becomeFirstResponder() -> Bool {
 		return mTableView.becomeFirstResponder()
 	}
-
-	private func selectNextResponder(verticalDir vert: Bool, column cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) {
-		switch cidx {
-		case .number(let cnum):
-			if let nxtview = mViewTable.selectNextView(verticalDir: vert, column: cnum, row: ridx) {
-				notify(viewControlEvent: .switchFirstResponder(nxtview))
-			}
-		case .title(let str):
-			if let cnum = mValueTable.titleIndex(by: str) {
-				if let nxtview = mViewTable.selectNextView(verticalDir: vert, column: cnum, row: ridx) {
-					notify(viewControlEvent: .switchFirstResponder(nxtview))
-				}
-			} else {
-				CNLog(logLevel: .error, message: "Invalid column index", atFunction: #function, inFile: #file)
-			}
-		@unknown default:
-			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
-		}
-	}
-
 	#endif
 
 	open func didEndEditing(value val: CNNativeValue, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) {
@@ -493,24 +440,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public func numberOfRows(in tableView: NSTableView) -> Int {
 		return mValueTable.rowCount
 	}
-
-	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-		if let col = tableColumn {
-			return mValueTable.value(columnIndex: .title(col.title), row: row)
-		} else {
-			CNLog(logLevel: .error, message: "No valid column")
-			return nil
-		}
-	}
-
-	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-		if let col = tableColumn, let val = object as? CNNativeValue {
-			mValueTable.setValue(columnIndex: .title(col.title), row: row, value: val)
-		} else {
-			CNLog(logLevel: .error, message: "No valid column")
-		}
-	}
-
 	#else
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return mValueTable.rowCount
@@ -551,9 +480,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private func requestLayoutIfAllViewsHadBeenAllocated() {
 		if mIsReloading && mViewTable.isFilled() {
 			/* Link responder chain */
-			#if os(OSX)
-			mViewTable.linkResponders()
-			#endif
 			/* Request reload*/
 			self.invalidateIntrinsicContentSize()
 			self.notify(viewControlEvent: .updateSize)

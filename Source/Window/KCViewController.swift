@@ -20,6 +20,12 @@ import CoconutData
 
 public extension KCViewController
 {
+	#if os(OSX)
+	func initWindowAttributes(window win: KCWindow) {
+		win.autorecalculatesKeyViewLoop = true
+	}
+	#endif
+
 	class func loadViewController(name nibname: String) -> KCViewController
 	{
 		let bundle : Bundle = Bundle(for: KCView.self) ;

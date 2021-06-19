@@ -24,6 +24,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 
 	private var mCallbackStack:	CNStack<ViewSwitchCallback> = CNStack()
 	private var mConsoleManager:	KCConsoleManager? = nil
+	private var mWindowInitialized:	Bool = false
 
 	public var consoleManager: KCConsoleManager? {
 		get { return mConsoleManager }
@@ -51,6 +52,10 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		super.viewDidAppear()
 		if let win = self.view.window {
 			win.delegate = self
+			if !mWindowInitialized {
+				self.initWindowAttributes(window: win)
+				mWindowInitialized = true
+			}
 		}
 	}
 	#endif

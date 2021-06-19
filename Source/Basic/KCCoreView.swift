@@ -24,6 +24,75 @@ open class KCCoreView: KCView
 	}
 
 	#if os(OSX)
+	open override var canBecomeKeyView: Bool {
+		get {
+			if let core = mCoreView {
+				return core.canBecomeKeyView
+			} else {
+				return super.canBecomeKeyView
+			}
+		}
+	}
+
+	open override var needsPanelToBecomeKey: Bool {
+		get {
+			if let core = mCoreView {
+				return core.needsPanelToBecomeKey
+			} else {
+				return super.needsPanelToBecomeKey
+			}
+		}
+	}
+
+	open override var nextKeyView: NSView? {
+		get {
+			if let core = mCoreView {
+				return core.nextKeyView
+			} else {
+				return super.nextKeyView
+			}
+		}
+		set(newval){
+			if let core = mCoreView {
+				core.nextKeyView = newval
+			} else {
+				super.nextKeyView = newval
+			}
+		}
+	}
+
+	open override var nextValidKeyView: NSView? {
+		get {
+			if let core = mCoreView {
+				return core.nextValidKeyView
+			} else {
+				return super.nextValidKeyView
+			}
+		}
+	}
+
+	open override var previousKeyView: NSView? {
+		get {
+			if let core = mCoreView {
+				return core.previousKeyView
+			} else {
+				return super.previousKeyView
+			}
+		}
+	}
+
+	open override var previousValidKeyView: NSView? {
+		get {
+			if let core = mCoreView {
+				return core.previousValidKeyView
+			} else {
+				return super.previousValidKeyView
+			}
+		}
+	}
+	#endif
+
+	#if os(OSX)
 	open override var needsLayout: Bool {
 		get {
 			if let core = mCoreView {

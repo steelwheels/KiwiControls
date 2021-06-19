@@ -46,6 +46,16 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		}
 	}
 
+	public override func viewDidLayout() {
+		/* Init window */
+		if let win = self.view.window {
+			NSLog("Initialize window attributes")
+			initWindowAttributes(window: win)
+		} else {
+			NSLog("[Error] No window")
+		}
+	}
+
 	public override func viewDidAppear() {
 		if let window = self.view.window {
 			/* decide 1st responder */
