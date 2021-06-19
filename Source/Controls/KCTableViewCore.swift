@@ -369,7 +369,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	#endif
 
 	open func didEndEditing(value val: CNNativeValue, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) {
-		NSLog("KCTableViewCore] DidEndEditing \(val.toText().toStrings().joined(separator: "\n"))")
+		mValueTable.setValue(columnIndex: cidx, row: ridx, value: val)
 	}
 	
 	public var hasGrid: Bool {
