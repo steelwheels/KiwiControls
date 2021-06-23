@@ -62,13 +62,10 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
-	public func reloadTable() {
-		self.coreView.reloadTable()
+	public func reloadTable(table tbl: CNNativeTableInterface?) {
+		self.coreView.reloadTable(table: tbl)
 	}
 
-	public var valueTable: CNNativeValueTable {
-		get { return coreView.valueTable }
-	}
 
 	public var isEditable: Bool {
 		get      { return coreView.isEditable }

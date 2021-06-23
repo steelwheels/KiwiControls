@@ -89,7 +89,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
-	private var	mValueTable:		CNNativeValueTable
+	private var	mTableInterface:	CNNativeTableInterface
 	private var	mIsEditable:		Bool
 	private var 	mIsReloading:		Bool
 	private var 	mViewTable:		KCViewTable
@@ -100,7 +100,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mValueTable	= CNNativeValueTable()
+		mTableInterface	= CNNativeValueTable()
 		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
@@ -110,7 +110,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#else
 	public override init(frame: CGRect){
-		mValueTable	= CNNativeValueTable()
+		mTableInterface	= CNNativeValueTable()
 		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
@@ -130,17 +130,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public required init?(coder: NSCoder) {
-		mValueTable	= CNNativeValueTable()
+		mTableInterface	= CNNativeValueTable()
 		mIsEditable	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
 		mPreviousTable	= nil
 		mViewAllocator	= nil
 		super.init(coder: coder)
-	}
-
-	public var valueTable: CNNativeValueTable {
-		get      { return mValueTable	}
 	}
 
 	public var isEditable: Bool {
@@ -157,7 +153,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mTableView.dataSource = self
 
 		/* Add dummy cell */
-		mValueTable.setValue(columnIndex: .number(0), row: 0, value: .nullValue)
+		mTableInterface.setValue(columnIndex: .number(0), row: 0, value: .nullValue)
 
 		#if os(OSX)
 			mTableView.target			= self
@@ -171,15 +167,19 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			//mTableView.columnAutoresizingStyle	= .noColumnAutoresizing
 		#endif
 
-		reloadTable()
+		reloadTable(table: nil)
 	}
 
-	public func reloadTable() {
+	public func reloadTable(table tbl: CNNativeTableInterface?) {
 		#if os(OSX)
+		if let newtbl = tbl {
+			mTableInterface = newtbl
+		}
+
 		/* Allocate view table. This must be allocate before modifying views
 		 */
 		mPreviousTable = mViewTable
-		mViewTable     = KCViewTable(columnCount: mValueTable.columnCount, rowCount: mValueTable.rowCount)
+		mViewTable     = KCViewTable(columnCount: mTableInterface.columnCount, rowCount: mTableInterface.rowCount)
 
 		mTableView.beginUpdates()
 
@@ -190,15 +190,15 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		/* Add columns */
-		for i in 0..<mValueTable.columnCount {
-			let colname       = mValueTable.title(column: i)
+		for i in 0..<mTableInterface.columnCount {
+			let colname       = mTableInterface.title(column: i)
 			let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
 			newcol.title      = colname
 			newcol.isEditable = false
 			mTableView.addTableColumn(newcol)
 		}
 
-		if mValueTable.hasHeader {
+		if mTableInterface.hasHeader {
 			mTableView.headerView = NSTableHeaderView()
 		} else {
 			mTableView.headerView = nil
@@ -213,11 +213,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#endif
 	}
 
-	private func allocateView(columnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) -> KCView {
+	private func allocateView(columnIndex cidx: CNColumnIndex, row ridx: Int) -> KCView {
 		if let view = viewInTable(columnIndex: cidx, rowIndex: ridx) {
 			return view
 		}
-		let val = mValueTable.value(columnIndex: cidx, row: ridx)
+		let val = mTableInterface.value(columnIndex: cidx, row: ridx)
 		if let valloc = mViewAllocator {
 			if let view = valloc(val, mIsEditable) {
 				setViewToTable(columnIndex: cidx, rowIndex: ridx, view: view)
@@ -229,12 +229,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		return newview
 	}
 
-	private func viewInTable(columnIndex cidx: CNNativeValueTable.ColumnIndex, rowIndex ridx: Int) -> KCView? {
+	private func viewInTable(columnIndex cidx: CNColumnIndex, rowIndex ridx: Int) -> KCView? {
 		switch cidx {
 		case .number(let num):
 			return mViewTable.get(column: num, row: ridx)
 		case .title(let str):
-			if let num = mValueTable.titleIndex(by: str) {
+			if let num = mTableInterface.titleIndex(by: str) {
 				return mViewTable.get(column: num, row: ridx)
 			} else {
 				return nil
@@ -245,12 +245,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	private func setViewToTable(columnIndex cidx: CNNativeValueTable.ColumnIndex, rowIndex ridx: Int, view newview: KCView){
+	private func setViewToTable(columnIndex cidx: CNColumnIndex, rowIndex ridx: Int, view newview: KCView){
 		switch cidx {
 		case .number(let num):
 			mViewTable.set(column: num, row: ridx, view: newview)
 		case .title(let str):
-			if let num = mValueTable.titleIndex(by: str) {
+			if let num = mTableInterface.titleIndex(by: str) {
 				mViewTable.set(column: num, row: ridx, view: newview)
 			} else {
 				CNLog(logLevel: .error, message: "Failed to set new view: title=\(str)", atFunction: #function, inFile: #file)
@@ -260,7 +260,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	private func valueToView(value val: CNNativeValue, isEditable edt: Bool, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) -> KCView {
+	private func valueToView(value val: CNNativeValue, isEditable edt: Bool, atColumnIndex cidx: CNColumnIndex, row ridx: Int) -> KCView {
 		let result: KCView
 		switch val {
 		case .stringValue(let str):
@@ -281,7 +281,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		return result
 	}
 
-	private func textToView(text txt: String, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int, isEditable edt: Bool) -> KCTextEdit {
+	private func textToView(text txt: String, atColumnIndex cidx: CNColumnIndex, row ridx: Int, isEditable edt: Bool) -> KCTextEdit {
 		let textview  = KCTextEdit()
 		textview.text       = txt
 		textview.isEditable = edt
@@ -349,8 +349,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
 		if let cbfunc = self.cellPressedCallback {
-			let colnum = mValueTable.columnCount
-			let rownum = mValueTable.rowCount
+			let colnum = mTableInterface.columnCount
+			let rownum = mTableInterface.rowCount
 			if colidx < colnum && rowidx < rownum {
 				cbfunc(colidx, rowidx)
 			}
@@ -368,8 +368,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#endif
 
-	open func didEndEditing(value val: CNNativeValue, atColumnIndex cidx: CNNativeValueTable.ColumnIndex, row ridx: Int) {
-		mValueTable.setValue(columnIndex: cidx, row: ridx, value: val)
+	open func didEndEditing(value val: CNNativeValue, atColumnIndex cidx: CNColumnIndex, row ridx: Int) {
+		mTableInterface.setValue(columnIndex: cidx, row: ridx, value: val)
 	}
 	
 	public var hasGrid: Bool {
@@ -438,11 +438,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func numberOfRows(in tableView: NSTableView) -> Int {
-		return mValueTable.rowCount
+		return mTableInterface.rowCount
 	}
 	#else
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return mValueTable.rowCount
+		return mTableInterface.rowCount
 	}
 
 	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -26,7 +26,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		mTableView.isEditable = true
 
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
-		let table = mTableView.valueTable
+		let table = CNNativeValueTable()
 		for y in 0..<2 {
 			for x in 0..<3 {
 				let str = "\(x)/\(y)"
@@ -35,7 +35,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		}
 
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
-		mTableView.reloadTable()
+		mTableView.reloadTable(table: table)
 
 		mTableView.hasGrid = true
 	}
