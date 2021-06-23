@@ -24,6 +24,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 
 		/* Set editable */
 		mTableView.isEditable = true
+		mTableView.hasHeader  = true
 
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
 		let table = CNNativeValueTable()

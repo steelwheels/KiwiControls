@@ -66,10 +66,14 @@ open class KCTableView : KCInterfaceView
 		self.coreView.reloadTable(table: tbl)
 	}
 
-
 	public var isEditable: Bool {
 		get      { return coreView.isEditable }
 		set(val) { coreView.isEditable = val }
+	}
+
+	public var hasHeader: Bool {
+		get 	{ return coreView.hasHeader	}
+		set(val){ coreView.hasHeader = val	}
 	}
 
 	public var firstResponderView: KCView? { get {

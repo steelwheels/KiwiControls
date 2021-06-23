@@ -91,6 +91,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	private var	mTableInterface:	CNNativeTableInterface
 	private var	mIsEditable:		Bool
+	private var	mHasHeader:		Bool
 	private var 	mIsReloading:		Bool
 	private var 	mViewTable:		KCViewTable
 	private var	mPreviousTable:		KCViewTable?
@@ -102,6 +103,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public override init(frame : NSRect){
 		mTableInterface	= CNNativeValueTable()
 		mIsEditable	= false
+		mHasHeader	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
 		mPreviousTable	= nil
@@ -112,6 +114,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public override init(frame: CGRect){
 		mTableInterface	= CNNativeValueTable()
 		mIsEditable	= false
+		mHasHeader	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
 		mPreviousTable	= nil
@@ -132,6 +135,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public required init?(coder: NSCoder) {
 		mTableInterface	= CNNativeValueTable()
 		mIsEditable	= false
+		mHasHeader	= false
 		mIsReloading	= false
 		mViewTable	= KCViewTable(columnCount: 1, rowCount: 1)
 		mPreviousTable	= nil
@@ -142,6 +146,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var isEditable: Bool {
 		get	 { return mIsEditable	}
 		set(val) { mIsEditable = val 	}
+	}
+
+	public var hasHeader: Bool {
+		get 	{ return mHasHeader	}
+		set(val){ mHasHeader = val	}
 	}
 
 	public func setup(frame frm: CGRect, viewAllocator valloc: @escaping ViewAllocator) {
@@ -198,7 +207,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			mTableView.addTableColumn(newcol)
 		}
 
-		if mTableInterface.hasHeader {
+		if mHasHeader {
 			mTableView.headerView = NSTableHeaderView()
 		} else {
 			mTableView.headerView = nil
