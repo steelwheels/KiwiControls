@@ -62,7 +62,7 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
-	public func reloadTable(table tbl: CNNativeTableInterface?) {
+	open func reloadTable(table tbl: CNNativeTableInterface?) {
 		self.coreView.reloadTable(table: tbl)
 	}
 
