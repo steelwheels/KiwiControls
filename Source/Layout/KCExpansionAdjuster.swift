@@ -113,21 +113,22 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(tableView view: KCTableView){
+		/* Set priority value */
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.low,
+						 verticalCompression:	.fixed)
 		/* Visit children 1st */
 		let colnum = view.numberOfColumns
 		let rownum = view.numberOfRows
 		for cidx in 0..<colnum {
 			for ridx in 0..<rownum {
 				if let child = view.view(atColumn: cidx, row: ridx) {
-					child.accept(visitor: self)
+					child.setExpandabilities(priorities: prival)
 				}
 			}
 		}
 		/* Visit it self */
-		let prival = ExpansionPriorities(holizontalHugging: 	.low,
-						 holizontalCompression: .fixed,
-						 verticalHugging: 	.low,
-						 verticalCompression:	.fixed)
 		view.setExpandabilities(priorities: prival)
 	}
 

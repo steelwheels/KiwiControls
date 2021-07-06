@@ -38,7 +38,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="GTv-HU-HMR">
+                                            <tableCellView identifier="tableCellView" id="GTv-HU-HMR" customClass="KCTableCellView" customModule="KiwiControls" customModuleProvider="target">
                                                 <rect key="frame" x="1" y="1" width="475" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -88,7 +88,7 @@
             <connections>
                 <outlet property="mTableView" destination="lnc-rb-lWj" id="kJW-is-d5G"/>
             </connections>
-            <point key="canvasLocation" x="67" y="120"/>
+            <point key="canvasLocation" x="67" y="15"/>
         </customView>
     </objects>
 </document>

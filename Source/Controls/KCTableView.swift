@@ -2,7 +2,7 @@
  * @file	KCTableView.swift
  * @brief	Define KCTableView class
  * @par Copyright
- *   Copyright (C) 017 Steel Wheels Project
+ *   Copyright (C) 2021 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -52,18 +52,15 @@ open class KCTableView : KCInterfaceView
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
 			setCoreView(view: newview)
-			newview.setup(frame: self.frame, viewAllocator: {
-				(_ val: CNNativeValue, _ editable: Bool) -> KCView? in
-				return self.valueToView(value: val, isEditable: editable)
-			})
+			newview.setup(frame: self.frame)
 			allocateSubviewLayout(subView: newview)
 		} else {
 			fatalError("Can not load KCTableViewCore")
 		}
 	}
 
-	open func reloadTable(table tbl: CNNativeTableInterface?) {
-		self.coreView.reloadTable(table: tbl)
+	open func reload(table tbl: CNNativeTableInterface?) {
+		self.coreView.reload(table: tbl)
 	}
 
 	public var isEditable: Bool {
@@ -76,7 +73,7 @@ open class KCTableView : KCInterfaceView
 		set(val){ coreView.hasHeader = val	}
 	}
 
-	public var firstResponderView: KCView? { get {
+	public var firstResponderView: KCViewBase? { get {
 		return coreView.firstResponderView
 	}}
 
@@ -84,13 +81,13 @@ open class KCTableView : KCInterfaceView
 		return coreView.view(atColumn: col, row: rw)
 	}
 
-	public var cellPressedCallback: ((_ col: Int, _ row: Int) -> Void)? {
-		get         { return coreView.cellPressedCallback   }
-		set(cbfunc) { coreView.cellPressedCallback = cbfunc }
+	public var cellClickedCallback: ((_ double: Bool, _ col: Int, _ row: Int) -> Void)? {
+		get         { return coreView.cellClickedCallback   }
+		set(cbfunc) { coreView.cellClickedCallback = cbfunc }
 	}
 
-	open func valueToView(value val: CNNativeValue, isEditable edt: Bool) -> KCView? {
-		return nil
+	public func dump(){
+		coreView.dump()
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
