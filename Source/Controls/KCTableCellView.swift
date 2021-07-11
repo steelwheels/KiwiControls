@@ -14,8 +14,6 @@ import Cocoa
 
 public class KCTableCellView: NSTableCellView
 {
-	public var isEditable: Bool = false
-
 	public override var objectValue: Any? {
 		get {
 			return super.objectValue
@@ -71,8 +69,8 @@ public class KCTableCellView: NSTableCellView
 	private func updateStringValue(value val: String){
 		if let field = super.textField {
 			field.stringValue = val
-			field.isEditable  = self.isEditable
 			field.sizeToFit()
+			NSLog("updateStringValue: size=\(field.frame.size.description)")
 		} else {
 			let newfield = NSTextField(string: val)
 			super.textField = newfield
@@ -98,16 +96,112 @@ public class KCTableCellView: NSTableCellView
 			return nil
 		}
 	}}
-	
+
+	public var isEditable: Bool {
+		get {
+			if let field = self.textField {
+				return field.isEditable
+			} else if let _ = self.imageView {
+				return false
+			} else {
+				return false
+			}
+		}
+		set(newval){
+			if let field = self.textField {
+				field.isEditable = newval
+			} else if let _ = self.imageView {
+				// do nothing
+			} else {
+				// do nothing
+			}
+		}
+	}
+
+	public var isEnabled: Bool {
+		get {
+			if let field = self.textField {
+				return field.isEnabled
+			} else if let img = self.imageView {
+				return img.isEnabled
+			} else {
+				return false
+			}
+		}
+		set(newval){
+			if let field = self.textField {
+				field.isEnabled = newval
+			} else if let img = self.imageView {
+				img.isEnabled = newval
+			} else {
+				// do nothing
+			}
+		}
+	}
+
 	public override var intrinsicContentSize: NSSize {
 		get {
 			if let field = self.textField {
-				return field.intrinsicContentSize
+				return self.intrinsicContentSize(ofTextField: field)
 			} else if let img = self.imageView {
 				return img.intrinsicContentSize
 			} else {
 				return super.intrinsicContentSize
 			}
+		}
+	}
+
+	private func intrinsicContentSize(ofTextField field: NSTextField) -> KCSize {
+		let DefaultLength: Int = 20
+
+		let curnum = field.stringValue.count
+		let newnum = max(curnum, DefaultLength)
+
+		let fitsize = field.fittingSize
+
+		let newwidth: CGFloat
+		if let font = field.font {
+			let attr = [NSAttributedString.Key.font: font]
+			let str: String = " "
+			let fsize = str.size(withAttributes: attr)
+			newwidth = max(fitsize.width, fsize.width * CGFloat(newnum))
+		} else {
+			newwidth = fitsize.width
+		}
+
+		field.preferredMaxLayoutWidth = newwidth
+		return KCSize(width: newwidth, height: fitsize.height)
+	}
+
+	public override var fittingSize: KCSize {
+		get {
+			if let field = self.textField {
+				return field.fittingSize
+			} else if let img = self.imageView {
+				return img.fittingSize
+			} else {
+				return super.fittingSize
+			}
+		}
+	}
+
+	public override func setFrameSize(_ newsize: KCSize) {
+		NSLog("KCTableCellView: setFrameSize(\(newsize.description)")
+		let fitsize = self.fittingSize
+		if fitsize.width <= newsize.width && fitsize.height <= newsize.height {
+			self.setFrameSizeBody(size: newsize)
+		} else {
+			NSLog("Failed to setFrameSize: Given size is too small: \(fitsize.description)")
+			self.setFrameSizeBody(size: fitsize)
+		}
+	}
+
+	private func setFrameSizeBody(size newsize: KCSize){
+		super.setFrameSize(newsize)
+		if let field = self.textField {
+			field.setFrameSize(newsize)
+		} else if let img = self.imageView {
+			img.setFrameSize(newsize)
 		}
 	}
 }

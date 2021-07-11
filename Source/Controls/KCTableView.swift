@@ -63,6 +63,11 @@ open class KCTableView : KCInterfaceView
 		self.coreView.reload(table: tbl)
 	}
 
+	public var isEnable: Bool {
+		get      { return coreView.isEnable }
+		set(val) { coreView.isEnable = val }
+	}
+
 	public var isEditable: Bool {
 		get      { return coreView.isEditable }
 		set(val) { coreView.isEditable = val }
@@ -77,7 +82,7 @@ open class KCTableView : KCInterfaceView
 		return coreView.firstResponderView
 	}}
 
-	public func view(atColumn col: Int, row rw: Int) -> KCView? {
+	public func view(atColumn col: Int, row rw: Int) -> KCViewBase? {
 		return coreView.view(atColumn: col, row: rw)
 	}
 

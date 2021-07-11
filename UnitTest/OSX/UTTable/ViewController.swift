@@ -23,7 +23,8 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		NSLog("Start logging ... end")
 
 		/* Set editable */
-		mTableView.isEditable = true
+		//mTableView.isEditable = true
+		mTableView.isEnable = true
 		mTableView.hasHeader  = true
 
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)

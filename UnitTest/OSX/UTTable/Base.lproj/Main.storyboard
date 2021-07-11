@@ -715,9 +715,13 @@
                             </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0Sy-Po-NhU" secondAttribute="bottom" id="1vW-Z0-NlW"/>
+                            <constraint firstItem="0Sy-Po-NhU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="6JB-A7-HVC"/>
                             <constraint firstItem="0Sy-Po-NhU" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="85X-8i-wjO"/>
+                            <constraint firstAttribute="trailing" secondItem="0Sy-Po-NhU" secondAttribute="trailing" id="957-og-5r1"/>
                             <constraint firstAttribute="trailing" secondItem="0Sy-Po-NhU" secondAttribute="trailing" id="Z9o-E2-vp9"/>
                             <constraint firstItem="0Sy-Po-NhU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="axg-W6-wmT"/>
+                            <constraint firstItem="0Sy-Po-NhU" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hf0-gk-DNH"/>
                             <constraint firstAttribute="bottom" secondItem="0Sy-Po-NhU" secondAttribute="bottom" id="vLQ-9g-VzC"/>
                         </constraints>
                     </view>

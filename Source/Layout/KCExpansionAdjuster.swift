@@ -124,7 +124,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 		for cidx in 0..<colnum {
 			for ridx in 0..<rownum {
 				if let child = view.view(atColumn: cidx, row: ridx) {
-					child.setExpandabilities(priorities: prival)
+					child.setExpansionPriorities(priorities: prival)
 				}
 			}
 		}
