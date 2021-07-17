@@ -35,6 +35,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var isEnable:		Bool = true
 	public var allowsRowSelection:	Bool = false
 
+	public var visibleRowCount:	Int  = 20
+
 	private var mTableInterface:	CNNativeTableInterface
 	private var mReloadedCount:	Int
 
@@ -234,7 +236,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		NSLog("tableView objectValueFor")
 		if let col = tableColumn {
 			let val = mTableInterface.value(columnIndex: .title(col.title), row: row)
-			NSLog(" -> value: \(val.toText().toStrings().joined())")
+			NSLog(" -> value: \(val.toText().toStrings().joined()) forColumn: \(col.title) forRow: \(row)")
 
 			switch val {
 			case .nullValue:
@@ -242,6 +244,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			default:
 				return val
 			}
+		} else {
+			CNLog(logLevel: .error, message: "tableView: Not column", atFunction: #function, inFile: #file)
 		}
 		return nil
 	}
@@ -340,7 +344,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			result        =  header.frame.size
 			result.height += space.height
 		}
-		let rownum = mTableView.numberOfRows
+		let rownum = min(mTableView.numberOfRows, visibleRowCount)
 		for ridx in 0..<rownum {
 			if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: false) {
 				let frame = rview.frame
