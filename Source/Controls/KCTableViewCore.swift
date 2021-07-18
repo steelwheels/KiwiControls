@@ -122,6 +122,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#if os(OSX)
 			mTableView.target			= self
 			mTableView.doubleAction 		= #selector(doubleClicked)
+			mTableView.columnAutoresizingStyle	= .sequentialColumnAutoresizingStyle
 			mTableView.allowsColumnReordering	= false
 			mTableView.allowsColumnResizing		= false
 			mTableView.allowsColumnSelection	= false
