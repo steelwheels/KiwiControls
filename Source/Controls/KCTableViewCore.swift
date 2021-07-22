@@ -38,19 +38,22 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var visibleRowCount:	Int  = 20
 
 	private var mTableInterface:	CNNativeTableInterface
+	private var mSortDescriptors:	CNSortDescriptors
 	private var mReloadedCount:	Int
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mTableInterface	= CNNativeValueTable()
-		mReloadedCount  = 0
+		mTableInterface		= CNNativeValueTable()
+		mSortDescriptors	= CNSortDescriptors()
+		mReloadedCount 		= 0
 		super.init(frame: frame)
 		self.initValueTable(table: mTableInterface)
 	}
 	#else
 	public override init(frame: CGRect){
-		mTableInterface	= CNNativeValueTable()
-		mReloadedCount  = 0
+		mTableInterface		= CNNativeValueTable()
+		mSortDescriptors	= CNSortDescriptors()
+		mReloadedCount  	= 0
 		super.init(frame: frame)
 		self.initValueTable(table: mTableInterface)
 	}
@@ -66,8 +69,9 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public required init?(coder: NSCoder) {
-		mTableInterface	= CNNativeValueTable()
-		mReloadedCount  = 0
+		mTableInterface		= CNNativeValueTable()
+		mSortDescriptors	= CNSortDescriptors()
+		mReloadedCount 		= 0
 		super.init(coder: coder)
 		self.initValueTable(table: mTableInterface)
 	}
@@ -300,6 +304,23 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			}
 		}
 		return newview
+	}
+
+	public func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
+		NSLog("click column")
+		let doascend: Bool
+		if let val = mSortDescriptors.ascending(for: tableColumn.title) {
+			doascend = !val
+		} else {
+			doascend = false
+		}
+		mSortDescriptors.add(key: tableColumn.title, ascending: doascend)
+
+		let text = mSortDescriptors.toText()
+		NSLog("desc: " + text.toStrings().joined(separator: "\n"))
+
+		mTableInterface.sort(byDescriptors: mSortDescriptors)
+		mTableView.reloadData()
 	}
 
 	public func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
