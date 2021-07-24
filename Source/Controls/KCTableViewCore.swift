@@ -20,7 +20,7 @@ import CoconutData
 	public typealias KCTableViewDataSource  = UITableViewDataSource
 #endif
 
-open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSource
+open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSource, KCTableCellDelegate
 {
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
@@ -31,7 +31,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	// [double] true: double click, false: single click
  	public var cellClickedCallback: ((_ double: Bool, _ col: Int, _ row: Int) -> Void)? = nil
 	public var hasHeader:		Bool = false
-	public var isEditable:		Bool = false
 	public var isEnable:		Bool = true
 	public var allowsRowSelection:	Bool = false
 
@@ -143,6 +142,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	/*
 	 * Table
 	 */
+	public var isEditable: Bool 	{ get { return mTableInterface.isEditable  }}
 	public var numberOfColumns: Int { get { return mTableInterface.columnCount }}
 	public var numberOfRows: Int 	{ get { return mTableInterface.rowCount    }}
 
@@ -209,7 +209,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
 			newcol.title      = colname
 			newcol.isHidden	  = false
-			newcol.isEditable = true // self.isEditable
+			newcol.isEditable = mTableInterface.isEditable
 			mTableView.addTableColumn(newcol)
 		}
 
@@ -288,9 +288,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		NSLog("makeView: \(String(describing: tableColumn)) \(ridx)")
 		let newview = mTableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "tableCellView"), owner: mTableView)
 		if let cell = newview as? KCTableCellView {
-			NSLog(" -> is KCTableCellView")
+			let title: String
+			if let col = tableColumn {
+				title = col.title
+			} else {
+				title = ""
+			}
+			NSLog(" -> Setup KCTableCellView")
+			cell.setup(title: title, row: ridx, delegate: self)
 			cell.isEnabled  = self.isEnable
-			cell.isEditable = self.isEditable
+			cell.isEditable = mTableInterface.isEditable
 		} else {
 			NSLog("[Error] Unexpected cell view")
 		}
@@ -328,6 +335,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#endif
 
+	/*
+	 * KCTableCellDelegate
+	 */
+	#if os(OSX)
+	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNNativeValue) {
+		NSLog("textShouldEndEditing: title=\"\(title)\" row=\(ridx) value=\(val)")
+		mTableInterface.setValue(columnIndex: .title(title), row: ridx, value: val)
+	}
+	#endif
+	
 	/*
 	 * Layout
 	 */

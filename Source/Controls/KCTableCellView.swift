@@ -5,15 +5,41 @@
  *   Copyright (C) 2021 Steel Wheels Project
  */
 
-#if os(OSX)
-
 import CoconutData
 import Foundation
+#if os(OSX)
 import Cocoa
+#else
+import UIKit
+#endif
 
+public protocol KCTableCellDelegate {
+	#if os(OSX)
+	func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNNativeValue)
+	#endif
+}
 
-public class KCTableCellView: NSTableCellView
+#if os(OSX)
+public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 {
+	private var mDelegate:		KCTableCellDelegate? = nil
+	private var mTitle		= ""
+	private var mRowIndex		= -1
+	private var mIsInitialized	= false
+
+	public func setup(title tstr: String, row ridx: Int, delegate dlg: KCTableCellDelegate){
+		mTitle		= tstr
+		mRowIndex	= ridx
+		mDelegate	= dlg
+		guard !mIsInitialized else {
+			return // already initialized
+		}
+		if let field = super.textField {
+			field.delegate = self
+		}
+		mIsInitialized = true
+	}
+
 	public override var objectValue: Any? {
 		get {
 			return super.objectValue
@@ -203,6 +229,17 @@ public class KCTableCellView: NSTableCellView
 		} else if let img = self.imageView {
 			img.setFrameSize(newsize)
 		}
+	}
+
+	/* NSTextFieldDelegate */
+	public func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+		if let dlg = mDelegate {
+			let val: CNNativeValue = .stringValue(fieldEditor.string)
+			dlg.tableCellView(shouldEndEditing: self, columnTitle: mTitle, rowIndex: mRowIndex, value: val)
+		} else {
+			NSLog("textShouldEndEditing: title=\"\(mTitle)\" row=\(mRowIndex) value=\(fieldEditor.string)")
+		}
+		return true
 	}
 }
 

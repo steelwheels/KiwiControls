@@ -70,7 +70,6 @@ open class KCTableView : KCInterfaceView
 
 	public var isEditable: Bool {
 		get      { return coreView.isEditable }
-		set(val) { coreView.isEditable = val }
 	}
 
 	public var hasHeader: Bool {
