@@ -59,16 +59,9 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 	}
 
 	public override func viewDidAppear() {
-		if let window = self.view.window {
-			/* decide 1st responder */
-			/*
-			if let resp = mTableView.firstResponderView {
-				window.makeFirstResponder(resp)
-			}
-*/
-			mTableView.dump()
-		} else {
-			CNLog(logLevel: .error, message: "No window at \(#function)")
+		mTableView.stateListner = {
+			(_ state: KCTableView.DataState) -> Void in
+			NSLog("change state: \(state)")
 		}
 	}
 

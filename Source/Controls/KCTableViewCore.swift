@@ -28,7 +28,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
-	// [double] true: double click, false: single click
+	public enum DataState {
+		case clean
+		case dirty
+	}
+
+	public typealias StateListner = (_ state: DataState) -> Void
+
  	public var cellClickedCallback: ((_ double: Bool, _ col: Int, _ row: Int) -> Void)? = nil
 	public var hasHeader:		Bool = false
 	public var isEnable:		Bool = true
@@ -36,12 +42,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public var visibleRowCount:	Int  = 20
 
+	private var mDataState:		DataState
+	private var mStateListner:	StateListner?
 	private var mTableInterface:	CNNativeTableInterface
 	private var mSortDescriptors:	CNSortDescriptors
 	private var mReloadedCount:	Int
 
 	#if os(OSX)
 	public override init(frame : NSRect){
+		mDataState		= .clean
+		mStateListner		= nil
 		mTableInterface		= CNNativeValueTable()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
@@ -50,6 +60,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#else
 	public override init(frame: CGRect){
+		mDataState		= .clean
+		mStateListner		= nil
 		mTableInterface		= CNNativeValueTable()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount  	= 0
@@ -68,6 +80,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public required init?(coder: NSCoder) {
+		mDataState		= .clean
+		mStateListner		= nil
 		mTableInterface		= CNNativeValueTable()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
@@ -221,6 +235,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 		mTableView.endUpdates()
 
+		update(dataState: .clean)
 		mReloadedCount = mTableInterface.rowCount * mTableInterface.columnCount
 
 		mTableView.noteNumberOfRowsChanged()
@@ -342,9 +357,25 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNNativeValue) {
 		NSLog("textShouldEndEditing: title=\"\(title)\" row=\(ridx) value=\(val)")
 		mTableInterface.setValue(columnIndex: .title(title), row: ridx, value: val)
+		update(dataState: .dirty)
 	}
 	#endif
-	
+
+	/* Listner */
+	public var stateListner: StateListner? {
+		get		{ return mStateListner }
+		set(listner)	{ mStateListner = listner }
+	}
+
+	private func update(dataState dst: DataState) {
+		if let listner = mStateListner {
+			if dst != mDataState {
+				listner(dst)
+				mDataState = dst
+			}
+		}
+	}
+
 	/*
 	 * Layout
 	 */
