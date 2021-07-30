@@ -71,6 +71,10 @@ open class KCTableView : KCInterfaceView
 		self.coreView.reload(table: tbl)
 	}
 
+	public func save(){
+		self.coreView.save()
+	}
+
 	public var isEnable: Bool {
 		get      { return coreView.isEnable }
 		set(val) { coreView.isEnable = val }

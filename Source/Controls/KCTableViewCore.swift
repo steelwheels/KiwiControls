@@ -243,6 +243,10 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#endif
 	}
 
+	public func save(){
+		mTableInterface.save()
+	}
+
 	/*
 	 * KCTableViewDataSource
 	 */
