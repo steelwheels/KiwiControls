@@ -102,9 +102,20 @@ public class SingleViewController: KCSingleViewController
 		let button2   = KCButton()
 		button2.title = "OK"
 
+		let labstack = KCLabeledStackView()
+		labstack.title = "Labeled Stack"
+		let button30 = KCButton()
+		button30.title = "First name"
+		let button31 = KCButton()
+		button31.title = "Given name"
+		let box3 = KCStackView()
+		box3.axis = .horizontal
+		box3.addArrangedSubViews(subViews: [button30, button31])
+		labstack.addArrangedSubView(subView: box3)
+
 		let box2 = KCStackView()
 		box2.axis = .vertical
-		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, button2])
+		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, labstack, button2])
 
 		return box2
 	}

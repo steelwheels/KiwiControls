@@ -64,6 +64,18 @@ open class KCLabeledStackView: KCInterfaceView
 		get { return coreView.labelView}
 	}
 
+	open func addArrangedSubViews(subViews vs:Array<KCView>){
+		coreView.addArrangedSubViews(subViews: vs)
+	}
+
+	open func addArrangedSubView(subView v: KCView){
+		coreView.addArrangedSubView(subView: v)
+	}
+
+	open func arrangedSubviews() -> Array<KCView> {
+		return coreView.arrangedSubviews()
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(labeledStackView: self)
 	}

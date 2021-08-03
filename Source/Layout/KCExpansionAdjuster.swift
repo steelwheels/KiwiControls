@@ -151,17 +151,14 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {
+		/* Label */
 		let labval = ExpansionPriorities(holizontalHugging: .middle,
 						 holizontalCompression: .middle,
 						 verticalHugging: .fixed,
 						 verticalCompression: .fixed)
 		view.labelView.setExpansionPriorities(priorities: labval)
-		view.contentsView.accept(visitor: self)
-		let stkval = ExpansionPriorities(holizontalHugging: 	.low,
-						 holizontalCompression: .fixed,
-						 verticalHugging: 	.low,
-						 verticalCompression:	.fixed)
-		view.setExpandabilities(priorities: stkval)
+		/* Contents view */
+		visit(stackView: view.contentsView)
 	}
 
 	open override func visit(imageView view: KCImageView){

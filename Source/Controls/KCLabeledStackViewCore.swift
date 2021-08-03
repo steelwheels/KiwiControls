@@ -62,6 +62,18 @@ open class KCLabeledStackViewCore : KCCoreView
 		get { return mTextField }
 	}
 
+	open func addArrangedSubViews(subViews vs:Array<KCView>){
+		mStackView.addArrangedSubViews(subViews: vs)
+	}
+
+	open func addArrangedSubView(subView v: KCView){
+		mStackView.addArrangedSubView(subView: v)
+	}
+
+	open func arrangedSubviews() -> Array<KCView> {
+		return mStackView.arrangedSubviews()
+	}
+
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
 		let space = CNPreference.shared.windowPreference.spacing
