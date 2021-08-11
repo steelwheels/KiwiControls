@@ -30,10 +30,16 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
 		let table = CNNativeValueTable()
 		for y in 0..<2 {
+			let record = CNNativeValueRecord()
 			for x in 0..<3 {
 				let str = "\(x)/\(y)"
-				table.setValue(columnIndex: .number(x), row: y, value: .stringValue(str))
+				if record.setValue(value: .stringValue(str), forField: "\(x)") {
+					NSLog("setValue(\(str), \(x)) ... OK")
+				} else {
+					NSLog("setValue(\(str), \(x)) ... Failed")
+				}
 			}
+			table.append(record: record)
 		}
 
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)

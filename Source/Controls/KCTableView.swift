@@ -43,8 +43,8 @@ open class KCTableView : KCInterfaceView
 		setup() ;
 	}
 
-	public var numberOfColumns: Int { get { return coreView.numberOfColumns }}
-	public var numberOfRows: Int 	{ get { return coreView.numberOfRows    }}
+	public var numberOfRows:	Int { get { return coreView.numberOfRows	}}
+	public var numberOfColumns:	Int { get { return coreView.numberOfColumns	}}
 
 	public var hasGrid: Bool {
 		get		{ return coreView.hasGrid }
@@ -67,7 +67,7 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
-	open func reload(table tbl: CNNativeTableInterface?) {
+	open func reload(table tbl: CNTable?) {
 		self.coreView.reload(table: tbl)
 	}
 

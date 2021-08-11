@@ -2,7 +2,7 @@
  * @file	KCTableViewCore.swift
  * @brief	Define KCTableViewCore class
  * @par Copyright
- *   Copyright (C) 2017 Steel Wheels Project
+ *   Copyright (C) 2017-2021 Steel Wheels Project
  */
 
 import CoconutData
@@ -43,30 +43,31 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var visibleRowCount:	Int  = 20
 
 	private var mDataState:		DataState
+	private var mIsEditable:	Bool
 	private var mStateListner:	StateListner?
-	private var mTableInterface:	CNNativeTableInterface
+	private var mTableInterface:	CNTable
 	private var mSortDescriptors:	CNSortDescriptors
 	private var mReloadedCount:	Int
 
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mDataState		= .clean
+		mIsEditable		= false
 		mStateListner		= nil
-		mTableInterface		= CNNativeValueTable()
+		mTableInterface		= KCTableViewCore.allocateInitialTable()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
 		super.init(frame: frame)
-		self.initValueTable(table: mTableInterface)
 	}
 	#else
 	public override init(frame: CGRect){
 		mDataState		= .clean
+		mIsEditable		= false
 		mStateListner		= nil
-		mTableInterface		= CNNativeValueTable()
+		mTableInterface		= KCTableViewCore.allocateInitialTable()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount  	= 0
 		super.init(frame: frame)
-		self.initValueTable(table: mTableInterface)
 	}
 	#endif
 
@@ -81,16 +82,20 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public required init?(coder: NSCoder) {
 		mDataState		= .clean
+		mIsEditable		= false
 		mStateListner		= nil
-		mTableInterface		= CNNativeValueTable()
+		mTableInterface		= KCTableViewCore.allocateInitialTable()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
 		super.init(coder: coder)
-		self.initValueTable(table: mTableInterface)
 	}
 
-	private func initValueTable(table tbl: CNNativeTableInterface){
-		tbl.setValue(columnIndex: .number(0), row: 0, value: .stringValue(""))
+	static private func allocateInitialTable() -> CNNativeValueTable {
+		let table  = CNNativeValueTable()
+		let newrec = CNNativeValueRecord()
+		let _ = newrec.setValue(value: .stringValue(" "), forField: "0")
+		table.append(record: newrec)
+		return table
 	}
 
 	/*
@@ -108,18 +113,23 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private func click(isDouble double: Bool) {
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
-		let colnum = mTableInterface.columnCount
-		let rownum = mTableInterface.rowCount
-		if 0<=colidx && colidx < colnum && 0<=rowidx && rowidx < rownum {
-			if let cbfunc = self.cellClickedCallback {
-				cbfunc(double, colidx, rowidx)
-			} else {
-				NSLog("Clicked col:\(colidx) row:\(rowidx)")
-			}
-			if let view = mTableView.view(atColumn: colidx, row: rowidx, makeIfNecessary: false) as? KCTableCellView {
-				if let resp = view.firstResponderView {
-					NSLog("click -> notify")
-					notify(viewControlEvent: .switchFirstResponder(resp))
+
+		let recnum = mTableInterface.recordCount
+		if recnum > 0 {
+			if let record = mTableInterface.record(at: 0) {
+				let fldnum = record.fieldCount
+				if 0<=colidx && colidx < fldnum && 0<=rowidx && rowidx < recnum {
+					if let cbfunc = self.cellClickedCallback {
+						cbfunc(double, colidx, rowidx)
+					} else {
+						NSLog("Clicked col:\(colidx) row:\(rowidx)")
+					}
+					if let view = mTableView.view(atColumn: colidx, row: rowidx, makeIfNecessary: false) as? KCTableCellView {
+						if let resp = view.firstResponderView {
+							NSLog("click -> notify")
+							notify(viewControlEvent: .switchFirstResponder(resp))
+						}
+					}
 				}
 			}
 		}
@@ -132,9 +142,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		KCView.setAutolayoutMode(views: [self, mTableView])
 		mTableView.delegate   = self
 		mTableView.dataSource = self
-
-		/* Add dummy cell */
-		mTableInterface.setValue(columnIndex: .number(0), row: 0, value: .nullValue)
 
 		#if os(OSX)
 			mTableView.target			= self
@@ -156,9 +163,19 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	/*
 	 * Table
 	 */
-	public var isEditable: Bool 	{ get { return mTableInterface.isEditable  }}
-	public var numberOfColumns: Int { get { return mTableInterface.columnCount }}
-	public var numberOfRows: Int 	{ get { return mTableInterface.rowCount    }}
+	public var isEditable:  Bool 	{ get { return mIsEditable	  		}}
+	public var numberOfRows: Int 	{ get {
+		return mTableInterface.recordCount
+	}}
+	public var numberOfColumns: Int { get {
+		if let record = mTableInterface.record(at: 0) {
+			NSLog("numberOfColumns: \(record.fieldCount)")
+			return record.fieldCount
+		} else {
+			NSLog("numberOfColumns: 0")
+			return 0
+		}
+	}}
 
 	public var hasGrid: Bool {
 		get {
@@ -201,7 +218,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	/*
 	 * Reload
 	 */
-	public func reload(table tbl: CNNativeTableInterface?) {
+	public func reload(table tbl: CNTable?) {
 		#if os(OSX)
 		CNLog(logLevel: .detail, message: "Reload table contents", atFunction: #function, inFile: #file)
 
@@ -218,13 +235,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		/* Add columns */
-		for i in 0..<mTableInterface.columnCount {
-			let colname       = mTableInterface.title(column: i)
-			let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: colname))
-			newcol.title      = colname
-			newcol.isHidden	  = false
-			newcol.isEditable = mTableInterface.isEditable
-			mTableView.addTableColumn(newcol)
+		NSLog("Add columns")
+		if let record = mTableInterface.record(at: 0) {
+			for name in record.fieldNames {
+				NSLog("field: \(name)")
+				let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: name))
+				newcol.title      = name
+				newcol.isHidden	  = false
+				newcol.isEditable = mIsEditable
+				mTableView.addTableColumn(newcol)
+			}
 		}
 
 		if hasHeader {
@@ -235,9 +255,14 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 		mTableView.endUpdates()
 
-		update(dataState: .clean)
-		mReloadedCount = mTableInterface.rowCount * mTableInterface.columnCount
+		if let record = mTableInterface.record(at: 0) {
+			mReloadedCount = mTableInterface.recordCount * record.fieldCount
+		} else {
+			mReloadedCount = 0
+		}
+		NSLog("reload count: \(mReloadedCount)")
 
+		update(dataState: .clean)
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
 		#endif
@@ -252,41 +277,43 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func numberOfRows(in tableView: NSTableView) -> Int {
-		NSLog("rowCount: \(mTableInterface.rowCount)")
-		return mTableInterface.rowCount
+		NSLog("rowCount: \(mTableInterface.recordCount)")
+		return mTableInterface.recordCount
 	}
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-		NSLog("tableView objectValueFor")
+		NSLog("tableView objectValueFor (0)")
 		if let col = tableColumn {
-			let val = mTableInterface.value(columnIndex: .title(col.title), row: row)
-			NSLog(" -> value: \(val.toText().toStrings().joined()) forColumn: \(col.title) forRow: \(row)")
-
-			switch val {
-			case .nullValue:
-				return nil
-			default:
-				return val
+			NSLog("tableView objectValueFor (1) row:\(row), title:\(col.title)")
+			if let record = mTableInterface.record(at: row) {
+				NSLog("tableView objectValueFor (2) record:\(record)")
+				if let val = record.value(ofField: col.title) {
+					NSLog("tableView objectValueFor (2) val:\(val)")
+					return val
+				}
 			}
-		} else {
-			CNLog(logLevel: .error, message: "tableView: Not column", atFunction: #function, inFile: #file)
 		}
-		return nil
+		NSLog("tableView objectValueFor (e) Error")
+		CNLog(logLevel: .error, message: "No value", atFunction: #function, inFile: #file)
+		return CNNativeValue.nullValue
 	}
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
 		NSLog("tableView setObjectValue")
 		if let col = tableColumn, let val = object as? CNNativeValue {
-			NSLog("tableView setObjectValue -> \(val.toText().toStrings().joined())")
-			mTableInterface.setValue(columnIndex: .title(col.title), row: row, value: val)
-		} else {
-			NSLog("Failed to set object value")
+			if let record = mTableInterface.record(at: row) {
+				if record.setValue(value: val, forField: col.title) {
+					CNLog(logLevel: .error, message: "Failed to set object value", atFunction: #function, inFile: #file)
+				}
+				return
+			}
 		}
+		CNLog(logLevel: .error, message: "Failed to set object value", atFunction: #function, inFile: #file)
 	}
 
 	#else
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return mTableInterface.rowCount
+		return mTableInterface.recordCount
 	}
 
 	public func numberOfSections(in tableView: UITableView) -> Int {
@@ -316,7 +343,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			NSLog(" -> Setup KCTableCellView")
 			cell.setup(title: title, row: ridx, delegate: self)
 			cell.isEnabled  = self.isEnable
-			cell.isEditable = mTableInterface.isEditable
+			cell.isEditable = mIsEditable
 		} else {
 			NSLog("[Error] Unexpected cell view")
 		}
@@ -359,9 +386,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNNativeValue) {
-		NSLog("textShouldEndEditing: title=\"\(title)\" row=\(ridx) value=\(val)")
-		mTableInterface.setValue(columnIndex: .title(title), row: ridx, value: val)
-		update(dataState: .dirty)
+		if let record = mTableInterface.record(at: ridx) {
+			if record.setValue(value: val, forField: title) {
+				update(dataState: .dirty)
+				return
+			}
+		}
+		CNLog(logLevel: .error, message: "Failed to set value", atFunction: #function, inFile: #file)
 	}
 	#endif
 
@@ -402,7 +433,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public override var intrinsicContentSize: KCSize {
 		#if os(OSX)
-		let size = calcContentSize()
+		let size: KCSize
+		if let sz = calcContentSize() {
+			size = sz
+		} else {
+			size = super.intrinsicContentSize
+		}
 		#else
 		let size = super.intrinsicContentSize
 		#endif
@@ -411,25 +447,36 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	#if os(OSX)
-	private func calcContentSize() -> KCSize {
+	private func calcContentSize() -> KCSize? {
 		var result = KCSize.zero
 		let space  = mTableView.intercellSpacing
 		if let header = mTableView.headerView {
 			result        =  header.frame.size
 			result.height += space.height
 		}
+		NSLog("calcContentSize (0)")
 		let rownum = min(mTableView.numberOfRows, visibleRowCount)
-		for ridx in 0..<rownum {
-			if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: false) {
-				let frame = rview.frame
-				result.width  =  max(result.width, frame.size.width)
-				result.height += frame.size.height
+		if rownum > 0 {
+			NSLog("calcContentSize (1) \(rownum)")
+			for ridx in 0..<rownum {
+				NSLog("calcContentSize (2) \(ridx)")
+				if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: false) {
+					let frame = rview.frame
+					result.width  =  max(result.width, frame.size.width)
+					result.height += frame.size.height
+					NSLog("calcContentSize (3) \(result.width), \(result.height)")
+				}
+				NSLog("calcContentSize (4) \(result.width), \(result.height)")
 			}
+			if rownum > 1 {
+				result.height += space.height * CGFloat(rownum - 1)
+			}
+			NSLog("calcContentSize (5) \(result.width), \(result.height)")
+			return result
+		} else {
+			NSLog("calcContentSize (6)")
+			return nil
 		}
-		if rownum > 1 {
-			result.height += space.height * CGFloat(rownum - 1) 
-		}
-		return result
 	}
 	#endif
 

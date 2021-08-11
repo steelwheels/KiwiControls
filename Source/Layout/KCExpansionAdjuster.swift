@@ -58,6 +58,14 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
+	open override func visit(dataField view: KCDataField){
+		let prival = ExpansionPriorities(holizontalHugging: 	.middle,
+						 holizontalCompression: .fixed,
+						 verticalHugging: 	.middle,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
+	}
+
 	open override func visit(consoleView view: KCConsoleView){
 		let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
 						 holizontalCompression: .fixed,

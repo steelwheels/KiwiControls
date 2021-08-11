@@ -118,7 +118,7 @@ open class KCConsoleView : KCTextView
 		case .ok(let codes):
 			super.execute(escapeCodes: codes)
 		case .error(let err):
-			CNLog(logLevel: .error, message: "Failed to decode escape code: \(err.description())")
+			CNLog(logLevel: .error, message: "Failed to decode escape code: \(err.toString())")
 		@unknown default:
 			CNLog(logLevel: .error, message: "Failed to decode escape code: <unknown>")
 		}
