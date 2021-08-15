@@ -122,11 +122,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 					if let cbfunc = self.cellClickedCallback {
 						cbfunc(double, colidx, rowidx)
 					} else {
-						NSLog("Clicked col:\(colidx) row:\(rowidx)")
+						CNLog(logLevel: .detail, message: "Clicked col:\(colidx) row:\(rowidx)", atFunction: #function, inFile: #file)
 					}
 					if let view = mTableView.view(atColumn: colidx, row: rowidx, makeIfNecessary: false) as? KCTableCellView {
 						if let resp = view.firstResponderView {
-							NSLog("click -> notify")
+							CNLog(logLevel: .detail, message: "click -> notify", atFunction: #function, inFile: #file)
 							notify(viewControlEvent: .switchFirstResponder(resp))
 						}
 					}
@@ -169,10 +169,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}}
 	public var numberOfColumns: Int { get {
 		if let record = mTableInterface.record(at: 0) {
-			NSLog("numberOfColumns: \(record.fieldCount)")
 			return record.fieldCount
 		} else {
-			NSLog("numberOfColumns: 0")
 			return 0
 		}
 	}}
@@ -235,10 +233,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		/* Add columns */
-		NSLog("Add columns")
 		if let record = mTableInterface.record(at: 0) {
 			for name in record.fieldNames {
-				NSLog("field: \(name)")
 				let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: name))
 				newcol.title      = name
 				newcol.isHidden	  = false
@@ -260,7 +256,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		} else {
 			mReloadedCount = 0
 		}
-		NSLog("reload count: \(mReloadedCount)")
 
 		update(dataState: .clean)
 		mTableView.noteNumberOfRowsChanged()
@@ -277,29 +272,22 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func numberOfRows(in tableView: NSTableView) -> Int {
-		NSLog("rowCount: \(mTableInterface.recordCount)")
 		return mTableInterface.recordCount
 	}
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-		NSLog("tableView objectValueFor (0)")
 		if let col = tableColumn {
-			NSLog("tableView objectValueFor (1) row:\(row), title:\(col.title)")
 			if let record = mTableInterface.record(at: row) {
-				NSLog("tableView objectValueFor (2) record:\(record)")
 				if let val = record.value(ofField: col.title) {
-					NSLog("tableView objectValueFor (2) val:\(val)")
 					return val
 				}
 			}
 		}
-		NSLog("tableView objectValueFor (e) Error")
 		CNLog(logLevel: .error, message: "No value", atFunction: #function, inFile: #file)
 		return CNNativeValue.nullValue
 	}
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-		NSLog("tableView setObjectValue")
 		if let col = tableColumn, let val = object as? CNNativeValue {
 			if let record = mTableInterface.record(at: row) {
 				if record.setValue(value: val, forField: col.title) {
@@ -331,7 +319,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row ridx: Int) -> NSView? {
-		NSLog("makeView: \(String(describing: tableColumn)) \(ridx)")
 		let newview = mTableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "tableCellView"), owner: mTableView)
 		if let cell = newview as? KCTableCellView {
 			let title: String
@@ -340,17 +327,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			} else {
 				title = ""
 			}
-			NSLog(" -> Setup KCTableCellView")
 			cell.setup(title: title, row: ridx, delegate: self)
 			cell.isEnabled  = self.isEnable
 			cell.isEditable = mIsEditable
 		} else {
-			NSLog("[Error] Unexpected cell view")
+			CNLog(logLevel: .error, message: "Unexpected cell view", atFunction: #function, inFile: #file)
 		}
 		if mReloadedCount > 0 {
 			mReloadedCount -= 1
 			if mReloadedCount == 0 {
-				NSLog("Reloaded ... Notify resize")
+				CNLog(logLevel: .detail, message: "Reloaded ... Notify resize", atFunction: #function, inFile: #file)
 				self.invalidateIntrinsicContentSize()
 				self.requireLayout()
 				notify(viewControlEvent: .updateSize)
@@ -360,7 +346,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
-		NSLog("click column")
 		let doascend: Bool
 		if let val = mSortDescriptors.ascending(for: tableColumn.title) {
 			doascend = !val
@@ -368,9 +353,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			doascend = false
 		}
 		mSortDescriptors.add(key: tableColumn.title, ascending: doascend)
-
-		let text = mSortDescriptors.toText()
-		NSLog("desc: " + text.toStrings().joined(separator: "\n"))
 
 		mTableInterface.sort(byDescriptors: mSortDescriptors)
 		mTableView.reloadData()
@@ -428,7 +410,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
-		NSLog("setFrameSize: \(newsize.description)")
 	}
 
 	public override var intrinsicContentSize: KCSize {
@@ -442,7 +423,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#else
 		let size = super.intrinsicContentSize
 		#endif
-		NSLog("intrinsicContentsSize: \(size.description)")
 		return size
 	}
 
@@ -454,27 +434,20 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			result        =  header.frame.size
 			result.height += space.height
 		}
-		NSLog("calcContentSize (0)")
 		let rownum = min(mTableView.numberOfRows, visibleRowCount)
 		if rownum > 0 {
-			NSLog("calcContentSize (1) \(rownum)")
 			for ridx in 0..<rownum {
-				NSLog("calcContentSize (2) \(ridx)")
 				if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: false) {
 					let frame = rview.frame
 					result.width  =  max(result.width, frame.size.width)
 					result.height += frame.size.height
-					NSLog("calcContentSize (3) \(result.width), \(result.height)")
 				}
-				NSLog("calcContentSize (4) \(result.width), \(result.height)")
 			}
 			if rownum > 1 {
 				result.height += space.height * CGFloat(rownum - 1)
 			}
-			NSLog("calcContentSize (5) \(result.width), \(result.height)")
 			return result
 		} else {
-			NSLog("calcContentSize (6)")
 			return nil
 		}
 	}
@@ -484,7 +457,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#if os(OSX)
 		let row = mTableView.clickedRow
 		let col = mTableView.clickedColumn
-		NSLog("firstResonderView: \(row) \(col)")
 		if 0<=row && row<mTableView.numberOfRows && 0<=col && col<mTableView.numberOfColumns {
 			if let cell = mTableView.view(atColumn: col, row: row, makeIfNecessary: false) as? KCTableCellView {
 				return cell.firstResponderView
@@ -498,9 +470,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 * Debug
 	 */
 	public func dump(){
-		NSLog("DUMP")
 		#if os(OSX)
-
 		NSLog("tableView: \(mTableView.frame.description)")
 		for cidx in 0..<numberOfColumns {
 			for ridx in 0..<numberOfRows {
