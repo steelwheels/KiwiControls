@@ -61,9 +61,9 @@ open class KCButton: KCInterfaceView
 		set(v) { coreView.isEnabled = v }
 	}
 
-	public var title: String {
-		get { return coreView.title }
-		set(newstr){ coreView.title = newstr }
+	public var value: KCButtonValue {
+		get         { return coreView.value }
+		set(newval) { coreView.value = newval }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

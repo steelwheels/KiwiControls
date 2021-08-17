@@ -202,11 +202,11 @@ public class KCTerminalPreferenceView: KCStackView
 		mHomeDirectoryField = pathfield
 
 		let selectbutton = KCButton()
-		selectbutton.title = "Select"
+		selectbutton.value = .text("Selet")
 		mHomeSelectButton = selectbutton
 
 		let resetbutton = KCButton()
-		resetbutton.title = "Reset"
+		resetbutton.value = .text("Reset")
 		mHomeResetButton = resetbutton
 
 		let buttons = KCStackView()

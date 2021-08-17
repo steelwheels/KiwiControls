@@ -31,7 +31,7 @@ public class StackViewController: KCSingleViewController
 		hbox.axis = .horizontal
 
 		let button0   = KCButton()
-		button0.title = "Start"
+		button0.value = .text("Start")
 		button0.buttonPressedCallback = {
 			() -> Void in
 			gr2d.start(duration: 1.0, repeatCount: 20)
@@ -39,14 +39,14 @@ public class StackViewController: KCSingleViewController
 		hbox.addArrangedSubView(subView: button0)
 
 		let button1   = KCButton()
-		button1.title = "Stop"
+		button1.value = .text("Stop")
 		button1.buttonPressedCallback = {
 			() -> Void in
 			gr2d.stop()
 		}
 
 		let button2   = KCButton()
-		button2.title = "Pause ON"
+		button2.value = .text("Pause ON")
 		button2.buttonPressedCallback = {
 			() -> Void in
 			switch gr2d.state {
@@ -54,10 +54,10 @@ public class StackViewController: KCSingleViewController
 				CNLog(logLevel: .detail, message: "Unexpected state: \(gr2d.state.description)", atFunction: #function, inFile: #file)
 			case .pause:
 				gr2d.resume()
-				button2.title = "Pause ON"
+				button2.value = .text("Pause ON")
 			case .run:
 				gr2d.suspend()
-				button2.title = "Pause Off"
+				button2.value = .text("Pause Off")
 			@unknown default:
 				CNLog(logLevel: .detail, message: "Unexpected state: \(gr2d.state.description)", atFunction: #function, inFile: #file)
 			}

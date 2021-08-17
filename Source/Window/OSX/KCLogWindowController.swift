@@ -73,7 +73,7 @@ public class KCLogWindowController: NSWindowController
 
 			/* Clear button */
 			let clearbtn = KCButton()
-			clearbtn.title = "Clear"
+			clearbtn.value = .text("Clear")
 			/* Buttons box */
 			let btnframe  = KCRect(origin: KCPoint.zero, size: clearbtn.frame.size)
 			let btnbox    = KCStackView(frame: btnframe)

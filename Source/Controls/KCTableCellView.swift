@@ -88,7 +88,7 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 			let str = "\(obj.description)"
 			updateStringValue(value: str)
 		@unknown default:
-			NSLog("Unknown type value")
+			CNLog(logLevel: .error, message: "Unknown type value", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -96,7 +96,6 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		if let field = super.textField {
 			field.stringValue = val
 			field.sizeToFit()
-			NSLog("updateStringValue: size=\(field.frame.size.description)")
 		} else {
 			let newfield = NSTextField(string: val)
 			super.textField = newfield
@@ -212,12 +211,10 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 	}
 
 	public override func setFrameSize(_ newsize: KCSize) {
-		NSLog("KCTableCellView: setFrameSize(\(newsize.description)")
 		let fitsize = self.fittingSize
 		if fitsize.width <= newsize.width && fitsize.height <= newsize.height {
 			self.setFrameSizeBody(size: newsize)
 		} else {
-			NSLog("Failed to setFrameSize: Given size is too small: \(fitsize.description)")
 			self.setFrameSizeBody(size: fitsize)
 		}
 	}
@@ -236,8 +233,6 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		if let dlg = mDelegate {
 			let val: CNNativeValue = .stringValue(fieldEditor.string)
 			dlg.tableCellView(shouldEndEditing: self, columnTitle: mTitle, rowIndex: mRowIndex, value: val)
-		} else {
-			NSLog("textShouldEndEditing: title=\"\(mTitle)\" row=\(mRowIndex) value=\(fieldEditor.string)")
 		}
 		return true
 	}
