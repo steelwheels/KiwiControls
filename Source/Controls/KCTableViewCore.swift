@@ -157,7 +157,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			//mTableView.columnAutoresizingStyle	= .noColumnAutoresizing
 		#endif
 
-		reload(table: nil)
+		load(table: nil)
 	}
 
 	/*
@@ -214,9 +214,9 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	/*
-	 * Reload
+	 * Load
 	 */
-	public func reload(table tbl: CNTable?) {
+	public func load(table tbl: CNTable?) {
 		#if os(OSX)
 		CNLog(logLevel: .detail, message: "Reload table contents", atFunction: #function, inFile: #file)
 

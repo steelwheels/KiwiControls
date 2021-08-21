@@ -67,8 +67,8 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
-	open func reload(table tbl: CNTable?) {
-		self.coreView.reload(table: tbl)
+	open func load(table tbl: CNTable?) {
+		self.coreView.load(table: tbl)
 	}
 
 	public func save(){
