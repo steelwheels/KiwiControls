@@ -148,35 +148,6 @@ open class KCInterfaceView: KCView
 	#endif
 
 	#if os(OSX)
-	open override var needsLayout: Bool {
-		get {
-			if let core = mCoreView {
-				return core.needsLayout
-			} else {
-				return super.needsLayout
-			}
-		}
-		set(newval){
-			if let core = mCoreView {
-				core.needsLayout = newval
-				super.needsLayout = newval
-			} else {
-				super.needsLayout = newval
-			}
-		}
-	}
-	#else
-	open override func setNeedsLayout() {
-		if let core = mCoreView {
-			core.setNeedsLayout()
-			super.setNeedsLayout()
-		} else {
-			super.setNeedsLayout()
-		}
-	}
-	#endif
-
-	#if os(OSX)
 	open override var needsUpdateConstraints: Bool {
 		get {
 			if let core = mCoreView {
@@ -192,35 +163,6 @@ open class KCInterfaceView: KCView
 			} else {
 				super.needsUpdateConstraints = newval
 			}
-		}
-	}
-	#endif
-	
-	#if os(OSX)
-	open override var needsDisplay: Bool {
-		get {
-			if let core = mCoreView {
-				return core.needsDisplay
-			} else {
-				return super.needsDisplay
-			}
-		}
-		set(newval){
-			if let core = mCoreView {
-				core.needsDisplay = newval
-				super.needsDisplay = newval
-			} else {
-				super.needsDisplay = newval
-			}
-		}
-	}
-	#else
-	open override func setNeedsDisplay() {
-		if let core = mCoreView {
-			core.setNeedsDisplay()
-			super.setNeedsDisplay()
-		} else {
-			super.setNeedsDisplay()
 		}
 	}
 	#endif

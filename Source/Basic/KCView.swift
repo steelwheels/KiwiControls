@@ -281,11 +281,20 @@ open class KCView : KCViewBase
 	 * layout
 	 */
 	open func requireLayout() {
-		CNLog(logLevel: .detail, message: "require window layout")
+		CNLog(logLevel: .detail, message: "require view layout")
 		#if os(OSX)
 			self.needsLayout = true
 		#else
 			self.setNeedsLayout()
+		#endif
+	}
+
+	open func requireDisplay() {
+		CNLog(logLevel: .detail, message: "require view display")
+		#if os(OSX)
+			self.needsDisplay = true
+		#else
+			self.setNeedsDisplay()
 		#endif
 	}
 

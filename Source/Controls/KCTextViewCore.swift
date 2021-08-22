@@ -282,64 +282,32 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 				updateForegroundColor()
 				updateBackgroundColor()
 				mCurrentIndex = 0
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .resetCharacterAttribute:
 				mTerminalInfo.reset()
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .boldCharacter(let flag):
 				mTerminalInfo.doBold = flag
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .underlineCharacter(let flag):
 				mTerminalInfo.doUnderLine = flag
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .blinkCharacter(_),
 			     .reverseCharacter(_):
 				CNLog(logLevel: .error, message: "Not supported", atFunction: #function, inFile: #file)
 			case .foregroundColor(let color):
 				mTerminalInfo.foregroundColor = color
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .defaultForegroundColor:
 				mTerminalInfo.foregroundColor = tpref.foregroundTextColor
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .backgroundColor(let color):
 				mTerminalInfo.backgroundColor = color
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .defaultBackgroundColor:
 				let tpref = CNPreference.shared.terminalPreference
 				mTerminalInfo.backgroundColor = tpref.backgroundTextColor
-				#if os(OSX)
-					self.needsDisplay = true
-				#else
-					self.setNeedsDisplay()
-				#endif
+				self.requireDisplay()
 			case .requestScreenSize:
 				/* Ack the size*/
 				let ackcode: CNEscapeCode = .screenSize(self.mTerminalInfo.width, self.mTerminalInfo.height)
@@ -347,11 +315,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 			case .screenSize(let width, let height):
 				self.mTerminalInfo.width  = width
 				self.mTerminalInfo.height = height
-				#if os(OSX)
-					self.mTextView.needsLayout = true
-				#else
-					self.mTextView.setNeedsLayout()
-				#endif
+				self.requireDisplay()
 			case .selectAltScreen(let doalt):
 				if mIsAlternativeScreen != doalt {
 					swapTextStorage(doAlternative: doalt)
@@ -518,11 +482,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 						if self.mTerminalInfo.width != newwidth {
 							self.mTerminalInfo.width = newwidth
 							self.invalidateIntrinsicContentSize()
-							#if os(OSX)
-								self.needsLayout = true
-							#else
-								self.setNeedsLayout()
-							#endif
+							self.requireLayout()
 							self.notify(viewControlEvent: .updateSize)
 						}
 					case CNPreference.shared.terminalPreference.HeightItem:
@@ -530,11 +490,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 						if self.mTerminalInfo.height != newheight {
 							self.mTerminalInfo.height = newheight
 							self.invalidateIntrinsicContentSize()
-							#if os(OSX)
-								self.needsLayout = true
-							#else
-								self.setNeedsLayout()
-							#endif
+							self.requireLayout()
 							self.notify(viewControlEvent: .updateSize)
 						}
 					case CNSystemPreference.InterfaceStyleItem:

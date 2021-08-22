@@ -48,7 +48,7 @@ public class SingleViewController: KCSingleViewController
 		label0.text   = "Hello, world. This is label0"
 
 		let button0   = KCButton()
-		button0.title = "OK"
+		button0.value = .text("OK")
 
 		let box0 = KCStackView()
 		box0.axis		= .horizontal
@@ -89,7 +89,7 @@ public class SingleViewController: KCSingleViewController
 		let pmenu  = allocatePopupMenu()
 
 		let button1   = KCButton()
-		button1.title = "Select Home Directory"
+		button1.value = .text("Select Home Directory")
 
 		let box1 = KCStackView()
 		box1.axis		= .horizontal
@@ -98,24 +98,34 @@ public class SingleViewController: KCSingleViewController
 		box1.addArrangedSubViews(subViews: [edit1, gr2d1, pmenu, button1])
 
 		let icon1     = allocateIcon()
-		let lstack    = allocateLabeledStack(image: img0)
 		let button2   = KCButton()
-		button2.title = "OK"
+		button2.value = .text("OK")
 
 		let labstack = KCLabeledStackView()
 		labstack.title = "Labeled Stack"
+
+		let value32  = KCValueView()
+		value32.load(value: .stringValue("ValueView"))
+
+		let value33  = KCValueView()
+		let dict33: Dictionary<String, CNNativeValue> = [
+			"key0": .stringValue("value0"),
+			"key1": .stringValue("value1")
+		]
+		value33.load(value: .dictionaryValue(dict33))
+
 		let button30 = KCButton()
-		button30.title = "First name"
+		button30.value = .text("First name")
 		let button31 = KCButton()
-		button31.title = "Given name"
+		button31.value = .text("Given name")
 		let box3 = KCStackView()
 		box3.axis = .horizontal
 		box3.addArrangedSubViews(subViews: [button30, button31])
-		labstack.addArrangedSubView(subView: box3)
+		labstack.addArrangedSubViews(subViews: [value32, value33, box3])
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
-		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, lstack, labstack, button2])
+		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, labstack, button2])
 
 		return box2
 	}
@@ -135,17 +145,6 @@ public class SingleViewController: KCSingleViewController
 			CNLog(logLevel: .error, message: "Invalid URL of image")
 		}
 		return icon
-	}
-
-	private func allocateLabeledStack(image img: CNImage) -> KCLabeledStackView {
-		let imgview = KCImageView()
-		imgview.set(image: img)
-		imgview.scale = 0.5
-
-		let lstack  = KCLabeledStackView()
-		lstack.title = "Labeled Stack"
-		lstack.contentsView.addArrangedSubView(subView: imgview)
-		return lstack
 	}
 
 	private func allocateGraphics2DView() -> KCGraphics2DView {

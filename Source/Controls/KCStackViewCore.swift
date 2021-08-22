@@ -215,6 +215,18 @@ open class KCStackViewCore : KCCoreView
 		#endif
 	}
 
+	public func removeAllArrangedSubiews() {
+		var docont = true
+		while docont {
+			let subviews = mStackView.arrangedSubviews
+			if subviews.count > 0 {
+				mStackView.removeArrangedSubview(subviews[0])
+			} else {
+				docont = false
+			}
+		}
+	}
+
 	#if os(OSX)
 	private func setConstraint(toView toview: KCView, attribute attr: NSLayoutConstraint.Attribute){
 		let constr = NSLayoutConstraint(item: mStackView!, attribute: attr, relatedBy: .equal, toItem: toview, attribute: attr, multiplier: 1.0, constant: 0.0)

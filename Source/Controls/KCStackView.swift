@@ -74,6 +74,10 @@ open class KCStackView : KCInterfaceView
 		coreView.addArrangedSubView(subView: v)
 	}
 
+	public func removeAllArrangedSubiews() {
+		coreView.removeAllArrangedSubiews()
+	}
+
 	open func arrangedSubviews() -> Array<KCView> {
 		return coreView.arrangedSubviews()
 	}
