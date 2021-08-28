@@ -56,6 +56,8 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		switch val {
 		case .nullValue:
 			updateStringValue(value: "")
+		case .boolValue(let val):
+			updateStringValue(value: "\(val)")
 		case .numberValue(let num):
 			updateStringValue(value: num.stringValue)
 		case .stringValue(let str):

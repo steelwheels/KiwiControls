@@ -35,7 +35,7 @@ open class KCValueView: KCStackView
 		switch val {
 		case .nullValue:
 			result = nil
-		case .numberValue(_), .stringValue(_), .dateValue(_), .URLValue(_), .colorValue(_):
+		case .boolValue(_), .numberValue(_), .stringValue(_), .dateValue(_), .URLValue(_), .colorValue(_):
 			if let view = scalerValueToView(value: val) {
 				result = view
 			}
@@ -109,7 +109,7 @@ open class KCValueView: KCStackView
 		for (key, elm) in dict {
 			switch elm {
 			case .stringValue(let val):
-				let record = CNNativeValueRecord()
+				let record = CNValueRecord()
 				let _ = record.setValue(value: .stringValue(key), forField: "key")
 				let _ = record.setValue(value: .stringValue(val), forField: "value")
 				table.append(record: record)
@@ -154,6 +154,8 @@ open class KCValueView: KCStackView
 		switch val {
 		case .stringValue(let str):
 			result = stringValueToView(value: str)
+		case .boolValue(let val):
+			result = stringValueToView(value: "\(val)")
 		case .numberValue(let num):
 			result = stringValueToView(value: num.stringValue)
 		case .dateValue(let date):

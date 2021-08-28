@@ -92,7 +92,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	static private func allocateInitialTable() -> CNNativeValueTable {
 		let table  = CNNativeValueTable()
-		let newrec = CNNativeValueRecord()
+		let newrec = CNValueRecord()
 		let _ = newrec.setValue(value: .stringValue(" "), forField: "0")
 		table.append(record: newrec)
 		return table
