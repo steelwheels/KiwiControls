@@ -108,7 +108,7 @@ public class SingleViewController: KCSingleViewController
 		value32.load(value: .stringValue("ValueView"))
 
 		let value33  = KCValueView()
-		let dict33: Dictionary<String, CNNativeValue> = [
+		let dict33: Dictionary<String, CNValue> = [
 			"key0": .stringValue("value0"),
 			"key1": .stringValue("value1")
 		]

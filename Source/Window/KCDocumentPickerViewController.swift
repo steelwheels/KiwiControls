@@ -60,7 +60,7 @@ import Foundation
 				break
 			case .view(let ldrfunc):
 				if let viewctrl = ldrfunc(urls[0]) {
-					let cbfunc: KCMultiViewController.ViewSwitchCallback = { (_ val: CNNativeValue) -> Void in }
+					let cbfunc: KCMultiViewController.ViewSwitchCallback = { (_ val: CNValue) -> Void in }
 					mParentViewController.pushViewController(viewController: viewctrl, callback: cbfunc)
 				}
 			case .url(let ldrfunc):

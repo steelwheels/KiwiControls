@@ -20,7 +20,7 @@ import CoconutData
 
 open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 {
-	public typealias ViewSwitchCallback = (_ val: CNNativeValue) -> Void
+	public typealias ViewSwitchCallback = (_ val: CNValue) -> Void
 
 	private var mCallbackStack:	CNStack<ViewSwitchCallback> = CNStack()
 	private var mConsoleManager:	KCConsoleManager? = nil
@@ -111,7 +111,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		}
 	}
 
-	open func popViewController(returnValue val: CNNativeValue) -> Bool {
+	open func popViewController(returnValue val: CNValue) -> Bool {
 		/* The current view will be removed  */
 		if let sview = currentViewController() {
 			sview.viewWillRemoved()

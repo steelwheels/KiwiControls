@@ -26,7 +26,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		case decimal
 	}
 
-	public typealias CallbackFunction = (_ value: CNNativeValue) -> Void
+	public typealias CallbackFunction = (_ value: CNValue) -> Void
 
 	#if os(OSX)
 	@IBOutlet weak var mTextEdit: NSTextField!
@@ -210,9 +210,9 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		}
 	}
 
-	public var value: CNNativeValue {
+	public var value: CNValue {
 		get {
-			let result: CNNativeValue
+			let result: CNValue
 			switch mFormat {
 			case .line, .text:
 				result = .stringValue(self.text)

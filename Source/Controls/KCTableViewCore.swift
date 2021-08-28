@@ -284,11 +284,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			}
 		}
 		CNLog(logLevel: .error, message: "No value", atFunction: #function, inFile: #file)
-		return CNNativeValue.nullValue
+		return CNValue.nullValue
 	}
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-		if let col = tableColumn, let val = object as? CNNativeValue {
+		if let col = tableColumn, let val = object as? CNValue {
 			if let record = mTableInterface.record(at: row) {
 				if record.setValue(value: val, forField: col.title) {
 					CNLog(logLevel: .error, message: "Failed to set object value", atFunction: #function, inFile: #file)
@@ -367,7 +367,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 * KCTableCellDelegate
 	 */
 	#if os(OSX)
-	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNNativeValue) {
+	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNValue) {
 		if let record = mTableInterface.record(at: ridx) {
 			if record.setValue(value: val, forField: title) {
 				update(dataState: .dirty)

@@ -17,7 +17,7 @@ class ViewController: KCMultiViewController
 		// Do any additional setup after loading the view.
 		let stack = StackViewController(parentViewController: self)
 		let cbfunc: KCMultiViewController.ViewSwitchCallback = {
-			(_ val: CNNativeValue) -> Void in
+			(_ val: CNValue) -> Void in
 			let message: String
 			if let str = val.toString() {
 				message = str

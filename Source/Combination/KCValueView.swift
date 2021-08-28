@@ -14,11 +14,11 @@ import CoconutData
 
 open class KCValueView: KCStackView
 {
-	private var mValue: CNNativeValue = .nullValue
+	private var mValue: CNValue = .nullValue
 
-	public var value: CNNativeValue { get { return  mValue }}
+	public var value: CNValue { get { return  mValue }}
 
-	public func load(value val: CNNativeValue){
+	public func load(value val: CNValue){
 		if let view = valueToView(value: val){
 			self.removeAllArrangedSubiews()
 			self.addArrangedSubView(subView: view)
@@ -30,7 +30,7 @@ open class KCValueView: KCStackView
 		}
 	}
 
-	private func valueToView(value val: CNNativeValue) -> KCView? {
+	private func valueToView(value val: CNValue) -> KCView? {
 		var result: KCView? = nil
 		switch val {
 		case .nullValue:
@@ -40,7 +40,7 @@ open class KCValueView: KCStackView
 				result = view
 			}
 		case .rangeValue(let range):
-			let dict: Dictionary<String, CNNativeValue> = [
+			let dict: Dictionary<String, CNValue> = [
 				"location": .numberValue(NSNumber(integerLiteral: range.location)),
 				"length":   .numberValue(NSNumber(integerLiteral: range.length))
 			]
@@ -48,7 +48,7 @@ open class KCValueView: KCStackView
 				result = view
 			}
 		case .pointValue(let point):
-			let dict: Dictionary<String, CNNativeValue> = [
+			let dict: Dictionary<String, CNValue> = [
 				"x": .numberValue(NSNumber(floatLiteral: Double(point.x))),
 				"y": .numberValue(NSNumber(floatLiteral: Double(point.y)))
 			]
@@ -56,7 +56,7 @@ open class KCValueView: KCStackView
 				result = view
 			}
 		case .sizeValue(let size):
-			let dict: Dictionary<String, CNNativeValue> = [
+			let dict: Dictionary<String, CNValue> = [
 				"width":  .numberValue(NSNumber(floatLiteral: Double(size.width))),
 				"height": .numberValue(NSNumber(floatLiteral: Double(size.height)))
 			]
@@ -64,14 +64,14 @@ open class KCValueView: KCStackView
 				result = view
 			}
 		case .enumValue(let name, let ival):
-			let dict: Dictionary<String, CNNativeValue> = [
+			let dict: Dictionary<String, CNValue> = [
 				name: .numberValue(NSNumber(integerLiteral: Int(ival)))
 			]
 			if let view = dictionaryValueToView(dictionary: dict){
 				result = view
 			}
 		case .rectValue(let rect):
-			let dict: Dictionary<String, CNNativeValue> = [
+			let dict: Dictionary<String, CNValue> = [
 				"x":	  .numberValue(NSNumber(floatLiteral: Double(rect.origin.x))),
 				"y":	  .numberValue(NSNumber(floatLiteral: Double(rect.origin.y))),
 				"width":  .numberValue(NSNumber(floatLiteral: Double(rect.size.width))),
@@ -104,7 +104,7 @@ open class KCValueView: KCStackView
 		return result
 	}
 
-	private func dictionaryValueToView(dictionary dict: Dictionary<String, CNNativeValue>) -> KCView? {
+	private func dictionaryValueToView(dictionary dict: Dictionary<String, CNValue>) -> KCView? {
 		let table = CNValueTable()
 		for (key, elm) in dict {
 			switch elm {
@@ -122,7 +122,7 @@ open class KCValueView: KCStackView
 		return newview
 	}
 
-	private func arrayValueToView(array arr: Array<CNNativeValue>) -> KCView? {
+	private func arrayValueToView(array arr: Array<CNValue>) -> KCView? {
 		let newview = KCStackView()
 		for elm in arr {
 			if let eview = valueToView(value: elm) {
@@ -134,7 +134,7 @@ open class KCValueView: KCStackView
 		return newview
 	}
 
-	private func labeledValueToView(dictionary dict: Dictionary<String, CNNativeValue>) -> KCView? {
+	private func labeledValueToView(dictionary dict: Dictionary<String, CNValue>) -> KCView? {
 		let newview = KCStackView()
 		for (key, elm) in dict {
 			let labview = KCLabeledStackView()
@@ -149,7 +149,7 @@ open class KCValueView: KCStackView
 		return newview
 	}
 
-	private func scalerValueToView(value val: CNNativeValue) -> KCView? {
+	private func scalerValueToView(value val: CNValue) -> KCView? {
 		let result: KCView?
 		switch val {
 		case .stringValue(let str):

@@ -17,7 +17,7 @@ class ViewController: KCMultiViewController
 		// Do any additional setup after loading the view.
 		let termctrl = TerminalViewController(parentViewController: self)
 		self.pushViewController(viewController: termctrl, callback: {
-			(_ val: CNNativeValue) -> Void in
+			(_ val: CNValue) -> Void in
 			CNLog(logLevel: .detail, message: "callback: \(String(describing: val.toString()))")
 		})
 	}

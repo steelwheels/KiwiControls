@@ -18,7 +18,7 @@ class ViewController: KCMultiViewController
 						 // mode: vertBox)
 						 mode: .horizBox)
 		self.pushViewController(viewController: cont1, callback: {
-			(_ val: CNNativeValue) -> Void in
+			(_ val: CNValue) -> Void in
 		})
 
 	}

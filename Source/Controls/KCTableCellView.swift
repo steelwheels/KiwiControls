@@ -15,7 +15,7 @@ import UIKit
 
 public protocol KCTableCellDelegate {
 	#if os(OSX)
-	func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNNativeValue)
+	func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNValue)
 	#endif
 }
 
@@ -45,14 +45,14 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 			return super.objectValue
 		}
 		set(newval){
-			if let nval = newval as? CNNativeValue {
+			if let nval = newval as? CNValue {
 				updateValue(value: nval)
 			}
 			super.objectValue = newval
 		}
 	}
 
-	private func updateValue(value val: CNNativeValue){
+	private func updateValue(value val: CNValue){
 		switch val {
 		case .nullValue:
 			updateStringValue(value: "")
@@ -233,7 +233,7 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 	/* NSTextFieldDelegate */
 	public func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
 		if let dlg = mDelegate {
-			let val: CNNativeValue = .stringValue(fieldEditor.string)
+			let val: CNValue = .stringValue(fieldEditor.string)
 			dlg.tableCellView(shouldEndEditing: self, columnTitle: mTitle, rowIndex: mRowIndex, value: val)
 		}
 		return true
