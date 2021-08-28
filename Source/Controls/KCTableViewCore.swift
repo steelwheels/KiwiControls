@@ -90,8 +90,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		super.init(coder: coder)
 	}
 
-	static private func allocateInitialTable() -> CNNativeValueTable {
-		let table  = CNNativeValueTable()
+	static private func allocateInitialTable() -> CNValueTable {
+		let table  = CNValueTable()
 		let newrec = CNValueRecord()
 		let _ = newrec.setValue(value: .stringValue(" "), forField: "0")
 		table.append(record: newrec)

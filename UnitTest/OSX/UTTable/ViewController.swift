@@ -28,7 +28,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		mTableView.hasHeader  = true
 
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
-		let table = CNNativeValueTable()
+		let table = CNValueTable()
 		for y in 0..<2 {
 			let record = CNValueRecord()
 			for x in 0..<3 {

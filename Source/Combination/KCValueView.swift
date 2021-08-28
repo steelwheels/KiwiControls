@@ -105,7 +105,7 @@ open class KCValueView: KCStackView
 	}
 
 	private func dictionaryValueToView(dictionary dict: Dictionary<String, CNNativeValue>) -> KCView? {
-		let table = CNNativeValueTable()
+		let table = CNValueTable()
 		for (key, elm) in dict {
 			switch elm {
 			case .stringValue(let val):
