@@ -80,20 +80,20 @@ public class KCViewDumper: KCViewVisitor
 
 		let rownum = view.numberOfRows
 		let colnum = view.numberOfColumns
-		mSection.add(string: "{rownum: \(rownum), colnum: \(colnum)}")
+		mSection.add(text: CNTextLine(string: "{rownum: \(rownum), colnum: \(colnum)}"))
 	}
 
 	open override func visit(navigationBar view: KCNavigationBar) {
 		visit(coreView: view)
 
 		let title = view.title
-		mSection.add(string: "title: " + title)
+		mSection.add(text: CNTextLine(string: "title: " + title))
 
 		let lefttitle = view.leftButtonTitle
-		mSection.add(string: "leftButtonTitle : " + lefttitle)
+		mSection.add(text: CNTextLine(string: "leftButtonTitle : " + lefttitle))
 
 		let righttitle = view.rightButtonTitle
-		mSection.add(string: "rightButtonTitle : " + righttitle)
+		mSection.add(text: CNTextLine(string: "rightButtonTitle : " + righttitle))
 	}
 
 	open override func visit(terminalView view: KCTerminalView) {
@@ -141,7 +141,7 @@ public class KCViewDumper: KCViewVisitor
 
 		let fsection = CNTextSection()
 		fsection.header = "icon {" ; fsection.footer = "}"
-		fsection.add(string: "size:\(view.frame.size.description))")
+		fsection.add(text: CNTextLine(string: "size:\(view.frame.size.description))"))
 		mSection.add(text: fsection)
 	}
 
@@ -149,7 +149,7 @@ public class KCViewDumper: KCViewVisitor
 		visit(coreView: view)
 		let fsection = CNTextSection()
 		fsection.header = "image {" ; fsection.footer = "}"
-		fsection.add(string: "size:\(view.frame.size.description))")
+		fsection.add(text: CNTextLine(string: "size:\(view.frame.size.description))"))
 		mSection.add(text: fsection)
 	}
 
@@ -160,7 +160,7 @@ public class KCViewDumper: KCViewVisitor
 		fsection.header = "items {" ; fsection.footer = "}"
 		let titles = view.itemTitles()
 		for title in titles {
-			fsection.add(string: title)
+			fsection.add(text: CNTextLine(string: title))
 		}
 		mSection.add(text: fsection)
 	}
