@@ -104,16 +104,6 @@ public class SingleViewController: KCSingleViewController
 		let labstack = KCLabeledStackView()
 		labstack.title = "Labeled Stack"
 
-		let value32  = KCValueView()
-		value32.load(value: .stringValue("ValueView"))
-
-		let value33  = KCValueView()
-		let dict33: Dictionary<String, CNValue> = [
-			"key0": .stringValue("value0"),
-			"key1": .stringValue("value1")
-		]
-		value33.load(value: .dictionaryValue(dict33))
-
 		let button30 = KCButton()
 		button30.value = .text("First name")
 		let button31 = KCButton()
