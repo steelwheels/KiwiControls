@@ -67,12 +67,8 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
-	open func load(table tbl: CNTable?) {
+	open func load(table tbl: KCTableInterface?) {
 		self.coreView.load(table: tbl)
-	}
-
-	public func save(){
-		self.coreView.save()
 	}
 
 	public var isEnable: Bool {
@@ -97,7 +93,7 @@ open class KCTableView : KCInterfaceView
 		return coreView.view(atColumn: col, row: rw)
 	}
 
-	public var cellClickedCallback: ((_ double: Bool, _ col: Int, _ row: Int) -> Void)? {
+	public var cellClickedCallback: ((_ double: Bool, _ colname: String, _ rowidx: Int) -> Void)? {
 		get         { return coreView.cellClickedCallback   }
 		set(cbfunc) { coreView.cellClickedCallback = cbfunc }
 	}

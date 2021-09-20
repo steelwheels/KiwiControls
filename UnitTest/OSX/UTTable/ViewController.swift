@@ -43,7 +43,8 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		}
 
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
-		mTableView.load(table: table)
+		let viewtbl = KCTableBridge(table: table)
+		mTableView.load(table: viewtbl)
 
 		mTableView.hasGrid = true
 	}

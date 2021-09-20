@@ -20,6 +20,146 @@ import CoconutData
 	public typealias KCTableViewDataSource  = UITableViewDataSource
 #endif
 
+public protocol KCTableInterface
+{
+	var rowCount: 		Int		{ get }
+	var columnCount:	Int		{ get }
+	var fieldNames:		Array<String> 	{ get }
+
+	func fieldName(atIndex idx: Int) -> String?
+
+	func value(row ridx: Int, column col: String) -> CNValue
+	func setValue(value val: CNValue, row ridx: Int, column col: String) -> Bool
+	func sortRows(by desc: CNSortDescriptors)
+}
+
+public class KCTableBridge: KCTableInterface
+{
+	private var mTable: 		CNTable
+	private var mFieldNames:	Array<String>
+
+	public init(table tbl: CNTable){
+		mTable 		= tbl
+		mFieldNames	= []
+	}
+
+	public var rowCount:    Int { get { return mTable.recordCount      }}
+	public var columnCount: Int { get { return mTable.fieldNames.count }}
+
+	public var fieldNames: Array<String> { get { return mTable.fieldNames }}
+
+	public func fieldName(atIndex idx: Int) -> String? {
+		let names = mTable.fieldNames
+		if 0<=idx && idx<names.count {
+			return names[idx]
+		} else {
+			return nil
+		}
+	}
+
+	public func value(row ridx: Int, column col: String) -> CNValue {
+		if let rec = mTable.record(at: ridx) {
+			if let val = rec.value(ofField: col) {
+				return val
+			}
+		}
+		return .nullValue
+	}
+
+	public func setValue(value val: CNValue, row ridx: Int, column col: String) -> Bool {
+		if let rec = mTable.record(at: ridx) {
+			return rec.setValue(value: val, forField: col)
+		} else {
+			return false
+		}
+	}
+
+	public func sortRows(by desc: CNSortDescriptors) {
+		mTable.sort(byDescriptors: desc)
+	}
+}
+
+
+public class KCDictionaryTableBridge: KCTableInterface
+{
+	private static let KeyItem	= "key"
+	private static let ValueItem	= "value"
+
+	private var mDictionary: 	Dictionary<String, CNValue>
+	private var mFieldNames:	Array<String>
+	private var mRowToKey:		Dictionary<Int, String>
+	private var mKeyToRow:		Dictionary<String, Int>
+
+	public init(dictionary dict: Dictionary<String, CNValue>){
+		mDictionary 	= dict
+		mFieldNames	= [KCDictionaryTableBridge.KeyItem, KCDictionaryTableBridge.ValueItem]
+		mRowToKey	= [:]
+		mKeyToRow	= [:]
+
+		updateCache()
+	}
+
+	private func updateCache(){
+		mRowToKey = [:] ; mKeyToRow = [:]
+		let keys = mDictionary.keys.sorted()
+		for i in 0..<keys.count {
+			mRowToKey[i]       = keys[i]
+			mKeyToRow[keys[i]] = i
+		}
+	}
+
+	public var rowCount: Int		{ get { return mDictionary.count	}}
+	public var columnCount: Int		{ get { return mFieldNames.count	}}
+	public var fieldNames: Array<String>	{ get { return mFieldNames		}}
+
+	public func fieldName(atIndex idx: Int) -> String? {
+		if 0<=idx && idx<mFieldNames.count {
+			return mFieldNames[idx]
+		} else {
+			return nil
+		}
+	}
+
+	public func value(row ridx: Int, column col: String) -> CNValue {
+		var result: CNValue = .nullValue
+		switch col {
+		case KCDictionaryTableBridge.KeyItem:
+			if let key = mRowToKey[ridx] {
+				result = .stringValue(key)
+			}
+		case KCDictionaryTableBridge.ValueItem:
+			if let key = mRowToKey[ridx] {
+				if let val = mDictionary[key] {
+					result = val
+				}
+			}
+		default:
+			CNLog(logLevel: .error, message: "Unknown label: \(col)", atFunction: #function, inFile: #file)
+		}
+		return result
+	}
+
+	public func setValue(value val: CNValue, row ridx: Int, column col: String) -> Bool {
+		var result = false
+		switch col {
+		case KCDictionaryTableBridge.KeyItem:
+			CNLog(logLevel: .error, message: "Can not overwrite: \(col)", atFunction: #function, inFile: #file)
+		case KCDictionaryTableBridge.ValueItem:
+			if let key = mRowToKey[ridx] {
+				mDictionary[key] = val
+				result = true
+			}
+		default:
+			CNLog(logLevel: .error, message: "Unknown label: \(col)", atFunction: #function, inFile: #file)
+		}
+		return result
+	}
+
+	public func sortRows(by desc: CNSortDescriptors) {
+		/* Already sorted */
+	}
+}
+
 open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSource, KCTableCellDelegate
 {
 	#if os(OSX)
@@ -35,7 +175,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public typealias StateListner = (_ state: DataState) -> Void
 
- 	public var cellClickedCallback: ((_ double: Bool, _ col: Int, _ row: Int) -> Void)? = nil
+ 	public var cellClickedCallback: ((_ double: Bool, _ colname: String, _ rowidx: Int) -> Void)? = nil
 	public var hasHeader:		Bool = false
 	public var isEnable:		Bool = true
 	public var allowsRowSelection:	Bool = false
@@ -45,7 +185,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private var mDataState:		DataState
 	private var mIsEditable:	Bool
 	private var mStateListner:	StateListner?
-	private var mTableInterface:	CNTable
+	private var mTableInterface:	KCTableInterface
 	private var mSortDescriptors:	CNSortDescriptors
 	private var mReloadedCount:	Int
 
@@ -54,7 +194,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mDataState		= .clean
 		mIsEditable		= false
 		mStateListner		= nil
-		mTableInterface		= KCTableViewCore.allocateInitialTable()
+		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
 		super.init(frame: frame)
@@ -64,7 +204,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mDataState		= .clean
 		mIsEditable		= false
 		mStateListner		= nil
-		mTableInterface		= KCTableViewCore.allocateInitialTable()
+		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount  	= 0
 		super.init(frame: frame)
@@ -84,18 +224,19 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mDataState		= .clean
 		mIsEditable		= false
 		mStateListner		= nil
-		mTableInterface		= KCTableViewCore.allocateInitialTable()
+		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
 		super.init(coder: coder)
 	}
 
-	static private func allocateInitialTable() -> CNValueTable {
-		let table  = CNValueTable()
-		let newrec = CNValueRecord()
-		let _ = newrec.setValue(value: .stringValue(" "), forField: "0")
-		table.append(record: newrec)
-		return table
+	static private func allocateEmptyBridge() -> KCTableBridge {
+		let rec = CNValueRecord()
+		let _   = rec.setValue(value: .nullValue, forField: "c0")
+		let _   = rec.setValue(value: .nullValue, forField: "c1")
+		let table = CNValueTable()
+		table.append(record: rec)
+		return KCTableBridge(table: table)
 	}
 
 	/*
@@ -114,21 +255,17 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
 
-		let recnum = mTableInterface.recordCount
-		if recnum > 0 {
-			if let record = mTableInterface.record(at: 0) {
-				let fldnum = record.fieldCount
-				if 0<=colidx && colidx < fldnum && 0<=rowidx && rowidx < recnum {
-					if let cbfunc = self.cellClickedCallback {
-						cbfunc(double, colidx, rowidx)
-					} else {
-						CNLog(logLevel: .detail, message: "Clicked col:\(colidx) row:\(rowidx)", atFunction: #function, inFile: #file)
-					}
-					if let view = mTableView.view(atColumn: colidx, row: rowidx, makeIfNecessary: false) as? KCTableCellView {
-						if let resp = view.firstResponderView {
-							CNLog(logLevel: .detail, message: "click -> notify", atFunction: #function, inFile: #file)
-							notify(viewControlEvent: .switchFirstResponder(resp))
-						}
+		if 0<=rowidx && rowidx < mTableInterface.rowCount {
+			if let colname = mTableInterface.fieldName(atIndex: colidx) {
+				if let cbfunc = self.cellClickedCallback {
+					cbfunc(double, colname, rowidx)
+				} else {
+					CNLog(logLevel: .detail, message: "Clicked col:\(colname) row:\(rowidx)", atFunction: #function, inFile: #file)
+				}
+				if let view = mTableView.view(atColumn: colidx, row: rowidx, makeIfNecessary: false) as? KCTableCellView {
+					if let resp = view.firstResponderView {
+						CNLog(logLevel: .detail, message: "click -> notify", atFunction: #function, inFile: #file)
+						notify(viewControlEvent: .switchFirstResponder(resp))
 					}
 				}
 			}
@@ -164,16 +301,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 * Table
 	 */
 	public var isEditable:  Bool 	{ get { return mIsEditable	  		}}
-	public var numberOfRows: Int 	{ get {
-		return mTableInterface.recordCount
-	}}
-	public var numberOfColumns: Int { get {
-		if let record = mTableInterface.record(at: 0) {
-			return record.fieldCount
-		} else {
-			return 0
-		}
-	}}
+	public var numberOfRows: Int 	{ get { return mTableInterface.rowCount		}}
+	public var numberOfColumns: Int { get { return mTableInterface.columnCount	}}
 
 	public var hasGrid: Bool {
 		get {
@@ -216,7 +345,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	/*
 	 * Load
 	 */
-	public func load(table tbl: CNTable?) {
+	public func load(table tbl: KCTableInterface?) {
 		#if os(OSX)
 		CNLog(logLevel: .detail, message: "Reload table contents", atFunction: #function, inFile: #file)
 
@@ -233,14 +362,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		/* Add columns */
-		if let record = mTableInterface.record(at: 0) {
-			for name in record.fieldNames {
-				let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: name))
-				newcol.title      = name
-				newcol.isHidden	  = false
-				newcol.isEditable = mIsEditable
-				mTableView.addTableColumn(newcol)
-			}
+		let fnames = mTableInterface.fieldNames
+		for fname in fnames {
+			let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: fname))
+			newcol.title      = fname
+			newcol.isHidden	  = false
+			newcol.isEditable = mIsEditable
+			mTableView.addTableColumn(newcol)
 		}
 
 		if hasHeader {
@@ -250,21 +378,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		mTableView.endUpdates()
-
-		if let record = mTableInterface.record(at: 0) {
-			mReloadedCount = mTableInterface.recordCount * record.fieldCount
-		} else {
-			mReloadedCount = 0
-		}
+		mReloadedCount = mTableInterface.rowCount * mTableInterface.columnCount
 
 		update(dataState: .clean)
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
-		#endif
-	}
 
-	public func save(){
-		mTableInterface.save()
+		#endif
 	}
 
 	/*
@@ -272,36 +392,28 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func numberOfRows(in tableView: NSTableView) -> Int {
-		return mTableInterface.recordCount
+		return mTableInterface.rowCount
 	}
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 		if let col = tableColumn {
-			if let record = mTableInterface.record(at: row) {
-				if let val = record.value(ofField: col.title) {
-					return val
-				}
-			}
+			return mTableInterface.value(row: row, column: col.title)
+		} else {
+			return CNValue.nullValue
 		}
-		CNLog(logLevel: .error, message: "No value", atFunction: #function, inFile: #file)
-		return CNValue.nullValue
 	}
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
 		if let col = tableColumn, let val = object as? CNValue {
-			if let record = mTableInterface.record(at: row) {
-				if record.setValue(value: val, forField: col.title) {
-					CNLog(logLevel: .error, message: "Failed to set object value", atFunction: #function, inFile: #file)
-				}
-				return
-			}
+			let _ = mTableInterface.setValue(value: val, row: row, column: col.title)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to set object value", atFunction: #function, inFile: #file)
 		}
-		CNLog(logLevel: .error, message: "Failed to set object value", atFunction: #function, inFile: #file)
 	}
 
 	#else
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return mTableInterface.recordCount
+		return mTableInterface.rowCount
 	}
 
 	public func numberOfSections(in tableView: UITableView) -> Int {
@@ -354,7 +466,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 		mSortDescriptors.add(key: tableColumn.title, ascending: doascend)
 
-		mTableInterface.sort(byDescriptors: mSortDescriptors)
+		mTableInterface.sortRows(by: mSortDescriptors)
 		mTableView.reloadData()
 	}
 
@@ -368,13 +480,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNValue) {
-		if let record = mTableInterface.record(at: ridx) {
-			if record.setValue(value: val, forField: title) {
-				update(dataState: .dirty)
-				return
-			}
-		}
-		CNLog(logLevel: .error, message: "Failed to set value", atFunction: #function, inFile: #file)
+		let _ = mTableInterface.setValue(value: val, row: ridx, column: title)
+		update(dataState: .dirty)
 	}
 	#endif
 
@@ -437,7 +544,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let rownum = min(mTableView.numberOfRows, visibleRowCount)
 		if rownum > 0 {
 			for ridx in 0..<rownum {
-				if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: false) {
+				if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: true) {
 					let frame = rview.frame
 					result.width  =  max(result.width, frame.size.width)
 					result.height += frame.size.height
@@ -471,10 +578,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	public func dump(){
 		#if os(OSX)
-		NSLog("tableView: \(mTableView.frame.description)")
 		for cidx in 0..<numberOfColumns {
 			for ridx in 0..<numberOfRows {
-				NSLog("cidx:\(cidx)/ridx:\(ridx)")
 				if let cell = mTableView.view(atColumn: cidx, row: ridx, makeIfNecessary: false) {
 					NSLog(" frame: \(cell.frame.description)")
 				}
