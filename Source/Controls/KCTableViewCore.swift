@@ -342,33 +342,49 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	/*
-	 * Load
-	 */
 	public func load(table tbl: KCTableInterface?) {
 		#if os(OSX)
 		CNLog(logLevel: .detail, message: "Reload table contents", atFunction: #function, inFile: #file)
-
 		if let newtbl = tbl {
-			mTableInterface = newtbl
+			if newtbl.rowCount > 0 {
+				mTableInterface = newtbl
+			} else {
+				mTableInterface = KCTableViewCore.allocateEmptyBridge()
+			}
 		}
 
 		mTableView.beginUpdates()
 
-		/* Remove current columns */
-		while mTableView.tableColumns.count > 0 {
-			let col = mTableView.tableColumns[0]
-			mTableView.removeTableColumn(col)
+		/* Adjust column numbers */
+		if mTableInterface.columnCount < mTableView.tableColumns.count {
+			/* Remove some columns */
+			let delnum = mTableView.tableColumns.count - mTableInterface.columnCount
+			for _ in 0..<delnum {
+				let col = mTableView.tableColumns[0]
+				mTableView.removeTableColumn(col)
+
+			}
+		} else if mTableInterface.columnCount > mTableView.tableColumns.count {
+			let addnum = mTableInterface.columnCount - mTableView.tableColumns.count
+			for _ in 0..<addnum {
+				let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "?"))
+				newcol.title      = "?"
+				newcol.isHidden	  = false
+				newcol.isEditable = mIsEditable
+				mTableView.addTableColumn(newcol)
+			}
 		}
 
-		/* Add columns */
+		/* Update column titles */
 		let fnames = mTableInterface.fieldNames
-		for fname in fnames {
-			let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: fname))
-			newcol.title      = fname
-			newcol.isHidden	  = false
-			newcol.isEditable = mIsEditable
-			mTableView.addTableColumn(newcol)
+		for i in 0..<mTableInterface.columnCount {
+			let col = mTableView.tableColumns[i]
+			col.identifier	= NSUserInterfaceItemIdentifier(fnames[i])
+			col.title	= fnames[i]
+			col.isHidden	= false
+			col.minWidth	= 64
+			col.maxWidth	= 1000
+			col.isEditable	= mIsEditable
 		}
 
 		if hasHeader {
@@ -377,12 +393,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			mTableView.headerView = nil
 		}
 
-		mTableView.endUpdates()
 		mReloadedCount = mTableInterface.rowCount * mTableInterface.columnCount
 
 		update(dataState: .clean)
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
+
+		mTableView.endUpdates()
 
 		#endif
 	}
