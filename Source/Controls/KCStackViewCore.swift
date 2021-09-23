@@ -215,7 +215,7 @@ open class KCStackViewCore : KCCoreView
 		#endif
 	}
 
-	public func removeAllArrangedSubiews() {
+	public func removeAllArrangedSubviews() {
 		var docont = true
 		while docont {
 			let subviews = mStackView.arrangedSubviews

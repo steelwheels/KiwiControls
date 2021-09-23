@@ -111,7 +111,23 @@ public class SingleViewController: KCSingleViewController
 		let box3 = KCStackView()
 		box3.axis = .horizontal
 		box3.addArrangedSubViews(subViews: [button30, button31])
-		labstack.addArrangedSubViews(subViews: [value32, value33, box3])
+
+		let subsec1: Dictionary<String, CNValue> = [
+			"1.0": .stringValue("subsec 1.0"),
+			"1.1": .stringValue("subsec 1.1")
+		]
+		let subsec2: Dictionary<String, CNValue> = [
+			"2.0": .stringValue("subsec 2.0"),
+			"2.1": .stringValue("subsec 2.1")
+		]
+		let sec1: Dictionary<String, CNValue> = [
+			"0": .dictionaryValue(subsec1),
+			"1": .dictionaryValue(subsec2)
+		]
+		let secview4 = KCValueView()
+		secview4.load(value: .dictionaryValue(sec1))
+
+		labstack.addArrangedSubViews(subViews: [secview4, box3])
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
