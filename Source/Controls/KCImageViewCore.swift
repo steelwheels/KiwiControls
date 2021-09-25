@@ -33,9 +33,16 @@ open class KCImageViewCore : KCCoreView
 		#endif
 	}
 
-	public func set(image img: CNImage) {
-		mOriginalImage	 = img
-		updateImage()
+	public var image: CNImage? {
+		get {
+			return mOriginalImage
+		}
+		set(imgp){
+			if let img = imgp {
+				mOriginalImage = img
+				updateImage()
+			}
+		}
 	}
 
 	public var scale: CGFloat {

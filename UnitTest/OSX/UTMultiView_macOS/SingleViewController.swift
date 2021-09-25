@@ -77,7 +77,7 @@ public class SingleViewController: KCSingleViewController
 			return nil
 		}
 		let imgview0 = KCImageView()
-		imgview0.set(image: img0)
+		imgview0.image = img0
 		imgview0.scale = 0.2
 
 		let edit1  = KCTextEdit()
@@ -125,8 +125,7 @@ public class SingleViewController: KCSingleViewController
 			"1": .dictionaryValue(subsec2)
 		]
 		let secview4 = KCValueView()
-		secview4.load(value: .dictionaryValue(sec1))
-
+		secview4.value = .dictionaryValue(sec1)
 		labstack.addArrangedSubViews(subViews: [secview4, box3])
 
 		let box2 = KCStackView()

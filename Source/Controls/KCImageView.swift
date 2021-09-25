@@ -51,8 +51,9 @@ open class KCImageView: KCInterfaceView
 		}
 	}
 
-	public func set(image img: CNImage) {
-		coreView.set(image: img)
+	public var image: CNImage? {
+		get	 { coreView.image       }
+		set(img) { coreView.image = img }
 	}
 
 	public var scale: CGFloat {

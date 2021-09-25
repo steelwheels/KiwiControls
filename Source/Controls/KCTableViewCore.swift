@@ -20,7 +20,7 @@ import CoconutData
 	public typealias KCTableViewDataSource  = UITableViewDataSource
 #endif
 
-public protocol KCTableInterface
+private protocol KCTableInterface
 {
 	var rowCount: 		Int		{ get }
 	var columnCount:	Int		{ get }
@@ -33,7 +33,7 @@ public protocol KCTableInterface
 	func sortRows(by desc: CNSortDescriptors)
 }
 
-public class KCTableBridge: KCTableInterface
+private class KCTableBridge: KCTableInterface
 {
 	private var mTable: 		CNTable
 	private var mFieldNames:	Array<String>
@@ -80,7 +80,7 @@ public class KCTableBridge: KCTableInterface
 }
 
 
-public class KCDictionaryTableBridge: KCTableInterface
+private class KCDictionaryTableBridge: KCTableInterface
 {
 	private static let KeyItem	= "key"
 	private static let ValueItem	= "value"
@@ -294,7 +294,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			//mTableView.columnAutoresizingStyle	= .noColumnAutoresizing
 		#endif
 
-		load(table: nil)
+		store(table: nil)
 	}
 
 	/*
@@ -342,7 +342,27 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	public func load(table tbl: KCTableInterface?) {
+	public func store(table tblp: CNTable?){
+		let newif: KCTableInterface?
+		if let tbl = tblp {
+			newif = KCTableBridge(table: tbl)
+		} else {
+			newif = nil
+		}
+		store(interface: newif)
+	}
+
+	public func store(dictionary dictp: Dictionary<String, CNValue>?){
+		let newif: KCTableInterface?
+		if let dict = dictp {
+			newif = KCDictionaryTableBridge(dictionary: dict)
+		} else {
+			newif = nil
+		}
+		store(interface: newif)
+	}
+
+	private func store(interface tbl: KCTableInterface?) {
 		#if os(OSX)
 		CNLog(logLevel: .detail, message: "Reload table contents", atFunction: #function, inFile: #file)
 		if let newtbl = tbl {
