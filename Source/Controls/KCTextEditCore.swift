@@ -22,11 +22,10 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 {
 	public enum Format {
 		case text
-		case line
-		case decimal
+		case number
 	}
 
-	public typealias CallbackFunction = (_ value: CNValue) -> Void
+	public typealias CallbackFunction = (_ str: String) -> Void
 
 	#if os(OSX)
 	@IBOutlet weak var mTextEdit: NSTextField!
@@ -50,16 +49,36 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 
 		#if os(OSX)
 			mTextEdit.delegate = self
+			mTextEdit.lineBreakMode	= .byWordWrapping
 		#else
 			mTextEdit.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 		#endif
 
-		setModes()
+		isBezeled = false
+		format    = .text
 	}
 
 	public var format: Format {
 		get		{ return mFormat }
-		set(newform)	{ mFormat = newform }
+		set(newform)	{
+			mFormat = newform
+			#if os(OSX)
+			switch mFormat {
+			case .text:
+				mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
+				mTextEdit.usesSingleLineMode 	= false
+				mTextEdit.formatter		= nil
+			case .number:
+				mTextEdit.font			= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+				mTextEdit.usesSingleLineMode 	= true
+				let numform = NumberFormatter()
+				numform.numberStyle		= .decimal
+				numform.maximumFractionDigits	= 0
+				numform.minimumFractionDigits	= 0
+				mTextEdit.formatter		= numform
+			}
+			#endif
+		}
 	}
 
 	public var defaultLength: Int {
@@ -80,33 +99,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 				mTextEdit.isEditable = newval
 			#endif
 		}
-	}
-
-	private func setModes() {
-		#if os(OSX)
-		/* Common setting */
-		mTextEdit.isBezeled	= false
-		mTextEdit.lineBreakMode	= .byWordWrapping
-		/* Format setting */
-		switch mFormat {
-		case .text:
-			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
-			mTextEdit.usesSingleLineMode 	= false
-			mTextEdit.formatter		= nil
-		case .line:
-			mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
-			mTextEdit.usesSingleLineMode 	= true
-			mTextEdit.formatter		= nil
-		case .decimal:
-			mTextEdit.font			= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
-			mTextEdit.usesSingleLineMode 	= true
-			let numform = NumberFormatter()
-			numform.numberStyle		= .decimal
-			numform.maximumFractionDigits	= 0
-			numform.minimumFractionDigits	= 0
-			mTextEdit.formatter		= numform
-		}
-		#endif
 	}
 
 	#if os(OSX)
@@ -210,28 +202,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		}
 	}
 
-	public var value: CNValue {
-		get {
-			let result: CNValue
-			switch mFormat {
-			case .line, .text:
-				result = .stringValue(self.text)
-			case .decimal:
-				if let val = Int(self.text) {
-					result = .numberValue(NSNumber(integerLiteral: val))
-				} else {
-					result = .nullValue
-				}
-			}
-			return result
-		}
-		set(newval) {
-			let txt    = newval.toText()
-			let str    = txt.toStrings().joined(separator: "\n")
-			self.text = str
-		}
-	}
-
 	public var font: CNFont? {
 		get {
 			return mTextEdit.font
@@ -269,14 +239,8 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	#endif
 
 	public func notifyTextDidEndEditing() {
-		let val = self.value
-		switch val {
-		case .nullValue:
-			break
-		default:
-			if let cbfunc = self.callbackFunction {
-				cbfunc(val)
-			}
+		if let cbfunc = self.callbackFunction {
+			cbfunc(self.text)
 		}
 	}
 }

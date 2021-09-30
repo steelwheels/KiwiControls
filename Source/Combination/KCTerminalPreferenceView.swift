@@ -159,19 +159,19 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 		if let field = mTerminalWidthField {
 			field.callbackFunction = {
-				(_ value: CNValue) -> Void in
-				if let val = value.toNumber() {
+				(_ str: String) -> Void in
+				if let val = Int(str) {
 					let pref = CNPreference.shared.terminalPreference
-					pref.width = val.intValue
+					pref.width = val
 				}
 			}
 		}
 		if let field = mTerminalHeightField {
 			field.callbackFunction = {
-				(_ value: CNValue) -> Void in
-				if let val = value.toNumber(){
+				(_ str: String) -> Void in
+				if let val = Int(str) {
 					let pref = CNPreference.shared.terminalPreference
-					pref.height = val.intValue
+					pref.height = val
 				}
 			}
 		}
@@ -196,10 +196,10 @@ public class KCTerminalPreferenceView: KCStackView
 	#if os(OSX)
 	private func allocateHomeDirectoryView() -> KCLabeledStackView {
 		let pathfield   = KCTextEdit()
-		pathfield.format = .line
+		pathfield.format     = .text
 		pathfield.isEditable = false
-		pathfield.text = "No home directory"
-		mHomeDirectoryField = pathfield
+		pathfield.text       = "No home directory"
+		mHomeDirectoryField  = pathfield
 
 		let selectbutton = KCButton()
 		selectbutton.value = .text("Selet")
@@ -248,18 +248,18 @@ public class KCTerminalPreferenceView: KCStackView
 
 	private func allocateSizeSelectorView() -> KCLabeledStackView {
 		let widthfield = KCTextEdit()
-		widthfield.format = .decimal
+		widthfield.format     = .number
 		widthfield.isEditable = true
-		mTerminalWidthField = widthfield
+		mTerminalWidthField   = widthfield
 
 		let widthbox = KCLabeledStackView()
 		widthbox.title = "width:"
 		widthbox.contentsView.addArrangedSubView(subView: widthfield)
 
 		let heightfield = KCTextEdit()
-		heightfield.format = .decimal
+		heightfield.format     = .number
 		heightfield.isEditable = true
-		mTerminalHeightField = heightfield
+		mTerminalHeightField   = heightfield
 
 		let heightbox = KCLabeledStackView()
 		heightbox.title = "height:"

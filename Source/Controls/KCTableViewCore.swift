@@ -43,8 +43,9 @@ private class KCTableBridge: KCTableInterface
 		mFieldNames	= []
 	}
 
-	public var rowCount:    Int { get { return mTable.recordCount      }}
-	public var columnCount: Int { get { return mTable.fieldNames.count }}
+	public var rowCount:    Int     { get { return mTable.recordCount	}}
+	public var columnCount: Int     { get { return mTable.fieldNames.count	}}
+	public var core:	CNTable { get { return mTable			}}
 
 	public var fieldNames: Array<String> { get { return mTable.fieldNames }}
 
@@ -108,9 +109,10 @@ private class KCDictionaryTableBridge: KCTableInterface
 		}
 	}
 
-	public var rowCount: Int		{ get { return mDictionary.count	}}
-	public var columnCount: Int		{ get { return mFieldNames.count	}}
-	public var fieldNames: Array<String>	{ get { return mFieldNames		}}
+	public var rowCount: Int			{ get { return mDictionary.count	}}
+	public var columnCount: Int			{ get { return mFieldNames.count	}}
+	public var fieldNames: Array<String>		{ get { return mFieldNames		}}
+	public var core: Dictionary<String, CNValue>	{ get { return mDictionary		}}
 
 	public func fieldName(atIndex idx: Int) -> String? {
 		if 0<=idx && idx<mFieldNames.count {
@@ -422,6 +424,22 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mTableView.endUpdates()
 
 		#endif
+	}
+
+	public func loadTable() -> CNTable? {
+		if let bridge = mTableInterface as? KCTableBridge {
+			return bridge.core
+		} else {
+			return nil
+		}
+	}
+
+	public func loadDictionary() -> Dictionary<String, CNValue>? {
+		if let bridge = mTableInterface as? KCDictionaryTableBridge {
+			return bridge.core
+		} else {
+			return nil
+		}
 	}
 
 	/*

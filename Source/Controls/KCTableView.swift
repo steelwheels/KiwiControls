@@ -75,6 +75,14 @@ open class KCTableView : KCInterfaceView
 		self.coreView.store(dictionary: dictp)
 	}
 
+	public func loadTable() -> CNTable? {
+		return self.coreView.loadTable()
+	}
+
+	public func loadDictionary() -> Dictionary<String, CNValue>? {
+		return self.coreView.loadDictionary()
+	}
+
 	public var isEnable: Bool {
 		get      { return coreView.isEnable }
 		set(val) { coreView.isEnable = val }

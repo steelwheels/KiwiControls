@@ -25,10 +25,6 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
-	open func visit(dataField view: KCDataField){
-		visit(coreView: view)
-	}
-
 	open func visit(stepper view: KCStepper){
 		visit(coreView: view)
 	}

@@ -81,9 +81,9 @@ public class SingleViewController: KCSingleViewController
 		imgview0.scale = 0.2
 
 		let edit1  = KCTextEdit()
-		edit1.format = .line
+		edit1.format     = .text
 		edit1.isEditable = false
-		edit1.text = "This is label"
+		edit1.text       = "This is label"
 
 		let gr2d1  = allocateGraphics2DView()
 		let pmenu  = allocatePopupMenu()
@@ -121,8 +121,8 @@ public class SingleViewController: KCSingleViewController
 			"2.1": .stringValue("subsec 2.1")
 		]
 		let sec1: Dictionary<String, CNValue> = [
-			"0": .dictionaryValue(subsec1),
-			"1": .dictionaryValue(subsec2)
+			"1.": .dictionaryValue(subsec1),
+			"2.": .dictionaryValue(subsec2)
 		]
 		let secview4 = KCValueView()
 		secview4.value = .dictionaryValue(sec1)
@@ -131,6 +131,10 @@ public class SingleViewController: KCSingleViewController
 		let box2 = KCStackView()
 		box2.axis = .vertical
 		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, labstack, button2])
+
+		let secval = secview4.value
+		let str = secval.toText().toStrings().joined(separator: "\n")
+		NSLog("secval = " + str)
 
 		return box2
 	}
