@@ -13,8 +13,6 @@ public class KCExpansionAdjuster: KCViewVisitor
 	public typealias ExpansionPriority   = KCViewBase.ExpansionPriority
 	public typealias ExpansionPriorities = KCView.ExpansionPriorities
 
-	var axis: CNAxis = .vertical
-
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCInterfaceView = view.getCoreView()
 		coreview.accept(visitor: self)
@@ -114,9 +112,9 @@ public class KCExpansionAdjuster: KCViewVisitor
 
 	open override func visit(tableView view: KCTableView){
 		/* Set priority value */
-		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+		let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
 						 holizontalCompression: .fixed,
-						 verticalHugging: 	.low,
+						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
 		/* Visit children 1st */
 		let colnum = view.numberOfColumns
@@ -133,32 +131,34 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(stackView view: KCStackView){
-		/* Visit children 1st */
-		let prevaxis = view.axis
-		axis     = prevaxis
 		for subview in view.arrangedSubviews() {
 			subview.accept(visitor: self)
 		}
 		/* Calc expansion priority */
-		var exppri = ExpansionPriorities(holizontalHugging: .fixed, holizontalCompression: .fixed, verticalHugging: .fixed, verticalCompression: .fixed)
+		var exppri = ExpansionPriorities(holizontalHugging:     .fixed,
+						 holizontalCompression: .fixed,
+						 verticalHugging:       .fixed,
+						 verticalCompression:   .fixed)
 		for subview in view.arrangedSubviews() {
 			exppri = ExpansionPriorities.union(exppri, subview.expansionPriority())
 		}
 		CNLog(logLevel: .detail, message: "Stack: ExpansionPriorities \(exppri.holizontalHugging.description()) \(exppri.holizontalCompression.description()) \(exppri.verticalHugging.description()) \(exppri.verticalCompression.description()) at \(#function)")
 		view.setExpandabilities(priorities: exppri)
-		/* Keep axis */
-		axis = prevaxis
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {
 		/* Label */
-		let labval = ExpansionPriorities(holizontalHugging: .middle,
-						 holizontalCompression: .middle,
-						 verticalHugging: .fixed,
-						 verticalCompression: .fixed)
+		let labval = ExpansionPriorities(holizontalHugging: 	.middle,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
 		view.labelView.setExpansionPriorities(priorities: labval)
+
 		/* Contents view */
 		visit(stackView: view.contentsView)
+
+		/* Copy same property */
+		view.setExpandabilities(priorities: view.contentsView.expansionPriority())
 	}
 
 	open override func visit(imageView view: KCImageView){

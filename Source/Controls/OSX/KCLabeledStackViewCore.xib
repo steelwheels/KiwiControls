@@ -14,7 +14,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RNZ-uB-Izt">
-                    <rect key="frame" x="-2" y="184" width="404" height="16"/>
+                    <rect key="frame" x="-2" y="182" width="404" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="gba-w7-1v5"/>
+                    </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="rYK-WO-Rac">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -22,18 +25,17 @@
                     </textFieldCell>
                 </textField>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="xgu-Y4-Yc7" customClass="KCStackView" customModule="KiwiControls" customModuleProvider="target">
-                    <rect key="frame" x="20" y="20" width="360" height="151"/>
+                    <rect key="frame" x="20" y="0.0" width="380" height="174"/>
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="xgu-Y4-Yc7" secondAttribute="trailing" constant="20" id="2jr-t2-CNN"/>
-                <constraint firstAttribute="bottom" secondItem="xgu-Y4-Yc7" secondAttribute="bottom" constant="20" id="9Bd-El-CvI"/>
-                <constraint firstItem="RNZ-uB-Izt" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="BL4-gS-MH2"/>
-                <constraint firstItem="RNZ-uB-Izt" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="CZc-SB-uFM"/>
-                <constraint firstItem="xgu-Y4-Yc7" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="N5W-u1-S6d"/>
-                <constraint firstItem="RNZ-uB-Izt" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Tq9-Zu-7xl"/>
-                <constraint firstAttribute="trailing" secondItem="RNZ-uB-Izt" secondAttribute="trailing" id="X6k-aw-osv"/>
-                <constraint firstItem="xgu-Y4-Yc7" firstAttribute="top" secondItem="RNZ-uB-Izt" secondAttribute="bottom" constant="13" id="pmI-og-rBp"/>
+                <constraint firstAttribute="bottom" secondItem="xgu-Y4-Yc7" secondAttribute="bottom" id="5e8-42-v5z"/>
+                <constraint firstItem="RNZ-uB-Izt" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="97K-b6-vZc"/>
+                <constraint firstItem="xgu-Y4-Yc7" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="UXy-zx-npH"/>
+                <constraint firstAttribute="trailing" secondItem="xgu-Y4-Yc7" secondAttribute="trailing" id="cCX-6H-VSJ"/>
+                <constraint firstItem="xgu-Y4-Yc7" firstAttribute="top" secondItem="RNZ-uB-Izt" secondAttribute="bottom" constant="8" symbolic="YES" id="fz4-X7-A8s"/>
+                <constraint firstAttribute="trailing" secondItem="RNZ-uB-Izt" secondAttribute="trailing" id="oeJ-nT-au2"/>
+                <constraint firstItem="RNZ-uB-Izt" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="qKP-YN-ec4"/>
             </constraints>
             <connections>
                 <outlet property="mStackView" destination="xgu-Y4-Yc7" id="vBI-qw-Hcf"/>

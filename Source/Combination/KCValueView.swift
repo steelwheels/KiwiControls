@@ -17,6 +17,11 @@ public protocol KCValueViewInterface
 	var value: CNValue { get set }
 }
 
+private func requireUpdate(view v: KCView){
+	v.invalidateIntrinsicContentSize()
+	v.requireLayout()
+}
+
 public class KCScalarValueView: KCTextEdit, KCValueViewInterface
 {
 	public typealias Format = KCTextEditCore.Format
@@ -40,6 +45,7 @@ public class KCScalarValueView: KCTextEdit, KCValueViewInterface
 			let str = newval.toText().toStrings().joined(separator: "\n")
 			self.format = format
 			self.text   = str
+			requireUpdate(view: self)
 		}
 	}
 }
@@ -60,6 +66,7 @@ public class KCDictionaryValueView: KCTableView, KCValueViewInterface
 			} else {
 				CNLog(logLevel: .error, message: "Failed to set value", atFunction: #function, inFile: #file)
 			}
+			requireUpdate(view: self)
 		}
 	}
 }
@@ -85,6 +92,7 @@ public class KCArrayValueView: KCStackView, KCValueViewInterface
 			} else {
 				CNLog(logLevel: .error, message: "Not array value", atFunction: #function, inFile: #file)
 			}
+			requireUpdate(view: self)
 		}
 	}
 }
@@ -121,6 +129,7 @@ public class KCLabeledValueView: KCStackView, KCValueViewInterface
 			} else {
 				CNLog(logLevel: .error, message: "Not dictionary value", atFunction: #function, inFile: #file)
 			}
+			requireUpdate(view: self)
 		}
 	}
 }
@@ -134,6 +143,8 @@ open class KCValueView: KCStackView, KCValueViewInterface
 		set(newval) {
 			self.removeAllArrangedSubviews()
 			KCValueView.valueToView(value: newval, parent: self)
+			requireUpdate(view: self)
+			self.notify(viewControlEvent: .updateSize)
 		}
 	}
 

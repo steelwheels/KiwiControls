@@ -22,15 +22,12 @@ open class KCLabeledStackViewCore : KCCoreView
 	@IBOutlet weak var mStackView: KCStackView!
 	#endif
 
+	private var 	mMinWidth:	Int = 100
+
 	public func setup(frame frm: CGRect) -> Void {
 		super.setup(isSingleView: false, coreView: mStackView)
 		KCView.setAutolayoutMode(views: [self, mTextField, mStackView])
 		self.title = "Title"
-	}
-
-	private func unionSizes(textSize tsize: KCSize, stackSize ssize: KCSize) -> KCSize {
-		let space = CNPreference.shared.windowPreference.spacing
-		return KCUnionSize(sizeA: tsize, sizeB: ssize, doVertical: true, spacing: space)
 	}
 
 	public var title: String {
@@ -76,22 +73,43 @@ open class KCLabeledStackViewCore : KCCoreView
 
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
-		let space = CNPreference.shared.windowPreference.spacing
-		let totalheight = newsize.height
-		var labelheight = mTextField.frame.size.height
-		var stackheight = totalheight - labelheight - space
-		if stackheight <= 0.0 {
-			labelheight = totalheight / 2.0
-			stackheight = totalheight / 2.0
+
+		/* Decide label size */
+		let newlabheight: CGFloat
+		if newsize.height > mTextField.frame.height {
+			newlabheight = mTextField.frame.height
+		} else {
+			newlabheight = newsize.height
 		}
-		let labelsize = KCSize(width: newsize.width, height: labelheight)
-		let stacksize = KCSize(width: newsize.width, height: stackheight)
 		#if os(OSX)
-			mTextField.setFrameSize(labelsize)
-			mStackView.setFrameSize(stacksize)
+		NSLog("setFrameSize: labelSize: str=\"\(mTextField.stringValue)\" \(newsize.width) \(newlabheight)")
+		#endif
+		let newlabsize = KCSize(width: newsize.width, height: newlabheight)
+		#if os(OSX)
+			self.labelView.setFrameSize(newlabsize)
 		#else
-			mTextField.setFrameSize(size: labelsize)
-			mStackView.setFrameSize(size: stacksize)
+			self.labelView.setFrameSize(size: newlabsize)
+		#endif
+
+		/* Decide content size */
+		let contwidth: CGFloat
+		if newsize.width > 20.0 {
+			contwidth = newsize.width - 20.0
+		} else {
+			contwidth =  0.0
+		}
+		let contheight: CGFloat
+		if newsize.height > newlabheight + 28.0 {
+			contheight = newsize.height - (newlabheight + 8.0)
+		} else {
+			contheight =  0.0
+		}
+		NSLog("setFrameSize: contentSize: \(contwidth) \(contheight)")
+		let contsize = KCSize(width: contwidth, height: contheight)
+		#if os(OSX)
+			mStackView.setFrameSize(contsize)
+		#else
+			mStackView.setFrameSize(size: contsize)
 		#endif
 	}
 
@@ -109,10 +127,49 @@ open class KCLabeledStackViewCore : KCCoreView
 		get { return contentSize() }
 	}
 
+	// The constant value for layout is depend on XIB file
 	private func contentSize() -> KCSize {
-		let textsize  = mTextField.intrinsicContentSize
-		let stacksize = mStackView.intrinsicContentSize
-		return unionSizes(textSize: textsize, stackSize: stacksize)
+		let textsize    = intrinsicLabelSize()
+		#if os(OSX)
+		NSLog("intrinsicSize: labelSize: str=\"\(mTextField.stringValue)\" \(textsize.width) \(textsize.height)")
+		#endif
+		let stacksize   = mStackView.intrinsicContentSize
+		let stackbounds = KCSize(width:  stacksize.width + 20.0, height: stacksize.height)
+		NSLog("intrinsicSize: stackSize: \(stackbounds.width) \(stackbounds.height)")
+		let result = KCUnionSize(sizeA: textsize, sizeB: stackbounds, doVertical: true, spacing: 8.0)
+		NSLog("intrinsicSize: resultSize: \(result.width) \(result.height)")
+		return result
+	}
+
+	private func intrinsicLabelSize() -> KCSize {
+		#if os(OSX)
+			let curnum  = mTextField.stringValue.count
+			let newnum  = max(curnum, mMinWidth)
+			let fitsize = mTextField.fittingSize
+
+			let newwidth:  CGFloat
+			if let fontsize = self.labelFontSize() {
+				newwidth = fontsize.width * CGFloat(newnum)
+			} else {
+				newwidth = fitsize.width
+			}
+
+			mTextField.preferredMaxLayoutWidth = newwidth
+			NSLog("intrinsicLabelSize: \(newwidth) \(fitsize.height)")
+			return KCSize(width: newwidth, height: fitsize.height)
+		#else
+			return mTextField.intrinsicContentSize
+		#endif
+	}
+
+	private func labelFontSize() -> KCSize? {
+		if let font = mTextField.font {
+			let attr = [NSAttributedString.Key.font: font]
+			let str: String = " "
+			return str.size(withAttributes: attr)
+		} else {
+			return nil
+		}
 	}
 
 	public override func invalidateIntrinsicContentSize() {

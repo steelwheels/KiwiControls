@@ -169,6 +169,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			case .none:
 				break
 			case .updateSize:
+				NSLog("Update window size")
 				CNLog(logLevel: .detail, message: "Update window size", atFunction: #function, inFile: #file)
 				#if os(OSX)
 					mHasPreferedContentSize = false

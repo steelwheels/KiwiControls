@@ -59,11 +59,6 @@ open class KCTextEdit : KCInterfaceView
 		set(newform)	{ coreView.format = newform }
 	}
 
-	public var defaultLength: Int {
-		get		{ return coreView.defaultLength   }
-		set(newlen)	{ coreView.defaultLength = newlen }
-	}
-
 	public var isEditable: Bool {
 		get 		{ return coreView.isEditable	}
 		set(newval)	{ coreView.isEditable = newval	}

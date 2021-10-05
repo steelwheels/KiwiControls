@@ -34,7 +34,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	#endif
 
 	private var 	mFormat:		Format = .text
-	private var 	mDefaultLength:		Int    = 40
+	private var 	mMinWidth:		Int    = 40
 	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
@@ -81,11 +81,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		}
 	}
 
-	public var defaultLength: Int {
-		get		{ return mDefaultLength }
-		set(newlen)	{ mDefaultLength = newlen }
-	}
-
 	public var isEditable: Bool {
 		get {
 			#if os(OSX)
@@ -104,9 +99,8 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	#if os(OSX)
 	open override var intrinsicContentSize: KCSize {
 		get {
-			let curnum = mTextEdit.stringValue.count
-			let newnum = max(curnum, mDefaultLength)
-
+			let curnum  = mTextEdit.stringValue.count
+			let newnum  = max(curnum, mMinWidth)
 			let fitsize = mTextEdit.fittingSize
 
 			let newwidth:  CGFloat

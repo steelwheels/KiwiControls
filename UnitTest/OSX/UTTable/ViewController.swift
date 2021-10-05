@@ -76,16 +76,12 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		switch event {
 		case .none:
 			CNLog(logLevel: .detail, message: "Control event: none", atFunction: #function, inFile: #file)
-		case .updateSize:
-			CNLog(logLevel: .detail, message: "Update window size", atFunction: #function, inFile: #file)
+		case .updateSize(let targview):
+			CNLog(logLevel: .detail, message: "Update window size: \(targview.description)", atFunction: #function, inFile: #file)
 		case .switchFirstResponder(let newview):
-			NSLog("switchFirstResponder (0)")
 			if let window = self.view.window {
-				NSLog("switchFirstResponder (1)")
-				if window.makeFirstResponder(newview) {
-					NSLog("makeFirstResponder -> Succeess")
-				} else {
-					NSLog("makeFirstResponder -> Fail")
+				if !window.makeFirstResponder(newview) {
+					CNLog(logLevel: .error, message: "makeFirstResponder -> Fail", atFunction: #function, inFile: #file)
 				}
 			} else {
 				CNLog(logLevel: .error, message: "Failed to switch first responder", atFunction: #function, inFile: #file)
