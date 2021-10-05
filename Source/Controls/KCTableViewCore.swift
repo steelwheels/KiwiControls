@@ -506,7 +506,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 				CNLog(logLevel: .detail, message: "Reloaded ... Notify resize", atFunction: #function, inFile: #file)
 				self.invalidateIntrinsicContentSize()
 				self.requireLayout()
-				notify(viewControlEvent: .updateSize)
+				notify(viewControlEvent: .updateSize(self))
 			}
 		}
 		return newview

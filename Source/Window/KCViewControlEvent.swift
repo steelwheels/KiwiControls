@@ -14,7 +14,7 @@ import CoconutData
 
 public enum KCViewControlEvent {
 	case none
-	case updateSize
+	case updateSize(KCView)
 	case switchFirstResponder(KCViewBase)
 }
 

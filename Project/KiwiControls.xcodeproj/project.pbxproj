@@ -210,6 +210,8 @@
 		056451A8251851E2006C2430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056451A6251851E2006C2430 /* LaunchScreen.storyboard */; };
 		056451B2251853F8006C2430 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
 		056451B3251853F8006C2430 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		057B2214270C8D0E00E20CED /* KCLayoutInvalidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */; };
+		057B2215270C8D0E00E20CED /* KCLayoutInvalidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */; };
 		058EBF17264DE39F0031F306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EBF16264DE39F0031F306 /* AppDelegate.swift */; };
 		058EBF19264DE39F0031F306 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EBF18264DE39F0031F306 /* ViewController.swift */; };
 		058EBF1B264DE3A20031F306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058EBF1A264DE3A20031F306 /* Assets.xcassets */; };
@@ -533,6 +535,7 @@
 		056451A7251851E2006C2430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		056451A9251851E2006C2430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		056451B1251853F8006C2430 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
+		057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayoutInvalidator.swift; sourceTree = "<group>"; };
 		058EBF14264DE39F0031F306 /* UTTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058EBF16264DE39F0031F306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058EBF18264DE39F0031F306 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -780,6 +783,7 @@
 				0544EAA325176FBE002DE6A8 /* KCFirstResponderDecider.swift */,
 				0544EA9E25176FBE002DE6A8 /* KCGroupMaker.swift */,
 				0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */,
+				057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1553,6 +1557,7 @@
 				0544EBB325177676002DE6A8 /* KCLayoutConstraint.swift in Sources */,
 				0544EBC325177676002DE6A8 /* KCAlert.swift in Sources */,
 				0544EB10251775A3002DE6A8 /* KCTableView.swift in Sources */,
+				057B2214270C8D0E00E20CED /* KCLayoutInvalidator.swift in Sources */,
 				0544EADE25176FF5002DE6A8 /* KCHexagon.swift in Sources */,
 				0544EA7625176EC6002DE6A8 /* KCViewController.swift in Sources */,
 				0544EAAB25176FBE002DE6A8 /* KCGroupMaker.swift in Sources */,
@@ -1591,6 +1596,7 @@
 				05589AC726120F7F00774D41 /* KCTextView.swift in Sources */,
 				0544EAEB2517718D002DE6A8 /* KCDocument.swift in Sources */,
 				0544EAB625176FBE002DE6A8 /* KCFirstResponderDecider.swift in Sources */,
+				057B2215270C8D0E00E20CED /* KCLayoutInvalidator.swift in Sources */,
 				0544EB35251775A3002DE6A8 /* KCTextEditCore.swift in Sources */,
 				0544EB15251775A3002DE6A8 /* KCTextEdit.swift in Sources */,
 				0544EB27251775A3002DE6A8 /* KCTerminalView.swift in Sources */,

@@ -168,14 +168,16 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			switch event {
 			case .none:
 				break
-			case .updateSize:
+			case .updateSize(let targview):
 				NSLog("Update window size")
 				CNLog(logLevel: .detail, message: "Update window size", atFunction: #function, inFile: #file)
 				#if os(OSX)
 					mHasPreferedContentSize = false
 				#endif
-				root.invalidateIntrinsicContentSize()
-				root.requireLayout()
+				let invalidator = KCLayoutInvalidator(target: targview)
+				root.accept(visitor: invalidator)
+				//root.invalidateIntrinsicContentSize()
+				//root.requireLayout()
 			case .switchFirstResponder(let newview):
 				#if os(OSX)
 					if let window = self.view.window {
