@@ -21,7 +21,6 @@ public class KCLayoutInvalidator: KCViewVisitor
 
 	private func doInvalidate(view v: KCView, doInvalidate doinv: Bool){
 		if doinv {
-			NSLog("doInvalidate: \(v.description)")
 			v.invalidateIntrinsicContentSize()
 			v.requireLayout()
 		}

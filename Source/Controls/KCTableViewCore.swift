@@ -598,12 +598,10 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			result.height += space.height
 		}
 		let rownum = min(mTableView.numberOfRows, visibleRowCount)
-		NSLog("calcContentSize: row num: \(rownum)")
 		if rownum > 0 {
 			for ridx in 0..<rownum {
 				if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: true) {
 					let frame = rview.frame
-					NSLog("calcContentSize: frame(\(ridx)): \(frame.size.description)")
 					result.width  =  max(result.width, frame.size.width)
 					result.height += frame.size.height
 				}
@@ -611,11 +609,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			if rownum > 1 {
 				result.height += space.height * CGFloat(rownum - 1)
 			}
-			NSLog("calcContentSize: calc content size: \(result.description)")
-			NSLog("calcContentSize: fitting size:      \(mTableView.fittingSize.description)")
 			return result
 		} else {
-			NSLog("calcContentSize: No result")
 			return nil
 		}
 	}

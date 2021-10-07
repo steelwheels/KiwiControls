@@ -106,7 +106,6 @@ public class KCLabeledValueView: KCStackView, KCValueViewInterface
 		}
 		set(newval){
 			if let dict = newval.toDictionary() {
-				self.removeAllArrangedSubviews()
 				let keys = dict.keys.sorted()
 				for key in keys {
 					let labview = KCLabeledStackView()
@@ -140,7 +139,7 @@ open class KCValueView: KCStackView, KCValueViewInterface
 	public static func valueToView(value val: CNValue, parent parview: KCStackView) {
 		switch val {
 		case .nullValue:
-			break
+			parview.addArrangedSubView(subView: emptyView())
 		case .boolValue(_), .numberValue(_), .stringValue(_), .dateValue(_), .URLValue(_), .imageValue(_), .objectValue(_):
 			let view = KCScalarValueView()
 			view.value = val
@@ -160,16 +159,26 @@ open class KCValueView: KCStackView, KCValueViewInterface
 					view.value = val
 					parview.addArrangedSubView(subView: view)
 				}
+			} else {
+				parview.addArrangedSubView(subView: emptyView())
 			}
 		case .arrayValue(let arr):
 			if arr.count > 0 {
 				let view = KCArrayValueView()
 				view.value = val
 				parview.addArrangedSubView(subView: view)
+			} else {
+				parview.addArrangedSubView(subView: emptyView())
 			}
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown value type", atFunction: #function, inFile: #file)
 		}
+	}
+
+	private static func emptyView() -> KCScalarValueView {
+		let empty   = KCScalarValueView()
+		empty.value = .stringValue("")
+		return empty
 	}
 
 	public static func viewToValue(parent parview: KCStackView) -> CNValue {

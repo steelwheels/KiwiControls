@@ -81,9 +81,6 @@ open class KCLabeledStackViewCore : KCCoreView
 		} else {
 			newlabheight = newsize.height
 		}
-		#if os(OSX)
-		NSLog("setFrameSize: labelSize: str=\"\(mTextField.stringValue)\" \(newsize.width) \(newlabheight)")
-		#endif
 		let newlabsize = KCSize(width: newsize.width, height: newlabheight)
 		#if os(OSX)
 			self.labelView.setFrameSize(newlabsize)
@@ -104,7 +101,6 @@ open class KCLabeledStackViewCore : KCCoreView
 		} else {
 			contheight =  0.0
 		}
-		NSLog("setFrameSize: contentSize: \(contwidth) \(contheight)")
 		let contsize = KCSize(width: contwidth, height: contheight)
 		#if os(OSX)
 			mStackView.setFrameSize(contsize)
@@ -130,14 +126,9 @@ open class KCLabeledStackViewCore : KCCoreView
 	// The constant value for layout is depend on XIB file
 	private func contentSize() -> KCSize {
 		let textsize    = intrinsicLabelSize()
-		#if os(OSX)
-		NSLog("intrinsicSize: labelSize: str=\"\(mTextField.stringValue)\" \(textsize.width) \(textsize.height)")
-		#endif
 		let stacksize   = mStackView.intrinsicContentSize
 		let stackbounds = KCSize(width:  stacksize.width + 20.0, height: stacksize.height)
-		NSLog("intrinsicSize: stackSize: \(stackbounds.width) \(stackbounds.height)")
 		let result = KCUnionSize(sizeA: textsize, sizeB: stackbounds, doVertical: true, spacing: 8.0)
-		NSLog("intrinsicSize: resultSize: \(result.width) \(result.height)")
 		return result
 	}
 
@@ -155,7 +146,6 @@ open class KCLabeledStackViewCore : KCCoreView
 			}
 
 			mTextField.preferredMaxLayoutWidth = newwidth
-			NSLog("intrinsicLabelSize: \(newwidth) \(fitsize.height)")
 			return KCSize(width: newwidth, height: fitsize.height)
 		#else
 			return mTextField.intrinsicContentSize
