@@ -97,14 +97,14 @@ public class KCLayoutInvalidator: KCViewVisitor
 	}
 
 	public override func visit(labeledStackView view: KCLabeledStackView) {
-		var doinv: Bool = false
-		for subview in view.contentsView.arrangedSubviews() {
-			subview.accept(visitor: self)
-			if mVisitResult {
-				doinv = true
-			}
+		view.contentsView.accept(visitor: self)
+		let doinv1 = mVisitResult
+		let doinv2 = (view.labelView == mTargetView)
+		let doinv3 = checkTarget(view: view)
+		let doinv  = doinv1 || doinv2 || doinv3
+		if doinv {
+			view.labelView.invalidateIntrinsicContentSize()
 		}
-		doinv = doinv || checkTarget(view: view)
 		doInvalidate(view: view, doInvalidate: doinv)
 		mVisitResult = doinv
 	}

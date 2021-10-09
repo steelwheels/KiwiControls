@@ -23,6 +23,36 @@ public class KCScalarValueView: KCTextEdit, KCValueViewInterface
 
 	private var mValueType: CNValueType = .stringType
 
+	#if os(OSX)
+	public override init(frame : NSRect){
+		super.init(frame: frame) ;
+		setup() ;
+	}
+	#else
+	public override init(frame: CGRect){
+		super.init(frame: frame) ;
+		setup()
+	}
+	#endif
+
+	public required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		setup()
+	}
+
+	public convenience init(){
+		#if os(OSX)
+		let frame = NSRect(x: 0.0, y: 0.0, width: 160, height: 60)
+		#else
+		let frame = CGRect(x: 0.0, y: 0.0, width: 160, height: 60)
+		#endif
+		self.init(frame: frame)
+	}
+
+	private func setup(){
+		self.isEditable = false
+	}
+
 	public var value: CNValue {
 		get {
 			if let val = CNValue.stringToValue(type: mValueType, source: self.text) {
@@ -108,14 +138,14 @@ public class KCLabeledValueView: KCStackView, KCValueViewInterface
 			if let dict = newval.toDictionary() {
 				let keys = dict.keys.sorted()
 				for key in keys {
-					let labview = KCLabeledStackView()
-					labview.title = key
 					if let subval = dict[key] {
+						let labview = KCLabeledStackView()
+						labview.title = key
 						KCValueView.valueToView(value: subval, parent: labview.contentsView)
+						self.addArrangedSubView(subView: labview)
 					} else {
 						CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 					}
-					self.addArrangedSubView(subView: labview)
 				}
 			} else {
 				CNLog(logLevel: .error, message: "Not dictionary value", atFunction: #function, inFile: #file)

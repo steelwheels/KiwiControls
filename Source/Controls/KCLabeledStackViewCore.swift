@@ -15,73 +15,53 @@ import CoconutData
 open class KCLabeledStackViewCore : KCCoreView
 {
 	#if os(OSX)
-	@IBOutlet weak var mTextField: NSTextField!
-	@IBOutlet weak var mStackView: KCStackView!
+	@IBOutlet weak var mLabel: KCTextEdit!
+	@IBOutlet weak var mStack: KCStackView!
 	#else
-	@IBOutlet weak var mTextField: UILabel!
-	@IBOutlet weak var mStackView: KCStackView!
+	@IBOutlet weak var mLabel: KCTextEdit!
+	@IBOutlet weak var mStack: KCStackView!
 	#endif
 
 	private var 	mMinWidth:	Int = 100
 
 	public func setup(frame frm: CGRect) -> Void {
-		super.setup(isSingleView: false, coreView: mStackView)
-		KCView.setAutolayoutMode(views: [self, mTextField, mStackView])
+		super.setup(isSingleView: false, coreView: mStack)
+		KCView.setAutolayoutMode(views: [self, mLabel, mStack])
 		self.title = "Title"
 	}
 
 	public var title: String {
-		get {
-			#if os(OSX)
-				return mTextField.stringValue
-			#else
-				if let title = mTextField.text {
-					return title
-				} else {
-					return ""
-				}
-			#endif
-		}
-		set(newstr){
-			#if os(OSX)
-				mTextField.stringValue = newstr
-			#else
-				mTextField.text = newstr
-			#endif
-		}
+		get { return mLabel.text }
+		set(newstr){ mLabel.text = newstr }
 	}
 	
 	public var contentsView: KCStackView {
-		get { return mStackView }
+		get { return mStack }
 	}
 
-	public var labelView: KCLabel {
-		get { return mTextField }
+	public var labelView: KCTextEdit {
+		get { return mLabel }
 	}
 
 	open func addArrangedSubViews(subViews vs:Array<KCView>){
-		mStackView.addArrangedSubViews(subViews: vs)
+		mStack.addArrangedSubViews(subViews: vs)
 	}
 
 	open func addArrangedSubView(subView v: KCView){
-		mStackView.addArrangedSubView(subView: v)
+		mStack.addArrangedSubView(subView: v)
 	}
 
 	open func arrangedSubviews() -> Array<KCView> {
-		return mStackView.arrangedSubviews()
+		return mStack.arrangedSubviews()
 	}
+
+	private let LabelHeight : CGFloat = 20.0
 
 	open override func setFrameSize(_ newsize: KCSize) {
 		super.setFrameSize(newsize)
 
 		/* Decide label size */
-		let newlabheight: CGFloat
-		if newsize.height > mTextField.frame.height {
-			newlabheight = mTextField.frame.height
-		} else {
-			newlabheight = newsize.height
-		}
-		let newlabsize = KCSize(width: newsize.width, height: newlabheight)
+		let newlabsize = KCSize(width: newsize.width, height: LabelHeight)
 		#if os(OSX)
 			self.labelView.setFrameSize(newlabsize)
 		#else
@@ -90,22 +70,22 @@ open class KCLabeledStackViewCore : KCCoreView
 
 		/* Decide content size */
 		let contwidth: CGFloat
-		if newsize.width > 20.0 {
-			contwidth = newsize.width - 20.0
+		if newsize.width > LabelHeight {
+			contwidth = newsize.width - LabelHeight
 		} else {
 			contwidth =  0.0
 		}
 		let contheight: CGFloat
-		if newsize.height > newlabheight + 28.0 {
-			contheight = newsize.height - (newlabheight + 8.0)
+		if newsize.height > LabelHeight {
+			contheight = newsize.height - LabelHeight
 		} else {
 			contheight =  0.0
 		}
 		let contsize = KCSize(width: contwidth, height: contheight)
 		#if os(OSX)
-			mStackView.setFrameSize(contsize)
+			mStack.setFrameSize(contsize)
 		#else
-			mStackView.setFrameSize(size: contsize)
+			mStack.setFrameSize(size: contsize)
 		#endif
 	}
 
@@ -125,56 +105,26 @@ open class KCLabeledStackViewCore : KCCoreView
 
 	// The constant value for layout is depend on XIB file
 	private func contentSize() -> KCSize {
-		let textsize    = intrinsicLabelSize()
-		let stacksize   = mStackView.intrinsicContentSize
-		let stackbounds = KCSize(width:  stacksize.width + 20.0, height: stacksize.height)
-		let result = KCUnionSize(sizeA: textsize, sizeB: stackbounds, doVertical: true, spacing: 8.0)
+		let textsize    = mLabel.intrinsicContentSize
+		let stacksize   = mStack.intrinsicContentSize
+		let result = KCUnionSize(sizeA: textsize, sizeB: stacksize, doVertical: true, spacing: 0.0)
 		return result
 	}
 
-	private func intrinsicLabelSize() -> KCSize {
-		#if os(OSX)
-			let curnum  = mTextField.stringValue.count
-			let newnum  = max(curnum, mMinWidth)
-			let fitsize = mTextField.fittingSize
-
-			let newwidth:  CGFloat
-			if let fontsize = self.labelFontSize() {
-				newwidth = fontsize.width * CGFloat(newnum)
-			} else {
-				newwidth = fitsize.width
-			}
-
-			mTextField.preferredMaxLayoutWidth = newwidth
-			return KCSize(width: newwidth, height: fitsize.height)
-		#else
-			return mTextField.intrinsicContentSize
-		#endif
-	}
-
-	private func labelFontSize() -> KCSize? {
-		if let font = mTextField.font {
-			let attr = [NSAttributedString.Key.font: font]
-			let str: String = " "
-			return str.size(withAttributes: attr)
-		} else {
-			return nil
-		}
-	}
-
 	public override func invalidateIntrinsicContentSize() {
+		mLabel.invalidateIntrinsicContentSize()
+		mStack.invalidateIntrinsicContentSize()
 		super.invalidateIntrinsicContentSize()
-		mTextField.invalidateIntrinsicContentSize()
 	}
 
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		super.setExpandabilities(priorities: prival)
-		mStackView.setExpandabilities(priorities: prival)
+		mStack.setExpandabilities(priorities: prival)
 		let txtpri = KCViewBase.ExpansionPriorities(holizontalHugging: prival.holizontalHugging,
 							    holizontalCompression: prival.holizontalCompression,
 							    verticalHugging: .low,
 							    verticalCompression: .low)
-		mTextField.setExpansionPriorities(priorities: txtpri)
+		mLabel.setExpansionPriorities(priorities: txtpri)
 	}
 }
 

@@ -6,40 +6,40 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="mLabel" destination="ECF-jm-CFL" id="i9e-fe-xqP"/>
+                <outlet property="mStack" destination="4WE-Eu-JfE" id="R00-Ij-ksL"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="KCLabeledStackViewCore" customModule="KiwiControls" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RNZ-uB-Izt">
-                    <rect key="frame" x="-2" y="182" width="404" height="18"/>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="ECF-jm-CFL" customClass="KCTextEdit" customModule="KiwiControls" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="180" width="400" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="18" id="gba-w7-1v5"/>
+                        <constraint firstAttribute="height" constant="20" id="r8u-t7-PqY"/>
                     </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="rYK-WO-Rac">
-                        <font key="font" metaFont="systemBold"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="xgu-Y4-Yc7" customClass="KCStackView" customModule="KiwiControls" customModuleProvider="target">
-                    <rect key="frame" x="20" y="0.0" width="380" height="174"/>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="4WE-Eu-JfE" customClass="KCStackView" customModule="KiwiControls" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="180"/>
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="xgu-Y4-Yc7" secondAttribute="bottom" id="5e8-42-v5z"/>
-                <constraint firstItem="RNZ-uB-Izt" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="97K-b6-vZc"/>
-                <constraint firstItem="xgu-Y4-Yc7" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="UXy-zx-npH"/>
-                <constraint firstAttribute="trailing" secondItem="xgu-Y4-Yc7" secondAttribute="trailing" id="cCX-6H-VSJ"/>
-                <constraint firstItem="xgu-Y4-Yc7" firstAttribute="top" secondItem="RNZ-uB-Izt" secondAttribute="bottom" constant="8" symbolic="YES" id="fz4-X7-A8s"/>
-                <constraint firstAttribute="trailing" secondItem="RNZ-uB-Izt" secondAttribute="trailing" id="oeJ-nT-au2"/>
-                <constraint firstItem="RNZ-uB-Izt" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="qKP-YN-ec4"/>
+                <constraint firstItem="ECF-jm-CFL" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="1c5-6o-is3"/>
+                <constraint firstItem="ECF-jm-CFL" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="3hD-Ze-net"/>
+                <constraint firstItem="4WE-Eu-JfE" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Pz6-en-dH6"/>
+                <constraint firstAttribute="trailing" secondItem="4WE-Eu-JfE" secondAttribute="trailing" id="euf-uT-gBs"/>
+                <constraint firstAttribute="trailing" secondItem="ECF-jm-CFL" secondAttribute="trailing" id="pid-8Q-Dnu"/>
+                <constraint firstAttribute="bottom" secondItem="4WE-Eu-JfE" secondAttribute="bottom" id="sIK-gN-hnI"/>
+                <constraint firstItem="4WE-Eu-JfE" firstAttribute="top" secondItem="ECF-jm-CFL" secondAttribute="bottom" id="zZT-i3-Laj"/>
             </constraints>
             <connections>
-                <outlet property="mStackView" destination="xgu-Y4-Yc7" id="vBI-qw-Hcf"/>
-                <outlet property="mTextField" destination="RNZ-uB-Izt" id="hi3-2g-Xog"/>
+                <outlet property="mLabel" destination="ECF-jm-CFL" id="U64-AS-9do"/>
+                <outlet property="mStack" destination="4WE-Eu-JfE" id="IHT-Zd-Tk6"/>
             </connections>
             <point key="canvasLocation" x="104" y="123"/>
         </customView>

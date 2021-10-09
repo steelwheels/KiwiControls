@@ -60,7 +60,7 @@ open class KCLabeledStackView: KCInterfaceView
 		get { return coreView.contentsView }
 	}
 
-	public var labelView: KCLabel {
+	public var labelView: KCTextEdit {
 		get { return coreView.labelView}
 	}
 

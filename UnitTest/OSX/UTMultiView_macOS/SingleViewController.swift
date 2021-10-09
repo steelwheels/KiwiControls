@@ -122,7 +122,8 @@ public class SingleViewController: KCSingleViewController
 		]
 		let sec1: Dictionary<String, CNValue> = [
 			"1.": .dictionaryValue(subsec1),
-			"2.": .dictionaryValue(subsec2)
+			"2.": .dictionaryValue(subsec2),
+			"3.": .stringValue("Section 3")
 		]
 		let secview4 = KCValueView()
 		secview4.value = .dictionaryValue(sec1)
