@@ -73,6 +73,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 				mTextEdit.font			= NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
 				mTextEdit.usesSingleLineMode 	= true
 				mTextEdit.formatter		= nil
+				self.isEditable			= false
 			case .number:
 				mTextEdit.font			= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
 				mTextEdit.usesSingleLineMode 	= true
