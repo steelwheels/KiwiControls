@@ -22,6 +22,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 {
 	public enum Format {
 		case text
+		case label
 		case number
 	}
 
@@ -67,6 +68,10 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 			case .text:
 				mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
 				mTextEdit.usesSingleLineMode 	= false
+				mTextEdit.formatter		= nil
+			case .label:
+				mTextEdit.font			= NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
+				mTextEdit.usesSingleLineMode 	= true
 				mTextEdit.formatter		= nil
 			case .number:
 				mTextEdit.font			= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)

@@ -27,7 +27,8 @@ open class KCLabeledStackViewCore : KCCoreView
 	public func setup(frame frm: CGRect) -> Void {
 		super.setup(isSingleView: false, coreView: mStack)
 		KCView.setAutolayoutMode(views: [self, mLabel, mStack])
-		self.title = "Title"
+		mLabel.format = .label
+		self.title    = "Title"
 	}
 
 	public var title: String {
