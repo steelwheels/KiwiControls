@@ -83,6 +83,13 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: CNTextLine(string: "{rownum: \(rownum), colnum: \(colnum)}"))
 	}
 
+	open override func visit(collectionView view: KCCollectionView){
+		visit(coreView: view)
+
+		let secnum = view.numberOfSections
+		mSection.add(text: CNTextLine(string: "{sec-num: \(secnum) }"))
+	}
+
 	open override func visit(navigationBar view: KCNavigationBar) {
 		visit(coreView: view)
 

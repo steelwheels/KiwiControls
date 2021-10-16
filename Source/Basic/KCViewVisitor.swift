@@ -37,6 +37,10 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
+	open func visit(collectionView view: KCCollectionView){
+		visit(coreView: view)
+	}
+
 	open func visit(stackView view: KCStackView){
 		visit(coreView: view)
 	}
