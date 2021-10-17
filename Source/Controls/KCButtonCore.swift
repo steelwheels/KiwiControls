@@ -99,8 +99,8 @@ public class KCButtonCore: KCCoreView
 	private func URLOfSymbol(symbol sym: KCButtonSymbol) -> URL {
 		let itype: KCImageResource.ImageType
 		switch sym {
-		case .leftArrow:	itype = .arrowLeft
-		case .rightArrow:	itype = .arrowRight
+		case .leftArrow:	itype = .chevronBackword
+		case .rightArrow:	itype = .chevronForward
 		}
 		return KCImageResource.URLofImageResource(type: itype)
 	}

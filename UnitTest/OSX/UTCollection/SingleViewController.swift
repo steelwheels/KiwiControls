@@ -75,7 +75,7 @@ public class SingleViewController: KCSingleViewController
 			val10 = .stringValue("No image 0")
 		}
 		let val11: CNValue
-		if let img = KCImageResource.imageResource(type: .brush) {
+		if let img = KCImageResource.imageResource(type: .paintBrush) {
 			val11 = .imageValue(img)
 		} else {
 			val11 = .stringValue("No image 1")

@@ -12,20 +12,22 @@ public class KCImageResource
 {
 	public enum ImageType {
 		case characterA
-		case arrowLeft
-		case arrowRight
-		case brush
-		case pen
+		case chevronBackword
+		case chevronForward
+		case handRaised
+		case paintBrush
+		case pencil
 	}
 
 	public static func URLofImageResource(type itype: ImageType) -> URL {
 		let filename: String
 		switch itype {
-		case .characterA:	filename = "char-a"
-		case .arrowLeft: 	filename = "arrow-left"
-		case .arrowRight:	filename = "arrow-right"
-		case .brush:		filename = "brush"
-		case .pen:		filename = "pen"
+		case .characterA:	filename = "character-a"
+		case .chevronBackword: 	filename = "shevron-backward"
+		case .chevronForward:	filename = "shevron-forward"
+		case .handRaised:	filename = "hand-raised"
+		case .paintBrush:	filename = "paintbrush"
+		case .pencil:		filename = "pencil"
 		}
 		if let url = CNFilePath.URLForResourceFile(fileName: filename, fileExtension: "png", subdirectory: "Images", forClass: KCImageResource.self) {
 			return url
