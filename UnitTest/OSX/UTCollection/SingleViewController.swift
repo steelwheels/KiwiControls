@@ -62,12 +62,29 @@ public class SingleViewController: KCSingleViewController
 	#endif
 
 	private func allocateValue() -> CNCollectionInterface {
-		let newelm: Array<CNValue> = [
+		let newelm0: Array<CNValue> = [
 			.stringValue("Hello, world !!"),
-			.stringValue("Good, morning !!")
+			.stringValue("Good morning !!")
 		]
-		let newsec0 = CNCollectionValue.newSection(header: "Header-0", footer: "Footer-0", elements: newelm)
-		let newsec1 = CNCollectionValue.newSection(header: "Header-1", footer: "Footer-1", elements: newelm)
+		let newsec0 = CNCollectionValue.newSection(header: "Header-0", footer: "Footer-0", elements: newelm0)
+
+		let val10: CNValue
+		if let img = KCImageResource.imageResource(type: .characterA) {
+			val10 = .imageValue(img)
+		} else {
+			val10 = .stringValue("No image 0")
+		}
+		let val11: CNValue
+		if let img = KCImageResource.imageResource(type: .brush) {
+			val11 = .imageValue(img)
+		} else {
+			val11 = .stringValue("No image 1")
+		}
+		let newelm1: Array<CNValue> = [
+			val10,
+			val11
+		]
+		let newsec1 = CNCollectionValue.newSection(header: "Header-1", footer: "Footer-1", elements: newelm1)
 		let newcol = CNCollectionValue()
 		newcol.addSection(section: newsec0)
 		newcol.addSection(section: newsec1)

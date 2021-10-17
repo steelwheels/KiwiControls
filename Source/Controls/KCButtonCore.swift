@@ -78,21 +78,17 @@ public class KCButtonCore: KCCoreView
 					mButton.imagePosition = .noImage
 				#endif
 			case .symbol(let sym):
-				if let url = URLOfSymbol(symbol: sym) {
-					if let img = CNImage(contentsOf: url) {
-						#if os(OSX)
-							mButton.bezelStyle = .regularSquare
-							mButton.image = img
-							mButton.imagePosition = .imageOnly
-						#else
-							mButton.setImage(img, for: .normal)
-						#endif
-					} else {
-						CNLog(logLevel: .error, message: "Failed to load symbol: \(sym.description)", atFunction: #function, inFile: #file)
-						return // exit this method
-					}
+				let url = URLOfSymbol(symbol: sym)
+				if let img = CNImage(contentsOf: url) {
+					#if os(OSX)
+						mButton.bezelStyle = .regularSquare
+						mButton.image = img
+						mButton.imagePosition = .imageOnly
+					#else
+						mButton.setImage(img, for: .normal)
+					#endif
 				} else {
-					CNLog(logLevel: .error, message: "Failed to decide symbol URL: \(sym.description)", atFunction: #function, inFile: #file)
+					CNLog(logLevel: .error, message: "Failed to load symbol: \(sym.description)", atFunction: #function, inFile: #file)
 					return // exit this method
 				}
 			}
@@ -100,13 +96,13 @@ public class KCButtonCore: KCCoreView
 		}
 	}
 
-	private func URLOfSymbol(symbol sym: KCButtonSymbol) -> URL? {
-		let name: String
+	private func URLOfSymbol(symbol sym: KCButtonSymbol) -> URL {
+		let itype: KCImageResource.ImageType
 		switch sym {
-		case .leftArrow: name  = "arrow-left-32x32"
-		case .rightArrow: name = "arrow-right-32x32"
+		case .leftArrow:	itype = .arrowLeft
+		case .rightArrow:	itype = .arrowRight
 		}
-		return CNFilePath.URLForResourceFile(fileName: name, fileExtension: "png", subdirectory: "Images", forClass: KCButtonCore.self)
+		return KCImageResource.URLofImageResource(type: itype)
 	}
 
 	public var isEnabled: Bool {

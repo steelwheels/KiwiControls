@@ -74,6 +74,27 @@ public class KCScalarValueView: KCTextEdit, KCValueViewInterface
 	}
 }
 
+public class KCImageValueView: KCImageView, KCValueViewInterface
+{
+	public var value: CNValue {
+		get {
+			if let img = self.image {
+				return .imageValue(img)
+			} else {
+				return .nullValue
+			}
+		}
+		set(newval){
+			switch newval {
+			case .imageValue(let img):
+				self.image = img
+			default:
+				CNLog(logLevel: .error, message: "Image data is required", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+}
+
 public class KCDictionaryValueView: KCTableView, KCValueViewInterface
 {
 	public var value: CNValue {
@@ -170,9 +191,13 @@ open class KCValueView: KCStackView, KCValueViewInterface
 		switch val {
 		case .nullValue:
 			parview.addArrangedSubView(subView: emptyView())
-		case .boolValue(_), .numberValue(_), .stringValue(_), .dateValue(_), .URLValue(_), .imageValue(_), .objectValue(_):
+		case .boolValue(_), .numberValue(_), .stringValue(_), .dateValue(_), .URLValue(_), .objectValue(_):
 			let view = KCScalarValueView()
 			view.value = val
+			parview.addArrangedSubView(subView: view)
+		case .imageValue(let img):
+			let view = KCImageValueView()
+			view.image = img
 			parview.addArrangedSubView(subView: view)
 		case .rangeValue(_), .pointValue(_), .sizeValue(_), .rectValue(_), .enumValue(_, _), .colorValue(_):
 			let view = KCDictionaryValueView()

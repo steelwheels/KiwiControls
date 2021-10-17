@@ -184,10 +184,10 @@
 		05515EA525655D4F00D9BE1B /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0564519125184C5A006C2430 /* CoconutShell.xcframework */; };
 		05515EAE2565615100D9BE1B /* Preference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05515EAD2565615100D9BE1B /* Preference.storyboard */; };
 		05515EB32565618A00D9BE1B /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05515EB22565618A00D9BE1B /* PreferenceViewController.swift */; };
-		0554C90D26C91FAE0060BFE9 /* arrow-right-32x32.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8F726C91F870060BFE9 /* arrow-right-32x32.png */; };
-		0554C90E26C91FAE0060BFE9 /* arrow-left-32x32.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8EE26C91F7D0060BFE9 /* arrow-left-32x32.png */; };
-		0554C92826C91FD00060BFE9 /* arrow-right-32x32.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8F726C91F870060BFE9 /* arrow-right-32x32.png */; };
-		0554C92926C91FD00060BFE9 /* arrow-left-32x32.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8EE26C91F7D0060BFE9 /* arrow-left-32x32.png */; };
+		0554C90D26C91FAE0060BFE9 /* arrow-right.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8F726C91F870060BFE9 /* arrow-right.png */; };
+		0554C90E26C91FAE0060BFE9 /* arrow-left.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8EE26C91F7D0060BFE9 /* arrow-left.png */; };
+		0554C92826C91FD00060BFE9 /* arrow-right.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8F726C91F870060BFE9 /* arrow-right.png */; };
+		0554C92926C91FD00060BFE9 /* arrow-left.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0554C8EE26C91F7D0060BFE9 /* arrow-left.png */; };
 		05589A6A261203D600774D41 /* KCTextViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05589A69261203D600774D41 /* KCTextViewCore.xib */; };
 		05589A722612040100774D41 /* KCTextViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05589A712612040100774D41 /* KCTextViewCore.xib */; };
 		05589A7A2612042100774D41 /* KCTextViewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05589A792612042100774D41 /* KCTextViewCore.swift */; };
@@ -221,6 +221,12 @@
 		057342002718770B00F1799E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057341FF2718770B00F1799E /* Assets.xcassets */; };
 		057342032718770B00F1799E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057342012718770B00F1799E /* Main.storyboard */; };
 		0573422F2718783E00F1799E /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573422E2718783D00F1799E /* SingleViewController.swift */; };
+		05756B1A271BB52A00E912E1 /* pen.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0D271BB16A00E912E1 /* pen.png */; };
+		05756B1B271BB52A00E912E1 /* brush.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0B271BB15E00E912E1 /* brush.png */; };
+		05756B1C271BB52A00E912E1 /* char-a.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0C271BB15E00E912E1 /* char-a.png */; };
+		05756B23271BB53900E912E1 /* pen.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0D271BB16A00E912E1 /* pen.png */; };
+		05756B24271BB53900E912E1 /* brush.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0B271BB15E00E912E1 /* brush.png */; };
+		05756B25271BB53900E912E1 /* char-a.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0C271BB15E00E912E1 /* char-a.png */; };
 		057B2214270C8D0E00E20CED /* KCLayoutInvalidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */; };
 		057B2215270C8D0E00E20CED /* KCLayoutInvalidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */; };
 		058EBF17264DE39F0031F306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EBF16264DE39F0031F306 /* AppDelegate.swift */; };
@@ -244,6 +250,8 @@
 		05A7755C254DA1AD00DF71DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7755B254DA1AD00DF71DE /* ViewController.swift */; };
 		05A7755E254DA1AE00DF71DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755D254DA1AE00DF71DE /* Assets.xcassets */; };
 		05A77561254DA1AE00DF71DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755F254DA1AE00DF71DE /* Main.storyboard */; };
+		05AB47EA271BACFF00FD8C9A /* KCResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AB47E9271BACFF00FD8C9A /* KCResource.swift */; };
+		05AB47EB271BACFF00FD8C9A /* KCResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AB47E9271BACFF00FD8C9A /* KCResource.swift */; };
 		05B750532539D2410034D8CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750522539D2410034D8CB /* AppDelegate.swift */; };
 		05B750552539D2410034D8CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750542539D2410034D8CB /* ViewController.swift */; };
 		05B750572539D2440034D8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B750562539D2440034D8CB /* Assets.xcassets */; };
@@ -350,8 +358,11 @@
 			dstPath = Images;
 			dstSubfolderSpec = 7;
 			files = (
-				0554C90D26C91FAE0060BFE9 /* arrow-right-32x32.png in CopyFiles */,
-				0554C90E26C91FAE0060BFE9 /* arrow-left-32x32.png in CopyFiles */,
+				05756B1A271BB52A00E912E1 /* pen.png in CopyFiles */,
+				05756B1B271BB52A00E912E1 /* brush.png in CopyFiles */,
+				05756B1C271BB52A00E912E1 /* char-a.png in CopyFiles */,
+				0554C90D26C91FAE0060BFE9 /* arrow-right.png in CopyFiles */,
+				0554C90E26C91FAE0060BFE9 /* arrow-left.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,8 +372,11 @@
 			dstPath = Images;
 			dstSubfolderSpec = 7;
 			files = (
-				0554C92826C91FD00060BFE9 /* arrow-right-32x32.png in CopyFiles */,
-				0554C92926C91FD00060BFE9 /* arrow-left-32x32.png in CopyFiles */,
+				05756B23271BB53900E912E1 /* pen.png in CopyFiles */,
+				05756B24271BB53900E912E1 /* brush.png in CopyFiles */,
+				05756B25271BB53900E912E1 /* char-a.png in CopyFiles */,
+				0554C92826C91FD00060BFE9 /* arrow-right.png in CopyFiles */,
+				0554C92926C91FD00060BFE9 /* arrow-left.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,8 +559,8 @@
 		05515EA025655CB900D9BE1B /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		05515EAD2565615100D9BE1B /* Preference.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preference.storyboard; sourceTree = "<group>"; };
 		05515EB22565618A00D9BE1B /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
-		0554C8EE26C91F7D0060BFE9 /* arrow-left-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-left-32x32.png"; sourceTree = "<group>"; };
-		0554C8F726C91F870060BFE9 /* arrow-right-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right-32x32.png"; sourceTree = "<group>"; };
+		0554C8EE26C91F7D0060BFE9 /* arrow-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-left.png"; sourceTree = "<group>"; };
+		0554C8F726C91F870060BFE9 /* arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right.png"; sourceTree = "<group>"; };
 		05589A69261203D600774D41 /* KCTextViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTextViewCore.xib; sourceTree = "<group>"; };
 		05589A712612040100774D41 /* KCTextViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCTextViewCore.xib; sourceTree = "<group>"; };
 		05589A792612042100774D41 /* KCTextViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTextViewCore.swift; sourceTree = "<group>"; };
@@ -581,6 +595,9 @@
 		057342042718770B00F1799E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057342052718770B00F1799E /* UTCollection.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTCollection.entitlements; sourceTree = "<group>"; };
 		0573422E2718783D00F1799E /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
+		05756B0B271BB15E00E912E1 /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
+		05756B0C271BB15E00E912E1 /* char-a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "char-a.png"; sourceTree = "<group>"; };
+		05756B0D271BB16A00E912E1 /* pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pen.png; sourceTree = "<group>"; };
 		057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayoutInvalidator.swift; sourceTree = "<group>"; };
 		058EBF14264DE39F0031F306 /* UTTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058EBF16264DE39F0031F306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -599,6 +616,7 @@
 		05A77560254DA1AE00DF71DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05A77562254DA1AE00DF71DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05A77563254DA1AE00DF71DE /* UTConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTConsole.entitlements; sourceTree = "<group>"; };
+		05AB47E9271BACFF00FD8C9A /* KCResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCResource.swift; sourceTree = "<group>"; };
 		05B750502539D2410034D8CB /* UTMultiView_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiView_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B750522539D2410034D8CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05B750542539D2410034D8CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -930,6 +948,7 @@
 				0544EB5B251775C7002DE6A8 /* KCButtonBody.swift */,
 				0544EB55251775C6002DE6A8 /* KCButtonCore.xib */,
 				0544EB5E251775C7002DE6A8 /* KCCheckBoxCore.xib */,
+				057341C7271871FF00F1799E /* KCCollectionViewCore.xib */,
 				0544EB5F251775C7002DE6A8 /* KCColorSelectorCore.xib */,
 				05D0388525AC84370022E242 /* KCIconViewCore.xib */,
 				0544EB60251775C7002DE6A8 /* KCImageViewCore.xib */,
@@ -941,7 +960,6 @@
 				0544EB63251775C7002DE6A8 /* KCTableViewCore.xib */,
 				0544EB5D251775C7002DE6A8 /* KCTextEditCore.xib */,
 				05589A69261203D600774D41 /* KCTextViewCore.xib */,
-				057341C7271871FF00F1799E /* KCCollectionViewCore.xib */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -987,6 +1005,7 @@
 				0544EBB025177676002DE6A8 /* KCInterfaceView.swift */,
 				0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */,
 				0544EBAB25177676002DE6A8 /* KCPreference.swift */,
+				05AB47E9271BACFF00FD8C9A /* KCResource.swift */,
 				0544EBAC25177676002DE6A8 /* KCType.swift */,
 				0544EBAE25177676002DE6A8 /* KCView.swift */,
 				0544EBAF25177676002DE6A8 /* KCViewDumper.swift */,
@@ -1034,8 +1053,11 @@
 		0554C8ED26C91F650060BFE9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				0554C8F726C91F870060BFE9 /* arrow-right-32x32.png */,
-				0554C8EE26C91F7D0060BFE9 /* arrow-left-32x32.png */,
+				05756B0D271BB16A00E912E1 /* pen.png */,
+				05756B0B271BB15E00E912E1 /* brush.png */,
+				05756B0C271BB15E00E912E1 /* char-a.png */,
+				0554C8F726C91F870060BFE9 /* arrow-right.png */,
+				0554C8EE26C91F7D0060BFE9 /* arrow-left.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1621,6 +1643,7 @@
 				0544EB34251775A3002DE6A8 /* KCTextEditCore.swift in Sources */,
 				0544EB14251775A3002DE6A8 /* KCTextEdit.swift in Sources */,
 				05D038C525AC8E830022E242 /* KCIconView.swift in Sources */,
+				05AB47EA271BACFF00FD8C9A /* KCResource.swift in Sources */,
 				0544EB26251775A3002DE6A8 /* KCTerminalView.swift in Sources */,
 				05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */,
 				0544EA7C25176EC6002DE6A8 /* KCPreferenceWindow.swift in Sources */,
@@ -1733,6 +1756,7 @@
 				0544EBA62517764A002DE6A8 /* KCColorTable.swift in Sources */,
 				0544EB13251775A3002DE6A8 /* KCPopupMenu.swift in Sources */,
 				0544EB1B251775A3002DE6A8 /* KCImageView.swift in Sources */,
+				05AB47EB271BACFF00FD8C9A /* KCResource.swift in Sources */,
 				0544EAD525176FF5002DE6A8 /* KCSize.swift in Sources */,
 				05ED4A75269346CE008C8FCE /* KCTableCellView.swift in Sources */,
 				0544EB2F251775A3002DE6A8 /* KCConsoleView.swift in Sources */,
@@ -2343,7 +2367,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2382,6 +2407,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiControls-iOS";
 				PRODUCT_NAME = KiwiControls;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -2427,7 +2453,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2460,6 +2487,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.KiwiControls-iOS";
 				PRODUCT_NAME = KiwiControls;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;

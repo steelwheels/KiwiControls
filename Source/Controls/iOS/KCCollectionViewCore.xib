@@ -28,10 +28,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="1bV-gV-hyb"/>
-                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EFu-uo-Mav"/>
-                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="HzB-rj-Lkc"/>
-                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zSe-vI-bo6"/>
+                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="7Dp-V3-CRa"/>
+                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9qR-pc-N7v"/>
+                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="CBC-X6-I7V"/>
+                <constraint firstItem="Jh9-mv-Jz4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="suF-ZA-7eB"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
