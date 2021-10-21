@@ -27,15 +27,20 @@ public class KCFirstResponderDecider
 	}
 
 	private func searchFirstResponder(view base: KCViewBase) -> Bool {
-		if isTextView(view: base) {
-			if base.acceptsFirstResponder {
-				mWindow.makeFirstResponder(base)
-				return true
-			}
-		} else if let table = base as? KCTableView {
+		if let table = base as? KCTableView {
 			if let resp = table.firstResponderView {
 				mWindow.makeFirstResponder(resp)
 				return true
+			}
+		} else if let colv = base as? KCCollectionView {
+			if let resp = colv.firstResponderView {
+				mWindow.makeFirstResponder(resp)
+				return true
+			}
+		} else if isTextView(view: base) {
+			if base.acceptsFirstResponder {
+			      mWindow.makeFirstResponder(base)
+			      return true
 			}
 		}
 		for view in base.subviews {

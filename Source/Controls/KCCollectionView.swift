@@ -53,9 +53,18 @@ open class KCCollectionView: KCInterfaceView
 
 	public var numberOfSections: Int { get { return coreView.numberOfSections }}
 
-	public func store(dataInterface intf: CNCollectionInterface){
-		coreView.store(dataInterface: intf)
+	public func store(data dat: KCCollectionData){
+		coreView.store(data: dat)
 	}
+
+	public var isSelectable: Bool {
+		get         { return coreView.isSelectable }
+		set(newval) { coreView.isSelectable = newval }
+	}
+
+	public var firstResponderView: KCViewBase? { get {
+		return coreView.firstResponderView
+	}}
 
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(collectionView: self)

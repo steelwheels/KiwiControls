@@ -17,19 +17,28 @@ public class KCImageResource
 		case handRaised
 		case paintBrush
 		case pencil
+		case questionmark
+
+		public var name: String {
+			get {
+				/* SF symbol name */
+				let result: String
+				switch self {
+				case .characterA:	result = "character-a"
+				case .chevronBackword: 	result = "chevron-backward"
+				case .chevronForward:	result = "chevron-forward"
+				case .handRaised:	result = "hand-raised"
+				case .paintBrush:	result = "paintbrush"
+				case .pencil:		result = "pencil"
+				case .questionmark:	result = "questionmark"
+				}
+				return result
+			}
+		}
 	}
 
 	public static func URLofImageResource(type itype: ImageType) -> URL {
-		let filename: String
-		switch itype {
-		case .characterA:	filename = "character-a"
-		case .chevronBackword: 	filename = "shevron-backward"
-		case .chevronForward:	filename = "shevron-forward"
-		case .handRaised:	filename = "hand-raised"
-		case .paintBrush:	filename = "paintbrush"
-		case .pencil:		filename = "pencil"
-		}
-		if let url = CNFilePath.URLForResourceFile(fileName: filename, fileExtension: "png", subdirectory: "Images", forClass: KCImageResource.self) {
+		if let url = CNFilePath.URLForResourceFile(fileName: itype.name, fileExtension: "png", subdirectory: "Images", forClass: KCImageResource.self) {
 			return url
 		} else {
 			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
@@ -37,13 +46,13 @@ public class KCImageResource
 		}
 	}
 
-	public static func imageResource(type itype: ImageType) -> CNImage? {
+	public static func imageResource(type itype: ImageType) -> CNImage {
 		let url = URLofImageResource(type: itype)
 		if let img = CNImage(contentsOf: url) {
 			return img
 		} else {
 			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
-			return nil
+			return CNImage()
 		}
 	}
 }

@@ -23,8 +23,9 @@ public class SingleViewController: KCSingleViewController
 	public override func loadContext() -> KCView? {
 		NSLog("load context")
 		let result = KCCollectionView()
-		let newcol = allocateValue()
-		result.store(dataInterface: newcol)
+		let newval = allocateValue()
+		result.store(data: newval)
+		result.isSelectable = true
 		return result
 	}
 
@@ -61,34 +62,19 @@ public class SingleViewController: KCSingleViewController
 	}
 	#endif
 
-	private func allocateValue() -> CNCollectionInterface {
-		let newelm0: Array<CNValue> = [
-			.stringValue("Hello, world !!"),
-			.stringValue("Good morning !!")
+	private func allocateValue() -> KCCollectionData {
+		let newelm0: Array<KCCollectionData.CollectionImage> = [
+			.resource(.chevronForward),
+			.resource(.chevronBackword)
 		]
-		let newsec0 = CNCollectionValue.newSection(header: "Header-0", footer: "Footer-0", elements: newelm0)
-
-		let val10: CNValue
-		if let img = KCImageResource.imageResource(type: .characterA) {
-			val10 = .imageValue(img)
-		} else {
-			val10 = .stringValue("No image 0")
-		}
-		let val11: CNValue
-		if let img = KCImageResource.imageResource(type: .paintBrush) {
-			val11 = .imageValue(img)
-		} else {
-			val11 = .stringValue("No image 1")
-		}
-		let newelm1: Array<CNValue> = [
-			val10,
-			val11
+		let newelm1: Array<KCCollectionData.CollectionImage> = [
+			.resource(.handRaised),
+			.resource(.paintBrush)
 		]
-		let newsec1 = CNCollectionValue.newSection(header: "Header-1", footer: "Footer-1", elements: newelm1)
-		let newcol = CNCollectionValue()
-		newcol.addSection(section: newsec0)
-		newcol.addSection(section: newsec1)
-		return newcol
+		let cdata = KCCollectionData()
+		cdata.add(header: "header0", footer: "footer0", images: newelm0)
+		cdata.add(header: "header1", footer: "footer1", images: newelm1)
+		return cdata
 	}
 
 	private func doDumpView(message msg: String){
