@@ -25,6 +25,10 @@ public class SingleViewController: KCSingleViewController
 		let result = KCCollectionView()
 		let newval = allocateValue()
 		result.store(data: newval)
+		result.set(callback:{
+			(_ section: Int, _ item: Int) -> Void in 
+			NSLog("selected section=\(section), item=\(item)")
+		})
 		result.isSelectable = true
 		return result
 	}
@@ -65,11 +69,11 @@ public class SingleViewController: KCSingleViewController
 	private func allocateValue() -> KCCollectionData {
 		let newelm0: Array<KCCollectionData.CollectionImage> = [
 			.resource(.chevronForward),
-			.resource(.chevronBackword)
+			.resource(.chevronBackward)
 		]
 		let newelm1: Array<KCCollectionData.CollectionImage> = [
 			.resource(.handRaised),
-			.resource(.paintBrush)
+			.resource(.paintbrush)
 		]
 		let cdata = KCCollectionData()
 		cdata.add(header: "header0", footer: "footer0", images: newelm0)

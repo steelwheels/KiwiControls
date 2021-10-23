@@ -12,7 +12,7 @@ public class KCCollectionData
 {
 	public enum CollectionImage {
 		case none
-		case resource(KCImageResource.ImageType)
+		case resource(CNSymbol.SymbolType)
 		case url(URL)
 
 		public var description: String { get {

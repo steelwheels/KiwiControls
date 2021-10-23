@@ -22,8 +22,26 @@ public class KCCollectionViewItem: NSCollectionViewItem
 		}
 	}
 
+	public override func loadView() {
+		super.loadView()
+		self.view.wantsLayer = true
+	}
+
 	public override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do view setup here.
+	}
+
+	public override var isSelected: Bool {
+		didSet {
+			if let layer = self.view.layer {
+				if self.isSelected {
+					let bgcol  = CNColor.selectedContentBackgroundColor
+					let newcol = bgcol.withAlphaComponent(bgcol.alphaComponent * 0.5)
+					layer.backgroundColor = newcol.cgColor
+				} else {
+					layer.backgroundColor = CNColor.clear.cgColor
+				}
+			}
+		}
 	}
 }

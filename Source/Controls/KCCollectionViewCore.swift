@@ -26,11 +26,13 @@ private typealias KCCollectionViewDelegateBase	 = UICollectionViewDelegate
 #if os(OSX)
 private let ItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "valueItem")
 #else
-private let ItemIdentifier = "valueItem"
+private let ItemIdentifier = "ImageCell"
 #endif
 
 open class KCCollectionViewCore: KCCoreView
 {
+	public typealias SelectedCallback = (_ section: Int, _ item: Int) -> Void
+
 	#if os(OSX)
 	@IBOutlet weak var osxCollectionView: NSCollectionView!
 	#else
@@ -51,7 +53,6 @@ open class KCCollectionViewCore: KCCoreView
 	}
 
 	public func setup(frame frm: CGRect) -> Void {
-		NSLog("setup")
 		let colview = collectionView
 		super.setup(isSingleView: true, coreView: colview)
 		KCView.setAutolayoutMode(views: [self, colview])
@@ -60,28 +61,27 @@ open class KCCollectionViewCore: KCCoreView
 
 		#if os(OSX)
 			let bdl = Bundle(for: KCCollectionViewCore.self)
-			NSLog("bundle: \(bdl.description)")
 			let nib = NSNib(nibNamed: "KCCollectionViewItem", bundle: bdl)
 			colview.register(nib, forItemWithIdentifier: ItemIdentifier)
 		#else
-			colview.register(KCCollectionViewCell.self, forCellWithReuseIdentifier: ItemIdentifier)
+			let bdl = Bundle(for: KCCollectionViewCore.self)
+			let nib = UINib(nibName: "KCCollectionViewCell", bundle: bdl)
+			colview.register(nib, forCellWithReuseIdentifier: ItemIdentifier)
 		#endif
 	}
 
 	public func store(data dat: KCCollectionData){
-		NSLog("store new interface")
 		mDataSource.collectionData = dat
 		collectionView.reloadData()
+		self.select(section: 0, item: 0)
 		self.invalidateIntrinsicContentSize()
 		self.requireLayout()
 	}
 
 	public var numberOfSections: Int { get {
 		if let data = mDataSource.collectionData {
-			NSLog("numberOfSections -> \(data.sectionCount)")
 			return data.sectionCount
 		} else {
-			NSLog("numberOfSections -> nil")
 			return 0
 		}
 	}}
@@ -95,16 +95,50 @@ open class KCCollectionViewCore: KCCoreView
 			#endif
 		}
 		set(newval) {
-			NSLog("set selectable: \(newval)")
 			#if os(OSX)
 				collectionView.isSelectable            = newval
-				collectionView.allowsEmptySelection    = newval
+				collectionView.allowsEmptySelection    = false
 				collectionView.allowsMultipleSelection = false
 			#else
 				collectionView.allowsSelection         = newval
 				collectionView.allowsMultipleSelection = false
 			#endif
 		}
+	}
+
+	public var selectedItems: Set<IndexPath> {
+		get {
+			#if os(OSX)
+				return collectionView.selectionIndexPaths
+			#else
+				if let arr = collectionView.indexPathsForSelectedItems {
+					return Set(arr)
+				} else {
+					return Set()
+				}
+			#endif
+		}
+	}
+
+	public func select(section sec: Int, item itm: Int) {
+		let path = IndexPath(item: itm, section: sec)
+		#if os(OSX)
+		if let item = collectionView.item(at: path) {
+			item.isSelected = true
+		} else {
+			CNLog(logLevel: .error, message: "Invalid index (\(sec), \(itm))", atFunction: #function, inFile: #file)
+		}
+		#else
+		if let cell = collectionView.cellForItem(at: path) {
+			cell.isSelected = true
+		} else {
+			CNLog(logLevel: .error, message: "Invalid index (\(sec), \(itm))", atFunction: #function, inFile: #file)
+		}
+		#endif
+	}
+
+	public func set(callback cbfunc: @escaping SelectedCallback) {
+		mDelegate.set(callback: cbfunc)
 	}
 
 	public var firstResponderView: KCViewBase? { get {
@@ -131,10 +165,8 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 
 	public func collectionView(_ collectionView: KCCollectionViewBase, numberOfItemsInSection section: Int) -> Int {
 		if let data = collectionData {
-			NSLog("numberOfItemsInSection(\(section)) -> \(data.sectionCount)")
 			return data.sectionCount
 		} else {
-			NSLog("numberOfItemsInSection(\(section)) -> nil")
 			return 0
 		}
 	}
@@ -147,12 +179,11 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 		} else {
 			image = .none
 		}
-		NSLog("value of item -> \(image.description)")
 		let view = collectionView.makeItem(withIdentifier: ItemIdentifier, for: indexPath)
 		if let v = view as? KCCollectionViewItem {
 			v.image = allocateImage(type: image)
 		} else {
-			NSLog("Unexpected item type: \(view.description)")
+			CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
 		}
 		return view
 	}
@@ -165,16 +196,17 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 
 	private func allocateImage(type typ: KCCollectionData.CollectionImage) -> CNImage {
 		var result: CNImage
+		let symbols = CNSymbol.shared
 		switch typ {
 		case .none:
-			result = KCImageResource.imageResource(type: .questionmark)
+			result = symbols.load(symbol: .questionmark)
 		case .resource(let type):
-			result = KCImageResource.imageResource(type: type)
+			result = symbols.load(symbol: type)
 		case .url(let url):
 			if let img = CNImage(contentsOf: url){
 				result = img
 			} else {
-				result = KCImageResource.imageResource(type: .questionmark)
+				result = symbols.load(symbol: .questionmark)
 			}
 		}
 		return result
@@ -183,22 +215,22 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 
 private class KCCollectionViewDelegate: NSObject, KCCollectionViewDelegateBase
 {
+	public typealias SelectedCallback = KCCollectionViewCore.SelectedCallback
+
+	private var mCallback: SelectedCallback? = nil
+
 	#if os(OSX)
 	public func collectionView(_ collectionView: KCCollectionViewBase, shouldSelectItemsAt indexPaths: Set<IndexPath>) -> Set<IndexPath> {
-		NSLog("shouldSelectItems")
 		return indexPaths
 	}
 	#else
 	public func collectionView(_ collectionView: KCCollectionViewBase, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-
-		NSLog("shouldSelectItems")
 		return true
 	}
 	#endif
 
 	#if os(OSX)
 	public func collectionView(_ collectionView: KCCollectionViewBase, didSelectItemsAt indexPaths: Set<IndexPath>) {
-		NSLog("didSelectItems")
 		if let path = indexPaths.first {
 			didSelect(itemAt: path)
 		}
@@ -209,63 +241,15 @@ private class KCCollectionViewDelegate: NSObject, KCCollectionViewDelegateBase
 	}
 	#endif
 
+	public func set(callback cbfunc: @escaping SelectedCallback) {
+		mCallback = cbfunc
+	}
+
 	private func didSelect(itemAt indexPath: IndexPath){
-		#if os(OSX)
-			NSLog("DidSelect: sec=\(indexPath.section), row=\(indexPath.item)")
-		#else
-			NSLog("DidSelect: sec=\(indexPath.section), row=\(indexPath.row)")
-		#endif
-	}
-}
-
-#if os(OSX)
-/*
-private class KCCollectionViewItem: NSCollectionViewItem
-{
-	private var mValue:      CNValue = .nullValue
-	private var mDidUpdated: Bool	 = false
-
-	public var value: CNValue {
-		get		{ return mValue }
-		set(newval)	{
-			mValue = newval
-			mDidUpdated = true
-		}
-	}
-
-	public override func viewDidLoad() {
-		super.viewDidLoad()
-	}
-
-	public override func loadView() {
-		if mDidUpdated {
-			let newview   		= KCValueView()
-			newview.value 		= mValue
-			self.view     		= newview
-			self.view.wantsLayer	= true
-			mDidUpdated   		= false
-		}
-	}
-
-	public override var highlightState: NSCollectionViewItem.HighlightState {
-		get {
-			return super.highlightState
-		}
-		set(newstat){
-			NSLog("hilight state: \(newstat)")
-			super.highlightState = newstat
+		if let cbfunc = mCallback {
+			cbfunc(indexPath.section, indexPath.item)
 		}
 	}
 }
-*/
-#else
-
-public class KCCollectionViewCell: UICollectionViewCell
-{
-
-}
-
-#endif
-
 
 

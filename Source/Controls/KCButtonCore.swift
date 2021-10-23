@@ -78,31 +78,26 @@ public class KCButtonCore: KCCoreView
 					mButton.imagePosition = .noImage
 				#endif
 			case .symbol(let sym):
-				let url = URLOfSymbol(symbol: sym)
-				if let img = CNImage(contentsOf: url) {
-					#if os(OSX)
-						mButton.bezelStyle = .regularSquare
-						mButton.image = img
-						mButton.imagePosition = .imageOnly
-					#else
-						mButton.setImage(img, for: .normal)
-					#endif
-				} else {
-					CNLog(logLevel: .error, message: "Failed to load symbol: \(sym.description)", atFunction: #function, inFile: #file)
-					return // exit this method
-				}
+				let img = loadSymbol(symbol: sym)
+				#if os(OSX)
+					mButton.bezelStyle = .regularSquare
+					mButton.image = img
+					mButton.imagePosition = .imageOnly
+				#else
+					mButton.setImage(img, for: .normal)
+				#endif
 			}
 			mButtonValue = newval
 		}
 	}
 
-	private func URLOfSymbol(symbol sym: KCButtonSymbol) -> URL {
-		let itype: KCImageResource.ImageType
+	private func loadSymbol(symbol sym: KCButtonSymbol) -> CNImage {
+		let type: CNSymbol.SymbolType
 		switch sym {
-		case .leftArrow:	itype = .chevronBackword
-		case .rightArrow:	itype = .chevronForward
+		case .leftArrow:	type = .chevronBackward
+		case .rightArrow:	type = .chevronForward
 		}
-		return KCImageResource.URLofImageResource(type: itype)
+		return CNSymbol.shared.load(symbol: type)
 	}
 
 	public var isEnabled: Bool {

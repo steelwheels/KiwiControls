@@ -14,6 +14,8 @@ import CoconutData
 
 open class KCCollectionView: KCInterfaceView
 {
+	public typealias SelectedCallback = KCCollectionViewCore.SelectedCallback
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame)
@@ -60,6 +62,10 @@ open class KCCollectionView: KCInterfaceView
 	public var isSelectable: Bool {
 		get         { return coreView.isSelectable }
 		set(newval) { coreView.isSelectable = newval }
+	}
+
+	public func set(callback cbfunc: @escaping SelectedCallback) {
+		coreView.set(callback: cbfunc)
 	}
 
 	public var firstResponderView: KCViewBase? { get {

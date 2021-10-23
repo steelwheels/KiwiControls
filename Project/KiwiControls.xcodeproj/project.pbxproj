@@ -221,20 +221,8 @@
 		057B2215270C8D0E00E20CED /* KCLayoutInvalidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */; };
 		0581C8432720F241008E7472 /* KCCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0581C8422720F241008E7472 /* KCCollectionData.swift */; };
 		0581C8442720F241008E7472 /* KCCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0581C8422720F241008E7472 /* KCCollectionData.swift */; };
-		0581C9132721245B008E7472 /* character-a.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0C271BB15E00E912E1 /* character-a.png */; };
-		0581C9142721245B008E7472 /* chevron-backward.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C74D271C218C005999BC /* chevron-backward.png */; };
-		0581C9152721245B008E7472 /* chevron-forward.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C74C271C218C005999BC /* chevron-forward.png */; };
-		0581C9162721245B008E7472 /* hand-raised.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C789271C23C4005999BC /* hand-raised.png */; };
-		0581C9172721245C008E7472 /* paintbrush.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C77C271C2295005999BC /* paintbrush.png */; };
-		0581C9182721245C008E7472 /* pencil.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C733271C20F1005999BC /* pencil.png */; };
-		0581C9192721245C008E7472 /* questionmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0581C85427211E9B008E7472 /* questionmark.png */; };
-		0581C92027212470008E7472 /* character-a.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05756B0C271BB15E00E912E1 /* character-a.png */; };
-		0581C92127212470008E7472 /* chevron-backward.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C74D271C218C005999BC /* chevron-backward.png */; };
-		0581C92227212470008E7472 /* chevron-forward.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C74C271C218C005999BC /* chevron-forward.png */; };
-		0581C92327212470008E7472 /* hand-raised.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C789271C23C4005999BC /* hand-raised.png */; };
-		0581C92427212470008E7472 /* paintbrush.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C77C271C2295005999BC /* paintbrush.png */; };
-		0581C92527212470008E7472 /* pencil.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0549C733271C20F1005999BC /* pencil.png */; };
-		0581C92627212470008E7472 /* questionmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0581C85427211E9B008E7472 /* questionmark.png */; };
+		0581C92F27213B83008E7472 /* KCCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0581C92D27213B83008E7472 /* KCCollectionViewCell.swift */; };
+		0581C93027213B83008E7472 /* KCCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0581C92E27213B83008E7472 /* KCCollectionViewCell.xib */; };
 		058EBF17264DE39F0031F306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EBF16264DE39F0031F306 /* AppDelegate.swift */; };
 		058EBF19264DE39F0031F306 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EBF18264DE39F0031F306 /* ViewController.swift */; };
 		058EBF1B264DE3A20031F306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058EBF1A264DE3A20031F306 /* Assets.xcassets */; };
@@ -258,8 +246,6 @@
 		05A7755C254DA1AD00DF71DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7755B254DA1AD00DF71DE /* ViewController.swift */; };
 		05A7755E254DA1AE00DF71DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755D254DA1AE00DF71DE /* Assets.xcassets */; };
 		05A77561254DA1AE00DF71DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755F254DA1AE00DF71DE /* Main.storyboard */; };
-		05AB47EA271BACFF00FD8C9A /* KCResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AB47E9271BACFF00FD8C9A /* KCResource.swift */; };
-		05AB47EB271BACFF00FD8C9A /* KCResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AB47E9271BACFF00FD8C9A /* KCResource.swift */; };
 		05B750532539D2410034D8CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750522539D2410034D8CB /* AppDelegate.swift */; };
 		05B750552539D2410034D8CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750542539D2410034D8CB /* ViewController.swift */; };
 		05B750572539D2440034D8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B750562539D2440034D8CB /* Assets.xcassets */; };
@@ -360,38 +346,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0554C90C26C91F9C0060BFE9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Images;
-			dstSubfolderSpec = 7;
-			files = (
-				0581C9132721245B008E7472 /* character-a.png in CopyFiles */,
-				0581C9142721245B008E7472 /* chevron-backward.png in CopyFiles */,
-				0581C9152721245B008E7472 /* chevron-forward.png in CopyFiles */,
-				0581C9162721245B008E7472 /* hand-raised.png in CopyFiles */,
-				0581C9172721245C008E7472 /* paintbrush.png in CopyFiles */,
-				0581C9182721245C008E7472 /* pencil.png in CopyFiles */,
-				0581C9192721245C008E7472 /* questionmark.png in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0554C92726C91FC10060BFE9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Images;
-			dstSubfolderSpec = 7;
-			files = (
-				0581C92027212470008E7472 /* character-a.png in CopyFiles */,
-				0581C92127212470008E7472 /* chevron-backward.png in CopyFiles */,
-				0581C92227212470008E7472 /* chevron-forward.png in CopyFiles */,
-				0581C92327212470008E7472 /* hand-raised.png in CopyFiles */,
-				0581C92427212470008E7472 /* paintbrush.png in CopyFiles */,
-				0581C92527212470008E7472 /* pencil.png in CopyFiles */,
-				0581C92627212470008E7472 /* questionmark.png in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05589AE6261213DC00774D41 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -561,11 +515,6 @@
 		0544EBB025177676002DE6A8 /* KCInterfaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCInterfaceView.swift; sourceTree = "<group>"; };
 		0544EBB225177676002DE6A8 /* KCAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCAlert.swift; sourceTree = "<group>"; };
 		0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
-		0549C733271C20F1005999BC /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
-		0549C74C271C218C005999BC /* chevron-forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chevron-forward.png"; sourceTree = "<group>"; };
-		0549C74D271C218C005999BC /* chevron-backward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chevron-backward.png"; sourceTree = "<group>"; };
-		0549C77C271C2295005999BC /* paintbrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paintbrush.png; sourceTree = "<group>"; };
-		0549C789271C23C4005999BC /* hand-raised.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand-raised.png"; sourceTree = "<group>"; };
 		05515E6C256552E800D9BE1B /* UTTerminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTerminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05515E6E256552E800D9BE1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05515E70256552E800D9BE1B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -610,10 +559,10 @@
 		057342042718770B00F1799E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057342052718770B00F1799E /* UTCollection.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTCollection.entitlements; sourceTree = "<group>"; };
 		0573422E2718783D00F1799E /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
-		05756B0C271BB15E00E912E1 /* character-a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character-a.png"; sourceTree = "<group>"; };
 		057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayoutInvalidator.swift; sourceTree = "<group>"; };
 		0581C8422720F241008E7472 /* KCCollectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCollectionData.swift; sourceTree = "<group>"; };
-		0581C85427211E9B008E7472 /* questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = questionmark.png; sourceTree = "<group>"; };
+		0581C92D27213B83008E7472 /* KCCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCollectionViewCell.swift; sourceTree = "<group>"; };
+		0581C92E27213B83008E7472 /* KCCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCCollectionViewCell.xib; sourceTree = "<group>"; };
 		058EBF14264DE39F0031F306 /* UTTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058EBF16264DE39F0031F306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058EBF18264DE39F0031F306 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -633,7 +582,6 @@
 		05A77560254DA1AE00DF71DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05A77562254DA1AE00DF71DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05A77563254DA1AE00DF71DE /* UTConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTConsole.entitlements; sourceTree = "<group>"; };
-		05AB47E9271BACFF00FD8C9A /* KCResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCResource.swift; sourceTree = "<group>"; };
 		05B750502539D2410034D8CB /* UTMultiView_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiView_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B750522539D2410034D8CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05B750542539D2410034D8CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1003,6 +951,8 @@
 				0544EB7A251775E4002DE6A8 /* KCTextFieldCore.xib */,
 				05589A712612040100774D41 /* KCTextViewCore.xib */,
 				057341CF2718725900F1799E /* KCCollectionViewCore.xib */,
+				0581C92D27213B83008E7472 /* KCCollectionViewCell.swift */,
+				0581C92E27213B83008E7472 /* KCCollectionViewCell.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1024,7 +974,6 @@
 				0544EBB025177676002DE6A8 /* KCInterfaceView.swift */,
 				0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */,
 				0544EBAB25177676002DE6A8 /* KCPreference.swift */,
-				05AB47E9271BACFF00FD8C9A /* KCResource.swift */,
 				0544EBAC25177676002DE6A8 /* KCType.swift */,
 				0544EBAE25177676002DE6A8 /* KCView.swift */,
 				0544EBAF25177676002DE6A8 /* KCViewDumper.swift */,
@@ -1063,24 +1012,9 @@
 		0554C8EC26C91F480060BFE9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				0554C8ED26C91F650060BFE9 /* Images */,
 			);
 			name = Resource;
 			path = ../Resource;
-			sourceTree = "<group>";
-		};
-		0554C8ED26C91F650060BFE9 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				05756B0C271BB15E00E912E1 /* character-a.png */,
-				0549C74D271C218C005999BC /* chevron-backward.png */,
-				0549C74C271C218C005999BC /* chevron-forward.png */,
-				0549C789271C23C4005999BC /* hand-raised.png */,
-				0549C77C271C2295005999BC /* paintbrush.png */,
-				0549C733271C20F1005999BC /* pencil.png */,
-				0581C85427211E9B008E7472 /* questionmark.png */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		05589A9326120E2100774D41 /* UTTextView */ = {
@@ -1282,7 +1216,6 @@
 				0544EA4725176E06002DE6A8 /* Sources */,
 				0544EA4825176E06002DE6A8 /* Frameworks */,
 				0544EA4925176E06002DE6A8 /* Resources */,
-				0554C90C26C91F9C0060BFE9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1301,7 +1234,6 @@
 				0544EA5625176E23002DE6A8 /* Sources */,
 				0544EA5725176E23002DE6A8 /* Frameworks */,
 				0544EA5825176E23002DE6A8 /* Resources */,
-				0554C92726C91FC10060BFE9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1565,6 +1497,7 @@
 				0544EB8C251775E5002DE6A8 /* KCLabeledStackViewCore.xib in Resources */,
 				0544EB93251775E5002DE6A8 /* KCImageViewCore.xib in Resources */,
 				0544EB8B251775E5002DE6A8 /* KCNavigationBarCore.xib in Resources */,
+				0581C93027213B83008E7472 /* KCCollectionViewCell.xib in Resources */,
 				05EB0EC62567EC6A00D28FD2 /* KCTerminalViewCore.xib in Resources */,
 				0544EB8E251775E5002DE6A8 /* KCTextEditCore.xib in Resources */,
 				0544EB96251775E5002DE6A8 /* KCConsoleViewCore.xib in Resources */,
@@ -1666,7 +1599,6 @@
 				0544EB34251775A3002DE6A8 /* KCTextEditCore.swift in Sources */,
 				0544EB14251775A3002DE6A8 /* KCTextEdit.swift in Sources */,
 				05D038C525AC8E830022E242 /* KCIconView.swift in Sources */,
-				05AB47EA271BACFF00FD8C9A /* KCResource.swift in Sources */,
 				0544EB26251775A3002DE6A8 /* KCTerminalView.swift in Sources */,
 				05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */,
 				0544EA7C25176EC6002DE6A8 /* KCPreferenceWindow.swift in Sources */,
@@ -1778,10 +1710,10 @@
 				0544EA7925176EC6002DE6A8 /* KCLogManager.swift in Sources */,
 				05A39D5C26763423005ED17F /* KCCoreView.swift in Sources */,
 				0544EB49251775A3002DE6A8 /* KCColorSelectorCore.swift in Sources */,
+				0581C92F27213B83008E7472 /* KCCollectionViewCell.swift in Sources */,
 				0544EBA62517764A002DE6A8 /* KCColorTable.swift in Sources */,
 				0544EB13251775A3002DE6A8 /* KCPopupMenu.swift in Sources */,
 				0544EB1B251775A3002DE6A8 /* KCImageView.swift in Sources */,
-				05AB47EB271BACFF00FD8C9A /* KCResource.swift in Sources */,
 				0544EAD525176FF5002DE6A8 /* KCSize.swift in Sources */,
 				05ED4A75269346CE008C8FCE /* KCTableCellView.swift in Sources */,
 				0544EB2F251775A3002DE6A8 /* KCConsoleView.swift in Sources */,
