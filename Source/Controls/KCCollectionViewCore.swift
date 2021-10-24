@@ -70,7 +70,7 @@ open class KCCollectionViewCore: KCCoreView
 		#endif
 	}
 
-	public func store(data dat: KCCollectionData){
+	public func store(data dat: CNCollection){
 		mDataSource.collectionData = dat
 		collectionView.reloadData()
 		self.select(section: 0, item: 0)
@@ -150,7 +150,7 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 {
 	static let ResuseIdentifier = "value"
 
-	public var collectionData: KCCollectionData? = nil
+	public var collectionData: CNCollection? = nil
 
 	public override init(){
 	}
@@ -173,17 +173,20 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 
 	#if os(OSX)
 	public func collectionView(_ collectionView: KCCollectionViewBase, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		let image: KCCollectionData.CollectionImage
-		if let data = collectionData {
-			image = data.value(section: indexPath.section, item: indexPath.item)
-		} else {
-			image = .none
-		}
 		let view = collectionView.makeItem(withIdentifier: ItemIdentifier, for: indexPath)
-		if let v = view as? KCCollectionViewItem {
-			v.image = allocateImage(type: image)
-		} else {
-			CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
+		var didset = false
+		if let data = collectionData {
+			if let item = data.value(section: indexPath.section, item: indexPath.item) {
+				if let v = view as? KCCollectionViewItem {
+					v.image = allocateImage(type: item)
+					didset = true
+				} else {
+					CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
+				}
+			}
+		}
+		if !didset {
+			CNLog(logLevel: .error, message: "Failed to set image: \(indexPath.description)", atFunction: #function, inFile: #file)
 		}
 		return view
 	}
@@ -194,20 +197,19 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 	}
 	#endif
 
-	private func allocateImage(type typ: KCCollectionData.CollectionImage) -> CNImage {
+	private func allocateImage(type typ: CNCollection.Item) -> CNImage {
 		var result: CNImage
-		let symbols = CNSymbol.shared
 		switch typ {
-		case .none:
-			result = symbols.load(symbol: .questionmark)
-		case .resource(let type):
-			result = symbols.load(symbol: type)
-		case .url(let url):
+		case .image(let url):
 			if let img = CNImage(contentsOf: url){
 				result = img
 			} else {
-				result = symbols.load(symbol: .questionmark)
+				CNLog(logLevel: .error, message: "Failed to load image", atFunction: #function, inFile: #file)
+				result = CNImage()
 			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+			result = CNImage()
 		}
 		return result
 	}

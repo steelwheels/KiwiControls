@@ -55,7 +55,7 @@ open class KCCollectionView: KCInterfaceView
 
 	public var numberOfSections: Int { get { return coreView.numberOfSections }}
 
-	public func store(data dat: KCCollectionData){
+	public func store(data dat: CNCollection){
 		coreView.store(data: dat)
 	}
 

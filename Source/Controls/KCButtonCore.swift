@@ -97,7 +97,7 @@ public class KCButtonCore: KCCoreView
 		case .leftArrow:	type = .chevronBackward
 		case .rightArrow:	type = .chevronForward
 		}
-		return CNSymbol.shared.load(symbol: type)
+		return CNSymbol.shared.loadImage(type: type)
 	}
 
 	public var isEnabled: Bool {

@@ -66,16 +66,16 @@ public class SingleViewController: KCSingleViewController
 	}
 	#endif
 
-	private func allocateValue() -> KCCollectionData {
-		let newelm0: Array<KCCollectionData.CollectionImage> = [
-			.resource(.chevronForward),
-			.resource(.chevronBackward)
+	private func allocateValue() -> CNCollection {
+		let newelm0: Array<CNCollection.Item> = [
+			.image(CNSymbol.shared.URLOfSymbol(type: .chevronForward)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .chevronBackward))
 		]
-		let newelm1: Array<KCCollectionData.CollectionImage> = [
-			.resource(.handRaised),
-			.resource(.paintbrush)
+		let newelm1: Array<CNCollection.Item> = [
+			.image(CNSymbol.shared.URLOfSymbol(type: .handRaised)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .paintbrush)),
 		]
-		let cdata = KCCollectionData()
+		let cdata = CNCollection()
 		cdata.add(header: "header0", footer: "footer0", images: newelm0)
 		cdata.add(header: "header1", footer: "footer1", images: newelm1)
 		return cdata
