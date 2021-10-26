@@ -11,6 +11,19 @@ import Cocoa
 public class KCCollectionViewItem: NSCollectionViewItem
 {
 	private var mImageData:   CNImage? = nil
+	private var mTextField:	  NSTextField
+
+	public override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+		mTextField = NSTextField(frame: NSRect.zero)
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+		self.textField = mTextField
+	}
+
+	required init?(coder: NSCoder) {
+		mTextField = NSTextField(frame: NSRect.zero)
+		super.init(coder: coder)
+		self.textField = mTextField
+	}
 
 	public var image: CNImage? {
 		get         { return mImageData }

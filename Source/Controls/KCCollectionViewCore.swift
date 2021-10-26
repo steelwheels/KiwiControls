@@ -14,13 +14,15 @@ import CoconutData
 import Foundation
 
 #if os(OSX)
-private typealias KCCollectionViewBase 		 = NSCollectionView
+public  typealias KCCollectionViewBase 		 = NSCollectionView
 private typealias KCCollectionViewDataSourceBase = NSCollectionViewDataSource
 private typealias KCCollectionViewDelegateBase	 = NSCollectionViewDelegateFlowLayout
+private typealias KCCollectionViewLayout	 = NSCollectionViewFlowLayout
 #else
-private typealias KCCollectionViewBase 		 = UICollectionView
+public  typealias KCCollectionViewBase 		 = UICollectionView
 private typealias KCCollectionViewDataSourceBase = UICollectionViewDataSource
 private typealias KCCollectionViewDelegateBase	 = UICollectionViewDelegate
+private typealias KCCollectionViewLayout	 = UICollectionViewFlowLayout
 #endif
 
 #if os(OSX)
@@ -29,9 +31,11 @@ private let ItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "valueItem"
 private let ItemIdentifier = "ImageCell"
 #endif
 
-open class KCCollectionViewCore: KCCoreView
+open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCCollectionViewDelegateBase
 {
 	public typealias SelectedCallback = (_ section: Int, _ item: Int) -> Void
+
+	static let ResuseIdentifier = "value"
 
 	#if os(OSX)
 	@IBOutlet weak var osxCollectionView: NSCollectionView!
@@ -39,8 +43,12 @@ open class KCCollectionViewCore: KCCoreView
 	@IBOutlet weak var iosCollectionView: UICollectionView!
 	#endif
 
-	private var mDataSource = KCCollectionViewDataSource()
-	private var mDelegate   = KCCollectionViewDelegate()
+	private var mCollectionData		 = CNCollection()
+	private var mNumberOfRows		 = 2
+	private var mLoadedItemNum		 = 0
+	private var mMaxItemSize		 = KCSize.zero
+	private var mTotalItemNum		 = 0
+	private var mCallback: SelectedCallback? = nil
 
 	private var collectionView: KCCollectionViewBase {
 		get {
@@ -56,8 +64,8 @@ open class KCCollectionViewCore: KCCoreView
 		let colview = collectionView
 		super.setup(isSingleView: true, coreView: colview)
 		KCView.setAutolayoutMode(views: [self, colview])
-		colview.dataSource = mDataSource
-		colview.delegate   = mDelegate
+		colview.dataSource = self
+		colview.delegate   = self
 
 		#if os(OSX)
 			let bdl = Bundle(for: KCCollectionViewCore.self)
@@ -71,7 +79,9 @@ open class KCCollectionViewCore: KCCoreView
 	}
 
 	public func store(data dat: CNCollection){
-		mDataSource.collectionData = dat
+		mCollectionData = dat
+		mLoadedItemNum  = 0
+		mTotalItemNum   = dat.totalCount()
 		collectionView.reloadData()
 		self.select(section: 0, item: 0)
 		self.invalidateIntrinsicContentSize()
@@ -79,12 +89,17 @@ open class KCCollectionViewCore: KCCoreView
 	}
 
 	public var numberOfSections: Int { get {
-		if let data = mDataSource.collectionData {
-			return data.sectionCount
-		} else {
-			return 0
-		}
+		return mCollectionData.sectionCount
 	}}
+
+	public func numberOfItems(inSection sec: Int) -> Int? {
+		return mCollectionData.itemCount(inSection: sec)
+	}
+
+	public var numberOfRows: Int {
+		get	    { return mNumberOfRows 	}
+		set(newnum) { mNumberOfRows = newnum 	}
+	}
 
 	public var isSelectable: Bool {
 		get {
@@ -120,6 +135,78 @@ open class KCCollectionViewCore: KCCoreView
 		}
 	}
 
+	public var itemSize: KCSize {
+		get {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				return layout.itemSize
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (0-0)", atFunction: #function, inFile: #file)
+				return KCSize(width: -1.0, height: -1.0)
+			}
+		}
+		set(newsize){
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				layout.itemSize = newsize
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (0-1)", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	public var minimumLineSpacing: CGFloat {
+		get {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				return layout.minimumLineSpacing
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (1-0)", atFunction: #function, inFile: #file)
+				return 0.0
+			}
+		}
+		set(newval){
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				layout.minimumLineSpacing = newval
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (1-1)", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	public var minimumInteritemSpacing: CGFloat {
+		get {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				return layout.minimumInteritemSpacing
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (2-0)", atFunction: #function, inFile: #file)
+				return 0.0
+			}
+		}
+		set(newval){
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				layout.minimumInteritemSpacing = newval
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (2-1)", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	public override var intrinsicContentSize: KCSize {
+		get {
+			let rownum = mNumberOfRows
+			let colnum = (mTotalItemNum + mNumberOfRows - 1) / mNumberOfRows
+			var width  = mMaxItemSize.width  * CGFloat(rownum)
+			if colnum > 1 {
+				width  += CGFloat(colnum - 1) * self.minimumInteritemSpacing
+			}
+			var height = mMaxItemSize.height * CGFloat(colnum)
+			if rownum > 1 {
+				height += CGFloat(rownum - 1) * self.minimumLineSpacing
+			}
+			let result = KCSize(width: width, height: height)
+			NSLog("intrinsicContentSize: \(result.description)")
+			return result
+		}
+	}
+
 	public func select(section sec: Int, item itm: Int) {
 		let path = IndexPath(item: itm, section: sec)
 		#if os(OSX)
@@ -138,61 +225,56 @@ open class KCCollectionViewCore: KCCoreView
 	}
 
 	public func set(callback cbfunc: @escaping SelectedCallback) {
-		mDelegate.set(callback: cbfunc)
+		mCallback = cbfunc
 	}
 
 	public var firstResponderView: KCViewBase? { get {
 		return collectionView
 	}}
-}
 
-private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBase
-{
-	static let ResuseIdentifier = "value"
-
-	public var collectionData: CNCollection? = nil
-
-	public override init(){
-	}
-
+	/*
+	 * Data source methods
+	 */
 	public func numberOfSections(in collectionView: KCCollectionViewBase) -> Int {
-		if let data = collectionData {
-			return data.sectionCount
-		} else {
-			return 0
-		}
+		return mCollectionData.sectionCount
 	}
 
 	public func collectionView(_ collectionView: KCCollectionViewBase, numberOfItemsInSection section: Int) -> Int {
-		if let data = collectionData {
-			return data.sectionCount
-		} else {
-			return 0
-		}
+		return mCollectionData.itemCount(inSection: section)
 	}
 
 	#if os(OSX)
 	public func collectionView(_ collectionView: KCCollectionViewBase, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
 		let view = collectionView.makeItem(withIdentifier: ItemIdentifier, for: indexPath)
 		var didset = false
-		if let data = collectionData {
-			if let item = data.value(section: indexPath.section, item: indexPath.item) {
-				if let v = view as? KCCollectionViewItem {
-					v.image = allocateImage(type: item)
-					didset = true
-				} else {
-					CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
-				}
+		if let item = mCollectionData.value(section: indexPath.section, item: indexPath.item) {
+			if let v = view as? KCCollectionViewItem {
+				let img      = allocateImage(type: item)
+				v.image      = img
+				mMaxItemSize = KCMaxSize(sizeA: mMaxItemSize, sizeB: img.size)
+				didset = true
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
 			}
 		}
-		if !didset {
+		NSLog("item: \(indexPath.section) \(indexPath.item) -> \(mLoadedItemNum) \(mMaxItemSize.description)")
+		if didset {
+			mLoadedItemNum += 1
+			if mLoadedItemNum == mTotalItemNum {
+				NSLog("notify to update")
+				self.itemSize = mMaxItemSize
+				self.invalidateIntrinsicContentSize()
+				self.requireLayout()
+				self.notify(viewControlEvent: .updateSize(self))
+			}
+		} else {
 			CNLog(logLevel: .error, message: "Failed to set image: \(indexPath.description)", atFunction: #function, inFile: #file)
 		}
 		return view
 	}
 	#else
 	public func collectionView(_ collectionView: KCCollectionViewBase, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KCCollectionViewDataSource.ResuseIdentifier, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KCCollectionViewCore.ResuseIdentifier, for: indexPath)
 		return cell
 	}
 	#endif
@@ -213,14 +295,10 @@ private class KCCollectionViewDataSource: NSObject, KCCollectionViewDataSourceBa
 		}
 		return result
 	}
-}
 
-private class KCCollectionViewDelegate: NSObject, KCCollectionViewDelegateBase
-{
-	public typealias SelectedCallback = KCCollectionViewCore.SelectedCallback
-
-	private var mCallback: SelectedCallback? = nil
-
+	/*
+	 * Delegate
+	 */
 	#if os(OSX)
 	public func collectionView(_ collectionView: KCCollectionViewBase, shouldSelectItemsAt indexPaths: Set<IndexPath>) -> Set<IndexPath> {
 		return indexPaths
@@ -243,15 +321,12 @@ private class KCCollectionViewDelegate: NSObject, KCCollectionViewDelegateBase
 	}
 	#endif
 
-	public func set(callback cbfunc: @escaping SelectedCallback) {
-		mCallback = cbfunc
-	}
-
 	private func didSelect(itemAt indexPath: IndexPath){
 		if let cbfunc = mCallback {
 			cbfunc(indexPath.section, indexPath.item)
 		}
 	}
 }
+
 
 

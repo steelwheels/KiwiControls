@@ -911,6 +911,8 @@
 				0544EB55251775C6002DE6A8 /* KCButtonCore.xib */,
 				0544EB5E251775C7002DE6A8 /* KCCheckBoxCore.xib */,
 				057341C7271871FF00F1799E /* KCCollectionViewCore.xib */,
+				059428B32720E41200C7351E /* KCCollectionViewItem.swift */,
+				059428B42720E41200C7351E /* KCCollectionViewItem.xib */,
 				0544EB5F251775C7002DE6A8 /* KCColorSelectorCore.xib */,
 				05D0388525AC84370022E242 /* KCIconViewCore.xib */,
 				0544EB60251775C7002DE6A8 /* KCImageViewCore.xib */,
@@ -922,8 +924,6 @@
 				0544EB63251775C7002DE6A8 /* KCTableViewCore.xib */,
 				0544EB5D251775C7002DE6A8 /* KCTextEditCore.xib */,
 				05589A69261203D600774D41 /* KCTextViewCore.xib */,
-				059428B32720E41200C7351E /* KCCollectionViewItem.swift */,
-				059428B42720E41200C7351E /* KCCollectionViewItem.xib */,
 			);
 			path = OSX;
 			sourceTree = "<group>";

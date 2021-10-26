@@ -23,10 +23,10 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="sqK-bf-bsd" secondAttribute="bottom" id="bbH-2r-30d"/>
-                <constraint firstItem="sqK-bf-bsd" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="crC-O1-71K"/>
-                <constraint firstItem="sqK-bf-bsd" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="fM8-TM-aF6"/>
-                <constraint firstAttribute="trailing" secondItem="sqK-bf-bsd" secondAttribute="trailing" id="hvM-Rn-0Uu"/>
+                <constraint firstAttribute="trailing" secondItem="sqK-bf-bsd" secondAttribute="trailing" id="B2e-Jp-TFh"/>
+                <constraint firstAttribute="bottom" secondItem="sqK-bf-bsd" secondAttribute="bottom" id="F0E-w3-gge"/>
+                <constraint firstItem="sqK-bf-bsd" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="aSA-Vc-SOe"/>
+                <constraint firstItem="sqK-bf-bsd" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="oLX-tI-OQI"/>
             </constraints>
             <point key="canvasLocation" x="-222" y="120"/>
         </customView>

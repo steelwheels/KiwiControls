@@ -76,8 +76,8 @@ public class SingleViewController: KCSingleViewController
 			.image(CNSymbol.shared.URLOfSymbol(type: .paintbrush)),
 		]
 		let cdata = CNCollection()
-		cdata.add(header: "header0", footer: "footer0", images: newelm0)
-		cdata.add(header: "header1", footer: "footer1", images: newelm1)
+		cdata.add(header: "header0", footer: "footer0", items: newelm0)
+		cdata.add(header: "header1", footer: "footer1", items: newelm1)
 		return cdata
 	}
 
