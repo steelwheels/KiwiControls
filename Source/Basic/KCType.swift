@@ -59,19 +59,7 @@ protocol KCWindowDelegate {
 		return rect.inset(by: inset)
 	}
 #else
-	public struct KCEdgeInsets {
-		public var top		: CGFloat
-		public var left		: CGFloat
-		public var bottom	: CGFloat
-		public var right	: CGFloat
-
-		public init(top t: CGFloat, left l: CGFloat, bottom b: CGFloat, right r: CGFloat){
-			top 	= t
-			left	= l
-			bottom	= b
-			right	= r
-		}
-	}
+	public typealias KCEdgeInsets 		= NSEdgeInsets
 
 	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> KCRect {
 		let inseth:  CGFloat = inset.left + inset.right

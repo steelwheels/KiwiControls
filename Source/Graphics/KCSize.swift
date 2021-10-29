@@ -43,6 +43,12 @@ public func KCExpandSize(size sz: KCSize, delta dlt: CGFloat) -> KCSize {
 	return KCSize(width: sz.width + dlt * 2.0, height: sz.height + dlt * 2.0)
 }
 
+public func KCExpandSize(size sz: KCSize, byInsets insets: KCEdgeInsets) -> KCSize {
+	let width  = insets.left + sz.width  + insets.right
+	let height = insets.top  + sz.height + insets.bottom
+	return KCSize(width: width, height: height)
+}
+
 public func KCShrinkSize(size sz: KCSize, delta dlt: CGFloat) -> KCSize {
 	let width  = max(sz.width  - dlt * 2.0, 0.0)
 	let height = max(sz.height - dlt * 2.0, 0.0)

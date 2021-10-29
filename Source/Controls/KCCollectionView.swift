@@ -59,17 +59,21 @@ open class KCCollectionView: KCInterfaceView
 		return coreView.numberOfItems(inSection: sec)
 	}
 
-	public func store(data dat: CNCollection){
-		coreView.store(data: dat)
-	}
-
 	public var isSelectable: Bool {
 		get         { return coreView.isSelectable }
 		set(newval) { coreView.isSelectable = newval }
 	}
 
+	public var selectedItems: Set<IndexPath> {
+		get 	    { return coreView.selectedItems   }
+	}
+
 	public func set(callback cbfunc: @escaping SelectedCallback) {
 		coreView.set(callback: cbfunc)
+	}
+
+	public func store(data dat: CNCollection){
+		coreView.store(data: dat)
 	}
 
 	public var firstResponderView: KCViewBase? { get {

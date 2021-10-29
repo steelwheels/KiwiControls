@@ -14,15 +14,16 @@ import CoconutData
 import Foundation
 
 #if os(OSX)
-public  typealias KCCollectionViewBase 		 = NSCollectionView
-private typealias KCCollectionViewDataSourceBase = NSCollectionViewDataSource
-private typealias KCCollectionViewDelegateBase	 = NSCollectionViewDelegateFlowLayout
-private typealias KCCollectionViewLayout	 = NSCollectionViewFlowLayout
+public  typealias KCCollectionViewBase 		 	= NSCollectionView
+private typealias KCCollectionViewDataSourceBase 	= NSCollectionViewDataSource
+private typealias KCCollectionViewDelegateBase	 	= NSCollectionViewDelegateFlowLayout
+private typealias KCCollectionViewLayout	 	= NSCollectionViewFlowLayout
+private typealias KCCollectionViewSectionHeaderViewBase	= NSCollectionViewSectionHeaderView
 #else
-public  typealias KCCollectionViewBase 		 = UICollectionView
-private typealias KCCollectionViewDataSourceBase = UICollectionViewDataSource
-private typealias KCCollectionViewDelegateBase	 = UICollectionViewDelegate
-private typealias KCCollectionViewLayout	 = UICollectionViewFlowLayout
+public  typealias KCCollectionViewBase 		 	= UICollectionView
+private typealias KCCollectionViewDataSourceBase 	= UICollectionViewDataSource
+private typealias KCCollectionViewDelegateBase	 	= UICollectionViewDelegate
+private typealias KCCollectionViewLayout	 	= UICollectionViewFlowLayout
 #endif
 
 #if os(OSX)
@@ -36,6 +37,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	public typealias SelectedCallback = (_ section: Int, _ item: Int) -> Void
 
 	static let ResuseIdentifier = "value"
+	static let HeaderIdentifier = "header"
 
 	#if os(OSX)
 	@IBOutlet weak var osxCollectionView: NSCollectionView!
@@ -44,10 +46,11 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	#endif
 
 	private var mCollectionData		 = CNCollection()
-	private var mNumberOfRows		 = 2
+	private var mNumberOfColumns		 = 2
 	private var mLoadedItemNum		 = 0
 	private var mMaxItemSize		 = KCSize.zero
 	private var mTotalItemNum		 = 0
+	private var mHeaderFont			 = CNFont.boldSystemFont(ofSize: CNFont.systemFontSize)
 	private var mCallback: SelectedCallback? = nil
 
 	private var collectionView: KCCollectionViewBase {
@@ -71,6 +74,10 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			let bdl = Bundle(for: KCCollectionViewCore.self)
 			let nib = NSNib(nibNamed: "KCCollectionViewItem", bundle: bdl)
 			colview.register(nib, forItemWithIdentifier: ItemIdentifier)
+
+			colview.register(KCCollectionHeaderView.self,
+					 forSupplementaryViewOfKind: NSCollectionView.elementKindSectionHeader,
+					 withIdentifier: NSUserInterfaceItemIdentifier(rawValue: KCCollectionViewCore.HeaderIdentifier))
 		#else
 			let bdl = Bundle(for: KCCollectionViewCore.self)
 			let nib = UINib(nibName: "KCCollectionViewCell", bundle: bdl)
@@ -82,10 +89,28 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		mCollectionData = dat
 		mLoadedItemNum  = 0
 		mTotalItemNum   = dat.totalCount()
+
+		updateHeaderSize(collection: dat)
+
 		collectionView.reloadData()
 		self.select(section: 0, item: 0)
 		self.invalidateIntrinsicContentSize()
 		self.requireLayout()
+	}
+
+	private func updateHeaderSize(collection col: CNCollection){
+		let attrs: [NSAttributedString.Key: Any] = [
+			NSAttributedString.Key.font: mHeaderFont
+		]
+		var result = KCSize.zero
+		for sec in 0..<col.sectionCount {
+			let label  = col.header(ofSection: sec)
+			if !label.isEmpty {
+				let labstr = NSAttributedString(string: label, attributes: attrs)
+				result = KCMaxSize(sizeA: result, sizeB: labstr.size())
+			}
+		}
+		self.headerReferenceSize = result
 	}
 
 	public var numberOfSections: Int { get {
@@ -94,11 +119,6 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	public func numberOfItems(inSection sec: Int) -> Int? {
 		return mCollectionData.itemCount(inSection: sec)
-	}
-
-	public var numberOfRows: Int {
-		get	    { return mNumberOfRows 	}
-		set(newnum) { mNumberOfRows = newnum 	}
 	}
 
 	public var isSelectable: Bool {
@@ -135,7 +155,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
-	public var itemSize: KCSize {
+	private var itemSize: KCSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
 				return layout.itemSize
@@ -153,7 +173,38 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
-	public var minimumLineSpacing: CGFloat {
+	public var axis: CNAxis {
+		get {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				let result: CNAxis
+				switch layout.scrollDirection {
+				case .vertical:		result = .vertical
+				case .horizontal:	result = .horizontal
+				@unknown default:
+					CNLog(logLevel: .error, message: "Unsupported case", atFunction: #function, inFile: #file)
+					result = .vertical
+				}
+				return result
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (4-0)", atFunction: #function, inFile: #file)
+				return .vertical
+			}
+		}
+		set(newval){
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				switch newval {
+				case .horizontal:	layout.scrollDirection = .horizontal
+				case .vertical:		layout.scrollDirection = .vertical
+				@unknown default:
+					CNLog(logLevel: .error, message: "Unsupported case (4-1)", atFunction: #function, inFile: #file)
+				}
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (4-2)", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	private var minimumLineSpacing: CGFloat {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
 				return layout.minimumLineSpacing
@@ -171,7 +222,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
-	public var minimumInteritemSpacing: CGFloat {
+	private var minimumInteritemSpacing: CGFloat {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
 				return layout.minimumInteritemSpacing
@@ -189,20 +240,100 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
+	private var sectionInset: KCEdgeInsets {
+		get {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				return layout.sectionInset
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (3-0)", atFunction: #function, inFile: #file)
+				return KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+			}
+		}
+		set(newval){
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				layout.sectionInset = newval
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (3-1)", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	private var headerReferenceSize: KCSize {
+		get {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				return layout.headerReferenceSize
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
+				return KCSize.zero
+			}
+		}
+		set(newval){
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				layout.headerReferenceSize = newval
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	private var footerReferenceSize: KCSize {
+		get {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				return layout.footerReferenceSize
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
+				return KCSize.zero
+			}
+		}
+		set(newval){
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+				layout.footerReferenceSize = newval
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	public override func setFrameSize(_ newsize: KCSize) {
+		if mMaxItemSize.width > 0 {
+			let maxnum = mCollectionData.maxItemCount()
+			let colnum: Int = Int(newsize.width / mMaxItemSize.width)
+			mNumberOfColumns = min(maxnum, colnum)
+		}
+		super.setFrameSize(newsize)
+	}
+
 	public override var intrinsicContentSize: KCSize {
 		get {
-			let rownum = mNumberOfRows
-			let colnum = (mTotalItemNum + mNumberOfRows - 1) / mNumberOfRows
-			var width  = mMaxItemSize.width  * CGFloat(rownum)
-			if colnum > 1 {
-				width  += CGFloat(colnum - 1) * self.minimumInteritemSpacing
+			let colnum = mNumberOfColumns
+
+			let dovert: Bool
+			switch self.axis {
+			case .horizontal:	dovert = false
+			case .vertical:		dovert = true
+			@unknown default:	dovert = true
 			}
-			var height = mMaxItemSize.height * CGFloat(colnum)
-			if rownum > 1 {
-				height += CGFloat(rownum - 1) * self.minimumLineSpacing
+
+			let secinset = self.sectionInset
+			let hdrsize  = self.headerReferenceSize
+			let ftrsize  = self.footerReferenceSize
+
+			var result = KCSize.zero
+			for sec in 0..<mCollectionData.sectionCount {
+				let itemnum = mCollectionData.itemCount(inSection: sec)
+				let rownum  = (itemnum + colnum - 1) / colnum
+				let width   = mMaxItemSize.width  * CGFloat(colnum)
+					      + CGFloat(colnum + 1) * self.minimumInteritemSpacing
+				let height  = mMaxItemSize.height * CGFloat(rownum)
+					      + CGFloat(rownum + 1) * self.minimumLineSpacing
+				let secsize = KCSize(width: width, height: height)
+
+				let expsize0 = KCUnionSize(sizeA: secsize,  sizeB: hdrsize, doVertical: true, spacing: 0.0)
+				let expsize1 = KCUnionSize(sizeA: expsize0, sizeB: ftrsize, doVertical: true, spacing: 0.0)
+				let expsize2 = KCExpandSize(size: expsize1, byInsets: secinset)
+
+				result = KCUnionSize(sizeA: result, sizeB: expsize2, doVertical: dovert, spacing: 0.0)
 			}
-			let result = KCSize(width: width, height: height)
-			NSLog("intrinsicContentSize: \(result.description)")
 			return result
 		}
 	}
@@ -257,11 +388,9 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 				CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
 			}
 		}
-		NSLog("item: \(indexPath.section) \(indexPath.item) -> \(mLoadedItemNum) \(mMaxItemSize.description)")
 		if didset {
 			mLoadedItemNum += 1
 			if mLoadedItemNum == mTotalItemNum {
-				NSLog("notify to update")
 				self.itemSize = mMaxItemSize
 				self.invalidateIntrinsicContentSize()
 				self.requireLayout()
@@ -321,6 +450,20 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	}
 	#endif
 
+	#if os(OSX)
+	public func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
+		/* Allocate header/footer view */
+		let ident = NSUserInterfaceItemIdentifier(KCCollectionViewCore.HeaderIdentifier)
+		let view  = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: ident, for: indexPath)
+		if let v = view as? KCCollectionHeaderView {
+			v.isEditable = false
+			v.font       = mHeaderFont
+			v.text       = mCollectionData.header(ofSection: indexPath.section)
+		}
+		return view
+	}
+	#endif
+
 	private func didSelect(itemAt indexPath: IndexPath){
 		if let cbfunc = mCallback {
 			cbfunc(indexPath.section, indexPath.item)
@@ -328,5 +471,10 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	}
 }
 
+#if os(OSX)
+private class KCCollectionHeaderView: KCTextEdit, KCCollectionViewSectionHeaderViewBase
+{
+}
+#endif
 
 
