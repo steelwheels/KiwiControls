@@ -81,6 +81,9 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
+	open func visit(drawingView view: KCDrawingView){
+	}
+
 	open func visit(graphics2DView view: KCGraphics2DView){
 	}
 

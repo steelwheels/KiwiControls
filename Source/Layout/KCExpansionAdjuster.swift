@@ -225,6 +225,14 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
+	open override func visit(drawingView view: KCDrawingView) {
+		let prival = ExpansionPriorities(holizontalHugging: 	.high,
+						 holizontalCompression: .high,
+						 verticalHugging: 	.high,
+						 verticalCompression:	.high)
+		view.setExpandabilities(priorities: prival)
+	}
+
 	open override func visit(coreView view: KCInterfaceView){
 		CNLog(logLevel: .error, message: "KCExpansionAdjustor.visit(coreView) : \(view.description)")
 	}

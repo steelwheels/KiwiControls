@@ -163,6 +163,12 @@ public class KCLayoutInvalidator: KCViewVisitor
 		mVisitResult = doinv
 	}
 
+	public override func visit(drawingView view: KCDrawingView){
+		let doinv = checkTarget(view: view)
+		doInvalidate(view: view, doInvalidate: doinv)
+		mVisitResult = doinv
+	}
+
 	public override func visit(bitmapView view: KCBitmapView){
 		let doinv = checkTarget(view: view)
 		doInvalidate(view: view, doInvalidate: doinv)

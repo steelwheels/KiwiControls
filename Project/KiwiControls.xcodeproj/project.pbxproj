@@ -244,6 +244,11 @@
 		05A7755C254DA1AD00DF71DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7755B254DA1AD00DF71DE /* ViewController.swift */; };
 		05A7755E254DA1AE00DF71DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755D254DA1AE00DF71DE /* Assets.xcassets */; };
 		05A77561254DA1AE00DF71DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05A7755F254DA1AE00DF71DE /* Main.storyboard */; };
+		05B4841A272D8F49006DD06E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B48419272D8F49006DD06E /* AppDelegate.swift */; };
+		05B4841C272D8F49006DD06E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B4841B272D8F49006DD06E /* ViewController.swift */; };
+		05B4841E272D8F54006DD06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B4841D272D8F54006DD06E /* Assets.xcassets */; };
+		05B48421272D8F54006DD06E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B4841F272D8F54006DD06E /* Main.storyboard */; };
+		05B4844D272D9357006DD06E /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B4844C272D9357006DD06E /* SingleViewController.swift */; };
 		05B750532539D2410034D8CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750522539D2410034D8CB /* AppDelegate.swift */; };
 		05B750552539D2410034D8CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750542539D2410034D8CB /* ViewController.swift */; };
 		05B750572539D2440034D8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B750562539D2440034D8CB /* Assets.xcassets */; };
@@ -263,6 +268,8 @@
 		05D65E13271A8AD500C23747 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D65E1B271A8AD700C23747 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
 		05D65E1C271A8AD700C23747 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05E474BC272C3D6500F17153 /* KCDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E474BB272C3D6500F17153 /* KCDrawingView.swift */; };
+		05E474BD272C3D6500F17153 /* KCDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E474BB272C3D6500F17153 /* KCDrawingView.swift */; };
 		05E585D325D56A8D0099C303 /* KCBitmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E585D225D56A8D0099C303 /* KCBitmapView.swift */; };
 		05EB0EC62567EC6A00D28FD2 /* KCTerminalViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */; };
 		05ED4A74269346CE008C8FCE /* KCTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED4A73269346CE008C8FCE /* KCTableCellView.swift */; };
@@ -307,6 +314,13 @@
 			remoteInfo = Install;
 		};
 		05A7756A254DA1B900DF71DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0518974325176DD300487B45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05EB004425181E7300636C82;
+			remoteInfo = Install;
+		};
+		05B48435272D8F84006DD06E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0518974325176DD300487B45 /* Project object */;
 			proxyType = 1;
@@ -579,6 +593,14 @@
 		05A77560254DA1AE00DF71DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05A77562254DA1AE00DF71DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05A77563254DA1AE00DF71DE /* UTConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTConsole.entitlements; sourceTree = "<group>"; };
+		05B48417272D8F49006DD06E /* UTGraphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTGraphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05B48419272D8F49006DD06E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05B4841B272D8F49006DD06E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05B4841D272D8F54006DD06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05B48420272D8F54006DD06E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05B48422272D8F54006DD06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B48423272D8F54006DD06E /* UTGraphics.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTGraphics.entitlements; sourceTree = "<group>"; };
+		05B4844C272D9357006DD06E /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		05B750502539D2410034D8CB /* UTMultiView_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTMultiView_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B750522539D2410034D8CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05B750542539D2410034D8CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -593,6 +615,7 @@
 		05D0388D25AC846D0022E242 /* KCIconViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
 		05D038B625AC86DF0022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		05D038C425AC8E830022E242 /* KCIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
+		05E474BB272C3D6500F17153 /* KCDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCDrawingView.swift; sourceTree = "<group>"; };
 		05E585D225D56A8D0099C303 /* KCBitmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBitmapView.swift; sourceTree = "<group>"; };
 		05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
 		05ED4A73269346CE008C8FCE /* KCTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTableCellView.swift; sourceTree = "<group>"; };
@@ -677,6 +700,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05B48414272D8F49006DD06E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05B7504D2539D2410034D8CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,6 +765,7 @@
 				05589A9226120E2100774D41 /* UTTextView.app */,
 				058EBF14264DE39F0031F306 /* UTTable.app */,
 				057341F92718770200F1799E /* UTCollection.app */,
+				05B48417272D8F49006DD06E /* UTGraphics.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -875,6 +906,7 @@
 				0544EB0B251775A3002DE6A8 /* KCColorSelectorCore.swift */,
 				0544EAFE251775A2002DE6A8 /* KCConsoleView.swift */,
 				0544EAF8251775A2002DE6A8 /* KCContextualMenu.swift */,
+				05E474BB272C3D6500F17153 /* KCDrawingView.swift */,
 				059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */,
 				05D038C425AC8E830022E242 /* KCIconView.swift */,
 				05D0388D25AC846D0022E242 /* KCIconViewCore.swift */,
@@ -1089,6 +1121,20 @@
 			path = UTConsole;
 			sourceTree = "<group>";
 		};
+		05B48418272D8F49006DD06E /* UTGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				05B48419272D8F49006DD06E /* AppDelegate.swift */,
+				05B4841B272D8F49006DD06E /* ViewController.swift */,
+				05B4844C272D9357006DD06E /* SingleViewController.swift */,
+				05B4841D272D8F54006DD06E /* Assets.xcassets */,
+				05B4841F272D8F54006DD06E /* Main.storyboard */,
+				05B48422272D8F54006DD06E /* Info.plist */,
+				05B48423272D8F54006DD06E /* UTGraphics.entitlements */,
+			);
+			path = UTGraphics;
+			sourceTree = "<group>";
+		};
 		05B750512539D2410034D8CB /* UTMultiView_macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1126,6 +1172,7 @@
 		05EB004D2518279300636C82 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				05B48418272D8F49006DD06E /* UTGraphics */,
 				05248493256A6097001BD219 /* UTStackView_macOS */,
 				057341FA2718770200F1799E /* UTCollection */,
 				05A77558254DA1AD00DF71DE /* UTConsole */,
@@ -1352,6 +1399,24 @@
 			productReference = 05A77557254DA1AD00DF71DE /* UTConsole.app */;
 			productType = "com.apple.product-type.application";
 		};
+		05B48416272D8F49006DD06E /* UTGraphics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05B48426272D8F54006DD06E /* Build configuration list for PBXNativeTarget "UTGraphics" */;
+			buildPhases = (
+				05B48413272D8F49006DD06E /* Sources */,
+				05B48414272D8F49006DD06E /* Frameworks */,
+				05B48415272D8F49006DD06E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05B48436272D8F84006DD06E /* PBXTargetDependency */,
+			);
+			name = UTGraphics;
+			productName = UTGraphics;
+			productReference = 05B48417272D8F49006DD06E /* UTGraphics.app */;
+			productType = "com.apple.product-type.application";
+		};
 		05B7504F2539D2410034D8CB /* UTMultiView_macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05B7505F2539D2440034D8CB /* Build configuration list for PBXNativeTarget "UTMultiView_macOS" */;
@@ -1409,6 +1474,9 @@
 					05A77556254DA1AD00DF71DE = {
 						CreatedOnToolsVersion = 12.1;
 					};
+					05B48416272D8F49006DD06E = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					05B7504F2539D2410034D8CB = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -1441,6 +1509,7 @@
 				05589A9126120E2100774D41 /* UTTextView */,
 				058EBF13264DE39F0031F306 /* UTTable */,
 				057341F82718770200F1799E /* UTCollection */,
+				05B48416272D8F49006DD06E /* UTGraphics */,
 			);
 		};
 /* End PBXProject section */
@@ -1560,6 +1629,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05B48415272D8F49006DD06E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B4841E272D8F54006DD06E /* Assets.xcassets in Resources */,
+				05B48421272D8F54006DD06E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05B7504E2539D2410034D8CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1622,6 +1700,7 @@
 				05BBDBDC26FC0E9300603B8B /* KCValueView.swift in Sources */,
 				0544EB12251775A3002DE6A8 /* KCPopupMenu.swift in Sources */,
 				0544EB1A251775A3002DE6A8 /* KCImageView.swift in Sources */,
+				05E474BC272C3D6500F17153 /* KCDrawingView.swift in Sources */,
 				0544EAD425176FF5002DE6A8 /* KCSize.swift in Sources */,
 				0544EB2E251775A3002DE6A8 /* KCConsoleView.swift in Sources */,
 				0544EB44251775A3002DE6A8 /* KCNavigationBar.swift in Sources */,
@@ -1717,6 +1796,7 @@
 				0544EAB825176FBE002DE6A8 /* KCDistributionDecider.swift in Sources */,
 				0544EA8325176EC6002DE6A8 /* KCScreen.swift in Sources */,
 				0544EADB25176FF5002DE6A8 /* KCStroke.swift in Sources */,
+				05E474BD272C3D6500F17153 /* KCDrawingView.swift in Sources */,
 				0544EBB425177676002DE6A8 /* KCLayoutConstraint.swift in Sources */,
 				0544EBB825177676002DE6A8 /* KCType.swift in Sources */,
 				0544EACF25176FF5002DE6A8 /* KCPoint.swift in Sources */,
@@ -1816,6 +1896,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05B48413272D8F49006DD06E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05B4844D272D9357006DD06E /* SingleViewController.swift in Sources */,
+				05B4841C272D8F49006DD06E /* ViewController.swift in Sources */,
+				05B4841A272D8F49006DD06E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05B7504C2539D2410034D8CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1858,6 +1948,11 @@
 			isa = PBXTargetDependency;
 			target = 05EB004425181E7300636C82 /* Install */;
 			targetProxy = 05A7756A254DA1B900DF71DE /* PBXContainerItemProxy */;
+		};
+		05B48436272D8F84006DD06E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05EB004425181E7300636C82 /* Install */;
+			targetProxy = 05B48435272D8F84006DD06E /* PBXContainerItemProxy */;
 		};
 		05B750702539DD7D0034D8CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1942,6 +2037,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				05A77560254DA1AE00DF71DE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05B4841F272D8F54006DD06E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05B48420272D8F54006DD06E /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -3077,6 +3180,100 @@
 			};
 			name = Release;
 		};
+		05B48424272D8F54006DD06E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTGraphics/UTGraphics.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphics/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTGraphics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		05B48425272D8F54006DD06E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ../UnitTest/OSX/UTGraphics/UTGraphics.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphics/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTGraphics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		05B7505D2539D2440034D8CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3438,6 +3635,15 @@
 			buildConfigurations = (
 				05A77564254DA1AE00DF71DE /* Debug */,
 				05A77565254DA1AE00DF71DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05B48426272D8F54006DD06E /* Build configuration list for PBXNativeTarget "UTGraphics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05B48424272D8F54006DD06E /* Debug */,
+				05B48425272D8F54006DD06E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

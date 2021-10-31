@@ -23,6 +23,7 @@
 	public typealias KCLineBreakMode	= NSLineBreakMode
 	public typealias KCLabel		= UILabel
 	public typealias KCWindow		= UIWindow
+	public typealias KCBezierPath		= UIBezierPath
 #else
 	public typealias KCPoint		= NSPoint
 	public typealias KCSize			= NSSize
@@ -36,6 +37,7 @@
 	public typealias KCWindowDelegate 	= NSWindowDelegate
 	public typealias KCLabel		= NSTextField
 	public typealias KCWindow		= NSWindow
+	public typealias KCBezierPath		= NSBezierPath
 #endif
 
 #if os(OSX)
@@ -98,4 +100,13 @@ public extension KCEdgeInsets {
 		}
 	}
 }
+
+#if os(OSX)
+public extension KCBezierPath
+{
+	func addLine(to pt: CGPoint) {
+		self.line(to: pt)
+	}
+}
+#endif
 

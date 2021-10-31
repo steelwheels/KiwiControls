@@ -169,6 +169,12 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
+	open override func visit(drawingView view: KCDrawingView){
+		let fsection = CNTextSection()
+		fsection.header = "drawing {" ; fsection.footer = "}"
+		mSection.add(text: fsection)
+	}
+
 	open override func visit(coreView view: KCInterfaceView){
 		let section = CNTextSection()
 
