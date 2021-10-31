@@ -3,6 +3,8 @@
  * @brief	Define KCDrawingView class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
+ * @par Reference
+ *   https://stackoverflow.com/questions/47738822/simple-drawing-with-mouse-on-cocoa-swift
  */
 
 #if os(OSX)
@@ -14,7 +16,7 @@ import CoconutData
 
 open class KCDrawingView: KCView
 {
-	private var mBezierPath: CNBezierPath
+	private var mBezierPath:	CNBezierPath
 
 	public override init(frame: KCRect) {
 		mBezierPath = CNBezierPath()
@@ -24,6 +26,11 @@ open class KCDrawingView: KCView
 	required public init?(coder: NSCoder) {
 		mBezierPath = CNBezierPath()
 		super.init(coder: coder)
+	}
+
+	public var lineWidth: CGFloat {
+		get	    { return mBezierPath.lineWidth	}
+		set(newval) { mBezierPath.lineWidth = newval 	}
 	}
 
 	public override func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
@@ -43,7 +50,7 @@ open class KCDrawingView: KCView
 		let bezier = KCBezierPath(rect: frame)
 		bezier.lineJoinStyle = .round
 		bezier.lineCapStyle  = .round
-		bezier.lineWidth     = 10.0
+		bezier.lineWidth     = mBezierPath.lineWidth
 		mBezierPath.forEach({
 			(_ point: CNBezierPath.Path) -> Void in
 			switch point {
@@ -53,6 +60,8 @@ open class KCDrawingView: KCView
 			case .lineTo(let lpt):
 				let ppt = logicalToPhysical(point: lpt, in: frame)
 				bezier.addLine(to: ppt)
+			case .lineWidth(let wid):
+				bezier.lineWidth = wid
 			@unknown default:
 				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
 			}
@@ -72,7 +81,7 @@ open class KCDrawingView: KCView
 }
 
 /*
-https://stackoverflow.com/questions/47738822/simple-drawing-with-mouse-on-cocoa-swift
+
 
 import Cocoa
 
