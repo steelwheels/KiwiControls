@@ -12,7 +12,7 @@ import Foundation
 
 public class SingleViewController: KCSingleViewController
 {
-	private var mDrawingView: KCDrawingView? = nil
+	private var mDrawingView: KCBezierView? = nil
 
 	public override init(parentViewController parent: KCMultiViewController){
 		super.init(parentViewController: parent)
@@ -25,7 +25,7 @@ public class SingleViewController: KCSingleViewController
 	public override func loadContext() -> KCView? {
 		NSLog("load context")
 		let result   = KCStackView()
-		let draw     = KCDrawingView()
+		let draw     = KCBezierView()
 		mDrawingView = draw
 		result.addArrangedSubViews(subViews: [draw])
 		return result

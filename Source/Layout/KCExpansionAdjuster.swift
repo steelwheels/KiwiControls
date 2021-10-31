@@ -225,7 +225,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
-	open override func visit(drawingView view: KCDrawingView) {
+	open override func visit(bezierView view: KCBezierView) {
 		let prival = ExpansionPriorities(holizontalHugging: 	.high,
 						 holizontalCompression: .high,
 						 verticalHugging: 	.high,

@@ -1,6 +1,6 @@
 /*
- * @file	KCDrawingView.swift
- * @brief	Define KCDrawingView class
+ * @file	KCBezierView.swift
+ * @brief	Define KCBezierView class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  * @par Reference
@@ -14,7 +14,7 @@
 #endif
 import CoconutData
 
-open class KCDrawingView: KCView
+open class KCBezierView: KCView
 {
 	private var mBezierPath:	CNBezierPath
 
@@ -76,7 +76,7 @@ open class KCDrawingView: KCView
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
-		vis.visit(drawingView: self)
+		vis.visit(bezierView: self)
 	}
 }
 
