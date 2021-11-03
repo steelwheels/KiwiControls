@@ -2,10 +2,15 @@
  * @file	KCDistributionDecider.swift
  * @brief	Define KCDistributionDecider class
  * @par Copyright
- *   Copyright (C) 2018 Steel Wheels Project
+ *   Copyright (C) 2018-2021 Steel Wheels Project
  */
 
-import Foundation
+#if os(OSX)
+import Cocoa
+#else
+import UIKit
+#endif
+import CoconutData
 
 public class KCDistributionDecider: KCViewVisitor
 {
@@ -32,12 +37,21 @@ public class KCDistributionDecider: KCViewVisitor
 	}
 
 	private func decideDistribution(stackView view: KCStackView){
-		let groups = KCGroupMaker.makeGroups(stackView: view)
-		if groups.count <= 1 {
-			view.distribution = .fillEqually
+		let dist: CNDistribution
+		let subviews = view.arrangedSubviews()
+		if subviews.count < 2 {
+			dist = .fill
 		} else {
-			view.distribution = .fill
+			var issame = true
+			for i in 1..<subviews.count {
+				if !KCIsSameView(view0: subviews[0], view1: subviews[i]){
+					issame = false
+					break
+				}
+			}
+			dist = issame ? .fillEqually : .fill
 		}
+		view.distribution = dist
 	}
 }
 

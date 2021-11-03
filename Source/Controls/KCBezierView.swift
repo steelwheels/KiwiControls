@@ -17,20 +17,36 @@ import CoconutData
 open class KCBezierView: KCView
 {
 	private var mBezierPath:	CNBezierPath
+	private var mWidth:		CGFloat?
+	private var mHeight:		CGFloat?
 
 	public override init(frame: KCRect) {
 		mBezierPath = CNBezierPath()
+		mWidth	    = nil
+		mHeight	    = nil
 		super.init(frame: frame)
 	}
 
 	required public init?(coder: NSCoder) {
 		mBezierPath = CNBezierPath()
+		mWidth	    = nil
+		mHeight	    = nil
 		super.init(coder: coder)
 	}
 
 	public var lineWidth: CGFloat {
 		get	    { return mBezierPath.lineWidth	}
 		set(newval) { mBezierPath.lineWidth = newval 	}
+	}
+
+	public var width: CGFloat? {
+		get         { return mWidth    }
+		set(newval) { mWidth = newval  }
+	}
+
+	public var height: CGFloat? {
+		get         { return mHeight   }
+		set(newval) { mHeight = newval }
 	}
 
 	public override func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
@@ -46,8 +62,7 @@ open class KCBezierView: KCView
 	}
 
 	public override func draw(_ dirtyRect: KCRect) {
-		let frame  = self.frame
-		let bezier = KCBezierPath(rect: frame)
+		let bezier = KCBezierPath(rect: self.bounds)
 		bezier.lineJoinStyle = .round
 		bezier.lineCapStyle  = .round
 		bezier.lineWidth     = mBezierPath.lineWidth
@@ -55,10 +70,10 @@ open class KCBezierView: KCView
 			(_ point: CNBezierPath.Path) -> Void in
 			switch point {
 			case .moveTo(let lpt):
-				let ppt = logicalToPhysical(point: lpt, in: frame)
+				let ppt = logicalToPhysical(point: lpt, in: self.bounds)
 				bezier.move(to: ppt)
 			case .lineTo(let lpt):
-				let ppt = logicalToPhysical(point: lpt, in: frame)
+				let ppt = logicalToPhysical(point: lpt, in: self.bounds)
 				bezier.addLine(to: ppt)
 			case .lineWidth(let wid):
 				bezier.lineWidth = wid
@@ -75,60 +90,17 @@ open class KCBezierView: KCView
 		return CGPoint(x: x, y: y)
 	}
 
+	public override var intrinsicContentSize: KCSize {
+		get {
+			let ssize  = super.intrinsicContentSize
+			let width  = mWidth  != nil ? mWidth!  : ssize.width
+			let height = mHeight != nil ? mHeight! : ssize.height
+			return KCSize(width: width, height: height)
+		}
+	}
+
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(bezierView: self)
 	}
 }
-
-/*
-
-
-import Cocoa
-
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-
-@IBOutlet weak var window: NSWindow!
-
-func applicationDidFinishLaunching(_ aNotification: Notification) {
-    // Insert code here to initialize your application
-    let view = DrawView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    self.window.contentView?.addSubview(view)
-
-    self.window.contentView?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": view]))
-    self.window.contentView?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: ["view": view]))
-}
-
-func applicationWillTerminate(_ aNotification: Notification) {
-    // Insert code here to tear down your application
-}
-
-}
-
-class DrawView: NSView {
-var path: NSBezierPath = NSBezierPath()
-
-override func mouseDown(with event: NSEvent) {
-    path.move(to: convert(event.locationInWindow, from: nil))
-    needsDisplay = true
-}
-
-override func mouseDragged(with event: NSEvent) {
-    path.line(to: convert(event.locationInWindow, from: nil))
-    needsDisplay = true
-}
-
-override func draw(_ dirtyRect: NSRect) {
-    super.draw(dirtyRect)
-
-    NSColor.black.set()
-
-    path.lineJoinStyle = .roundLineJoinStyle
-    path.lineCapStyle = .roundLineCapStyle
-    path.lineWidth = 10.0
-    path.stroke()
-}
-}
-*/
 

@@ -164,7 +164,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 	open override func visit(collectionView view: KCCollectionView){
 		let prival = ExpansionPriorities(holizontalHugging: 	.fixed,
 						 holizontalCompression: .fixed,
-						 verticalHugging: 	.fixed,
+						 verticalHugging: 	.low,
 						 verticalCompression:	.fixed)
 		view.setExpandabilities(priorities: prival)
 	}
@@ -226,10 +226,12 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(bezierView view: KCBezierView) {
-		let prival = ExpansionPriorities(holizontalHugging: 	.high,
-						 holizontalCompression: .high,
-						 verticalHugging: 	.high,
-						 verticalCompression:	.high)
+		let holiz: ExpansionPriority = view.width  != nil ? .fixed : .high
+		let vert:  ExpansionPriority = view.height != nil ? .fixed : .high
+		let prival = ExpansionPriorities(holizontalHugging: 	holiz,
+						 holizontalCompression: holiz,
+						 verticalHugging: 	vert,
+						 verticalCompression:	vert)
 		view.setExpandabilities(priorities: prival)
 	}
 
