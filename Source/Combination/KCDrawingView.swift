@@ -14,19 +14,31 @@ import CoconutData
 
 open class KCDrawingView: KCStackView
 {
-	private var mToolsView:		KCCollectionView?
+	public enum ToolType {
+		case pencil
+		case paintBrush
+		case characterA
+	}
+
+	private var mCurrentTool:	ToolType
+	private var mMainToolsView:	KCCollectionView?
+	private var mSubToolsView:	KCCollectionView?
 	private var mBezierView:	KCBezierView?
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mToolsView	= nil
+		mCurrentTool	= .pencil
+		mMainToolsView	= nil
+		mSubToolsView	= nil
 		mBezierView	= nil
 		super.init(frame: frame) ;
 		setup()
 	}
 	#else
 	public override init(frame: CGRect){
-		mToolsView	= nil
+		mCurrentTool	= .pencil
+		mMainToolsView	= nil
+		mSubToolsView	= nil
 		mBezierView	= nil
 		super.init(frame: frame)
 		setup()
@@ -43,7 +55,9 @@ open class KCDrawingView: KCStackView
 	}
 
 	public required init?(coder: NSCoder) {
-		mToolsView	= nil
+		mCurrentTool	= .pencil
+		mMainToolsView	= nil
+		mSubToolsView	= nil
 		mBezierView	= nil
 		super.init(coder: coder)
 		setup()
@@ -53,11 +67,24 @@ open class KCDrawingView: KCStackView
 		/* Holizontal axis*/
 		self.axis = .horizontal
 
-		/* Add tools component */
-		let toolview = KCCollectionView()
-		toolview.store(data: allocateToolImages())
-		self.addArrangedSubView(subView: toolview)
-		mToolsView = toolview
+		/* Allocate tool box */
+		let toolbox = KCStackView()
+		toolbox.axis = .vertical
+		self.addArrangedSubView(subView: toolbox)
+
+		/* Add main tool component */
+		let maintool = KCCollectionView()
+		maintool.store(data: allocateMainToolImages())
+		maintool.numberOfColumuns = 2
+		toolbox.addArrangedSubView(subView: maintool)
+		mMainToolsView = maintool
+
+		/* Add sub tool component */
+		let subtool = KCCollectionView()
+		subtool.store(data: allocateSubToolImages(toolType: mCurrentTool))
+		subtool.numberOfColumuns = 1
+		toolbox.addArrangedSubView(subView: subtool)
+		mSubToolsView = subtool
 
 		/* Add drawing area */
 		let bezierview = KCBezierView()
@@ -65,12 +92,29 @@ open class KCDrawingView: KCStackView
 		mBezierView = bezierview
 	}
 
-	private func allocateToolImages() -> CNCollection {
+	private func allocateMainToolImages() -> CNCollection {
 		let images: Array<CNCollection.Item> = [
 			.image(CNSymbol.shared.URLOfSymbol(type: .pencil	)),
 			.image(CNSymbol.shared.URLOfSymbol(type: .paintbrush	)),
 			.image(CNSymbol.shared.URLOfSymbol(type: .characterA	))
 		]
+		let cdata = CNCollection()
+		cdata.add(header: "", footer: "", items: images)
+		return cdata
+	}
+
+	private func allocateSubToolImages(toolType tool: ToolType) -> CNCollection {
+		let images: Array<CNCollection.Item>
+		switch tool {
+		case .pencil, .paintBrush, .characterA:
+			images = [
+				.image(CNSymbol.shared.URLOfSymbol(type: .line1P )),
+				.image(CNSymbol.shared.URLOfSymbol(type: .line2P )),
+				.image(CNSymbol.shared.URLOfSymbol(type: .line4P )),
+				.image(CNSymbol.shared.URLOfSymbol(type: .line8P )),
+				.image(CNSymbol.shared.URLOfSymbol(type: .line16P))
+			]
+		}
 		let cdata = CNCollection()
 		cdata.add(header: "", footer: "", items: images)
 		return cdata

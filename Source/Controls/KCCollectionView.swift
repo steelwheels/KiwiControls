@@ -53,6 +53,11 @@ open class KCCollectionView: KCInterfaceView
 		}
 	}
 
+	public var numberOfColumuns: Int {
+		get         { return coreView.numberOfColumuns }
+		set(newval) { coreView.numberOfColumuns = newval }
+	}
+
 	public var numberOfSections: Int { get { return coreView.numberOfSections }}
 
 	public func numberOfItems(inSection sec: Int) -> Int? {
@@ -66,6 +71,10 @@ open class KCCollectionView: KCInterfaceView
 
 	public var selectedItems: Set<IndexPath> {
 		get 	    { return coreView.selectedItems   }
+	}
+
+	public func selectItem(indexPath path: IndexPath){
+		coreView.selectItem(indexPath: path)
 	}
 
 	public func set(callback cbfunc: @escaping SelectedCallback) {

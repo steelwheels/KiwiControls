@@ -93,7 +93,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		updateHeaderSize(collection: dat)
 
 		collectionView.reloadData()
-		self.select(section: 0, item: 0)
+		self.selectItem(indexPath: IndexPath(item: 0, section: 0))
 		self.invalidateIntrinsicContentSize()
 		self.requireLayout()
 	}
@@ -111,6 +111,11 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		self.headerReferenceSize = result
+	}
+
+	public var numberOfColumuns: Int {
+		get		{ return mNumberOfColumns }
+		set(newval)	{ mNumberOfColumns = newval }
 	}
 
 	public var numberOfSections: Int { get {
@@ -153,6 +158,14 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 				}
 			#endif
 		}
+	}
+
+	public func selectItem(indexPath path: IndexPath){
+		#if os(OSX)
+			collectionView.selectItems(at: [path], scrollPosition: .top)
+		#else
+			collectionView.selectItem(at: path, animated: true, scrollPosition: .top)
+		#endif
 	}
 
 	private var itemSize: KCSize {
@@ -336,23 +349,6 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 			return result
 		}
-	}
-
-	public func select(section sec: Int, item itm: Int) {
-		let path = IndexPath(item: itm, section: sec)
-		#if os(OSX)
-		if let item = collectionView.item(at: path) {
-			item.isSelected = true
-		} else {
-			CNLog(logLevel: .error, message: "Invalid index (\(sec), \(itm))", atFunction: #function, inFile: #file)
-		}
-		#else
-		if let cell = collectionView.cellForItem(at: path) {
-			cell.isSelected = true
-		} else {
-			CNLog(logLevel: .error, message: "Invalid index (\(sec), \(itm))", atFunction: #function, inFile: #file)
-		}
-		#endif
 	}
 
 	public func set(callback cbfunc: @escaping SelectedCallback) {
