@@ -225,7 +225,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
-	open override func visit(bezierView view: KCBezierView) {
+	open override func visit(vectorGraphics view: KCVectorGraphics) {
 		let holiz: ExpansionPriority = view.width  != nil ? .fixed : .high
 		let vert:  ExpansionPriority = view.height != nil ? .fixed : .high
 		let prival = ExpansionPriorities(holizontalHugging: 	holiz,

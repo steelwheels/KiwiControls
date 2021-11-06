@@ -169,9 +169,9 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
-	open override func visit(bezierView view: KCBezierView){
+	open override func visit(vectorGraphics view: KCVectorGraphics){
 		let fsection = CNTextSection()
-		fsection.header = "drawing {" ; fsection.footer = "}"
+		fsection.header = "vector-graphics {" ; fsection.footer = "}"
 		mSection.add(text: fsection)
 	}
 

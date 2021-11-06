@@ -10,7 +10,6 @@ import Foundation
 
 public enum KCViewStructure {
 	case none
-	case bezierView
 	case bitmapView
 	case button
 	case checkBox
@@ -29,6 +28,7 @@ public enum KCViewStructure {
 	case table
 	case terminalView
 	case textEdit
+	case vectorGraphics
 
 	public func isSame(_ s0: KCViewStructure) -> Bool {
 		let result: Bool
@@ -36,11 +36,6 @@ public enum KCViewStructure {
 		case .none:
 			switch s0 {
 			case .none:		result = true
-			default:		result = false
-			}
-		case .bezierView:
-			switch s0 {
-			case .bezierView:	result = true
 			default:		result = false
 			}
 		case .bitmapView:
@@ -157,6 +152,11 @@ public enum KCViewStructure {
 			case .textEdit:		result = true
 			default:		result = false
 			}
+		case .vectorGraphics:
+			switch s0 {
+			case .vectorGraphics:	result = true
+			default:		result = false
+			}
 		}
 		return result
 	}
@@ -258,7 +258,7 @@ public class KCViewAnalyzer: KCViewVisitor
 		result = .colorSelector
 	}
 
-	public override func visit(bezierView view: KCBezierView){
+	public override func visit(vectorGraphics view: KCVectorGraphics){
 		result = .popupMenu
 	}
 

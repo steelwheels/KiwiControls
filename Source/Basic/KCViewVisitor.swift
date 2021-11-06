@@ -81,7 +81,7 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
-	open func visit(bezierView view: KCBezierView){
+	open func visit(vectorGraphics view: KCVectorGraphics){
 	}
 
 	open func visit(graphics2DView view: KCGraphics2DView){

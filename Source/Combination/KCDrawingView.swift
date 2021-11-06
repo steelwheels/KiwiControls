@@ -14,32 +14,32 @@ import CoconutData
 
 open class KCDrawingView: KCStackView
 {
-	public enum ToolType {
+	public enum MainToolType {
 		case pencil
 		case paintBrush
 		case characterA
 	}
 
-	private var mCurrentTool:	ToolType
+	private var mCurrentMainTool:	MainToolType
 	private var mMainToolsView:	KCCollectionView?
 	private var mSubToolsView:	KCCollectionView?
-	private var mBezierView:	KCBezierView?
+	private var mBezierView:	KCVectorGraphics?
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mCurrentTool	= .pencil
-		mMainToolsView	= nil
-		mSubToolsView	= nil
-		mBezierView	= nil
+		mCurrentMainTool	= .pencil
+		mMainToolsView		= nil
+		mSubToolsView		= nil
+		mBezierView		= nil
 		super.init(frame: frame) ;
 		setup()
 	}
 	#else
 	public override init(frame: CGRect){
-		mCurrentTool	= .pencil
-		mMainToolsView	= nil
-		mSubToolsView	= nil
-		mBezierView	= nil
+		mCurrentMainTool	= .pencil
+		mMainToolsView		= nil
+		mSubToolsView		= nil
+		mBezierView		= nil
 		super.init(frame: frame)
 		setup()
 	}
@@ -55,10 +55,10 @@ open class KCDrawingView: KCStackView
 	}
 
 	public required init?(coder: NSCoder) {
-		mCurrentTool	= .pencil
-		mMainToolsView	= nil
-		mSubToolsView	= nil
-		mBezierView	= nil
+		mCurrentMainTool	= .pencil
+		mMainToolsView		= nil
+		mSubToolsView		= nil
+		mBezierView		= nil
 		super.init(coder: coder)
 		setup()
 	}
@@ -76,18 +76,26 @@ open class KCDrawingView: KCStackView
 		let maintool = KCCollectionView()
 		maintool.store(data: allocateMainToolImages())
 		maintool.numberOfColumuns = 2
+		maintool.set(callback: {
+			(_ section: Int, _ item: Int) -> Void in
+			self.selectMainTool(item: item)
+		})
 		toolbox.addArrangedSubView(subView: maintool)
 		mMainToolsView = maintool
 
 		/* Add sub tool component */
 		let subtool = KCCollectionView()
-		subtool.store(data: allocateSubToolImages(toolType: mCurrentTool))
+		subtool.store(data: allocateSubToolImages(toolType: mCurrentMainTool))
 		subtool.numberOfColumuns = 1
+		subtool.set(callback: {
+			(_ section: Int, _ item: Int) -> Void in
+			self.selectSubTool(item: item)
+		})
 		toolbox.addArrangedSubView(subView: subtool)
 		mSubToolsView = subtool
 
 		/* Add drawing area */
-		let bezierview = KCBezierView()
+		let bezierview = KCVectorGraphics()
 		self.addArrangedSubView(subView: bezierview)
 		mBezierView = bezierview
 	}
@@ -103,7 +111,23 @@ open class KCDrawingView: KCStackView
 		return cdata
 	}
 
-	private func allocateSubToolImages(toolType tool: ToolType) -> CNCollection {
+	private func selectMainTool(item itm: Int){
+		let newtool: MainToolType
+		switch itm {
+		case 0:
+			newtool = .pencil
+		case 1:
+			newtool = .paintBrush
+		case 2:
+			newtool = .characterA
+		default:
+			CNLog(logLevel: .error, message: "Unexpected main tool item", atFunction: #function, inFile: #file)
+			return
+		}
+		mCurrentMainTool = newtool
+	}
+	
+	private func allocateSubToolImages(toolType tool: MainToolType) -> CNCollection {
 		let images: Array<CNCollection.Item>
 		switch tool {
 		case .pencil, .paintBrush, .characterA:
@@ -118,6 +142,25 @@ open class KCDrawingView: KCStackView
 		let cdata = CNCollection()
 		cdata.add(header: "", footer: "", items: images)
 		return cdata
+	}
+
+	private func selectSubTool(item itm: Int){
+		switch mCurrentMainTool {
+		case .pencil:
+			switch itm {
+			case 0:	bezierLineWidth =  1.0	// line1P
+			case 1: bezierLineWidth =  2.0	// line2P
+			case 2: bezierLineWidth =  4.0	// line4P
+			case 3: bezierLineWidth =  8.0	// line8P
+			case 4: bezierLineWidth = 16.0	// line16P
+			default:
+				CNLog(logLevel: .error, message: "Unexpected item: \(itm)", atFunction: #function, inFile: #file)
+			}
+		case .characterA:
+			break
+		case .paintBrush:
+			break
+		}
 	}
 
 	public var drawingWidth: CGFloat? {
@@ -148,6 +191,24 @@ open class KCDrawingView: KCStackView
 		set(newval){
 			if let view = mBezierView {
 				view.height = newval
+			} else {
+				CNLog(logLevel: .error, message: "No bezier view", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	private var bezierLineWidth: CGFloat {
+		get {
+			if let bezier = mBezierView {
+				return bezier.lineWidth
+			} else {
+				CNLog(logLevel: .error, message: "No bezier view", atFunction: #function, inFile: #file)
+				return 0.0
+			}
+		}
+		set(newval){
+			if let bezier = mBezierView {
+				bezier.lineWidth = newval
 			} else {
 				CNLog(logLevel: .error, message: "No bezier view", atFunction: #function, inFile: #file)
 			}

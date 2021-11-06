@@ -163,7 +163,7 @@ public class KCLayoutInvalidator: KCViewVisitor
 		mVisitResult = doinv
 	}
 
-	public override func visit(bezierView view: KCBezierView){
+	public override func visit(vectorGraphics view: KCVectorGraphics){
 		let doinv = checkTarget(view: view)
 		doInvalidate(view: view, doInvalidate: doinv)
 		mVisitResult = doinv

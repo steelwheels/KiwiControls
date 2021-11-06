@@ -1,6 +1,6 @@
 /*
- * @file	KCBezierView.swift
- * @brief	Define KCBezierView class
+ * @file	KCVectorGraphics.swift
+ * @brief	Define KCVectorGraphics class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  * @par Reference
@@ -14,29 +14,29 @@
 #endif
 import CoconutData
 
-open class KCBezierView: KCView
+open class KCVectorGraphics: KCView
 {
-	private var mBezierPath:	CNBezierPath
+	private var mGenerator:		CNVecroGraphicsGenerator
 	private var mWidth:		CGFloat?
 	private var mHeight:		CGFloat?
 
 	public override init(frame: KCRect) {
-		mBezierPath = CNBezierPath()
+		mGenerator  = CNVecroGraphicsGenerator()
 		mWidth	    = nil
 		mHeight	    = nil
 		super.init(frame: frame)
 	}
 
 	required public init?(coder: NSCoder) {
-		mBezierPath = CNBezierPath()
+		mGenerator  = CNVecroGraphicsGenerator()
 		mWidth	    = nil
 		mHeight	    = nil
 		super.init(coder: coder)
 	}
 
 	public var lineWidth: CGFloat {
-		get	    { return mBezierPath.lineWidth	}
-		set(newval) { mBezierPath.lineWidth = newval 	}
+		get	    { return mGenerator.lineWidth	}
+		set(newval) { mGenerator.lineWidth = newval 	}
 	}
 
 	public var width: CGFloat? {
@@ -52,36 +52,35 @@ open class KCBezierView: KCView
 	public override func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
 		switch event {
 		case .down:
-			mBezierPath.addDown(point: position, in: self.frame.size)
+			mGenerator.addDown(point: position, in: self.frame.size)
 		case .up:
-			mBezierPath.addUp(point: position, in: self.frame.size)
+			mGenerator.addUp(point: position, in: self.frame.size)
 		case .drag:
-			mBezierPath.addDown(point: position, in: self.frame.size)
+			mGenerator.addDrag(point: position, in: self.frame.size)
 		}
 		self.requireDisplay()
 	}
 
 	public override func draw(_ dirtyRect: KCRect) {
-		let bezier = KCBezierPath(rect: self.bounds)
-		bezier.lineJoinStyle = .round
-		bezier.lineCapStyle  = .round
-		bezier.lineWidth     = mBezierPath.lineWidth
-		mBezierPath.forEach({
-			(_ point: CNBezierPath.Path) -> Void in
-			switch point {
-			case .moveTo(let lpt):
-				let ppt = logicalToPhysical(point: lpt, in: self.bounds)
-				bezier.move(to: ppt)
-			case .lineTo(let lpt):
-				let ppt = logicalToPhysical(point: lpt, in: self.bounds)
-				bezier.addLine(to: ppt)
-			case .lineWidth(let wid):
-				bezier.lineWidth = wid
+		for gr in mGenerator.contents {
+			switch gr {
+			case .path(let path):
+				let bezier = KCBezierPath(rect: self.bounds)
+				bezier.lineJoinStyle = .round
+				bezier.lineCapStyle  = .round
+				bezier.lineWidth     = path.width
+				let points = path.points(inRect: self.bounds)
+				if points.count >= 2 {
+					bezier.move(to: points[0])
+					for i in 1..<points.count {
+						bezier.addLine(to: points[i])
+					}
+				}
+				bezier.stroke()
 			@unknown default:
-				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
-		})
-		bezier.stroke()
+		}
 	}
 
 	private func logicalToPhysical(point pt: CGPoint, in rect: CGRect) -> CGPoint {
@@ -100,7 +99,7 @@ open class KCBezierView: KCView
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){
-		vis.visit(bezierView: self)
+		vis.visit(vectorGraphics: self)
 	}
 }
 
