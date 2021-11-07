@@ -101,12 +101,24 @@ public extension KCEdgeInsets {
 	}
 }
 
-#if os(OSX)
 public extension KCBezierPath
 {
+	#if os(OSX)
 	func addLine(to pt: CGPoint) {
 		self.line(to: pt)
 	}
+	#else
+	func appendRect(_ rt: CGRect){
+		let x0 = rt.origin.x
+		let y0 = rt.origin.y
+		let x1 = x0 + rt.size.width
+		let y1 = y0 + rt.size.height
+		self.move(to: CGPoint(x: x0, y: y0))
+		self.addLine(to: CGPoint(x: x1, y: y0))
+		self.addLine(to: CGPoint(x: x1, y: y1))
+		self.addLine(to: CGPoint(x: x0, y: y1))
+		self.addLine(to: CGPoint(x: x0, y: y0))
+	}
+	#endif
 }
-#endif
 

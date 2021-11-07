@@ -14,20 +14,12 @@ import CoconutData
 
 open class KCDrawingView: KCStackView
 {
-	public enum MainToolType {
-		case pencil
-		case paintBrush
-		case characterA
-	}
-
-	private var mCurrentMainTool:	MainToolType
 	private var mMainToolsView:	KCCollectionView?
 	private var mSubToolsView:	KCCollectionView?
 	private var mBezierView:	KCVectorGraphics?
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mCurrentMainTool	= .pencil
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mBezierView		= nil
@@ -36,7 +28,6 @@ open class KCDrawingView: KCStackView
 	}
 	#else
 	public override init(frame: CGRect){
-		mCurrentMainTool	= .pencil
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mBezierView		= nil
@@ -55,12 +46,26 @@ open class KCDrawingView: KCStackView
 	}
 
 	public required init?(coder: NSCoder) {
-		mCurrentMainTool	= .pencil
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mBezierView		= nil
 		super.init(coder: coder)
 		setup()
+	}
+
+	public var mainTool: CNVectorGraphicsType {
+		get {
+			if let view = mBezierView {
+				return view.currentType
+			} else {
+				return .path
+			}
+		}
+		set(newval){
+			if let view = mBezierView {
+				view.currentType = newval
+			}
+		}
 	}
 
 	private func setup(){
@@ -85,7 +90,7 @@ open class KCDrawingView: KCStackView
 
 		/* Add sub tool component */
 		let subtool = KCCollectionView()
-		subtool.store(data: allocateSubToolImages(toolType: mCurrentMainTool))
+		subtool.store(data: allocateSubToolImages(toolType: self.mainTool))
 		subtool.numberOfColumuns = 1
 		subtool.set(callback: {
 			(_ section: Int, _ item: Int) -> Void in
@@ -102,9 +107,9 @@ open class KCDrawingView: KCStackView
 
 	private func allocateMainToolImages() -> CNCollection {
 		let images: Array<CNCollection.Item> = [
-			.image(CNSymbol.shared.URLOfSymbol(type: .pencil	)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .paintbrush	)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .characterA	))
+			.image(CNSymbol.shared.URLOfSymbol(type: .pencil		)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle		)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangleFilled	))
 		]
 		let cdata = CNCollection()
 		cdata.add(header: "", footer: "", items: images)
@@ -112,25 +117,25 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func selectMainTool(item itm: Int){
-		let newtool: MainToolType
+		let newtype: CNVectorGraphicsType
 		switch itm {
 		case 0:
-			newtool = .pencil
+			newtype = .path
 		case 1:
-			newtool = .paintBrush
+			newtype = .rect
 		case 2:
-			newtool = .characterA
+			newtype = .rect
 		default:
 			CNLog(logLevel: .error, message: "Unexpected main tool item", atFunction: #function, inFile: #file)
 			return
 		}
-		mCurrentMainTool = newtool
+		self.mainTool = newtype
 	}
 	
-	private func allocateSubToolImages(toolType tool: MainToolType) -> CNCollection {
+	private func allocateSubToolImages(toolType tool: CNVectorGraphicsType) -> CNCollection {
 		let images: Array<CNCollection.Item>
 		switch tool {
-		case .pencil, .paintBrush, .characterA:
+		case .path, .rect:
 			images = [
 				.image(CNSymbol.shared.URLOfSymbol(type: .line1P )),
 				.image(CNSymbol.shared.URLOfSymbol(type: .line2P )),
@@ -138,6 +143,9 @@ open class KCDrawingView: KCStackView
 				.image(CNSymbol.shared.URLOfSymbol(type: .line8P )),
 				.image(CNSymbol.shared.URLOfSymbol(type: .line16P))
 			]
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown graphics type", atFunction: #function, inFile: #file)
+			images = []
 		}
 		let cdata = CNCollection()
 		cdata.add(header: "", footer: "", items: images)
@@ -145,8 +153,8 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func selectSubTool(item itm: Int){
-		switch mCurrentMainTool {
-		case .pencil:
+		switch self.mainTool {
+		case .path:
 			switch itm {
 			case 0:	bezierLineWidth =  1.0	// line1P
 			case 1: bezierLineWidth =  2.0	// line2P
@@ -156,10 +164,10 @@ open class KCDrawingView: KCStackView
 			default:
 				CNLog(logLevel: .error, message: "Unexpected item: \(itm)", atFunction: #function, inFile: #file)
 			}
-		case .characterA:
+		case .rect:
 			break
-		case .paintBrush:
-			break
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown graphics type", atFunction: #function, inFile: #file)
 		}
 	}
 

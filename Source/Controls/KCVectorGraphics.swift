@@ -21,17 +21,22 @@ open class KCVectorGraphics: KCView
 	private var mHeight:		CGFloat?
 
 	public override init(frame: KCRect) {
-		mGenerator  = CNVecroGraphicsGenerator()
+		mGenerator  = CNVecroGraphicsGenerator(type: .path)
 		mWidth	    = nil
 		mHeight	    = nil
 		super.init(frame: frame)
 	}
 
 	required public init?(coder: NSCoder) {
-		mGenerator  = CNVecroGraphicsGenerator()
+		mGenerator  = CNVecroGraphicsGenerator(type: .path)
 		mWidth	    = nil
 		mHeight	    = nil
 		super.init(coder: coder)
+	}
+
+	public var currentType: CNVectorGraphicsType {
+		get         { return mGenerator.currentType   }
+		set(newval) { mGenerator.currentType = newval }
 	}
 
 	public var lineWidth: CGFloat {
@@ -63,13 +68,13 @@ open class KCVectorGraphics: KCView
 
 	public override func draw(_ dirtyRect: KCRect) {
 		for gr in mGenerator.contents {
+			let bezier = KCBezierPath()
+			bezier.lineJoinStyle = .round
+			bezier.lineCapStyle  = .round
 			switch gr {
 			case .path(let path):
-				let bezier = KCBezierPath(rect: self.bounds)
-				bezier.lineJoinStyle = .round
-				bezier.lineCapStyle  = .round
-				bezier.lineWidth     = path.width
-				let points = path.points(inRect: self.bounds)
+				bezier.lineWidth = path.width
+				let points = path.normalize(inRect: self.bounds)
 				if points.count >= 2 {
 					bezier.move(to: points[0])
 					for i in 1..<points.count {
@@ -77,6 +82,12 @@ open class KCVectorGraphics: KCView
 					}
 				}
 				bezier.stroke()
+			case .rect(let rect):
+				if let normrect = rect.normalize(inRect: self.bounds) {
+					bezier.lineWidth = rect.width
+					bezier.appendRect(normrect)
+					bezier.stroke()
+				}
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
