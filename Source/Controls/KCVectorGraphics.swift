@@ -44,6 +44,16 @@ open class KCVectorGraphics: KCView
 		set(newval) { mGenerator.lineWidth = newval 	}
 	}
 
+	public var strokeColor: CNColor {
+		get         { return mGenerator.strokeColor }
+		set(newval) { mGenerator.strokeColor = newval }
+	}
+
+	public var fillColor: CNColor {
+		get         { return mGenerator.fillColor }
+		set(newval) { mGenerator.fillColor = newval }
+	}
+
 	public var width: CGFloat? {
 		get         { return mWidth    }
 		set(newval) { mWidth = newval  }
@@ -73,7 +83,13 @@ open class KCVectorGraphics: KCView
 			bezier.lineCapStyle  = .round
 			switch gr {
 			case .path(let path):
-				bezier.lineWidth = path.width
+				bezier.lineWidth = path.lineWidth
+				if !path.strokeColor.isClear {
+					path.strokeColor.setStroke()
+				}
+				if !path.fillColor.isClear {
+					path.fillColor.setFill()
+				}
 				let points = path.normalize(inRect: self.bounds)
 				if points.count >= 2 {
 					bezier.move(to: points[0])
@@ -84,7 +100,7 @@ open class KCVectorGraphics: KCView
 				bezier.stroke()
 			case .rect(let rect):
 				if let normrect = rect.normalize(inRect: self.bounds) {
-					bezier.lineWidth = rect.width
+					bezier.lineWidth = rect.lineWidth
 					bezier.appendRect(normrect)
 					bezier.stroke()
 				}

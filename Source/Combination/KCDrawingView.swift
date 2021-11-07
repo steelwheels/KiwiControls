@@ -14,15 +14,19 @@ import CoconutData
 
 open class KCDrawingView: KCStackView
 {
-	private var mMainToolsView:	KCCollectionView?
-	private var mSubToolsView:	KCCollectionView?
-	private var mBezierView:	KCVectorGraphics?
+	private var mMainToolsView:		KCCollectionView?
+	private var mSubToolsView:		KCCollectionView?
+	private var mStrokeColorView:		KCColorSelector?
+	private var mFillColorView:		KCColorSelector?
+	private var mVectorGraphicsView:	KCVectorGraphics?
 
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mMainToolsView		= nil
 		mSubToolsView		= nil
-		mBezierView		= nil
+		mStrokeColorView	= nil
+		mFillColorView		= nil
+		mVectorGraphicsView	= nil
 		super.init(frame: frame) ;
 		setup()
 	}
@@ -30,7 +34,9 @@ open class KCDrawingView: KCStackView
 	public override init(frame: CGRect){
 		mMainToolsView		= nil
 		mSubToolsView		= nil
-		mBezierView		= nil
+		mStrokeColorView	= nil
+		mFillColorView		= nil
+		mVectorGraphicsView	= nil
 		super.init(frame: frame)
 		setup()
 	}
@@ -48,22 +54,54 @@ open class KCDrawingView: KCStackView
 	public required init?(coder: NSCoder) {
 		mMainToolsView		= nil
 		mSubToolsView		= nil
-		mBezierView		= nil
+		mStrokeColorView	= nil
+		mFillColorView		= nil
+		mVectorGraphicsView	= nil
 		super.init(coder: coder)
 		setup()
 	}
 
 	public var mainTool: CNVectorGraphicsType {
 		get {
-			if let view = mBezierView {
+			if let view = mVectorGraphicsView {
 				return view.currentType
 			} else {
 				return .path
 			}
 		}
 		set(newval){
-			if let view = mBezierView {
+			if let view = mVectorGraphicsView {
 				view.currentType = newval
+			}
+		}
+	}
+
+	public var strokeColor: CNColor {
+		get {
+			if let view = mVectorGraphicsView {
+				return view.strokeColor
+			} else {
+				return CNColor.clear
+			}
+		}
+		set(newval) {
+			if let view = mVectorGraphicsView {
+				view.strokeColor = newval
+			}
+		}
+	}
+
+	public var fillColor: CNColor {
+		get {
+			if let view = mVectorGraphicsView {
+				return view.fillColor
+			} else {
+				return CNColor.clear
+			}
+		}
+		set(newval) {
+			if let view = mVectorGraphicsView {
+				view.fillColor = newval
 			}
 		}
 	}
@@ -99,10 +137,35 @@ open class KCDrawingView: KCStackView
 		toolbox.addArrangedSubView(subView: subtool)
 		mSubToolsView = subtool
 
+		/* Add color tool component */
+		let strokeview   = KCColorSelector()
+		strokeview.callbackFunc = {
+			(_ color: CNColor) -> Void in
+			self.strokeColor = color
+		}
+		mStrokeColorView = strokeview
+
+		let fillview     = KCColorSelector()
+		fillview.callbackFunc = {
+			(_ color: CNColor) -> Void in
+			self.fillColor = color
+		}
+		mFillColorView	 = fillview
+
+		let colorbox    = KCStackView()
+		colorbox.axis   = .horizontal
+		colorbox.addArrangedSubView(subView: strokeview)
+		colorbox.addArrangedSubView(subView: fillview)
+		toolbox.addArrangedSubView(subView: colorbox)
+
 		/* Add drawing area */
 		let bezierview = KCVectorGraphics()
 		self.addArrangedSubView(subView: bezierview)
-		mBezierView = bezierview
+		mVectorGraphicsView = bezierview
+
+		/* assign default color */
+		strokeview.color = bezierview.strokeColor
+		fillview.color   = bezierview.fillColor
 	}
 
 	private func allocateMainToolImages() -> CNCollection {
@@ -173,14 +236,14 @@ open class KCDrawingView: KCStackView
 
 	public var drawingWidth: CGFloat? {
 		get {
-			if let view = mBezierView {
+			if let view = mVectorGraphicsView {
 				return view.width
 			} else {
 				return nil
 			}
 		}
 		set(newval){
-			if let view = mBezierView {
+			if let view = mVectorGraphicsView {
 				view.width = newval
 			} else {
 				CNLog(logLevel: .error, message: "No bezier view", atFunction: #function, inFile: #file)
@@ -190,14 +253,14 @@ open class KCDrawingView: KCStackView
 
 	public var drawingHeight: CGFloat? {
 		get {
-			if let view = mBezierView {
+			if let view = mVectorGraphicsView {
 				return view.height
 			} else {
 				return nil
 			}
 		}
 		set(newval){
-			if let view = mBezierView {
+			if let view = mVectorGraphicsView {
 				view.height = newval
 			} else {
 				CNLog(logLevel: .error, message: "No bezier view", atFunction: #function, inFile: #file)
@@ -207,7 +270,7 @@ open class KCDrawingView: KCStackView
 
 	private var bezierLineWidth: CGFloat {
 		get {
-			if let bezier = mBezierView {
+			if let bezier = mVectorGraphicsView {
 				return bezier.lineWidth
 			} else {
 				CNLog(logLevel: .error, message: "No bezier view", atFunction: #function, inFile: #file)
@@ -215,7 +278,7 @@ open class KCDrawingView: KCStackView
 			}
 		}
 		set(newval){
-			if let bezier = mBezierView {
+			if let bezier = mVectorGraphicsView {
 				bezier.lineWidth = newval
 			} else {
 				CNLog(logLevel: .error, message: "No bezier view", atFunction: #function, inFile: #file)
