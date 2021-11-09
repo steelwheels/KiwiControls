@@ -21,14 +21,14 @@ open class KCVectorGraphics: KCView
 	private var mHeight:		CGFloat?
 
 	public override init(frame: KCRect) {
-		mGenerator  = CNVecroGraphicsGenerator(type: .path)
+		mGenerator  = CNVecroGraphicsGenerator()
 		mWidth	    = nil
 		mHeight	    = nil
 		super.init(frame: frame)
 	}
 
 	required public init?(coder: NSCoder) {
-		mGenerator  = CNVecroGraphicsGenerator(type: .path)
+		mGenerator  = CNVecroGraphicsGenerator()
 		mWidth	    = nil
 		mHeight	    = nil
 		super.init(coder: coder)
@@ -83,12 +83,16 @@ open class KCVectorGraphics: KCView
 			bezier.lineCapStyle  = .round
 			switch gr {
 			case .path(let path):
+				let dofill = path.doFill
 				bezier.lineWidth = path.lineWidth
-				if !path.strokeColor.isClear {
-					path.strokeColor.setStroke()
-				}
-				if !path.fillColor.isClear {
-					path.fillColor.setFill()
+				if dofill {
+					if !path.fillColor.isClear {
+						path.fillColor.setFill()
+					}
+				} else {
+					if !path.strokeColor.isClear {
+						path.strokeColor.setStroke()
+					}
 				}
 				let points = path.normalize(inRect: self.bounds)
 				if points.count >= 2 {
@@ -97,12 +101,30 @@ open class KCVectorGraphics: KCView
 						bezier.addLine(to: points[i])
 					}
 				}
-				bezier.stroke()
+				if dofill {
+					bezier.fill()
+				} else {
+					bezier.stroke()
+				}
 			case .rect(let rect):
 				if let normrect = rect.normalize(inRect: self.bounds) {
+					let dofill = rect.doFill
 					bezier.lineWidth = rect.lineWidth
 					bezier.appendRect(normrect)
-					bezier.stroke()
+					if dofill {
+						if !rect.fillColor.isClear {
+							rect.fillColor.setFill()
+						}
+					} else {
+						if !rect.strokeColor.isClear {
+							rect.strokeColor.setStroke()
+						}
+					}
+					if dofill {
+						bezier.fill()
+					} else {
+						bezier.stroke()
+					}
 				}
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)

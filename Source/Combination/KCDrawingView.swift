@@ -66,7 +66,7 @@ open class KCDrawingView: KCStackView
 			if let view = mVectorGraphicsView {
 				return view.currentType
 			} else {
-				return .path
+				return .path(false)
 			}
 		}
 		set(newval){
@@ -183,11 +183,11 @@ open class KCDrawingView: KCStackView
 		let newtype: CNVectorGraphicsType
 		switch itm {
 		case 0:
-			newtype = .path
+			newtype = .path(false)
 		case 1:
-			newtype = .rect
+			newtype = .rect(false)
 		case 2:
-			newtype = .rect
+			newtype = .rect(true)
 		default:
 			CNLog(logLevel: .error, message: "Unexpected main tool item", atFunction: #function, inFile: #file)
 			return
