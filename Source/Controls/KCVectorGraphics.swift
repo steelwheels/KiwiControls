@@ -85,15 +85,7 @@ open class KCVectorGraphics: KCView
 			case .path(let path):
 				let dofill = path.doFill
 				bezier.lineWidth = path.lineWidth
-				if dofill {
-					if !path.fillColor.isClear {
-						path.fillColor.setFill()
-					}
-				} else {
-					if !path.strokeColor.isClear {
-						path.strokeColor.setStroke()
-					}
-				}
+				setPathColor(vectorObject: path, doFill: dofill)
 				let points = path.normalize(inRect: self.bounds)
 				if points.count >= 2 {
 					bezier.move(to: points[0])
@@ -101,34 +93,42 @@ open class KCVectorGraphics: KCView
 						bezier.addLine(to: points[i])
 					}
 				}
-				if dofill {
-					bezier.fill()
-				} else {
-					bezier.stroke()
-				}
+				drawPath(bezierPath: bezier, doFill: dofill)
 			case .rect(let rect):
 				if let normrect = rect.normalize(inRect: self.bounds) {
 					let dofill = rect.doFill
 					bezier.lineWidth = rect.lineWidth
-					bezier.appendRect(normrect)
-					if dofill {
-						if !rect.fillColor.isClear {
-							rect.fillColor.setFill()
-						}
+					if rect.isRounded {
+						bezier.appendRoundedRect(normrect, xRadius: 10.0, yRadius: 10.0)
 					} else {
-						if !rect.strokeColor.isClear {
-							rect.strokeColor.setStroke()
-						}
+						bezier.appendRect(normrect)
 					}
-					if dofill {
-						bezier.fill()
-					} else {
-						bezier.stroke()
-					}
+					setPathColor(vectorObject: rect, doFill: dofill)
+					drawPath(bezierPath: bezier, doFill: dofill)
 				}
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
+		}
+	}
+
+	private func setPathColor(vectorObject vobj: CNVectorObject, doFill fill: Bool) {
+		if fill {
+			if !vobj.fillColor.isClear {
+				vobj.fillColor.setFill()
+			}
+		} else {
+			if !vobj.strokeColor.isClear {
+				vobj.strokeColor.setStroke()
+			}
+		}
+	}
+
+	private func drawPath(bezierPath path: KCBezierPath, doFill fill: Bool){
+		if fill {
+			path.fill()
+		} else {
+			path.stroke()
 		}
 	}
 

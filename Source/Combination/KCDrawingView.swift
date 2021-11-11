@@ -170,9 +170,12 @@ open class KCDrawingView: KCStackView
 
 	private func allocateMainToolImages() -> CNCollection {
 		let images: Array<CNCollection.Item> = [
-			.image(CNSymbol.shared.URLOfSymbol(type: .pencil		)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle		)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangleFilled	))
+			.image(CNSymbol.shared.URLOfSymbol(type: .pencil(false)			)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .pencil(true)			)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(false, false)	)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(true,  false)	)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(false, true)	)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(true,  true)	))
 		]
 		let cdata = CNCollection()
 		cdata.add(header: "", footer: "", items: images)
@@ -182,12 +185,12 @@ open class KCDrawingView: KCStackView
 	private func selectMainTool(item itm: Int){
 		let newtype: CNVectorGraphicsType
 		switch itm {
-		case 0:
-			newtype = .path(false)
-		case 1:
-			newtype = .rect(false)
-		case 2:
-			newtype = .rect(true)
+		case 0:	newtype = .path(false)
+		case 1:	newtype = .path(true)
+		case 2:	newtype = .rect(false, false)
+		case 3:	newtype = .rect(true,  false)
+		case 4: newtype = .rect(false, true)
+		case 5: newtype = .rect(true,  true)
 		default:
 			CNLog(logLevel: .error, message: "Unexpected main tool item", atFunction: #function, inFile: #file)
 			return
@@ -217,7 +220,7 @@ open class KCDrawingView: KCStackView
 
 	private func selectSubTool(item itm: Int){
 		switch self.mainTool {
-		case .path:
+		case .path, .rect:
 			switch itm {
 			case 0:	bezierLineWidth =  1.0	// line1P
 			case 1: bezierLineWidth =  2.0	// line2P
@@ -227,8 +230,6 @@ open class KCDrawingView: KCStackView
 			default:
 				CNLog(logLevel: .error, message: "Unexpected item: \(itm)", atFunction: #function, inFile: #file)
 			}
-		case .rect:
-			break
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown graphics type", atFunction: #function, inFile: #file)
 		}

@@ -70,8 +70,10 @@ public class SingleViewController: KCSingleViewController
 		let newelm0: Array<CNCollection.Item> = [
 			.image(CNSymbol.shared.URLOfSymbol(type: .chevronForward)),
 			.image(CNSymbol.shared.URLOfSymbol(type: .chevronBackward)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangleFilled))
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(false, false))),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(false, true))),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(true, false))),
+			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(true, true))),
 		]
 		let newelm1: Array<CNCollection.Item> = [
 			.image(CNSymbol.shared.URLOfSymbol(type: .handRaised)),

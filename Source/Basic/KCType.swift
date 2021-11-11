@@ -119,6 +119,10 @@ public extension KCBezierPath
 		self.addLine(to: CGPoint(x: x0, y: y1))
 		self.addLine(to: CGPoint(x: x0, y: y0))
 	}
+
+	func appendRoundedRect(_ rt: CGRect, xRadius xrad: CGFloat, yRadius yrad: CGFloat){
+		self.appendRect(rt)
+	}
 	#endif
 }
 
