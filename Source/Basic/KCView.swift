@@ -256,10 +256,7 @@ open class KCView : KCViewBase
 	}
 	#else
 	private func eventLocation(event evt: NSEvent) -> CGPoint {
-		let pos = convert(evt.locationInWindow, from: self)
-		//Swift.print(" -> event:\(pos.description)")
-		let diffpos = pos - self.frame.origin
-		return diffpos
+		return self.convert(evt.locationInWindow, from: nil)
 	}
 	#endif
 

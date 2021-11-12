@@ -86,16 +86,17 @@ open class KCVectorGraphics: KCView
 				let dofill = path.doFill
 				bezier.lineWidth = path.lineWidth
 				setPathColor(vectorObject: path, doFill: dofill)
-				let points = path.normalize(inRect: self.bounds)
+				let points = path.normalize(in: self.frame.size)
 				if points.count >= 2 {
 					bezier.move(to: points[0])
 					for i in 1..<points.count {
 						bezier.addLine(to: points[i])
+						NSLog("addLine: \(points[i].description) \(self.frame.description) \(self.bounds.description)")
 					}
 				}
 				drawPath(bezierPath: bezier, doFill: dofill)
 			case .rect(let rect):
-				if let normrect = rect.normalize(inRect: self.bounds) {
+				if let normrect = rect.normalize(in: self.frame.size) {
 					let dofill = rect.doFill
 					bezier.lineWidth = rect.lineWidth
 					if rect.isRounded {
@@ -130,12 +131,6 @@ open class KCVectorGraphics: KCView
 		} else {
 			path.stroke()
 		}
-	}
-
-	private func logicalToPhysical(point pt: CGPoint, in rect: CGRect) -> CGPoint {
-		let x = pt.x * rect.size.width  + rect.origin.x
-		let y = pt.y * rect.size.height + rect.origin.y
-		return CGPoint(x: x, y: y)
 	}
 
 	public override var intrinsicContentSize: KCSize {
