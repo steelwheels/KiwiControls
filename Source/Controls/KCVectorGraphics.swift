@@ -91,6 +91,18 @@ open class KCVectorGraphics: KCView
 		}
 	}
 
+	#if os(OSX)
+	public override var acceptsFirstResponder: Bool {
+		get { return true}
+	}
+
+	public override func keyDown(with event: NSEvent) {
+		if let key = event.characters {
+			NSLog("keydown (1): \(key)")
+		}
+	}
+	#endif
+
 	private func drawPath(vectorPath path: CNVectorPath){
 		let points = path.normalize(in: self.frame.size)
 		if points.count >= 2 {
