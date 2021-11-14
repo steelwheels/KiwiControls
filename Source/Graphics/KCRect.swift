@@ -66,6 +66,15 @@ extension KCRect
 		}
 	}
 
+	public static func outsideRect(rect rct: KCRect, spacing space: CGFloat) -> KCRect {
+		let margin = space * 2.0
+		let x	   = max(rct.origin.x - space, 0.0)
+		let y	   = max(rct.origin.y - space, 0.0)
+		let width  = rct.size.width  + margin
+		let height = rct.size.height + margin
+		return KCRect(x: x, y: y, width: width, height: height)
+	}
+
 	public static func pointsToRect(fromPoint fp:CGPoint, toPoint tp:CGPoint) -> CGRect {
 		var x, y, width, height: CGFloat
 		if fp.x >= tp.x {

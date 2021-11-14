@@ -107,6 +107,16 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func setup(){
+		let initmailtools: Array<CNVectorGraphicsType> = [
+			.string,
+			.path(false),
+			.path(true),
+			.rect(false, false),
+			.rect(true,  false),
+			.rect(false, true),
+			.rect(true,  true)
+		]
+
 		/* Holizontal axis*/
 		self.axis = .horizontal
 
@@ -117,7 +127,7 @@ open class KCDrawingView: KCStackView
 
 		/* Add main tool component */
 		let maintool = KCCollectionView()
-		maintool.store(data: allocateMainToolImages())
+		maintool.store(data: allocateMainToolImages(mainTools: initmailtools))
 		maintool.numberOfColumuns = 2
 		maintool.set(callback: {
 			(_ section: Int, _ item: Int) -> Void in
@@ -163,20 +173,31 @@ open class KCDrawingView: KCStackView
 		self.addArrangedSubView(subView: bezierview)
 		mVectorGraphicsView = bezierview
 
+		/* assign initial tool */
+		self.mainTool = initmailtools[0]
+		
 		/* assign default color */
 		strokeview.color = bezierview.strokeColor
 		fillview.color   = bezierview.fillColor
 	}
 
-	private func allocateMainToolImages() -> CNCollection {
-		let images: Array<CNCollection.Item> = [
-			.image(CNSymbol.shared.URLOfSymbol(type: .pencil(false)			)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .pencil(true)			)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(false, false)	)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(true,  false)	)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(false, true)	)),
-			.image(CNSymbol.shared.URLOfSymbol(type: .rectangle(true,  true)	))
-		]
+	private func allocateMainToolImages(mainTools tools: Array<CNVectorGraphicsType>) -> CNCollection {
+		var images: Array<CNCollection.Item> = []
+		for tool in tools {
+			let item: CNCollection.Item
+			switch tool {
+			case .path(let dofill):
+				item = .image(CNSymbol.shared.URLOfSymbol(type: .pencil(dofill)))
+			case .rect(let dofill, let hasround):
+				item = .image(CNSymbol.shared.URLOfSymbol(type: .rectangle(dofill, hasround)))
+			case .string:
+				item = .image(CNSymbol.shared.URLOfSymbol(type: .characterA))
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+				item = .image(CNSymbol.shared.URLOfSymbol(type: .pencil(false)))
+			}
+			images.append(item)
+		}
 		let cdata = CNCollection()
 		cdata.add(header: "", footer: "", items: images)
 		return cdata
@@ -185,12 +206,13 @@ open class KCDrawingView: KCStackView
 	private func selectMainTool(item itm: Int){
 		let newtype: CNVectorGraphicsType
 		switch itm {
-		case 0:	newtype = .path(false)
-		case 1:	newtype = .path(true)
-		case 2:	newtype = .rect(false, false)
-		case 3:	newtype = .rect(true,  false)
-		case 4: newtype = .rect(false, true)
-		case 5: newtype = .rect(true,  true)
+		case 0:	newtype = .string
+		case 1: newtype = .path(false)
+		case 2:	newtype = .path(true)
+		case 3:	newtype = .rect(false, false)
+		case 4:	newtype = .rect(true,  false)
+		case 5: newtype = .rect(false, true)
+		case 6: newtype = .rect(true,  true)
 		default:
 			CNLog(logLevel: .error, message: "Unexpected main tool item", atFunction: #function, inFile: #file)
 			return
@@ -201,7 +223,7 @@ open class KCDrawingView: KCStackView
 	private func allocateSubToolImages(toolType tool: CNVectorGraphicsType) -> CNCollection {
 		let images: Array<CNCollection.Item>
 		switch tool {
-		case .path, .rect:
+		case .path, .rect, .string:
 			images = [
 				.image(CNSymbol.shared.URLOfSymbol(type: .line1P )),
 				.image(CNSymbol.shared.URLOfSymbol(type: .line2P )),
@@ -220,7 +242,7 @@ open class KCDrawingView: KCStackView
 
 	private func selectSubTool(item itm: Int){
 		switch self.mainTool {
-		case .path, .rect:
+		case .path, .rect, .string:
 			switch itm {
 			case 0:	bezierLineWidth =  1.0	// line1P
 			case 1: bezierLineWidth =  2.0	// line2P

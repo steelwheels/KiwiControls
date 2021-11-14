@@ -78,38 +78,83 @@ open class KCVectorGraphics: KCView
 
 	public override func draw(_ dirtyRect: KCRect) {
 		for gr in mGenerator.contents {
-			let bezier = KCBezierPath()
-			bezier.lineJoinStyle = .round
-			bezier.lineCapStyle  = .round
 			switch gr {
 			case .path(let path):
-				let dofill = path.doFill
-				bezier.lineWidth = path.lineWidth
-				setPathColor(vectorObject: path, doFill: dofill)
-				let points = path.normalize(in: self.frame.size)
-				if points.count >= 2 {
-					bezier.move(to: points[0])
-					for i in 1..<points.count {
-						bezier.addLine(to: points[i])
-						NSLog("addLine: \(points[i].description) \(self.frame.description) \(self.bounds.description)")
-					}
-				}
-				drawPath(bezierPath: bezier, doFill: dofill)
+				drawPath(vectorPath: path)
 			case .rect(let rect):
-				if let normrect = rect.normalize(in: self.frame.size) {
-					let dofill = rect.doFill
-					bezier.lineWidth = rect.lineWidth
-					if rect.isRounded {
-						bezier.appendRoundedRect(normrect, xRadius: 10.0, yRadius: 10.0)
-					} else {
-						bezier.appendRect(normrect)
-					}
-					setPathColor(vectorObject: rect, doFill: dofill)
-					drawPath(bezierPath: bezier, doFill: dofill)
-				}
+				drawRect(vectorRect: rect)
+			case .string(let str):
+				drawString(vectorString: str)
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
+		}
+	}
+
+	private func drawPath(vectorPath path: CNVectorPath){
+		let points = path.normalize(in: self.frame.size)
+		if points.count >= 2 {
+			let bezier = KCBezierPath()
+			bezier.lineJoinStyle = .round
+			bezier.lineCapStyle  = .round
+
+			let dofill = path.doFill
+			bezier.lineWidth = path.lineWidth
+			setPathColor(vectorObject: path, doFill: dofill)
+
+			bezier.move(to: points[0])
+			for i in 1..<points.count {
+				bezier.addLine(to: points[i])
+			}
+
+			drawBezierPath(bezierPath: bezier, doFill: dofill)
+		}
+	}
+
+	private func drawRect(vectorRect rect: CNVectorRect){
+		if let normrect = rect.normalize(in: self.frame.size) {
+			let bezier = KCBezierPath()
+			bezier.lineJoinStyle = .round
+			bezier.lineCapStyle  = .round
+
+			let dofill = rect.doFill
+			bezier.lineWidth = rect.lineWidth
+			if rect.isRounded {
+				bezier.appendRoundedRect(normrect, xRadius: 10.0, yRadius: 10.0)
+			} else {
+				bezier.appendRect(normrect)
+			}
+			setPathColor(vectorObject: rect, doFill: dofill)
+			drawBezierPath(bezierPath: bezier, doFill: dofill)
+		}
+	}
+
+	private func drawString(vectorString str: CNVectorString){
+		if let orgpt = str.normalize(in: self.frame.size) {
+			let astr  = str.string
+			let asize = astr.size()
+			let arect = CGRect(origin: orgpt, size: asize)
+
+			/* Draw enter field */
+			let outrect = KCRect.outsideRect(rect: arect, spacing: 2.0)
+			let bezier  = KCBezierPath()
+			bezier.lineWidth = 2.0
+			bezier.setLineDash([2.0, 2.0], count: 2, phase: 0.0)
+			bezier.appendRect(outrect)
+			bezier.stroke()
+
+			/* Draw string */
+			if !str.isEmpty {
+				astr.draw(at: orgpt)
+			}
+		}
+	}
+
+	private func drawBezierPath(bezierPath path: KCBezierPath, doFill fill: Bool){
+		if fill {
+			path.fill()
+		} else {
+			path.stroke()
 		}
 	}
 
@@ -122,14 +167,6 @@ open class KCVectorGraphics: KCView
 			if !vobj.strokeColor.isClear {
 				vobj.strokeColor.setStroke()
 			}
-		}
-	}
-
-	private func drawPath(bezierPath path: KCBezierPath, doFill fill: Bool){
-		if fill {
-			path.fill()
-		} else {
-			path.stroke()
 		}
 	}
 
