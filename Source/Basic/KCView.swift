@@ -331,6 +331,54 @@ open class KCView : KCViewBase
 		return NSLayoutConstraint(item: fview, attribute: attr, relatedBy: KCLayoutRelation.equal, toItem: tview, attribute: attr, multiplier: 1.0, constant: len) ;
 	}
 
+	public class func setFixedOriginConstaint(fromView fview : KCViewBase, toView tview: KCViewBase, origin orgpt: CGPoint){
+		var hasx = false
+		var hasy = false
+		for cons in fview.constraints {
+			if cons.firstAttribute == .left {
+				cons.constant = orgpt.x
+				hasx = true
+			} else if cons.firstAttribute == .top {
+				cons.constant = orgpt.y
+				hasy = true
+			}
+		}
+		if !hasx {
+			let xcons = NSLayoutConstraint(item: fview, attribute: .left, relatedBy: .equal, toItem: tview, attribute: .left, multiplier: 1.0, constant: orgpt.x)
+			fview.addConstraint(xcons)
+		}
+		if !hasy {
+			let ycons = NSLayoutConstraint(item: fview, attribute: .top, relatedBy: .equal, toItem: tview, attribute: .top, multiplier: 1.0, constant: orgpt.y)
+			fview.addConstraint(ycons)
+		}
+	}
+
+	public class func setFixedSizeConstraint(target view: KCViewBase, size sz: CGSize){
+		var haswidth  = false
+		var hasheight = false
+		for cons in view.constraints {
+			if cons.firstAttribute == .width {
+				NSLog("Update width: \(sz.description)")
+				cons.constant = sz.width
+				haswidth  = true
+			} else if cons.firstAttribute == .height {
+				NSLog("Update height: \(sz.description)")
+				cons.constant = sz.height
+				hasheight = true
+			}
+		}
+		if !haswidth {
+			NSLog("Allocate width: \(sz.description)")
+			let wcons = NSLayoutConstraint(item: view, attribute: .width,  relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: sz.width)
+			view.addConstraint(wcons)
+		}
+		if !hasheight {
+			NSLog("Allocate height: \(sz.description)")
+			let hcons = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: sz.height)
+			view.addConstraint(hcons)
+		}
+	}
+
 	/* Original: https://www.hackingwithswift.com/example-code/uikit/how-to-find-the-view-controller-responsible-for-a-view */
 	public func findViewController() -> KCViewController? {
 	    if let nextResponder = self.next as? KCViewController {

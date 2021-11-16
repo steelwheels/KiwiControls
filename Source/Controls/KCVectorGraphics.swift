@@ -19,19 +19,47 @@ open class KCVectorGraphics: KCView
 	private var mGenerator:		CNVecroGraphicsGenerator
 	private var mWidth:		CGFloat?
 	private var mHeight:		CGFloat?
+	private var mTextField:		KCTextEdit
 
 	public override init(frame: KCRect) {
 		mGenerator  = CNVecroGraphicsGenerator()
 		mWidth	    = nil
 		mHeight	    = nil
+		mTextField  = KCTextEdit()
 		super.init(frame: frame)
+		self.setup()
 	}
 
 	required public init?(coder: NSCoder) {
 		mGenerator  = CNVecroGraphicsGenerator()
 		mWidth	    = nil
 		mHeight	    = nil
+		mTextField  = KCTextEdit()
 		super.init(coder: coder)
+		self.setup()
+	}
+
+	private func setup(){
+		/* Setup text field */
+		self.addSubview(mTextField)
+		mTextField.text       = ""
+		mTextField.format     = .label
+		mTextField.isEditable = true
+		mTextField.isBezeled  = true
+		mTextField.isHidden   = true
+		mTextField.callbackFunction = {
+			(_ str: String) -> Void in
+			self.mGenerator.storeString(string: str)
+		}
+		updateTextFieldLocation(textField: mTextField, offset: CGPoint.zero)
+	}
+
+	private func updateTextFieldLocation(textField field: KCTextEdit, offset ofst: CGPoint){
+		let size   = field.intrinsicContentSize
+		let frame  = CGRect(origin: ofst, size: size)
+		let bounds = CGRect(origin: CGPoint.zero, size: size)
+		field.frame  = frame
+		field.bounds = bounds
 	}
 
 	public var currentType: CNVectorGraphicsType {
@@ -68,6 +96,9 @@ open class KCVectorGraphics: KCView
 		switch event {
 		case .down:
 			mGenerator.addDown(point: position, in: self.frame.size)
+			if let str = mGenerator.loadString() {
+				mTextField.text = str
+			}
 		case .up:
 			mGenerator.addUp(point: position, in: self.frame.size)
 		case .drag:
@@ -77,31 +108,23 @@ open class KCVectorGraphics: KCView
 	}
 
 	public override func draw(_ dirtyRect: KCRect) {
-		for gr in mGenerator.contents {
+		let contents = mGenerator.contents
+		let count    = contents.count
+		for i in 0..<count {
+			let gr = contents[i]
 			switch gr {
 			case .path(let path):
 				drawPath(vectorPath: path)
 			case .rect(let rect):
 				drawRect(vectorRect: rect)
 			case .string(let str):
-				drawString(vectorString: str)
+				drawString(vectorString: str, isLast: (i == count-1))
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
 		}
+		super.draw(dirtyRect)
 	}
-
-	#if os(OSX)
-	public override var acceptsFirstResponder: Bool {
-		get { return true}
-	}
-
-	public override func keyDown(with event: NSEvent) {
-		if let key = event.characters {
-			NSLog("keydown (1): \(key)")
-		}
-	}
-	#endif
 
 	private func drawPath(vectorPath path: CNVectorPath){
 		let points = path.normalize(in: self.frame.size)
@@ -141,22 +164,23 @@ open class KCVectorGraphics: KCView
 		}
 	}
 
-	private func drawString(vectorString str: CNVectorString){
+	private func drawString(vectorString str: CNVectorString, isLast islast: Bool){
 		if let orgpt = str.normalize(in: self.frame.size) {
-			let astr  = str.string
-			let asize = astr.size()
-			let arect = CGRect(origin: orgpt, size: asize)
-
-			/* Draw enter field */
-			let outrect = KCRect.outsideRect(rect: arect, spacing: 2.0)
-			let bezier  = KCBezierPath()
-			bezier.lineWidth = 2.0
-			bezier.setLineDash([2.0, 2.0], count: 2, phase: 0.0)
-			bezier.appendRect(outrect)
-			bezier.stroke()
-
-			/* Draw string */
-			if !str.isEmpty {
+			if islast {
+				/* Show text edit */
+				mTextField.font = str.font
+				updateTextFieldLocation(textField: mTextField, offset: orgpt)
+				mTextField.isHidden = false
+				mTextField.requireLayout()
+			} else {
+				mTextField.isHidden = true
+				/* Draw text */
+				let attrs: [NSAttributedString.Key: Any] = [
+					NSAttributedString.Key.foregroundColor: str.strokeColor,
+					NSAttributedString.Key.backgroundColor:	CNColor.clear,
+					NSAttributedString.Key.font:		str.font
+				]
+				let astr = NSAttributedString(string: str.string, attributes: attrs)
 				astr.draw(at: orgpt)
 			}
 		}
