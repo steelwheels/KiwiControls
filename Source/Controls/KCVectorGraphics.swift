@@ -117,6 +117,8 @@ open class KCVectorGraphics: KCView
 				drawPath(vectorPath: path)
 			case .rect(let rect):
 				drawRect(vectorRect: rect)
+			case .oval(let oval):
+				drawOval(vectorOval: oval)
 			case .string(let str):
 				drawString(vectorString: str, isLast: (i == count-1))
 			@unknown default:
@@ -129,10 +131,7 @@ open class KCVectorGraphics: KCView
 	private func drawPath(vectorPath path: CNVectorPath){
 		let points = path.normalize(in: self.frame.size)
 		if points.count >= 2 {
-			let bezier = KCBezierPath()
-			bezier.lineJoinStyle = .round
-			bezier.lineCapStyle  = .round
-
+			let bezier = allocateBezierPath()
 			let dofill = path.doFill
 			bezier.lineWidth = path.lineWidth
 			setPathColor(vectorObject: path, doFill: dofill)
@@ -148,10 +147,7 @@ open class KCVectorGraphics: KCView
 
 	private func drawRect(vectorRect rect: CNVectorRect){
 		if let normrect = rect.normalize(in: self.frame.size) {
-			let bezier = KCBezierPath()
-			bezier.lineJoinStyle = .round
-			bezier.lineCapStyle  = .round
-
+			let bezier = allocateBezierPath()
 			let dofill = rect.doFill
 			bezier.lineWidth = rect.lineWidth
 			if rect.isRounded {
@@ -160,6 +156,22 @@ open class KCVectorGraphics: KCView
 				bezier.appendRect(normrect)
 			}
 			setPathColor(vectorObject: rect, doFill: dofill)
+			drawBezierPath(bezierPath: bezier, doFill: dofill)
+		}
+	}
+
+	private func drawOval(vectorOval oval: CNVectorOval){
+		if let (center, radius) = oval.normalize(in: self.frame.size) {
+			let bezier = allocateBezierPath()
+			let dofill = oval.doFill
+			bezier.lineWidth = oval.lineWidth
+			#if os(OSX)
+				let bounds = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2.0, height: radius * 2.0)
+				bezier.appendOval(in: bounds)
+			#else
+				bezier.appendOval(center: center, radius: radius)
+			#endif
+			setPathColor(vectorObject: oval, doFill: dofill)
 			drawBezierPath(bezierPath: bezier, doFill: dofill)
 		}
 	}
@@ -184,6 +196,13 @@ open class KCVectorGraphics: KCView
 				astr.draw(at: orgpt)
 			}
 		}
+	}
+
+	private func allocateBezierPath() -> KCBezierPath {
+		let bezier = KCBezierPath()
+		bezier.lineJoinStyle = .round
+		bezier.lineCapStyle  = .round
+		return bezier
 	}
 
 	private func drawBezierPath(bezierPath path: KCBezierPath, doFill fill: Bool){

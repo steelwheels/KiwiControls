@@ -123,6 +123,11 @@ public extension KCBezierPath
 	func appendRoundedRect(_ rt: CGRect, xRadius xrad: CGFloat, yRadius yrad: CGFloat){
 		self.appendRect(rt)
 	}
+
+	func appendOval(center c: CGPoint, radius r: CGFloat) {
+		self.addArc(withCenter: c, radius: r, startAngle: 0.0, endAngle: CGFloat.pi * 2.0, clockwise: true)
+	}
+
 	#endif
 }
 

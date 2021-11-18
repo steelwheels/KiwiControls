@@ -78,6 +78,8 @@ public class SingleViewController: KCSingleViewController
 		let newelm1: Array<CNCollection.Item> = [
 			.image(CNSymbol.shared.URLOfSymbol(type: .handRaised)),
 			.image(CNSymbol.shared.URLOfSymbol(type: .paintbrush)),
+			.image(CNSymbol.shared.URLOfSymbol(type: .oval(false))),
+			.image(CNSymbol.shared.URLOfSymbol(type: .oval(true)))
 		]
 		let cdata = CNCollection()
 		cdata.add(header: "header0", footer: "footer0", items: newelm0)
