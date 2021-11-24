@@ -33,7 +33,7 @@ open class KCIconViewCore : KCCoreView
 	#endif
 
 	private var mScale: CGFloat	= 1.0
-	private var mOriginalImageSize	= KCSize.zero
+	private var mOriginalImageSize	= CGSize.zero
 
 	public func setup(frame frm: CGRect){
 		super.setup(isSingleView: false, coreView: mImageButton)
@@ -115,9 +115,9 @@ open class KCIconViewCore : KCCoreView
 		set(newscale)	{ mScale = newscale }
 	}
 
-	private func iconViewSize() -> KCSize {
+	private func iconViewSize() -> CGSize {
 		/* Get image size */
-		let sclsize = KCSize(width:  mOriginalImageSize.width  * mScale,
+		let sclsize = CGSize(width:  mOriginalImageSize.width  * mScale,
 				     height: mOriginalImageSize.height * mScale)
 		if let img = self.image {
 			let _ = img.resize(sclsize)
@@ -125,10 +125,10 @@ open class KCIconViewCore : KCCoreView
 		let imgsize = mImageButton.intrinsicContentSize
 		/* Get label size */
 		let labsize = mLabelView.intrinsicContentSize
-		return KCUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
+		return CNUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
 	}
 
-	open override func setFrameSize(_ newsize: KCSize) {
+	open override func setFrameSize(_ newsize: CGSize) {
 		super.setFrameSize(newsize)
 		var labheight = mLabelView.frame.size.height
 		var imgheight = newsize.height - labheight
@@ -136,8 +136,8 @@ open class KCIconViewCore : KCCoreView
 			labheight = newsize.height / 2.0
 			imgheight = labheight
 		}
-		let labsize = KCSize(width: newsize.width, height: labheight)
-		let imgsize = KCSize(width: newsize.width, height: imgheight)
+		let labsize = CGSize(width: newsize.width, height: labheight)
+		let imgsize = CGSize(width: newsize.width, height: imgheight)
 		#if os(OSX)
 			mImageButton.setFrameSize(imgsize)
 			mLabelView.setFrameSize(labsize)
@@ -153,7 +153,7 @@ open class KCIconViewCore : KCCoreView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return iconViewSize() }
 	}
 	#else
@@ -162,7 +162,7 @@ open class KCIconViewCore : KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return iconViewSize() }
 	}
 

@@ -155,7 +155,7 @@ open class KCNavigationBarCore: KCCoreView
 		}
 	}
 
-	private func navigationBarSize() -> KCSize {
+	private func navigationBarSize() -> CGSize {
 		#if os(OSX)
 			let navsize   = mNavigationItem.frame.size
 			let leftsize  = leftBarButton.frame.size
@@ -164,14 +164,14 @@ open class KCNavigationBarCore: KCCoreView
 			let space  = CNPreference.shared.windowPreference.spacing
 			let height = max(navsize.height, leftsize.height, rightsize.height)
 			let width  = leftsize.width + space + navsize.width + space + rightsize.width
-			return KCSize(width: width, height: height)
+			return CGSize(width: width, height: height)
 		#else
 			return mNavigationBar.frame.size
 		#endif
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return navigationBarSize() }
 	}
 	#else
@@ -180,7 +180,7 @@ open class KCNavigationBarCore: KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return navigationBarSize() }
 	}
 

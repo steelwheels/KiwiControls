@@ -40,15 +40,15 @@ open class KCLayerView: KCView, KCLayerDelegate
 
 	private let LayerSpeed: Float	= 1.0
 
-	private var mMinimumSize:	KCSize
+	private var mMinimumSize:	CGSize
 	private var mLogicalFrame:	CGRect
 	private var mAnimationState:	CNAnimationState
 	private var mStateCallback:	UpdateStateCallback?
 	private var mDrawCount:		Int32
 
-	public override init(frame: KCRect) {
-		mMinimumSize	= KCSize(width: 128.0, height: 128.0)
-		mLogicalFrame	= KCRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+	public override init(frame: CGRect) {
+		mMinimumSize	= CGSize(width: 128.0, height: 128.0)
+		mLogicalFrame	= CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
 		mAnimationState	= .idle
 		mStateCallback	= nil
 		mDrawCount	= 0
@@ -85,7 +85,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 		#endif
 	}
 
-	public var minimumSize: KCSize {
+	public var minimumSize: CGSize {
 		get { return mMinimumSize }
 		set(newsize) {
 			if newsize.width > 0.0 && newsize.height > 0.0 {
@@ -271,7 +271,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 		stopAsync()
 	}
 
-	open override func draw(_ dirtyRect: KCRect) {
+	open override func draw(_ dirtyRect: CGRect) {
 		if let ctxt = self.context {
 			draw(context: ctxt, count: mDrawCount)
 			mDrawCount = (mDrawCount == Int32.max) ? 1 : mDrawCount + 1
@@ -294,7 +294,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 		CNLog(logLevel: .detail, message: "Draw layer: \(cnt)", atFunction: #function, inFile: #file)
 	}
 
-	public override var intrinsicContentSize: KCSize {
+	public override var intrinsicContentSize: CGSize {
 		get { return mMinimumSize }
 	}
 }

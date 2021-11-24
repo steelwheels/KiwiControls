@@ -25,7 +25,7 @@ public class SingleViewController: KCSingleViewController
 		let result = KCCollectionView()
 		let newval = allocateValue()
 		result.store(data: newval)
-		result.set(callback:{
+		result.set(selectionCallback:{
 			(_ section: Int, _ item: Int) -> Void in 
 			NSLog("selected section=\(section), item=\(item)")
 		})

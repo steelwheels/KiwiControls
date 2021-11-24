@@ -131,7 +131,7 @@ public class KCCheckBoxCore: KCCoreView
 		}
 	}
 
-	open override func setFrameSize(_ newsize: KCSize) {
+	open override func setFrameSize(_ newsize: CGSize) {
 		super.setFrameSize(newsize)
 		#if os(iOS)
 			let totalwidth  = newsize.width
@@ -141,13 +141,13 @@ public class KCCheckBoxCore: KCCoreView
 				labelwidth  = totalwidth / 2.0
 				switchwidth = totalwidth / 2.0
 			}
-			mSwitch.setFrameSize(size: KCSize(width: switchwidth, height: newsize.height))
-			mLabel.setFrameSize(size: KCSize(width: labelwidth, height: newsize.height))
+			mSwitch.setFrameSize(size: CGSize(width: switchwidth, height: newsize.height))
+			mLabel.setFrameSize(size: CGSize(width: labelwidth, height: newsize.height))
 		#endif
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return contentSize() }
 	}
 	#else
@@ -156,16 +156,16 @@ public class KCCheckBoxCore: KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return contentSize() }
 	}
 
-	private func contentSize() -> KCSize {
+	private func contentSize() -> CGSize {
 		#if os(iOS)
 			let labelsize  = mLabel.intrinsicContentSize
 			let switchsize = mSwitch.intrinsicContentSize
 			let space   = CNPreference.shared.windowPreference.spacing
-			return KCUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
+			return CNUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
 		#else
 			return super.intrinsicContentSize
 		#endif

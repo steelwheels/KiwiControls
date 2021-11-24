@@ -160,7 +160,7 @@ public class KCStepperCore: KCCoreView
 	}
 	#endif
 
-	open override func setFrameSize(_ newsize: KCSize) {
+	open override func setFrameSize(_ newsize: CGSize) {
 		super.setFrameSize(newsize)
 
 		let totalwidth   = newsize.width
@@ -170,8 +170,8 @@ public class KCStepperCore: KCCoreView
 			stepperwidth = totalwidth / 2.0
 			fieldwidth   = totalwidth / 2.0
 		}
-		let steppersize = KCSize(width: stepperwidth, height: newsize.height)
-		let fieldsize   = KCSize(width: fieldwidth,   height: newsize.height)
+		let steppersize = CGSize(width: stepperwidth, height: newsize.height)
+		let fieldsize   = CGSize(width: fieldwidth,   height: newsize.height)
 		#if os(OSX)
 			mStepper.setFrameSize(steppersize)
 			mTextField.setFrameSize(fieldsize)
@@ -182,7 +182,7 @@ public class KCStepperCore: KCCoreView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return contentSize() }
 	}
 	#else
@@ -191,15 +191,15 @@ public class KCStepperCore: KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return contentSize() }
 	}
 
-	private func contentSize() -> KCSize {
+	private func contentSize() -> CGSize {
 		let fieldsize   = mTextField.intrinsicContentSize
 		let steppersize = mStepper.intrinsicContentSize
 		let space       = CNPreference.shared.windowPreference.spacing
-		return KCUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
+		return CNUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
 	}
 
 	public override func invalidateIntrinsicContentSize() {

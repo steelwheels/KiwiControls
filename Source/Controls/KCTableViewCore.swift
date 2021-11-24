@@ -570,13 +570,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#endif
 	}
 
-	public override func setFrameSize(_ newsize: KCSize) {
+	public override func setFrameSize(_ newsize: CGSize) {
 		super.setFrameSize(newsize)
 	}
 
-	public override var intrinsicContentSize: KCSize {
+	public override var intrinsicContentSize: CGSize {
 		#if os(OSX)
-		let size: KCSize
+		let size: CGSize
 		if let sz = calcContentSize() {
 			size = sz
 		} else {
@@ -590,8 +590,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	#if os(OSX)
-	private func calcContentSize() -> KCSize? {
-		var result = KCSize.zero
+	private func calcContentSize() -> CGSize? {
+		var result = CGSize.zero
 		let space  = mTableView.intercellSpacing
 		if let header = mTableView.headerView {
 			result        =  header.frame.size

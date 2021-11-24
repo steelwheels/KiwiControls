@@ -114,7 +114,7 @@ open class KCPopupMenuCore: KCCoreView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return contentSize() }
 	}
 	#else
@@ -123,11 +123,11 @@ open class KCPopupMenuCore: KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return contentSize() }
 	}
 
-	private func contentSize() -> KCSize {
+	private func contentSize() -> CGSize {
 		#if os(OSX)
 			var btnsize = mPopupButton.intrinsicContentSize
 			if let font = mPopupButton.font {
@@ -138,7 +138,7 @@ open class KCPopupMenuCore: KCCoreView
 			let btnsize = mPickerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 		#endif
 		let space = CNPreference.shared.windowPreference.spacing
-		return KCSize(width:  btnsize.width + space, height: btnsize.height + space)
+		return CGSize(width:  btnsize.width + space, height: btnsize.height + space)
 	}
 }
 

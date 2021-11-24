@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 #endif
 
+/*
 extension KCRect
 {
 	public var center: CGPoint {
@@ -31,7 +32,7 @@ extension KCRect
 	}
 
 	public func move(dx x: CGFloat, dy y: CGFloat) -> CGRect {
-		let neworigin = self.origin.move(dx: x, dy: y)
+		let neworigin = self.origin.moving(dx: x, dy: y)
 		return CGRect(origin: neworigin, size: self.size)
 	}
 
@@ -53,7 +54,7 @@ extension KCRect
 		return (CGRect(origin: origin0, size: size), CGRect(origin: origin1, size: size))
 	}
 
-	public static func insideRect(rect rct: KCRect, spacing space: CGFloat) -> KCRect {
+	public static func insideRect(rect rct: KCRect, spacing space: CGFloat) -> CGRect {
 		let margin = space * 2.0
 		if rct.size.width < margin || rct.size.height < margin {
 			return rct
@@ -62,17 +63,17 @@ extension KCRect
 			let y	   = rct.origin.y + space
 			let width  = rct.size.width  - margin
 			let height = rct.size.height - margin
-			return KCRect(x: x, y: y, width: width, height: height)
+			return CGRect(x: x, y: y, width: width, height: height)
 		}
 	}
 
-	public static func outsideRect(rect rct: KCRect, spacing space: CGFloat) -> KCRect {
+	public static func outsideRect(rect rct: KCRect, spacing space: CGFloat) -> CGRect {
 		let margin = space * 2.0
 		let x	   = max(rct.origin.x - space, 0.0)
 		let y	   = max(rct.origin.y - space, 0.0)
 		let width  = rct.size.width  + margin
 		let height = rct.size.height + margin
-		return KCRect(x: x, y: y, width: width, height: height)
+		return CGRect(x: x, y: y, width: width, height: height)
 	}
 
 	public static func pointsToRect(fromPoint fp:CGPoint, toPoint tp:CGPoint) -> CGRect {
@@ -101,5 +102,6 @@ extension KCRect
 	}
 }
 
+*/
 
 

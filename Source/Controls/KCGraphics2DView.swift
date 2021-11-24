@@ -18,7 +18,7 @@ open class KCGraphics2DView: KCLayerView
 	private var mContext:		CNGraphicsContext
 	private var mForegroundColor:	CNColor
 
-	public override init(frame : KCRect){
+	public override init(frame : CGRect){
 		mContext     	= CNGraphicsContext()
 		let pref = CNPreference.shared.viewPreference
 		mForegroundColor = pref.foregroundColor
@@ -27,7 +27,7 @@ open class KCGraphics2DView: KCLayerView
 	}
 
 	public convenience init(){
-		let frame = KCRect(x: 0.0, y: 0.0, width: 480, height: 270)
+		let frame = CGRect(x: 0.0, y: 0.0, width: 480, height: 270)
 		self.init(frame: frame)
 	}
 

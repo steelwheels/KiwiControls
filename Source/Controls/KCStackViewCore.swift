@@ -240,7 +240,7 @@ open class KCStackViewCore : KCCoreView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return contentsSize() }
 	}
 	#else
@@ -249,18 +249,18 @@ open class KCStackViewCore : KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return contentsSize() }
 	}
 
-	private func contentsSize() -> KCSize {
+	private func contentsSize() -> CGSize {
 		let dovert = (axis == .vertical)
-		var result = KCSize(width: 0.0, height: 0.0)
+		var result = CGSize(width: 0.0, height: 0.0)
 		let space  = CNPreference.shared.windowPreference.spacing
 		let subviews = arrangedSubviews()
 		for subview in subviews {
 			let size = subview.intrinsicContentSize
-			result = KCUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
+			result = CNUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
 		}
 		CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
 		return result

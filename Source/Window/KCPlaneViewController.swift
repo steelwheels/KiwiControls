@@ -78,7 +78,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		return boxview
 	}
 
-	open func parentSize() -> KCSize? {
+	open func parentSize() -> CGSize? {
 		return nil
 	}
 

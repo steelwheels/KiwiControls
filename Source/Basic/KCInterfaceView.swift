@@ -167,7 +167,7 @@ open class KCInterfaceView: KCView
 	}
 	#endif
 
-	open override func setFrameSize(_ newsize: KCSize) {
+	open override func setFrameSize(_ newsize: CGSize) {
 		if let core = mCoreView {
 			core.setFrameSize(newsize)
 		}
@@ -175,7 +175,7 @@ open class KCInterfaceView: KCView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get {
 			if let core = mCoreView {
 				return core.fittingSize
@@ -194,7 +194,7 @@ open class KCInterfaceView: KCView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get {
 			if let core = mCoreView {
 				return core.intrinsicContentSize

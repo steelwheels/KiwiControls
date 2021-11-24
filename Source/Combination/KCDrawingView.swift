@@ -131,7 +131,7 @@ open class KCDrawingView: KCStackView
 		let maintool = KCCollectionView()
 		maintool.store(data: allocateMainToolImages(mainTools: initmailtools))
 		maintool.numberOfColumuns = 2
-		maintool.set(callback: {
+		maintool.set(selectionCallback: {
 			(_ section: Int, _ item: Int) -> Void in
 			self.selectMainTool(item: item)
 		})
@@ -142,7 +142,7 @@ open class KCDrawingView: KCStackView
 		let subtool = KCCollectionView()
 		subtool.store(data: allocateSubToolImages(toolType: self.mainTool))
 		subtool.numberOfColumuns = 1
-		subtool.set(callback: {
+		subtool.set(selectionCallback: {
 			(_ section: Int, _ item: Int) -> Void in
 			self.selectSubTool(item: item)
 		})

@@ -103,7 +103,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	}
 
 	#if os(OSX)
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get {
 			let curnum  = mTextEdit.stringValue.count
 			let newnum  = max(curnum, mMinWidth)
@@ -117,16 +117,16 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 			}
 
 			mTextEdit.preferredMaxLayoutWidth = newwidth
-			return KCSize(width: newwidth, height: fitsize.height)
+			return CGSize(width: newwidth, height: fitsize.height)
 		}
 	}
 	#else
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return mTextEdit.intrinsicContentSize }
 	}
 	#endif
 
-	private func fontSize() -> KCSize? {
+	private func fontSize() -> CGSize? {
 		if let font = mTextEdit.font {
 			let attr = [NSAttributedString.Key.font: font]
 			let str: String = " "

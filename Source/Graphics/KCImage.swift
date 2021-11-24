@@ -29,7 +29,7 @@ extension NSImage
 		return newimg
 	}
 
-	public func resize(_ size: KCSize) -> NSImage {
+	public func resize(_ size: CGSize) -> NSImage {
 		self.size = size
 		return self
 	}
@@ -81,7 +81,7 @@ extension UIImage
 		}
 	}
 
-	public func resize(_ _size: KCSize) -> UIImage? {
+	public func resize(_ _size: CGSize) -> UIImage? {
 		/* Copied from https://develop.hateblo.jp/entry/iosapp-uiimage-resize */
 		let widthRatio = _size.width / size.width
 		let heightRatio = _size.height / size.height

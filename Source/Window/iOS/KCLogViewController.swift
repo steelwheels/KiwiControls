@@ -6,6 +6,7 @@
  */
 
 import CoconutData
+import CoreGraphics
 import Foundation
 
 open class KCLogViewController: KCSingleViewController
@@ -18,7 +19,7 @@ open class KCLogViewController: KCSingleViewController
 		super.loadView()
 
 		/* allocate stack */
-		let dmyrect = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+		let dmyrect = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 		let stack   = KCStackView(frame: dmyrect)
 		stack.axis         = .vertical
 		stack.alignment    = .fill

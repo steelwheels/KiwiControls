@@ -178,7 +178,7 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		}
 	}
 
-	private func intrinsicContentSize(ofTextField field: NSTextField) -> KCSize {
+	private func intrinsicContentSize(ofTextField field: NSTextField) -> CGSize {
 		let DefaultLength: Int = 20
 
 		let curnum = field.stringValue.count
@@ -197,10 +197,10 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		}
 
 		field.preferredMaxLayoutWidth = newwidth
-		return KCSize(width: newwidth, height: fitsize.height)
+		return CGSize(width: newwidth, height: fitsize.height)
 	}
 
-	public override var fittingSize: KCSize {
+	public override var fittingSize: CGSize {
 		get {
 			if let field = self.textField {
 				return field.fittingSize
@@ -212,7 +212,7 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		}
 	}
 
-	public override func setFrameSize(_ newsize: KCSize) {
+	public override func setFrameSize(_ newsize: CGSize) {
 		let fitsize = self.fittingSize
 		if fitsize.width <= newsize.width && fitsize.height <= newsize.height {
 			self.setFrameSizeBody(size: newsize)
@@ -221,7 +221,7 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		}
 	}
 
-	private func setFrameSizeBody(size newsize: KCSize){
+	private func setFrameSizeBody(size newsize: CGSize){
 		super.setFrameSize(newsize)
 		if let field = self.textField {
 			field.setFrameSize(newsize)

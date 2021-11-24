@@ -18,7 +18,7 @@ public class KCWindowPreference: CNPreferenceTable
 	public var spacing			: CGFloat
 	public var backgroundColor		: CNColor
 	#if os(OSX)
-	public var mainWindowSize		: KCSize?
+	public var mainWindowSize		: CGSize?
 	#endif
 
 	public init(){

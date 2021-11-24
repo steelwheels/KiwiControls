@@ -34,7 +34,7 @@ private let ItemIdentifier = "ImageCell"
 
 open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCCollectionViewDelegateBase
 {
-	public typealias SelectedCallback = (_ section: Int, _ item: Int) -> Void
+	public typealias SelectionCallback = (_ section: Int, _ item: Int) -> Void
 
 	static let ResuseIdentifier = "value"
 	static let HeaderIdentifier = "header"
@@ -48,10 +48,10 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var mCollectionData		 = CNCollection()
 	private var mNumberOfColumns		 = 2
 	private var mLoadedItemNum		 = 0
-	private var mMaxItemSize		 = KCSize.zero
+	private var mMaxItemSize		 = CGSize.zero
 	private var mTotalItemNum		 = 0
 	private var mHeaderFont			 = CNFont.boldSystemFont(ofSize: CNFont.systemFontSize)
-	private var mCallback: SelectedCallback? = nil
+	private var mSelectionCallback: SelectionCallback? = nil
 
 	private var collectionView: KCCollectionViewBase {
 		get {
@@ -102,12 +102,12 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		let attrs: [NSAttributedString.Key: Any] = [
 			NSAttributedString.Key.font: mHeaderFont
 		]
-		var result = KCSize.zero
+		var result = CGSize.zero
 		for sec in 0..<col.sectionCount {
 			let label  = col.header(ofSection: sec)
 			if !label.isEmpty {
 				let labstr = NSAttributedString(string: label, attributes: attrs)
-				result = KCMaxSize(sizeA: result, sizeB: labstr.size())
+				result = CNMaxSize(sizeA: result, sizeB: labstr.size())
 			}
 		}
 		self.headerReferenceSize = result
@@ -168,13 +168,13 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		#endif
 	}
 
-	private var itemSize: KCSize {
+	private var itemSize: CGSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
 				return layout.itemSize
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (0-0)", atFunction: #function, inFile: #file)
-				return KCSize(width: -1.0, height: -1.0)
+				return CGSize(width: -1.0, height: -1.0)
 			}
 		}
 		set(newsize){
@@ -271,13 +271,13 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
-	private var headerReferenceSize: KCSize {
+	private var headerReferenceSize: CGSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
 				return layout.headerReferenceSize
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
-				return KCSize.zero
+				return CGSize.zero
 			}
 		}
 		set(newval){
@@ -289,13 +289,13 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
-	private var footerReferenceSize: KCSize {
+	private var footerReferenceSize: CGSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
 				return layout.footerReferenceSize
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
-				return KCSize.zero
+				return CGSize.zero
 			}
 		}
 		set(newval){
@@ -307,7 +307,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
-	public override func setFrameSize(_ newsize: KCSize) {
+	public override func setFrameSize(_ newsize: CGSize) {
 		if mMaxItemSize.width > 0 {
 			let maxnum = mCollectionData.maxItemCount()
 			let colnum: Int = Int(newsize.width / mMaxItemSize.width)
@@ -316,7 +316,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		super.setFrameSize(newsize)
 	}
 
-	public override var intrinsicContentSize: KCSize {
+	public override var intrinsicContentSize: CGSize {
 		get {
 			let colnum = mNumberOfColumns
 
@@ -331,7 +331,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			let hdrsize  = self.headerReferenceSize
 			let ftrsize  = self.footerReferenceSize
 
-			var result = KCSize.zero
+			var result = CGSize.zero
 			for sec in 0..<mCollectionData.sectionCount {
 				let itemnum = mCollectionData.itemCount(inSection: sec)
 				let rownum  = (itemnum + colnum - 1) / colnum
@@ -339,20 +339,20 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 					      + CGFloat(colnum + 1) * self.minimumInteritemSpacing
 				let height  = mMaxItemSize.height * CGFloat(rownum)
 					      + CGFloat(rownum + 1) * self.minimumLineSpacing
-				let secsize = KCSize(width: width, height: height)
+				let secsize = CGSize(width: width, height: height)
 
-				let expsize0 = KCUnionSize(sizeA: secsize,  sizeB: hdrsize, doVertical: true, spacing: 0.0)
-				let expsize1 = KCUnionSize(sizeA: expsize0, sizeB: ftrsize, doVertical: true, spacing: 0.0)
-				let expsize2 = KCExpandSize(size: expsize1, byInsets: secinset)
+				let expsize0 = CNUnionSize(sizeA: secsize,  sizeB: hdrsize, doVertical: true, spacing: 0.0)
+				let expsize1 = CNUnionSize(sizeA: expsize0, sizeB: ftrsize, doVertical: true, spacing: 0.0)
+				let expsize2 = CNExpandSize(size: expsize1, byInsets: secinset)
 
-				result = KCUnionSize(sizeA: result, sizeB: expsize2, doVertical: dovert, spacing: 0.0)
+				result = CNUnionSize(sizeA: result, sizeB: expsize2, doVertical: dovert, spacing: 0.0)
 			}
 			return result
 		}
 	}
 
-	public func set(callback cbfunc: @escaping SelectedCallback) {
-		mCallback = cbfunc
+	public func set(selectionCallback cbfunc: @escaping SelectionCallback) {
+		mSelectionCallback = cbfunc
 	}
 
 	public var firstResponderView: KCViewBase? { get {
@@ -378,7 +378,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			if let v = view as? KCCollectionViewItem {
 				let img      = allocateImage(type: item)
 				v.image      = img
-				mMaxItemSize = KCMaxSize(sizeA: mMaxItemSize, sizeB: img.size)
+				mMaxItemSize = CNMaxSize(sizeA: mMaxItemSize, sizeB: img.size)
 				didset = true
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
@@ -461,10 +461,30 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	#endif
 
 	private func didSelect(itemAt indexPath: IndexPath){
-		if let cbfunc = mCallback {
+		if let cbfunc = mSelectionCallback {
 			cbfunc(indexPath.section, indexPath.item)
 		}
 	}
+
+	/*
+	 * Drag
+	 */
+	#if os(OSX)
+	public func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt index: IndexPath) -> NSPasteboardWriting? {
+		var result: NSPasteboardWriting? = nil
+		if let item = mCollectionData.value(section: index.section, item: index.item) {
+			switch item {
+			case .image(let url):
+				let comp = url.lastPathComponent
+				let str  = comp as NSString
+				result   = str.deletingPathExtension as NSString
+			@unknown default:
+				NSLog("Unexpected case")
+			}
+		}
+		return result
+	}
+	#endif
 }
 
 #if os(OSX)

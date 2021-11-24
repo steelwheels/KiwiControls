@@ -12,9 +12,6 @@
 #endif
 
 #if os(iOS)
-	public typealias KCPoint		= CGPoint
-	public typealias KCSize			= CGSize
-	public typealias KCRect			= CGRect
 	public typealias KCResponder		= UIResponder
 	public typealias KCTextViewDelegate	= UITextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
@@ -24,9 +21,6 @@
 	public typealias KCLabel		= UILabel
 	public typealias KCWindow		= UIWindow
 #else
-	public typealias KCPoint		= NSPoint
-	public typealias KCSize			= NSSize
-	public typealias KCRect			= NSRect
 	public typealias KCResponder		= NSResponder
 	public typealias KCTextViewDelegate	= NSTextViewDelegate
 	public typealias KCLayoutAttribute	= NSLayoutConstraint.Attribute
@@ -55,13 +49,13 @@ protocol KCWindowDelegate {
 #if os(iOS)
 	public typealias KCEdgeInsets		= UIEdgeInsets
 
-	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> KCRect {
+	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> CGRect {
 		return rect.inset(by: inset)
 	}
 #else
 	public typealias KCEdgeInsets 		= NSEdgeInsets
 
-	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> KCRect {
+	public func KCEdgeInsetsInsetRect(_ rect: CGRect, _ inset: KCEdgeInsets) -> CGRect {
 		let inseth:  CGFloat = inset.left + inset.right
 		let originx: CGFloat
 		let width:   CGFloat
@@ -83,7 +77,7 @@ protocol KCWindowDelegate {
 			originy = rect.origin.y
 			height  = rect.size.height
 		}
-		return KCRect(x: originx, y: originy, width: width, height: height)
+		return CGRect(x: originx, y: originy, width: width, height: height)
 	}
 #endif
 

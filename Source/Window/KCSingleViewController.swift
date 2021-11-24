@@ -68,7 +68,7 @@ open class KCSingleViewController: KCPlaneViewController
 		}
 	}
 
-	open override func parentSize() -> KCSize? {
+	open override func parentSize() -> CGSize? {
 		if let parctrl = mParentController {
 			return parctrl.view.frame.size
 		} else {
@@ -76,7 +76,7 @@ open class KCSingleViewController: KCPlaneViewController
 		}
 	}
 
-	public func setParentSize(_ size: KCSize) {
+	public func setParentSize(_ size: CGSize) {
 		if let parctrl = mParentController {
 			parctrl.view.frame.size  = size
 			parctrl.view.bounds.size = size

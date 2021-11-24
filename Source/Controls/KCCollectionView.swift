@@ -14,7 +14,7 @@ import CoconutData
 
 open class KCCollectionView: KCInterfaceView
 {
-	public typealias SelectedCallback = KCCollectionViewCore.SelectedCallback
+	public typealias SelectionCallback = KCCollectionViewCore.SelectionCallback
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -77,8 +77,8 @@ open class KCCollectionView: KCInterfaceView
 		coreView.selectItem(indexPath: path)
 	}
 
-	public func set(callback cbfunc: @escaping SelectedCallback) {
-		coreView.set(callback: cbfunc)
+	public func set(selectionCallback cbfunc: @escaping SelectionCallback) {
+		coreView.set(selectionCallback: cbfunc)
 	}
 
 	public func store(data dat: CNCollection){

@@ -18,7 +18,7 @@ open class KCColorSelectorCore: KCCoreView
 	public typealias CallbackFunction = (_ color: CNColor) -> Void
 
 	private let ColorItem		= "color"
-	private let defaultSize		= KCSize(width: 64, height: 40)
+	private let defaultSize		= CGSize(width: 64, height: 40)
 
 	#if os(OSX)
 	@IBOutlet weak var mColorWell: 	NSColorWell!
@@ -100,7 +100,7 @@ open class KCColorSelectorCore: KCCoreView
 		}
 	}
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return defaultSize }
 	}
 }

@@ -58,11 +58,11 @@ open class KCLabeledStackViewCore : KCCoreView
 
 	private let LabelHeight : CGFloat = 20.0
 
-	open override func setFrameSize(_ newsize: KCSize) {
+	open override func setFrameSize(_ newsize: CGSize) {
 		super.setFrameSize(newsize)
 
 		/* Decide label size */
-		let newlabsize = KCSize(width: newsize.width, height: LabelHeight)
+		let newlabsize = CGSize(width: newsize.width, height: LabelHeight)
 		#if os(OSX)
 			self.labelView.setFrameSize(newlabsize)
 		#else
@@ -82,7 +82,7 @@ open class KCLabeledStackViewCore : KCCoreView
 		} else {
 			contheight =  0.0
 		}
-		let contsize = KCSize(width: contwidth, height: contheight)
+		let contsize = CGSize(width: contwidth, height: contheight)
 		#if os(OSX)
 			mStack.setFrameSize(contsize)
 		#else
@@ -91,7 +91,7 @@ open class KCLabeledStackViewCore : KCCoreView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return contentSize() }
 	}
 	#else
@@ -100,15 +100,15 @@ open class KCLabeledStackViewCore : KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return contentSize() }
 	}
 
 	// The constant value for layout is depend on XIB file
-	private func contentSize() -> KCSize {
+	private func contentSize() -> CGSize {
 		let textsize    = mLabel.intrinsicContentSize
 		let stacksize   = mStack.intrinsicContentSize
-		let result = KCUnionSize(sizeA: textsize, sizeB: stacksize, doVertical: true, spacing: 0.0)
+		let result = CNUnionSize(sizeA: textsize, sizeB: stacksize, doVertical: true, spacing: 0.0)
 		return result
 	}
 

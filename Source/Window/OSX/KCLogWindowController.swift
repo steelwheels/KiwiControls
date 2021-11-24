@@ -75,7 +75,7 @@ public class KCLogWindowController: NSWindowController
 			let clearbtn = KCButton()
 			clearbtn.value = .text("Clear")
 			/* Buttons box */
-			let btnframe  = KCRect(origin: KCPoint.zero, size: clearbtn.frame.size)
+			let btnframe  = CGRect(origin: CGPoint.zero, size: clearbtn.frame.size)
 			let btnbox    = KCStackView(frame: btnframe)
 			btnbox.axis = .horizontal
 			btnbox.distribution = .fill
@@ -83,7 +83,7 @@ public class KCLogWindowController: NSWindowController
 			/* Log box */
 			let logwidth  = max(cons.frame.width, clearbtn.frame.width)
 			let logheight = cons.frame.height + clearbtn.frame.height
-			let logframe  = KCRect(origin: KCPoint.zero, size: KCSize(width: logwidth, height: logheight))
+			let logframe  = CGRect(origin: CGPoint.zero, size: CGSize(width: logwidth, height: logheight))
 			let logbox    = KCStackView(frame: logframe)
 			logbox.axis = .vertical
 			logbox.addArrangedSubViews(subViews: [cons, btnbox])

@@ -148,7 +148,7 @@ extension KCViewBase
 	}
 
 	#if os(iOS)
-	public func setFrameSize(size sz: KCSize) {
+	public func setFrameSize(size sz: CGSize) {
 		self.frame.size  = sz
 		self.bounds.size = sz
 	}
@@ -269,7 +269,7 @@ open class KCView : KCViewBase
 	 */
 	private var areaToBeDisplay = CGRect.zero
 
-	open override func draw(_ dirtyRect: KCRect){
+	open override func draw(_ dirtyRect: CGRect){
 		super.draw(dirtyRect)
 		areaToBeDisplay = CGRect.zero
 	}
@@ -296,14 +296,14 @@ open class KCView : KCViewBase
 	}
 
 	#if os(iOS)
-	open func setFrameSize(_ newsize: KCSize) {
+	open func setFrameSize(_ newsize: CGSize) {
 		self.frame.size = newsize
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get {
-			return KCSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
+			return CGSize(width: KCView.noIntrinsicValue, height: KCView.noIntrinsicValue)
 		}
 	}
 

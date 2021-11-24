@@ -19,7 +19,7 @@ open class KCBitmapView: KCLayerView
 	private var mRowCount:		Int
 	private var mColumnCount:	Int
 
-	public override init(frame : KCRect){
+	public override init(frame : CGRect){
 		mContext     = CNBitmapContext()
 		mRowCount    = 10
 		mColumnCount = 10
@@ -27,7 +27,7 @@ open class KCBitmapView: KCLayerView
 	}
 
 	public convenience init(){
-		let frame = KCRect(x: 0.0, y: 0.0, width: 480, height: 270)
+		let frame = CGRect(x: 0.0, y: 0.0, width: 480, height: 270)
 		self.init(frame: frame)
 	}
 

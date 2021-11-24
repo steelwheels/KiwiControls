@@ -45,7 +45,7 @@ open class KCContextualMenu
 		mSelectedItem = item.tag
 	}
 
-	public func show(at position: KCPoint, in view: KCView) -> Int? {
+	public func show(at position: CGPoint, in view: KCView) -> Int? {
 		mSelectedItem = nil
 		if mContextualMenu.popUp(positioning: mContextualMenu.item(at: 0), at: position, in: view) {
 			return mSelectedItem

@@ -58,7 +58,7 @@ open class KCImageViewCore : KCCoreView
 	private func updateImage() {
 		if let orgimg = mOriginalImage {
 			let orgsize = orgimg.size
-			let imgsize = KCSize(width:  orgsize.width *  mScale,
+			let imgsize = CGSize(width:  orgsize.width *  mScale,
 					     height: orgsize.height * mScale)
 			mImageView.image = orgimg.resize(imgsize)
 		}
@@ -77,7 +77,7 @@ open class KCImageViewCore : KCCoreView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: KCSize {
+	open override var fittingSize: CGSize {
 		get { return imageSize }
 	}
 	#else
@@ -86,7 +86,7 @@ open class KCImageViewCore : KCCoreView
 	}
 	#endif
 
-	open override var intrinsicContentSize: KCSize {
+	open override var intrinsicContentSize: CGSize {
 		get { return imageSize }
 	}
 }

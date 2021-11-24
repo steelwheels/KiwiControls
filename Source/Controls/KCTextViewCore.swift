@@ -34,7 +34,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 
 	private var mAckCallback:	((_ codes: Array<CNEscapeCode>) -> Void)?
 
-	public override init(frame frameRect: KCRect) {
+	public override init(frame frameRect: CGRect) {
 		let tpref = CNPreference.shared.terminalPreference
 		mCurrentIndex 		= 0
 		mTerminalInfo 		= CNTerminalInfo(width: tpref.width, height: tpref.height)
@@ -430,16 +430,16 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		return mTextView.becomeFirstResponder()
 	}
 
-	public override var intrinsicContentSize: KCSize {
+	public override var intrinsicContentSize: CGSize {
 		get { return targetSize() }
 	}
 
-	public override func setFrameSize(_ newsize: KCSize) {
+	public override func setFrameSize(_ newsize: CGSize) {
 		super.setFrameSize(newsize)
 		#if os(OSX)
 			mScrollView.setFrameSize(newsize)
 			let barwidth = scrollBarWidth()
-			let txtsize  = KCSize(width: max(newsize.width - barwidth, 0), height: newsize.height)
+			let txtsize  = CGSize(width: max(newsize.width - barwidth, 0), height: newsize.height)
 			mTextView.setFrameSize(txtsize)
 		#else
 			mTextView.setFrameSize(size: newsize)
@@ -530,13 +530,13 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 	}
 	#endif
 
-	private func targetSize() -> KCSize {
+	private func targetSize() -> CGSize {
 		let tpref      = CNPreference.shared.terminalPreference
 		let fontsize   = fontSize()
 		let termwidth  = CGFloat(tpref.width)  * fontsize.width
 		let termheight = CGFloat(tpref.height) * fontsize.height
 		let barwidth   = scrollBarWidth()
-		let termsize   = KCSize(width: termwidth + barwidth, height: termheight)
+		let termsize   = CGSize(width: termwidth + barwidth, height: termheight)
 		return termsize
 	}
 
@@ -552,7 +552,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		#endif
 	}
 
-	private func fontSize() -> KCSize {
+	private func fontSize() -> CGSize {
 		let attr = [NSAttributedString.Key.font: self.font]
 		let str: String = " "
 		return str.size(withAttributes: attr)

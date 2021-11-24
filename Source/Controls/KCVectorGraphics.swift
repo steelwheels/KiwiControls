@@ -105,7 +105,7 @@ open class KCVectorGraphics: KCView
 	private var mHeight:		CGFloat?
 	private var mTextField:		KCTextEdit
 
-	public override init(frame: KCRect) {
+	public override init(frame: CGRect) {
 		mGenerator  = CNVecroGraphicsGenerator()
 		mWidth	    = nil
 		mHeight	    = nil
@@ -136,6 +136,10 @@ open class KCVectorGraphics: KCView
 			self.mGenerator.storeString(string: str)
 		}
 		CNVectorString.updateTextFieldLocation(textField: mTextField, offset: CGPoint.zero)
+
+		#if os(OSX)
+			self.registerForDraggedTypes(accessableTypes)
+		#endif
 	}
 
 	public var currentType: CNVectorGraphicsType {
@@ -168,6 +172,10 @@ open class KCVectorGraphics: KCView
 		set(newval) { mHeight = newval }
 	}
 
+	private func addItem(location loc: CGPoint, graphicsType gtype: CNVectorGraphicsType){
+		NSLog("addItem: location=\(loc.description), type=\(gtype.description), origin=\(self.frame.origin.description)")
+	}
+
 	public override func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
 		switch event {
 		case .down:
@@ -183,7 +191,7 @@ open class KCVectorGraphics: KCView
 		self.requireDisplay()
 	}
 
-	public override func draw(_ dirtyRect: KCRect) {
+	public override func draw(_ dirtyRect: CGRect) {
 		let contents = mGenerator.contents
 		let count    = contents.count
 		for i in 0..<count {
@@ -216,14 +224,81 @@ open class KCVectorGraphics: KCView
 		}
 	}
 
-	public override var intrinsicContentSize: KCSize {
+	public override var intrinsicContentSize: CGSize {
 		get {
 			let ssize  = super.intrinsicContentSize
 			let width  = mWidth  != nil ? mWidth!  : ssize.width
 			let height = mHeight != nil ? mHeight! : ssize.height
-			return KCSize(width: width, height: height)
+			return CGSize(width: width, height: height)
 		}
 	}
+
+	/*
+	 * drop operation
+	 *   reference: https://qiita.com/IKEH/items/1cdf51591be506c3f74b
+	 */
+	#if os(OSX)
+	private let accessableTypes: Array<NSPasteboard.PasteboardType> = [.string, .pdf, .png, .tiff]
+	private let draggableTypes: Dictionary<NSPasteboard.ReadingOptionKey, Any>? = [
+		.urlReadingContentsConformToTypes : NSImage.imageTypes
+	]
+
+	public override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+		NSLog("draggingEntered")
+		if canReadObject(sender) {
+			return .link
+		} else {
+			return super.draggingEntered(sender)
+		}
+	}
+
+	public override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+		NSLog("prepareForDragOperation")
+		var result = false
+		if canReadObject(sender) {
+			let pboard = sender.draggingPasteboard
+			if let strs = pboard.readObjects(forClasses: [NSString.self], options: draggableTypes) as? Array<NSString> {
+				let str = strs[0] as String
+				if let gtype = decodeGraphicsType(string: str) {
+					let orgpos = sender.draggingLocation
+					let locpos = orgpos - self.frame.origin
+					addItem(location: locpos, graphicsType: gtype)
+					result = true
+				}
+			}
+		}
+		return result
+	}
+
+	public override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+		NSLog("performDragOperation")
+		return true
+	}
+
+	private func canReadObject(_ sender: NSDraggingInfo) -> Bool {
+		let pboard = sender.draggingPasteboard
+		return pboard.canReadObject(forClasses: [NSString.self], options: [:])
+	}
+
+	private func decodeGraphicsType(string str: String) -> CNVectorGraphicsType? {
+		var result: CNVectorGraphicsType? = nil
+		switch str {
+		case "character-a":			result = .string
+		case "pencil":				result = .path(false)
+		case "pencil-circle":			result = .path(true)
+		case "rectangle":			result = .rect(false, false)
+		case "rectangle-filled":		result = .rect(true, false)
+		case "rectangle-rounded":		result = .rect(false, true)
+		case "rectangle-filled-rounded":	result = .rect(true, true)
+		case "oval":				result = .oval(false)
+		case "oval-filled":			result = .oval(true)
+		default:
+			NSLog("Unknown graphics type: \(str)")
+			result = .path(false)
+		}
+		return result
+	}
+	#endif
 
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(vectorGraphics: self)
