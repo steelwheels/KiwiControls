@@ -87,6 +87,7 @@ open class KCVectorGraphics: KCView
 	private enum DrawEvent {
 		case changeShape(CGPoint, CNGripPoint, CNVectorGraphics)
 		case moveObject(CGPoint, CNVectorGraphics)
+		case selectObject(Int)
 	}
 
 	private var mDrawEvent: DrawEvent? = nil
@@ -99,8 +100,10 @@ open class KCVectorGraphics: KCView
 				mDrawEvent = nil
 			case .grip(let grip, let obj):
 				mDrawEvent = .changeShape(position, grip, obj)
-			case .graphics(let obj):
+			case .choose(let obj):
 				mDrawEvent = .moveObject(position, obj)
+			case .change(let idx):
+				mDrawEvent = .selectObject(idx)
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 				mDrawEvent = nil
@@ -116,6 +119,10 @@ open class KCVectorGraphics: KCView
 					moveObjectEvent(originalPosition: curpos, graphics: obj, newPosition: position)
 					/* Update latest position */
 					mDrawEvent = .moveObject(position, obj)
+				case .selectObject(let idx):
+					if event == .up {
+						mManager.selectObject(index: idx)
+					}
 				}
 				self.requireDisplay()
 			}
@@ -128,7 +135,7 @@ open class KCVectorGraphics: KCView
 
 	private func moveObjectEvent(originalPosition orgpos: CGPoint, graphics obj: CNVectorGraphics, newPosition newpos: CGPoint){
 		let diffpos = newpos - orgpos
-		mManager.moveItem(diffPoint: diffpos, in: self.frame.size, graphics: obj)
+		mManager.moveObject(diffPoint: diffpos, in: self.frame.size, object: obj)
 	}
 
 	public override func draw(_ dirtyRect: CGRect) {
@@ -152,16 +159,12 @@ open class KCVectorGraphics: KCView
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
 		}
-		if let item = mManager.currentItem() {
-			switch item {
-			case .path(let obj):
-				obj.drawGripPoints()
-			case .rect(let obj):
-				obj.drawGripPoints()
-			case .oval(let obj):
-				obj.drawGripPoints()
-			case .string(let obj):
-				obj.drawGripPoints()
+		if let obj = mManager.currentObject() {
+			switch obj {
+			case .path(let path):	path.drawGripPoints()
+			case .rect(let rect):	rect.drawGripPoints()
+			case .oval(let oval):	oval.drawGripPoints()
+			case .string(let vstr):	vstr.drawGripPoints()
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
@@ -218,7 +221,7 @@ open class KCVectorGraphics: KCView
 				if let gtype = decodeGraphicsType(string: str) {
 					let orgpos = sender.draggingLocation
 					let locpos = orgpos - self.frame.origin
-					mManager.addItem(location: locpos, in: self.frame.size, graphicsType: gtype)
+					mManager.addObject(location: locpos, in: self.frame.size, type: gtype)
 					self.requireDisplay()
 					result = true
 				}
