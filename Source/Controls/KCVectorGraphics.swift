@@ -14,111 +14,28 @@
 #endif
 import CoconutData
 
-public extension CNVectorObject
-{
-	func draw(bezierPath path: CNBezierPath){
-		if self.doFill {
-			path.fill()
-		} else {
-			path.stroke()
-		}
-	}
-}
-
-public extension CNVectorPath
-{
-	func draw(in area: CGSize) {
-		let points = self.normalize(in: area)
-		if points.count >= 2 {
-			let bezier = allocateBezierPath()
-			bezier.move(to: points[0])
-			for i in 1..<points.count {
-				bezier.addLine(to: points[i])
-			}
-			super.draw(bezierPath: bezier)
-		}
-	}
-}
-
-public extension CNVectorRect
-{
-	func draw(in area: CGSize) {
-		if let normrect = self.normalize(in: area) {
-			let bezier = allocateBezierPath()
-			if self.isRounded {
-				bezier.appendRoundedRect(normrect, xRadius: 10.0, yRadius: 10.0)
-			} else {
-				bezier.appendRect(normrect)
-			}
-			super.draw(bezierPath: bezier)
-		}
-	}
-}
-
-public extension CNVectorOval
-{
-	func draw(in area: CGSize) {
-		if let (center, radius) = self.normalize(in: area) {
-			let bezier = allocateBezierPath()
-			#if os(OSX)
-				let bounds = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2.0, height: radius * 2.0)
-				bezier.appendOval(in: bounds)
-			#else
-				bezier.appendOval(center: center, radius: radius)
-			#endif
-			super.draw(bezierPath: bezier)
-		}
-	}
-}
-
-public extension CNVectorString
-{
-	func draw(textField textfield: KCTextEdit, isEdtiable isedit: Bool, in area: CGSize) {
-		if let orgpt = self.normalize(in: area) {
-			if isedit {
-				/* Show text edit */
-				textfield.font = self.font
-				CNVectorString.updateTextFieldLocation(textField: textfield, offset: orgpt)
-				textfield.isHidden = false
-				textfield.requireLayout()
-			} else {
-				textfield.isHidden = true
-				let astr = self.attributedString()
-				astr.draw(at: orgpt)
-			}
-		}
-	}
-
-	static func updateTextFieldLocation(textField field: KCTextEdit, offset ofst: CGPoint){
-		let size   = field.intrinsicContentSize
-		let frame  = CGRect(origin: ofst, size: size)
-		let bounds = CGRect(origin: CGPoint.zero, size: size)
-		field.frame  = frame
-		field.bounds = bounds
-	}
-}
 
 open class KCVectorGraphics: KCView
 {
-	private var mGenerator:		CNVecroGraphicsGenerator
+	private var mManager:		CNVecroManager
 	private var mWidth:		CGFloat?
 	private var mHeight:		CGFloat?
 	private var mTextField:		KCTextEdit
 
 	public override init(frame: CGRect) {
-		mGenerator  = CNVecroGraphicsGenerator()
-		mWidth	    = nil
-		mHeight	    = nil
-		mTextField  = KCTextEdit()
+		mManager    	= CNVecroManager()
+		mWidth	    	= nil
+		mHeight	   	= nil
+		mTextField  	= KCTextEdit()
 		super.init(frame: frame)
 		self.setup()
 	}
 
 	required public init?(coder: NSCoder) {
-		mGenerator  = CNVecroGraphicsGenerator()
-		mWidth	    = nil
-		mHeight	    = nil
-		mTextField  = KCTextEdit()
+		mManager    	= CNVecroManager()
+		mWidth	    	= nil
+		mHeight	    	= nil
+		mTextField  	= KCTextEdit()
 		super.init(coder: coder)
 		self.setup()
 	}
@@ -133,7 +50,7 @@ open class KCVectorGraphics: KCView
 		mTextField.isHidden   = true
 		mTextField.callbackFunction = {
 			(_ str: String) -> Void in
-			self.mGenerator.storeString(string: str)
+			self.mManager.storeString(string: str)
 		}
 		CNVectorString.updateTextFieldLocation(textField: mTextField, offset: CGPoint.zero)
 
@@ -142,24 +59,19 @@ open class KCVectorGraphics: KCView
 		#endif
 	}
 
-	public var currentType: CNVectorGraphicsType {
-		get         { return mGenerator.currentType   }
-		set(newval) { mGenerator.currentType = newval }
-	}
-
 	public var lineWidth: CGFloat {
-		get	    { return mGenerator.lineWidth	}
-		set(newval) { mGenerator.lineWidth = newval 	}
+		get	    { return mManager.lineWidth	}
+		set(newval) { mManager.lineWidth = newval 	}
 	}
 
 	public var strokeColor: CNColor {
-		get         { return mGenerator.strokeColor }
-		set(newval) { mGenerator.strokeColor = newval }
+		get         { return mManager.strokeColor }
+		set(newval) { mManager.strokeColor = newval }
 	}
 
 	public var fillColor: CNColor {
-		get         { return mGenerator.fillColor }
-		set(newval) { mGenerator.fillColor = newval }
+		get         { return mManager.fillColor }
+		set(newval) { mManager.fillColor = newval }
 	}
 
 	public var width: CGFloat? {
@@ -172,43 +84,89 @@ open class KCVectorGraphics: KCView
 		set(newval) { mHeight = newval }
 	}
 
-	private func addItem(location loc: CGPoint, graphicsType gtype: CNVectorGraphicsType){
-		NSLog("addItem: location=\(loc.description), type=\(gtype.description), origin=\(self.frame.origin.description)")
+	private enum DrawEvent {
+		case changeShape(CGPoint, CNGripPoint, CNVectorGraphics)
+		case moveObject(CGPoint, CNVectorGraphics)
 	}
+
+	private var mDrawEvent: DrawEvent? = nil
 
 	public override func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
 		switch event {
 		case .down:
-			mGenerator.addDown(point: position, in: self.frame.size)
-			if let str = mGenerator.loadString() {
-				mTextField.text = str
+			switch mManager.contains(point: position, in: self.frame.size) {
+			case .none:
+				mDrawEvent = nil
+			case .grip(let grip, let obj):
+				mDrawEvent = .changeShape(position, grip, obj)
+			case .graphics(let obj):
+				mDrawEvent = .moveObject(position, obj)
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+				mDrawEvent = nil
 			}
-		case .up:
-			mGenerator.addUp(point: position, in: self.frame.size)
-		case .drag:
-			mGenerator.addDrag(point: position, in: self.frame.size)
+		case .drag, .up:
+			if let mevent = mDrawEvent {
+				switch mevent {
+				case .changeShape(let curpos, let grip, let obj):
+					changeSizeEvent(originalPosition: curpos, gripPoint: grip, graphics: obj, newPosition: position)
+					/* Update latest position */
+					mDrawEvent = .changeShape(position, grip, obj)
+				case .moveObject(let curpos, let obj):
+					moveObjectEvent(originalPosition: curpos, graphics: obj, newPosition: position)
+					/* Update latest position */
+					mDrawEvent = .moveObject(position, obj)
+				}
+				self.requireDisplay()
+			}
 		}
-		self.requireDisplay()
+	}
+
+	private func changeSizeEvent(originalPosition orgpos: CGPoint, gripPoint grip: CNGripPoint, graphics obj: CNVectorGraphics, newPosition newpos: CGPoint){
+		NSLog("changeSizeEvent: \(orgpos.description) -> \(newpos.description)")
+	}
+
+	private func moveObjectEvent(originalPosition orgpos: CGPoint, graphics obj: CNVectorGraphics, newPosition newpos: CGPoint){
+		let diffpos = newpos - orgpos
+		mManager.moveItem(diffPoint: diffpos, in: self.frame.size, graphics: obj)
 	}
 
 	public override func draw(_ dirtyRect: CGRect) {
-		let contents = mGenerator.contents
+		let contents = mManager.contents
 		let count    = contents.count
 		for i in 0..<count {
 			let gr = contents[i]
 			switch gr {
 			case .path(let path):
-				path.draw(in: self.frame.size)
+				path.allocate(in: self.frame.size)
+				path.draw()
 			case .rect(let rect):
-				rect.draw(in: self.frame.size)
+				rect.allocate(in: self.frame.size)
+				rect.draw()
 			case .oval(let oval):
-				oval.draw(in: self.frame.size)
+				oval.allocate(in: self.frame.size)
+				oval.draw()
 			case .string(let str):
 				str.draw(textField: mTextField, isEdtiable: i == count - 1, in: self.frame.size)
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
 		}
+		if let item = mManager.currentItem() {
+			switch item {
+			case .path(let obj):
+				obj.drawGripPoints()
+			case .rect(let obj):
+				obj.drawGripPoints()
+			case .oval(let obj):
+				obj.drawGripPoints()
+			case .string(let obj):
+				obj.drawGripPoints()
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+			}
+		}
+
 		super.draw(dirtyRect)
 	}
 
@@ -244,7 +202,6 @@ open class KCVectorGraphics: KCView
 	]
 
 	public override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-		NSLog("draggingEntered")
 		if canReadObject(sender) {
 			return .link
 		} else {
@@ -253,7 +210,6 @@ open class KCVectorGraphics: KCView
 	}
 
 	public override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-		NSLog("prepareForDragOperation")
 		var result = false
 		if canReadObject(sender) {
 			let pboard = sender.draggingPasteboard
@@ -262,7 +218,8 @@ open class KCVectorGraphics: KCView
 				if let gtype = decodeGraphicsType(string: str) {
 					let orgpos = sender.draggingLocation
 					let locpos = orgpos - self.frame.origin
-					addItem(location: locpos, graphicsType: gtype)
+					mManager.addItem(location: locpos, in: self.frame.size, graphicsType: gtype)
+					self.requireDisplay()
 					result = true
 				}
 			}

@@ -14,6 +14,7 @@ import CoconutData
 
 open class KCDrawingView: KCStackView
 {
+	private var mMainToolType:		CNVectorGraphicsType
 	private var mMainToolsView:		KCCollectionView?
 	private var mSubToolsView:		KCCollectionView?
 	private var mStrokeColorView:		KCColorSelector?
@@ -22,6 +23,7 @@ open class KCDrawingView: KCStackView
 
 	#if os(OSX)
 	public override init(frame : NSRect){
+		mMainToolType		= .path(false)
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mStrokeColorView	= nil
@@ -32,6 +34,7 @@ open class KCDrawingView: KCStackView
 	}
 	#else
 	public override init(frame: CGRect){
+		mMainToolType		= .path(false)
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mStrokeColorView	= nil
@@ -52,6 +55,7 @@ open class KCDrawingView: KCStackView
 	}
 
 	public required init?(coder: NSCoder) {
+		mMainToolType		= .path(false)
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mStrokeColorView	= nil
@@ -61,19 +65,9 @@ open class KCDrawingView: KCStackView
 		setup()
 	}
 
-	public var mainTool: CNVectorGraphicsType {
-		get {
-			if let view = mVectorGraphicsView {
-				return view.currentType
-			} else {
-				return .path(false)
-			}
-		}
-		set(newval){
-			if let view = mVectorGraphicsView {
-				view.currentType = newval
-			}
-		}
+	public var mainToolType: CNVectorGraphicsType {
+		get         { return mMainToolType }
+		set(newval) { mMainToolType = newval }
 	}
 
 	public var strokeColor: CNColor {
@@ -140,7 +134,7 @@ open class KCDrawingView: KCStackView
 
 		/* Add sub tool component */
 		let subtool = KCCollectionView()
-		subtool.store(data: allocateSubToolImages(toolType: self.mainTool))
+		subtool.store(data: allocateSubToolImages(toolType: self.mainToolType))
 		subtool.numberOfColumuns = 1
 		subtool.set(selectionCallback: {
 			(_ section: Int, _ item: Int) -> Void in
@@ -176,7 +170,7 @@ open class KCDrawingView: KCStackView
 		mVectorGraphicsView = bezierview
 
 		/* assign initial tool */
-		self.mainTool = initmailtools[0]
+		self.mainToolType = initmailtools[0]
 		
 		/* assign default color */
 		strokeview.color = bezierview.strokeColor
@@ -223,7 +217,7 @@ open class KCDrawingView: KCStackView
 			CNLog(logLevel: .error, message: "Unexpected main tool item", atFunction: #function, inFile: #file)
 			return
 		}
-		self.mainTool = newtype
+		mMainToolType = newtype
 	}
 	
 	private func allocateSubToolImages(toolType tool: CNVectorGraphicsType) -> CNCollection {
@@ -247,7 +241,7 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func selectSubTool(item itm: Int){
-		switch self.mainTool {
+		switch mMainToolType {
 		case .path, .rect, .oval, .string:
 			switch itm {
 			case 0:	bezierLineWidth =  1.0	// line1P
