@@ -131,6 +131,7 @@ open class KCVectorGraphics: KCView
 
 	private func changeSizeEvent(originalPosition orgpos: CGPoint, gripPoint grip: CNGripPoint, graphics obj: CNVectorGraphics, newPosition newpos: CGPoint){
 		NSLog("changeSizeEvent: \(orgpos.description) -> \(newpos.description)")
+		mManager.reshapeObject(nextPoint: newpos, in: self.frame.size, grip: grip, object: obj)
 	}
 
 	private func moveObjectEvent(originalPosition orgpos: CGPoint, graphics obj: CNVectorGraphics, newPosition newpos: CGPoint){

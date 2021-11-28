@@ -34,7 +34,7 @@ private func centerPoint(points pts: Array<CGPoint>) -> CGPoint {
 
 public extension CNGripPoint
 {
-	func allocate(position pos: CNGripPoint.Position, centerPoint center: CGPoint, radius rad: CGFloat) {
+	func allocate(position pos: CNPosition, centerPoint center: CGPoint, radius rad: CGFloat) {
 		let bezier = CNBezierPath()
 		#if os(OSX)
 			let bounds = CGRect(x: center.x - rad, y: center.y - rad, width: rad * 2.0, height: rad * 2.0)
@@ -55,9 +55,9 @@ public extension CNGripPoint
 
 public extension CNVectorObject
 {
-	func allocateGripPoint(position pos: CNGripPoint.Position, point pt: CGPoint){
+	func allocateGripPoint(position pos: CNPosition, point pt: CGPoint){
 		let grip = self.allocateGripPoint()
-		grip.allocate(position: pos, centerPoint: pt, radius: 10.0)
+		grip.allocate(position: pos, centerPoint: pt, radius: 3.0)
 	}
 
 	func drawGripPoints(){
@@ -95,7 +95,7 @@ public extension CNVectorPath
 {
 	func allocate(in area: CGSize) {
 		let points = self.normalize(in: area)
-		if points.count >= 2 {
+		if points.count > 0 {
 			/* Draw path */
 			let bezier = allocateBezierPath()
 			bezier.move(to: points[0])
@@ -104,9 +104,10 @@ public extension CNVectorPath
 			}
 			/* Allocate center grab point */
 			clearGripPoints()
-			let center = centerPoint(points: points)
-			let pos    = CNGripPoint.Position(verticalPosition: .middle, horizontalPosition: .center)
-			allocateGripPoint(position: pos, point: center)
+			if let lastpt = points.last {
+				let pos = CNPosition(horizontal: .center, vertical: .middle)
+				allocateGripPoint(position: pos, point: lastpt)
+			}
 		}
 	}
 }
@@ -122,11 +123,26 @@ public extension CNVectorRect
 			} else {
 				bezier.appendRect(normrect)
 			}
-			/* Allocate upper-left grab point */
+			/* Allocate grip points */
 			clearGripPoints()
-			let ulp = normrect.upperLeftPoint
-			let pos = CNGripPoint.Position(verticalPosition: .top, horizontalPosition: .left)
-			allocateGripPoint(position: pos, point: ulp)
+			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .top),
+					  point: normrect.upperLeftPoint)
+			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .top),
+					  point: CGPoint.center(normrect.upperLeftPoint, normrect.upperRightPoint))
+			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .top),
+					  point: normrect.upperRightPoint)
+
+			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .middle),
+					  point: CGPoint.center(normrect.upperLeftPoint, normrect.lowerLeftPoint))
+			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .middle),
+					  point: CGPoint.center(normrect.upperRightPoint, normrect.lowerRightPoint))
+
+			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .bottom),
+					  point: normrect.lowerLeftPoint)
+			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .bottom),
+					  point: CGPoint.center(normrect.lowerLeftPoint, normrect.lowerRightPoint))
+			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .bottom),
+					  point: normrect.lowerRightPoint)
 		}
 	}
 }
@@ -146,7 +162,7 @@ public extension CNVectorOval
 			/* Allocate upper-center grab point */
 			clearGripPoints()
 			let oval = CNOval(center: center, radius: radius)
-			let ucp  = CNGripPoint.Position(verticalPosition: .top, horizontalPosition: .center)
+			let ucp  = CNPosition(horizontal: .center, vertical: .top)
 			allocateGripPoint(position: ucp, point: oval.upperCenter)
 		}
 	}
