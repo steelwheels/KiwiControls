@@ -159,11 +159,18 @@ public extension CNVectorOval
 			#else
 				bezier.appendOval(center: center, radius: radius)
 			#endif
+
 			/* Allocate upper-center grab point */
 			clearGripPoints()
 			let oval = CNOval(center: center, radius: radius)
-			let ucp  = CNPosition(horizontal: .center, vertical: .top)
-			allocateGripPoint(position: ucp, point: oval.upperCenter)
+			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .top),
+					  point: oval.upperCenter)
+			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .middle),
+					  point: oval.middleLeft)
+			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .middle),
+					  point: oval.middleRight)
+			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .bottom),
+					  point: oval.lowerCenter)
 		}
 	}
 }
