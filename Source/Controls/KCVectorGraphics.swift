@@ -145,21 +145,26 @@ open class KCVectorGraphics: KCView
 			let gr = contents[i]
 			switch gr {
 			case .path(let path):
+				path.setColors()
 				path.allocate(in: self.frame.size)
 				path.draw()
 			case .rect(let rect):
+				rect.setColors()
 				rect.allocate(in: self.frame.size)
 				rect.draw()
 			case .oval(let oval):
+				oval.setColors()
 				oval.allocate(in: self.frame.size)
 				oval.draw()
 			case .string(let str):
+				str.setColors()
 				str.draw(textField: mTextField, isEdtiable: i == count - 1, in: self.frame.size)
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
 		}
 		if let obj = mManager.currentObject() {
+			CNGripPoint.setColors()
 			switch obj {
 			case .path(let path):	path.drawGripPoints()
 			case .rect(let rect):	rect.drawGripPoints()
