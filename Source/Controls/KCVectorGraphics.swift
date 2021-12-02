@@ -14,28 +14,68 @@
 #endif
 import CoconutData
 
+public enum KCVectorToolType
+{
+	case mover			// ()
+	case path(Bool)			// (doFill)
+	case rect(Bool, Bool)		// (doFill, isRounded)
+	case oval(Bool)			// (doFill)
+	case string			// (font)
+
+	public func toGraphicsType() -> CNVectorGraphicsType? {
+		let result: CNVectorGraphicsType?
+		switch self {
+		case .mover:				result = nil
+		case .path(let dofill):			result = .path(dofill)
+		case .rect(let dofill, let isround):	result = .rect(dofill, isround)
+		case .oval(let dofill):			result = .oval(dofill)
+		case .string:				result = .string
+		}
+		return result
+	}
+
+	public var description: String { get {
+		let result: String
+		switch self {
+		case .mover:
+			result = "mover"
+		case .path(let dofill):
+			result = "path(doFill:\(dofill))"
+		case .rect(let dofill, let isrounded):
+			result = "rect(doFill:\(dofill), isRounded:\(isrounded))"
+		case .oval(let dofill):
+			result = "oval(doFill:\(dofill))"
+		case .string:
+			result = "string"
+		}
+		return result
+	}}
+}
 
 open class KCVectorGraphics: KCView
 {
 	private var mManager:		CNVecroManager
 	private var mWidth:		CGFloat?
 	private var mHeight:		CGFloat?
+	private var mToolType:		KCVectorToolType
 	private var mTextField:		KCTextEdit
 
 	public override init(frame: CGRect) {
-		mManager    	= CNVecroManager()
-		mWidth	    	= nil
-		mHeight	   	= nil
-		mTextField  	= KCTextEdit()
+		mManager    		= CNVecroManager()
+		mWidth	    		= nil
+		mHeight	   		= nil
+		mToolType		= .mover
+		mTextField  		= KCTextEdit()
 		super.init(frame: frame)
 		self.setup()
 	}
 
 	required public init?(coder: NSCoder) {
-		mManager    	= CNVecroManager()
-		mWidth	    	= nil
-		mHeight	    	= nil
-		mTextField  	= KCTextEdit()
+		mManager    		= CNVecroManager()
+		mWidth	    		= nil
+		mHeight	    		= nil
+		mToolType		= .mover
+		mTextField  		= KCTextEdit()
 		super.init(coder: coder)
 		self.setup()
 	}
@@ -55,8 +95,13 @@ open class KCVectorGraphics: KCView
 		CNVectorString.updateTextFieldLocation(textField: mTextField, offset: CGPoint.zero)
 
 		#if os(OSX)
-			self.registerForDraggedTypes(accessableTypes)
+			//setDroppableClass(droppableClass: NSString.self)
 		#endif
+	}
+
+	public var toolType: KCVectorToolType {
+		get          { return mToolType }
+		set(newtype) { mToolType = newtype }
 	}
 
 	public var lineWidth: CGFloat {
@@ -84,10 +129,18 @@ open class KCVectorGraphics: KCView
 		set(newval) { mHeight = newval }
 	}
 
+	/*
 	private enum DrawEvent {
 		case changeShape(CGPoint, CNGripPoint, CNVectorGraphics)
 		case moveObject(CGPoint, CNVectorGraphics)
 		case selectObject(Int)
+	}
+	 */
+
+	private enum DrawEvent {
+		case drawPath(CNVectorGraphics)
+		case moveObject(CGPoint, CNVectorGraphics)
+		case changeSize(CGPoint, CNGripPoint, CNVectorGraphics)
 	}
 
 	private var mDrawEvent: DrawEvent? = nil
@@ -97,45 +150,60 @@ open class KCVectorGraphics: KCView
 		case .down:
 			switch mManager.contains(point: position, in: self.frame.size) {
 			case .none:
-				mDrawEvent = nil
-			case .grip(let grip, let obj):
-				mDrawEvent = .changeShape(position, grip, obj)
-			case .choose(let obj):
+				if let gtype = mToolType.toGraphicsType() {
+					let newobj = mManager.addObject(location: position, in: self.frame.size, type: gtype)
+					switch newobj {
+					case .path(_):
+						mDrawEvent = .drawPath(newobj)
+					case .rect(_), .oval(_), .string(_):
+						mDrawEvent = .moveObject(position, newobj)
+					@unknown default:
+						CNLog(logLevel: .error, message: "Unexpected case", atFunction: #function, inFile: #file)
+						mDrawEvent = nil
+					}
+				} else {
+					mDrawEvent = nil
+				}
+			case .selectCurrentGrip(let grip, let obj):
+				mDrawEvent = .changeSize(position, grip, obj)
+			case .selectCurrentObject(let obj):
 				mDrawEvent = .moveObject(position, obj)
-			case .change(let idx):
-				mDrawEvent = .selectObject(idx)
+			case .selectOtherObject(let idx):
+				mManager.selectObject(index: idx)
+				mDrawEvent = nil
 			@unknown default:
-				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "Unexpected case", atFunction: #function, inFile: #file)
 				mDrawEvent = nil
 			}
 		case .drag, .up:
-			if let mevent = mDrawEvent {
-				switch mevent {
-				case .changeShape(let curpos, let grip, let obj):
-					changeSizeEvent(originalPosition: curpos, gripPoint: grip, graphics: obj, newPosition: position)
-					/* Update latest position */
-					mDrawEvent = .changeShape(position, grip, obj)
+			if let devent = mDrawEvent {
+				switch devent {
+				case .drawPath(let obj):
+					addPointToObjectEvent(nextPosition: position, graphics: obj)
+					mDrawEvent = .drawPath(obj)
 				case .moveObject(let curpos, let obj):
-					moveObjectEvent(originalPosition: curpos, graphics: obj, newPosition: position)
-					/* Update latest position */
+					moveObjectEvent(originalPosition: curpos, object: obj, newPosition: position)
 					mDrawEvent = .moveObject(position, obj)
-				case .selectObject(let idx):
-					if event == .up {
-						mManager.selectObject(index: idx)
-					}
+				case .changeSize(let curpos, let grip, let obj):
+					changeSizeEvent(originalPosition: curpos, gripPoint: grip, object: obj, newPosition: position)
+					mDrawEvent = .changeSize(position, grip, obj)
 				}
-				self.requireDisplay()
 			}
 		}
+		self.requireDisplay()
 	}
 
-	private func changeSizeEvent(originalPosition orgpos: CGPoint, gripPoint grip: CNGripPoint, graphics obj: CNVectorGraphics, newPosition newpos: CGPoint){
+	private func changeSizeEvent(originalPosition orgpos: CGPoint, gripPoint grip: CNGripPoint, object obj: CNVectorGraphics, newPosition newpos: CGPoint){
 		mManager.reshapeObject(nextPoint: newpos, in: self.frame.size, grip: grip, object: obj)
 	}
 
-	private func moveObjectEvent(originalPosition orgpos: CGPoint, graphics obj: CNVectorGraphics, newPosition newpos: CGPoint){
+	private func moveObjectEvent(originalPosition orgpos: CGPoint, object obj: CNVectorGraphics, newPosition newpos: CGPoint){
 		let diffpos = newpos - orgpos
 		mManager.moveObject(diffPoint: diffpos, in: self.frame.size, object: obj)
+	}
+
+	private func addPointToObjectEvent(nextPosition nxtpos: CGPoint, graphics obj: CNVectorGraphics){
+		mManager.addPointToObject(nextPoint: nxtpos, in: self.frame.size, object: obj)
 	}
 
 	public override func draw(_ dirtyRect: CGRect) {
@@ -203,46 +271,20 @@ open class KCVectorGraphics: KCView
 	 * drop operation
 	 *   reference: https://qiita.com/IKEH/items/1cdf51591be506c3f74b
 	 */
-	#if os(OSX)
-	private let accessableTypes: Array<NSPasteboard.PasteboardType> = [.string, .pdf, .png, .tiff]
-	private let draggableTypes: Dictionary<NSPasteboard.ReadingOptionKey, Any>? = [
-		.urlReadingContentsConformToTypes : NSImage.imageTypes
-	]
-
-	public override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-		if canReadObject(sender) {
-			return .link
-		} else {
-			return super.draggingEntered(sender)
-		}
-	}
-
-	public override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+	#if false // os(OSX)
+	open override func receiveDroppedObjects(_ sender: NSDraggingInfo, droppedObjects objs: Array<AnyObject>) -> Bool {
 		var result = false
-		if canReadObject(sender) {
-			let pboard = sender.draggingPasteboard
-			if let strs = pboard.readObjects(forClasses: [NSString.self], options: draggableTypes) as? Array<NSString> {
-				let str = strs[0] as String
-				if let gtype = decodeGraphicsType(string: str) {
-					let orgpos = sender.draggingLocation
-					let locpos = orgpos - self.frame.origin
-					mManager.addObject(location: locpos, in: self.frame.size, type: gtype)
-					self.requireDisplay()
-					result = true
-				}
+		if let strs = objs as? Array<NSString> {
+			let str = strs[0] as String
+			if let gtype = decodeGraphicsType(string: str) {
+				let orgpos = sender.draggingLocation
+				let locpos = orgpos - self.frame.origin
+				mManager.addObject(location: locpos, in: self.frame.size, type: gtype)
+				self.requireDisplay()
+				result = true
 			}
 		}
 		return result
-	}
-
-	public override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-		NSLog("performDragOperation")
-		return true
-	}
-
-	private func canReadObject(_ sender: NSDraggingInfo) -> Bool {
-		let pboard = sender.draggingPasteboard
-		return pboard.canReadObject(forClasses: [NSString.self], options: [:])
 	}
 
 	private func decodeGraphicsType(string str: String) -> CNVectorGraphicsType? {

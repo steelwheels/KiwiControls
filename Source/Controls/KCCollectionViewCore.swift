@@ -52,6 +52,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var mTotalItemNum		 = 0
 	private var mHeaderFont			 = CNFont.boldSystemFont(ofSize: CNFont.systemFontSize)
 	private var mSelectionCallback: SelectionCallback? = nil
+	private var mIsDragSupported		= false
 
 	private var collectionView: KCCollectionViewBase {
 		get {
@@ -472,14 +473,16 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	#if os(OSX)
 	public func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt index: IndexPath) -> NSPasteboardWriting? {
 		var result: NSPasteboardWriting? = nil
-		if let item = mCollectionData.value(section: index.section, item: index.item) {
-			switch item {
-			case .image(let url):
-				let comp = url.lastPathComponent
-				let str  = comp as NSString
-				result   = str.deletingPathExtension as NSString
-			@unknown default:
-				NSLog("Unexpected case")
+		if mIsDragSupported {
+			if let item = mCollectionData.value(section: index.section, item: index.item) {
+				switch item {
+				case .image(let url):
+					let comp = url.lastPathComponent
+					let str  = comp as NSString
+					result   = str.deletingPathExtension as NSString
+				@unknown default:
+					NSLog("Unexpected case")
+				}
 			}
 		}
 		return result

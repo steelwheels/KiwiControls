@@ -430,6 +430,69 @@ open class KCView : KCViewBase
 	}
 
 	/*
+	 * drop operation
+	 *   reference: https://qiita.com/IKEH/items/1cdf51591be506c3f74b
+	 */
+	#if os(OSX)
+
+	private var mDroppableClass: AnyClass? = nil
+
+	public func setDroppableClass(droppableClass dclass: AnyClass){
+		let accessableTypes: Array<NSPasteboard.PasteboardType> = [.string, .pdf, .png, .tiff]
+
+		mDroppableClass = dclass
+		self.registerForDraggedTypes(accessableTypes)
+	}
+
+	public override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+		if mDroppableClass != nil {
+			return true
+		} else {
+			return super.performDragOperation(sender)
+		}
+	}
+
+	public override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+		if canReadObject(sender) {
+			return .link
+		} else {
+			return super.draggingEntered(sender)
+		}
+	}
+
+	private func canReadObject(_ sender: NSDraggingInfo) -> Bool {
+		if let dropcls = mDroppableClass {
+			let pboard = sender.draggingPasteboard
+			return pboard.canReadObject(forClasses: [dropcls], options: [:])
+		}
+		return false
+	}
+
+	public override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+		let draggableTypes: Dictionary<NSPasteboard.ReadingOptionKey, Any>? = [
+			.urlReadingContentsConformToTypes : NSImage.imageTypes
+		]
+
+		var result = false
+		if let dropcls = mDroppableClass {
+			if canReadObject(sender) {
+				let pboard = sender.draggingPasteboard
+				if let objs = pboard.readObjects(forClasses: [dropcls], options: draggableTypes) as Array<AnyObject>? {
+					result = receiveDroppedObjects(sender, droppedObjects: objs)
+				}
+			}
+		}
+		return result
+	}
+
+	open func receiveDroppedObjects(_ sender: NSDraggingInfo, droppedObjects objs: Array<AnyObject>) -> Bool {
+		NSLog("Must be override")
+		return false
+	}
+
+	#endif
+
+	/*
 	 * Visitor
 	 */
 	open func accept(visitor vis: KCViewVisitor){

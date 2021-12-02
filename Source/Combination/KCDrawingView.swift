@@ -14,7 +14,6 @@ import CoconutData
 
 open class KCDrawingView: KCStackView
 {
-	private var mMainToolType:		CNVectorGraphicsType
 	private var mMainToolsView:		KCCollectionView?
 	private var mSubToolsView:		KCCollectionView?
 	private var mStrokeColorView:		KCColorSelector?
@@ -23,7 +22,6 @@ open class KCDrawingView: KCStackView
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mMainToolType		= .path(false)
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mStrokeColorView	= nil
@@ -34,7 +32,6 @@ open class KCDrawingView: KCStackView
 	}
 	#else
 	public override init(frame: CGRect){
-		mMainToolType		= .path(false)
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mStrokeColorView	= nil
@@ -55,7 +52,6 @@ open class KCDrawingView: KCStackView
 	}
 
 	public required init?(coder: NSCoder) {
-		mMainToolType		= .path(false)
 		mMainToolsView		= nil
 		mSubToolsView		= nil
 		mStrokeColorView	= nil
@@ -65,9 +61,22 @@ open class KCDrawingView: KCStackView
 		setup()
 	}
 
-	public var mainToolType: CNVectorGraphicsType {
-		get         { return mMainToolType }
-		set(newval) { mMainToolType = newval }
+	public var mainToolType: KCVectorToolType {
+		get {
+			if let view = mVectorGraphicsView {
+				return view.toolType
+			} else {
+				NSLog("No graphics view (get)")
+				return .path(false)
+			}
+		}
+		set(newval) {
+			if let view = mVectorGraphicsView {
+				view.toolType = newval
+			} else {
+				NSLog("No graphics view (set)")
+			}
+		}
 	}
 
 	public var strokeColor: CNColor {
@@ -101,7 +110,8 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func setup(){
-		let initmailtools: Array<CNVectorGraphicsType> = [
+		let initmaintools: Array<KCVectorToolType> = [
+			.mover,
 			.string,
 			.path(false),
 			.path(true),
@@ -123,7 +133,7 @@ open class KCDrawingView: KCStackView
 
 		/* Add main tool component */
 		let maintool = KCCollectionView()
-		maintool.store(data: allocateMainToolImages(mainTools: initmailtools))
+		maintool.store(data: allocateMainToolImages(mainTools: initmaintools))
 		maintool.numberOfColumuns = 2
 		maintool.set(selectionCallback: {
 			(_ section: Int, _ item: Int) -> Void in
@@ -134,7 +144,7 @@ open class KCDrawingView: KCStackView
 
 		/* Add sub tool component */
 		let subtool = KCCollectionView()
-		subtool.store(data: allocateSubToolImages(toolType: self.mainToolType))
+		subtool.store(data: allocateSubToolImages(toolType: initmaintools[0]))
 		subtool.numberOfColumuns = 1
 		subtool.set(selectionCallback: {
 			(_ section: Int, _ item: Int) -> Void in
@@ -170,18 +180,20 @@ open class KCDrawingView: KCStackView
 		mVectorGraphicsView = bezierview
 
 		/* assign initial tool */
-		self.mainToolType = initmailtools[0]
+		self.mainToolType = initmaintools[0]
 		
 		/* assign default color */
 		strokeview.color = bezierview.strokeColor
 		fillview.color   = bezierview.fillColor
 	}
 
-	private func allocateMainToolImages(mainTools tools: Array<CNVectorGraphicsType>) -> CNCollection {
+	private func allocateMainToolImages(mainTools tools: Array<KCVectorToolType>) -> CNCollection {
 		var images: Array<CNCollection.Item> = []
 		for tool in tools {
 			let item: CNCollection.Item
 			switch tool {
+			case .mover:
+				item = .image(CNSymbol.shared.URLOfSymbol(type: .handRaised))
 			case .path(let dofill):
 				item = .image(CNSymbol.shared.URLOfSymbol(type: .pencil(dofill)))
 			case .rect(let dofill, let hasround):
@@ -190,9 +202,6 @@ open class KCDrawingView: KCStackView
 				item = .image(CNSymbol.shared.URLOfSymbol(type: .characterA))
 			case .oval(let dofill):
 				item = .image(CNSymbol.shared.URLOfSymbol(type: .oval(dofill)))
-			@unknown default:
-				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
-				item = .image(CNSymbol.shared.URLOfSymbol(type: .pencil(false)))
 			}
 			images.append(item)
 		}
@@ -202,28 +211,29 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func selectMainTool(item itm: Int){
-		let newtype: CNVectorGraphicsType
+		let newtype: KCVectorToolType
 		switch itm {
-		case 0:	newtype = .string
-		case 1: newtype = .path(false)
-		case 2:	newtype = .path(true)
-		case 3:	newtype = .rect(false, false)
-		case 4:	newtype = .rect(true,  false)
-		case 5: newtype = .rect(false, true)
-		case 6: newtype = .rect(true,  true)
-		case 7: newtype = .oval(false)
-		case 8: newtype = .oval(true)
+		case 0: newtype = .mover
+		case 1:	newtype = .string
+		case 2: newtype = .path(false)
+		case 3:	newtype = .path(true)
+		case 4:	newtype = .rect(false, false)
+		case 5:	newtype = .rect(true,  false)
+		case 6: newtype = .rect(false, true)
+		case 7: newtype = .rect(true,  true)
+		case 8: newtype = .oval(false)
+		case 9: newtype = .oval(true)
 		default:
 			CNLog(logLevel: .error, message: "Unexpected main tool item", atFunction: #function, inFile: #file)
 			return
 		}
-		mMainToolType = newtype
+		self.mainToolType = newtype
 	}
 	
-	private func allocateSubToolImages(toolType tool: CNVectorGraphicsType) -> CNCollection {
+	private func allocateSubToolImages(toolType tool: KCVectorToolType) -> CNCollection {
 		let images: Array<CNCollection.Item>
 		switch tool {
-		case .path, .rect, .oval, .string:
+		case .mover, .path, .rect, .oval, .string:
 			images = [
 				.image(CNSymbol.shared.URLOfSymbol(type: .line1P )),
 				.image(CNSymbol.shared.URLOfSymbol(type: .line2P )),
@@ -231,9 +241,6 @@ open class KCDrawingView: KCStackView
 				.image(CNSymbol.shared.URLOfSymbol(type: .line8P )),
 				.image(CNSymbol.shared.URLOfSymbol(type: .line16P))
 			]
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown graphics type", atFunction: #function, inFile: #file)
-			images = []
 		}
 		let cdata = CNCollection()
 		cdata.add(header: "", footer: "", items: images)
@@ -241,8 +248,8 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func selectSubTool(item itm: Int){
-		switch mMainToolType {
-		case .path, .rect, .oval, .string:
+		switch self.mainToolType {
+		case .mover, .path, .rect, .oval, .string:
 			switch itm {
 			case 0:	bezierLineWidth =  1.0	// line1P
 			case 1: bezierLineWidth =  2.0	// line2P
@@ -252,8 +259,6 @@ open class KCDrawingView: KCStackView
 			default:
 				CNLog(logLevel: .error, message: "Unexpected item: \(itm)", atFunction: #function, inFile: #file)
 			}
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown graphics type", atFunction: #function, inFile: #file)
 		}
 	}
 
