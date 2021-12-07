@@ -24,11 +24,63 @@ public class SingleViewController: KCSingleViewController
 
 	public override func loadContext() -> KCView? {
 		NSLog("load context")
-		let result   = KCDrawingView()
-		result.drawingWidth  = 600.0
-		result.drawingHeight = 600.0
-		mDrawingView = result
+
+		let drawv   = KCDrawingView()
+		drawv.drawingWidth  = 600.0
+		drawv.drawingHeight = 600.0
+		mDrawingView = drawv
+
+		let savebutton = KCButton()
+		savebutton.value = .text("Save")
+		savebutton.buttonPressedCallback = {
+			() -> Void in
+			self.saveDrawings(value: .dictionaryValue(drawv.toValue()))
+		}
+
+		let loadbutton = KCButton()
+		loadbutton.value = .text("Load")
+		loadbutton.buttonPressedCallback = {
+			() -> Void in
+			self.loadDrawings(drawingView: drawv)
+		}
+		let buttons  = KCStackView()
+		buttons.axis = .horizontal
+		buttons.addArrangedSubView(subView: savebutton)
+		buttons.addArrangedSubView(subView: loadbutton)
+
+		let result = KCStackView()
+		result.axis = .vertical
+		result.addArrangedSubView(subView: drawv)
+		result.addArrangedSubView(subView: buttons)
+
 		return result
+	}
+
+	private func saveDrawings(value val: CNValue) {
+		let txt = val.toText()
+		URL.savePanel(title: "Select file to save", outputDirectory: nil, callback: {
+			(_ url: URL?) -> Void in
+			if let u = url {
+				if u.storeContents(contents: txt.toStrings().joined(separator: "\n")) {
+					NSLog("Save ... done")
+				} else {
+					NSLog("Save ... failed")
+				}
+			}
+		})
+	}
+
+	private func loadDrawings(drawingView dview: KCDrawingView) {
+		URL.openPanel(title: "Select vector file", type: .File, extensions: ["json"], callback: {
+			(_ url: URL?) -> Void in
+			if let u = url {
+				if dview.store(URL: u) {
+					NSLog("Load ... done")
+				} else {
+					NSLog("Load ... failed")
+				}
+			}
+		})
 	}
 
 	public override func viewDidLoad() {

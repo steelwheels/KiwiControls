@@ -14,12 +14,6 @@
 #endif
 import CoconutData
 
-private func normalizePoint(source src: CGPoint, in area: CGSize) -> CGPoint {
-	let x = area.width  * src.x
-	let y = area.height * src.y
-	return CGPoint(x: x, y: y)
-}
-
 private func centerPoint(points pts: Array<CGPoint>) -> CGPoint {
 	var minx = pts[0].x ; var maxx = minx
 	var miny = pts[0].y ; var maxy = miny
@@ -94,7 +88,7 @@ public extension CNPathObject
 public extension CNVectorPath
 {
 	func allocate(in area: CGSize) {
-		let points = self.normalize(in: area)
+		let points = self.points
 		if points.count > 0 {
 			/* Draw path */
 			let bezier = allocateBezierPath()
@@ -115,84 +109,82 @@ public extension CNVectorPath
 public extension CNVectorRect
 {
 	func allocate(in area: CGSize) {
-		if let normrect = self.normalize(in: area) {
-			/* Allocate rect */
-			let bezier = allocateBezierPath()
-			if self.isRounded {
-				bezier.appendRoundedRect(normrect, xRadius: 10.0, yRadius: 10.0)
-			} else {
-				bezier.appendRect(normrect)
-			}
-			/* Allocate grip points */
-			clearGripPoints()
-			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .top),
-					  point: normrect.upperLeftPoint)
-			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .top),
-					  point: CGPoint.center(normrect.upperLeftPoint, normrect.upperRightPoint))
-			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .top),
-					  point: normrect.upperRightPoint)
+		let rect = self.toRect()
 
-			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .middle),
-					  point: CGPoint.center(normrect.upperLeftPoint, normrect.lowerLeftPoint))
-			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .middle),
-					  point: CGPoint.center(normrect.upperRightPoint, normrect.lowerRightPoint))
-
-			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .bottom),
-					  point: normrect.lowerLeftPoint)
-			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .bottom),
-					  point: CGPoint.center(normrect.lowerLeftPoint, normrect.lowerRightPoint))
-			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .bottom),
-					  point: normrect.lowerRightPoint)
+		/* Allocate rect */
+		let bezier = allocateBezierPath()
+		if self.isRounded {
+			let round = self.roundValue
+			bezier.appendRoundedRect(rect, xRadius: round, yRadius: round)
+		} else {
+			bezier.appendRect(rect)
 		}
+
+		/* Allocate grip points */
+		clearGripPoints()
+		allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .top),
+				  point: rect.upperLeftPoint)
+		allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .top),
+				  point: CGPoint.center(rect.upperLeftPoint, rect.upperRightPoint))
+		allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .top),
+				  point: rect.upperRightPoint)
+
+		allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .middle),
+				  point: CGPoint.center(rect.upperLeftPoint, rect.lowerLeftPoint))
+		allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .middle),
+				  point: CGPoint.center(rect.upperRightPoint, rect.lowerRightPoint))
+
+		allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .bottom),
+				  point: rect.lowerLeftPoint)
+		allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .bottom),
+				  point: CGPoint.center(rect.lowerLeftPoint, rect.lowerRightPoint))
+		allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .bottom),
+				  point: rect.lowerRightPoint)
 	}
 }
 
 public extension CNVectorOval
 {
 	func allocate(in area: CGSize) {
-		if let (center, radius) = self.normalize(in: area) {
-			/* Allocate oval */
-			let bezier = allocateBezierPath()
-			#if os(OSX)
-				let bounds = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2.0, height: radius * 2.0)
-				bezier.appendOval(in: bounds)
-			#else
-				bezier.appendOval(center: center, radius: radius)
-			#endif
+		let (center, radius) = self.toOval()
 
-			/* Allocate upper-center grab point */
-			clearGripPoints()
-			let oval = CNOval(center: center, radius: radius)
-			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .top),
-					  point: oval.upperCenter)
-			allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .middle),
-					  point: oval.middleLeft)
-			allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .middle),
-					  point: oval.middleRight)
-			allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .bottom),
-					  point: oval.lowerCenter)
-		}
+		/* Allocate oval */
+		let bezier = allocateBezierPath()
+		#if os(OSX)
+			let bounds = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2.0, height: radius * 2.0)
+			bezier.appendOval(in: bounds)
+		#else
+			bezier.appendOval(center: center, radius: radius)
+		#endif
+
+		/* Allocate upper-center grab point */
+		clearGripPoints()
+		let oval = CNOval(center: center, radius: radius)
+		allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .top),
+				  point: oval.upperCenter)
+		allocateGripPoint(position: CNPosition(horizontal: .left, vertical: .middle),
+				  point: oval.middleLeft)
+		allocateGripPoint(position: CNPosition(horizontal: .right, vertical: .middle),
+				  point: oval.middleRight)
+		allocateGripPoint(position: CNPosition(horizontal: .center, vertical: .bottom),
+				  point: oval.lowerCenter)
 	}
 }
 
 public extension CNVectorString
 {
-	func draw(textField textfield: KCTextEdit, isEdtiable isedit: Bool, in area: CGSize) {
-		if let orgpt = self.normalize(in: area) {
-			if isedit {
-				/* Show text edit */
-				textfield.font = self.font
-				CNVectorString.updateTextFieldLocation(textField: textfield, offset: orgpt)
-				textfield.isHidden = false
-				textfield.requireLayout()
-				/* Update frame size */
-				self.frame = CGRect.zero
-			} else {
-				textfield.isHidden = true
-				let astr = self.attributedString()
-				astr.draw(at: orgpt)
-				self.frame = CGRect(origin: orgpt, size: astr.size())
-			}
+	func draw(textField textfield: KCTextEdit, isEdtiable isedit: Bool) {
+		let orgpt = self.originPoint
+		if isedit {
+			/* Show text edit */
+			textfield.font = self.font
+			CNVectorString.updateTextFieldLocation(textField: textfield, offset: orgpt)
+			textfield.isHidden = false
+			textfield.requireLayout()
+		} else {
+			textfield.isHidden = true
+			let astr = self.attributedString()
+			astr.draw(at: orgpt)
 		}
 	}
 

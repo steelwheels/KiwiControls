@@ -54,14 +54,14 @@ public enum KCVectorToolType
 
 open class KCVectorGraphics: KCView
 {
-	private var mManager:		CNVecroManager
+	private var mManager:		CNVectorManager
 	private var mWidth:		CGFloat?
 	private var mHeight:		CGFloat?
 	private var mToolType:		KCVectorToolType
 	private var mTextField:		KCTextEdit
 
 	public override init(frame: CGRect) {
-		mManager    		= CNVecroManager()
+		mManager    		= CNVectorManager()
 		mWidth	    		= nil
 		mHeight	   		= nil
 		mToolType		= .mover
@@ -71,7 +71,7 @@ open class KCVectorGraphics: KCView
 	}
 
 	required public init?(coder: NSCoder) {
-		mManager    		= CNVecroManager()
+		mManager    		= CNVectorManager()
 		mWidth	    		= nil
 		mHeight	    		= nil
 		mToolType		= .mover
@@ -129,14 +129,6 @@ open class KCVectorGraphics: KCView
 		set(newval) { mHeight = newval }
 	}
 
-	/*
-	private enum DrawEvent {
-		case changeShape(CGPoint, CNGripPoint, CNVectorGraphics)
-		case moveObject(CGPoint, CNVectorGraphics)
-		case selectObject(Int)
-	}
-	 */
-
 	private enum DrawEvent {
 		case drawPath(CNVectorGraphics)
 		case moveObject(CGPoint, CNVectorGraphics)
@@ -148,10 +140,10 @@ open class KCVectorGraphics: KCView
 	public override func acceptMouseEvent(mouseEvent event:KCMouseEvent, mousePosition position:CGPoint){
 		switch event {
 		case .down:
-			switch mManager.contains(point: position, in: self.frame.size) {
+			switch mManager.contains(point: position) {
 			case .none:
 				if let gtype = mToolType.toGraphicsType() {
-					let newobj = mManager.addObject(location: position, in: self.frame.size, type: gtype)
+					let newobj = mManager.addObject(location: position, type: gtype)
 					switch newobj {
 					case .path(_):
 						mDrawEvent = .drawPath(newobj)
@@ -194,19 +186,27 @@ open class KCVectorGraphics: KCView
 	}
 
 	private func changeSizeEvent(originalPosition orgpos: CGPoint, gripPoint grip: CNGripPoint, object obj: CNVectorGraphics, newPosition newpos: CGPoint){
-		mManager.reshapeObject(nextPoint: newpos, in: self.frame.size, grip: grip, object: obj)
+		mManager.reshapeObject(nextPoint: newpos, grip: grip, object: obj)
 	}
 
 	private func moveObjectEvent(originalPosition orgpos: CGPoint, object obj: CNVectorGraphics, newPosition newpos: CGPoint){
-		let diffpos = newpos - orgpos
-		mManager.moveObject(diffPoint: diffpos, in: self.frame.size, object: obj)
+		let diffpos = newpos.subtracting(orgpos)
+		mManager.moveObject(diffPoint: diffpos, object: obj)
 	}
 
 	private func addPointToObjectEvent(nextPosition nxtpos: CGPoint, graphics obj: CNVectorGraphics){
-		mManager.addPointToObject(nextPoint: nxtpos, in: self.frame.size, object: obj)
+		mManager.addPointToObject(nextPoint: nxtpos, object: obj)
 	}
 
 	public override func draw(_ dirtyRect: CGRect) {
+		let selgr: Bool
+		switch mToolType {
+		case .mover:
+			selgr = false
+		case .path(_), .rect(_, _), .oval(_), .string:
+			selgr = true
+		}
+
 		let contents = mManager.contents
 		let count    = contents.count
 		for i in 0..<count {
@@ -226,20 +226,22 @@ open class KCVectorGraphics: KCView
 				oval.draw()
 			case .string(let str):
 				str.setColors()
-				str.draw(textField: mTextField, isEdtiable: i == count - 1, in: self.frame.size)
+				str.draw(textField: mTextField, isEdtiable: selgr && (i == count - 1))
 			@unknown default:
 				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
 			}
 		}
-		if let obj = mManager.currentObject() {
-			CNGripPoint.setColors()
-			switch obj {
-			case .path(let path):	path.drawGripPoints()
-			case .rect(let rect):	rect.drawGripPoints()
-			case .oval(let oval):	oval.drawGripPoints()
-			case .string(let vstr):	vstr.drawGripPoints()
-			@unknown default:
-				CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+		if selgr {
+			if let obj = mManager.currentObject() {
+				CNGripPoint.setColors()
+				switch obj {
+				case .path(let path):	path.drawGripPoints()
+				case .rect(let rect):	rect.drawGripPoints()
+				case .oval(let oval):	oval.drawGripPoints()
+				case .string(let vstr):	vstr.drawGripPoints()
+				@unknown default:
+					CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+				}
 			}
 		}
 
@@ -261,8 +263,8 @@ open class KCVectorGraphics: KCView
 	public override var intrinsicContentSize: CGSize {
 		get {
 			let ssize  = super.intrinsicContentSize
-			let width  = mWidth  != nil ? mWidth!  : ssize.width
-			let height = mHeight != nil ? mHeight! : ssize.height
+			let width  = mWidth  ?? ssize.width
+			let height = mHeight ?? ssize.height
 			return CGSize(width: width, height: height)
 		}
 	}
@@ -306,6 +308,17 @@ open class KCVectorGraphics: KCView
 		return result
 	}
 	#endif
+
+	/*
+	 * load/store
+	 */
+	public func toValue() -> Dictionary<String, CNValue> {
+		return mManager.toValue()
+	}
+
+	public func store(URL url: URL) -> Bool {
+		return mManager.store(URL: url)
+	}
 
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(vectorGraphics: self)

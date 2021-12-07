@@ -313,5 +313,25 @@ open class KCDrawingView: KCStackView
 			}
 		}
 	}
+
+	/*
+	 * load/store
+	 */
+	public func toValue() -> Dictionary<String, CNValue> {
+		if let view = mVectorGraphicsView {
+			return view.toValue()
+		} else {
+			return [:]
+		}
+	}
+
+	public func store(URL url: URL) -> Bool {
+		if let view = mVectorGraphicsView {
+			return view.store(URL: url)
+		} else {
+			CNLog(logLevel: .error, message: "No vector graphics view", atFunction: #function, inFile: #file)
+			return false
+		}
+	}
 }
 
