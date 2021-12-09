@@ -317,7 +317,12 @@ open class KCVectorGraphics: KCView
 	}
 
 	public func store(URL url: URL) -> Bool {
-		return mManager.store(URL: url)
+		if mManager.store(URL: url) {
+			self.requireDisplay()
+			return true
+		} else {
+			return false
+		}
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

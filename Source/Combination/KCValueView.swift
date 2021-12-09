@@ -199,7 +199,7 @@ open class KCValueView: KCStackView, KCValueViewInterface
 			let view = KCImageValueView()
 			view.image = img
 			parview.addArrangedSubView(subView: view)
-		case .rangeValue(_), .pointValue(_), .sizeValue(_), .rectValue(_), .enumValue(_, _), .colorValue(_):
+		case .rangeValue(_), .pointValue(_), .sizeValue(_), .rectValue(_), .enumValue(_), .colorValue(_):
 			let view = KCDictionaryValueView()
 			view.value = val
 			parview.addArrangedSubView(subView: view)

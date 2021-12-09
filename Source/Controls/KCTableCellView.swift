@@ -72,8 +72,8 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 			updateStringValue(value: sz.description)
 		case .rectValue(let rect):
 			updateStringValue(value: rect.description)
-		case .enumValue(let name, let num):
-			updateStringValue(value: ".\(name)(\(num)")
+		case .enumValue(let eval):
+			updateStringValue(value: ".\(eval.type)(\(eval.value)")
 		case .dictionaryValue(_):
 			let str = val.toText().toStrings().joined()
 			updateStringValue(value: str)
