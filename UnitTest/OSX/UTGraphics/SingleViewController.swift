@@ -34,7 +34,7 @@ public class SingleViewController: KCSingleViewController
 		savebutton.value = .text("Save")
 		savebutton.buttonPressedCallback = {
 			() -> Void in
-			self.saveDrawings(value: .dictionaryValue(drawv.toValue()))
+			self.saveDrawings(drawingView: drawv)
 		}
 
 		let loadbutton = KCButton()
@@ -56,28 +56,28 @@ public class SingleViewController: KCSingleViewController
 		return result
 	}
 
-	private func saveDrawings(value val: CNValue) {
-		let txt = val.toText()
-		URL.savePanel(title: "Select file to save", outputDirectory: nil, callback: {
+	private func loadDrawings(drawingView dview: KCDrawingView) {
+		URL.openPanel(title: "Select vector file to load", type: .File, extensions: ["json"], callback: {
 			(_ url: URL?) -> Void in
 			if let u = url {
-				if u.storeContents(contents: txt.toStrings().joined(separator: "\n")) {
-					NSLog("Save ... done")
+				if dview.load(from: u) {
+					NSLog("Load ... done")
 				} else {
-					NSLog("Save ... failed")
+					NSLog("Load ... failed")
 				}
 			}
 		})
 	}
 
-	private func loadDrawings(drawingView dview: KCDrawingView) {
-		URL.openPanel(title: "Select vector file", type: .File, extensions: ["json"], callback: {
+	private func saveDrawings(drawingView dview: KCDrawingView) {
+		URL.savePanel(title: "Select vector file to save", outputDirectory: nil, callback: {
 			(_ url: URL?) -> Void in
 			if let u = url {
-				if dview.store(URL: u) {
-					NSLog("Load ... done")
+				let val = dview.toValue()
+				if u.storeValue(value: .dictionaryValue(val)) {
+					NSLog("Save ... done")
 				} else {
-					NSLog("Load ... failed")
+					NSLog("Save ... failed")
 				}
 			}
 		})

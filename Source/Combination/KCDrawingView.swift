@@ -325,9 +325,9 @@ open class KCDrawingView: KCStackView
 		}
 	}
 
-	public func store(URL url: URL) -> Bool {
+	public func load(from url: URL) -> Bool {
 		if let view = mVectorGraphicsView {
-			return view.store(URL: url)
+			return view.load(from: url)
 		} else {
 			CNLog(logLevel: .error, message: "No vector graphics view", atFunction: #function, inFile: #file)
 			return false

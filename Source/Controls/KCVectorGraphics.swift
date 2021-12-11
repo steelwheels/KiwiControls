@@ -316,8 +316,8 @@ open class KCVectorGraphics: KCView
 		return mManager.toValue()
 	}
 
-	public func store(URL url: URL) -> Bool {
-		if mManager.store(URL: url) {
+	public func load(from url: URL) -> Bool {
+		if mManager.load(from: url) {
 			self.requireDisplay()
 			return true
 		} else {
