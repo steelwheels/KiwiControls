@@ -116,7 +116,7 @@ open class KCNavigationBarCore: KCCoreView
 			#endif
 		}
 	}
-	
+
 	public var rightButtonTitle: String {
 		get {
 			#if os(OSX)

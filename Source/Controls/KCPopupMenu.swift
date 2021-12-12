@@ -57,7 +57,7 @@ open class KCPopupMenu : KCInterfaceView
 		get { return coreView.callbackFunction }
 		set(newfunc) { coreView.callbackFunction = newfunc }
 	}
-	
+
 	public var indexOfSelectedItem: Int {
 		get { return coreView.indexOfSelectedItem }
 	}

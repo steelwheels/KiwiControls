@@ -181,7 +181,7 @@ open class KCDrawingView: KCStackView
 
 		/* assign initial tool */
 		self.mainToolType = initmaintools[0]
-		
+
 		/* assign default color */
 		strokeview.color = bezierview.strokeColor
 		fillview.color   = bezierview.fillColor
@@ -229,7 +229,7 @@ open class KCDrawingView: KCStackView
 		}
 		self.mainToolType = newtype
 	}
-	
+
 	private func allocateSubToolImages(toolType tool: KCVectorToolType) -> CNCollection {
 		let images: Array<CNCollection.Item>
 		switch tool {
@@ -317,11 +317,11 @@ open class KCDrawingView: KCStackView
 	/*
 	 * load/store
 	 */
-	public func toValue() -> Dictionary<String, CNValue> {
+	public func toValue() -> CNValue {
 		if let view = mVectorGraphicsView {
 			return view.toValue()
 		} else {
-			return [:]
+			return .nullValue
 		}
 	}
 

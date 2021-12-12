@@ -18,7 +18,7 @@ class ViewController: KCMultiViewController
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		
+
 		let console	= KCLogManager.shared.console
 
 		/* Load log view */
@@ -38,7 +38,7 @@ class ViewController: KCMultiViewController
 		}
 		log(type: .flow, string: "View id \(logname) \(labname)\n", file: #file, line: #line, function: #function)
 	}
-	
+
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.

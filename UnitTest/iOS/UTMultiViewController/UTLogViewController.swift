@@ -18,7 +18,7 @@ public class UTLogViewController: KCLogViewController
 		super.viewWillAppear(animated)
 		doDumpView()
 	}
-	
+
 	public override func viewDidAppear(_ animated: Bool) {
 		NSLog("\(#function): viewDidAppear")
 		super.viewDidAppear(animated)

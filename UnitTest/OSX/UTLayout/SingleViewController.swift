@@ -23,7 +23,7 @@ public class SingleViewController: KCSingleViewController
 
 		return topview.fittingSize
 	}
-	
+
 	private func allocateContents0(topView topview: KCStackView){
 		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
@@ -52,7 +52,7 @@ public class SingleViewController: KCSingleViewController
 		text0.text  = "Hello-------------------------------------------------------------"
 		let text1   = KCTextField(frame: dmyrect)
 		text1.text  = "Good morning"
-		
+
 		hbox.addArrangedSubViews(subViews: [text0, text1])
 
 		topview.addArrangedSubView(subView: hbox)

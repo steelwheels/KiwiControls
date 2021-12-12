@@ -26,7 +26,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		#endif
 		super.init(nibName: nil, bundle: nil)
 	}
-	
+
 	public required init?(coder: NSCoder) {
 		mRootView		= nil
 		#if os(OSX)

@@ -27,13 +27,13 @@ class UTSpriteOpetation: CNOperationContext {
 class ViewController: UIViewController, CNLogging
 {
 	private var mConsole: CNConsole? = nil
-	
+
 	@IBOutlet weak var mSpriteView: KCSpriteView!
 
 	public var console: CNConsole? {
 		get { return mConsole }
 	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -107,7 +107,7 @@ class ViewController: UIViewController, CNLogging
 			cons.error(string: "No node-B\n")
 		}
 	}
-	
+
 	private func updateActions(contactAt point: CGPoint, status stat: KCSpriteStatus, console cons: CNConsole) {
 		let energy = stat.energy
 		let opname = stat.name

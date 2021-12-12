@@ -33,7 +33,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		self.name = istat.name
 		self.scale(to: psize)
 		self.position = mapper.logicalToPhysical(point: istat.position)
-		
+
 		let body = SKPhysicsBody(rectangleOf: psize)
 		body.setup(bodyType: .Object)
 		self.physicsBody = body
@@ -111,7 +111,7 @@ public class KCSpriteNode: SKSpriteNode, SKPhysicsContactDelegate
 		top["name"]   = CNNativeValue.stringValue(name)
 		top["status"] = status.toValue()
 		top["action"] = action.toValue()
-		
+
 		return CNNativeValue.dictionaryValue(top)
 	}
 }

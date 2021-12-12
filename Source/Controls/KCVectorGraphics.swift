@@ -207,10 +207,10 @@ open class KCVectorGraphics: KCView
 			selgr = true
 		}
 
-		let contents = mManager.contents
-		let count    = contents.count
+		let objects = mManager.objects
+		let count   = objects.count
 		for i in 0..<count {
-			let gr = contents[i]
+			let gr = objects[i]
 			switch gr {
 			case .path(let path):
 				path.setColors()
@@ -312,12 +312,41 @@ open class KCVectorGraphics: KCView
 	/*
 	 * load/store
 	 */
-	public func toValue() -> Dictionary<String, CNValue> {
-		return mManager.toValue()
+	public func toValue() -> CNValue {
+		let result: Dictionary<String, CNValue> = [
+			"frameSize":	.sizeValue(self.frame.size),
+			"objects":	.arrayValue(mManager.toValue())
+		]
+		return .dictionaryValue(result)
 	}
 
 	public func load(from url: URL) -> Bool {
-		if mManager.load(from: url) {
+		guard let val = url.loadValue() else {
+			CNLog(logLevel: .error, message: "Failed to load value", atFunction: #function, inFile: #file)
+			return false
+		}
+		guard let dict = val.toDictionary() else {
+			CNLog(logLevel: .error, message: "Dictionary value is required", atFunction: #function, inFile: #file)
+			return false
+		}
+		guard let sizeval = dict["frameSize"] else {
+			CNLog(logLevel: .error, message: "\"frameSize\" property is required", atFunction: #function, inFile: #file)
+			return false
+		}
+		guard let size = CGSize(value: sizeval) else {
+			CNLog(logLevel: .error, message: "Invalid size property", atFunction: #function, inFile: #file)
+			return false
+		}
+		guard let objsval = dict["objects"] else {
+			CNLog(logLevel: .error, message: "\"contents\" property is required", atFunction: #function, inFile: #file)
+			return false
+		}
+		guard let objects = objsval.toArray() else {
+			CNLog(logLevel: .error, message: "Invalid Content value", atFunction: #function, inFile: #file)
+			return false
+		}
+		if mManager.load(objects: objects) {
+			mManager.resize(from: size, to: self.frame.size)
 			self.requireDisplay()
 			return true
 		} else {

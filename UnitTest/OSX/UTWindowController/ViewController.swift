@@ -19,7 +19,7 @@ private class UTWindowController: NSWindowController
 class ViewController: KCViewController {
 
 @	IBOutlet weak var mStackView: KCStackView!
-    
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

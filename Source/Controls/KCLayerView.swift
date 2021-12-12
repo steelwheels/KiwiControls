@@ -122,7 +122,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 			}
 		}
 	}
-	
+
 	public func start(duration durval: TimeInterval, repeatCount count: Int) {
 		switch mAnimationState {
 		case .idle:

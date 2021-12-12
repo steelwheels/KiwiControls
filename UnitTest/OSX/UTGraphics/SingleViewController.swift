@@ -74,7 +74,7 @@ public class SingleViewController: KCSingleViewController
 			(_ url: URL?) -> Void in
 			if let u = url {
 				let val = dview.toValue()
-				if u.storeValue(value: .dictionaryValue(val)) {
+				if u.storeValue(value: val) {
 					NSLog("Save ... done")
 				} else {
 					NSLog("Save ... failed")

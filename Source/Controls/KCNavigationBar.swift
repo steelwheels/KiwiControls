@@ -60,7 +60,7 @@ open class KCNavigationBar : KCInterfaceView
 		get { return coreView.isLeftButtonEnabled }
 		set(enable) { coreView.isLeftButtonEnabled = enable }
 	}
-	
+
 	public var leftButtonTitle: String {
 		get { return coreView.leftButtonTitle }
 		set(str) { coreView.leftButtonTitle = str }

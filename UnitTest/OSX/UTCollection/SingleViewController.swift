@@ -26,7 +26,7 @@ public class SingleViewController: KCSingleViewController
 		let newval = allocateValue()
 		result.store(data: newval)
 		result.set(selectionCallback:{
-			(_ section: Int, _ item: Int) -> Void in 
+			(_ section: Int, _ item: Int) -> Void in
 			NSLog("selected section=\(section), item=\(item)")
 		})
 		result.isSelectable = true

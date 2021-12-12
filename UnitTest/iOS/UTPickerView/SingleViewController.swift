@@ -34,7 +34,7 @@ public class SingleViewController: KCSingleViewController
 		mViewType = type
 		super.init(parentViewController: parent, logConsole: cons, doVerbose: doverb)
 	}
-	
+
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -86,7 +86,7 @@ public class SingleViewController: KCSingleViewController
 
 	private func selectInputURL() {
 		log(type: .Flow, string: "selctInputFile", file: #file, line: #line, function: #function)
-		
+
 		guard let parent = parentController else {
 			log(type: .Error, string: "No parent controller", file: #file, line: #line, function: #function)
 			return
@@ -112,7 +112,7 @@ public class SingleViewController: KCSingleViewController
 			selview.openPicker(UTIs: utis)
 		#endif
 	}
-	
+
 	public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}

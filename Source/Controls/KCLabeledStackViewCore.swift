@@ -35,7 +35,7 @@ open class KCLabeledStackViewCore : KCCoreView
 		get { return mLabel.text }
 		set(newstr){ mLabel.text = newstr }
 	}
-	
+
 	public var contentsView: KCStackView {
 		get { return mStack }
 	}
