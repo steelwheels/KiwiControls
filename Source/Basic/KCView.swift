@@ -264,6 +264,31 @@ open class KCView : KCViewBase
 		/* Must be override by sub class */
 	}
 
+	#if os(OSX)
+	public override func keyUp(with event: NSEvent) {
+		if let code = CNKeyCode(rawValue: event.keyCode) {
+			let cat = CNKeyCategory.category(from: code)
+			if !acceptKeyEvent(keyUp: true, keyCategory: cat) {
+				super.keyUp(with: event)
+			}
+		}
+	}
+
+	public override func keyDown(with event: NSEvent) {
+		if let code = CNKeyCode(rawValue: event.keyCode) {
+			let cat = CNKeyCategory.category(from: code)
+			if !acceptKeyEvent(keyUp: false, keyCategory: cat) {
+				super.keyUp(with: event)
+			}
+		}
+	}
+	#endif
+
+	open func acceptKeyEvent(keyUp up: Bool, keyCategory cat: CNKeyCategory) -> Bool {
+		/* Override method to accept */
+		return false
+	}
+
 	/*
 	 * Update area control
 	 */

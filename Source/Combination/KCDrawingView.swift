@@ -314,6 +314,10 @@ open class KCDrawingView: KCStackView
 		}
 	}
 
+	public var firstResponderView: KCViewBase? { get {
+		return mVectorGraphicsView
+	}}
+
 	/*
 	 * load/store
 	 */

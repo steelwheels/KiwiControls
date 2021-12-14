@@ -269,6 +269,54 @@ open class KCVectorGraphics: KCView
 		}
 	}
 
+	#if os(OSX)
+	public override var acceptsFirstResponder: Bool {
+		get { return true }
+	}
+	#endif
+
+	public var firstResponderView: KCViewBase? { get {
+		if mTextField.isHidden {
+			return self
+		} else {
+			return mTextField
+		}
+	}}
+
+	open override func acceptKeyEvent(keyUp up: Bool, keyCategory cat: CNKeyCategory) -> Bool {
+		var result: Bool = false
+		switch cat {
+		case .alphabet(_), .digit(_), .function(_), .symbol(_):
+			break
+		case .space(let c):
+			if c == "\t" {
+				/* Tab key */
+				if up {
+					if mManager.selectNextObject() {
+						self.requireDisplay()
+					}
+				}
+				result = true
+			}
+		case .special(let key):
+			switch key {
+			case .delete:
+				/* Delete key */
+				if up {
+					if mManager.deleteCurrentObject() {
+						self.requireDisplay()
+					}
+				}
+				result = true
+			default:
+				break
+			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown key code", atFunction: #function, inFile: #file)
+		}
+		return result
+	}
+
 	/*
 	 * drop operation
 	 *   reference: https://qiita.com/IKEH/items/1cdf51591be506c3f74b

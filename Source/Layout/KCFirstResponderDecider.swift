@@ -32,6 +32,11 @@ public class KCFirstResponderDecider
 				mWindow.makeFirstResponder(resp)
 				return true
 			}
+		} else if let drv = base as? KCDrawingView {
+			if let resp = drv.firstResponderView {
+				mWindow.makeFirstResponder(resp)
+				return true
+			}
 		} else if let colv = base as? KCCollectionView {
 			if let resp = colv.firstResponderView {
 				mWindow.makeFirstResponder(resp)
