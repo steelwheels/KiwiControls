@@ -80,6 +80,11 @@ open class KCVectorGraphics: KCView
 		self.setup()
 	}
 
+	public convenience init(){
+		let frame = CGRect(x: 0.0, y: 0.0, width: 100, height: 100)
+		self.init(frame: frame)
+	}
+
 	private func setup(){
 		/* Setup text field */
 		self.addSubview(mTextField)
