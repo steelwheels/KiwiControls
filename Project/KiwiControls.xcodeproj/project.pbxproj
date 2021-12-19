@@ -255,6 +255,8 @@
 		05B750672539DCD00034D8CB /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleViewController.swift */; };
 		05BBDBDC26FC0E9300603B8B /* KCValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BBDBDB26FC0E9300603B8B /* KCValueView.swift */; };
 		05BBDBDD26FC0E9400603B8B /* KCValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BBDBDB26FC0E9300603B8B /* KCValueView.swift */; };
+		05BDADFD276E261A00729B0E /* KCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDADFC276E261A00729B0E /* KCCardView.swift */; };
+		05BDADFE276E261A00729B0E /* KCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDADFC276E261A00729B0E /* KCCardView.swift */; };
 		05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05CC334E25789714001BA2F2 /* KCConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC333925789709001BA2F2 /* KCConsoleManager.swift */; };
 		05D0388625AC84370022E242 /* KCIconViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D0388525AC84370022E242 /* KCIconViewCore.xib */; };
@@ -607,6 +609,7 @@
 		05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMultiView_macOS.entitlements; sourceTree = "<group>"; };
 		05B750642539DCCF0034D8CB /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		05BBDBDB26FC0E9300603B8B /* KCValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCValueView.swift; sourceTree = "<group>"; };
+		05BDADFC276E261A00729B0E /* KCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCardView.swift; sourceTree = "<group>"; };
 		05CC333925789709001BA2F2 /* KCConsoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCConsoleManager.swift; sourceTree = "<group>"; };
 		05D0388525AC84370022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		05D0388D25AC846D0022E242 /* KCIconViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
@@ -983,6 +986,7 @@
 		0544EB9A25177601002DE6A8 /* Combination */ = {
 			isa = PBXGroup;
 			children = (
+				05BDADFC276E261A00729B0E /* KCCardView.swift */,
 				0583243A272E7D75007EE3E7 /* KCDrawingView.swift */,
 				0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */,
 				05BBDBDB26FC0E9300603B8B /* KCValueView.swift */,
@@ -1685,6 +1689,7 @@
 				05D0388E25AC846D0022E242 /* KCIconViewCore.swift in Sources */,
 				057341E72718765600F1799E /* KCCollectionView.swift in Sources */,
 				0583244C272ED0EB007EE3E7 /* KCViewAnalyzer.swift in Sources */,
+				05BDADFD276E261A00729B0E /* KCCardView.swift in Sources */,
 				0544EB20251775A3002DE6A8 /* KCButtonCore.swift in Sources */,
 				0544EAD825176FF5002DE6A8 /* KCCoodinate.swift in Sources */,
 				0544EBB925177676002DE6A8 /* KCViewVisitor.swift in Sources */,
@@ -1765,6 +1770,7 @@
 				0544EA9125176F10002DE6A8 /* KCLogViewController.swift in Sources */,
 				0544EAC925176FF5002DE6A8 /* KCImage.swift in Sources */,
 				05589A7B2612042100774D41 /* KCTextViewCore.swift in Sources */,
+				05BDADFE276E261A00729B0E /* KCCardView.swift in Sources */,
 				0544EBBA25177676002DE6A8 /* KCViewVisitor.swift in Sources */,
 				0544EA7D25176EC6002DE6A8 /* KCPreferenceWindow.swift in Sources */,
 				0544EB1D251775A3002DE6A8 /* KCCheckBoxCore.swift in Sources */,

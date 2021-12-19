@@ -1,6 +1,6 @@
 /**
- * @file KCStackView.swift
- * @brief Define KCStackView class
+ * @file KCValueView.swift
+ * @brief Define KCValueView class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  */
