@@ -15,18 +15,15 @@ import CoconutData
 open class KCCardView: KCStackView
 {
 	private var mCurrentIndex:	Int
-	private var mTables: Dictionary<String, CNTable>
 
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mCurrentIndex	= 0
-		mTables		= [:]
 		super.init(frame: frame) ;
 	}
 	#else
 	public override init(frame: CGRect){
 		mCurrentIndex	= 0
-		mTables		= [:]
 		super.init(frame: frame)
 	}
 	#endif
@@ -42,13 +39,11 @@ open class KCCardView: KCStackView
 
 	public required init?(coder: NSCoder) {
 		mCurrentIndex	= 0
-		mTables		= [:]
 		super.init(coder: coder)
 	}
 
 	public var currentIndex: Int {
 		get         { return mCurrentIndex   }
-		set(newval) { mCurrentIndex = newval }
 	}
 
 	open func setIndex(index idx: Int) -> Bool {
@@ -58,15 +53,6 @@ open class KCCardView: KCStackView
 		} else {
 			return false
 		}
-	}
-
-
-	public func setTable(name nm: String, table tbl: CNTable){
-		mTables[nm] = tbl
-	}
-
-	public func table(name nm: String) -> CNTable? {
-		return mTables[nm]
 	}
 
 	#if os(OSX)
