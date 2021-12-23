@@ -14,6 +14,7 @@ import CoconutData
 
 public protocol KCValueViewInterface
 {
+	var isEditable: Bool { get set }
 	var value: CNValue { get set }
 }
 
@@ -93,14 +94,25 @@ public class KCImageValueView: KCImageView, KCValueViewInterface
 			}
 		}
 	}
+
+	public var isEditable: Bool {
+		get { return false }
+		set(newval) { /* ignore */ }
+	}
 }
 
 public class KCDictionaryValueView: KCTableView, KCValueViewInterface
 {
+	static let ValueItem = "value"
+
 	public var value: CNValue {
 		get {
 			if let dict = self.loadDictionary() {
-				return CNValue.dictionaryToValue(dictionary: dict)
+				if let scalar = CNValue.dictionaryToValue(dictionary: dict) {
+					return scalar
+				} else {
+					return .dictionaryValue(dict)
+				}
 			} else {
 				return .nullValue
 			}
@@ -112,6 +124,11 @@ public class KCDictionaryValueView: KCTableView, KCValueViewInterface
 				CNLog(logLevel: .error, message: "Failed to set value", atFunction: #function, inFile: #file)
 			}
 		}
+	}
+
+	public var isEditable: Bool {
+		get { return super.isEditable(forColumn: KCDictionaryValueView.ValueItem) }
+		set(newval) { super.setEditable(isEditable: newval, forColumn: KCDictionaryValueView.ValueItem) }
 	}
 }
 
@@ -135,6 +152,25 @@ public class KCArrayValueView: KCStackView, KCValueViewInterface
 				}
 			} else {
 				CNLog(logLevel: .error, message: "Not array value", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	public var isEditable: Bool {
+		get {
+			let subviews = self.arrangedSubviews()
+			if subviews.count > 0 {
+				if let valview = subviews[0] as? KCValueViewInterface {
+					return valview.isEditable
+				}
+			}
+			return false
+		}
+		set(newval){
+			for subview in self.arrangedSubviews() {
+				if var valview = subview as? KCValueViewInterface {
+					valview.isEditable = newval
+				}
 			}
 		}
 	}
@@ -170,6 +206,25 @@ public class KCLabeledValueView: KCStackView, KCValueViewInterface
 				}
 			} else {
 				CNLog(logLevel: .error, message: "Not dictionary value", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	public var isEditable: Bool {
+		get {
+			let subview = self.arrangedSubviews()
+			if subview.count > 0 {
+				if let valview = subview[0] as? KCValueViewInterface {
+					return valview.isEditable
+				}
+			}
+			return false
+		}
+		set(newval) {
+			for subview in self.arrangedSubviews() {
+				if var valview = subview as? KCValueViewInterface {
+					valview.isEditable = newval
+				}
 			}
 		}
 	}
@@ -261,6 +316,25 @@ open class KCValueView: KCStackView, KCValueViewInterface
 			result = .arrayValue(values)
 		}
 		return result
+	}
+
+	public var isEditable: Bool {
+		get {
+			let subview = self.arrangedSubviews()
+			if subview.count > 0 {
+				if let valview = subview[0] as? KCValueViewInterface {
+					return valview.isEditable
+				}
+			}
+			return false
+		}
+		set(newval) {
+			for subview in self.arrangedSubviews() {
+				if var valview = subview as? KCValueViewInterface {
+					valview.isEditable = newval
+				}
+			}
+		}
 	}
 
 	private static func hasScalarValues(dictionary dict: Dictionary<String, CNValue>) -> Bool {

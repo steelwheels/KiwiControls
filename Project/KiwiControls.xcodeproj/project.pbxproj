@@ -53,8 +53,6 @@
 		0544EACB25176FF5002DE6A8 /* KCEclipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EABD25176FF5002DE6A8 /* KCEclipse.swift */; };
 		0544EACC25176FF5002DE6A8 /* KCTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EABE25176FF5002DE6A8 /* KCTriangle.swift */; };
 		0544EACD25176FF5002DE6A8 /* KCTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EABE25176FF5002DE6A8 /* KCTriangle.swift */; };
-		0544EAD025176FF5002DE6A8 /* KCRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAC025176FF5002DE6A8 /* KCRect.swift */; };
-		0544EAD125176FF5002DE6A8 /* KCRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAC025176FF5002DE6A8 /* KCRect.swift */; };
 		0544EAD225176FF5002DE6A8 /* KCGradientTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAC125176FF5002DE6A8 /* KCGradientTable.swift */; };
 		0544EAD325176FF5002DE6A8 /* KCGradientTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAC125176FF5002DE6A8 /* KCGradientTable.swift */; };
 		0544EAD625176FF5002DE6A8 /* KCContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EAC325176FF5002DE6A8 /* KCContext.swift */; };
@@ -454,7 +452,6 @@
 		0544EABC25176FF5002DE6A8 /* KCImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCImage.swift; sourceTree = "<group>"; };
 		0544EABD25176FF5002DE6A8 /* KCEclipse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCEclipse.swift; sourceTree = "<group>"; };
 		0544EABE25176FF5002DE6A8 /* KCTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTriangle.swift; sourceTree = "<group>"; };
-		0544EAC025176FF5002DE6A8 /* KCRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCRect.swift; sourceTree = "<group>"; };
 		0544EAC125176FF5002DE6A8 /* KCGradientTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCGradientTable.swift; sourceTree = "<group>"; };
 		0544EAC325176FF5002DE6A8 /* KCContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCContext.swift; sourceTree = "<group>"; };
 		0544EAC425176FF5002DE6A8 /* KCCoodinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCCoodinate.swift; sourceTree = "<group>"; };
@@ -863,7 +860,6 @@
 				0544EAC125176FF5002DE6A8 /* KCGradientTable.swift */,
 				0544EAC725176FF5002DE6A8 /* KCHexagon.swift */,
 				0544EABC25176FF5002DE6A8 /* KCImage.swift */,
-				0544EAC025176FF5002DE6A8 /* KCRect.swift */,
 				0544EABE25176FF5002DE6A8 /* KCTriangle.swift */,
 				0544EAC625176FF5002DE6A8 /* KCVertices.swift */,
 			);
@@ -1682,7 +1678,6 @@
 				0544EB1E251775A3002DE6A8 /* KCStackViewCore.swift in Sources */,
 				05589AC626120F7F00774D41 /* KCTextView.swift in Sources */,
 				05ED4A74269346CE008C8FCE /* KCTableCellView.swift in Sources */,
-				0544EAD025176FF5002DE6A8 /* KCRect.swift in Sources */,
 				0544EAD625176FF5002DE6A8 /* KCContext.swift in Sources */,
 				0544EA8025176EC6002DE6A8 /* KCViewControlEvent.swift in Sources */,
 				0544EAAF25176FBE002DE6A8 /* KCExpansionAdjuster.swift in Sources */,
@@ -1775,7 +1770,6 @@
 				0544EA7D25176EC6002DE6A8 /* KCPreferenceWindow.swift in Sources */,
 				0544EB1D251775A3002DE6A8 /* KCCheckBoxCore.swift in Sources */,
 				0544EB1F251775A3002DE6A8 /* KCStackViewCore.swift in Sources */,
-				0544EAD125176FF5002DE6A8 /* KCRect.swift in Sources */,
 				0544EAD725176FF5002DE6A8 /* KCContext.swift in Sources */,
 				0544EA7125176EC6002DE6A8 /* KCPlaneViewController.swift in Sources */,
 				0544EAB025176FBE002DE6A8 /* KCExpansionAdjuster.swift in Sources */,

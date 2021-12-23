@@ -184,17 +184,17 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public var visibleRowCount:	Int  = 20
 
-	private var mDataState:		DataState
-	private var mIsEditable:	Bool
-	private var mStateListner:	StateListner?
-	private var mTableInterface:	KCTableInterface
-	private var mSortDescriptors:	CNSortDescriptors
-	private var mReloadedCount:	Int
+	private var mDataState:			DataState
+	private var mEditableColumnNames:	Set<String>
+	private var mStateListner:		StateListner?
+	private var mTableInterface:		KCTableInterface
+	private var mSortDescriptors:		CNSortDescriptors
+	private var mReloadedCount:		Int
 
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mDataState		= .clean
-		mIsEditable		= false
+		mEditableColumnNames	= []
 		mStateListner		= nil
 		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
@@ -204,7 +204,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	#else
 	public override init(frame: CGRect){
 		mDataState		= .clean
-		mIsEditable		= false
+		mEditableColumnNames	= []
 		mStateListner		= nil
 		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
@@ -224,7 +224,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public required init?(coder: NSCoder) {
 		mDataState		= .clean
-		mIsEditable		= false
+		mEditableColumnNames	= []
 		mStateListner		= nil
 		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
@@ -302,9 +302,20 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	/*
 	 * Table
 	 */
-	public var isEditable:  Bool 	{ get { return mIsEditable	  		}}
 	public var numberOfRows: Int 	{ get { return mTableInterface.rowCount		}}
 	public var numberOfColumns: Int { get { return mTableInterface.columnCount	}}
+
+	public func setEditable(isEditable edt: Bool, forColumn col: String) {
+		if edt {
+			mEditableColumnNames.insert(col)
+		} else {
+			mEditableColumnNames.remove(col)
+		}
+	}
+
+	public func isEditable(forColumn col: String) -> Bool {
+		return mEditableColumnNames.contains(col)
+	}
 
 	public var hasGrid: Bool {
 		get {
@@ -387,12 +398,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 			}
 		} else if mTableInterface.columnCount > mTableView.tableColumns.count {
-			let addnum = mTableInterface.columnCount - mTableView.tableColumns.count
-			for _ in 0..<addnum {
+			for i in mTableView.tableColumns.count..<mTableInterface.columnCount {
 				let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "?"))
+				let fname	  = mTableInterface.fieldName(atIndex: i) ?? "?"
 				newcol.title      = "?"
 				newcol.isHidden	  = false
-				newcol.isEditable = mIsEditable
+				newcol.isEditable = isEditable(forColumn: fname)
 				mTableView.addTableColumn(newcol)
 			}
 		}
@@ -406,7 +417,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			col.isHidden	= false
 			col.minWidth	= 64
 			col.maxWidth	= 1000
-			col.isEditable	= mIsEditable
+			col.isEditable	= isEditable(forColumn: fnames[i])
 		}
 
 		if hasHeader {
@@ -496,7 +507,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			}
 			cell.setup(title: title, row: ridx, delegate: self)
 			cell.isEnabled  = self.isEnable
-			cell.isEditable = mIsEditable
+			cell.isEditable = isEditable(forColumn: title)
 		} else {
 			CNLog(logLevel: .error, message: "Unexpected cell view", atFunction: #function, inFile: #file)
 		}
