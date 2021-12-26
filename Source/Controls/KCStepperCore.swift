@@ -22,6 +22,7 @@ public class KCStepperCore: KCCoreView
 	@IBOutlet weak var	mStepper:	NSStepper!
 	#endif
 
+	public var minWidth: Int		= 16
 	public var numberOfDecimalPlaces: Int	= 2
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
@@ -196,7 +197,19 @@ public class KCStepperCore: KCCoreView
 	}
 
 	private func contentSize() -> CGSize {
+		/* Get text field size*/
+		#if os(OSX)
+		let curnum  = mTextField.stringValue.count
+		let newnum  = max(curnum, minWidth)
+		let fitsize = mTextField.fittingSize
+		let newwidth:  CGFloat
+		let fontsize = fontSize(font: mTextField.font)
+		newwidth = fontsize.width * CGFloat(newnum)
+		let fieldsize   = CGSize(width: newwidth, height: fitsize.height)
+		#else
 		let fieldsize   = mTextField.intrinsicContentSize
+		#endif
+		/* Ger stepper size*/
 		let steppersize = mStepper.intrinsicContentSize
 		let space       = CNPreference.shared.windowPreference.spacing
 		return CNUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)

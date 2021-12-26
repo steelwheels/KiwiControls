@@ -532,7 +532,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 
 	private func targetSize() -> CGSize {
 		let tpref      = CNPreference.shared.terminalPreference
-		let fontsize   = fontSize()
+		let fontsize   = fontSize(font: mTextView.font)
 		let termwidth  = CGFloat(tpref.width)  * fontsize.width
 		let termheight = CGFloat(tpref.height) * fontsize.height
 		let barwidth   = scrollBarWidth()
@@ -552,15 +552,9 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		#endif
 	}
 
-	private func fontSize() -> CGSize {
-		let attr = [NSAttributedString.Key.font: self.font]
-		let str: String = " "
-		return str.size(withAttributes: attr)
-	}
-
 	private func updateTerminalSize() {
 		let viewsize	= mTextView.frame.size
-		let fontsize	= fontSize()
+		let fontsize	= fontSize(font: mTextView.font)
 		let barwidth    = scrollBarWidth()
 		let newwidth	= Int(max(viewsize.width - barwidth, 0.0)  / fontsize.width )
 		let newheight   = Int(viewsize.height / fontsize.height)

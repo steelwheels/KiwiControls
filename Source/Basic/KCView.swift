@@ -290,6 +290,24 @@ open class KCView : KCViewBase
 	}
 
 	/*
+	 * Size cache
+	 */
+	private var mCurrentFontSize: CGSize? = nil
+
+	public func fontSize(font fnt: CNFont?) -> CGSize {
+		if let size = mCurrentFontSize {
+			return size
+		} else {
+			let font = fnt ?? CNFont.systemFont(ofSize: CNFont.systemFontSize)
+			let attr = [NSAttributedString.Key.font: font]
+			let str: String = " "
+			let size = str.size(withAttributes: attr)
+			mCurrentFontSize = size
+			return size
+		}
+	}
+
+	/*
 	 * Update area control
 	 */
 	private var areaToBeDisplay = CGRect.zero

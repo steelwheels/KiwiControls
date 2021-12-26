@@ -280,6 +280,10 @@ open class KCValueView: KCStackView, KCValueViewInterface
 			} else {
 				parview.addArrangedSubView(subView: emptyView())
 			}
+		case .reference(let ref):
+			let view = KCTextEdit()
+			view.text = ref.relativePath
+			parview.addArrangedSubView(subView: view)
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown value type", atFunction: #function, inFile: #file)
 		}

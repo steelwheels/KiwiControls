@@ -110,11 +110,8 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 			let fitsize = mTextEdit.fittingSize
 
 			let newwidth:  CGFloat
-			if let fontsize = self.fontSize() {
-				newwidth = fontsize.width * CGFloat(newnum)
-			} else {
-				newwidth = fitsize.width
-			}
+			let fontsize = self.fontSize(font: mTextEdit.font)
+			newwidth = fontsize.width * CGFloat(newnum)
 
 			mTextEdit.preferredMaxLayoutWidth = newwidth
 			return CGSize(width: newwidth, height: fitsize.height)
@@ -125,16 +122,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		get { return mTextEdit.intrinsicContentSize }
 	}
 	#endif
-
-	private func fontSize() -> CGSize? {
-		if let font = mTextEdit.font {
-			let attr = [NSAttributedString.Key.font: font]
-			let str: String = " "
-			return str.size(withAttributes: attr)
-		} else {
-			return nil
-		}
-	}
 
 	#if os(OSX)
 	public override var acceptsFirstResponder: Bool { get {
