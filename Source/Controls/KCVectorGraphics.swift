@@ -386,7 +386,7 @@ open class KCVectorGraphics: KCView
 			CNLog(logLevel: .error, message: "\"frameSize\" property is required", atFunction: #function, inFile: #file)
 			return false
 		}
-		guard let size = CGSize(value: sizeval) else {
+		guard let size = sizeval.toSize() else {
 			CNLog(logLevel: .error, message: "Invalid size property", atFunction: #function, inFile: #file)
 			return false
 		}
