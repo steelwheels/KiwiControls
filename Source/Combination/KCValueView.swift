@@ -239,6 +239,7 @@ open class KCValueView: KCStackView, KCValueViewInterface
 		set(newval) {
 			self.removeAllArrangedSubviews()
 			KCValueView.valueToView(value: newval, parent: self)
+			self.requireDisplay()
 		}
 	}
 
