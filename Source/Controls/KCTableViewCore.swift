@@ -233,11 +233,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	static private func allocateEmptyBridge() -> KCTableBridge {
-		let rec = CNValueRecord()
-		let _   = rec.setValue(value: .nullValue, forField: "c0")
-		let _   = rec.setValue(value: .nullValue, forField: "c1")
-		let table = CNValueTable()
+		let table = CNValueTable.allocateVolatileValueTable()
+		let rec   = table.newRecord()
+		let _     = rec.setValue(value: .nullValue, forField: "c0")
+		let _     = rec.setValue(value: .nullValue, forField: "c1")
 		table.append(record: rec)
+
 		return KCTableBridge(table: table)
 	}
 
