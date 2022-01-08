@@ -24,7 +24,9 @@ private protocol KCTableInterface
 {
 	var rowCount: 		Int		{ get }
 	var columnCount:	Int		{ get }
-	var fieldNames:		Array<String> 	{ get }
+
+	var allFieldNames:	Array<String> 	{ get }
+	var activeFieldNames:	Array<String> 	{ get set }
 
 	func fieldName(atIndex idx: Int) -> String?
 
@@ -43,14 +45,23 @@ private class KCTableBridge: KCTableInterface
 		mFieldNames	= []
 	}
 
-	public var rowCount:    Int     { get { return mTable.recordCount	}}
-	public var columnCount: Int     { get { return mTable.fieldNames.count	}}
-	public var core:	CNTable { get { return mTable			}}
+	public var rowCount:    Int     { get { return mTable.recordCount		}}
+	public var columnCount: Int     { get { return mTable.activeFieldNames.count	}}
+	public var core:	CNTable { get { return mTable				}}
 
-	public var fieldNames: Array<String> { get { return mTable.fieldNames }}
+	public var allFieldNames: Array<String> { get { return mTable.allFieldNames }}
+
+	public var activeFieldNames: Array<String> {
+		get {
+			return mTable.activeFieldNames
+		}
+		set(names){
+			mTable.activeFieldNames = names
+		}
+	}
 
 	public func fieldName(atIndex idx: Int) -> String? {
-		let names = mTable.fieldNames
+		let names = mTable.activeFieldNames
 		if 0<=idx && idx<names.count {
 			return names[idx]
 		} else {
@@ -109,10 +120,14 @@ private class KCDictionaryTableBridge: KCTableInterface
 		}
 	}
 
+	public var core: Dictionary<String, CNValue>	{ get { return mDictionary		}}
 	public var rowCount: Int			{ get { return mDictionary.count	}}
 	public var columnCount: Int			{ get { return mFieldNames.count	}}
-	public var fieldNames: Array<String>		{ get { return mFieldNames		}}
-	public var core: Dictionary<String, CNValue>	{ get { return mDictionary		}}
+	public var allFieldNames: Array<String>		{ get { return mFieldNames		}}
+	public var activeFieldNames: Array<String> {
+		get { return mFieldNames }
+		set(names) { CNLog(logLevel: .error, message: "Can not overwrite field names", atFunction: #function, inFile: #file) }
+	}
 
 	public func fieldName(atIndex idx: Int) -> String? {
 		if 0<=idx && idx<mFieldNames.count {
@@ -410,7 +425,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		/* Update column titles */
-		let fnames = mTableInterface.fieldNames
+		let fnames = mTableInterface.activeFieldNames
 		for i in 0..<mTableInterface.columnCount {
 			let col = mTableView.tableColumns[i]
 			col.identifier	= NSUserInterfaceItemIdentifier(fnames[i])
