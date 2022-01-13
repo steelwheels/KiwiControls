@@ -261,7 +261,7 @@ open class KCValueView: KCStackView, KCValueViewInterface
 			parview.addArrangedSubView(subView: view)
 		case .dictionaryValue(let dict):
 			if dict.count > 0 {
-				if KCValueView.hasScalarValues(dictionary: dict) {
+				if KCValueView.hasPrimitiveValues(dictionary: dict) {
 					let view = KCDictionaryValueView()
 					view.value = val
 					parview.addArrangedSubView(subView: view)
@@ -342,10 +342,10 @@ open class KCValueView: KCStackView, KCValueViewInterface
 		}
 	}
 
-	private static func hasScalarValues(dictionary dict: Dictionary<String, CNValue>) -> Bool {
+	private static func hasPrimitiveValues(dictionary dict: Dictionary<String, CNValue>) -> Bool {
 		var result = true
 		for (_, val) in dict {
-			if !CNValueType.isScaler(type: val.valueType) {
+			if !CNValueType.isPrimitive(type: val.valueType) {
 				result = false
 				break
 			}
