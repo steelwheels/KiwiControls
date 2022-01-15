@@ -28,19 +28,30 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		mTableView.hasHeader  = true
 
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
-		let table = CNValueTable()
-		for y in 0..<2 {
-			let record = CNValueRecord()
-			for x in 0..<3 {
-				let str = "\(x)/\(y)"
-				if record.setValue(value: .stringValue(str), forField: "\(x)") {
-					NSLog("setValue(\(str), \(x)) ... OK")
-				} else {
-					NSLog("setValue(\(str), \(x)) ... Failed")
-				}
-			}
-			table.append(record: record)
+		guard let resurl  = CNFilePath.URLForResourceDirectory(directoryName: "Data", subdirectory: nil, forClass: ViewController.self) else {
+			NSLog("Failed to get URL")
+			return
 		}
+
+		let storage = CNValueStorage(packageDirectory: resurl, filePath: "storage.json", parentStorage: nil)
+		switch storage.load() {
+		case .ok(_):
+			break
+		case .error(let err):
+			NSLog("[Error] \(err.toString())")
+			return
+		@unknown default:
+			NSLog("[Error] Unknown error")
+			return
+		}
+
+		let tblpath = CNValuePath(elements: [.member("data")])
+		let table   = CNValueTable(path: tblpath, valueStorage: storage)
+		let recnum  = table.recordCount
+		NSLog("record count: \(recnum)")
+
+		//NSLog("Set visible fields")
+		//mTableView.activeFieldNames = ["c0", "c1"]
 
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
 		mTableView.store(table: table)

@@ -23,11 +23,8 @@ import CoconutData
 private protocol KCTableInterface
 {
 	var rowCount: 		Int		{ get }
-	var columnCount:	Int		{ get }
 
-	var allFieldNames:	Array<String> 	{ get }
-	var activeFieldNames:	Array<String> 	{ get set }
-
+	var  fieldNames:	Array<String> 	{ get }
 	func fieldName(atIndex idx: Int) -> String?
 
 	func value(row ridx: Int, column col: String) -> CNValue
@@ -35,33 +32,25 @@ private protocol KCTableInterface
 	func sortRows(by desc: CNSortDescriptors)
 }
 
+private extension KCTableInterface {
+	var fieldCount: Int { get { return fieldNames.count }}
+}
+
 private class KCTableBridge: KCTableInterface
 {
 	private var mTable: 		CNTable
-	private var mFieldNames:	Array<String>
 
 	public init(table tbl: CNTable){
-		mTable 		= tbl
-		mFieldNames	= []
+		mTable 			= tbl
 	}
 
 	public var rowCount:    Int     { get { return mTable.recordCount		}}
-	public var columnCount: Int     { get { return mTable.activeFieldNames.count	}}
 	public var core:	CNTable { get { return mTable				}}
 
-	public var allFieldNames: Array<String> { get { return mTable.allFieldNames }}
-
-	public var activeFieldNames: Array<String> {
-		get {
-			return mTable.activeFieldNames
-		}
-		set(names){
-			mTable.activeFieldNames = names
-		}
-	}
+	public var fieldNames: Array<String> { get { mTable.allFieldNames 		}}
 
 	public func fieldName(atIndex idx: Int) -> String? {
-		let names = mTable.activeFieldNames
+		let names = mTable.allFieldNames
 		if 0<=idx && idx<names.count {
 			return names[idx]
 		} else {
@@ -111,6 +100,10 @@ private class KCDictionaryTableBridge: KCTableInterface
 		updateCache()
 	}
 
+	func setActiveFieldNames(names nms: Array<String>) {
+		CNLog(logLevel: .error, message: "Can not set active field", atFunction: #function, inFile: #file)
+	}
+	
 	private func updateCache(){
 		mRowToKey = [:] ; mKeyToRow = [:]
 		let keys = mDictionary.keys.sorted()
@@ -122,12 +115,8 @@ private class KCDictionaryTableBridge: KCTableInterface
 
 	public var core: Dictionary<String, CNValue>	{ get { return mDictionary		}}
 	public var rowCount: Int			{ get { return mDictionary.count	}}
-	public var columnCount: Int			{ get { return mFieldNames.count	}}
-	public var allFieldNames: Array<String>		{ get { return mFieldNames		}}
-	public var activeFieldNames: Array<String> {
-		get { return mFieldNames }
-		set(names) { CNLog(logLevel: .error, message: "Can not overwrite field names", atFunction: #function, inFile: #file) }
-	}
+
+	public var fieldNames: Array<String>		{ get { return mFieldNames		}}
 
 	public func fieldName(atIndex idx: Int) -> String? {
 		if 0<=idx && idx<mFieldNames.count {
@@ -200,7 +189,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var visibleRowCount:	Int  = 20
 
 	private var mDataState:			DataState
-	private var mEditableColumnNames:	Set<String>
+	private var mActiveFieldNames:		Array<String>
 	private var mStateListner:		StateListner?
 	private var mTableInterface:		KCTableInterface
 	private var mSortDescriptors:		CNSortDescriptors
@@ -209,7 +198,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mDataState		= .clean
-		mEditableColumnNames	= []
+		mActiveFieldNames	= []
 		mStateListner		= nil
 		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
@@ -219,7 +208,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	#else
 	public override init(frame: CGRect){
 		mDataState		= .clean
-		mEditableColumnNames	= []
+		mActiveFieldNames	= []
 		mStateListner		= nil
 		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
@@ -239,7 +228,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public required init?(coder: NSCoder) {
 		mDataState		= .clean
-		mEditableColumnNames	= []
+		mActiveFieldNames	= []
 		mStateListner		= nil
 		mTableInterface		= KCTableViewCore.allocateEmptyBridge()
 		mSortDescriptors	= CNSortDescriptors()
@@ -255,6 +244,34 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		table.append(record: rec)
 
 		return KCTableBridge(table: table)
+	}
+
+	public var visibleFieldNames: Array<String> { get {
+		if mActiveFieldNames.count > 0 {
+			return mActiveFieldNames
+		} else {
+			return mTableInterface.fieldNames
+		}
+	}}
+
+	public var visibleFieldCount: Int { get {
+		if mActiveFieldNames.count > 0 {
+			return mActiveFieldNames.count
+		} else {
+			return mTableInterface.fieldNames.count
+		}
+	}}
+
+	public func visibleFieldName(atIndex idx: Int) -> String? {
+		if mActiveFieldNames.count > 0 {
+			if 0<=idx && idx<mActiveFieldNames.count {
+				return mActiveFieldNames[idx]
+			} else {
+				return nil
+			}
+		} else {
+			return mTableInterface.fieldName(atIndex: idx)
+		}
 	}
 
 	/*
@@ -274,7 +291,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let colidx = mTableView.clickedColumn
 
 		if 0<=rowidx && rowidx < mTableInterface.rowCount {
-			if let colname = mTableInterface.fieldName(atIndex: colidx) {
+			if let colname = visibleFieldName(atIndex: colidx) {
 				if let cbfunc = self.cellClickedCallback {
 					cbfunc(double, colname, rowidx)
 				} else {
@@ -319,18 +336,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 * Table
 	 */
 	public var numberOfRows: Int 	{ get { return mTableInterface.rowCount		}}
-	public var numberOfColumns: Int { get { return mTableInterface.columnCount	}}
+	public var numberOfColumns: Int { get { return self.visibleFieldCount		}}
 
-	public func setEditable(isEditable edt: Bool, forColumn col: String) {
-		if edt {
-			mEditableColumnNames.insert(col)
-		} else {
-			mEditableColumnNames.remove(col)
-		}
-	}
-
-	public func isEditable(forColumn col: String) -> Bool {
-		return mEditableColumnNames.contains(col)
+	public var activeFieldNames: Array<String> {
+		get        { return mActiveFieldNames }
+		set(names) { mActiveFieldNames = names }
 	}
 
 	public var hasGrid: Bool {
@@ -405,35 +415,35 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mTableView.beginUpdates()
 
 		/* Adjust column numbers */
-		if mTableInterface.columnCount < mTableView.tableColumns.count {
+		let fieldnum = self.visibleFieldCount
+		if fieldnum < mTableView.tableColumns.count {
 			/* Remove some columns */
-			let delnum = mTableView.tableColumns.count - mTableInterface.columnCount
+			let delnum = mTableView.tableColumns.count - fieldnum
 			for _ in 0..<delnum {
 				let col = mTableView.tableColumns[0]
 				mTableView.removeTableColumn(col)
 
 			}
-		} else if mTableInterface.columnCount > mTableView.tableColumns.count {
-			for i in mTableView.tableColumns.count..<mTableInterface.columnCount {
+		} else if fieldnum > mTableView.tableColumns.count {
+			/* Append empty columns */
+			for _ in mTableView.tableColumns.count..<fieldnum {
 				let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "?"))
-				let fname	  = mTableInterface.fieldName(atIndex: i) ?? "?"
 				newcol.title      = "?"
 				newcol.isHidden	  = false
-				newcol.isEditable = isEditable(forColumn: fname)
 				mTableView.addTableColumn(newcol)
 			}
 		}
 
 		/* Update column titles */
-		let fnames = mTableInterface.activeFieldNames
-		for i in 0..<mTableInterface.columnCount {
-			let col = mTableView.tableColumns[i]
+		let fnames  = self.visibleFieldNames
+		let fcounts = fnames.count
+		for i in 0..<fnames.count {
+			let col 	= mTableView.tableColumns[i]
 			col.identifier	= NSUserInterfaceItemIdentifier(fnames[i])
 			col.title	= fnames[i]
 			col.isHidden	= false
 			col.minWidth	= 64
 			col.maxWidth	= 1000
-			col.isEditable	= isEditable(forColumn: fnames[i])
 		}
 
 		if hasHeader {
@@ -442,7 +452,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			mTableView.headerView = nil
 		}
 
-		mReloadedCount = mTableInterface.rowCount * mTableInterface.columnCount
+		let rcounts    = mTableInterface.rowCount
+		mReloadedCount = rcounts * fcounts
 
 		update(dataState: .clean)
 		mTableView.noteNumberOfRowsChanged()
@@ -523,7 +534,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			}
 			cell.setup(title: title, row: ridx, delegate: self)
 			cell.isEnabled  = self.isEnable
-			cell.isEditable = isEditable(forColumn: title)
 		} else {
 			CNLog(logLevel: .error, message: "Unexpected cell view", atFunction: #function, inFile: #file)
 		}

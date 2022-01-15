@@ -15,6 +15,7 @@
 		05248499256A609A001BD219 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05248498256A609A001BD219 /* Assets.xcassets */; };
 		0524849C256A609A001BD219 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0524849A256A609A001BD219 /* Main.storyboard */; };
 		052484B1256A652F001BD219 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052484B0256A652F001BD219 /* StackViewController.swift */; };
+		053A659827927C7300F5A363 /* storage.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DE142327925FAD0069A432 /* storage.json */; };
 		0544EA5025176E06002DE6A8 /* KiwiControls_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA4E25176E06002DE6A8 /* KiwiControls_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0544EA5E25176E23002DE6A8 /* KiwiControls_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA5C25176E23002DE6A8 /* KiwiControls_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0544EA7025176EC6002DE6A8 /* KCPlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6625176EC6002DE6A8 /* KCPlaneViewController.swift */; };
@@ -267,6 +268,7 @@
 		05D65E13271A8AD500C23747 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D65E1B271A8AD700C23747 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
 		05D65E1C271A8AD700C23747 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05DE142427925FAD0069A432 /* storage.json in Resources */ = {isa = PBXBuildFile; fileRef = 05DE142327925FAD0069A432 /* storage.json */; };
 		05E474BC272C3D6500F17153 /* KCVectorGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E474BB272C3D6500F17153 /* KCVectorGraphics.swift */; };
 		05E585D325D56A8D0099C303 /* KCBitmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E585D225D56A8D0099C303 /* KCBitmapView.swift */; };
 		05EB0EC62567EC6A00D28FD2 /* KCTerminalViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */; };
@@ -356,6 +358,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		053A659727927C6C00F5A363 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Data;
+			dstSubfolderSpec = 7;
+			files = (
+				053A659827927C7300F5A363 /* storage.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05589AE6261213DC00774D41 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +413,15 @@
 				05D65E1C271A8AD700C23747 /* KiwiControls.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DE141227925E560069A432 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		05FDA14A25AD45B800137F2A /* CopyFiles */ = {
@@ -612,6 +633,7 @@
 		05D0388D25AC846D0022E242 /* KCIconViewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconViewCore.swift; sourceTree = "<group>"; };
 		05D038B625AC86DF0022E242 /* KCIconViewCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCIconViewCore.xib; sourceTree = "<group>"; };
 		05D038C425AC8E830022E242 /* KCIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCIconView.swift; sourceTree = "<group>"; };
+		05DE142327925FAD0069A432 /* storage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = storage.json; sourceTree = "<group>"; };
 		05E474BB272C3D6500F17153 /* KCVectorGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCVectorGraphics.swift; sourceTree = "<group>"; };
 		05E585D225D56A8D0099C303 /* KCBitmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBitmapView.swift; sourceTree = "<group>"; };
 		05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
@@ -1094,6 +1116,7 @@
 		058EBF15264DE39F0031F306 /* UTTable */ = {
 			isa = PBXGroup;
 			children = (
+				05DE140827925E1E0069A432 /* Resource */,
 				058EBF16264DE39F0031F306 /* AppDelegate.swift */,
 				058EBF18264DE39F0031F306 /* ViewController.swift */,
 				058EBF1A264DE3A20031F306 /* Assets.xcassets */,
@@ -1150,6 +1173,22 @@
 			isa = PBXGroup;
 			children = (
 				0544EBA22517764A002DE6A8 /* KCColorTable.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		05DE140827925E1E0069A432 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				05DE142227925F8D0069A432 /* Data */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		05DE142227925F8D0069A432 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				05DE142327925FAD0069A432 /* storage.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1366,6 +1405,7 @@
 				058EBF11264DE39F0031F306 /* Frameworks */,
 				058EBF12264DE39F0031F306 /* Resources */,
 				058EBF34264DE52C0031F306 /* Embed Frameworks */,
+				053A659727927C6C00F5A363 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1384,6 +1424,7 @@
 				05A77553254DA1AD00DF71DE /* Sources */,
 				05A77554254DA1AD00DF71DE /* Frameworks */,
 				05A77555254DA1AD00DF71DE /* Resources */,
+				05DE141227925E560069A432 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1613,6 +1654,7 @@
 			files = (
 				058EBF1B264DE3A20031F306 /* Assets.xcassets in Resources */,
 				058EBF1E264DE3A20031F306 /* Main.storyboard in Resources */,
+				05DE142427925FAD0069A432 /* storage.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

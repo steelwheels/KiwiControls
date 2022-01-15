@@ -88,12 +88,9 @@ open class KCTableView : KCInterfaceView
 		set(val) { coreView.isEnable = val }
 	}
 
-	public func setEditable(isEditable edt: Bool, forColumn col: String) {
-		coreView.setEditable(isEditable: edt, forColumn: col)
-	}
-
-	public func isEditable(forColumn col: String) -> Bool {
-		return coreView.isEditable(forColumn: col)
+	public var activeFieldNames: Array<String> {
+		get        { return coreView.activeFieldNames  }
+		set(names) { coreView.activeFieldNames = names }
 	}
 
 	public var hasHeader: Bool {
