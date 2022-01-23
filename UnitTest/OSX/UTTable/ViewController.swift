@@ -50,8 +50,12 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		let recnum  = table.recordCount
 		NSLog("record count: \(recnum)")
 
-		//NSLog("Set visible fields")
-		//mTableView.activeFieldNames = ["c0", "c1"]
+		NSLog("Set visible fields")
+		mTableView.activeFieldNames = [
+			KCTableView.ActiveFieldName(field: "c0", title: "col 0"),
+			KCTableView.ActiveFieldName(field: "c1", title: "col 1"),
+			KCTableView.ActiveFieldName(field: "c2", title: "col 2")
+		]
 
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
 		mTableView.store(table: table)

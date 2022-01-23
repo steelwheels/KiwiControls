@@ -14,8 +14,9 @@ import CoconutData
 
 open class KCTableView : KCInterfaceView
 {
-	public typealias StateListner = KCTableViewCore.StateListner
-	public typealias DataState    = KCTableViewCore.DataState
+	public typealias ActiveFieldName = KCTableViewCore.ActiveFieldName
+	public typealias StateListner    = KCTableViewCore.StateListner
+	public typealias DataState       = KCTableViewCore.DataState
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -88,7 +89,7 @@ open class KCTableView : KCInterfaceView
 		set(val) { coreView.isEnable = val }
 	}
 
-	public var activeFieldNames: Array<String> {
+	public var activeFieldNames: Array<ActiveFieldName> {
 		get        { return coreView.activeFieldNames  }
 		set(names) { coreView.activeFieldNames = names }
 	}

@@ -168,6 +168,16 @@ private class KCDictionaryTableBridge: KCTableInterface
 
 open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSource, KCTableCellDelegate
 {
+	public struct ActiveFieldName {
+		var field:	String
+		var title:	String
+
+		public init(field fld: String, title ttl: String){
+			field	= fld
+			title	= ttl
+		}
+	}
+
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
 	#else
@@ -189,7 +199,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var visibleRowCount:	Int  = 20
 
 	private var mDataState:			DataState
-	private var mActiveFieldNames:		Array<String>
+	private var mActiveFieldNames:		Array<ActiveFieldName>
 	private var mStateListner:		StateListner?
 	private var mTableInterface:		KCTableInterface
 	private var mSortDescriptors:		CNSortDescriptors
@@ -246,14 +256,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		return KCTableBridge(table: table)
 	}
 
-	public var visibleFieldNames: Array<String> { get {
-		if mActiveFieldNames.count > 0 {
-			return mActiveFieldNames
-		} else {
-			return mTableInterface.fieldNames
-		}
-	}}
-
 	public var visibleFieldCount: Int { get {
 		if mActiveFieldNames.count > 0 {
 			return mActiveFieldNames.count
@@ -262,7 +264,20 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}}
 
-	public func visibleFieldName(atIndex idx: Int) -> String? {
+	private var columnNames: Array<ActiveFieldName> { get {
+		if mActiveFieldNames.count > 0 {
+			return mActiveFieldNames
+		} else {
+			let fnames = mTableInterface.fieldNames
+			var result: Array<ActiveFieldName> = []
+			for fname in fnames {
+				result.append(ActiveFieldName(field: fname, title: fname))
+			}
+			return result
+		}
+	}}
+
+	private func columnName(atIndex idx: Int) -> ActiveFieldName? {
 		if mActiveFieldNames.count > 0 {
 			if 0<=idx && idx<mActiveFieldNames.count {
 				return mActiveFieldNames[idx]
@@ -270,7 +285,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 				return nil
 			}
 		} else {
-			return mTableInterface.fieldName(atIndex: idx)
+			if let fname = mTableInterface.fieldName(atIndex: idx) {
+				return ActiveFieldName(field: fname, title: fname)
+			} else {
+				return nil
+			}
 		}
 	}
 
@@ -291,9 +310,9 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let colidx = mTableView.clickedColumn
 
 		if 0<=rowidx && rowidx < mTableInterface.rowCount {
-			if let colname = visibleFieldName(atIndex: colidx) {
+			if let colname = columnName(atIndex: colidx) {
 				if let cbfunc = self.cellClickedCallback {
-					cbfunc(double, colname, rowidx)
+					cbfunc(double, colname.field, rowidx)
 				} else {
 					CNLog(logLevel: .detail, message: "Clicked col:\(colname) row:\(rowidx)", atFunction: #function, inFile: #file)
 				}
@@ -338,7 +357,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var numberOfRows: Int 	{ get { return mTableInterface.rowCount		}}
 	public var numberOfColumns: Int { get { return self.visibleFieldCount		}}
 
-	public var activeFieldNames: Array<String> {
+	public var activeFieldNames: Array<ActiveFieldName> {
 		get        { return mActiveFieldNames }
 		set(names) { mActiveFieldNames = names }
 	}
@@ -435,12 +454,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 
 		/* Update column titles */
-		let fnames  = self.visibleFieldNames
+		let fnames  = self.columnNames
 		let fcounts = fnames.count
 		for i in 0..<fnames.count {
 			let col 	= mTableView.tableColumns[i]
-			col.identifier	= NSUserInterfaceItemIdentifier(fnames[i])
-			col.title	= fnames[i]
+			col.identifier	= NSUserInterfaceItemIdentifier(fnames[i].field)
+			col.title	= fnames[i].title
 			col.isHidden	= false
 			col.minWidth	= 64
 			col.maxWidth	= 1000
@@ -490,7 +509,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 		if let col = tableColumn {
-			return mTableInterface.value(row: row, column: col.title)
+			return mTableInterface.value(row: row, column: col.identifier.rawValue)
 		} else {
 			return CNValue.nullValue
 		}
@@ -498,7 +517,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
 		if let col = tableColumn, let val = object as? CNValue {
-			let _ = mTableInterface.setValue(value: val, row: row, column: col.title)
+			let _ = mTableInterface.setValue(value: val, row: row, column: col.identifier.rawValue)
 		} else {
 			CNLog(logLevel: .error, message: "Failed to set object value", atFunction: #function, inFile: #file)
 		}
