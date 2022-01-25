@@ -51,6 +51,16 @@ open class KCStepper: KCInterfaceView
 		}
 	}
 
+	public var deltaValue: Double {
+		get         { return coreView.deltaValue }
+		set(newval) { coreView.deltaValue = newval }
+	}
+
+	public var decimalPlaces: Int {
+		get         { return coreView.decimalPlaces }
+		set(newval) { coreView.decimalPlaces = newval }
+	}
+
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? {
 		get { return coreView.updateValueCallback }
 		set(newval){ coreView.updateValueCallback = newval }
@@ -79,16 +89,6 @@ open class KCStepper: KCInterfaceView
 	public var currentValue: Double {
 		get { return coreView.currentValue }
 		set(newval){ coreView.currentValue = newval}
-	}
-
-	public var increment: Double {
-		get { return coreView.increment }
-		set(newval) { coreView.increment = newval }
-	}
-
-	public var numberOfDecimalPlaces: Int {
-		get { return coreView.numberOfDecimalPlaces }
-		set(newval) { coreView.numberOfDecimalPlaces = newval }
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

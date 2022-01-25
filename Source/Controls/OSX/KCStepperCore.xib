@@ -1,62 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="KCStepperCore" customModule="KiwiControls">
-            <rect key="frame" x="0.0" y="0.0" width="71" height="23"/>
+            <rect key="frame" x="0.0" y="0.0" width="224" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zJ2-EY-bka">
-                    <rect key="frame" x="0.0" y="2" width="44" height="18"/>
+                    <rect key="frame" x="-2" y="0.0" width="143" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="tjH-JZ-NdO">
                         <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-45-Akg">
-                    <rect key="frame" x="58" y="0.0" width="13" height="23"/>
-                    <subviews>
-                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oUe-ml-Tt3">
-                            <rect key="frame" x="-3" y="-2" width="19" height="27"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="13" id="dEM-HU-wR0"/>
-                                <constraint firstAttribute="height" constant="23" id="fTz-FO-D2n"/>
-                            </constraints>
-                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="BqF-Xk-QWK"/>
-                            <connections>
-                                <action selector="stepperAction:" target="c22-O7-iKe" id="zPp-LZ-PVY"/>
-                            </connections>
-                        </stepper>
-                    </subviews>
-                    <visibilityPriorities>
-                        <integer value="1000"/>
-                    </visibilityPriorities>
-                    <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                    </customSpacing>
-                </stackView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vgd-2Q-aTk">
+                    <rect key="frame" x="132" y="-6" width="54" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="qqf-kh-RIs"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ymm-xT-8E8">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="decButtonAction:" target="c22-O7-iKe" id="eKs-U3-33x"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kSE-1r-3zV">
+                    <rect key="frame" x="174" y="-6" width="56" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="x7X-GO-oV8"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dEL-WG-SXt">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="incButtonAction:" target="c22-O7-iKe" id="W6J-g7-wsN"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
-                <constraint firstItem="5hD-45-Akg" firstAttribute="centerY" secondItem="zJ2-EY-bka" secondAttribute="centerY" id="AMV-Ji-ZYC"/>
-                <constraint firstItem="5hD-45-Akg" firstAttribute="leading" secondItem="zJ2-EY-bka" secondAttribute="trailing" constant="16" id="Ddj-Ug-MgX"/>
-                <constraint firstItem="zJ2-EY-bka" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="3" id="Pp9-Lt-E6E"/>
-                <constraint firstAttribute="trailing" secondItem="5hD-45-Akg" secondAttribute="trailing" id="hF9-2t-iJA"/>
-                <constraint firstItem="zJ2-EY-bka" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="k0e-OU-Vot"/>
-                <constraint firstAttribute="bottom" secondItem="zJ2-EY-bka" secondAttribute="bottom" constant="2" id="xg4-Q4-KXy"/>
+                <constraint firstItem="zJ2-EY-bka" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="8fB-VK-C27"/>
+                <constraint firstItem="kSE-1r-3zV" firstAttribute="leading" secondItem="zJ2-EY-bka" secondAttribute="trailing" constant="41" id="Ak7-wd-1wq"/>
+                <constraint firstAttribute="bottom" secondItem="kSE-1r-3zV" secondAttribute="bottom" constant="1" id="I86-9o-Hnk"/>
+                <constraint firstAttribute="trailing" secondItem="kSE-1r-3zV" secondAttribute="trailing" id="QJM-lB-Erk"/>
+                <constraint firstItem="zJ2-EY-bka" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="apN-ke-GjW"/>
+                <constraint firstAttribute="bottom" secondItem="Vgd-2Q-aTk" secondAttribute="bottom" constant="1" id="jrh-Rz-xov"/>
+                <constraint firstItem="kSE-1r-3zV" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="pci-Df-AZO"/>
+                <constraint firstItem="Vgd-2Q-aTk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="rxS-fH-vet"/>
+                <constraint firstItem="kSE-1r-3zV" firstAttribute="leading" secondItem="Vgd-2Q-aTk" secondAttribute="trailing" id="w9F-Nj-AsO"/>
+                <constraint firstAttribute="bottom" secondItem="zJ2-EY-bka" secondAttribute="bottom" id="xU9-US-I2D"/>
             </constraints>
             <connections>
-                <outlet property="mStepper" destination="oUe-ml-Tt3" id="IBj-No-jFf"/>
-                <outlet property="mTextField" destination="zJ2-EY-bka" id="fN5-Qk-qAL"/>
+                <outlet property="mDecButton" destination="Vgd-2Q-aTk" id="qK0-tA-f2g"/>
+                <outlet property="mIncButton" destination="kSE-1r-3zV" id="SSb-dn-y0A"/>
+                <outlet property="mTextField" destination="zJ2-EY-bka" id="DPJ-8K-1en"/>
             </connections>
-            <point key="canvasLocation" x="-174.5" y="51"/>
+            <point key="canvasLocation" x="-251" y="51"/>
         </customView>
     </objects>
 </document>

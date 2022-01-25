@@ -16,10 +16,18 @@ public class StackViewController: KCSingleViewController
 		vbox.axis = .vertical
 
 		let label = KCTextEdit()
-		label.format     = .line
+		label.format     = .label
 		label.isEditable = false
 		label.text       = "Label"
 		vbox.addArrangedSubView(subView: label)
+
+		let stepper = KCStepper()
+		stepper.currentValue	      =  0.0
+		stepper.minValue	      =  0.0
+		stepper.maxValue	      = 10.0
+		stepper.deltaValue	      =  1.0
+		stepper.numberOfDecimalPlaces =  1
+		vbox.addArrangedSubView(subView: stepper)
 
 		let gr2d = UTGraphics2DView()
 		gr2d.minimumSize  = CGSize(width: 256.0, height: 256.0)

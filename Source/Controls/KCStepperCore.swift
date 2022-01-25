@@ -15,31 +15,37 @@ import CoconutData
 public class KCStepperCore: KCCoreView
 {
 	#if os(iOS)
-	@IBOutlet weak var	mTextField:	UILabel!
-	@IBOutlet weak var	mStepper:	UIStepper!
+	@IBOutlet weak var mTextField:		UILabel!
+	@IBOutlet weak var mStepper:		UIStepper!
 	#else
-	@IBOutlet weak var	mTextField:	NSTextField!
-	@IBOutlet weak var	mStepper:	NSStepper!
+	@IBOutlet weak var mTextField: 		NSTextField!
+	@IBOutlet weak var mDecButton: 		NSButton!
+	@IBOutlet weak var mIncButton: 		NSButton!
+	private var        mCurrentValue:	Double =   0
+	private var 	   mMaxValue:		Double = 100
+	private var 	   mMinValue:		Double =   0
 	#endif
 
 	public var minWidth: Int		= 16
-	public var numberOfDecimalPlaces: Int	= 2
+	public var deltaValue: Double		= 1.0
+	public var decimalPlaces: Int		= 2
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
 	public func setup(frame frm: CGRect) -> Void {
-		super.setup(isSingleView: false, coreView: mStepper)
-		KCView.setAutolayoutMode(views: [self, mTextField, mStepper])
+		super.setup(isSingleView: false, coreView: mTextField)
 		#if os(iOS)
+			KCView.setAutolayoutMode(views: [self, mTextField, mStepper])
 			mTextField.text = ""
 			mTextField.textAlignment = .center
 		#else
+			KCView.setAutolayoutMode(views: [self, mTextField, mDecButton, mIncButton])
 			mTextField.stringValue = ""
 			mTextField.alignment = .center
 		#endif
 	}
 
 	private func updateTextField(value: Double){
-		let str = String(format: "%.*lf", numberOfDecimalPlaces, value)
+		let str = String(format: "%.*lf", decimalPlaces, value)
 		#if os(iOS)
 			mTextField.text = str
 		#else
@@ -52,14 +58,14 @@ public class KCStepperCore: KCCoreView
 			#if os(iOS)
 				return mStepper.maximumValue
 			#else
-				return mStepper.maxValue
+				return mMaxValue
 			#endif
 		}
 		set(newval) {
 			#if os(iOS)
-				self.mStepper.maximumValue = newval
+				self.mStepper.maximumValue = Double(newval)
 			#else
-				self.mStepper.maxValue = newval
+				mMaxValue = newval
 			#endif
 		}
 	}
@@ -69,14 +75,14 @@ public class KCStepperCore: KCCoreView
 			#if os(iOS)
 				return mStepper.minimumValue
 			#else
-				return mStepper.minValue
+				return mMinValue
 			#endif
 		}
 		set(newval) {
 			#if os(iOS)
 				self.mStepper.minimumValue = newval
 			#else
-				self.mStepper.minValue = newval
+				mMinValue = newval
 			#endif
 		}
 	}
@@ -86,58 +92,54 @@ public class KCStepperCore: KCCoreView
 			#if os(iOS)
 				return mStepper.value
 			#else
-				return mStepper.doubleValue
+				return mCurrentValue
 			#endif
 		}
 		set(newval){
-			var v = newval
-			if v < minValue {
-				v = minValue
-			} else if v > maxValue {
-				v = maxValue
-			}
+			let v = clipValue(value: newval)
 			#if os(iOS)
 				self.mStepper.value = v
 			#else
-				self.mStepper.doubleValue = v
+				mCurrentValue = v
 			#endif
 			self.updateTextField(value: v)
 		}
 	}
 
-	public var increment: Double {
-		get {
-			#if os(iOS)
-				return mStepper.stepValue
-			#else
-				return mStepper.increment
-			#endif
-		}
-		set(newval) {
-			#if os(iOS)
-				mStepper.stepValue = newval
-			#else
-				mStepper.increment = newval
-			#endif
-		}
-	}
-
 	public var isEnabled: Bool {
 		get {
-			return mStepper.isEnabled
+			#if os(iOS)
+				return mStepper.isEnabled
+			#else
+				return mTextField.isEnabled
+			#endif
 		}
 		set(newval){
-			mStepper.isEnabled   = newval
+			#if os(iOS)
+				mStepper.isEnabled   = newval
+			#else
+				mIncButton.isEnabled = newval
+				mDecButton.isEnabled = newval
+			#endif
 			mTextField.isEnabled = newval
 		}
 	}
 
 	public var isVisible: Bool {
 		get {
-			return !(mStepper.isHidden)
+			#if os(iOS)
+				return !(mStepper.isHidden)
+			#else
+				return !(mTextField.isHidden)
+			#endif
 		}
 		set(newval){
-			mStepper.isHidden	= !newval
+			#if os(iOS)
+				mStepper.isHidden	= !newval
+			#else
+				mIncButton.isHidden	= !newval
+				mDecButton.isHidden	= !newval
+			#endif
 			mTextField.isHidden	= !newval
 			self.isHidden		= !newval
 		}
@@ -152,11 +154,29 @@ public class KCStepperCore: KCCoreView
 		}
 	}
 	#else
-	@IBAction func stepperAction(_ sender: NSStepper) {
-		let value = sender.doubleValue
-		updateTextField(value: value)
-		if let callback = updateValueCallback {
-			callback(value)
+	@IBAction func decButtonAction(_ sender: Any) {
+		/* Decrement current value */
+		let nextval = clipValue(value: mCurrentValue - deltaValue)
+		/* Update values */
+		if nextval != mCurrentValue {
+			updateTextField(value: nextval)
+			if let callback = updateValueCallback {
+				callback(nextval)
+			}
+			mCurrentValue = nextval
+		}
+	}
+
+	@IBAction func incButtonAction(_ sender: Any) {
+		/* Increment current value */
+		let nextval = clipValue(value: mCurrentValue + deltaValue)
+		/* Update values */
+		if nextval != mCurrentValue {
+			updateTextField(value: nextval)
+			if let callback = updateValueCallback {
+				callback(nextval)
+			}
+			mCurrentValue = nextval
 		}
 	}
 	#endif
@@ -165,19 +185,17 @@ public class KCStepperCore: KCCoreView
 		super.setFrameSize(newsize)
 
 		let totalwidth   = newsize.width
-		var stepperwidth = mStepper.frame.size.width
+		let stepersize   = stepperButtonSize()
+		var stepperwidth = stepersize.width
 		var fieldwidth   = totalwidth - stepperwidth
 		if fieldwidth <= 0.0 {
 			stepperwidth = totalwidth / 2.0
 			fieldwidth   = totalwidth / 2.0
 		}
-		let steppersize = CGSize(width: stepperwidth, height: newsize.height)
 		let fieldsize   = CGSize(width: fieldwidth,   height: newsize.height)
 		#if os(OSX)
-			mStepper.setFrameSize(steppersize)
 			mTextField.setFrameSize(fieldsize)
 		#else
-			mStepper.setFrameSize(size: steppersize)
 			mTextField.setFrameSize(size: fieldsize)
 		#endif
 	}
@@ -210,9 +228,19 @@ public class KCStepperCore: KCCoreView
 		let fieldsize   = mTextField.intrinsicContentSize
 		#endif
 		/* Ger stepper size*/
-		let steppersize = mStepper.intrinsicContentSize
+		let steppersize = stepperButtonSize()
 		let space       = CNPreference.shared.windowPreference.spacing
 		return CNUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
+	}
+
+	private func stepperButtonSize() -> CGSize {
+		#if os(iOS)
+			return mStepper.frame.size
+		#else
+			let dsize = mDecButton.frame.size
+			let isize = mIncButton.frame.size
+			return CGSize(width: dsize.width + isize.width, height: max(dsize.height, isize.height))
+		#endif
 	}
 
 	public override func invalidateIntrinsicContentSize() {
@@ -226,8 +254,27 @@ public class KCStepperCore: KCCoreView
 							      holizontalCompression: .fixed,
 							      verticalHugging: .fixed,
 							      verticalCompression: .fixed)
-		mStepper.setExpansionPriorities(priorities: fixedval)
+		#if os(iOS)
+			mStepper.setExpansionPriorities(priorities: fixedval)
+		#else
+			mDecButton.setExpansionPriorities(priorities: fixedval)
+			mIncButton.setExpansionPriorities(priorities: fixedval)
+		#endif
 		mTextField.setExpansionPriorities(priorities: prival)
+	}
+
+	private func clipValue(value v: Double) -> Double {
+		let result: Double
+		let minv = self.minValue
+		let maxv = self.maxValue
+		if v < minv {
+			result = minv
+		} else if v > maxv {
+			result = maxv
+		} else {
+			result = v
+		}
+		return result
 	}
 }
 

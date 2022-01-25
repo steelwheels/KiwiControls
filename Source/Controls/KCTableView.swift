@@ -99,6 +99,11 @@ open class KCTableView : KCInterfaceView
 		set(val){ coreView.hasHeader = val	}
 	}
 
+	public var allowsRowSelection:	Bool {
+		get      { return coreView.allowsRowSelection }
+		set(val) { coreView.allowsRowSelection = val  }
+	}
+
 	public var firstResponderView: KCViewBase? { get {
 		return coreView.firstResponderView
 	}}
