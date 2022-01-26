@@ -99,9 +99,9 @@ open class KCTableView : KCInterfaceView
 		set(val){ coreView.hasHeader = val	}
 	}
 
-	public var allowsRowSelection:	Bool {
-		get      { return coreView.allowsRowSelection }
-		set(val) { coreView.allowsRowSelection = val  }
+	public var isSelectable: Bool {
+		get      { return coreView.isSelectable }
+		set(val) { coreView.isSelectable = val  }
 	}
 
 	public var firstResponderView: KCViewBase? { get {
@@ -115,6 +115,11 @@ open class KCTableView : KCInterfaceView
 	public var cellClickedCallback: ((_ double: Bool, _ colname: String, _ rowidx: Int) -> Void)? {
 		get         { return coreView.cellClickedCallback   }
 		set(cbfunc) { coreView.cellClickedCallback = cbfunc }
+	}
+
+	public var didSelectedCallback: ((_ selected: Bool) -> Void)? {
+		get         { return coreView.didSelectedCallback   }
+		set(cbfunc) { coreView.didSelectedCallback = cbfunc }
 	}
 
 	public func dump(){

@@ -192,9 +192,10 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public typealias StateListner = (_ state: DataState) -> Void
 
  	public var cellClickedCallback: ((_ double: Bool, _ colname: String, _ rowidx: Int) -> Void)? = nil
+	public var didSelectedCallback: ((_ selected: Bool) -> Void)? = nil
 	public var hasHeader:		Bool = false
 	public var isEnable:		Bool = true
-	public var allowsRowSelection:	Bool = false
+	public var isSelectable:	Bool = false
 
 	public var visibleRowCount:	Int  = 20
 
@@ -582,7 +583,14 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		return self.allowsRowSelection
+		if self.isSelectable {
+			if let cbfunc = didSelectedCallback {
+				cbfunc(true) // callback
+			}
+			return true
+		} else {
+			return false
+		}
 	}
 	#endif
 
