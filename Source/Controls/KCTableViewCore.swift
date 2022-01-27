@@ -197,7 +197,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var isEnable:		Bool = true
 	public var isSelectable:	Bool = false
 
-	public var visibleRowCount:	Int  = 20
+	private var mVisibleRowCount:	Int
 
 	private var mDataState:			DataState
 	private var mActiveFieldNames:		Array<ActiveFieldName>
@@ -208,6 +208,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	#if os(OSX)
 	public override init(frame : NSRect){
+		mVisibleRowCount	= 20
 		mDataState		= .clean
 		mActiveFieldNames	= []
 		mStateListner		= nil
@@ -218,6 +219,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#else
 	public override init(frame: CGRect){
+		mVisibleRowCount	= 20
 		mDataState		= .clean
 		mActiveFieldNames	= []
 		mStateListner		= nil
@@ -238,6 +240,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public required init?(coder: NSCoder) {
+		mVisibleRowCount	= 20
 		mDataState		= .clean
 		mActiveFieldNames	= []
 		mStateListner		= nil
@@ -255,6 +258,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		table.append(record: rec)
 
 		return KCTableBridge(table: table)
+	}
+
+	public var visibleRowCount: Int {
+		get      { return mVisibleRowCount }
+		set(cnt) { mVisibleRowCount = cnt }
 	}
 
 	public var visibleFieldCount: Int { get {
@@ -661,17 +669,25 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			result        =  header.frame.size
 			result.height += space.height
 		}
-		let rownum = min(mTableView.numberOfRows, visibleRowCount)
-		if rownum > 0 {
-			for ridx in 0..<rownum {
+		let actnum = min(mTableView.numberOfRows, mVisibleRowCount)
+		if actnum > 0 {
+			var frame: CGRect = CGRect.zero
+			/* Calc for non-empty rows */
+			for ridx in 0..<actnum {
 				if let rview = mTableView.rowView(atRow: ridx, makeIfNecessary: true) {
-					let frame = rview.frame
+					frame = rview.frame
 					result.width  =  max(result.width, frame.size.width)
 					result.height += frame.size.height
 				}
 			}
-			if rownum > 1 {
-				result.height += space.height * CGFloat(rownum - 1)
+			/* Calc for non-empty rows */
+			for _ in actnum..<mVisibleRowCount {
+				result.width  =  max(result.width, frame.size.width)
+				result.height += frame.size.height
+			}
+			/* Calc for space */
+			if mVisibleRowCount > 1 {
+				result.height += space.height * CGFloat(mVisibleRowCount - 1)
 			}
 			return result
 		} else {

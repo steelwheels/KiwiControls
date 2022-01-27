@@ -68,6 +68,11 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
+	public var visibleRowCount: Int {
+		get      { return coreView.visibleRowCount }
+		set(cnt) { coreView.visibleRowCount = cnt  }
+	}
+
 	open func store(table tblp: CNTable?){
 		self.coreView.store(table: tblp)
 	}
