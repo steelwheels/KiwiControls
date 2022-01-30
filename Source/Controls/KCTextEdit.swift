@@ -86,9 +86,19 @@ open class KCTextEdit : KCInterfaceView
 	}
 	#endif
 
+	public var decimalPlaces: Int {
+		get        { return coreView.decimalPlaces   }
+		set(newval){ coreView.decimalPlaces = newval }
+	}
+
 	public var text: String {
 		get { return coreView.text }
 		set(newval){ coreView.text = newval }
+	}
+
+	public var number: NSNumber {
+		get { return coreView.number }
+		set(newval){ coreView.number = newval }
 	}
 
 	public var font: CNFont? {
