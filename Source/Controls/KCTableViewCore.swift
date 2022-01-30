@@ -208,7 +208,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mVisibleRowCount	= 20
+		mVisibleRowCount	= 8
 		mDataState		= .clean
 		mActiveFieldNames	= []
 		mStateListner		= nil
@@ -219,7 +219,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 	#else
 	public override init(frame: CGRect){
-		mVisibleRowCount	= 20
+		mVisibleRowCount	= 8
 		mDataState		= .clean
 		mActiveFieldNames	= []
 		mStateListner		= nil
@@ -240,7 +240,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public required init?(coder: NSCoder) {
-		mVisibleRowCount	= 20
+		mVisibleRowCount	= 8
 		mDataState		= .clean
 		mActiveFieldNames	= []
 		mStateListner		= nil
