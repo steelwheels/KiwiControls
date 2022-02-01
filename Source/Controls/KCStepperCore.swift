@@ -106,22 +106,33 @@ public class KCStepperCore: KCCoreView
 		}
 	}
 
-	public var isEnabled: Bool {
+	public var isIncrementable: Bool {
 		get {
 			#if os(iOS)
-				return mStepper.isEnabled
+				return true
 			#else
-				return mTextField.isEnabled
+				return mIncButton.isEnabled
 			#endif
 		}
 		set(newval){
-			#if os(iOS)
-				mStepper.isEnabled   = newval
-			#else
+			#if os(OSX)
 				mIncButton.isEnabled = newval
+			#endif
+		}
+	}
+
+	public var isDecrementable: Bool {
+		get {
+			#if os(iOS)
+				return true
+			#else
+				return mDecButton.isEnabled
+			#endif
+		}
+		set(newval){
+			#if os(OSX)
 				mDecButton.isEnabled = newval
 			#endif
-			mTextField.isEnabled = newval
 		}
 	}
 

@@ -66,9 +66,14 @@ open class KCStepper: KCInterfaceView
 		set(newval){ coreView.updateValueCallback = newval }
 	}
 
-	public var isEnabled: Bool {
-		get { return coreView.isEnabled }
-		set(v) { coreView.isEnabled = v }
+	public var isIncrementable: Bool {
+		get { return coreView.isIncrementable }
+		set(v) { coreView.isIncrementable = v }
+	}
+
+	public var isDecrementable: Bool {
+		get { return coreView.isDecrementable }
+		set(v) { coreView.isDecrementable = v }
 	}
 
 	public override var isVisible: Bool {

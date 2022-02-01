@@ -26,7 +26,9 @@ public class StackViewController: KCSingleViewController
 		stepper.minValue	      =  0.0
 		stepper.maxValue	      = 10.0
 		stepper.deltaValue	      =  1.0
-		stepper.numberOfDecimalPlaces =  1
+		stepper.decimalPlaces	      =  1
+		stepper.isIncrementable	      = true
+		stepper.isDecrementable	      = true
 		vbox.addArrangedSubView(subView: stepper)
 
 		let gr2d = UTGraphics2DView()
