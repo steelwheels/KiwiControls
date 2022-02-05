@@ -14,23 +14,23 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="ECF-jm-CFL" customClass="KCTextEdit" customModule="KiwiControls" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="180" width="400" height="20"/>
+                    <rect key="frame" x="0.0" y="176" width="400" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="r8u-t7-PqY"/>
+                        <constraint firstAttribute="height" constant="24" id="gnj-u9-5VD"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="4WE-Eu-JfE" customClass="KCStackView" customModule="KiwiControls" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="180"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="168"/>
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="ECF-jm-CFL" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="1c5-6o-is3"/>
-                <constraint firstItem="ECF-jm-CFL" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="3hD-Ze-net"/>
-                <constraint firstItem="4WE-Eu-JfE" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Pz6-en-dH6"/>
-                <constraint firstAttribute="trailing" secondItem="4WE-Eu-JfE" secondAttribute="trailing" id="euf-uT-gBs"/>
-                <constraint firstAttribute="trailing" secondItem="ECF-jm-CFL" secondAttribute="trailing" id="pid-8Q-Dnu"/>
-                <constraint firstAttribute="bottom" secondItem="4WE-Eu-JfE" secondAttribute="bottom" id="sIK-gN-hnI"/>
-                <constraint firstItem="4WE-Eu-JfE" firstAttribute="top" secondItem="ECF-jm-CFL" secondAttribute="bottom" id="zZT-i3-Laj"/>
+                <constraint firstItem="4WE-Eu-JfE" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="0Ek-L9-a5e"/>
+                <constraint firstItem="4WE-Eu-JfE" firstAttribute="top" secondItem="ECF-jm-CFL" secondAttribute="bottom" constant="8" symbolic="YES" id="4VU-L6-7SR"/>
+                <constraint firstAttribute="trailing" secondItem="4WE-Eu-JfE" secondAttribute="trailing" id="8B7-9b-vUF"/>
+                <constraint firstAttribute="bottom" secondItem="4WE-Eu-JfE" secondAttribute="bottom" id="Vh0-Y8-2HE"/>
+                <constraint firstAttribute="trailing" secondItem="ECF-jm-CFL" secondAttribute="trailing" id="jRP-Sa-nuh"/>
+                <constraint firstItem="ECF-jm-CFL" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="kko-pT-KcB"/>
+                <constraint firstItem="ECF-jm-CFL" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="riG-ZF-pkk"/>
             </constraints>
             <connections>
                 <outlet property="mLabel" destination="ECF-jm-CFL" id="U64-AS-9do"/>
