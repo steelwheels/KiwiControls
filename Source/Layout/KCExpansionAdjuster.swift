@@ -147,9 +147,9 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {
-		/* Label */
-		let labval = ExpansionPriorities(holizontalHugging: 	.fixed,
-						 holizontalCompression: .fixed,
+		/* Label (see KCTextEdit) */
+		let labval = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
 		view.labelView.setExpansionPriorities(priorities: labval)
