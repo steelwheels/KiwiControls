@@ -35,9 +35,11 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	#endif
 
 	private var 	mFormat:		Format = .text
-	private var 	mMinWidth:		Int  = 40
+	private var 	mMinWidth:		Int     = 40
 
-	public var	decimalPlaces:		Int  = 0
+	private var	mCurrentValue:		CNValue = .nullValue
+	private var	mDecimalPlaces:		Int     = 0
+
 	public var 	callbackFunction:	CallbackFunction? = nil
 
 	public func setup(frame frm: CGRect){
@@ -59,6 +61,8 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 
 		isBezeled = false
 		format    = .text
+
+		mCurrentValue = .stringValue("")
 	}
 
 	public var format: Format {
@@ -188,6 +192,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 				mTextEdit.text = newval
 			#endif
 			mTextEdit.invalidateIntrinsicContentSize()
+			mCurrentValue = .stringValue(newval)
 		}
 	}
 
@@ -201,14 +206,36 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 			}
 		}
 		set(newval){
-			let newstr: String
-			if decimalPlaces <= 0 {
-				newstr = "\(newval.intValue)"
-			} else {
-				newstr = String(format: "%.*lf", decimalPlaces, newval.doubleValue)
-			}
-			self.text = newstr
+			setNumber(number: newval, decimalPlaces: mDecimalPlaces)
 		}
+	}
+
+	public var decimalPlaces: Int {
+		get {
+			return mDecimalPlaces
+		}
+		set(newval) {
+			if newval != mDecimalPlaces {
+				mDecimalPlaces = newval
+				switch mCurrentValue {
+				case .numberValue(let num):
+					setNumber(number: num, decimalPlaces: mDecimalPlaces)
+				default:
+					break // do nothing
+				}
+			}
+		}
+	}
+
+	private func setNumber(number num: NSNumber, decimalPlaces dplaces: Int) {
+		let newstr: String
+		if dplaces <= 0 {
+			newstr = "\(num.intValue)"
+		} else {
+			newstr = String(format: "%.*lf", dplaces, num.doubleValue)
+		}
+		self.text     = newstr
+		mCurrentValue = .numberValue(num)
 	}
 
 	public var font: CNFont? {
