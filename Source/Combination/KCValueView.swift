@@ -19,8 +19,6 @@ public protocol KCValueViewInterface
 
 public class KCScalarValueView: KCTextEdit, KCValueViewInterface
 {
-	public typealias Format = KCTextEditCore.Format
-
 	private var mValueType: CNValueType = .stringType
 
 	#if os(OSX)
@@ -61,14 +59,14 @@ public class KCScalarValueView: KCTextEdit, KCValueViewInterface
 			}
 		}
 		set(newval){
-			let format: Format
 			switch newval {
-			case .numberValue(_):	format = .number
-			default:		format = .text
+			case .stringValue(let str):
+				self.text   = str
+			case .numberValue(let num):
+				self.number = num
+			default:
+				CNLog(logLevel: .error, message: "Unsupported value type", atFunction: #function, inFile: #file)
 			}
-			let str = newval.toText().toStrings().joined(separator: "\n")
-			self.format = format
-			self.text   = str
 		}
 	}
 }

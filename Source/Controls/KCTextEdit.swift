@@ -14,7 +14,6 @@ import CoconutData
 
 open class KCTextEdit : KCInterfaceView
 {
-	public typealias Format		  = KCTextEditCore.Format
 	public typealias CallbackFunction = KCTextEditCore.CallbackFunction
 
 	#if os(OSX)
@@ -54,9 +53,14 @@ open class KCTextEdit : KCInterfaceView
 		}
 	}
 
-	public var format: Format {
-		get		{ return coreView.format }
-		set(newform)	{ coreView.format = newform }
+	public var isBold: Bool {
+		get         { return coreView.isBold }
+		set(newval) { coreView.isBold = newval }
+	}
+
+	public var decimalPlaces: Int {
+		get         { return coreView.decimalPlaces }
+		set(newval) { coreView.decimalPlaces = newval }
 	}
 
 	public var isEditable: Bool {
@@ -67,11 +71,6 @@ open class KCTextEdit : KCInterfaceView
 	public var isEnabled: Bool {
 		get { return coreView.isEnabled }
 		set(v) { coreView.isEnabled = v }
-	}
-
-	public var isBezeled: Bool {
-		get { return coreView.isBezeled }
-		set(v) { coreView.isBezeled = v }
 	}
 
 	public var callbackFunction: CallbackFunction? {
@@ -85,11 +84,6 @@ open class KCTextEdit : KCInterfaceView
 		set(newwidth) { coreView.preferredTextFieldWidth = newwidth }
 	}
 	#endif
-
-	public var decimalPlaces: Int {
-		get        { return coreView.decimalPlaces   }
-		set(newval){ coreView.decimalPlaces = newval }
-	}
 
 	public var text: String {
 		get { return coreView.text }

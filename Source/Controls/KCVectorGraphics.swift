@@ -88,11 +88,12 @@ open class KCVectorGraphics: KCView
 	private func setup(){
 		/* Setup text field */
 		self.addSubview(mTextField)
-		mTextField.text       = ""
-		mTextField.format     = .label
-		mTextField.isEditable = true
-		mTextField.isBezeled  = true
-		mTextField.isHidden   = true
+
+		mTextField.isBold     		= false
+		mTextField.decimalPlaces	= 0
+		mTextField.isEditable 		= true
+		mTextField.isHidden   		= true
+		mTextField.text       		= ""
 		mTextField.callbackFunction = {
 			(_ str: String) -> Void in
 			self.mManager.storeString(string: str)

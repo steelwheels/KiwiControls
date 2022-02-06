@@ -20,12 +20,6 @@ public protocol NSTextFieldDelegate {
 
 open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 {
-	public enum Format {
-		case text
-		case label
-		case number
-	}
-
 	public typealias CallbackFunction = (_ str: String) -> Void
 
 	#if os(OSX)
@@ -34,11 +28,11 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	@IBOutlet weak var mTextEdit: UITextField!
 	#endif
 
-	private var 	mFormat:		Format = .text
+	private var 	mIsBold:		Bool 	= false
+	private var 	mDecimalPlaces:		Int	= 0
 	private var 	mMinWidth:		Int     = 40
 
 	private var	mCurrentValue:		CNValue = .nullValue
-	private var	mDecimalPlaces:		Int     = 0
 
 	public var 	callbackFunction:	CallbackFunction? = nil
 
@@ -59,38 +53,21 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 			mTextEdit.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 		#endif
 
-		isBezeled = false
-		format    = .text
-
-		mCurrentValue = .stringValue("")
+		/* Initialize */
+		self.isEnabled	= true
+		self.isEditable	= false
+		setFormat(isNumber: false, isBold: mIsBold, isEditable: self.isEditable, decimalPlaces: mDecimalPlaces)
+		mCurrentValue	= .stringValue("")
 	}
 
-	public var format: Format {
-		get		{ return mFormat }
-		set(newform)	{
-			mFormat = newform
-			#if os(OSX)
-			switch mFormat {
-			case .text:
-				mTextEdit.font			= NSFont.systemFont(ofSize: NSFont.systemFontSize)
-				mTextEdit.usesSingleLineMode 	= false
-				mTextEdit.formatter		= nil
-			case .label:
-				mTextEdit.font			= NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
-				mTextEdit.usesSingleLineMode 	= true
-				mTextEdit.formatter		= nil
-				self.isEditable			= false
-			case .number:
-				mTextEdit.font			= NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
-				mTextEdit.usesSingleLineMode 	= true
-				let numform = NumberFormatter()
-				numform.numberStyle		= .decimal
-				numform.maximumFractionDigits	= 0
-				numform.minimumFractionDigits	= 0
-				mTextEdit.formatter		= numform
-			}
-			#endif
-		}
+	public var isBold: Bool {
+		get         { return mIsBold }
+		set(newval) { mIsBold = newval }
+	}
+
+	public var decimalPlaces: Int {
+		get { return mDecimalPlaces }
+		set(newval){ mDecimalPlaces = newval }
 	}
 
 	public var isEditable: Bool {
@@ -105,6 +82,79 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 			#if os(OSX)
 				mTextEdit.isEditable = newval
 			#endif
+		}
+	}
+
+	public var isEnabled: Bool {
+		get	   { return mTextEdit.isEnabled		}
+		set(newval){ mTextEdit.isEnabled = newval	}
+	}
+
+	#if os(OSX)
+	public var preferredTextFieldWidth: CGFloat {
+		get           { return mTextEdit.preferredMaxLayoutWidth }
+		set(newwidth) { mTextEdit.preferredMaxLayoutWidth = newwidth }
+	}
+	#endif
+
+	public var font: CNFont? {
+		get {
+			return mTextEdit.font
+		}
+		set(font){
+			mTextEdit.font = font
+		}
+	}
+
+	public var alignment: NSTextAlignment {
+		get {
+			#if os(OSX)
+				return mTextEdit.alignment
+			#else
+				return mTextEdit.textAlignment
+			#endif
+		}
+		set(align){
+			#if os(OSX)
+				mTextEdit.alignment = align
+			#else
+				mTextEdit.textAlignment = align
+			#endif
+		}
+	}
+
+	public var text: String {
+		get {
+			#if os(OSX)
+			return mTextEdit.stringValue
+			#else
+			if let t = mTextEdit.text {
+				return t
+			} else {
+				return ""
+			}
+			#endif
+		}
+		set(newval) {
+			setFormat(isNumber: false, isBold: mIsBold, isEditable: self.isEditable, decimalPlaces: mDecimalPlaces)
+			setString(string: newval)
+			mCurrentValue = .stringValue(newval)
+		}
+	}
+
+	public var number: NSNumber {
+		get {
+			if let val = Double(self.text) {
+				return NSNumber(value: val)
+			} else {
+				CNLog(logLevel: .error, message: "Failed to decode current number", atFunction: #function, inFile: #file)
+				return NSNumber(booleanLiteral: false)
+			}
+		}
+		set(newval){
+			setFormat(isNumber: true, isBold: mIsBold, isEditable: self.isEditable, decimalPlaces: mDecimalPlaces)
+			setNumber(number: newval, decimalPlaces: self.decimalPlaces)
+			mCurrentValue = .numberValue(newval)
 		}
 	}
 
@@ -139,129 +189,68 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		return mTextEdit.becomeFirstResponder()
 	}
 
-	public var isEnabled: Bool {
-		get	   { return mTextEdit.isEnabled		}
-		set(newval){ mTextEdit.isEnabled = newval	}
-	}
-
-	public var isBezeled: Bool {
-		get {
-			#if os(OSX)
-			return mTextEdit.isBezeled
-			#else
-			let result: Bool
-			switch mTextEdit.borderStyle {
-			case .bezel:	result = true
-			default:	result = false
-			}
-			return result
-			#endif
-		}
-		set(newval) {
-			#if os(OSX)
-			mTextEdit.isBezeled = newval
-			#else
-			mTextEdit.borderStyle = .bezel
-			#endif
-		}
-	}
-
-	#if os(OSX)
-	public var preferredTextFieldWidth: CGFloat {
-		get           { return mTextEdit.preferredMaxLayoutWidth }
-		set(newwidth) { mTextEdit.preferredMaxLayoutWidth = newwidth }
-	}
-	#endif
-
-	public var text: String {
-		get {
-			#if os(OSX)
-			return mTextEdit.stringValue
-			#else
-			if let t = mTextEdit.text {
-				return t
+	private func setString(string str: String) {
+		#if os(OSX)
+			if self.isEditable {
+				mTextEdit.placeholderString = str
 			} else {
-				return ""
+				mTextEdit.stringValue = str
 			}
-			#endif
-		}
-		set(newval) {
-			#if os(OSX)
-				mTextEdit.stringValue = newval
-			#else
-				mTextEdit.text = newval
-			#endif
-			mTextEdit.invalidateIntrinsicContentSize()
-			mCurrentValue = .stringValue(newval)
-		}
+		#else
+			mTextEdit.text        = str
+		#endif
+		mTextEdit.invalidateIntrinsicContentSize()
 	}
 
-	public var number: NSNumber {
-		get {
-			if let val = Double(self.text) {
-				return NSNumber(value: val)
-			} else {
-				CNLog(logLevel: .error, message: "Failed to decode current number", atFunction: #function, inFile: #file)
-				return NSNumber(booleanLiteral: false)
-			}
-		}
-		set(newval){
-			setNumber(number: newval, decimalPlaces: mDecimalPlaces)
-		}
-	}
-
-	public var decimalPlaces: Int {
-		get {
-			return mDecimalPlaces
-		}
-		set(newval) {
-			if newval != mDecimalPlaces {
-				mDecimalPlaces = newval
-				switch mCurrentValue {
-				case .numberValue(let num):
-					setNumber(number: num, decimalPlaces: mDecimalPlaces)
-				default:
-					break // do nothing
-				}
-			}
-		}
-	}
-
-	private func setNumber(number num: NSNumber, decimalPlaces dplaces: Int) {
+	private func setNumber(number num: NSNumber, decimalPlaces dplaces: Int?) {
 		let newstr: String
-		if dplaces <= 0 {
-			newstr = "\(num.intValue)"
+		if let dp = dplaces {
+			if 0 <= dp {
+				newstr = String(format: "%.*lf", dp, num.doubleValue)
+			} else {
+				newstr = "\(num.intValue)"
+			}
 		} else {
-			newstr = String(format: "%.*lf", dplaces, num.doubleValue)
+			newstr = "\(num.intValue)"
 		}
-		self.text     = newstr
-		mCurrentValue = .numberValue(num)
+		setString(string: newstr)
 	}
 
-	public var font: CNFont? {
-		get {
-			return mTextEdit.font
+	private func setFormat(isNumber num: Bool, isBold bld: Bool, isEditable edt: Bool, decimalPlaces dplace: Int) {
+		/* Set font */
+		let font: CNFont
+		if num {
+			font = CNFont.monospacedSystemFont(ofSize: CNFont.systemFontSize, weight: .regular)
+		} else if bld {
+			font = CNFont.boldSystemFont(ofSize: CNFont.systemFontSize)
+		} else {
+			font = CNFont.systemFont(ofSize: CNFont.systemFontSize)
 		}
-		set(font){
-			mTextEdit.font = font
-		}
-	}
+		mTextEdit.font = font
 
-	public var alignment: NSTextAlignment {
-		get {
-			#if os(OSX)
-				return mTextEdit.alignment
-			#else
-				return mTextEdit.textAlignment
-			#endif
+		/* Set attributes */
+		#if os(OSX)
+		mTextEdit.isEditable		= edt
+		mTextEdit.usesSingleLineMode 	= true
+		if num {
+			/* For number */
+			let numform = NumberFormatter()
+			numform.numberStyle		= .decimal
+			numform.maximumFractionDigits	= dplace
+			numform.minimumFractionDigits	= dplace
+			mTextEdit.formatter		= numform
+		} else {
+			/* for text */
+			mTextEdit.formatter		= nil
 		}
-		set(align){
-			#if os(OSX)
-				mTextEdit.alignment = align
-			#else
-				mTextEdit.textAlignment = align
-			#endif
-		}
+		#endif
+
+		/* Set bezel */
+		#if os(OSX)
+			mTextEdit.isBezeled   = edt
+		#else
+			mTextEdit.borderStyle = edt ? .bezel : .none
+		#endif
 	}
 
 	#if os(OSX)
@@ -275,6 +264,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	#endif
 
 	public func notifyTextDidEndEditing() {
+		NSLog("nTDEE: \(self.text)")
 		if let cbfunc = self.callbackFunction {
 			cbfunc(self.text)
 		}

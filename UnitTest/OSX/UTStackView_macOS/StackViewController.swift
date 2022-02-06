@@ -16,10 +16,16 @@ public class StackViewController: KCSingleViewController
 		vbox.axis = .vertical
 
 		let label = KCTextEdit()
-		label.format     = .label
+		label.isBold	 = true
 		label.isEditable = false
 		label.text       = "Label"
 		vbox.addArrangedSubView(subView: label)
+
+		let edit = KCTextEdit()
+		edit.isBold	 = false
+		edit.isEditable  = true
+		edit.text        = "Editable text"
+		vbox.addArrangedSubView(subView: edit)
 
 		let stepper = KCStepper()
 		stepper.currentValue	      =  0.0
