@@ -80,8 +80,10 @@ public class SingleViewController: KCSingleViewController
 		imgview0.image = img0
 		imgview0.scale = 0.2
 
+		let radio     = KCRadioButtons()
+		radio.setLabels(labels: ["a", "b", "c"], columnNum: 3)
+
 		let edit1  = KCTextEdit()
-		edit1.format     = .text
 		edit1.isEditable = false
 		edit1.text       = "This is label"
 
@@ -131,7 +133,7 @@ public class SingleViewController: KCSingleViewController
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
-		box2.addArrangedSubViews(subViews: [imgview0, box1, icon1, labstack, button2])
+		box2.addArrangedSubViews(subViews: [imgview0, radio, box1, icon1, labstack, button2])
 
 		let secval = secview4.value
 		let str = secval.toText().toStrings().joined(separator: "\n")

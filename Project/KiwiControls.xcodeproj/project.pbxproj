@@ -231,6 +231,12 @@
 		059428B62720E41200C7351E /* KCCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059428B42720E41200C7351E /* KCCollectionViewItem.xib */; };
 		059A51A1254DA35C003B5B96 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
 		059A51A6254DA36F003B5B96 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
+		059B842E27B6212A0031EFD7 /* KCRadioButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059B842D27B6212A0031EFD7 /* KCRadioButtonCore.xib */; };
+		059B843727B6217B0031EFD7 /* KCRadioButtonCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059B843627B6217B0031EFD7 /* KCRadioButtonCore.xib */; };
+		059B844E27B6235B0031EFD7 /* KCRadioButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059B844D27B6235B0031EFD7 /* KCRadioButtonCore.swift */; };
+		059B844F27B6235B0031EFD7 /* KCRadioButtonCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059B844D27B6235B0031EFD7 /* KCRadioButtonCore.swift */; };
+		059B846627B6296F0031EFD7 /* KCRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059B846527B6296F0031EFD7 /* KCRadioButton.swift */; };
+		059B846727B6296F0031EFD7 /* KCRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059B846527B6296F0031EFD7 /* KCRadioButton.swift */; };
 		059F11A425C0429500F4A5C9 /* KCGraphics2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */; };
 		059F11A525C0429500F4A5C9 /* KCGraphics2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */; };
 		059FA2BA2598952E0080ED34 /* amber-icon-128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 05086D9725988C50008CA70D /* amber-icon-128x128.png */; };
@@ -271,6 +277,8 @@
 		05DE142427925FAD0069A432 /* storage.json in Resources */ = {isa = PBXBuildFile; fileRef = 05DE142327925FAD0069A432 /* storage.json */; };
 		05E474BC272C3D6500F17153 /* KCVectorGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E474BB272C3D6500F17153 /* KCVectorGraphics.swift */; };
 		05E585D325D56A8D0099C303 /* KCBitmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E585D225D56A8D0099C303 /* KCBitmapView.swift */; };
+		05E89AD027B6395C00840C07 /* KCRadioButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E89ACF27B6395C00840C07 /* KCRadioButtons.swift */; };
+		05E89AD127B6395C00840C07 /* KCRadioButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E89ACF27B6395C00840C07 /* KCRadioButtons.swift */; };
 		05EB0EC62567EC6A00D28FD2 /* KCTerminalViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */; };
 		05ED4A74269346CE008C8FCE /* KCTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED4A73269346CE008C8FCE /* KCTableCellView.swift */; };
 		05ED4A75269346CE008C8FCE /* KCTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED4A73269346CE008C8FCE /* KCTableCellView.swift */; };
@@ -600,6 +608,10 @@
 		058EBF20264DE3A20031F306 /* UTTable.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTTable.entitlements; sourceTree = "<group>"; };
 		059428B32720E41200C7351E /* KCCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCollectionViewItem.swift; sourceTree = "<group>"; };
 		059428B42720E41200C7351E /* KCCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCCollectionViewItem.xib; sourceTree = "<group>"; };
+		059B842D27B6212A0031EFD7 /* KCRadioButtonCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCRadioButtonCore.xib; sourceTree = "<group>"; };
+		059B843627B6217B0031EFD7 /* KCRadioButtonCore.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KCRadioButtonCore.xib; sourceTree = "<group>"; };
+		059B844D27B6235B0031EFD7 /* KCRadioButtonCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCRadioButtonCore.swift; sourceTree = "<group>"; };
+		059B846527B6296F0031EFD7 /* KCRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCRadioButton.swift; sourceTree = "<group>"; };
 		059F11A325C0429500F4A5C9 /* KCGraphics2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCGraphics2DView.swift; sourceTree = "<group>"; };
 		05A39D5A26763423005ED17F /* KCCoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCCoreView.swift; sourceTree = "<group>"; };
 		05A3F78C25CE951900A62BF8 /* KCLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayerView.swift; sourceTree = "<group>"; };
@@ -636,6 +648,7 @@
 		05DE142327925FAD0069A432 /* storage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = storage.json; sourceTree = "<group>"; };
 		05E474BB272C3D6500F17153 /* KCVectorGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCVectorGraphics.swift; sourceTree = "<group>"; };
 		05E585D225D56A8D0099C303 /* KCBitmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCBitmapView.swift; sourceTree = "<group>"; };
+		05E89ACF27B6395C00840C07 /* KCRadioButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCRadioButtons.swift; sourceTree = "<group>"; };
 		05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
 		05ED4A73269346CE008C8FCE /* KCTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTableCellView.swift; sourceTree = "<group>"; };
 		05FDA13025AD138F00137F2A /* steel-wheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steel-wheels.png"; sourceTree = "<group>"; };
@@ -932,6 +945,8 @@
 				0544EB06251775A3002DE6A8 /* KCNavigationBarCore.swift */,
 				0544EAF0251775A2002DE6A8 /* KCPopupMenu.swift */,
 				0544EB04251775A3002DE6A8 /* KCPopupMenuCore.swift */,
+				059B846527B6296F0031EFD7 /* KCRadioButton.swift */,
+				059B844D27B6235B0031EFD7 /* KCRadioButtonCore.swift */,
 				0544EAFB251775A2002DE6A8 /* KCRootView.swift */,
 				0544EB05251775A3002DE6A8 /* KCStackView.swift */,
 				0544EAF6251775A2002DE6A8 /* KCStackViewCore.swift */,
@@ -966,6 +981,7 @@
 				0544EB58251775C7002DE6A8 /* KCLabeledStackViewCore.xib */,
 				0544EB56251775C6002DE6A8 /* KCNavigationBarCore.xib */,
 				0544EB61251775C7002DE6A8 /* KCPopupMenuCore.xib */,
+				059B842D27B6212A0031EFD7 /* KCRadioButtonCore.xib */,
 				0544EB57251775C6002DE6A8 /* KCStackViewCore.xib */,
 				0544EB59251775C7002DE6A8 /* KCStepperCore.xib */,
 				0544EB63251775C7002DE6A8 /* KCTableViewCore.xib */,
@@ -981,6 +997,9 @@
 				05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */,
 				0544EB80251775E5002DE6A8 /* KCButtonCore.xib */,
 				0544EB84251775E5002DE6A8 /* KCCheckBoxCore.xib */,
+				057341CF2718725900F1799E /* KCCollectionViewCore.xib */,
+				0581C92D27213B83008E7472 /* KCCollectionViewCell.swift */,
+				0581C92E27213B83008E7472 /* KCCollectionViewCell.xib */,
 				0544EB81251775E5002DE6A8 /* KCColorSelectorCore.xib */,
 				0544EB86251775E5002DE6A8 /* KCConsoleViewCore.xib */,
 				05D038B625AC86DF0022E242 /* KCIconViewCore.xib */,
@@ -988,15 +1007,13 @@
 				0544EB7C251775E5002DE6A8 /* KCLabeledStackViewCore.xib */,
 				0544EB7B251775E5002DE6A8 /* KCNavigationBarCore.xib */,
 				0544EB79251775E4002DE6A8 /* KCPopupMenuCore.xib */,
+				059B843627B6217B0031EFD7 /* KCRadioButtonCore.xib */,
 				0544EB7F251775E5002DE6A8 /* KCStackViewCore.xib */,
 				0544EB78251775E4002DE6A8 /* KCStepperCore.xib */,
 				0544EB82251775E5002DE6A8 /* KCTableViewCore.xib */,
 				0544EB7E251775E5002DE6A8 /* KCTextEditCore.xib */,
 				0544EB7A251775E4002DE6A8 /* KCTextFieldCore.xib */,
 				05589A712612040100774D41 /* KCTextViewCore.xib */,
-				057341CF2718725900F1799E /* KCCollectionViewCore.xib */,
-				0581C92D27213B83008E7472 /* KCCollectionViewCell.swift */,
-				0581C92E27213B83008E7472 /* KCCollectionViewCell.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1006,6 +1023,7 @@
 			children = (
 				05BDADFC276E261A00729B0E /* KCCardView.swift */,
 				0583243A272E7D75007EE3E7 /* KCDrawingView.swift */,
+				05E89ACF27B6395C00840C07 /* KCRadioButtons.swift */,
 				0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */,
 				05BBDBDB26FC0E9300603B8B /* KCValueView.swift */,
 			);
@@ -1577,6 +1595,7 @@
 				0544EB66251775C7002DE6A8 /* KCNavigationBarCore.xib in Resources */,
 				05D0388625AC84370022E242 /* KCIconViewCore.xib in Resources */,
 				0544EB6D251775C7002DE6A8 /* KCTextEditCore.xib in Resources */,
+				059B842E27B6212A0031EFD7 /* KCRadioButtonCore.xib in Resources */,
 				057341C8271871FF00F1799E /* KCCollectionViewCore.xib in Resources */,
 				059428B62720E41200C7351E /* KCCollectionViewItem.xib in Resources */,
 				0544EA8925176EF0002DE6A8 /* KCEmptyViewController.xib in Resources */,
@@ -1604,6 +1623,7 @@
 				0544EB8E251775E5002DE6A8 /* KCTextEditCore.xib in Resources */,
 				0544EB96251775E5002DE6A8 /* KCConsoleViewCore.xib in Resources */,
 				0544EA9025176F10002DE6A8 /* KCEmptyViewController.xib in Resources */,
+				059B843727B6217B0031EFD7 /* KCRadioButtonCore.xib in Resources */,
 				0544EB94251775E5002DE6A8 /* KCCheckBoxCore.xib in Resources */,
 				0544EB89251775E5002DE6A8 /* KCPopupMenuCore.xib in Resources */,
 				0544EB8F251775E5002DE6A8 /* KCStackViewCore.xib in Resources */,
@@ -1740,11 +1760,13 @@
 				0544EB12251775A3002DE6A8 /* KCPopupMenu.swift in Sources */,
 				0544EB1A251775A3002DE6A8 /* KCImageView.swift in Sources */,
 				05E474BC272C3D6500F17153 /* KCVectorGraphics.swift in Sources */,
+				059B846627B6296F0031EFD7 /* KCRadioButton.swift in Sources */,
 				0544EB2E251775A3002DE6A8 /* KCConsoleView.swift in Sources */,
 				0544EB44251775A3002DE6A8 /* KCNavigationBar.swift in Sources */,
 				0544EAB725176FBE002DE6A8 /* KCDistributionDecider.swift in Sources */,
 				0544EA7A25176EC6002DE6A8 /* KCDocumentPickerViewController.swift in Sources */,
 				0544EB9C25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */,
+				05E89AD027B6395C00840C07 /* KCRadioButtons.swift in Sources */,
 				059F11A425C0429500F4A5C9 /* KCGraphics2DView.swift in Sources */,
 				0544EBBB25177676002DE6A8 /* KCView.swift in Sources */,
 				0544EBB525177676002DE6A8 /* KCPreference.swift in Sources */,
@@ -1754,6 +1776,7 @@
 				05E585D325D56A8D0099C303 /* KCBitmapView.swift in Sources */,
 				0544EB28251775A3002DE6A8 /* KCRootView.swift in Sources */,
 				0544EB30251775A3002DE6A8 /* KCStepper.swift in Sources */,
+				059B844E27B6235B0031EFD7 /* KCRadioButtonCore.swift in Sources */,
 				0544EBB325177676002DE6A8 /* KCLayoutConstraint.swift in Sources */,
 				0544EBC325177676002DE6A8 /* KCAlert.swift in Sources */,
 				0544EB10251775A3002DE6A8 /* KCTableView.swift in Sources */,
@@ -1834,6 +1857,7 @@
 				0544EAB825176FBE002DE6A8 /* KCDistributionDecider.swift in Sources */,
 				0544EA8325176EC6002DE6A8 /* KCScreen.swift in Sources */,
 				0544EBB425177676002DE6A8 /* KCLayoutConstraint.swift in Sources */,
+				059B844F27B6235B0031EFD7 /* KCRadioButtonCore.swift in Sources */,
 				0544EBB825177676002DE6A8 /* KCType.swift in Sources */,
 				0544EB37251775A3002DE6A8 /* KCColorSelector.swift in Sources */,
 				0544EB4F251775A3002DE6A8 /* KCCheckBox.swift in Sources */,
@@ -1865,12 +1889,14 @@
 				0544EB23251775A3002DE6A8 /* KCContextualMenu.swift in Sources */,
 				0544EB4D251775A3002DE6A8 /* KCImageViewCore.swift in Sources */,
 				0544EAE52517716D002DE6A8 /* KCFontTable.swift in Sources */,
+				059B846727B6296F0031EFD7 /* KCRadioButton.swift in Sources */,
 				0544EA7525176EC6002DE6A8 /* KCSingleViewController.swift in Sources */,
 				05832432272E7A81007EE3E7 /* KCVectorGraphics.swift in Sources */,
 				05CC333B25789709001BA2F2 /* KCConsoleManager.swift in Sources */,
 				0544EACD25176FF5002DE6A8 /* KCTriangle.swift in Sources */,
 				057341E82718765600F1799E /* KCCollectionView.swift in Sources */,
 				0544EBC025177676002DE6A8 /* KCInterfaceView.swift in Sources */,
+				05E89AD127B6395C00840C07 /* KCRadioButtons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

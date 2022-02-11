@@ -13,6 +13,7 @@ public enum KCViewStructure {
 	case bitmapView
 	case button
 	case checkBox
+	case radioButton
 	case collectionView
 	case colorSelector
 	case consoleView
@@ -51,6 +52,11 @@ public enum KCViewStructure {
 		case .checkBox:
 			switch s0 {
 			case .checkBox:		result = true
+			default:		result = false
+			}
+		case .radioButton:
+			switch s0 {
+			case .radioButton:	result = true
 			default:		result = false
 			}
 		case .collectionView:
@@ -182,6 +188,10 @@ public class KCViewAnalyzer: KCViewVisitor
 
 	public override func visit(button view: KCButton){
 		result = .button
+	}
+
+	public override func visit(radioButton view: KCRadioButton){
+		result = .radioButton
 	}
 
 	public override func visit(checkBox view: KCCheckBox){

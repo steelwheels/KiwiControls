@@ -32,6 +32,14 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
+	open override func visit(radioButton view: KCRadioButton){
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.fixed,
+						 verticalCompression:	.fixed)
+		view.setExpandabilities(priorities: prival)
+	}
+
 	open override func visit(checkBox view: KCCheckBox){
 		let prival = ExpansionPriorities(holizontalHugging: 	.low,
 						 holizontalCompression: .low,

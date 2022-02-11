@@ -205,13 +205,15 @@ open class KCValueView: KCStackView, KCValueViewInterface
 			parview.addArrangedSubView(subView: view)
 		case .rangeValue(_), .pointValue(_), .sizeValue(_), .rectValue(_), .enumValue(_), .colorValue(_):
 			let view = KCDictionaryValueView()
-			view.value = val
+			view.value           = val
+			view.visibleRowCount = 1
 			parview.addArrangedSubView(subView: view)
 		case .dictionaryValue(let dict):
 			if dict.count > 0 {
 				if KCValueView.hasPrimitiveValues(dictionary: dict) {
 					let view = KCDictionaryValueView()
-					view.value = val
+					view.value           = val
+					view.visibleRowCount = 1
 					parview.addArrangedSubView(subView: view)
 				} else {
 					let view = KCLabeledValueView()

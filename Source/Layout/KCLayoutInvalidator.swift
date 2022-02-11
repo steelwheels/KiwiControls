@@ -59,6 +59,12 @@ public class KCLayoutInvalidator: KCViewVisitor
 		mVisitResult = doinv
 	}
 
+	open override func visit(radioButton view: KCRadioButton){
+		let doinv = checkTarget(view: view)
+		doInvalidate(view: view, doInvalidate: doinv)
+		mVisitResult = doinv
+	}
+
 	public override func visit(checkBox view: KCCheckBox){
 		let doinv = checkTarget(view: view)
 		doInvalidate(view: view, doInvalidate: doinv)

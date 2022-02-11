@@ -21,6 +21,10 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
+	open func visit(radioButton view: KCRadioButton){
+		visit(coreView: view)
+	}
+
 	open func visit(checkBox view: KCCheckBox){
 		visit(coreView: view)
 	}
