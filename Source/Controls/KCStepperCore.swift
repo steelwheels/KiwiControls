@@ -97,12 +97,23 @@ public class KCStepperCore: KCCoreView
 		}
 		set(newval){
 			let v = clipValue(value: newval)
+			let updated: Bool
 			#if os(iOS)
-				self.mStepper.value = v
+				updated = (self.mStepper.value != v)
 			#else
-				mCurrentValue = v
+				updated = (mCurrentValue != v)
 			#endif
-			self.updateTextField(value: v)
+			if updated {
+				#if os(iOS)
+					self.mStepper.value = v
+				#else
+					mCurrentValue = v
+				#endif
+				self.updateTextField(value: v)
+				if let callback = updateValueCallback {
+					callback(v)
+				}
+			}
 		}
 	}
 

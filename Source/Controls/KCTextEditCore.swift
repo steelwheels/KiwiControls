@@ -257,14 +257,17 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	public func controlTextDidEndEditing(_ obj: Notification) {
 		notifyTextDidEndEditing()
 	}
+
+	public func controlTextDidChange(_ obj: Notification) {
+		notifyTextDidEndEditing()
+	}
 	#else
 	@objc public func textFieldDidChange(_ textEdit: KCTextEdit) {
 		notifyTextDidEndEditing()
 	}
 	#endif
 
-	public func notifyTextDidEndEditing() {
-		NSLog("nTDEE: \(self.text)")
+	private func notifyTextDidEndEditing() {
 		if let cbfunc = self.callbackFunction {
 			cbfunc(self.text)
 		}
