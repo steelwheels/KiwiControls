@@ -118,7 +118,7 @@ open class KCRadioButtonCore: KCCoreView
 		#if os(OSX)
 			var btnsize = mRadioButton.intrinsicContentSize
 			if let font = mRadioButton.font {
-				btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(15))
+				btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(8))
 				btnsize.height = max(btnsize.height, font.pointSize * 1.2        )
 			}
 			let space = CNPreference.shared.windowPreference.spacing
