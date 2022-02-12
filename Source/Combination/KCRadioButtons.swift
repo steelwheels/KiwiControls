@@ -116,6 +116,16 @@ open class KCRadioButtons: KCStackView
 			super.addArrangedSubView(subView: hbox)
 		}
 
+		/* Set minimum label width */
+		var minwidth = 4
+		for i in 0..<labs.count {
+			minwidth = max(minwidth, labs[i].lengthOfBytes(using: .utf8))
+		}
+		for i in 0..<mButtons.count {
+			let button = mButtons[i]
+			button.minLabelWidth = minwidth
+		}
+
 		/* Activate 1 button */
 		for i in 0..<mButtons.count {
 			let button = mButtons[i]
@@ -177,7 +187,11 @@ open class KCRadioButtons: KCStackView
 				mCurrentIndex = nil
 			}
 		}
-		mButtons[idx].isEnabled = enb
+		let button = mButtons[idx]
+		if(button.isEnabled != enb){
+			button.isEnabled = enb
+			button.requireDisplay()
+		}
 	}
 
 }

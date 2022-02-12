@@ -73,6 +73,11 @@ public class KCRadioButton: KCInterfaceView
 		set(newval) { coreView.isEnabled = newval }
 	}
 
+	public var minLabelWidth: Int {
+		get         { return coreView.minLabelWidth }
+		set(newval) { coreView.minLabelWidth = newval }
+	}
+
 	public var callback: CallbackFunction? {
 		get         { return coreView.callback }
 		set(newval) { coreView.callback = newval }

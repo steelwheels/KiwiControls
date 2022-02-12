@@ -18,6 +18,7 @@ open class KCRadioButtonCore: KCCoreView
 
 	private var mButtonID: Int? 			 = nil
 	private var mCallbackFunction: CallbackFunction? = nil
+	private var mMinLabelWidth: Int			 = 8
 
 	#if os(OSX)
 	@IBOutlet weak var mRadioButton: NSButton!
@@ -84,6 +85,11 @@ open class KCRadioButtonCore: KCCoreView
 		set(newval){ mCallbackFunction = newval }
 	}
 
+	public var minLabelWidth: Int {
+		get         { return mMinLabelWidth }
+		set(newval) { if newval >= 1 { mMinLabelWidth = newval }}
+	}
+
 	#if os(OSX)
 	@IBAction func buttonPressed(_ sender: Any) {
 		self.pressed()
@@ -118,7 +124,7 @@ open class KCRadioButtonCore: KCCoreView
 		#if os(OSX)
 			var btnsize = mRadioButton.intrinsicContentSize
 			if let font = mRadioButton.font {
-				btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(8))
+				btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(mMinLabelWidth))
 				btnsize.height = max(btnsize.height, font.pointSize * 1.2        )
 			}
 			let space = CNPreference.shared.windowPreference.spacing
