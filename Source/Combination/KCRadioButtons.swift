@@ -18,7 +18,7 @@ open class KCRadioButtons: KCStackView
 
 	private var mLabels:		Array<String>
 	private var mButtons:		Array<KCRadioButton>
-	private var mActiveIndex:	Int?
+	private var mCurrentIndex:	Int?
 	private var mColumunNum:	Int
 	private var mCallbackFunction:	CallbackFunction?
 
@@ -26,7 +26,7 @@ open class KCRadioButtons: KCStackView
 	public override init(frame : NSRect){
 		mLabels     		= []
 		mButtons		= []
-		mActiveIndex		= nil
+		mCurrentIndex		= nil
 		mColumunNum 		= 1
 		mCallbackFunction	= nil
 		super.init(frame: frame) ;
@@ -35,7 +35,7 @@ open class KCRadioButtons: KCStackView
 	public override init(frame: CGRect){
 		mLabels     		= []
 		mButtons		= []
-		mActiveIndex		= nil
+		mCurrentIndex		= nil
 		mColumunNum 		= 1
 		mCallbackFunction	= nil
 		super.init(frame: frame)
@@ -54,10 +54,25 @@ open class KCRadioButtons: KCStackView
 	public required init?(coder: NSCoder) {
 		mLabels     		= []
 		mButtons		= []
-		mActiveIndex		= nil
+		mCurrentIndex		= nil
 		mColumunNum 		= 1
 		mCallbackFunction	= nil
 		super.init(coder: coder)
+	}
+
+	public var currentIndex: Int? {
+		get { return mCurrentIndex }
+	}
+
+	public var numberOfColumns: Int {
+		get         { return mColumunNum }
+		set(newval) {
+			if newval >= 1 {
+				mColumunNum = newval
+			} else {
+				CNLog(logLevel: .error, message: "Invalid numberOfColumns: \(newval)", atFunction: #function, inFile: #file)
+			}
+		}
 	}
 
 	public var callback: CallbackFunction? {
@@ -65,17 +80,12 @@ open class KCRadioButtons: KCStackView
 		set(newval) { self.mCallbackFunction = newval }
 	}
 
-	public func setLabels(labels labs: Array<String>, columnNum cnum: Int){
+	public func setLabels(labels labs: Array<String>){
 		guard labs.count >= 1 else {
 			CNLog(logLevel: .error, message: "Invalid label num", atFunction: #function, inFile: #file)
 			return
 		}
-		guard cnum >= 1 else {
-			CNLog(logLevel: .error, message: "Invalid column num", atFunction: #function, inFile: #file)
-			return
-		}
 		mLabels		= labs
-		mColumunNum	= cnum
 
 		/* Clear subview */
 		super.removeAllArrangedSubviews()
@@ -87,12 +97,12 @@ open class KCRadioButtons: KCStackView
 
 		/* Allocate boxes to arrange some radio buttons */
 		let labelnum = labs.count
-		let rownum   = (labelnum + cnum - 1) / cnum
+		let rownum   = (labelnum + mColumunNum - 1) / mColumunNum
 		var buttonid = 0
 		for _ in 0..<rownum {
 			let hbox  = KCStackView()
 			hbox.axis = .horizontal
-			for _ in 0..<cnum {
+			for _ in 0..<mColumunNum {
 				if buttonid < labelnum {
 					let newbutton = KCRadioButton()
 					newbutton.buttonId = buttonid
@@ -111,7 +121,7 @@ open class KCRadioButtons: KCStackView
 			let button = mButtons[i]
 			if button.isEnabled && button.isVisible {
 				button.state = true
-				mActiveIndex = i
+				mCurrentIndex = i
 				break
 			}
 		}
@@ -119,25 +129,55 @@ open class KCRadioButtons: KCStackView
 
 	public func select(index newidx: Int){
 		guard 0<=newidx && newidx<mButtons.count else {
+			CNLog(logLevel: .error, message: "Invalid index: \(newidx)", atFunction: #function, inFile: #file)
 			return // invalid range
 		}
 		guard mButtons[newidx].isEnabled && mButtons[newidx].isVisible else {
 			return // can not select new one
 		}
-		if let actidx = mActiveIndex {
-			if actidx == newidx {
+		if let curidx = mCurrentIndex {
+			if curidx == newidx {
 				return // current index == new index
 			} else {
-				// clear current button
-				mButtons[actidx].state = false
+				mButtons[curidx].state = false
 			}
 		}
 		mButtons[newidx].state = true
-		mActiveIndex = newidx
+		mCurrentIndex = newidx
 		/* Callback */
 		if let cbfunc = mCallbackFunction {
 			cbfunc(newidx)
 		}
+	}
+
+	public func setEnable(enables enb: Array<CNValue>) {
+		let fnum = min(mButtons.count, enb.count)
+		for i in 0..<fnum {
+			switch enb[i] {
+			case .boolValue(let doenable):
+				setEnable(index: i, enable: doenable)
+			case .numberValue(let num):
+				let doenable = num.boolValue || (num.intValue != 0)
+				setEnable(index: i, enable: doenable)
+			default:
+				CNLog(logLevel: .error, message: "Unexpected parameter type", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	public func setEnable(index idx: Int, enable enb: Bool) {
+		guard 0<=idx && idx<mButtons.count else {
+			CNLog(logLevel: .error, message: "Invalid index: \(idx)", atFunction: #function, inFile: #file)
+			return // invalid range
+		}
+		if let curidx = mCurrentIndex {
+			if !enb && (curidx == idx) {
+				/* Disable the current selected item */
+				mButtons[curidx].state = false
+				mCurrentIndex = nil
+			}
+		}
+		mButtons[idx].isEnabled = enb
 	}
 
 }

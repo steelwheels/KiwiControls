@@ -81,7 +81,13 @@ public class SingleViewController: KCSingleViewController
 		imgview0.scale = 0.2
 
 		let radio     = KCRadioButtons()
-		radio.setLabels(labels: ["a", "b", "c"], columnNum: 3)
+		radio.numberOfColumns = 3
+		radio.setLabels(labels: ["a", "b", "c"])
+		radio.setEnable(enables: [
+			.boolValue(true),
+			.numberValue(NSNumber(booleanLiteral: true)),
+			.boolValue(false)
+		])
 
 		let edit1  = KCTextEdit()
 		edit1.isEditable = false

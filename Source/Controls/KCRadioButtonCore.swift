@@ -14,7 +14,7 @@ import UIKit
 
 open class KCRadioButtonCore: KCCoreView
 {
-	public typealias CallbackFunction = (_ index: Int) -> Void
+	public typealias CallbackFunction = (_ buttonid: Int) -> Void
 
 	private var mButtonID: Int? 			 = nil
 	private var mCallbackFunction: CallbackFunction? = nil
