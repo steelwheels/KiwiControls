@@ -1,18 +1,18 @@
 /**
- * @file	KCLogManager.swift
- * @brief	Define KCLogManager class
+ * @file	KCLogWindowManager.swift
+ * @brief	Define KCLogWindowManager class
  * @par Copyright
- *   Copyright (C) 2018-2020 Steel Wheels Project
+ *   Copyright (C) 2018-2022 Steel Wheels Project
  */
 
 import CoconutData
 import Foundation
 
-@objc public class KCLogManager: NSObject
+@objc public class KCLogWindowManager: NSObject
 {
 	public typealias LogLevel = CNConfig.LogLevel
 
-	public static let shared	= KCLogManager()
+	public static let shared	= KCLogWindowManager()
 	#if os(OSX)
 		private var		mWindowController: KCLogWindowController?
 	#else

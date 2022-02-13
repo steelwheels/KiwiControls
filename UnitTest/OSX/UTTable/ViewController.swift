@@ -18,7 +18,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 
 		/* Start logging */
 		NSLog("Start logging ... begin")
-		let _ = KCLogManager.shared // init
+		let _ = KCLogWindowManager.shared // init
 		CNPreference.shared.systemPreference.logLevel = .debug
 		NSLog("Start logging ... end")
 

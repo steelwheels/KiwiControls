@@ -43,7 +43,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		//super.loadView() <- Do not call this because it load NIB file (it is NOT exist)
 		if mRootView == nil {
 			/* Initialize log manager */
-			let _ = KCLogManager.shared
+			let _ = KCLogWindowManager.shared
 			/* Allocate contents by super class */
 			let root = KCRootView()
 			if let child = loadContext() {
@@ -156,7 +156,6 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 				/* decide 1st responder */
 				let decider = KCFirstResponderDecider(window: window)
 				let _ = decider.decideFirstResponder(rootView: root)
-				//dumpInfo(phase: "- [doViewDidAppear]", rootView: root)
 			} else {
 				CNLog(logLevel: .error, message: "No window at \(#function)")
 			}
@@ -191,12 +190,6 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		} else {
 			CNLog(logLevel: .error, message: "No root view", atFunction: #function, inFile: #file)
 		}
-	}
-
-	private func dumpInfo(phase str: String, rootView root: KCRootView) {
-		let dumper = KCViewDumper()
-		let cons = CNLogManager.shared.console
-		dumper.dump(view: root, console: cons)
 	}
 }
 
