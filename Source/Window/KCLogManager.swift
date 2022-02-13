@@ -8,11 +8,55 @@
 import CoconutData
 import Foundation
 
+public class KCLogWindowConsole: CNConsole
+{
+	private weak var mManager:	KCLogWindowManager?
+	private var mConsole:		CNConsole
+
+	public init(console cons: CNConsole, manager mgr: KCLogWindowManager){
+		mConsole = cons
+		mManager = mgr
+	}
+
+	public func print(string str: String) {
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			self.show() ; self.mConsole.print(string: str)
+		})
+	}
+
+	public func error(string str: String) {
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			self.show() ; self.mConsole.error(string: str)
+		})
+	}
+
+	public func log(string str: String) {
+		CNExecuteInMainThread(doSync: false, execute: {
+			() -> Void in
+			self.show() ; self.mConsole.log(string: str)
+		})
+	}
+
+	public func scan() -> String? {
+		return mConsole.scan()
+	}
+
+	private func show(){
+		if let mgr = mManager {
+			if !mgr.isVisible {
+				mgr.doShow()
+			}
+		}
+	}
+}
+
+
 @objc public class KCLogWindowManager: NSObject
 {
-	public typealias LogLevel = CNConfig.LogLevel
-
 	public static let shared	= KCLogWindowManager()
+
 	#if os(OSX)
 		private var		mWindowController: KCLogWindowController?
 	#else
@@ -26,75 +70,46 @@ import Foundation
 			mViewController		= nil
 		#endif
 		super.init()
-
-		/* Observe LogLevel item */
-		let syspref = CNPreference.shared.systemPreference
-		syspref.addObserver(observer: self, forKey: CNSystemPreference.LogLevelItem)
+		self.setup()
 	}
 
 	deinit {
-		let syspref = CNPreference.shared.systemPreference
-		syspref.removeObserver(observer: self, forKey: CNSystemPreference.LogLevelItem)
-	}
-
-	public func start() {
-		let level = CNPreference.shared.systemPreference.logLevel
-		updateLogLevel(logLevel: level)
-	}
-
-	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		switch keyPath {
-		case CNSystemPreference.LogLevelItem:
-			if let vals = change {
-				if let newval = vals[.newKey] as? Int {
-					if let newlevel = CNSystemPreference.LogLevel(rawValue: newval) {
-						CNExecuteInMainThread(doSync: false, execute: {
-							() -> Void in self.updateLogLevel(logLevel: newlevel)
-						})
-					}
-				}
-			}
-		default:
-			CNLog(logLevel: .detail, message: "Unexpected event:  \(String(describing: keyPath))", atFunction: #function, inFile: #file)
-		}
-	}
-
-	private func updateLogLevel(logLevel lvl: LogLevel) {
-		let isvis = self.isVisible
-		let doen  = (lvl != .nolog)
-		if !isvis && doen {
-			/* Set enable */
-			doShow()
-		} else if isvis && !doen {
-			/* Set disable */
-			doHide()
-		}
-	}
-
-	private func doShow() {
-		#if os(OSX)
-		let console: CNConsole
-		if let cont = self.mWindowController {
-			console	= cont.console
-			cont.show()
-		} else {
-			let newcont = KCLogWindowController.allocateController()
-			self.mWindowController = newcont
-			console = newcont.console
-			newcont.show()
-		}
 		/* Connect log buffer to this window */
+		CNLogManager.shared.popConsole()
+	}
+
+	private func setup(){
+		#if os(OSX)
+		/* Push log console */
+		let cont    = allocController()
+		let console = KCLogWindowConsole(console: cont.console, manager: self)
 		CNLogManager.shared.pushConsone(console: console)
 		#endif
 	}
 
-	private func doHide() {
-		#if os(OSX)
+	#if os(OSX)
+	private func allocController() -> KCLogWindowController {
 		if let cont = self.mWindowController {
-			cont.hide()
+			return cont
+		} else {
+			let newcont = KCLogWindowController.allocateController()
+			self.mWindowController = newcont
+			return newcont
 		}
-		/* Connect log buffer to this window */
-		CNLogManager.shared.popConsole()
+	}
+	#endif
+
+	public func doShow() {
+		#if os(OSX)
+		let cont = allocController()
+		cont.show()
+		#endif
+	}
+
+	public func doHide() {
+		#if os(OSX)
+		let cont = allocController()
+		cont.hide()
 		#endif
 	}
 
