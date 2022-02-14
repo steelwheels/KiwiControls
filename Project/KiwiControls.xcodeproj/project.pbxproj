@@ -24,8 +24,8 @@
 		0544EA7525176EC6002DE6A8 /* KCSingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6825176EC6002DE6A8 /* KCSingleViewController.swift */; };
 		0544EA7625176EC6002DE6A8 /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6925176EC6002DE6A8 /* KCViewController.swift */; };
 		0544EA7725176EC6002DE6A8 /* KCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6925176EC6002DE6A8 /* KCViewController.swift */; };
-		0544EA7825176EC6002DE6A8 /* KCLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6A25176EC6002DE6A8 /* KCLogManager.swift */; };
-		0544EA7925176EC6002DE6A8 /* KCLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6A25176EC6002DE6A8 /* KCLogManager.swift */; };
+		0544EA7825176EC6002DE6A8 /* KCLogWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6A25176EC6002DE6A8 /* KCLogWindowManager.swift */; };
+		0544EA7925176EC6002DE6A8 /* KCLogWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6A25176EC6002DE6A8 /* KCLogWindowManager.swift */; };
 		0544EA7A25176EC6002DE6A8 /* KCDocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift */; };
 		0544EA7B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift */; };
 		0544EA7C25176EC6002DE6A8 /* KCPreferenceWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6C25176EC6002DE6A8 /* KCPreferenceWindow.swift */; };
@@ -464,7 +464,7 @@
 		0544EA6625176EC6002DE6A8 /* KCPlaneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPlaneViewController.swift; sourceTree = "<group>"; };
 		0544EA6825176EC6002DE6A8 /* KCSingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCSingleViewController.swift; sourceTree = "<group>"; };
 		0544EA6925176EC6002DE6A8 /* KCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCViewController.swift; sourceTree = "<group>"; };
-		0544EA6A25176EC6002DE6A8 /* KCLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogManager.swift; sourceTree = "<group>"; };
+		0544EA6A25176EC6002DE6A8 /* KCLogWindowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLogWindowManager.swift; sourceTree = "<group>"; };
 		0544EA6B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCDocumentPickerViewController.swift; sourceTree = "<group>"; };
 		0544EA6C25176EC6002DE6A8 /* KCPreferenceWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreferenceWindow.swift; sourceTree = "<group>"; };
 		0544EA6D25176EC6002DE6A8 /* KCMultiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCMultiViewController.swift; sourceTree = "<group>"; };
@@ -844,7 +844,7 @@
 				0544EA8D25176EFA002DE6A8 /* iOS */,
 				05CC333925789709001BA2F2 /* KCConsoleManager.swift */,
 				0544EA6B25176EC6002DE6A8 /* KCDocumentPickerViewController.swift */,
-				0544EA6A25176EC6002DE6A8 /* KCLogManager.swift */,
+				0544EA6A25176EC6002DE6A8 /* KCLogWindowManager.swift */,
 				0544EA6D25176EC6002DE6A8 /* KCMultiViewController.swift */,
 				0544EA6625176EC6002DE6A8 /* KCPlaneViewController.swift */,
 				0544EA6C25176EC6002DE6A8 /* KCPreferenceWindow.swift */,
@@ -1753,7 +1753,7 @@
 				05A3F78D25CE951900A62BF8 /* KCLayerView.swift in Sources */,
 				0544EB32251775A3002DE6A8 /* KCLabeledStackView.swift in Sources */,
 				057341D8271872D700F1799E /* KCCollectionViewCore.swift in Sources */,
-				0544EA7825176EC6002DE6A8 /* KCLogManager.swift in Sources */,
+				0544EA7825176EC6002DE6A8 /* KCLogWindowManager.swift in Sources */,
 				0544EA8225176EC6002DE6A8 /* KCScreen.swift in Sources */,
 				0544EB48251775A3002DE6A8 /* KCColorSelectorCore.swift in Sources */,
 				05BBDBDC26FC0E9300603B8B /* KCValueView.swift in Sources */,
@@ -1843,7 +1843,7 @@
 				0544EA8125176EC6002DE6A8 /* KCViewControlEvent.swift in Sources */,
 				0544EB33251775A3002DE6A8 /* KCLabeledStackView.swift in Sources */,
 				0583243C272E7D75007EE3E7 /* KCDrawingView.swift in Sources */,
-				0544EA7925176EC6002DE6A8 /* KCLogManager.swift in Sources */,
+				0544EA7925176EC6002DE6A8 /* KCLogWindowManager.swift in Sources */,
 				05A39D5C26763423005ED17F /* KCCoreView.swift in Sources */,
 				0544EB49251775A3002DE6A8 /* KCColorSelectorCore.swift in Sources */,
 				0581C92F27213B83008E7472 /* KCCollectionViewCell.swift in Sources */,
