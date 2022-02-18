@@ -31,6 +31,8 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 	private var mAlternativeStorage:	NSTextStorage
 	private var mAlternativeIndex:		Int
 	private var mAlternativeSavedIndex:	Int?
+	private var mTerminalListners:		Array<CNObserverDictionary.ListnerHolder>
+	private var mSystemListners:		Array<CNObserverDictionary.ListnerHolder>
 
 	private var mAckCallback:	((_ codes: Array<CNEscapeCode>) -> Void)?
 
@@ -46,6 +48,8 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		mAlternativeStorage	= NSTextStorage()
 		mAlternativeIndex	= 0
 		mAlternativeSavedIndex	= nil
+		mTerminalListners	= []
+		mSystemListners		= []
 		super.init(frame: frameRect)
 	}
 
@@ -61,11 +65,20 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		mAlternativeStorage	= NSTextStorage()
 		mAlternativeIndex	= 0
 		mAlternativeSavedIndex	= nil
+		mTerminalListners	= []
+		mSystemListners		= []
 		super.init(coder: coder)
 	}
 
 	deinit {
-		removeObservers()
+		let tpref = CNPreference.shared.terminalPreference
+		for holder in mTerminalListners {
+			tpref.removeObserver(listnerHolder: holder)
+		}
+		let spref = CNPreference.shared.systemPreference
+		for holder in mSystemListners {
+			spref.removeObserver(listnerHolder: holder)
+		}
 	}
 
 	public var font: CNFont {
@@ -141,27 +154,73 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		self.font = tpref.font
 
 		/* Start observe */
-		tpref.addObserver(observer: self, forKey: tpref.WidthItem)
-		tpref.addObserver(observer: self, forKey: tpref.HeightItem)
-		tpref.addObserver(observer: self, forKey: tpref.ForegroundTextColorItem)
-		tpref.addObserver(observer: self, forKey: tpref.BackgroundTextColorItem)
-		tpref.addObserver(observer: self, forKey: tpref.FontItem)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.WidthItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in
+					let newwidth = tpref.width
+					if self.mTerminalInfo.width != newwidth {
+						self.mTerminalInfo.width = newwidth
+						self.invalidateIntrinsicContentSize()
+						self.requireLayout()
+						self.notify(viewControlEvent: .updateSize(self))
+					}
+				})
+
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.HeightItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					let newheight = tpref.height
+					if self.mTerminalInfo.height != newheight {
+						self.mTerminalInfo.height = newheight
+						self.invalidateIntrinsicContentSize()
+						self.requireLayout()
+						self.notify(viewControlEvent: .updateSize(self))
+					}
+				})
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.ForegroundTextColorItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.updateForegroundColor()
+				})
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.BackgroundTextColorItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.updateBackgroundColor()
+				})
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.FontItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					CNLog(logLevel: .detail, message: "Change font: \(String(describing: param))", atFunction: #function, inFile: #file)
+					self.updateFont()
+					self.notify(viewControlEvent: .updateSize(self))
+				})
+			})
+		)
 
 		let spref = CNPreference.shared.systemPreference
-		spref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
-	}
-
-	private func removeObservers() {
-		/* Stop to observe */
-		let pref = CNPreference.shared.terminalPreference
-		pref.removeObserver(observer: self, forKey: pref.WidthItem)
-		pref.removeObserver(observer: self, forKey: pref.HeightItem)
-		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
-		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
-		pref.removeObserver(observer: self, forKey: pref.FontItem)
-
-		let syspref = CNPreference.shared.systemPreference
-		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+		mSystemListners.append(
+			spref.addObserver(forKey: CNSystemPreference.InterfaceStyleItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.updateForegroundColor()
+					self.updateBackgroundColor()
+				})
+			})
+		)
 	}
 
 	private var textStorage: NSTextStorage {
@@ -451,57 +510,6 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
 		super.setExpandabilities(priorities: prival)
 		mTextView.setExpansionPriorities(priorities: prival)
-	}
-
-	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			if let key = keyPath, let vals = change {
-				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
-					switch key {
-					case CNPreference.shared.terminalPreference.ForegroundTextColorItem:
-						self.updateForegroundColor()
-					case CNPreference.shared.terminalPreference.BackgroundTextColorItem:
-						self.updateBackgroundColor()
-					default:
-						CNLog(logLevel: .error, message: "\(#file): Unknown key (2): \(key)")
-					}
-				} else if let font = vals[.newKey] as? CNFont {
-					switch key {
-					case CNPreference.shared.terminalPreference.FontItem:
-						CNLog(logLevel: .detail, message: "Change font: \(font.fontName)", atFunction: #function, inFile: #file)
-						self.updateFont()
-						self.notify(viewControlEvent: .updateSize(self))
-					default:
-						CNLog(logLevel: .detail, message: "Unknown key: \(key)", atFunction: #function, inFile: #file)
-					}
-				} else if let _ = vals[.newKey] as? NSNumber {
-					switch key {
-					case CNPreference.shared.terminalPreference.WidthItem:
-						let newwidth = CNPreference.shared.terminalPreference.width
-						if self.mTerminalInfo.width != newwidth {
-							self.mTerminalInfo.width = newwidth
-							self.invalidateIntrinsicContentSize()
-							self.requireLayout()
-							self.notify(viewControlEvent: .updateSize(self))
-						}
-					case CNPreference.shared.terminalPreference.HeightItem:
-						let newheight = CNPreference.shared.terminalPreference.height
-						if self.mTerminalInfo.height != newheight {
-							self.mTerminalInfo.height = newheight
-							self.invalidateIntrinsicContentSize()
-							self.requireLayout()
-							self.notify(viewControlEvent: .updateSize(self))
-						}
-					case CNSystemPreference.InterfaceStyleItem:
-						self.updateForegroundColor()
-						self.updateBackgroundColor()
-					default:
-						CNLog(logLevel: .detail, message: "\(#file): Unknown key (4): \(key)")
-					}
-				}
-			}
-		})
 	}
 
 	/* Delegate of text view */

@@ -14,13 +14,20 @@ import UIKit
 
 open class KCRootView: KCInterfaceView
 {
+	private var mViewListners:	Array<CNObserverDictionary.ListnerHolder>
+	private var mSystemListners:	Array<CNObserverDictionary.ListnerHolder>
+
 	#if os(OSX)
 	public override init(frame : NSRect){
+		mViewListners	= []
+		mSystemListners	= []
 		super.init(frame: frame) ;
 		self.wantsLayer = true
 	}
 	#else
 	public override init(frame: CGRect){
+		mViewListners	= []
+		mSystemListners	= []
 		super.init(frame: frame) ;
 	}
 	#endif
@@ -35,6 +42,8 @@ open class KCRootView: KCInterfaceView
 	}
 
 	public required init?(coder: NSCoder) {
+		mViewListners	= []
+		mSystemListners	= []
 		super.init(coder: coder) ;
 		#if os(OSX)
 		self.wantsLayer = true
@@ -44,9 +53,13 @@ open class KCRootView: KCInterfaceView
 	deinit {
 		/* Remove color observer */
 		let vpref = CNPreference.shared.viewPreference
-		vpref.removeObserver(observer: self, forKey: vpref.BackgroundColorItem)
+		for holder in mViewListners {
+			vpref.removeObserver(listnerHolder: holder)
+		}
 		let spref = CNPreference.shared.systemPreference
-		spref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+		for holder in mSystemListners {
+			spref.removeObserver(listnerHolder: holder)
+		}
 	}
 
 	public func setup(childView child: KCView){
@@ -60,10 +73,23 @@ open class KCRootView: KCInterfaceView
 		setBackgroundColor(color: vpref.backgroundColor)
 
 		/* Add color observer */
-		vpref.addObserver(observer: self, forKey: vpref.BackgroundColorItem)
-
+		mViewListners.append(
+			vpref.addObserver(forKey: vpref.BackgroundColorItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in self.setBackgroundColor(color: vpref.backgroundColor)
+				})
+			})
+		)
 		let spref = CNPreference.shared.systemPreference
-		spref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+		mSystemListners.append(
+			spref.addObserver(forKey: CNSystemPreference.InterfaceStyleItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in self.setBackgroundColor(color: vpref.backgroundColor)
+				})
+			})
+		)
 	}
 
 	public func setBackgroundColor(color col: CNColor) {
@@ -74,31 +100,6 @@ open class KCRootView: KCInterfaceView
 		#else
 		self.backgroundColor = col
 		#endif
-	}
-
-	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			if let key = keyPath, let vals = change {
-				if let _ = vals[.newKey] as? Dictionary<CNInterfaceStyle, CNColor> {
-					switch key {
-					case CNPreference.shared.viewPreference.BackgroundColorItem:
-						let vpref = CNPreference.shared.viewPreference
-						self.setBackgroundColor(color: vpref.backgroundColor)
-					default:
-						CNLog(logLevel: .error, message: "\(#file): Unknown key (1): \(key)")
-					}
-				} else if let _ = vals[.newKey] as? NSNumber {
-				switch key {
-				case CNSystemPreference.InterfaceStyleItem:
-					let tpref = CNPreference.shared.viewPreference
-					self.setBackgroundColor(color: tpref.backgroundColor)
-				default:
-					CNLog(logLevel: .error, message: "\(#file): Unknown key (2): \(key)")
-				}
-			}
-			}
-		})
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

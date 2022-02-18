@@ -33,6 +33,8 @@ public class KCTerminalPreferenceView: KCStackView
 	private var	mFontNames:			Array<String>?		= nil
 	private var 	mFontSizes:			Array<CGFloat>?		= nil
 
+	private var 	mSystemListner:			Array<CNObserverDictionary.ListnerHolder> = []
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -51,8 +53,10 @@ public class KCTerminalPreferenceView: KCStackView
 	}
 
 	deinit {
-		let syspref = CNPreference.shared.systemPreference
-		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+		let spref = CNPreference.shared.systemPreference
+		for holder in mSystemListner {
+			spref.removeObserver(listnerHolder: holder)
+		}
 	}
 
 	public convenience init(){
@@ -189,8 +193,22 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 
 		/* Observe interfaceStyle in the system preference */
-		let syspref = CNPreference.shared.systemPreference
-		syspref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+		let spref = CNPreference.shared.systemPreference
+		mSystemListner.append(
+			spref.addObserver(forKey: CNSystemPreference.InterfaceStyleItem, listnerFunction: {
+				(_ param: Any?) -> Void in
+				CNExecuteInMainThread(doSync: false, execute: {
+					() -> Void in
+					let termpref = CNPreference.shared.terminalPreference
+					if let sel = self.mTextColorSelector {
+						sel.color = termpref.foregroundTextColor
+					}
+					if let sel = self.mBackgroundColorSelector {
+						sel.color = termpref.backgroundTextColor
+					}
+				})
+			})
+		)
 	}
 
 	#if os(OSX)
@@ -432,25 +450,4 @@ public class KCTerminalPreferenceView: KCStackView
 			sel.color = colp
 		}
 	}
-
-	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		CNExecuteInMainThread(doSync: false, execute: {
-			() -> Void in
-			if let key = keyPath {
-				switch key {
-				case CNSystemPreference.InterfaceStyleItem:
-					let termpref = CNPreference.shared.terminalPreference
-					if let sel = self.mTextColorSelector {
-						sel.color = termpref.foregroundTextColor
-					}
-					if let sel = self.mBackgroundColorSelector {
-						sel.color = termpref.backgroundTextColor
-					}
-				default:
-					break
-				}
-			}
-		})
-	}
-
 }

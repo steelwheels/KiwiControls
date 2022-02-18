@@ -19,25 +19,32 @@ open class KCConsoleView : KCTextView
 	private var mOutputFile:	CNFile
 	private var mErrorFile:		CNFile
 
+	private var mTerminalListners:	Array<CNObserverDictionary.ListnerHolder>
+	private var mSystemListners:	Array<CNObserverDictionary.ListnerHolder>
+
 	public var outputFile:  	CNFile { get { return mOutputFile }}
 	public var errorFile:		CNFile { get { return mErrorFile  }}
 
 	#if os(OSX)
 	public override init(frame : NSRect){
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
-		mOutputFile	= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
-		mErrorFile	= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mOutputPipe		= Pipe()
+		mErrorPipe		= Pipe()
+		mOutputFile		= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mErrorFile		= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mTerminalListners	= []
+		mSystemListners		= []
 		super.init(frame: frame)
 		setupObservers()
 		setupFileStream()
 	}
 	#else
 	public override init(frame: CGRect){
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
-		mOutputFile	= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
-		mErrorFile	= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mOutputPipe		= Pipe()
+		mErrorPipe		= Pipe()
+		mOutputFile		= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mErrorFile		= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mTerminalListners	= []
+		mSystemListners		= []
 		super.init(frame: frame)
 		setupObservers()
 		setupFileStream()
@@ -45,10 +52,12 @@ open class KCConsoleView : KCTextView
 	#endif
 
 	public required init?(coder: NSCoder) {
-		mOutputPipe	= Pipe()
-		mErrorPipe	= Pipe()
-		mOutputFile	= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
-		mErrorFile	= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mOutputPipe		= Pipe()
+		mErrorPipe		= Pipe()
+		mOutputFile		= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mErrorFile		= CNFile(access: .writer, fileHandle: mOutputPipe.fileHandleForWriting)
+		mTerminalListners	= []
+		mSystemListners		= []
 		super.init(coder: coder)
 		setupObservers()
 		setupFileStream()
@@ -64,20 +73,60 @@ open class KCConsoleView : KCTextView
 	}
 
 	deinit {
-		removeObservers()
+		mOutputPipe.fileHandleForReading.readabilityHandler = nil
+		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
+
+		let tpref = CNPreference.shared.terminalPreference
+		for holder in mTerminalListners {
+			tpref.removeObserver(listnerHolder: holder)
+		}
+		let spref = CNPreference.shared.systemPreference
+		for holder in mSystemListners {
+			spref.removeObserver(listnerHolder: holder)
+		}
 	}
 
 	private func setupObservers() {
-		/* Start observe */
+		/* Set observer */
 		let tpref = CNPreference.shared.terminalPreference
-		tpref.addObserver(observer: self, forKey: tpref.WidthItem)
-		tpref.addObserver(observer: self, forKey: tpref.HeightItem)
-		tpref.addObserver(observer: self, forKey: tpref.ForegroundTextColorItem)
-		tpref.addObserver(observer: self, forKey: tpref.BackgroundTextColorItem)
-		tpref.addObserver(observer: self, forKey: tpref.FontItem)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.WidthItem, listnerFunction: {
+				(_ param: Any) -> Void in
+				CNLog(logLevel: .error, message: "Update width: \(tpref.width)", atFunction: #function, inFile: #file)
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.HeightItem, listnerFunction: {
+				(_ param: Any) -> Void in
+				CNLog(logLevel: .error, message: "Update height: \(tpref.height)", atFunction: #function, inFile: #file)
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.ForegroundTextColorItem, listnerFunction: {
+				(_ param: Any) -> Void in
+				CNLog(logLevel: .detail, message: "Update foregroundcolor: \(tpref.foregroundTextColor)", atFunction: #function, inFile: #file)
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.BackgroundTextColorItem, listnerFunction: {
+				(_ param: Any) -> Void in
+				CNLog(logLevel: .detail, message: "Update backgroundcolor: \(tpref.backgroundTextColor)", atFunction: #function, inFile: #file)
+			})
+		)
+		mTerminalListners.append(
+			tpref.addObserver(forKey: tpref.FontItem, listnerFunction: {
+				(_ param: Any) -> Void in
+				CNLog(logLevel: .detail, message: "Update font: \(tpref.font)", atFunction: #function, inFile: #file)
+			})
+		)
 
 		let spref = CNPreference.shared.systemPreference
-		spref.addObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
+		mSystemListners.append(
+			spref.addObserver(forKey: CNSystemPreference.InterfaceStyleItem, listnerFunction: {
+				(_ param: Any) -> Void in
+				CNLog(logLevel: .detail, message: "Update interface: \(spref.interfaceStyle)", atFunction: #function, inFile: #file)
+			})
+		)
 	}
 
 	private func setupFileStream() {
@@ -95,22 +144,6 @@ open class KCConsoleView : KCTextView
 				self.execute(string: str)
 			}
 		}
-	}
-
-	private func removeObservers() {
-		mOutputPipe.fileHandleForReading.readabilityHandler = nil
-		mErrorPipe.fileHandleForReading.readabilityHandler  = nil
-
-		/* Stop to observe */
-		let pref = CNPreference.shared.terminalPreference
-		pref.removeObserver(observer: self, forKey: pref.WidthItem)
-		pref.removeObserver(observer: self, forKey: pref.HeightItem)
-		pref.removeObserver(observer: self, forKey: pref.ForegroundTextColorItem)
-		pref.removeObserver(observer: self, forKey: pref.BackgroundTextColorItem)
-		pref.removeObserver(observer: self, forKey: pref.FontItem)
-
-		let syspref = CNPreference.shared.systemPreference
-		syspref.removeObserver(observer: self, forKey: CNSystemPreference.InterfaceStyleItem)
 	}
 
 	public func execute(string str: String) {
