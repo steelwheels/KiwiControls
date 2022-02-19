@@ -15,6 +15,7 @@ import CoconutData
 public class KCRadioButton: KCInterfaceView
 {
 	public typealias CallbackFunction = KCRadioButtonCore.CallbackFunction
+	public typealias Status           = KCRadioButtonCore.Status
 
 	#if os(OSX)
 	public override init(frame : NSRect){

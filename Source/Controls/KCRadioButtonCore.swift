@@ -14,7 +14,13 @@ import UIKit
 
 open class KCRadioButtonCore: KCCoreView
 {
-	public typealias CallbackFunction = (_ buttonid: Int) -> Void
+	public enum Status: Int {
+		case disable
+		case off
+		case on
+	}
+
+	public typealias CallbackFunction = (_ buttonid: Int, _ status: Status) -> Void
 
 	private var mButtonID: Int? 			 = nil
 	private var mCallbackFunction: CallbackFunction? = nil
@@ -72,7 +78,19 @@ open class KCRadioButtonCore: KCCoreView
 
 	public var isEnabled: Bool {
 		get         { return mRadioButton.isEnabled }
-		set(newval) { mRadioButton.isEnabled = newval }
+		set(newval) {
+			if mRadioButton.isEnabled != newval {
+				mRadioButton.isEnabled = newval
+				if !newval {
+					self.state = false
+					if let bid = mButtonID, let cbfunc = mCallbackFunction {
+						cbfunc(bid, self.status)
+					}
+				} else {
+					mRadioButton.isEnabled = newval
+				}
+			}
+		}
 	}
 
 	public var isVisible: Bool {
@@ -100,9 +118,23 @@ open class KCRadioButtonCore: KCCoreView
 	}
 	#endif
 
+	private var status: Status { get {
+		let result: Status
+		if self.isEnabled {
+			if self.state {
+				result = .on
+			} else {
+				result = .off
+			}
+		} else {
+			result = .disable
+		}
+		return result
+	}}
+
 	private func pressed() {
 		if let bid = mButtonID, let cbfunc = mCallbackFunction {
-			cbfunc(bid)
+			cbfunc(bid, self.status)
 		}
 	}
 

@@ -14,7 +14,7 @@ import CoconutData
 
 open class KCRadioButtons: KCStackView
 {
-	public typealias CallbackFunction = KCRadioButtonCore.CallbackFunction
+	public typealias CallbackFunction = (_ index: Int) -> Void
 
 	private var mLabels:		Array<String>
 	private var mButtons:		Array<KCRadioButton>
@@ -92,7 +92,8 @@ open class KCRadioButtons: KCStackView
 		mButtons = []
 
 		let cbfunc: KCRadioButton.CallbackFunction = {
-			(_ index: Int) -> Void in self.select(index: index)
+			(_ index: Int, _ status: KCRadioButton.Status) -> Void in
+			self.select(index: index, status: status)
 		}
 
 		/* Allocate boxes to arrange some radio buttons */
@@ -137,7 +138,7 @@ open class KCRadioButtons: KCStackView
 		}
 	}
 
-	public func select(index newidx: Int){
+	public func select(index newidx: Int, status newstat: KCRadioButton.Status){
 		guard 0<=newidx && newidx<mButtons.count else {
 			CNLog(logLevel: .error, message: "Invalid index: \(newidx)", atFunction: #function, inFile: #file)
 			return // invalid range
@@ -145,18 +146,38 @@ open class KCRadioButtons: KCStackView
 		guard mButtons[newidx].isEnabled && mButtons[newidx].isVisible else {
 			return // can not select new one
 		}
+		var callback = false
 		if let curidx = mCurrentIndex {
-			if curidx == newidx {
-				return // current index == new index
-			} else {
-				mButtons[curidx].state = false
+			switch newstat {
+			  case .disable:
+				if curidx != newidx {
+					mCurrentIndex = nil
+				}
+			  case .off:
+				break
+			  case .on:	// curidx -> newidx
+				if curidx != newidx {
+					mButtons[curidx].state = false
+				}
+				mCurrentIndex = newidx
+				callback      = true
+			}
+		} else {
+			switch newstat {
+			  case .disable:
+				break
+			  case .off:
+				break
+			  case .on:	// nil -> newidx
+				mCurrentIndex = newidx
+				callback      = true
 			}
 		}
-		mButtons[newidx].state = true
-		mCurrentIndex = newidx
-		/* Callback */
-		if let cbfunc = mCallbackFunction {
-			cbfunc(newidx)
+		if callback {
+			/* Callback */
+			if let cbfunc = mCallbackFunction {
+				cbfunc(newidx)
+			}
 		}
 	}
 
