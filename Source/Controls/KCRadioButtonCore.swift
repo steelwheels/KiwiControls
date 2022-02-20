@@ -18,6 +18,16 @@ open class KCRadioButtonCore: KCCoreView
 		case disable
 		case off
 		case on
+
+		public var description: String { get {
+			let result: String
+			switch self {
+			case .disable:	result = "disable"
+			case .off:	result = "off"
+			case .on:	result = "on"
+			}
+			return result
+		}}
 	}
 
 	public typealias CallbackFunction = (_ buttonid: Int, _ status: Status) -> Void
@@ -86,8 +96,6 @@ open class KCRadioButtonCore: KCCoreView
 					if let bid = mButtonID, let cbfunc = mCallbackFunction {
 						cbfunc(bid, self.status)
 					}
-				} else {
-					mRadioButton.isEnabled = newval
 				}
 			}
 		}

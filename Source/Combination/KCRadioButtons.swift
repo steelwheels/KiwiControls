@@ -132,30 +132,25 @@ open class KCRadioButtons: KCStackView
 			let button = mButtons[i]
 			if button.isEnabled && button.isVisible {
 				button.state = true
-				mCurrentIndex = i
+				select(index: i, status: .on)
 				break
 			}
 		}
 	}
 
-	public func select(index newidx: Int, status newstat: KCRadioButton.Status){
+	private func select(index newidx: Int, status newstat: KCRadioButton.Status){
 		guard 0<=newidx && newidx<mButtons.count else {
 			CNLog(logLevel: .error, message: "Invalid index: \(newidx)", atFunction: #function, inFile: #file)
 			return // invalid range
 		}
-		guard mButtons[newidx].isEnabled && mButtons[newidx].isVisible else {
-			return // can not select new one
-		}
 		var callback = false
 		if let curidx = mCurrentIndex {
 			switch newstat {
-			  case .disable:
-				if curidx != newidx {
+			  case .disable, .off:
+				if curidx == newidx {
 					mCurrentIndex = nil
 					callback      = true
 				}
-			  case .off:
-				break
 			  case .on:	// curidx -> newidx
 				if curidx != newidx {
 					mButtons[curidx].state = false
@@ -165,10 +160,9 @@ open class KCRadioButtons: KCStackView
 			}
 		} else {
 			switch newstat {
-			  case .disable:
-				break
-			  case .off:
-				break
+			  case .disable, .off:
+				mCurrentIndex = nil
+				callback      = true
 			  case .on:	// nil -> newidx
 				mCurrentIndex = newidx
 				callback      = true
