@@ -89,8 +89,8 @@ public class SingleViewController: KCSingleViewController
 			.boolValue(false)
 		])
 		radio.callback = {
-			(_ index: Int) -> Void in
-			NSLog("Radio index: \(index)")
+			(_ index: Int?) -> Void in
+			NSLog("Radio index: \(String(describing: index))")
 		}
 
 		let edit1  = KCTextEdit()

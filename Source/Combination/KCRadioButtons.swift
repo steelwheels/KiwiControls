@@ -14,7 +14,7 @@ import CoconutData
 
 open class KCRadioButtons: KCStackView
 {
-	public typealias CallbackFunction = (_ index: Int) -> Void
+	public typealias CallbackFunction = (_ index: Int?) -> Void
 
 	private var mLabels:		Array<String>
 	private var mButtons:		Array<KCRadioButton>
@@ -152,6 +152,7 @@ open class KCRadioButtons: KCStackView
 			  case .disable:
 				if curidx != newidx {
 					mCurrentIndex = nil
+					callback      = true
 				}
 			  case .off:
 				break
@@ -176,7 +177,7 @@ open class KCRadioButtons: KCStackView
 		if callback {
 			/* Callback */
 			if let cbfunc = mCallbackFunction {
-				cbfunc(newidx)
+				cbfunc(mCurrentIndex)
 			}
 		}
 	}
