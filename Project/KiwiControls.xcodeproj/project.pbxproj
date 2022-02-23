@@ -282,6 +282,8 @@
 		05EB0EC62567EC6A00D28FD2 /* KCTerminalViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */; };
 		05ED4A74269346CE008C8FCE /* KCTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED4A73269346CE008C8FCE /* KCTableCellView.swift */; };
 		05ED4A75269346CE008C8FCE /* KCTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED4A73269346CE008C8FCE /* KCTableCellView.swift */; };
+		05F5FB1427C5A74200735BC2 /* dummy-table-storage.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F5FB1227C5A72200735BC2 /* dummy-table-storage.json */; };
+		05F5FB1D27C5A75E00735BC2 /* dummy-table-storage.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F5FB1227C5A72200735BC2 /* dummy-table-storage.json */; };
 		05FDA14B25AD45C900137F2A /* steel-wheels.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05FDA13025AD138F00137F2A /* steel-wheels.png */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -429,6 +431,26 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05F5FB1327C5A73000735BC2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Data;
+			dstSubfolderSpec = 7;
+			files = (
+				05F5FB1427C5A74200735BC2 /* dummy-table-storage.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05F5FB1C27C5A75100735BC2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Data;
+			dstSubfolderSpec = 7;
+			files = (
+				05F5FB1D27C5A75E00735BC2 /* dummy-table-storage.json in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +673,7 @@
 		05E89ACF27B6395C00840C07 /* KCRadioButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCRadioButtons.swift; sourceTree = "<group>"; };
 		05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
 		05ED4A73269346CE008C8FCE /* KCTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTableCellView.swift; sourceTree = "<group>"; };
+		05F5FB1227C5A72200735BC2 /* dummy-table-storage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "dummy-table-storage.json"; sourceTree = "<group>"; };
 		05FDA13025AD138F00137F2A /* steel-wheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steel-wheels.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1077,6 +1100,7 @@
 		0554C8EC26C91F480060BFE9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				05F5FB1127C5A70500735BC2 /* Data */,
 			);
 			name = Resource;
 			path = ../Resource;
@@ -1237,6 +1261,14 @@
 			path = OSX;
 			sourceTree = "<group>";
 		};
+		05F5FB1127C5A70500735BC2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				05F5FB1227C5A72200735BC2 /* dummy-table-storage.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		05FDA12925AD134600137F2A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1312,6 +1344,7 @@
 				0544EA4725176E06002DE6A8 /* Sources */,
 				0544EA4825176E06002DE6A8 /* Frameworks */,
 				0544EA4925176E06002DE6A8 /* Resources */,
+				05F5FB1327C5A73000735BC2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1330,6 +1363,7 @@
 				0544EA5625176E23002DE6A8 /* Sources */,
 				0544EA5725176E23002DE6A8 /* Frameworks */,
 				0544EA5825176E23002DE6A8 /* Resources */,
+				05F5FB1C27C5A75100735BC2 /* CopyFiles */,
 			);
 			buildRules = (
 			);

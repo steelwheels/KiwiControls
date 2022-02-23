@@ -251,13 +251,21 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	static private func allocateEmptyBridge() -> KCTableBridge {
-		let table = CNValueTable.allocateVolatileValueTable()
-		let rec   = table.newRecord()
-		let _     = rec.setValue(value: .nullValue, forField: "c0")
-		let _     = rec.setValue(value: .nullValue, forField: "c1")
-		table.append(record: rec)
-
-		return KCTableBridge(table: table)
+		/* Allocate dummy storage defined at "dummy-table-storage.json" */
+		if let packdir = CNFilePath.URLForResourceDirectory(directoryName: "Data", subdirectory: nil, forClass: KCTableViewCore.self) {
+			let storage = CNValueStorage(packageDirectory: packdir, filePath: "dummy-table-storage.json", parentStorage: nil)
+			switch storage.load() {
+			case .ok(_):
+				let path    = CNValuePath(elements: [.member("root")])
+				let table   = CNValueTable(path: path, valueStorage: storage)
+				return KCTableBridge(table: table)
+			case .error(let err):
+				CNLog(logLevel: .error, message: "Failed to load dummy table storage: \(err.toString())", atFunction: #function, inFile: #file)
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unexpected result", atFunction: #function, inFile: #file)
+			}
+		}
+		fatalError("No built-in resource")
 	}
 
 	public var visibleRowCount: Int {
