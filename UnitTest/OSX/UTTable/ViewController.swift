@@ -28,12 +28,21 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		mTableView.hasHeader  = true
 
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
-		guard let resurl  = CNFilePath.URLForResourceDirectory(directoryName: "Data", subdirectory: nil, forClass: ViewController.self) else {
-			NSLog("Failed to get URL")
+
+		guard let srcfile = CNFilePath.URLForResourceFile(fileName: "storage", fileExtension: "json", subdirectory: "Data", forClass: ViewController.self) else {
+			NSLog("Failed to get URL of storage.json")
+			return
+		}
+		let srcdir = srcfile.deletingLastPathComponent()
+		let cachefile = CNFilePath.URLForApplicationSupportFile(fileName: "storage", fileExtension: "json", subdirectory: "Data")
+		let cachedir  = cachefile.deletingLastPathComponent()
+
+		if !FileManager.default.copyFileIfItIsNotExist(sourceFile: srcfile, destinationFile: cachefile) {
+			NSLog("Failed to copy file")
 			return
 		}
 
-		let storage = CNValueStorage(packageDirectory: resurl, filePath: "storage.json", parentStorage: nil)
+		let storage = CNValueStorage(sourceDirectory: srcdir, cacheDirectory: cachedir, filePath: "storage.json")
 		switch storage.load() {
 		case .ok(_):
 			break
