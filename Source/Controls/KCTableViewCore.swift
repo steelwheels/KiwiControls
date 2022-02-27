@@ -253,7 +253,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	static private func allocateEmptyBridge() -> KCTableBridge {
 		/* Allocate dummy storage defined at "dummy-table-storage.json" */
 		if let packdir = CNFilePath.URLForResourceDirectory(directoryName: "Data", subdirectory: nil, forClass: KCTableViewCore.self) {
-			let storage = CNValueStorage(packageDirectory: packdir, filePath: "dummy-table-storage.json", parentStorage: nil)
+			let storage = CNValueStorage(packageDirectory: packdir, filePath: "dummy-table-storage.json")
 			switch storage.load() {
 			case .ok(_):
 				let path    = CNValuePath(elements: [.member("root")])
