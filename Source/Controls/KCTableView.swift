@@ -68,25 +68,14 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
+	public var dataTable: CNTable {
+		get      { return coreView.dataTable }
+		set(tbl) { coreView.dataTable = tbl }
+	}
+
 	public var visibleRowCount: Int {
 		get      { return coreView.visibleRowCount }
 		set(cnt) { coreView.visibleRowCount = cnt  }
-	}
-
-	open func store(table tblp: CNTable?){
-		self.coreView.store(table: tblp)
-	}
-
-	open func store(dictionary dictp: Dictionary<String, CNValue>?){
-		self.coreView.store(dictionary: dictp)
-	}
-
-	public func loadTable() -> CNTable? {
-		return self.coreView.loadTable()
-	}
-
-	public func loadDictionary() -> Dictionary<String, CNValue>? {
-		return self.coreView.loadDictionary()
 	}
 
 	public var isEnable: Bool {

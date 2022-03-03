@@ -67,7 +67,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		]
 
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
-		mTableView.store(table: table)
+		mTableView.dataTable = table // reload
 
 		mTableView.hasGrid = true
 	}
