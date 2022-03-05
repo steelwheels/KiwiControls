@@ -12,10 +12,15 @@ import Cocoa
 class ViewController: KCViewController, KCViewControlEventReceiver
 {
 	@IBOutlet weak var mTableView: KCTableView!
+	@IBOutlet weak var mAddButton: KCButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.setupTableView()
+		self.setupAddButton()
+	}
 
+	private func setupTableView() {
 		/* Start logging */
 		NSLog("Start logging ... begin")
 		let _ = KCLogWindowManager.shared // init
@@ -72,6 +77,26 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		mTableView.hasGrid = true
 	}
 
+	private func setupAddButton() {
+		mAddButton.buttonPressedCallback = {
+			() -> Void in
+			NSLog("Button pressed callback")
+			guard let table = self.mTableView.dataTable as? CNValueTable else {
+				NSLog("No data table")
+				return
+			}
+
+			let newrec = CNValueRecord()
+			if !newrec.setValue(value: .numberValue(NSNumber(floatLiteral: 10.1)), forField: "c0") { NSLog("Failed to set c0") }
+			if !newrec.setValue(value: .numberValue(NSNumber(floatLiteral: 20.2)), forField: "c1") { NSLog("Failed to set c1") }
+			if !newrec.setValue(value: .numberValue(NSNumber(floatLiteral: 30.3)), forField: "c2") { NSLog("Failed to set c2") }
+
+			//let txt = table.toText().toStrings().joined(separator: "\n")
+			//NSLog("new table = \(txt)")
+			table.append(record: newrec)
+		}
+	}
+
 	override var representedObject: Any? {
 		didSet {
 		// Update the view, if already loaded.
@@ -89,10 +114,6 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 	}
 
 	public override func viewDidAppear() {
-		mTableView.stateListner = {
-			(_ state: KCTableView.DataState) -> Void in
-			NSLog("change state: \(state)")
-		}
 	}
 
 	public func notifyControlEvent(viewControlEvent event: KCViewControlEvent) {

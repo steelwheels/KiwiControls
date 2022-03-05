@@ -38,13 +38,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	@IBOutlet weak var mTableView: UITableView!
 	#endif
 
-	public enum DataState {
-		case clean
-		case dirty
-	}
-
-	public typealias StateListner = (_ state: DataState) -> Void
-
 	public var cellClickedCallback: ((_ double: Bool, _ colname: String, _ rowidx: Int) -> Void)? = nil
 	public var didSelectedCallback: ((_ selected: Bool) -> Void)? = nil
 	public var hasHeader:		Bool = false
@@ -54,36 +47,32 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private var mVisibleRowCount:	Int
 
 	private var mDataTable:			CNTable
-	private var mDataState:			DataState
 	private var mDataListnerId:		Int?
 	private var mActiveFieldNames:		Array<ActiveFieldName>
-	private var mStateListner:		StateListner?
 	private var mSortDescriptors:		CNSortDescriptors
 	private var mReloadedCount:		Int
 
 	#if os(OSX)
 	public override init(frame : NSRect){
 		mVisibleRowCount	= 8
-		mDataState		= .clean
 		mActiveFieldNames	= []
-		mStateListner		= nil
 		mDataTable		= KCTableViewCore.allocateEmptyTable()
 		mDataListnerId		= nil
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
 		super.init(frame: frame)
+		setup()
 	}
 	#else
 	public override init(frame: CGRect){
 		mVisibleRowCount	= 8
-		mDataState		= .clean
 		mDataTable 		= KCTableViewCore.allocateEmptyTable()
 		mDataListnerId		= nil
 		mActiveFieldNames	= []
-		mStateListner		= nil
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount  	= 0
 		super.init(frame: frame)
+		setup()
 	}
 	#endif
 
@@ -94,18 +83,22 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			let frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 346)
 		#endif
 		self.init(frame: frame)
+		setup()
 	}
 
 	public required init?(coder: NSCoder) {
 		mVisibleRowCount	= 8
-		mDataState		= .clean
 		mDataTable 		= KCTableViewCore.allocateEmptyTable()
 		mDataListnerId		= nil
 		mActiveFieldNames	= []
-		mStateListner		= nil
 		mSortDescriptors	= CNSortDescriptors()
 		mReloadedCount 		= 0
 		super.init(coder: coder)
+		setup()
+	}
+
+	private func setup(){
+		updateDataTable(currentTable: nil, newTable: mDataTable)
 	}
 
 	deinit {
@@ -115,20 +108,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public var dataTable: CNTable {
-		get           { return mDataTable			}
+		get {
+			return mDataTable
+		}
 		set(newtable) {
-			/* Remove current listner */
-			if let lid = mDataListnerId {
-				mDataTable.removeListner(listnerId: lid)
-				mDataListnerId = nil
-			}
-			/* Replace by new table */
-			mDataTable = newtable
-			mDataListnerId = mDataTable.addListner(listner: {
-				(_ events: Array<CNTableEvent>) -> Void in
-				self.execute(events: events)
-			})
-			self.reload()
+			updateDataTable(currentTable: mDataTable, newTable: newtable)
+			self.reloadTable()
 		}
 	}
 
@@ -153,6 +138,19 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			}
 		}
 		fatalError("No built-in resource")
+	}
+
+	private func updateDataTable(currentTable ctable: CNTable?, newTable ntable: CNTable) {
+		/* Remove current listner */
+		if let table = ctable, let lid = mDataListnerId {
+			table.removeListner(listnerId: lid)
+		}
+		/* Set new listner */
+		mDataListnerId = ntable.addListner(listner: {
+			(_ events: Array<CNTableEvent>) -> Void in
+			self.execute(events: events)
+		})
+		mDataTable = ntable
 	}
 
 	public var visibleRowCount: Int {
@@ -252,26 +250,20 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			//mTableView.columnAutoresizingStyle	= .noColumnAutoresizing
 		#endif
 
-		mDataListnerId = mDataTable.addListner(listner: {
-			(_ events: Array<CNTableEvent>) -> Void in
-			self.execute(events: events)
-		})
-
-		reload()
+		reloadTable()
 	}
 
 	private func execute(events evts: Array<CNTableEvent>) {
-		for evt in evts {
-			switch evt {
-			case .addRecord(let row):
-				CNLog(logLevel: .debug, message: "addRecord(\(row))", atFunction: #function, inFile: #file)
-				CNExecuteInMainThread(doSync: false, execute: {
-					() -> Void in self.reload()
-				})
-			@unknown default:
-				CNLog(logLevel: .error, message: "Unknown event", atFunction: #function, inFile: #file)
+		CNExecuteInMainThread(doSync: false, execute: {
+			for evt in evts {
+				switch evt {
+				case .addRecord(let idx):
+					self.reloadRow(index: idx)
+				@unknown default:
+					CNLog(logLevel: .error, message: "Unknown event", atFunction: #function, inFile: #file)
+				}
 			}
-		}
+		})
 	}
 
 	/*
@@ -323,7 +315,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	private func reload() {
+	private func reloadTable() {
 		#if os(OSX)
 		CNLog(logLevel: .detail, message: "Reload table contents", atFunction: #function, inFile: #file)
 
@@ -370,12 +362,28 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let rcounts    = mDataTable.recordCount
 		mReloadedCount = rcounts * fcounts
 
-		update(dataState: .clean)
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
 
 		mTableView.endUpdates()
 		self.requireDisplay()
+		#endif
+	}
+
+	private func reloadRow(index idx: Int) {
+		#if os(OSX)
+		mTableView.beginUpdates()
+
+		let fieldcount = self.visibleFieldCount
+		let rowidxs    = IndexSet(integer: idx)
+		let colidxs    = IndexSet(integersIn: 0..<fieldcount)
+		mTableView.reloadData(forRowIndexes: rowidxs, columnIndexes: colidxs)
+
+		mTableView.endUpdates()
+		mTableView.noteNumberOfRowsChanged()
+		mTableView.needsLayout = true
+		#else
+		reloadTable()
 		#endif
 	}
 
@@ -485,28 +493,12 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNValue) {
 		if let rec = mDataTable.record(at: ridx) {
 			if rec.setValue(value: val, forField: title) {
-				update(dataState: .dirty)
 				return
 			}
 		}
 		CNLog(logLevel: .error, message: "Failed to set value", atFunction: #function, inFile: #file)
 	}
 	#endif
-
-	/* Listner */
-	public var stateListner: StateListner? {
-		get		{ return mStateListner }
-		set(listner)	{ mStateListner = listner }
-	}
-
-	private func update(dataState dst: DataState) {
-		if let listner = mStateListner {
-			if dst != mDataState {
-				listner(dst)
-				mDataState = dst
-			}
-		}
-	}
 
 	/*
 	 * Layout

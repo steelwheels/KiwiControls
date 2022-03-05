@@ -15,8 +15,6 @@ import CoconutData
 open class KCTableView : KCInterfaceView
 {
 	public typealias ActiveFieldName = KCTableViewCore.ActiveFieldName
-	public typealias StateListner    = KCTableViewCore.StateListner
-	public typealias DataState       = KCTableViewCore.DataState
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -50,11 +48,6 @@ open class KCTableView : KCInterfaceView
 	public var hasGrid: Bool {
 		get		{ return coreView.hasGrid }
 		set(newval)	{ coreView.hasGrid = true}
-	}
-
-	public var stateListner: StateListner? {
-		get		{ return coreView.stateListner }
-		set(listner)	{ coreView.stateListner = listner}
 	}
 
 	private func setup(){
