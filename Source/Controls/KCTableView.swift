@@ -14,7 +14,7 @@ import CoconutData
 
 open class KCTableView : KCInterfaceView
 {
-	public typealias ActiveFieldName = KCTableViewCore.ActiveFieldName
+	public typealias FieldName = KCTableViewCore.FieldName
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -61,24 +61,14 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
-	public var dataTable: CNTable {
-		get      { return coreView.dataTable }
-		set(tbl) { coreView.dataTable = tbl }
-	}
-
-	public var visibleRowCount: Int {
-		get      { return coreView.visibleRowCount }
-		set(cnt) { coreView.visibleRowCount = cnt  }
+	public var minimumVisibleRowCount: Int {
+		get      { return coreView.minimumVisibleRowCount }
+		set(cnt) { coreView.minimumVisibleRowCount = cnt  }
 	}
 
 	public var isEnable: Bool {
 		get      { return coreView.isEnable }
 		set(val) { coreView.isEnable = val }
-	}
-
-	public var activeFieldNames: Array<ActiveFieldName> {
-		get        { return coreView.activeFieldNames  }
-		set(names) { coreView.activeFieldNames = names }
 	}
 
 	public var hasHeader: Bool {
@@ -91,6 +81,15 @@ open class KCTableView : KCInterfaceView
 		set(val) { coreView.isSelectable = val  }
 	}
 
+	public var fieldNames: Array<FieldName>? {
+		get        { return coreView.fieldNames }
+		set(names) { coreView.fieldNames = names }
+	}
+	
+	public func reload(table tbl: CNTable) {
+		coreView.reload(table: tbl)
+	}
+	
 	public var firstResponderView: KCViewBase? { get {
 		return coreView.firstResponderView
 	}}

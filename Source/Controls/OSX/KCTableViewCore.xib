@@ -38,13 +38,12 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView identifier="tableCellView" id="GTv-HU-HMR" customClass="KCTableCellView" customModule="KiwiControls" customModuleProvider="target">
+                                            <tableCellView identifier="tableCellView" misplaced="YES" id="GTv-HU-HMR" customClass="KCTableCellView" customModule="KiwiControls" customModuleProvider="target">
                                                 <rect key="frame" x="1" y="1" width="124" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-jN-ve7">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-jN-ve7">
+                                                        <rect key="frame" x="-2" y="0.0" width="128" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ppX-ok-eeQ">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -52,6 +51,12 @@
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="X6c-jN-ve7" secondAttribute="trailing" id="0R8-QI-8Kf"/>
+                                                    <constraint firstItem="X6c-jN-ve7" firstAttribute="leading" secondItem="GTv-HU-HMR" secondAttribute="leading" id="1DY-wb-xdv"/>
+                                                    <constraint firstItem="X6c-jN-ve7" firstAttribute="top" secondItem="GTv-HU-HMR" secondAttribute="top" id="1kS-HL-ebY"/>
+                                                    <constraint firstAttribute="bottom" secondItem="X6c-jN-ve7" secondAttribute="bottom" id="PT5-75-y25"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="X6c-jN-ve7" id="dVd-4i-dQp"/>
                                                 </connections>
@@ -76,15 +81,10 @@
                 </scrollView>
             </subviews>
             <constraints>
-                <constraint firstItem="DGi-c7-VeO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="G0S-GK-rLn"/>
-                <constraint firstAttribute="trailing" secondItem="DGi-c7-VeO" secondAttribute="trailing" id="IA0-dC-2UU"/>
-                <constraint firstAttribute="bottom" secondItem="DGi-c7-VeO" secondAttribute="bottom" id="KPs-cu-lA9"/>
-                <constraint firstAttribute="trailing" secondItem="DGi-c7-VeO" secondAttribute="trailing" id="SbA-a3-MSv"/>
-                <constraint firstAttribute="bottom" secondItem="DGi-c7-VeO" secondAttribute="bottom" id="WlC-gl-V5T"/>
-                <constraint firstItem="DGi-c7-VeO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="eaD-Zo-h3T"/>
-                <constraint firstItem="DGi-c7-VeO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="jTh-4X-JR9"/>
-                <constraint firstAttribute="trailing" secondItem="DGi-c7-VeO" secondAttribute="trailing" id="n3f-n3-5xS"/>
-                <constraint firstItem="DGi-c7-VeO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="wXa-Rw-zYs"/>
+                <constraint firstItem="DGi-c7-VeO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="2Au-uM-VuN"/>
+                <constraint firstItem="DGi-c7-VeO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="TFm-2b-D2k"/>
+                <constraint firstAttribute="trailing" secondItem="DGi-c7-VeO" secondAttribute="trailing" id="TVZ-3U-go0"/>
+                <constraint firstAttribute="bottom" secondItem="DGi-c7-VeO" secondAttribute="bottom" id="zRd-0t-mFF"/>
             </constraints>
             <connections>
                 <outlet property="mTableView" destination="lnc-rb-lWj" id="kJW-is-d5G"/>
