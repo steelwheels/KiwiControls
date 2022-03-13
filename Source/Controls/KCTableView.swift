@@ -85,7 +85,11 @@ open class KCTableView : KCInterfaceView
 		get        { return coreView.fieldNames }
 		set(names) { coreView.fieldNames = names }
 	}
-	
+
+	public func removeSelectedRows() {
+		coreView.removeSelectedRows()
+	}
+
 	public func reload(table tbl: CNTable) {
 		coreView.reload(table: tbl)
 	}

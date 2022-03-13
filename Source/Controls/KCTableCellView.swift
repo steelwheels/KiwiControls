@@ -86,6 +86,9 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 			updateStringValue(value: col.rgbName)
 		case .imageValue(let img):
 			updateImageValue(value: img)
+		case .recordValue(let rec):
+			let str = rec.toText().toStrings()
+			updateStringValue(value: str.joined())
 		case .objectValue(let obj):
 			let str = "\(obj.description)"
 			updateStringValue(value: str)

@@ -123,31 +123,11 @@ public class SingleViewController: KCSingleViewController
 		let box3 = KCStackView()
 		box3.axis = .horizontal
 		box3.addArrangedSubViews(subViews: [button30, button31])
-
-		let subsec1: Dictionary<String, CNValue> = [
-			"1.0": .stringValue("subsec 1.0"),
-			"1.1": .stringValue("subsec 1.1")
-		]
-		let subsec2: Dictionary<String, CNValue> = [
-			"2.0": .stringValue("subsec 2.0"),
-			"2.1": .stringValue("subsec 2.1")
-		]
-		let sec1: Dictionary<String, CNValue> = [
-			"1.": .dictionaryValue(subsec1),
-			"2.": .dictionaryValue(subsec2),
-			"3.": .stringValue("Section 3")
-		]
-		let secview4 = KCValueView()
-		secview4.value = .dictionaryValue(sec1)
-		labstack.addArrangedSubViews(subViews: [secview4, box3])
+		labstack.addArrangedSubViews(subViews: [box3])
 
 		let box2 = KCStackView()
 		box2.axis = .vertical
 		box2.addArrangedSubViews(subViews: [imgview0, radio, box1, icon1, labstack, button2])
-
-		let secval = secview4.value
-		let str = secval.toText().toStrings().joined(separator: "\n")
-		NSLog("secval = " + str)
 
 		return box2
 	}

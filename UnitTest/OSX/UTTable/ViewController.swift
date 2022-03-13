@@ -28,7 +28,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		NSLog("Start logging ... end")
 
 		/* Set editable */
-		//mTableView.isEditable = true
+		mTableView.isSelectable = true
 		mTableView.isEnable  = true
 		mTableView.hasHeader = true
 		mTableView.hasGrid   = true

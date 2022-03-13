@@ -62,6 +62,15 @@ public class KCDataTable
 		mRecords.append(rec)
 	}
 
+	public func remove(at index: Int) -> Bool {
+		if 0<=index && index<mRecords.count {
+			mRecords.remove(at: index)
+			return true
+		} else {
+			return false
+		}
+	}
+
 	public func sort(byDescriptors desc: CNSortDescriptors){
 		CNLog(logLevel: .error, message: "Not supported", atFunction: #function, inFile: #file)
 	}
@@ -397,24 +406,60 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private func click(isDouble double: Bool) {
 		let rowidx = mTableView.clickedRow
 		let colidx = mTableView.clickedColumn
-
-		if 0<=rowidx && rowidx < mDataTable.recordCount {
-			if let colname = mTableField.fieldName(fromTable: mDataTable, at: colidx) {
-				if let cbfunc = self.cellClickedCallback {
-					cbfunc(double, colname.field, rowidx)
-				} else {
-					CNLog(logLevel: .detail, message: "Clicked col:\(colname) row:\(rowidx)", atFunction: #function, inFile: #file)
+		if 0<=rowidx && rowidx < mDataTable.recordCount, let colname = mTableField.fieldName(fromTable: mDataTable, at: colidx) {
+			/* Select row */
+			let idxs = IndexSet(integer: rowidx)
+			mTableView.selectRowIndexes(idxs, byExtendingSelection: false)
+			/* Callback: clicked */
+			if let cbfunc = self.cellClickedCallback {
+				cbfunc(double, colname.field, rowidx)
+			} else {
+				CNLog(logLevel: .detail, message: "Clicked col:\(colname) row:\(rowidx)", atFunction: #function, inFile: #file)
+			}
+			/* Callback: didSelected */
+			if let cbfunc = didSelectedCallback {
+				cbfunc(true) // callback
+			}
+			/* Update first responder */
+			if let view = mTableView.view(atColumn: colidx, row: rowidx, makeIfNecessary: false) as? KCTableCellView {
+				if let resp = view.firstResponderView {
+					CNLog(logLevel: .detail, message: "click -> notify", atFunction: #function, inFile: #file)
+					notify(viewControlEvent: .switchFirstResponder(resp))
 				}
-				if let view = mTableView.view(atColumn: colidx, row: rowidx, makeIfNecessary: false) as? KCTableCellView {
-					if let resp = view.firstResponderView {
-						CNLog(logLevel: .detail, message: "click -> notify", atFunction: #function, inFile: #file)
-						notify(viewControlEvent: .switchFirstResponder(resp))
-					}
-				}
+			}
+		} else {
+			/* Callback: didSelected */
+			if let cbfunc = didSelectedCallback {
+				cbfunc(false) // callback
 			}
 		}
 	}
 	#endif // os(OSX)
+
+	public func removeSelectedRows() {
+		#if os(OSX)
+		let sets = mTableView.selectedRowIndexes
+		if !sets.isEmpty {
+			/* Remove data from table */
+			sets.forEach({
+				(_ idx: Int) -> Void in
+				if !mDataTable.remove(at: idx) {
+					CNLog(logLevel: .error, message: "Failed to remove row data", atFunction: #function, inFile: #file)
+				}
+			})
+
+			/* Remove from table view */
+			mTableView.beginUpdates()
+			mTableView.removeRows(at: sets, withAnimation: .slideUp)
+			mTableView.endUpdates()
+
+			/* Callback: didSelected */
+			if let cbfunc = didSelectedCallback {
+				cbfunc(false) // callback
+			}
+		}
+		#endif
+	}
 
 	/*
 	 * KCTableViewDataSource
@@ -514,17 +559,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 		mDataTable.sort(byDescriptors: mSortDescriptors)
 		mTableView.reloadData()
-	}
-
-	public func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		if self.isSelectable {
-			if let cbfunc = didSelectedCallback {
-				cbfunc(true) // callback
-			}
-			return true
-		} else {
-			return false
-		}
 	}
 	#endif
 
