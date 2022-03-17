@@ -28,11 +28,13 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		NSLog("Start logging ... end")
 
 		/* Set editable */
-		mTableView.isSelectable = true
+		mTableView.hasGrid   = true
 		mTableView.isEnable  = true
 		mTableView.hasHeader = true
-		mTableView.hasGrid   = true
 
+/*
+		mTableView.isSelectable = true
+*/
 		let table   = loadTable(name: "storage")
 		let recnum  = table.recordCount
 		NSLog("record count: \(recnum)")
@@ -44,7 +46,8 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 			KCTableView.FieldName(field: "c2", title: "col 2")
 		]
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
-		mTableView.reload(table: table)
+		mTableView.dataTable = table
+		mTableView.reload()
 	}
 
 	private func setupAddButton() {
@@ -58,7 +61,14 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 
 			self.mTableView.hasGrid = true
 			CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
-			self.mTableView.reload(table: table)
+
+			self.mTableView.fieldNames = [
+				KCTableView.FieldName(field: "c0", title: "col 0"),
+				KCTableView.FieldName(field: "c1", title: "col 1"),
+				KCTableView.FieldName(field: "c2", title: "col 2")
+			]
+			self.mTableView.dataTable = table
+			self.mTableView.reload()
 		}
 	}
 

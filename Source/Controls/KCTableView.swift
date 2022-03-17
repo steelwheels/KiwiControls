@@ -15,7 +15,7 @@ import CoconutData
 open class KCTableView : KCInterfaceView
 {
 	public typealias FieldName = KCTableViewCore.FieldName
-
+	
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -45,11 +45,6 @@ open class KCTableView : KCInterfaceView
 	public var numberOfRows:	Int { get { return coreView.numberOfRows	}}
 	public var numberOfColumns:	Int { get { return coreView.numberOfColumns	}}
 
-	public var hasGrid: Bool {
-		get		{ return coreView.hasGrid }
-		set(newval)	{ coreView.hasGrid = true}
-	}
-
 	private func setup(){
 		KCView.setAutolayoutMode(view: self)
 		if let newview = loadChildXib(thisClass: KCTableView.self, nibName: "KCTableViewCore") as? KCTableViewCore {
@@ -61,37 +56,47 @@ open class KCTableView : KCInterfaceView
 		}
 	}
 
-	public var minimumVisibleRowCount: Int {
-		get      { return coreView.minimumVisibleRowCount }
-		set(cnt) { coreView.minimumVisibleRowCount = cnt  }
+	public var dataTable: CNTable {
+		get         { return coreView.dataTable }
+		set(newtbl) { coreView.dataTable = newtbl }
 	}
 
-	public var isEnable: Bool {
-		get      { return coreView.isEnable }
-		set(val) { coreView.isEnable = val }
+	public var fieldNames: Array<FieldName> {
+		get	 { return coreView.fieldNames }
+		set(val) { coreView.fieldNames = val  }
 	}
 
 	public var hasHeader: Bool {
-		get 	{ return coreView.hasHeader	}
-		set(val){ coreView.hasHeader = val	}
+		get         { return coreView.hasHeader }
+		set(newval) { coreView.hasHeader = newval }
 	}
 
-	public var isSelectable: Bool {
-		get      { return coreView.isSelectable }
-		set(val) { coreView.isSelectable = val  }
+	public var hasGrid: Bool {
+		get         { return coreView.hasGrid }
+		set(newval) { coreView.hasGrid = newval }
 	}
 
-	public var fieldNames: Array<FieldName>? {
-		get        { return coreView.fieldNames }
-		set(names) { coreView.fieldNames = names }
+	public var isEnable: Bool {
+		get         { return coreView.isEnable }
+		set(newval) { coreView.isEnable = newval }
+	}
+
+	public var isEditable: Bool {
+		get         { return coreView.isEditable }
+		set(newval) { coreView.isEditable = newval }
+	}
+
+	public var minimumVisibleRowCount: Int {
+		get         { return coreView.minimumVisibleRowCount }
+		set(newval) { coreView.minimumVisibleRowCount = newval }
+	}
+
+	public func reload() {
+		coreView.reload()
 	}
 
 	public func removeSelectedRows() {
 		coreView.removeSelectedRows()
-	}
-
-	public func reload(table tbl: CNTable) {
-		coreView.reload(table: tbl)
 	}
 	
 	public var firstResponderView: KCViewBase? { get {
@@ -102,7 +107,7 @@ open class KCTableView : KCInterfaceView
 		return coreView.view(atColumn: col, row: rw)
 	}
 
-	public var cellClickedCallback: ((_ double: Bool, _ colname: String, _ rowidx: Int) -> Void)? {
+	public var cellClickedCallback: KCTableViewCore.ClickCallbackFunction? {
 		get         { return coreView.cellClickedCallback   }
 		set(cbfunc) { coreView.cellClickedCallback = cbfunc }
 	}
@@ -110,10 +115,6 @@ open class KCTableView : KCInterfaceView
 	public var didSelectedCallback: ((_ selected: Bool) -> Void)? {
 		get         { return coreView.didSelectedCallback   }
 		set(cbfunc) { coreView.didSelectedCallback = cbfunc }
-	}
-
-	public func dump(){
-		coreView.dump()
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

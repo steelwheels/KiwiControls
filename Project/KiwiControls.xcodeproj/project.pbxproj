@@ -15,6 +15,8 @@
 		05248499256A609A001BD219 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05248498256A609A001BD219 /* Assets.xcassets */; };
 		0524849C256A609A001BD219 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0524849A256A609A001BD219 /* Main.storyboard */; };
 		052484B1256A652F001BD219 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052484B0256A652F001BD219 /* StackViewController.swift */; };
+		052E3A4127E0A6B100DC8266 /* dummy-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052E3A2F27E0A68100DC8266 /* dummy-table.json */; };
+		052E3A5127E0A6D800DC8266 /* dummy-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052E3A2F27E0A68100DC8266 /* dummy-table.json */; };
 		053A659827927C7300F5A363 /* storage.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DE142327925FAD0069A432 /* storage.json */; };
 		0544EA5025176E06002DE6A8 /* KiwiControls_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA4E25176E06002DE6A8 /* KiwiControls_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0544EA5E25176E23002DE6A8 /* KiwiControls_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA5C25176E23002DE6A8 /* KiwiControls_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -366,6 +368,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		052E3A4027E0A6A100DC8266 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Data;
+			dstSubfolderSpec = 7;
+			files = (
+				052E3A4127E0A6B100DC8266 /* dummy-table.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		052E3A5027E0A6C700DC8266 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Data;
+			dstSubfolderSpec = 7;
+			files = (
+				052E3A5127E0A6D800DC8266 /* dummy-table.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		053A659727927C6C00F5A363 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,6 +478,7 @@
 		0524849D256A609A001BD219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0524849E256A609A001BD219 /* UTStackView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTStackView_macOS.entitlements; sourceTree = "<group>"; };
 		052484B0256A652F001BD219 /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
+		052E3A2F27E0A68100DC8266 /* dummy-table.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "dummy-table.json"; path = "Data/dummy-table.json"; sourceTree = "<group>"; };
 		0544EA4B25176E06002DE6A8 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0544EA4E25176E06002DE6A8 /* KiwiControls_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiControls_macOS.h; sourceTree = "<group>"; };
 		0544EA4F25176E06002DE6A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -785,6 +808,14 @@
 			path = UTStackView_macOS;
 			sourceTree = "<group>";
 		};
+		052E3A2E27E0A66E00DC8266 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				052E3A2F27E0A68100DC8266 /* dummy-table.json */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		0544EA4C25176E06002DE6A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1077,6 +1108,7 @@
 		0554C8EC26C91F480060BFE9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				052E3A2E27E0A66E00DC8266 /* Data */,
 			);
 			name = Resource;
 			path = ../Resource;
@@ -1313,6 +1345,7 @@
 				0544EA4725176E06002DE6A8 /* Sources */,
 				0544EA4825176E06002DE6A8 /* Frameworks */,
 				0544EA4925176E06002DE6A8 /* Resources */,
+				052E3A4027E0A6A100DC8266 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1331,6 +1364,7 @@
 				0544EA5625176E23002DE6A8 /* Sources */,
 				0544EA5725176E23002DE6A8 /* Frameworks */,
 				0544EA5825176E23002DE6A8 /* Resources */,
+				052E3A5027E0A6C700DC8266 /* CopyFiles */,
 			);
 			buildRules = (
 			);
