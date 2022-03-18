@@ -342,7 +342,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			sets.forEach({
 				(_ idx: Int) -> Void in
 				if !mDataTable.remove(at: idx) {
-					CNLog(logLevel: .error, message: "Failed to remove row data", atFunction: #function, inFile: #file)
+					CNLog(logLevel: .error, message: "Failed to remove row data: \(idx)", atFunction: #function, inFile: #file)
 				}
 			})
 
