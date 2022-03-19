@@ -13,11 +13,13 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 {
 	@IBOutlet weak var mTableView: KCTableView!
 	@IBOutlet weak var mAddButton: KCButton!
-
+	@IBOutlet weak var mSaveButton: KCButton!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.setupTableView()
-		self.setupAddButton()
+		self.setupUpdateButton()
+		self.setupSaveButton()
 	}
 
 	private func setupTableView() {
@@ -50,7 +52,8 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		mTableView.reload()
 	}
 
-	private func setupAddButton() {
+	private func setupUpdateButton() {
+		mAddButton.value = .text("Update")
 		mAddButton.buttonPressedCallback = {
 			() -> Void in
 			NSLog("Button pressed callback")
@@ -69,6 +72,17 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 			]
 			self.mTableView.dataTable = table
 			self.mTableView.reload()
+		}
+	}
+
+	private func setupSaveButton() {
+		mSaveButton.value = .text("Save")
+		mSaveButton.buttonPressedCallback = {
+			if self.mTableView.dataTable.save() {
+				NSLog("save ... ok")
+			} else {
+				NSLog("save ... error")
+			}
 		}
 	}
 

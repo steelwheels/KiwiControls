@@ -714,11 +714,23 @@
                                 <rect key="frame" x="0.0" y="20" width="480" height="250"/>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tQ6-7G-Xcf" customClass="KCButton" customModule="KiwiControls">
-                                <rect key="frame" x="-6" y="-7" width="492" height="32"/>
+                                <rect key="frame" x="-6" y="-7" width="264" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="NFz-Gw-4gX"/>
+                                    <constraint firstAttribute="height" constant="21" id="3uV-A1-2rH"/>
+                                    <constraint firstAttribute="width" constant="252" id="KmD-Rn-f20"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sek-UH-FK0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g04-5g-ipM" customClass="KCButton" customModule="KiwiControls">
+                                <rect key="frame" x="244" y="-7" width="242" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="SyN-Qg-uCg"/>
+                                    <constraint firstAttribute="width" constant="230" id="nWW-zK-BUH"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Y1-Ht-1T8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -726,16 +738,18 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="0Sy-Po-NhU" secondAttribute="bottom" constant="20" symbolic="YES" id="Ij4-Ro-YRe"/>
-                            <constraint firstAttribute="trailing" secondItem="tQ6-7G-Xcf" secondAttribute="trailing" id="Jm7-GW-fs9"/>
+                            <constraint firstAttribute="trailing" secondItem="g04-5g-ipM" secondAttribute="trailing" id="Jei-rn-kLN"/>
                             <constraint firstAttribute="trailing" secondItem="0Sy-Po-NhU" secondAttribute="trailing" id="Kth-ru-tDE"/>
                             <constraint firstItem="0Sy-Po-NhU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="OB5-zK-NYd"/>
                             <constraint firstItem="0Sy-Po-NhU" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="RoI-Be-K2c"/>
-                            <constraint firstAttribute="bottom" secondItem="tQ6-7G-Xcf" secondAttribute="bottom" id="l6c-LM-Qgn"/>
-                            <constraint firstItem="tQ6-7G-Xcf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="uU1-1H-0jN"/>
+                            <constraint firstItem="tQ6-7G-Xcf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="kZx-6L-RxA"/>
+                            <constraint firstAttribute="bottom" secondItem="tQ6-7G-Xcf" secondAttribute="bottom" id="kcM-FM-FUr"/>
+                            <constraint firstAttribute="bottom" secondItem="g04-5g-ipM" secondAttribute="bottom" id="wNY-gF-wmz"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mAddButton" destination="tQ6-7G-Xcf" id="8ZI-X8-o3b"/>
+                        <outlet property="mSaveButton" destination="g04-5g-ipM" id="ybg-kt-aQA"/>
                         <outlet property="mTableView" destination="0Sy-Po-NhU" id="8MN-yX-VIg"/>
                     </connections>
                 </viewController>
