@@ -24,6 +24,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 {
 	public typealias ClickCallbackFunction       = (_ double: Bool, _ colname: String, _ rowidx: Int) -> Void
 	public typealias DidSelectedCallbackFunction = (_ selected: Bool) -> Void
+	public typealias FilterFunction	     	     = CNMappingTable.FilterFunction
 
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
@@ -41,12 +42,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	private var mDataTable:			CNTable
+	private var mDataTable:			CNMappingTable
 	private var mFieldNames:		Array<FieldName>
 	private var mMinimumVisibleRowCount:	Int
 
 	private var mNextDataTable:		CNTable?
 	private var mNextFieldNames:		Array<FieldName>?
+	private var mNextRecordMappingFunction:	FilterFunction?
 
 	private var mHasHeader:			Bool
 	private var mIsEnable:			Bool
@@ -105,7 +107,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		self.init(frame: frame)
 	}
 
-	public static func allocateDummyTable() -> (CNValueTable, Array<FieldName>) {
+	public static func allocateDummyTable() -> (CNMappingTable, Array<FieldName>) {
 		guard let srcfile   = CNFilePath.URLForResourceDirectory(directoryName: "Data", subdirectory: nil, forClass: KCTableViewCore.self) else {
 			fatalError("Can not allocate resource URL")
 		}
@@ -122,7 +124,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let path      = CNValuePath(elements: [.member("table")])
 		let table     = CNValueTable(path: path, valueStorage: storage)
 		let fields    = KCTableViewCore.allocateFieldNames(from: table)
-		return (table, fields)
+		return (CNMappingTable(sourceTable: table), fields)
 	}
 
 	private static func allocateFieldNames(from table: CNTable) -> Array<FieldName> {
@@ -177,6 +179,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var dataTable: CNTable {
 		get         { return mNextDataTable ?? mDataTable }
 		set(newval) { mNextDataTable = newval }
+	}
+
+	public var filterFunction: FilterFunction? {
+		get         { return mNextRecordMappingFunction   }
+		set(newval) { mNextRecordMappingFunction = newval }
 	}
 
 	public var fieldNames: Array<FieldName> {
@@ -297,9 +304,14 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 		mTableView.endUpdates()
 
-		/* Replace global variable */
-		mDataTable	= tbl
+		/* Set field names */
 		mFieldNames	= fnames
+
+		/* Allocate new table */
+		mDataTable = CNMappingTable(sourceTable: tbl)
+		if let filter = mNextRecordMappingFunction {
+			mDataTable.setFilter(filterFunction: filter)
+		}
 
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()

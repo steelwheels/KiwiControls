@@ -14,7 +14,8 @@ import CoconutData
 
 open class KCTableView : KCInterfaceView
 {
-	public typealias FieldName = KCTableViewCore.FieldName
+	public typealias FieldName	= KCTableViewCore.FieldName
+	public typealias FilterFunction	= CNMappingTable.FilterFunction
 	
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -59,6 +60,11 @@ open class KCTableView : KCInterfaceView
 	public var dataTable: CNTable {
 		get         { return coreView.dataTable }
 		set(newtbl) { coreView.dataTable = newtbl }
+	}
+
+	public var filterFunction: FilterFunction? {
+		get         { return coreView.filterFunction   }
+		set(newval) { coreView.filterFunction = newval }
 	}
 
 	public var fieldNames: Array<FieldName> {

@@ -49,6 +49,17 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		]
 		CNLog(logLevel: .debug, message: "reload data", atFunction: #function, inFile: #file)
 		mTableView.dataTable = table
+		mTableView.filterFunction = {
+			(_ rec: CNRecord) -> Bool in
+			for field in rec.fieldNames {
+				var fval:  String = "?"
+				if let fld = rec.value(ofField: field) {
+					fval = fld.toText().toStrings().joined(separator: "\n")
+				}
+				NSLog("recordMapping: field=\(field), value=\(fval)")
+			}
+			return true
+		}
 		mTableView.reload()
 	}
 
