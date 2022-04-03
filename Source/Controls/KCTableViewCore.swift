@@ -346,21 +346,21 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#endif
 	}
 
-	public func selectedRows() -> Array<Int> {
+	public func selectedRecords() -> Array<CNRecord> {
 		#if os(OSX)
 			let sets = mTableView.selectedRowIndexes
-			do {
-				var result: Array<Int> = []
-				try sets.forEach({
-					(_ idx: Int) throws -> Void in result.append(idx)
-				})
-				return result
-			} catch {
-				CNLog(logLevel: .error, message: "Unvalid index set", atFunction: #function, inFile: #file)
-				return []
-			}
+			var result: Array<CNRecord> = []
+			sets.forEach({
+				(_ idx: Int) -> Void in
+				if let rec = mDataTable.record(at: idx) {
+					result.append(rec)
+				} else {
+					CNLog(logLevel: .error, message: "No record at index:\(idx)", atFunction: #function, inFile: #file)
+				}
+			})
+			return result
 		#else
-			return [] // FIX ME
+			return []
 		#endif
 	}
 

@@ -101,8 +101,8 @@ open class KCTableView : KCInterfaceView
 		coreView.reload()
 	}
 
-	public func selectedRows() -> Array<Int> {
-		return coreView.selectedRows()
+	public func selectedRecords() -> Array<CNRecord> {
+		return coreView.selectedRecords()
 	}
 
 	public func removeSelectedRows() {
