@@ -346,6 +346,24 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#endif
 	}
 
+	public func selectedRows() -> Array<Int> {
+		#if os(OSX)
+			let sets = mTableView.selectedRowIndexes
+			do {
+				var result: Array<Int> = []
+				try sets.forEach({
+					(_ idx: Int) throws -> Void in result.append(idx)
+				})
+				return result
+			} catch {
+				CNLog(logLevel: .error, message: "Unvalid index set", atFunction: #function, inFile: #file)
+				return []
+			}
+		#else
+			return [] // FIX ME
+		#endif
+	}
+
 	public func removeSelectedRows() {
 		#if os(OSX)
 		let sets = mTableView.selectedRowIndexes
@@ -466,13 +484,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public override var intrinsicContentSize: CGSize {
 		#if os(OSX)
-		let size: CGSize
-		if let sz = calcContentSize() {
-			size = sz
-		} else {
-			CNLog(logLevel: .error, message: "Failed to calc content size", atFunction: #function, inFile: #file)
-			size = super.intrinsicContentSize
-		}
+		let size: CGSize = calcContentSize()
 		#else
 		let size = super.intrinsicContentSize
 		#endif
@@ -480,7 +492,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	#if os(OSX)
-	private func calcContentSize() -> CGSize? {
+	private func calcContentSize() -> CGSize {
 		var result = CGSize.zero
 		let space  = mTableView.intercellSpacing
 		if let header = mTableView.headerView {
@@ -509,7 +521,14 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			}
 			return result
 		} else {
-			return nil
+			/* Calc dummy size. The unit size is given from XIB setting */
+			let unitsize = CGSize(width: 124, height: 17)
+			var result   = CGSize(width: unitsize.width * CGFloat(mFieldNames.count), height: unitsize.height * CGFloat(mMinimumVisibleRowCount))
+			/* Calc for space */
+			if mMinimumVisibleRowCount > 1 {
+				result.height += space.height * CGFloat(mMinimumVisibleRowCount - 1)
+			}
+			return result
 		}
 	}
 	#endif
