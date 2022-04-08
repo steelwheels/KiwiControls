@@ -93,8 +93,8 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		case .objectValue(let obj):
 			let str = "\(obj.description)"
 			updateStringValue(value: str)
-		case .reference(let ref):
-			updateStringValue(value: ref.relativePath)
+		case .segmentValue(let ref):
+			updateStringValue(value: ref.filePath)
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown type value", atFunction: #function, inFile: #file)
 		}
