@@ -121,7 +121,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		@unknown default:
 			CNLog(logLevel: .error, message: "[Error] Unknown type", atFunction: #function, inFile: #file)
 		}
-		let path      = CNValuePath(elements: [.member("table")])
+		let path      = CNValuePath(identifier: nil, elements: [.member("table")])
 		let table     = CNValueTable(path: path, valueStorage: storage)
 		let fields    = KCTableViewCore.allocateFieldNames(from: table)
 		return (CNMappingTable(sourceTable: table), fields)

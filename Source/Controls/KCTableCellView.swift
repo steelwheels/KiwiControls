@@ -95,6 +95,8 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 			updateStringValue(value: str)
 		case .segmentValue(let ref):
 			updateStringValue(value: ref.filePath)
+		case .pointerValue(let ptr):
+			updateStringValue(value: "pointer-value:\(ptr)")
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown type value", atFunction: #function, inFile: #file)
 		}
