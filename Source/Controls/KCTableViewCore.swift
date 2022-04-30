@@ -46,9 +46,10 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private var mFieldNames:		Array<FieldName>
 	private var mMinimumVisibleRowCount:	Int
 
-	private var mNextDataTable:		CNTable?
+	private var mNextDataTable:		CNMappingTable?
 	private var mNextFieldNames:		Array<FieldName>?
 	private var mNextRecordMappingFunction:	FilterFunction?
+	private var mNextVirtualFields:		Dictionary<String, CNMappingTable.VirtualFieldCallback>
 
 	private var mHasHeader:			Bool
 	private var mIsEnable:			Bool
@@ -64,6 +65,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mFieldNames		= fields
 		mNextDataTable		= nil
 		mNextFieldNames		= nil
+		mNextVirtualFields	= [:]
 		mMinimumVisibleRowCount	= 8
 		mHasHeader		= false
 		mIsEnable		= false
@@ -77,6 +79,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mFieldNames		= fields
 		mNextDataTable		= nil
 		mNextFieldNames		= nil
+		mNextVirtualFields	= [:]
 		mMinimumVisibleRowCount	= 8
 		mHasHeader		= false
 		mIsEnable		= false
@@ -91,6 +94,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mFieldNames		= fields
 		mNextDataTable		= nil
 		mNextFieldNames		= nil
+		mNextVirtualFields	= [:]
 		mMinimumVisibleRowCount	= 8
 		mHasHeader		= false
 		mIsEnable		= false
@@ -177,8 +181,16 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public var dataTable: CNTable {
-		get         { return mNextDataTable ?? mDataTable }
-		set(newval) { mNextDataTable = newval }
+		get         {
+			return mNextDataTable ?? mDataTable
+		}
+		set(newval) {
+			if let mtable = newval as? CNMappingTable {
+				mNextDataTable = mtable
+			} else {
+				mNextDataTable = CNMappingTable(sourceTable: newval)
+			}
+		}
 	}
 
 	public var filterFunction: FilterFunction? {
@@ -198,6 +210,10 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		} else {
 			return nil
 		}
+	}
+
+	public func addVirtualField(name field: String, callbackFunction cbfunc: @escaping CNMappingTable.VirtualFieldCallback) {
+		mNextVirtualFields[field] = cbfunc
 	}
 
 	public var hasHeader: Bool {
@@ -312,6 +328,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		if let filter = mNextRecordMappingFunction {
 			mDataTable.setFilter(filterFunction: filter)
 		}
+		if mNextVirtualFields.count > 0 {
+			mDataTable.mergeVirtualFields(callbacks: mNextVirtualFields)
+		}
+
+		/* clear next setting */
+		//mNextRecordMappingFunction = nil
+		//mNextVirtualFields = [:]
 
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
@@ -388,7 +411,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 		#endif
 	}
-	
+
 	#if os(OSX)
 	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNValue) {
 		if let rec = mDataTable.record(at: ridx) {

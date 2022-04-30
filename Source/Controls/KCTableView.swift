@@ -16,7 +16,7 @@ open class KCTableView : KCInterfaceView
 {
 	public typealias FieldName	= KCTableViewCore.FieldName
 	public typealias FilterFunction	= CNMappingTable.FilterFunction
-	
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -97,6 +97,10 @@ open class KCTableView : KCInterfaceView
 		set(newval) { coreView.minimumVisibleRowCount = newval }
 	}
 
+	public func addVirtualField(name field: String, callbackFunction cbfunc: @escaping CNMappingTable.VirtualFieldCallback) {
+		coreView.addVirtualField(name: field, callbackFunction: cbfunc)
+	}
+
 	public func reload() {
 		coreView.reload()
 	}
@@ -108,7 +112,7 @@ open class KCTableView : KCInterfaceView
 	public func removeSelectedRows() {
 		coreView.removeSelectedRows()
 	}
-	
+
 	public var firstResponderView: KCViewBase? { get {
 		return coreView.firstResponderView
 	}}

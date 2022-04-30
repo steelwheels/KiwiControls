@@ -14,7 +14,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 	@IBOutlet weak var mTableView: KCTableView!
 	@IBOutlet weak var mAddButton: KCButton!
 	@IBOutlet weak var mSaveButton: KCButton!
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.setupTableView()
@@ -97,7 +97,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		}
 	}
 
-	private func loadTable(name nm: String) -> CNValueTable {
+	private func loadTable(name nm: String) -> CNMappingTable {
 		CNLog(logLevel: .debug, message: "setup value table", atFunction: #function, inFile: #file)
 
 		guard let srcfile = CNFilePath.URLForResourceFile(fileName: nm, fileExtension: "json", subdirectory: "Data", forClass: ViewController.self) else {
@@ -107,11 +107,6 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		let srcdir = srcfile.deletingLastPathComponent()
 		let cachefile = CNFilePath.URLForApplicationSupportFile(fileName: nm, fileExtension: "json", subdirectory: "Data")
 		let cachedir  = cachefile.deletingLastPathComponent()
-
-		if !FileManager.default.copyFileIfItIsNotExist(sourceFile: srcfile, destinationFile: cachefile) {
-			NSLog("Failed to copy file")
-			fatalError("Terminated")
-		}
 
 		let storage = CNValueStorage(sourceDirectory: srcdir, cacheDirectory: cachedir, filePath: nm + ".json")
 		switch storage.load() {
@@ -125,8 +120,9 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 			fatalError("Terminated")
 		}
 
-		let tblpath = CNValuePath(elements: [.member("data")])
-		return CNValueTable(path: tblpath, valueStorage: storage)
+		let tblpath = CNValuePath(identifier: nil, elements: [.member("data")])
+		let valtbl  = CNValueTable(path: tblpath, valueStorage: storage)
+		return CNMappingTable(sourceTable: valtbl)
 	}
 
 	override var representedObject: Any? {
