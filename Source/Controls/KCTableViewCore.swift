@@ -332,7 +332,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mDataTable = CNMappingTable(sourceTable: tbl)
 		if let filter = mNextRecordMappingFunction {
 			mDataTable.setFilter(filterFunction: filter)
-			mNextRecordMappingFunction = nil
+			//mNextRecordMappingFunction = nil
 		}
 		if let fields = mNextVirtualFields {
 			mDataTable.mergeVirtualFields(callbacks: fields)
