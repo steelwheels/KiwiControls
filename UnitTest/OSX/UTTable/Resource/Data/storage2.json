@@ -1,7 +1,11 @@
 {
 	data: {
 		class:		"Table",
-		columnNames: 	["c0", "c1", "c2"],
+		defaultFields: {
+			c0:		"",
+			c1:		"",
+			c2:		""
+		},
 		records: [
 			{
 				c0:  "c0-0",

@@ -133,9 +133,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	private static func allocateFieldNames(from table: CNTable) -> Array<FieldName> {
 		var result: Array<FieldName> = []
-		let fields = table.allFieldNames
-		for field in fields {
-			result.append(FieldName(field: field, title: field))
+		for (key, _) in table.defaultFields {
+			result.append(FieldName(field: key, title: key))
 		}
 		return result
 	}
