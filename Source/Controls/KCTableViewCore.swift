@@ -118,12 +118,10 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		//let cachefile = CNFilePath.URLforApplicationSupportDirectory(subDirectory: "Data")
 		let storage   = CNValueStorage(sourceDirectory: srcfile, cacheDirectory: srcfile, filePath: "dummy-table.json")
 		switch storage.load() {
-		case .ok(_):
+		case .success(_):
 			break
-		case .error(let err):
+		case .failure(let err):
 			CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown error", atFunction: #function, inFile: #file)
 		}
 		let path      = CNValuePath(identifier: nil, elements: [.member("table")])
 		let table     = CNValueTable(path: path, valueStorage: storage)
