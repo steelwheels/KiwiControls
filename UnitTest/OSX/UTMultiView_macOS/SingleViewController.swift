@@ -82,7 +82,11 @@ public class SingleViewController: KCSingleViewController
 
 		let radio     = KCRadioButtons()
 		radio.numberOfColumns = 3
-		radio.setLabels(labels: ["a", "b", "c"])
+		radio.setLabels(labels: [
+			KCRadioButtons.Label(title: "a", id: 0),
+			KCRadioButtons.Label(title: "b", id: 1),
+			KCRadioButtons.Label(title: "c", id: 2)
+		])
 		radio.setEnable(enables: [
 			.boolValue(true),
 			.numberValue(NSNumber(booleanLiteral: true)),

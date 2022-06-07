@@ -14,9 +14,19 @@ import CoconutData
 
 open class KCRadioButtons: KCStackView
 {
-	public typealias CallbackFunction = (_ index: Int?) -> Void
+	public struct Label {
+		public var 	title	: String
+		public var	id	: Int
 
-	private var mLabels:		Array<String>
+		public init(title tval: String, id ival: Int){
+			self.title	= tval
+			self.id		= ival
+		}
+	}
+
+	public typealias CallbackFunction = (_ labelid: Int?) -> Void
+
+	private var mLabels:		Array<Label>
 	private var mButtons:		Array<KCRadioButton>
 	private var mCurrentIndex:	Int?
 	private var mColumunNum:	Int
@@ -80,7 +90,7 @@ open class KCRadioButtons: KCStackView
 		set(newval) { self.mCallbackFunction = newval }
 	}
 
-	public func setLabels(labels labs: Array<String>){
+	public func setLabels(labels labs: Array<Label>){
 		guard labs.count >= 1 else {
 			CNLog(logLevel: .error, message: "Invalid label num", atFunction: #function, inFile: #file)
 			return
@@ -107,7 +117,7 @@ open class KCRadioButtons: KCStackView
 				if buttonid < labelnum {
 					let newbutton = KCRadioButton()
 					newbutton.buttonId = buttonid
-					newbutton.title    = labs[buttonid]
+					newbutton.title    = labs[buttonid].title
 					newbutton.callback = cbfunc
 					buttonid += 1
 					hbox.addArrangedSubView(subView: newbutton)
@@ -120,7 +130,7 @@ open class KCRadioButtons: KCStackView
 		/* Set minimum label width */
 		var minwidth = 4
 		for i in 0..<labs.count {
-			minwidth = max(minwidth, labs[i].lengthOfBytes(using: .utf8))
+			minwidth = max(minwidth, labs[i].title.lengthOfBytes(using: .utf8))
 		}
 		for i in 0..<mButtons.count {
 			let button = mButtons[i]
@@ -171,7 +181,11 @@ open class KCRadioButtons: KCStackView
 		if callback {
 			/* Callback */
 			if let cbfunc = mCallbackFunction {
-				cbfunc(mCurrentIndex)
+				if let idx = mCurrentIndex {
+					cbfunc(mLabels[idx].id)
+				} else {
+					cbfunc(nil)
+				}
 			}
 		}
 	}
