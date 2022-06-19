@@ -108,7 +108,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		let cachefile = CNFilePath.URLForApplicationSupportFile(fileName: nm, fileExtension: "json", subdirectory: "Data")
 		let cachedir  = cachefile.deletingLastPathComponent()
 
-		let storage = CNValueStorage(sourceDirectory: srcdir, cacheDirectory: cachedir, filePath: nm + ".json")
+		let storage = CNStorage(sourceDirectory: srcdir, cacheDirectory: cachedir, filePath: nm + ".json")
 		switch storage.load() {
 		case .ok(_):
 			break
@@ -121,7 +121,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 		}
 
 		let tblpath = CNValuePath(identifier: nil, elements: [.member("data")])
-		let valtbl  = CNValueTable(path: tblpath, valueStorage: storage)
+		let valtbl  = CNValueTable(path: tblpath, storage: storage)
 		return CNMappingTable(sourceTable: valtbl)
 	}
 

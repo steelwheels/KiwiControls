@@ -116,7 +116,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			fatalError("Can not allocate resource URL")
 		}
 		//let cachefile = CNFilePath.URLforApplicationSupportDirectory(subDirectory: "Data")
-		let storage   = CNValueStorage(sourceDirectory: srcfile, cacheDirectory: srcfile, filePath: "dummy-table.json")
+		let storage   = CNStorage(sourceDirectory: srcfile, cacheDirectory: srcfile, filePath: "dummy-table.json")
 		switch storage.load() {
 		case .success(_):
 			break
@@ -124,7 +124,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
 		}
 		let path      = CNValuePath(identifier: nil, elements: [.member("table")])
-		let table     = CNValueTable(path: path, valueStorage: storage)
+		let table     = CNValueTable(path: path, storage: storage)
 		let fields    = KCTableViewCore.allocateFieldNames(from: table)
 		return (CNMappingTable(sourceTable: table), fields)
 	}

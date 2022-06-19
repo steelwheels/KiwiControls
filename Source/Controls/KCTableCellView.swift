@@ -80,6 +80,9 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		case .arrayValue(_):
 			let str = val.toText().toStrings().joined()
 			updateStringValue(value: str)
+		case .setValue(_):
+			let str = val.toText().toStrings().joined()
+			updateStringValue(value: str)
 		case .URLValue(let url):
 			updateStringValue(value: url.path)
 		case .colorValue(let col):
