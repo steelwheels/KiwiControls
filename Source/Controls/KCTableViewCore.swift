@@ -124,7 +124,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			CNLog(logLevel: .error, message: err.toString(), atFunction: #function, inFile: #file)
 		}
 		let path      = CNValuePath(identifier: nil, elements: [.member("table")])
-		let table     = CNValueTable(path: path, storage: storage)
+		let table     = CNStorageTable(path: path, storage: storage)
 		let fields    = KCTableViewCore.allocateFieldNames(from: table)
 		return (CNMappingTable(sourceTable: table), fields)
 	}
