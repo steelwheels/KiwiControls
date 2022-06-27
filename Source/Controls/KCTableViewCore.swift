@@ -22,7 +22,7 @@ import CoconutData
 
 open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSource, KCTableCellDelegate
 {
-	public typealias ClickCallbackFunction       = (_ double: Bool, _ colname: String, _ rowidx: Int) -> Void
+	public typealias ClickCallbackFunction       = (_ double: Bool, _ record: CNRecord, _ field: String) -> Void
 	public typealias DidSelectedCallbackFunction = (_ selected: Bool) -> Void
 	public typealias FilterFunction	     	     = CNMappingTable.FilterFunction
 
@@ -356,8 +356,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 			/* Callback: clicked */
 			if 0<=rowidx && rowidx < mDataTable.recordCount, let colname = fieldName(at: colidx) {
-				if let cbfunc = self.mCellClickedCallback {
-					cbfunc(double, colname.field, rowidx)
+				if let rec = mDataTable.record(at: rowidx), let cbfunc = self.mCellClickedCallback {
+					cbfunc(double, rec, colname.field)
 				} else {
 					CNLog(logLevel: .detail, message: "Clicked col:\(colname) row:\(rowidx)", atFunction: #function, inFile: #file)
 				}

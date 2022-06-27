@@ -110,18 +110,15 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 
 		let storage = CNStorage(sourceDirectory: srcdir, cacheDirectory: cachedir, filePath: nm + ".json")
 		switch storage.load() {
-		case .ok(_):
+		case .success(_):
 			break
-		case .error(let err):
+		case .failure(let err):
 			NSLog("[Error] \(err.toString())")
-			fatalError("Terminated")
-		@unknown default:
-			NSLog("[Error] Unknown error")
 			fatalError("Terminated")
 		}
 
 		let tblpath = CNValuePath(identifier: nil, elements: [.member("data")])
-		let valtbl  = CNValueTable(path: tblpath, storage: storage)
+		let valtbl  = CNStorageTable(path: tblpath, storage: storage)
 		return CNMappingTable(sourceTable: valtbl)
 	}
 
