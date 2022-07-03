@@ -72,6 +72,11 @@ open class KCTableView : KCInterfaceView
 		set(val) { coreView.fieldNames = val  }
 	}
 
+	public var sortOrder: CNSortOrder {
+		get 	 { return coreView.sortOrder	}
+		set(val) { coreView.sortOrder = val     }
+	}
+
 	public var hasHeader: Bool {
 		get         { return coreView.hasHeader }
 		set(newval) { coreView.hasHeader = newval }
@@ -99,6 +104,11 @@ open class KCTableView : KCInterfaceView
 
 	public func addVirtualField(name field: String, callbackFunction cbfunc: @escaping CNMappingTable.VirtualFieldCallback) {
 		coreView.addVirtualField(name: field, callbackFunction: cbfunc)
+	}
+
+	public var compareFunction: KCTableViewCore.CompareFunction? {
+		get         { return coreView.compareFunction    }
+		set(newval) { coreView.compareFunction  = newval }
 	}
 
 	public func reload() {

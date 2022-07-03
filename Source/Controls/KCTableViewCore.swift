@@ -25,6 +25,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public typealias ClickCallbackFunction       = (_ double: Bool, _ record: CNRecord, _ field: String) -> Void
 	public typealias DidSelectedCallbackFunction = (_ selected: Bool) -> Void
 	public typealias FilterFunction	     	     = CNMappingTable.FilterFunction
+	public typealias CompareFunction	     = CNMappingTableProtocol.CompareFunction
 
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
@@ -49,6 +50,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	private var mNextDataTable:		CNMappingTable?
 	private var mNextFieldNames:		Array<FieldName>?
 	private var mNextRecordMappingFunction:	FilterFunction?
+	private var mNextSortOrder:		CNSortOrder
+	private var mNextCompareFunction:	CompareFunction?
 	private var mNextVirtualFields:		Dictionary<String, CNMappingTable.VirtualFieldCallback>?
 
 	private var mHasHeader:			Bool
@@ -66,6 +69,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mNextDataTable		= nil
 		mNextFieldNames		= nil
 		mNextVirtualFields	= nil
+		mNextSortOrder		= .none
+		mNextCompareFunction	= nil
 		mMinimumVisibleRowCount	= 8
 		mHasHeader		= false
 		mIsEnable		= false
@@ -80,6 +85,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mNextDataTable		= nil
 		mNextFieldNames		= nil
 		mNextVirtualFields	= nil
+		mNextSortOrder		= .none
+		mNextCompareFunction	= nil
 		mMinimumVisibleRowCount	= 8
 		mHasHeader		= false
 		mIsEnable		= false
@@ -95,6 +102,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mNextDataTable		= nil
 		mNextFieldNames		= nil
 		mNextVirtualFields	= nil
+		mNextSortOrder		= .none
+		mNextCompareFunction	= nil
 		mMinimumVisibleRowCount	= 8
 		mHasHeader		= false
 		mIsEnable		= false
@@ -195,9 +204,19 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		set(newval) { mNextRecordMappingFunction = newval }
 	}
 
+	public var compareFunction: CompareFunction? {
+		get         { return mNextCompareFunction   }
+		set(newval) { mNextCompareFunction = newval }
+	}
+
 	public var fieldNames: Array<FieldName> {
 		get         { return mNextFieldNames ?? [] }
 		set(newval) { mNextFieldNames = newval     }
+	}
+
+	public var sortOrder: CNSortOrder {
+		get         { return mNextSortOrder }
+		set(newval) { mNextSortOrder = newval }
 	}
 
 	public func fieldName(at idx: Int) -> FieldName? {
@@ -329,7 +348,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		mDataTable = CNMappingTable(sourceTable: tbl)
 		if let filter = mNextRecordMappingFunction {
 			mDataTable.setFilter(filterFunction: filter)
-			//mNextRecordMappingFunction = nil
+		}
+
+		mDataTable.sortOrder = mNextSortOrder
+		if let compare = mNextCompareFunction {
+			mDataTable.setCompareFunction(compareFunc: compare)
 		}
 		if let fields = mNextVirtualFields {
 			mDataTable.mergeVirtualFields(callbacks: fields)
