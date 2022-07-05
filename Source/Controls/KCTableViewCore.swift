@@ -392,25 +392,21 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#endif
 	}
 
-	public func selectedRecords() -> Array<CNRecord> {
+	public func selectedRecord() -> CNRecord? {
 		#if os(OSX)
-			let sets = mTableView.selectedRowIndexes
-			var result: Array<CNRecord> = []
-			sets.forEach({
-				(_ idx: Int) -> Void in
+			let indices = mTableView.selectedRowIndexes
+			for idx in indices {
 				if let rec = mDataTable.record(at: idx) {
-					result.append(rec)
+					return rec
 				} else {
 					CNLog(logLevel: .error, message: "No record at index:\(idx)", atFunction: #function, inFile: #file)
 				}
-			})
-			return result
-		#else
-			return []
+			}
 		#endif
+		return nil
 	}
 
-	public func removeSelectedRows() {
+	public func removeSelectedRecord() {
 		#if os(OSX)
 		let sets = mTableView.selectedRowIndexes
 		if !sets.isEmpty {

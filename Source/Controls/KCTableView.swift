@@ -115,12 +115,12 @@ open class KCTableView : KCInterfaceView
 		coreView.reload()
 	}
 
-	public func selectedRecords() -> Array<CNRecord> {
-		return coreView.selectedRecords()
+	public func selectedRecord() -> CNRecord? {
+		return coreView.selectedRecord()
 	}
 
-	public func removeSelectedRows() {
-		coreView.removeSelectedRows()
+	public func removeSelectedRecord() {
+		coreView.removeSelectedRecord()
 	}
 
 	public var firstResponderView: KCViewBase? { get {
