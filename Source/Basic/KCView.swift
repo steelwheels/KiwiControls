@@ -47,12 +47,11 @@ extension KCViewBase
 	public func rootView() -> KCRootView? {
 		var curview: KCViewBase = self
 		while true {
+			if let root = curview as? KCRootView {
+				return root
+			}
 			if let sview = curview.superview {
-				if let root = sview as? KCRootView {
-					return root
-				} else {
-					curview = sview
-				}
+				curview = sview
 			} else {
 				break
 			}
@@ -193,6 +192,17 @@ open class KCView : KCViewBase
 			#endif
 		}
 	}
+
+	public var isForeground: Bool { get {
+		if let vcont = self.findViewController() {
+			if let scont = vcont as? KCSingleViewController {
+				return scont.isForeground
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected view controller: \(vcont)", atFunction: #function, inFile: #file)
+			}
+		}
+		return true // not constructed yet
+	}}
 
 	public class func setAutolayoutMode(view v: KCViewBase) {
 		v.translatesAutoresizingMaskIntoConstraints = false

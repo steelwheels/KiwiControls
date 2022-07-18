@@ -16,16 +16,19 @@ open class KCSingleViewController: KCPlaneViewController
 {
 	private weak var	mParentController:	KCMultiViewController?
 	private var 		mHasOwnConsole:		Bool
+	private var 		mIsForeground:		Bool
 
 	public init(parentViewController parent: KCMultiViewController){
 		mParentController	= parent
 		mHasOwnConsole		= false
+		mIsForeground		= false
 		super.init()
 	}
 
 	public required init?(coder: NSCoder) {
 		mParentController	= nil
 		mHasOwnConsole		= false
+		mIsForeground		= false
 		super.init(coder: coder)
 	}
 
@@ -52,10 +55,16 @@ open class KCSingleViewController: KCPlaneViewController
 		}
 	}
 
+	public var isForeground: Bool { get {
+		return mIsForeground
+	}}
+
 	open func viewWillBecomeForeground() {
+		mIsForeground = true
 	}
 
 	open func viewWillBecomeBackground() {
+		mIsForeground = false
 	}
 
 	open func viewWillRemoved() {

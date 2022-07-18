@@ -307,6 +307,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	private func reload(table tbl: CNTable, fieldNames fnames: Array<FieldName>){
 		#if os(OSX)
+
+		guard self.isForeground else {
+			return // update later
+		}
+
 		mTableView.beginUpdates()
 
 		/* set header */
