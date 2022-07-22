@@ -14,6 +14,7 @@ import CoconutData
 
 open class KCPopupMenu : KCInterfaceView
 {
+	public typealias MenuItem = KCPopupMenuCore.MenuItem
 	public typealias CallbackFunction = KCPopupMenuCore.CallbackFunction
 
 	#if os(OSX)
@@ -58,20 +59,20 @@ open class KCPopupMenu : KCInterfaceView
 		set(newfunc) { coreView.callbackFunction = newfunc }
 	}
 
-	public var indexOfSelectedItem: Int {
-		get { return coreView.indexOfSelectedItem }
+	public func selectedValue() -> CNValue? {
+		return coreView.selectedValue()
 	}
 
-	public var titleOfSelectedItem: String? {
-		get { return coreView.titleOfSelectedItem }
+	public func allItems() -> Array<MenuItem> {
+		return coreView.allItems()
 	}
 
-	public func itemTitles() -> Array<String> {
-		return coreView.itemTitles()
+	public func addItem(_ item: MenuItem) {
+		coreView.addItem(item)
 	}
 
-	public func addItems(withTitles titles: Array<String>) {
-		coreView.addItems(withTitles: titles)
+	public func addItems(_ items: Array<MenuItem>) {
+		coreView.addItems(items)
 	}
 
 	public func removeAllItems() {

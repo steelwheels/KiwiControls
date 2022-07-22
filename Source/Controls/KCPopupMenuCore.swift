@@ -15,11 +15,26 @@ import Foundation
 
 open class KCPopupMenuCore: KCCoreView
 {
-	public typealias CallbackFunction = (_ index: Int, _ title: String?) -> Void
+	public struct MenuItem {
+		public var title:	String
+		public var value:	CNValue
+
+		public init(title tstr: String, value val: CNValue) {
+			title	= tstr
+			value	= val
+		}
+
+		public init(title tstr: String, intValue val: Int) {
+			title	= tstr
+			value	= .numberValue(NSNumber(integerLiteral: val))
+		}
+	}
+	public typealias CallbackFunction = (_ val: CNValue) -> Void
 
 #if os(OSX)
 	@IBOutlet weak var mPopupButton: NSPopUpButton!
 	private var mCallbackFunction: CallbackFunction? = nil
+	private var mItems:	Array<MenuItem> = []
 #else
 	@IBOutlet weak var mPickerView: UIPickerView!
 	private var mDelegate:	KCPopupMenuCoreDelegate = KCPopupMenuCoreDelegate()
@@ -45,7 +60,10 @@ open class KCPopupMenuCore: KCCoreView
 	#if os(OSX)
 	@IBAction func buttonAction(_ sender: Any) {
 		if let cbfunc = callbackFunction {
-			cbfunc(indexOfSelectedItem, titleOfSelectedItem)
+			let idx = self.indexOfSelectedItem
+			if 0<=idx && idx<mItems.count {
+				cbfunc(mItems[idx].value)
+			}
 		} else {
 			CNLog(logLevel: .detail, message: "Popup menu pressed")
 		}
@@ -69,45 +87,57 @@ open class KCPopupMenuCore: KCCoreView
 		}
 	}
 
-	public var indexOfSelectedItem: Int {
-		get {
-			#if os(OSX)
-			return mPopupButton.indexOfSelectedItem
-			#else
-			return mDelegate.indexOfSelectedItem
-			#endif
-		}
-	}
-
-	public var titleOfSelectedItem: String? {
-		get {
-			#if os(OSX)
-			return mPopupButton.titleOfSelectedItem
-			#else
-			return mDelegate.titleOfSelectedItem
-			#endif
-		}
-	}
-
-	public func itemTitles() -> Array<String> {
+	public func selectedValue() -> CNValue? {
 		#if os(OSX)
-		return mPopupButton.itemTitles
+			let idx = indexOfSelectedItem
+			if 0<=idx && idx<mItems.count {
+				return mItems[idx].value
+			} else {
+				return nil
+			}
 		#else
-		return mDelegate.itemTitles()
+			return mDelegate.selectedValue()
 		#endif
 	}
 
-	public func addItems(withTitles titles: Array<String>) {
+	private var indexOfSelectedItem: Int { get {
 		#if os(OSX)
-			mPopupButton.addItems(withTitles: titles)
+			return mPopupButton.indexOfSelectedItem
 		#else
-			mDelegate.addItems(withTitles: titles)
+			return mDelegate.indexOfSelectedItem
+		#endif
+	}}
+
+	public func allItems() -> Array<MenuItem> {
+		#if os(OSX)
+			return mItems
+		#else
+			return mDelegate.allItems()
+		#endif
+	}
+
+	public func addItem(_ item: MenuItem) {
+		#if os(OSX)
+			mPopupButton.addItem(withTitle: item.title)
+			mItems.append(item)
+		#else
+			mDelegate.addItem(item)
+		#endif
+	}
+
+	public func addItems(_ items: Array<MenuItem>) {
+		#if os(OSX)
+			mPopupButton.addItems(withTitles: items.map { $0.title })
+			mItems.append(contentsOf: items)
+		#else
+			mDelegate.addItems(items)
 		#endif
 	}
 
 	public func removeAllItems() {
 		#if os(OSX)
 			mPopupButton.removeAllItems()
+			mItems = []
 		#else
 			mDelegate.removeAllItems()
 		#endif
@@ -145,42 +175,46 @@ open class KCPopupMenuCore: KCCoreView
 #if os(iOS)
 @objc private class KCPopupMenuCoreDelegate:NSObject, UIPickerViewDelegate
 {
+	public typealias MenuItem = KCPopupMenuCore.MenuItem
 	public var callbackFunction: KCPopupMenuCore.CallbackFunction? = nil
 
-	private var mItems:	Array<String> = []
+	private var mItems:	Array<MenuItem> = []
 	private var mIndex:	Int = 0
 
 	public var indexOfSelectedItem: Int {
 		get { return mIndex }
 	}
 
-	public var titleOfSelectedItem: String? {
-		get {
-			if 0<=mIndex && mIndex < mItems.count {
-				return mItems[mIndex]
-			} else {
-				return nil
-			}
-		}
-	}
-
-	public func itemTitles() -> Array<String> {
+	public func allItems() -> Array<MenuItem> {
 		return mItems
 	}
 
-	public func addItems(withTitles titles: Array<String>) {
-		mItems.append(contentsOf: titles)
+	public func addItem(_ item: MenuItem) {
+		mItems.append(item)
+	}
+
+	public func addItems(_ items: Array<MenuItem>) {
+		mItems.append(contentsOf: items)
 	}
 
 	public func removeAllItems() {
 		mItems = []
 	}
 
+	public func selectedValue() -> CNValue? {
+		let idx = indexOfSelectedItem
+		if 0<=idx && idx<mItems.count {
+			return mItems[idx].value
+		} else {
+			return nil
+		}
+	}
+
 	public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		mIndex = row
 		if mIndex < mItems.count {
 			if let cbfunc = callbackFunction {
-				cbfunc(mIndex, titleOfSelectedItem)
+				cbfunc(mItems[mIndex].value)
 			}
 		}
 	}

@@ -156,9 +156,8 @@ public class KCViewDumper: KCViewVisitor
 
 		let fsection = CNTextSection()
 		fsection.header = "items {" ; fsection.footer = "}"
-		let titles = view.itemTitles()
-		for title in titles {
-			fsection.add(text: CNTextLine(string: title))
+		for item in view.allItems() {
+			fsection.add(text: CNTextLine(string: item.title))
 		}
 		mSection.add(text: fsection)
 	}

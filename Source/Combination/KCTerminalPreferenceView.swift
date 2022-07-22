@@ -77,11 +77,6 @@ public class KCTerminalPreferenceView: KCStackView
 		mFontNames = fonts
 		mFontSizes = sizes
 
-		var sizestrs: Array<String> = []
-		for size in sizes {
-			sizestrs.append("\(size)")
-		}
-
 		/* Allocate labeled subviews */
 		var subviews: Array<KCView> = []
 		#if os(OSX)
@@ -90,7 +85,7 @@ public class KCTerminalPreferenceView: KCStackView
 		#endif
 		let logbox  = allocateLogLevelView()
 		let sizebox = allocateSizeSelectorView()
-		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizestrs)
+		let fontbox = allocateFontSelectorView(fonts: fonts, sizes: sizes)
 		let colbox  = allocateColorSelectorView()
 		subviews.append(contentsOf: [logbox, sizebox, fontbox, colbox])
 		super.addArrangedSubViews(subViews: subviews)
@@ -157,8 +152,8 @@ public class KCTerminalPreferenceView: KCStackView
 		#endif
 		if let menu = mLogLevelMenu {
 			menu.callbackFunction = {
-				(_ index: Int, _ namep: String?) -> Void in
-				self.updateLogLevel(indexOfName: index, indexOfSize: self.indexOfSelectedLogLevel)
+				(_ val: CNValue) -> Void in
+				self.updateLogLevel(self.selectedLogLevel)
 			}
 		}
 		if let field = mTerminalWidthField {
@@ -181,14 +176,14 @@ public class KCTerminalPreferenceView: KCStackView
 		}
 		if let menu = mFontNameMenu {
 			menu.callbackFunction = {
-				(_ index: Int, _ namep: String?) -> Void in
-				self.updateFont(indexOfName: index, indexOfSize: self.indexOfSelectedFontSize)
+				(_ val: CNValue) -> Void in
+				self.updateFont(name: self.selectedFontName, size: self.selectedFontSize)
 			}
 		}
 		if let menu = mFontSizeMenu {
 			menu.callbackFunction = {
-				(_ index: Int, _ namep: String?) -> Void in
-				self.updateFont(indexOfName: self.indexOfSelectedFontName, indexOfSize: index)
+				(_ val: CNValue) -> Void in
+				self.updateFont(name: self.selectedFontName, size: self.selectedFontSize)
 			}
 		}
 
@@ -246,15 +241,16 @@ public class KCTerminalPreferenceView: KCStackView
 		top.title = "Log level"
 
 		let logmenu = KCPopupMenu()
-		var items: Array<String> = []
+		var items: Array<KCPopupMenu.MenuItem> = []
 		for i in CNConfig.LogLevel.min ... CNConfig.LogLevel.max {
 			if let lvl = CNConfig.LogLevel(rawValue: i) {
-				items.append(lvl.description)
+				let newitem = KCPopupMenu.MenuItem(title: lvl.description, intValue: lvl.rawValue)
+				items.append(newitem)
 			} else {
 				CNLog(logLevel: .error, message: "Invalid raw value for LogLevel")
 			}
 		}
-		logmenu.addItems(withTitles: items)
+		logmenu.addItems(items)
 		mLogLevelMenu = logmenu
 
 		let content = top.contentsView
@@ -294,9 +290,9 @@ public class KCTerminalPreferenceView: KCStackView
 		return top
 	}
 
-	private func allocateFontSelectorView(fonts fnts: Array<String>, sizes szs: Array<String>) -> KCLabeledStackView {
+	private func allocateFontSelectorView(fonts fnts: Array<String>, sizes szs: Array<CGFloat>) -> KCLabeledStackView {
 		let fontmenu = KCPopupMenu()
-		fontmenu.addItems(withTitles: fnts)
+		fontmenu.addItems(fnts.map { KCPopupMenuCore.MenuItem(title: $0, value: .stringValue($0)) } )
 		mFontNameMenu = fontmenu
 
 		let fontbox = KCLabeledStackView()
@@ -304,7 +300,7 @@ public class KCTerminalPreferenceView: KCStackView
 		fontbox.contentsView.addArrangedSubView(subView: fontmenu)
 
 		let sizemenu = KCPopupMenu()
-		sizemenu.addItems(withTitles: szs)
+		sizemenu.addItems(szs.map { KCPopupMenuCore.MenuItem(title: "\($0)", value: .numberValue(NSNumber(floatLiteral: Double($0))))} )
 		mFontSizeMenu = sizemenu
 
 		let sizebox = KCLabeledStackView()
@@ -356,63 +352,72 @@ public class KCTerminalPreferenceView: KCStackView
 		return top
 	}
 
-	private var indexOfSelectedLogLevel: Int {
-		get {
-			if let menu = mLogLevelMenu {
-				return menu.indexOfSelectedItem
-			} else {
-				return 0
-			}
-		}
-	}
-
-	private var indexOfSelectedFontName: Int {
-		get {
-			if let menu = mFontNameMenu {
-				return menu.indexOfSelectedItem
-			} else {
-				return 0
-			}
-		}
-	}
-
-	private var indexOfSelectedFontSize: Int {
-		get {
-			if let menu = mFontSizeMenu {
-				return menu.indexOfSelectedItem
-			} else {
-				return 0
-			}
-		}
-	}
-
-	private var mPreviousNameIndex: Int = -1
-	private var mPreviousSizeIndex: Int = -1
-
-	private func updateLogLevel(indexOfName iname: Int, indexOfSize isize: Int) {
-		if let lvl = CNConfig.LogLevel(rawValue: iname) {
-			let syspref = CNPreference.shared.systemPreference
-			if syspref.logLevel != lvl {
-				syspref.logLevel = lvl	// Update log level
-			}
-		}
-	}
-
-	private func updateFont(indexOfName iname: Int, indexOfSize isize: Int) {
-		if let names = mFontNames, let sizes = mFontSizes {
-			/* Suppress chattering */
-			if iname != mPreviousNameIndex || isize != mPreviousSizeIndex {
-				let name = names[iname]
-				let size = sizes[isize]
-
-				/* Update font */
-				if let font  = CNFont(name: name, size: size) {
-					let pref  = CNPreference.shared.terminalPreference
-					pref.font = font
+	private var selectedLogLevel: CNConfig.LogLevel { get {
+		if let menu = mLogLevelMenu {
+			if let val = menu.selectedValue() {
+				if let num = val.toNumber() {
+					if let lvl = CNConfig.LogLevel(rawValue: num.intValue) {
+						return lvl
+					}
 				}
-				mPreviousNameIndex = iname
-				mPreviousSizeIndex = isize
 			}
+		}
+		CNLog(logLevel: .error, message: "Failed to get selected log level", atFunction: #function, inFile: #file)
+		return .debug
+	}}
+
+	private var selectedFontName: String { get {
+		if let menu = mFontNameMenu {
+			if let val = menu.selectedValue() {
+				if let str = val.toString() {
+					return str
+				}
+			}
+		}
+		CNLog(logLevel: .error, message: "Failed to get selected font name", atFunction: #function, inFile: #file)
+		if let names = mFontNames {
+			return names[0]
+		} else {
+			return ""
+		}
+	}}
+
+	private var selectedFontSize: CGFloat { get {
+		if let menu = mFontSizeMenu {
+			if let val = menu.selectedValue() {
+				if let num = val.toNumber() {
+					return CGFloat(num.doubleValue)
+				}
+			}
+		}
+		CNLog(logLevel: .error, message: "Failed to get selected font size", atFunction: #function, inFile: #file)
+		if let sizes = mFontSizes {
+			return sizes[0]
+		} else {
+			return 10.0
+		}
+	}}
+
+	private var mPreviousFontName: String  = ""
+	private var mPreviousFontSize: CGFloat = 0.0
+
+	private func updateLogLevel(_ lvl: CNConfig.LogLevel) {
+		let syspref = CNPreference.shared.systemPreference
+		if syspref.logLevel != lvl {
+			syspref.logLevel = lvl	// Update log level
+		}
+	}
+
+	private func updateFont(name nm: String, size sz: CGFloat) {
+		/* Suppress chattering */
+		if nm != mPreviousFontName || sz != mPreviousFontSize {
+			/* Update font */
+			if let font  = CNFont(name: nm, size: sz) {
+				let pref  = CNPreference.shared.terminalPreference
+				pref.font = font
+			}
+			mPreviousFontName = nm
+			mPreviousFontSize = sz
 		}
 	}
 
