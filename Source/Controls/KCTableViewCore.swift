@@ -43,17 +43,28 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	private var mDataTable:			CNMappingTable
-	private var mFieldNames:		Array<FieldName>
+	private struct Context {
+		public var	dataTable:		CNMappingTable
+		public var	fieldNames:		Array<FieldName>
+		public var	filterFunction:		FilterFunction?
+		public var	sortOrder:		CNSortOrder?
+		public var	compareFunction:	CompareFunction?
+		public var 	virtualFields:		Dictionary<String, CNMappingTable.VirtualFieldCallback>
+
+		public init(dataTable table: CNMappingTable, fieldNames fnames: Array<FieldName>) {
+			dataTable		= table
+			fieldNames		= fnames
+			filterFunction		= nil
+			sortOrder		= nil
+			compareFunction		= nil
+			virtualFields		= [:]
+		}
+	}
+
+	private var mCurrentContext:		Context
+	private var mNextContext:		Context
+
 	private var mMinimumVisibleRowCount:	Int
-
-	private var mNextDataTable:		CNMappingTable?
-	private var mNextFieldNames:		Array<FieldName>?
-	private var mNextRecordMappingFunction:	FilterFunction?
-	private var mNextSortOrder:		CNSortOrder
-	private var mNextCompareFunction:	CompareFunction?
-	private var mNextVirtualFields:		Dictionary<String, CNMappingTable.VirtualFieldCallback>?
-
 	private var mHasHeader:			Bool
 	private var mIsEnable:			Bool
 	private var mIsEditable:		Bool
@@ -64,50 +75,38 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	#if os(OSX)
 	public override init(frame : NSRect){
 		let (table, fields) = KCTableViewCore.allocateDummyTable()
-		mDataTable		= table
-		mFieldNames		= fields
-		mNextDataTable		= nil
-		mNextFieldNames		= nil
-		mNextVirtualFields	= nil
-		mNextSortOrder		= .none
-		mNextCompareFunction	= nil
-		mMinimumVisibleRowCount	= 8
-		mHasHeader		= false
-		mIsEnable		= false
-		mIsEditable		= false
+		mCurrentContext			= Context(dataTable: table, fieldNames: fields)
+		mNextContext			= Context(dataTable: table, fieldNames: fields)
+
+		mMinimumVisibleRowCount		= 8
+		mHasHeader			= false
+		mIsEnable			= false
+		mIsEditable			= false
 		super.init(frame: frame)
 	}
 	#else
 	public override init(frame : CGRect){
 		let (table, fields) = KCTableViewCore.allocateDummyTable()
-		mDataTable		= table
-		mFieldNames		= fields
-		mNextDataTable		= nil
-		mNextFieldNames		= nil
-		mNextVirtualFields	= nil
-		mNextSortOrder		= .none
-		mNextCompareFunction	= nil
-		mMinimumVisibleRowCount	= 8
-		mHasHeader		= false
-		mIsEnable		= false
-		mIsEditable		= false
+		mCurrentContext			= Context(dataTable: table, fieldNames: fields)
+		mNextContext			= Context(dataTable: table, fieldNames: fields)
+
+		mMinimumVisibleRowCount		= 8
+		mHasHeader			= false
+		mIsEnable			= false
+		mIsEditable			= false
 		super.init(frame: frame)
 	}
 	#endif
 
 	public required init?(coder: NSCoder) {
-		let (table, fields) = KCTableViewCore.allocateDummyTable()
-		mDataTable		= table
-		mFieldNames		= fields
-		mNextDataTable		= nil
-		mNextFieldNames		= nil
-		mNextVirtualFields	= nil
-		mNextSortOrder		= .none
-		mNextCompareFunction	= nil
-		mMinimumVisibleRowCount	= 8
-		mHasHeader		= false
-		mIsEnable		= false
-		mIsEditable		= false
+		let (table, fields) 		= KCTableViewCore.allocateDummyTable()
+		mCurrentContext			= Context(dataTable: table, fieldNames: fields)
+		mNextContext			= Context(dataTable: table, fieldNames: fields)
+
+		mMinimumVisibleRowCount		= 8
+		mHasHeader			= false
+		mIsEnable			= false
+		mIsEditable			= false
 		super.init(coder: coder)
 	}
 
@@ -183,40 +182,32 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			//mTableView.columnAutoresizingStyle	= .noColumnAutoresizing
 		#endif
 
-		reload(table: mDataTable, fieldNames: mFieldNames)
+		reload()
 	}
 
 	public var dataTable: CNTable {
-		get         {
-			return mNextDataTable ?? mDataTable
-		}
-		set(newval) {
-			if let mtable = newval as? CNMappingTable {
-				mNextDataTable = mtable
-			} else {
-				mNextDataTable = CNMappingTable(sourceTable: newval)
-			}
-		}
+		get { return mCurrentContext.dataTable }
+		set(newval) { mNextContext.dataTable = CNMappingTable(sourceTable: newval) }
 	}
 
 	public var filterFunction: FilterFunction? {
-		get         { return mNextRecordMappingFunction   }
-		set(newval) { mNextRecordMappingFunction = newval }
+		get         { return mCurrentContext.filterFunction  }
+		set(newval) { mNextContext.filterFunction = newval }
 	}
 
 	public var compareFunction: CompareFunction? {
-		get         { return mNextCompareFunction   }
-		set(newval) { mNextCompareFunction = newval }
+		get         { return mCurrentContext.compareFunction	}
+		set(newval) { mNextContext.compareFunction = newval	}
 	}
 
 	public var fieldNames: Array<FieldName> {
-		get         { return mNextFieldNames ?? [] }
-		set(newval) { mNextFieldNames = newval     }
+		get         { return mCurrentContext.fieldNames		}
+		set(newval) { mNextContext.fieldNames = newval		}
 	}
 
 	public var sortOrder: CNSortOrder {
-		get         { return mNextSortOrder }
-		set(newval) { mNextSortOrder = newval }
+		get         { return mCurrentContext.sortOrder ?? .none	}
+		set(newval) { mNextContext.sortOrder = newval		}
 	}
 
 	public func fieldName(at idx: Int) -> FieldName? {
@@ -229,12 +220,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public func addVirtualField(name field: String, callbackFunction cbfunc: @escaping CNMappingTable.VirtualFieldCallback) {
-		if mNextVirtualFields != nil {
-			mNextVirtualFields![field] = cbfunc
-		} else {
-			let fields: Dictionary<String, CNMappingTable.VirtualFieldCallback> = [field: cbfunc]
-			mNextVirtualFields = fields
-		}
+		mNextContext.virtualFields[field] = cbfunc
 	}
 
 	public var hasHeader: Bool {
@@ -298,23 +284,14 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public func reload() {
-		if let tbl = mNextDataTable, let fld = mNextFieldNames {
-			reload(table: tbl, fieldNames: fld)
-		} else {
-			CNLog(logLevel: .error, message: "No parameter for reload", atFunction: #function, inFile: #file)
-		}
-	}
-
-	private func reload(table tbl: CNTable, fieldNames fnames: Array<FieldName>){
 		#if os(OSX)
-
 		guard self.isForeground else {
 			return // update later
 		}
 
 		mTableView.beginUpdates()
 
-		/* set header */
+		/* Set header */
 		if let _ = mTableView.headerView {
 			if !mHasHeader {
 				/* ON -> OFF */
@@ -326,47 +303,62 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 				mTableView.headerView = NSTableHeaderView()
 			}
 		}
-
-		/* Remove all current columns */
-		while mTableView.tableColumns.count > 0 {
-			if let col = mTableView.tableColumns.last {
-				mTableView.removeTableColumn(col)
+		/* Set new fields */
+		if mNextContext.fieldNames.count > 0 {
+			/* Remove all current columns */
+			while mTableView.tableColumns.count > 0 {
+				if let col = mTableView.tableColumns.last {
+					mTableView.removeTableColumn(col)
+				}
 			}
-		}
-		/* Add all new columns */
-		let newcolnum = fnames.count
-		for i in 0..<newcolnum {
-			let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: fnames[i].field))
-			newcol.title      = fnames[i].title
-			newcol.isHidden	  = false
-			newcol.isEditable = mIsEditable
-			newcol.minWidth	  = 64
-			newcol.maxWidth	  = 1000
-			mTableView.addTableColumn(newcol)
+			/* Add all new columns */
+			for field in mNextContext.fieldNames {
+				let newcol        = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: field.field))
+				newcol.title      = field.title
+				newcol.isHidden	  = false
+				newcol.isEditable = mIsEditable
+				newcol.minWidth	  = 64
+				newcol.maxWidth	  = 1000
+				mTableView.addTableColumn(newcol)
+			}
+			/* Replace to current */
+			mCurrentContext.fieldNames = mNextContext.fieldNames
+			mNextContext.fieldNames    = []
 		}
 		mTableView.endUpdates()
 
-		/* Set field names */
-		mFieldNames	= fnames
+		let table = mNextContext.dataTable
+		mCurrentContext.dataTable = table
 
-		/* Allocate new table */
-		mDataTable = CNMappingTable(sourceTable: tbl)
-		if let filter = mNextRecordMappingFunction {
-			mDataTable.setFilter(filterFunction: filter)
+		/* Set filter */
+		if let filter = mNextContext.filterFunction {
+			table.setFilter(filterFunction: filter)
+			mCurrentContext.filterFunction = filter
+			mNextContext.filterFunction    = nil
 		}
-
-		mDataTable.sortOrder = mNextSortOrder
-		if let compare = mNextCompareFunction {
-			mDataTable.setCompareFunction(compareFunc: compare)
+		/* Set sort order */
+		if let order = mNextContext.sortOrder {
+			table.sortOrder = order
+			mCurrentContext.sortOrder = order
+			mNextContext.sortOrder	  = nil
 		}
-		if let fields = mNextVirtualFields {
-			mDataTable.mergeVirtualFields(callbacks: fields)
-			mNextVirtualFields = nil
+		/* Set compare function */
+		if let comp = mNextContext.compareFunction {
+			table.setCompareFunction(compareFunc: comp)
+			mCurrentContext.compareFunction = comp
+			mNextContext.compareFunction    = nil
+		}
+		/* Set virtual fields */
+		if mNextContext.virtualFields.count > 0 {
+			table.mergeVirtualFields(callbacks: mNextContext.virtualFields)
+			mCurrentContext.virtualFields = mNextContext.virtualFields
+			mNextContext.virtualFields    = [:]
 		}
 
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
-		#endif
+
+		#endif // os(OSX)
 	}
 
 	@IBAction func mCellAction(_ sender: Any) {
@@ -383,8 +375,8 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			let colidx = mTableView.clickedColumn
 
 			/* Callback: clicked */
-			if 0<=rowidx && rowidx < mDataTable.recordCount, let colname = fieldName(at: colidx) {
-				if let rec = mDataTable.record(at: rowidx), let cbfunc = self.mCellClickedCallback {
+			if 0<=rowidx && rowidx < self.dataTable.recordCount, let colname = fieldName(at: colidx) {
+				if let rec = self.dataTable.record(at: rowidx), let cbfunc = self.mCellClickedCallback {
 					cbfunc(double, rec, colname.field)
 				} else {
 					CNLog(logLevel: .detail, message: "Clicked col:\(colname) row:\(rowidx)", atFunction: #function, inFile: #file)
@@ -401,7 +393,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#if os(OSX)
 			let indices = mTableView.selectedRowIndexes
 			for idx in indices {
-				if let rec = mDataTable.record(at: idx) {
+				if let rec = self.dataTable.record(at: idx) {
 					return rec
 				} else {
 					CNLog(logLevel: .error, message: "No record at index:\(idx)", atFunction: #function, inFile: #file)
@@ -418,7 +410,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			/* Remove data from table */
 			sets.forEach({
 				(_ idx: Int) -> Void in
-				if !mDataTable.remove(at: idx) {
+				if !self.dataTable.remove(at: idx) {
 					CNLog(logLevel: .error, message: "Failed to remove row data: \(idx)", atFunction: #function, inFile: #file)
 				}
 			})
@@ -438,7 +430,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	#if os(OSX)
 	public func tableCellView(shouldEndEditing view: KCTableCellView, columnTitle title: String, rowIndex ridx: Int, value val: CNValue) {
-		if let rec = mDataTable.record(at: ridx) {
+		if let rec = self.dataTable.record(at: ridx) {
 			if rec.setValue(value: val, forField: title) {
 				return
 			}
@@ -452,13 +444,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	 */
 	#if os(OSX)
 	public func numberOfRows(in tableView: NSTableView) -> Int {
-		return mDataTable.recordCount
+		return self.dataTable.recordCount
 	}
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 		var result: CNValue = .nullValue
 		if let col = tableColumn {
-			if let rec = mDataTable.record(at: row) {
+			if let rec = self.dataTable.record(at: row) {
 				if let val = rec.value(ofField: col.identifier.rawValue){
 					result = val
 				}
@@ -469,7 +461,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	public func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
 		if let col = tableColumn, let val = object as? CNValue {
-			if let rec = mDataTable.record(at: row) {
+			if let rec = self.dataTable.record(at: row) {
 				if rec.setValue(value: val, forField: col.identifier.rawValue) {
 					return
 				}
@@ -570,7 +562,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		} else {
 			/* Calc dummy size. The unit size is given from XIB setting */
 			let unitsize = CGSize(width: 124, height: 17)
-			var result   = CGSize(width: unitsize.width * CGFloat(mFieldNames.count), height: unitsize.height * CGFloat(mMinimumVisibleRowCount))
+			var result   = CGSize(width: unitsize.width * CGFloat(self.fieldNames.count), height: unitsize.height * CGFloat(mMinimumVisibleRowCount))
 			/* Calc for space */
 			if mMinimumVisibleRowCount > 1 {
 				result.height += space.height * CGFloat(mMinimumVisibleRowCount - 1)
