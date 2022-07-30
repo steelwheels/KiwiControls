@@ -31,12 +31,15 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 
 		/* Set editable */
 		mTableView.hasGrid   = true
-		mTableView.isEnable  = true
 		mTableView.hasHeader = true
 
-/*
-		mTableView.isSelectable = true
-*/
+		mTableView.isEnableCallback = {
+			(_ row: Int) -> Bool in
+			let result = (row % 2) == 1
+			NSLog("isEnable for row \(row) -> \(result)")
+			return result
+		}
+
 		let table   = loadTable(name: "storage")
 		let recnum  = table.recordCount
 		NSLog("record count: \(recnum)")

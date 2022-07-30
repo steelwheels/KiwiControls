@@ -22,10 +22,11 @@ import CoconutData
 
 open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSource, KCTableCellDelegate
 {
-	public typealias ClickCallbackFunction       = (_ double: Bool, _ record: CNRecord, _ field: String) -> Void
-	public typealias DidSelectedCallbackFunction = (_ selected: Bool) -> Void
-	public typealias FilterFunction	     	     = CNMappingTable.FilterFunction
-	public typealias CompareFunction	     = CNMappingTableProtocol.CompareFunction
+	public typealias ClickCallbackFunction       	= (_ double: Bool, _ record: CNRecord, _ field: String) -> Void
+	public typealias IsEnableCallbackFunction	= (_ rowIndex: Int) -> Bool
+	public typealias DidSelectedCallbackFunction	= (_ selected: Bool) -> Void
+	public typealias FilterFunction	     	     	= CNMappingTable.FilterFunction
+	public typealias CompareFunction	     	= CNMappingTableProtocol.CompareFunction
 
 	#if os(OSX)
 	@IBOutlet weak var mTableView: NSTableView!
@@ -66,11 +67,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	private var mMinimumVisibleRowCount:	Int
 	private var mHasHeader:			Bool
-	private var mIsEnable:			Bool
 	private var mIsEditable:		Bool
 
-	private var mCellClickedCallback:	ClickCallbackFunction?       = nil
-	private var mDidSelectedCallback:	DidSelectedCallbackFunction? = nil
+	private var mCellClickedCallback:	ClickCallbackFunction?       	= nil
+	private var mIsEnableCallback:		IsEnableCallbackFunction?	= nil
+	private var mDidSelectedCallback:	DidSelectedCallbackFunction? 	= nil
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -80,7 +81,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 		mMinimumVisibleRowCount		= 8
 		mHasHeader			= false
-		mIsEnable			= false
 		mIsEditable			= false
 		super.init(frame: frame)
 	}
@@ -92,7 +92,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 		mMinimumVisibleRowCount		= 8
 		mHasHeader			= false
-		mIsEnable			= false
 		mIsEditable			= false
 		super.init(frame: frame)
 	}
@@ -105,7 +104,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 		mMinimumVisibleRowCount		= 8
 		mHasHeader			= false
-		mIsEnable			= false
 		mIsEditable			= false
 		super.init(coder: coder)
 	}
@@ -258,11 +256,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		}
 	}
 
-	public var isEnable: Bool {
-		get         { return mIsEnable }
-		set(newval) { mIsEnable = newval }
-	}
-
 	public var isEditable: Bool {
 		get         { return mIsEditable   }
 		set(newval) { mIsEditable = newval }
@@ -276,6 +269,11 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public var cellClickedCallback: ClickCallbackFunction? {
 		get         { return mCellClickedCallback   }
 		set(newval) { mCellClickedCallback = newval }
+	}
+
+	public var isEnableCallback: IsEnableCallbackFunction? {
+		get	     { return mIsEnableCallback   }
+		set(newval)  { mIsEnableCallback = newval }
 	}
 
 	public var didSelectedCallback: DidSelectedCallbackFunction? {
@@ -493,13 +491,28 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 				title = ""
 			}
 			cell.setup(title: title, row: row, delegate: self)
-			cell.isEnabled  = mIsEnable
+			if let cbfunc = mIsEnableCallback {
+				cell.isEnabled  = cbfunc(row)
+			} else {
+				cell.isEnabled  = true // default
+			}
 			cell.isEditable = mIsEditable
 		} else {
 			CNLog(logLevel: .error, message: "Unexpected cell view", atFunction: #function, inFile: #file)
 		}
 		return newview
 	}
+
+	public func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+		let result: Bool
+		if let cbfunc = mIsEnableCallback {
+			result = cbfunc(row)
+		} else {
+			result = true
+		}
+		return result
+	}
+
 	#endif
 
 	/*

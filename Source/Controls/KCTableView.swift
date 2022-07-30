@@ -87,11 +87,6 @@ open class KCTableView : KCInterfaceView
 		set(newval) { coreView.hasGrid = newval }
 	}
 
-	public var isEnable: Bool {
-		get         { return coreView.isEnable }
-		set(newval) { coreView.isEnable = newval }
-	}
-
 	public var isEditable: Bool {
 		get         { return coreView.isEditable }
 		set(newval) { coreView.isEditable = newval }
@@ -134,6 +129,11 @@ open class KCTableView : KCInterfaceView
 	public var cellClickedCallback: KCTableViewCore.ClickCallbackFunction? {
 		get         { return coreView.cellClickedCallback   }
 		set(cbfunc) { coreView.cellClickedCallback = cbfunc }
+	}
+
+	public var isEnableCallback: KCTableViewCore.IsEnableCallbackFunction? {
+		get	     { return coreView.isEnableCallback   }
+		set(newval)  { coreView.isEnableCallback = newval }
 	}
 
 	public var didSelectedCallback: ((_ selected: Bool) -> Void)? {
