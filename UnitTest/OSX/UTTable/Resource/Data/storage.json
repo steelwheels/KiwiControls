@@ -2,9 +2,9 @@
 	data: {
 		class:		"Table",
 		defaultFields: {
-			c0:		"",
-			c1: 	"",
-			c2: 	""
+			c0:     "",
+			c1:    	"",
+			c2:     ""
 		},
 		records: [
 			{

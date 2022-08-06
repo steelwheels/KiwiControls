@@ -2,7 +2,7 @@
  * @file	KCTableViewCore.swift
  * @brief	Define KCTableViewCore class
  * @par Copyright
- *   Copyright (C) 2017-2021 Steel Wheels Project
+ *   Copyright (C) 2017-2022 Steel Wheels Project
  */
 
 import CoconutData
@@ -315,8 +315,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 				newcol.title      = field.title
 				newcol.isHidden	  = false
 				newcol.isEditable = mIsEditable
-				newcol.minWidth	  = 64
+				newcol.minWidth	  = 32
 				newcol.maxWidth	  = 1000
+				newcol.sizeToFit()
+				/* The width of cell will be updated in the following method
+				 * tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?
+				 */
+				/* Add to the table */
 				mTableView.addTableColumn(newcol)
 			}
 			/* Replace to current */
@@ -484,12 +489,13 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let newview = mTableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "tableCellView"), owner: mTableView)
 		if let cell = newview as? KCTableCellView {
-			let title: String
+			let title:    String
 			if let col = tableColumn {
 				title = col.title
 			} else {
 				title = ""
 			}
+
 			cell.setup(title: title, row: row, delegate: self)
 			if let cbfunc = mIsEnableCallback {
 				cell.isEnabled  = cbfunc(row)
@@ -497,6 +503,23 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 				cell.isEnabled  = true // default
 			}
 			cell.isEditable = mIsEditable
+
+			/* Adjust size */
+			let space  = mTableView.intercellSpacing
+			if let col = tableColumn, let font = cell.textField?.font {
+				if let rec = self.dataTable.record(at: row) {
+					if let val = rec.value(ofField: col.identifier.rawValue) {
+						if let str = val.toString() {
+							let cellsize  = stringToSize(string: str, withFont: font)
+							let cellwidth = cellsize.width + space.width
+							if cellsize.width > col.width {
+								//NSLog("Update column size: \(title) \(col.width) -> \(cellsize.width)")
+								col.width = cellwidth
+							}
+						}
+					}
+				}
+			}
 		} else {
 			CNLog(logLevel: .error, message: "Unexpected cell view", atFunction: #function, inFile: #file)
 		}
@@ -510,6 +533,14 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		} else {
 			result = true
 		}
+		return result
+	}
+
+	private func stringToSize(string str: String, withFont fnt: CNFont) -> CGSize {
+		let attr = [NSAttributedString.Key.font: fnt]
+		let strsize: CGSize = (str as NSString).size(withAttributes: attr)
+		let space  = mTableView.intercellSpacing
+		let result = CGSize(width: strsize.width + space.width * 2.0, height: strsize.height + space.height * 2.0)
 		return result
 	}
 

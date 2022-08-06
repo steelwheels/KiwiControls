@@ -169,6 +169,11 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 		set(newval){
 			if let field = self.textField {
 				field.isEnabled = newval
+				if newval {
+					field.textColor = NSColor.controlTextColor
+				} else {
+					field.textColor = NSColor.disabledControlTextColor
+				}
 			} else if let img = self.imageView {
 				img.isEnabled = newval
 			} else {
@@ -190,7 +195,7 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 	}
 
 	private func intrinsicContentSize(ofTextField field: NSTextField) -> CGSize {
-		let DefaultLength: Int = 20
+		let DefaultLength: Int = 4
 
 		let curnum = field.stringValue.count
 		let newnum = max(curnum, DefaultLength)

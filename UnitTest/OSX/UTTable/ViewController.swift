@@ -63,6 +63,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 			}
 			return true
 		}
+		NSLog("reload table")
 		mTableView.reload()
 	}
 
