@@ -64,6 +64,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 
 	private var mCurrentContext:		Context
 	private var mNextContext:		Context
+	private var mColumnWidths:		Dictionary<String, CGFloat>	// <colunm-name, width>
 
 	private var mMinimumVisibleRowCount:	Int
 	private var mHasHeader:			Bool
@@ -78,6 +79,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let (table, fields) = KCTableViewCore.allocateDummyTable()
 		mCurrentContext			= Context(dataTable: table, fieldNames: fields)
 		mNextContext			= Context(dataTable: table, fieldNames: fields)
+		mColumnWidths			= [:]
 
 		mMinimumVisibleRowCount		= 8
 		mHasHeader			= false
@@ -89,6 +91,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let (table, fields) = KCTableViewCore.allocateDummyTable()
 		mCurrentContext			= Context(dataTable: table, fieldNames: fields)
 		mNextContext			= Context(dataTable: table, fieldNames: fields)
+		mColumnWidths			= [:]
 
 		mMinimumVisibleRowCount		= 8
 		mHasHeader			= false
@@ -101,6 +104,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		let (table, fields) 		= KCTableViewCore.allocateDummyTable()
 		mCurrentContext			= Context(dataTable: table, fieldNames: fields)
 		mNextContext			= Context(dataTable: table, fieldNames: fields)
+		mColumnWidths			= [:]
 
 		mMinimumVisibleRowCount		= 8
 		mHasHeader			= false
@@ -358,6 +362,9 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			mNextContext.virtualFields    = [:]
 		}
 
+		/* Clear column width info */
+		mColumnWidths.removeAll()
+
 		mTableView.noteNumberOfRowsChanged()
 		mTableView.reloadData()
 
@@ -505,20 +512,14 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			cell.isEditable = mIsEditable
 
 			/* Adjust size */
-			let space  = mTableView.intercellSpacing
 			if let col = tableColumn, let font = cell.textField?.font {
-				if let rec = self.dataTable.record(at: row) {
-					if let val = rec.value(ofField: col.identifier.rawValue) {
-						if let str = val.toString() {
-							let cellsize  = stringToSize(string: str, withFont: font)
-							let cellwidth = cellsize.width + space.width
-							if cellsize.width > col.width {
-								//NSLog("Update column size: \(title) \(col.width) -> \(cellsize.width)")
-								col.width = cellwidth
-							}
-						}
-					}
+				let width = columnWidths(columnName: col.identifier.rawValue, font: font)
+				if width > col.width {
+					NSLog("Update column size: \(title) \(col.width) -> \(width)")
+					col.width = width
 				}
+			} else {
+				CNLog(logLevel: .error, message: "Failed to adjust width", atFunction: #function, inFile: #file)
 			}
 		} else {
 			CNLog(logLevel: .error, message: "Unexpected cell view", atFunction: #function, inFile: #file)
@@ -536,11 +537,34 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		return result
 	}
 
+	private func columnWidths(columnName cname: String, font fnt: CNFont) -> CGFloat {
+		let table = mCurrentContext.dataTable
+		if let width = mColumnWidths[cname] {
+			return width
+		}
+		var width: CGFloat = 0.0
+		for ridx in 0..<table.recordCount {
+			if let rec = table.record(at: ridx) {
+				if let val = rec.value(ofField: cname) {
+					let txt = val.toText().toStrings().joined(separator: "\n")
+					let cellsize = stringToSize(string: txt, withFont: fnt)
+					width = max(width, cellsize.width)
+				} else {
+					CNLog(logLevel: .error, message: "No valid field", atFunction: #function, inFile: #file)
+				}
+			} else {
+				CNLog(logLevel: .error, message: "No valid record", atFunction: #function, inFile: #file)
+			}
+		}
+		mColumnWidths[cname] = width
+		return width
+	}
+
 	private func stringToSize(string str: String, withFont fnt: CNFont) -> CGSize {
 		let attr = [NSAttributedString.Key.font: fnt]
 		let strsize: CGSize = (str as NSString).size(withAttributes: attr)
 		let space  = mTableView.intercellSpacing
-		let result = CGSize(width: strsize.width + space.width * 2.0, height: strsize.height + space.height * 2.0)
+		let result = CGSize(width: strsize.width * 1.2 + space.width * 2.0, height: strsize.height * 1.2 + space.height * 2.0)
 		return result
 	}
 
