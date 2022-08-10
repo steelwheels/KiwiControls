@@ -57,7 +57,7 @@ class ViewController: KCViewController, KCViewControlEventReceiver
 			for field in rec.fieldNames {
 				var fval:  String = "?"
 				if let fld = rec.value(ofField: field) {
-					fval = fld.toText().toStrings().joined(separator: "\n")
+					fval = fld.description
 				}
 				NSLog("recordMapping: field=\(field), value=\(fval)")
 			}

@@ -53,64 +53,11 @@ public class KCTableCellView: NSTableCellView, NSTextFieldDelegate
 	}
 
 	private func updateValue(value val: CNValue){
-		switch val {
-		case .nullValue:
-			updateStringValue(value: "")
-		case .boolValue(let val):
-			updateStringValue(value: "\(val)")
-		case .numberValue(let num):
-			updateStringValue(value: num.stringValue)
-		case .stringValue(let str):
-			updateStringValue(value: str)
-		case .dateValue(let date):
-			updateStringValue(value: date.description)
-		case .rangeValue(let range):
-			updateStringValue(value: "{location=\(range.location), length=\(range.length)}")
-		case .pointValue(let pt):
-			updateStringValue(value: pt.description)
-		case .sizeValue(let sz):
-			updateStringValue(value: sz.description)
-		case .rectValue(let rect):
-			updateStringValue(value: rect.description)
-		case .enumValue(let eval):
-			updateStringValue(value: ".\(eval.name)(\(eval.value)")
-		case .dictionaryValue(_):
-			let str = val.toText().toStrings().joined()
-			updateStringValue(value: str)
-		case .arrayValue(_):
-			let str = val.toText().toStrings().joined()
-			updateStringValue(value: str)
-		case .setValue(_):
-			let str = val.toText().toStrings().joined()
-			updateStringValue(value: str)
-		case .URLValue(let url):
-			updateStringValue(value: url.path)
-		case .colorValue(let col):
-			updateStringValue(value: col.rgbName)
-		case .imageValue(let img):
-			updateImageValue(value: img)
-		case .recordValue(let rec):
-			let val: CNValue = .dictionaryValue(rec.toValue())
-			let str = val.toText().toStrings()
-			updateStringValue(value: str.joined())
-		case .objectValue(let obj):
-			let str = "\(obj.description)"
-			updateStringValue(value: str)
-		case .segmentValue(let ref):
-			updateStringValue(value: ref.filePath)
-		case .pointerValue(let ptr):
-			updateStringValue(value: "pointer-value:\(ptr)")
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown type value", atFunction: #function, inFile: #file)
-		}
-	}
-
-	private func updateStringValue(value val: String){
 		if let field = super.textField {
-			field.stringValue = val
+			field.stringValue = val.description
 			field.sizeToFit()
 		} else {
-			let newfield = NSTextField(string: val)
+			let newfield = NSTextField(string: val.description)
 			super.textField = newfield
 		}
 	}

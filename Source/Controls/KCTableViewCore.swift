@@ -546,8 +546,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		for ridx in 0..<table.recordCount {
 			if let rec = table.record(at: ridx) {
 				if let val = rec.value(ofField: cname) {
-					let txt = val.toText().toStrings().joined(separator: "\n")
-					let cellsize = stringToSize(string: txt, withFont: fnt)
+					let cellsize = stringToSize(string: val.description, withFont: fnt)
 					width = max(width, cellsize.width)
 				} else {
 					CNLog(logLevel: .error, message: "No valid field", atFunction: #function, inFile: #file)
