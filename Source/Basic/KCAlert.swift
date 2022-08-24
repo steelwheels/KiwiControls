@@ -14,7 +14,7 @@ import CoconutData
 
 public class KCAlert : NSObject
 {
-	public class func alert(type typ: CNAlertType, messgage msg: String, in viewcont: KCViewController, callback cbfunc: @escaping (_ buttonid: Int) -> Void) {
+	public class func alert(type typ: CNAlertType, messgage msg: String, labels labs: Array<String>, in viewcont: KCViewController, callback cbfunc: @escaping (_ buttonid: Int) -> Void) {
 		#if os(OSX)
 			let alert = NSAlert()
 			switch typ {
@@ -23,7 +23,13 @@ public class KCAlert : NSObject
 			  case .warning:	alert.alertStyle = .warning
 			}
 			alert.messageText = msg
-			alert.addButton(withTitle: "OK")
+			let count = min(labs.count, 3)
+			if count > 3 {
+				CNLog(logLevel: .error, message: "Too many labels: \(count)", atFunction: #function, inFile: #file)
+			}
+			for i in 0..<count {
+				alert.addButton(withTitle: labs[i])
+			}
 			switch alert.runModal() {
 			  case .alertFirstButtonReturn:		cbfunc(0)
 			  case .alertSecondButtonReturn:	cbfunc(1)
