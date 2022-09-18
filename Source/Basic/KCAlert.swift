@@ -21,6 +21,7 @@ public class KCAlert : NSObject
 			  case .critical:	alert.alertStyle = .critical
 			  case .informational:	alert.alertStyle = .informational
 			  case .warning:	alert.alertStyle = .warning
+			  @unknown default:	alert.alertStyle = .informational
 			}
 			alert.messageText = msg
 			let count = min(labs.count, 3)

@@ -458,7 +458,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 	}
 
 	public func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-		var result: CNValue = .nullValue
+		var result: CNValue = CNValue.null
 		if let col = tableColumn {
 			if let rec = self.dataTable.record(at: row) {
 				if let val = rec.value(ofField: col.identifier.rawValue){

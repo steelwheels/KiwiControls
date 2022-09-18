@@ -325,7 +325,7 @@ open class KCDrawingView: KCStackView
 		if let view = mVectorGraphicsView {
 			return view.toValue()
 		} else {
-			return .nullValue
+			return CNValue.null
 		}
 	}
 

@@ -32,7 +32,7 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	private var 	mDecimalPlaces:		Int	= 0
 	private var 	mMinWidth:		Int     = 40
 
-	private var	mCurrentValue:		CNValue = .nullValue
+	private var	mCurrentValue:		CNValue = CNValue.null
 
 	public var 	callbackFunction:	CallbackFunction? = nil
 

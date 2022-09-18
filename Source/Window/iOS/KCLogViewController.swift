@@ -34,7 +34,7 @@ open class KCLogViewController: KCSingleViewController
 			[weak self] () -> Void in
 			if let myself = self {
 				let parent = myself.parentController
-				if !parent.popViewController(returnValue: .nullValue) {
+				if !parent.popViewController(returnValue: CNValue.null) {
 					myself.mConsole.error(string: "Can not pop previous view at \(#file)/\(#line)/\(#function)")
 				}
 			}
