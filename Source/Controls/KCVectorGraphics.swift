@@ -368,7 +368,7 @@ open class KCVectorGraphics: KCView
 	 */
 	public func toValue() -> CNValue {
 		let result: Dictionary<String, CNValue> = [
-			"frameSize":	.sizeValue(self.frame.size),
+			"frameSize":	.dictionaryValue(self.frame.size.toValue()),
 			"objects":	.arrayValue(mManager.toValue())
 		]
 		return .dictionaryValue(result)
@@ -387,7 +387,7 @@ open class KCVectorGraphics: KCView
 			CNLog(logLevel: .error, message: "\"frameSize\" property is required", atFunction: #function, inFile: #file)
 			return false
 		}
-		guard let size = sizeval.toSize() else {
+		guard let size = CGSize.fromValue(value: sizeval) else {
 			CNLog(logLevel: .error, message: "Invalid size property", atFunction: #function, inFile: #file)
 			return false
 		}
