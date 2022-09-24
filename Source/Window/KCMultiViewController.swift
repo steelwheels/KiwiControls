@@ -87,7 +87,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 			let ident = viewIndexToIdentifer(index: idx)
 			let item  = NSTabViewItem(identifier: ident)
 			item.viewController = view
-			CNLog(logLevel: .detail, message: "pushViewController identifier: \"\(ident)\"")
 			self.addTabViewItem(item)
 		#else
 			let newctrls: Array<KCViewController>
