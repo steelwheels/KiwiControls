@@ -18,6 +18,12 @@
 		052E3A4127E0A6B100DC8266 /* dummy-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052E3A2F27E0A68100DC8266 /* dummy-table.json */; };
 		052E3A5127E0A6D800DC8266 /* dummy-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052E3A2F27E0A68100DC8266 /* dummy-table.json */; };
 		053A659827927C7300F5A363 /* storage.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DE142327925FAD0069A432 /* storage.json */; };
+		053D120328DF4FB6006B8F49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D120228DF4FB6006B8F49 /* AppDelegate.swift */; };
+		053D120528DF4FB6006B8F49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D120428DF4FB6006B8F49 /* SceneDelegate.swift */; };
+		053D120728DF4FB6006B8F49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D120628DF4FB6006B8F49 /* ViewController.swift */; };
+		053D120A28DF4FB6006B8F49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053D120828DF4FB6006B8F49 /* Main.storyboard */; };
+		053D120C28DF4FC1006B8F49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053D120B28DF4FC1006B8F49 /* Assets.xcassets */; };
+		053D120F28DF4FC1006B8F49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053D120D28DF4FC1006B8F49 /* LaunchScreen.storyboard */; };
 		0544EA5025176E06002DE6A8 /* KiwiControls_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA4E25176E06002DE6A8 /* KiwiControls_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0544EA5E25176E23002DE6A8 /* KiwiControls_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA5C25176E23002DE6A8 /* KiwiControls_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0544EA7025176EC6002DE6A8 /* KCPlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6625176EC6002DE6A8 /* KCPlaneViewController.swift */; };
@@ -479,6 +485,14 @@
 		0524849E256A609A001BD219 /* UTStackView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTStackView_macOS.entitlements; sourceTree = "<group>"; };
 		052484B0256A652F001BD219 /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		052E3A2F27E0A68100DC8266 /* dummy-table.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "dummy-table.json"; path = "Data/dummy-table.json"; sourceTree = "<group>"; };
+		053D120028DF4FB6006B8F49 /* UTControl_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTControl_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		053D120228DF4FB6006B8F49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		053D120428DF4FB6006B8F49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		053D120628DF4FB6006B8F49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		053D120928DF4FB6006B8F49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		053D120B28DF4FC1006B8F49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		053D120E28DF4FC1006B8F49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		053D121028DF4FC1006B8F49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0544EA4B25176E06002DE6A8 /* KiwiControls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KiwiControls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0544EA4E25176E06002DE6A8 /* KiwiControls_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KiwiControls_macOS.h; sourceTree = "<group>"; };
 		0544EA4F25176E06002DE6A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -686,6 +700,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		053D11FD28DF4FB6006B8F49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0544EA4825176E06002DE6A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -816,6 +837,20 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		053D120128DF4FB6006B8F49 /* UTControl_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				053D120228DF4FB6006B8F49 /* AppDelegate.swift */,
+				053D120428DF4FB6006B8F49 /* SceneDelegate.swift */,
+				053D120628DF4FB6006B8F49 /* ViewController.swift */,
+				053D120828DF4FB6006B8F49 /* Main.storyboard */,
+				053D120B28DF4FC1006B8F49 /* Assets.xcassets */,
+				053D120D28DF4FC1006B8F49 /* LaunchScreen.storyboard */,
+				053D121028DF4FC1006B8F49 /* Info.plist */,
+			);
+			path = UTControl_iOS;
+			sourceTree = "<group>";
+		};
 		0544EA4C25176E06002DE6A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,6 +865,7 @@
 				058EBF14264DE39F0031F306 /* UTTable.app */,
 				057341F92718770200F1799E /* UTCollection.app */,
 				05B48417272D8F49006DD06E /* UTGraphics.app */,
+				053D120028DF4FB6006B8F49 /* UTControl_iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1130,6 +1166,7 @@
 		0564519425185019006C2430 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				053D120128DF4FB6006B8F49 /* UTControl_iOS */,
 				0564519A251851E1006C2430 /* UTTerminal */,
 			);
 			path = iOS;
@@ -1337,6 +1374,23 @@
 			productReference = 05248492256A6097001BD219 /* UTStackView_macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		053D11FF28DF4FB6006B8F49 /* UTControl_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 053D121328DF4FC1006B8F49 /* Build configuration list for PBXNativeTarget "UTControl_iOS" */;
+			buildPhases = (
+				053D11FC28DF4FB6006B8F49 /* Sources */,
+				053D11FD28DF4FB6006B8F49 /* Frameworks */,
+				053D11FE28DF4FB6006B8F49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UTControl_iOS;
+			productName = UTControl_iOS;
+			productReference = 053D120028DF4FB6006B8F49 /* UTControl_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		0544EA4A25176E06002DE6A8 /* KiwiControls_macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0544EA5325176E06002DE6A8 /* Build configuration list for PBXNativeTarget "KiwiControls_macOS" */;
@@ -1538,6 +1592,9 @@
 					05248491256A6097001BD219 = {
 						CreatedOnToolsVersion = 12.2;
 					};
+					053D11FF28DF4FB6006B8F49 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					0544EA4A25176E06002DE6A8 = {
 						CreatedOnToolsVersion = 12.0;
 						LastSwiftMigration = 1200;
@@ -1600,6 +1657,7 @@
 				058EBF13264DE39F0031F306 /* UTTable */,
 				057341F82718770200F1799E /* UTCollection */,
 				05B48416272D8F49006DD06E /* UTGraphics */,
+				053D11FF28DF4FB6006B8F49 /* UTControl_iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1611,6 +1669,16 @@
 			files = (
 				05248499256A609A001BD219 /* Assets.xcassets in Resources */,
 				0524849C256A609A001BD219 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		053D11FE28DF4FB6006B8F49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				053D120F28DF4FC1006B8F49 /* LaunchScreen.storyboard in Resources */,
+				053D120C28DF4FC1006B8F49 /* Assets.xcassets in Resources */,
+				053D120A28DF4FB6006B8F49 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1752,6 +1820,16 @@
 				052484B1256A652F001BD219 /* StackViewController.swift in Sources */,
 				05248497256A6097001BD219 /* ViewController.swift in Sources */,
 				05248495256A6097001BD219 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		053D11FC28DF4FB6006B8F49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				053D120728DF4FB6006B8F49 /* ViewController.swift in Sources */,
+				053D120328DF4FB6006B8F49 /* AppDelegate.swift in Sources */,
+				053D120528DF4FB6006B8F49 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2081,6 +2159,22 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		053D120828DF4FB6006B8F49 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				053D120928DF4FB6006B8F49 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		053D120D28DF4FC1006B8F49 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				053D120E28DF4FC1006B8F49 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		05515E74256552E900D9BE1B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2318,6 +2412,97 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		053D121128DF4FC1006B8F49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTControl_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTControl-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		053D121228DF4FC1006B8F49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ../UnitTest/iOS/UTControl_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTControl-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -3659,6 +3844,15 @@
 			buildConfigurations = (
 				0524849F256A609A001BD219 /* Debug */,
 				052484A0256A609A001BD219 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		053D121328DF4FC1006B8F49 /* Build configuration list for PBXNativeTarget "UTControl_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				053D121128DF4FC1006B8F49 /* Debug */,
+				053D121228DF4FC1006B8F49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
