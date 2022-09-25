@@ -35,10 +35,6 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		super.init(coder: coder)
 	}
 
-	public var rootView: KCRootView? {
-		get { return mRootView }
-	}
-
 	open override func loadView() {
 		//super.loadView() <- Do not call this because it load NIB file (it is NOT exist)
 		if mRootView == nil {
@@ -121,11 +117,9 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 	private func doViewWillLayout() {
 		if let root = mRootView {
 			#if os(OSX)
-			if mHasPreferedContentSize {
-				if let win = root.window {
-					win.setContentSize(self.preferredContentSize)
-				}
-			}
+				adjustWindowSize(rootView: root)
+			#elseif os(iOS)
+				adjustRootViewSize(rootView: root)
 			#endif
 			if root.hasCoreView {
 				/* Layout components */
@@ -137,6 +131,33 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			CNLog(logLevel: .error, message: "No root view")
 		}
 	}
+
+	#if os(OSX)
+	private func adjustWindowSize(rootView root: KCRootView) {
+		if mHasPreferedContentSize {
+			if let win = root.window {
+				win.setContentSize(self.preferredContentSize)
+			}
+		}
+	}
+	#endif // os(OSX)
+
+	#if os(iOS)
+	private func adjustRootViewSize(rootView root: KCRootView) {
+		if let screensize = KCScreen().contentSize {
+			root.frame.size  = screensize
+			root.bounds.size = screensize
+			if let child: KCView = root.getCoreView() {
+				child.frame.size  = screensize
+				child.bounds.size = screensize
+			} else {
+				NSLog("No core view")
+			}
+		} else {
+			NSLog("No screen size")
+		}
+	}
+	#endif // os(iOS)
 
 	private func doViewDidLayout() {
 		/* Keep prefered size */

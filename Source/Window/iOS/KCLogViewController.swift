@@ -14,11 +14,8 @@ open class KCLogViewController: KCSingleViewController
 	private var mConsoleView: KCConsoleView?    = nil
 	private var mConsole:	  CNBufferedConsole = CNBufferedConsole()
 
-	open override func loadView() {
-		/* Setup root view */
-		super.loadView()
-
-		/* allocate stack */
+	public override func loadContext() -> KCView? {
+		/* Allocate stack */
 		let dmyrect = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 		let stack   = KCStackView(frame: dmyrect)
 		stack.axis         = .vertical
@@ -45,17 +42,12 @@ open class KCLogViewController: KCSingleViewController
 		let consoleview = KCConsoleView()
 		stack.addArrangedSubView(subView: consoleview)
 
-		if let root = super.rootView {
-			let standards = CNStandardFiles.shared
-
-			root.setup(childView: stack)
-			mConsoleView = consoleview
-			mConsole.outputConsole = CNFileConsole(input:  standards.input,
-							       output: consoleview.outputFile,
-							       error:  consoleview.errorFile)
-		} else {
-			CNLog(logLevel: .detail, message: "Can not allocate console view", atFunction: #function, inFile: #file)
-		}
+		let standards = CNStandardFiles.shared
+		mConsoleView = consoleview
+		mConsole.outputConsole = CNFileConsole(input:  standards.input,
+						       output: consoleview.outputFile,
+						       error:  consoleview.errorFile)
+		return stack
 	}
 
 	public var consoleConnection: CNConsole {

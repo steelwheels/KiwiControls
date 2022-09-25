@@ -104,7 +104,7 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 		#endif
 		/* Switch to new view */
 		switchView(index: idx)
-		/* The new view become background view */
+		/* The new view become foreground view */
 		if let sview = currentViewController() {
 			sview.viewWillBecomeForeground()
 		}
@@ -188,7 +188,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 			if let view = super.selectedViewController as? KCSingleViewController {
 				return view
 			} else {
-				CNLog(logLevel: .error, message: "Unknown view controller", atFunction: #function, inFile: #file)
 				return nil
 			}
 		#endif

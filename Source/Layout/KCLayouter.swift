@@ -14,9 +14,11 @@ public class KCLayouter
 	}
 
 	public func layout(rootView view: KCRootView){
+		#if os(OSX)
 		CNLog(logLevel: .detail, message: "[Layout] Adjust expandability")
 		let adjuster = KCExpansionAdjuster()
 		view.accept(visitor: adjuster)
+		#endif // os(OSX)
 
 		CNLog(logLevel: .detail, message: "[Layout] Decide distribution")
 		let distdecider = KCDistributionDecider()
