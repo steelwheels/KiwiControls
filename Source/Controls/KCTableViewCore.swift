@@ -515,7 +515,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			if let col = tableColumn, let font = cell.textField?.font {
 				let width = columnWidths(columnName: col.identifier.rawValue, font: font)
 				if width > col.width {
-					//NSLog("Update column size: \(title) \(col.width) -> \(width)")
 					col.width = width
 				}
 			} else {

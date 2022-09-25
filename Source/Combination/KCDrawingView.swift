@@ -66,7 +66,7 @@ open class KCDrawingView: KCStackView
 			if let view = mVectorGraphicsView {
 				return view.toolType
 			} else {
-				NSLog("No graphics view (get)")
+				CNLog(logLevel: .error, message: "No graphics view (get)", atFunction: #function, inFile: #file)
 				return .path(false)
 			}
 		}
@@ -74,7 +74,7 @@ open class KCDrawingView: KCStackView
 			if let view = mVectorGraphicsView {
 				view.toolType = newval
 			} else {
-				NSLog("No graphics view (set)")
+				CNLog(logLevel: .error, message: "No graphics view (set)", atFunction: #function, inFile: #file)
 			}
 		}
 	}

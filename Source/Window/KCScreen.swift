@@ -26,15 +26,15 @@ public class KCScreen
 	}
 
 	/* Area for application unit: pixel*/
-	public var contentSize: CGSize? {
+	public var contentBounds: CGRect? {
 		#if os(OSX)
 			if let screen = NSScreen.main {
-				return screen.visibleFrame.size
+				return screen.visibleFrame
 			} else {
 				return nil
 			}
 		#else
-			return UIScreen.main.nativeBounds.size
+			return UIScreen.main.bounds
 		#endif
 	}
 
@@ -61,16 +61,5 @@ public class KCScreen
 		return result
 	}
 
-	#if os(iOS)
-	public var isPortrait: Bool {
-		get {
-			if let window = UIApplication.shared.windows.first {
-				if let scene = window.windowScene {
-					return scene.interfaceOrientation.isPortrait
-				}
-			}
-			return true
-		}
-	}
-	#endif
+	
 }

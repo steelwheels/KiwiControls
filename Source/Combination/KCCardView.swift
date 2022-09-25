@@ -73,10 +73,8 @@ open class KCCardView: KCStackView
 		case .special(let key):
 			switch key {
 			case .leftArrow:
-				//NSLog("Left arrow pressed")
 				result = setIndex(index: mCurrentIndex - 1)
 			case .rightArrow:
-				//NSLog("Right arrow pressed")
 				result = setIndex(index: mCurrentIndex + 1)
 			default:
 				break

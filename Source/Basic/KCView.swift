@@ -411,22 +411,18 @@ open class KCView : KCViewBase
 		var hasheight = false
 		for cons in view.constraints {
 			if cons.firstAttribute == .width {
-				NSLog("Update width: \(sz.description)")
 				cons.constant = sz.width
 				haswidth  = true
 			} else if cons.firstAttribute == .height {
-				NSLog("Update height: \(sz.description)")
 				cons.constant = sz.height
 				hasheight = true
 			}
 		}
 		if !haswidth {
-			NSLog("Allocate width: \(sz.description)")
 			let wcons = NSLayoutConstraint(item: view, attribute: .width,  relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: sz.width)
 			view.addConstraint(wcons)
 		}
 		if !hasheight {
-			NSLog("Allocate height: \(sz.description)")
 			let hcons = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: sz.height)
 			view.addConstraint(hcons)
 		}
@@ -539,7 +535,7 @@ open class KCView : KCViewBase
 	}
 
 	open func receiveDroppedObjects(_ sender: NSDraggingInfo, droppedObjects objs: Array<AnyObject>) -> Bool {
-		NSLog("Must be override")
+		CNLog(logLevel: .error, message: "Must be override", atFunction: #function, inFile: #file)
 		return false
 	}
 

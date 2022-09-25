@@ -62,11 +62,11 @@ open class KCRootView: KCInterfaceView
 		}
 	}
 
-	public func setup(childView child: KCView){
+	public func setup(childView child: KCView, edgeInsets insets: KCEdgeInsets){
 		KCView.setAutolayoutMode(view: self)
 
 		self.addSubview(child)
-		super.allocateSubviewLayout(subView: child)
+		super.allocateSubviewLayout(subView: child, in: insets)
 		setCoreView(view: child)
 
 		let vpref = CNPreference.shared.viewPreference

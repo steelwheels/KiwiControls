@@ -23,8 +23,6 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	public override func loadContext() -> KCView? {
-		NSLog("load context")
-
 		let drawv   = KCDrawingView()
 		drawv.drawingWidth  = 600.0
 		drawv.drawingHeight = 600.0

@@ -60,7 +60,7 @@ public extension KCViewController
 				let result = KCEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 			#else
 				let topmargin: CGFloat
-				if KCScreen.shared.isPortrait {
+				if self.isPortrait {
 					topmargin =  16.0
 				} else {
 					topmargin =  0.0
@@ -74,5 +74,18 @@ public extension KCViewController
 			return result
 		}
 	}
+
+	#if os(iOS)
+	var isPortrait: Bool {
+		get {
+			if let window = self.view.window {
+				if let scene = window.windowScene {
+					return scene.interfaceOrientation.isPortrait
+				}
+			}
+			return true
+		}
+	}
+	#endif
 }
 

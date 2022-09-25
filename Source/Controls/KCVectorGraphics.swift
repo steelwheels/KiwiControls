@@ -356,7 +356,7 @@ open class KCVectorGraphics: KCView
 		case "oval":				result = .oval(false)
 		case "oval-filled":			result = .oval(true)
 		default:
-			NSLog("Unknown graphics type: \(str)")
+			CNLog(logLevel: .error, message: "Unknown graphics type: \(str)", atFunction: #function, inFile: #file)
 			result = .path(false)
 		}
 		return result

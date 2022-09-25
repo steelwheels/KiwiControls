@@ -40,14 +40,21 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		if mRootView == nil {
 			/* Initialize log manager */
 			let _ = KCLogWindowManager.shared
+			/* Allocate insets */
+			let insets: KCEdgeInsets
+			#if os(iOS)
+			insets = KCEdgeInsets(top: 36.0, left: 0.0, bottom: 0.0, right: 0.0)
+			#else  // os(iOS)
+			insets = KCEdgeInsets(top:  0.0, left: 0.0, bottom: 0.0, right: 0.0)
+			#endif // os(iOS)
 			/* Allocate contents by super class */
 			let root = KCRootView()
 			if let child = loadContext() {
-				root.setup(childView: child)
+				root.setup(childView: child, edgeInsets: insets)
 			} else {
 				/* Use default root view to tell error */
 				let child = errorContext()
-				root.setup(childView: child)
+				root.setup(childView: child, edgeInsets: insets)
 			}
 			/* Assign as root of this controller*/
 			self.view = root
@@ -144,17 +151,15 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 
 	#if os(iOS)
 	private func adjustRootViewSize(rootView root: KCRootView) {
-		if let screensize = KCScreen().contentSize {
-			root.frame.size  = screensize
-			root.bounds.size = screensize
+		if let bounds = self.contentsBounds {
+			root.frame.size  = bounds.size
+			root.bounds.size = bounds.size
 			if let child: KCView = root.getCoreView() {
-				child.frame.size  = screensize
-				child.bounds.size = screensize
+				child.frame  = root.frame
+				child.bounds = root.bounds
 			} else {
-				NSLog("No core view")
+				CNLog(logLevel: .error, message: "No core view", atFunction: #function, inFile: #file)
 			}
-		} else {
-			NSLog("No screen size")
 		}
 	}
 	#endif // os(iOS)
@@ -182,6 +187,17 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 			}
 		#endif
 	}
+
+	#if os(iOS)
+	public var contentsBounds: CGRect? { get {
+		if let screen = KCScreen().contentBounds {
+			let insets = self.safeAreaInset
+			return screen.inset(by: insets)
+		} else {
+			return nil
+		}
+	}}
+	#endif // os(iOS)
 
 	public func notifyControlEvent(viewControlEvent event: KCViewControlEvent) {
 		if let root = mRootView {

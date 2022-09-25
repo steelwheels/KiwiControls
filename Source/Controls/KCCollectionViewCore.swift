@@ -481,7 +481,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 					let str  = comp as NSString
 					result   = str.deletingPathExtension as NSString
 				@unknown default:
-					NSLog("Unexpected case")
+					CNLog(logLevel: .error, message: "Unexpected case", atFunction: #function, inFile: #file)
 				}
 			}
 		}
