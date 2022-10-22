@@ -1,17 +1,55 @@
-//
-//  KCCollectionViewCell.swift
-//  KiwiControls_iOS
-//
-//  Created by Tomoo Hamada on 2021/10/21.
-//
+/**
+ * @file KCCollectionViewCell.swift
+ * @brief	Define KCCollectionViewCell class
+ * @par Copyright
+ *   Copyright (C) 2023 Steel Wheels Project
+ */
 
+import CoconutData
 import UIKit
 
-class KCCollectionViewCell: UICollectionViewCell {
+public class KCCollectionViewCell: UICollectionViewCell
+{
+	public typealias Item = CNCollection.Item
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+	@IBOutlet weak var mImageView: UIImageView!
 
+	private var mImageURL:	URL? = nil
+	private var mImage:	CNImage? = nil
+
+	public override func awakeFromNib() {
+		super.awakeFromNib()
+		// Initialization code
+	}
+
+	public func set(item itm: Item) {
+		switch itm {
+		case .image(let url):
+			if !hasSameURL(URL: url) {
+				if let img = CNImage(contentsOf: url) {
+					mImage		 = img
+					mImageURL	 = url
+					mImageView.image = img
+				} else {
+					CNLog(logLevel: .error, message: "Failed to load image from URL(\(url.path))")
+				}
+			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown item type", atFunction: #function, inFile: #file)
+		}
+	}
+
+	private func hasSameURL(URL u: URL) -> Bool {
+		if let cururl = mImageURL {
+			return cururl.path == u.path
+		} else {
+			return false
+		}
+	}
+
+	public override func prepareForReuse() {
+		mImageURL	 = nil
+		mImage	  	 = nil
+		mImageView.image = nil
+	}
 }

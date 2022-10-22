@@ -36,7 +36,6 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 {
 	public typealias SelectionCallback = (_ section: Int, _ item: Int) -> Void
 
-	static let ResuseIdentifier = "value"
 	static let HeaderIdentifier = "header"
 
 	#if os(OSX)
@@ -92,11 +91,36 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		mTotalItemNum   = dat.totalCount()
 
 		updateHeaderSize(collection: dat)
+		updateMaxItemSize()
 
 		collectionView.reloadData()
 		self.selectItem(indexPath: IndexPath(item: 0, section: 0))
 		self.invalidateIntrinsicContentSize()
 		self.requireLayout()
+	}
+
+	private func updateMaxItemSize() {
+		var result = CGSize.zero
+		let secnum = mCollectionData.sectionCount
+		for sec in 0..<secnum {
+			let itemnum = mCollectionData.itemCount(inSection: sec)
+			for i in 0..<itemnum {
+				if let item = mCollectionData.value(section: sec, item: i) {
+					switch item {
+					case .image(let url):
+						if let img = CNImage(contentsOf: url) {
+							result.width  = max(result.width, img.size.width)
+							result.height = max(result.height, img.size.height)
+						} else {
+							CNLog(logLevel: .error, message: "Failed to load image from \(url.path)", atFunction: #function, inFile: #file)
+						}
+					@unknown default:
+						CNLog(logLevel: .error, message: "No item", atFunction: #function, inFile: #file)
+					}
+				}
+			}
+		}
+		mMaxItemSize = result
 	}
 
 	private func updateHeaderSize(collection col: CNCollection){
@@ -400,7 +424,10 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	}
 	#else
 	public func collectionView(_ collectionView: KCCollectionViewBase, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KCCollectionViewCore.ResuseIdentifier, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemIdentifier, for: indexPath)
+		if let vcell = cell as? KCCollectionViewCell, let item = mCollectionData.value(section: indexPath.section, item: indexPath.item) {
+			vcell.set(item: item)
+		}
 		return cell
 	}
 	#endif

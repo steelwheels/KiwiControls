@@ -2,7 +2,7 @@
  * @file	KCImageViewCore.swift
  * @brief	Define KCImageViewCore class
  * @par Copyright
- *   Copyright (C) 2018 Steel Wheels Project
+ *   Copyright (C) 2018-2022 Steel Wheels Project
  */
 
 #if os(OSX)
@@ -20,8 +20,9 @@ open class KCImageViewCore : KCCoreView
 	@IBOutlet weak var mImageView: UIImageView!
 	#endif
 
-	private var mOriginalImage:	CNImage? = nil
+	private var mImage:		CNImage? = nil
 	private var mScale: 		CGFloat  = 1.0
+	private let mMinimumSize:	CGSize   = CGSize(width: 10.0, height: 10.0)
 
 	public func setup(frame frm: CGRect){
 		super.setup(isSingleView: true, coreView: mImageView)
@@ -34,60 +35,67 @@ open class KCImageViewCore : KCCoreView
 	}
 
 	public var image: CNImage? {
-		get {
-			return mOriginalImage
-		}
-		set(imgp){
-			if let img = imgp {
-				mOriginalImage = img
-				updateImage()
-			}
+		get { return mImage }
+		set(img){
+			mImage           = img
+			mImageView.image = img
 		}
 	}
 
 	public var scale: CGFloat {
-		get {
-			return mScale
-		}
-		set(newval) {
-			mScale = newval
-			updateImage()
-		}
+		get { return mScale }
+		set(newval) { mScale = newval }
 	}
 
-	private func updateImage() {
-		if let orgimg = mOriginalImage {
-			let orgsize = orgimg.size
-			let imgsize = CGSize(width:  orgsize.width *  mScale,
-					     height: orgsize.height * mScale)
-			mImageView.image = orgimg.resize(imgsize)
+	public var imageSize: CGSize { get {
+		if let img = mImage {
+			return CGSize(width: img.size.width * mScale, height: img.size.height * mScale)
+		} else {
+			return mMinimumSize
 		}
-	}
-
-	private var imageSize: CGSize {
-		get {
-			let imgsize: CGSize
-			if let image = mImageView.image {
-				imgsize = image.size
-			} else {
-				imgsize = CGSize.zero
-			}
-			return imgsize
-		}
-	}
+	}}
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return imageSize }
+		get { return self.imageSize }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return imageSize
+		let result: CGSize
+		if mImage != nil {
+			result = adjustSize(currentSize: self.imageSize, targetSize: size)
+		} else {
+			result = mMinimumSize
+		}
+		NSLog("sTF: result=\(result.description)")
+		return result
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
 		get { return imageSize }
+	}
+
+	private func adjustSize(currentSize cursize: CGSize, targetSize targsize: CGSize) -> CGSize {
+		guard cursize.width > 0.0 && cursize.height > 0.0 else {
+			return mMinimumSize
+		}
+		guard targsize.width > 0.0 && targsize.height > 0.0 else {
+			return mMinimumSize
+		}
+		guard !(cursize == targsize) else {
+			return cursize // needless to resize
+		}
+		let newsize: CGSize
+		let ratio = cursize.width / cursize.height
+		if ratio >= 1.0 {
+			/* cursize.width >= cursize.height */
+			newsize = CGSize(width: targsize.width, height: targsize.width / ratio)
+		} else {
+			/* cursize.width <  cursize.height */
+			newsize = CGSize(width: targsize.height * ratio, height: targsize.height)
+		}
+		return newsize
 	}
 }
 

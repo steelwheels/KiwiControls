@@ -52,12 +52,12 @@ open class KCImageView: KCInterfaceView
 	}
 
 	public var image: CNImage? {
-		get	 { coreView.image       }
-		set(img) { coreView.image = img }
+		get	 { return coreView.image        }
+		set(img) { coreView.image = img 	}
 	}
 
 	public var scale: CGFloat {
-		get	    { return coreView.scale }
+		get	    { return coreView.scale   }
 		set(newval) { coreView.scale = newval }
 	}
 

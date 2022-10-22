@@ -16,19 +16,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="141" height="101"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RcV-FA-vwv">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RcV-FA-vwv">
                         <rect key="frame" x="0.0" y="0.0" width="141" height="101"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="RcV-FA-vwv" secondAttribute="bottom" id="BNI-W8-Q1z"/>
-                <constraint firstAttribute="trailing" secondItem="RcV-FA-vwv" secondAttribute="trailing" id="LQf-f1-f7Q"/>
-                <constraint firstItem="RcV-FA-vwv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="clk-nt-Oez"/>
-                <constraint firstItem="RcV-FA-vwv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="o6H-1n-VZD"/>
+                <constraint firstAttribute="trailing" secondItem="RcV-FA-vwv" secondAttribute="trailing" id="Fvk-wp-hPm"/>
+                <constraint firstItem="RcV-FA-vwv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="d7h-YP-zRT"/>
+                <constraint firstItem="RcV-FA-vwv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nJc-y3-IRm"/>
+                <constraint firstAttribute="bottom" secondItem="RcV-FA-vwv" secondAttribute="bottom" id="wPl-iC-Wmd"/>
             </constraints>
             <size key="customSize" width="141" height="101"/>
+            <connections>
+                <outlet property="mImageView" destination="RcV-FA-vwv" id="Otn-8C-oca"/>
+            </connections>
             <point key="canvasLocation" x="145.6521739130435" y="62.611607142857139"/>
         </collectionViewCell>
     </objects>
