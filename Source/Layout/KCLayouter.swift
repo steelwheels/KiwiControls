@@ -2,7 +2,7 @@
  * @file	KCLayouter.swift
  * @brief	Define KCLayouter class
  * @par Copyright
- *   Copyright (C) 2015 Steel Wheels Project
+ *   Copyright (C) 2015-2022 Steel Wheels Project
  */
 
 import CoconutData

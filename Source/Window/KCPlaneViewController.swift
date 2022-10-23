@@ -171,6 +171,9 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 				self.preferredContentSize = root.frame.size
 				mHasPreferedContentSize   = true
 			#endif
+			CNLog(logLevel: .detail, message: "- [Finalize Layout] (root-size=\(root.frame.size.description)")
+			let layouter    = KCLayoutFinalizer()
+			layouter.layout(rootView: root)
 		} else {
 			CNLog(logLevel: .error, message: "No root view")
 		}

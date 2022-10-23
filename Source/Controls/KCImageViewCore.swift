@@ -21,7 +21,7 @@ open class KCImageViewCore : KCCoreView
 	#endif
 
 	private var mImage:		CNImage? = nil
-	private var mScale: 		CGFloat  = 1.0
+	private var mScale:		CGFloat  = 1.0
 	private let mMinimumSize:	CGSize   = CGSize(width: 10.0, height: 10.0)
 
 	public func setup(frame frm: CGRect){
@@ -39,17 +39,32 @@ open class KCImageViewCore : KCCoreView
 		set(img){
 			mImage           = img
 			mImageView.image = img
+			setupFrameSize()
 		}
 	}
 
 	public var scale: CGFloat {
 		get { return mScale }
-		set(newval) { mScale = newval }
+		set(newval) {
+			mScale = newval
+			setupFrameSize()
+		}
+	}
+
+	private func setupFrameSize() {
+		let newsize: CGSize
+		if let img = mImage {
+			let imgsize = img.size
+			newsize = CGSize(width: imgsize.width * mScale, height: imgsize.height * mScale)
+		} else {
+			newsize = mMinimumSize
+		}
+		setFrameSize(newsize)
 	}
 
 	public var imageSize: CGSize { get {
 		if let img = mImage {
-			return CGSize(width: img.size.width * mScale, height: img.size.height * mScale)
+			return img.size
 		} else {
 			return mMinimumSize
 		}
@@ -67,13 +82,20 @@ open class KCImageViewCore : KCCoreView
 		} else {
 			result = mMinimumSize
 		}
-		NSLog("sTF: result=\(result.description)")
 		return result
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return imageSize }
+		get {
+			return adjustSize(currentSize: self.imageSize, targetSize: self.frame.size)
+		}
+	}
+
+	public func adjustContentSize() {
+		if let img = mImage {
+			mImageView.image = img.resize(self.frame.size)
+		}
 	}
 
 	private func adjustSize(currentSize cursize: CGSize, targetSize targsize: CGSize) -> CGSize {
