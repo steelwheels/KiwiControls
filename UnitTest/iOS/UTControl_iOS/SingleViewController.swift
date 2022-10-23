@@ -20,14 +20,15 @@ class SingleViewController: KCSingleViewController
 		imgview.image = symbol.loadImage(type: .characterA)
 		stackview.addArrangedSubView(subView: imgview)
 
-		//let collectdata = CNCollection()
-		//collectdata.add(header: "", footer: "", items: [
-		//			.image(img0)
-		//])
+		let collectdata = CNCollection()
+		collectdata.add(header: "", footer: "", items: [
+			.image(symbol.URLOfSymbol(type: .chevronBackward)),
+			.image(symbol.URLOfSymbol(type: .chevronForward))
+		])
 
-		//let collectview = KCCollectionView()
-		//collectview.store(data: collectdata)
-		//stackview.addArrangedSubView(subView: collectview)
+		let collectview = KCCollectionView()
+		collectview.store(data: collectdata)
+		stackview.addArrangedSubView(subView: collectview)
 
 		let buttonview = KCButton()
 		buttonview.value = .text("Hello")

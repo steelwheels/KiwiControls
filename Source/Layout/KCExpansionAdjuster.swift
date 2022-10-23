@@ -16,19 +16,32 @@ public class KCExpansionAdjuster: KCViewVisitor
 	open override func visit(rootView view: KCRootView){
 		let coreview: KCInterfaceView = view.getCoreView()
 		coreview.accept(visitor: self)
-
+		#if os(OSX)
 		let prival = ExpansionPriorities(holizontalHugging: 	.high,
 						 holizontalCompression: .high,
 						 verticalHugging: 	.high,
 						 verticalCompression:	.high)
+		#else
+		let prival = ExpansionPriorities(holizontalHugging: 	.high,
+						 holizontalCompression: .high,
+						 verticalHugging: 	.high,
+						 verticalCompression:	.high)
+		#endif
 		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(button view: KCButton){
+		#if os(OSX)
 		let prival = ExpansionPriorities(holizontalHugging: 	.low,
 						 holizontalCompression: .low,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
+		#else
+		let prival = ExpansionPriorities(holizontalHugging: 	.low,
+						 holizontalCompression: .low,
+						 verticalHugging: 	.low,
+						 verticalCompression:	.low)
+		#endif
 		view.setExpandabilities(priorities: prival)
 	}
 
@@ -143,10 +156,17 @@ public class KCExpansionAdjuster: KCViewVisitor
 			subview.accept(visitor: self)
 		}
 		/* Calc expansion priority */
+		#if os(OSX)
 		var exppri = ExpansionPriorities(holizontalHugging:     .fixed,
 						 holizontalCompression: .fixed,
 						 verticalHugging:       .fixed,
 						 verticalCompression:   .fixed)
+		#else
+		var exppri = ExpansionPriorities(holizontalHugging:     .high,
+						 holizontalCompression: .high,
+						 verticalHugging:       .high,
+						 verticalCompression:   .high)
+		#endif
 		for subview in view.arrangedSubviews() {
 			exppri = ExpansionPriorities.union(exppri, subview.expansionPriority())
 		}
@@ -178,10 +198,17 @@ public class KCExpansionAdjuster: KCViewVisitor
 	}
 
 	open override func visit(imageView view: KCImageView){
+		#if os(OSX)
 		let prival = ExpansionPriorities(holizontalHugging: 	.middle,
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.middle,
 						 verticalCompression:	.fixed)
+		#else
+		let prival = ExpansionPriorities(holizontalHugging: 	.middle,
+						 holizontalCompression: .middle,
+						 verticalHugging: 	.middle,
+						 verticalCompression:	.middle)
+		#endif
 		view.setExpandabilities(priorities: prival)
 	}
 
