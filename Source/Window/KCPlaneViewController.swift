@@ -193,7 +193,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 
 	#if os(iOS)
 	public var contentsBounds: CGRect? { get {
-		if let screen = KCScreen().contentBounds {
+		if let screen = KCScreen.shared.contentBounds {
 			let insets = self.safeAreaInset
 			return screen.inset(by: insets)
 		} else {

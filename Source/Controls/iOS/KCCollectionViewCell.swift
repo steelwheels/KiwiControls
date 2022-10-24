@@ -20,6 +20,16 @@ public class KCCollectionViewCell: UICollectionViewCell
 	public override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code
+
+		/* Set unhilited background color */
+		let whiteView = UIView(frame: bounds)
+		whiteView.backgroundColor = .white
+		self.backgroundView = whiteView
+
+		/* Set hilited background color */
+		let blueView = UIView(frame: bounds)
+		blueView.backgroundColor = .cyan
+		self.selectedBackgroundView = blueView
 	}
 
 	public func set(item itm: Item) {
@@ -39,6 +49,10 @@ public class KCCollectionViewCell: UICollectionViewCell
 		}
 	}
 
+	public var image: CNImage? { get {
+		return mImage
+	}}
+
 	private func hasSameURL(URL u: URL) -> Bool {
 		if let cururl = mImageURL {
 			return cururl.path == u.path
@@ -46,6 +60,9 @@ public class KCCollectionViewCell: UICollectionViewCell
 			return false
 		}
 	}
+
+	private var mIsHilighted: Bool		= false
+	private var mBackgroundColor: UIColor? 	= nil
 
 	public override func prepareForReuse() {
 		mImageURL	 = nil

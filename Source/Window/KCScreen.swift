@@ -20,7 +20,7 @@ public class KCScreen
 
 	public var scale: CGFloat { get { return mScale }}
 
-	public init(){
+	private init(){
 		/* scale: point to pixel */
 		mScale = KCScreen.initScale()
 	}

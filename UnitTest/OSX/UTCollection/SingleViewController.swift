@@ -88,7 +88,7 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private func doDumpView(message msg: String){
-		if let view = self.rootView {
+		if let view = self.view as? KCRootView {
 			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .detail) {
 				let cons = CNLogManager.shared.console
 				cons.print(string: msg + "\n")

@@ -17,13 +17,13 @@ import Foundation
 public  typealias KCCollectionViewBase 		 	= NSCollectionView
 private typealias KCCollectionViewDataSourceBase 	= NSCollectionViewDataSource
 private typealias KCCollectionViewDelegateBase	 	= NSCollectionViewDelegateFlowLayout
-private typealias KCCollectionViewLayout	 	= NSCollectionViewFlowLayout
+private typealias KCCollectionViewFlowLayout	 	= NSCollectionViewFlowLayout
 private typealias KCCollectionViewSectionHeaderViewBase	= NSCollectionViewSectionHeaderView
 #else
 public  typealias KCCollectionViewBase 		 	= UICollectionView
 private typealias KCCollectionViewDataSourceBase 	= UICollectionViewDataSource
 private typealias KCCollectionViewDelegateBase	 	= UICollectionViewDelegate
-private typealias KCCollectionViewLayout	 	= UICollectionViewFlowLayout
+private typealias KCCollectionViewFlowLayout	 	= UICollectionViewFlowLayout
 #endif
 
 #if os(OSX)
@@ -82,6 +82,14 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			let bdl = Bundle(for: KCCollectionViewCore.self)
 			let nib = UINib(nibName: "KCCollectionViewCell", bundle: bdl)
 			colview.register(nib, forCellWithReuseIdentifier: ItemIdentifier)
+
+			/* This assignment is added to avoid error message:
+			 *   "The behavior of the UICollectionViewFlowLayout is not defined because: ..."
+			 * See https://stackoverflow.com/questions/32082726/the-behavior-of-the-uicollectionviewflowlayout-is-not-defined-because-the-cell
+			 */
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
+				layout.estimatedItemSize = CGSize(width: 1, height: 1)
+			}
 		#endif
 	}
 
@@ -94,7 +102,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		updateMaxItemSize()
 
 		collectionView.reloadData()
-		self.selectItem(indexPath: IndexPath(item: 0, section: 0))
+		//self.selectItem(indexPath: IndexPath(item: 0, section: 0))
 		self.invalidateIntrinsicContentSize()
 		self.requireLayout()
 	}
@@ -195,7 +203,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	private var itemSize: CGSize {
 		get {
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				return layout.itemSize
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (0-0)", atFunction: #function, inFile: #file)
@@ -203,7 +211,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		set(newsize){
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				layout.itemSize = newsize
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (0-1)", atFunction: #function, inFile: #file)
@@ -213,7 +221,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	public var axis: CNAxis {
 		get {
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				let result: CNAxis
 				switch layout.scrollDirection {
 				case .vertical:		result = .vertical
@@ -229,7 +237,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		set(newval){
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				switch newval {
 				case .horizontal:	layout.scrollDirection = .horizontal
 				case .vertical:		layout.scrollDirection = .vertical
@@ -244,7 +252,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	private var minimumLineSpacing: CGFloat {
 		get {
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				return layout.minimumLineSpacing
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (1-0)", atFunction: #function, inFile: #file)
@@ -252,7 +260,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		set(newval){
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				layout.minimumLineSpacing = newval
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (1-1)", atFunction: #function, inFile: #file)
@@ -262,7 +270,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	private var minimumInteritemSpacing: CGFloat {
 		get {
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				return layout.minimumInteritemSpacing
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (2-0)", atFunction: #function, inFile: #file)
@@ -270,7 +278,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		set(newval){
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				layout.minimumInteritemSpacing = newval
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (2-1)", atFunction: #function, inFile: #file)
@@ -280,7 +288,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	private var sectionInset: KCEdgeInsets {
 		get {
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				return layout.sectionInset
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (3-0)", atFunction: #function, inFile: #file)
@@ -288,7 +296,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		set(newval){
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				layout.sectionInset = newval
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (3-1)", atFunction: #function, inFile: #file)
@@ -298,7 +306,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	private var headerReferenceSize: CGSize {
 		get {
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				return layout.headerReferenceSize
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
@@ -306,7 +314,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		set(newval){
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				layout.headerReferenceSize = newval
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
@@ -316,7 +324,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	private var footerReferenceSize: CGSize {
 		get {
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				return layout.footerReferenceSize
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
@@ -324,7 +332,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			}
 		}
 		set(newval){
-			if let layout = collectionView.collectionViewLayout as? KCCollectionViewLayout {
+			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
 				layout.footerReferenceSize = newval
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
@@ -458,7 +466,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	}
 	#else
 	public func collectionView(_ collectionView: KCCollectionViewBase, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-		return true
+		return false
 	}
 	#endif
 
@@ -471,6 +479,16 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	#else
 	public func collectionView(_ collectionView: KCCollectionViewBase, didSelectItemAt indexPath: IndexPath) {
 		didSelect(itemAt: indexPath)
+	}
+	#endif
+
+	#if os(iOS)
+	public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+		return true
+	}
+
+	public func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+		return false
 	}
 	#endif
 
