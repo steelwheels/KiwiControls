@@ -28,7 +28,13 @@ class SingleViewController: KCSingleViewController
 
 		let collectview = KCCollectionView()
 		collectview.store(data: collectdata)
+		collectview.isSelectable = true
+		collectview.set(selectionCallback: {
+			(_ section: Int, _ item: Int) -> Void in
+			NSLog("selected section=\(section), item=\(item)")
+		})
 		stackview.addArrangedSubView(subView: collectview)
+
 
 		let buttonview = KCButton()
 		buttonview.value = .text("Hello")

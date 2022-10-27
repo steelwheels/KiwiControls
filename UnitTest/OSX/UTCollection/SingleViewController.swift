@@ -24,12 +24,12 @@ public class SingleViewController: KCSingleViewController
 		NSLog("load context")
 		let result = KCCollectionView()
 		let newval = allocateValue()
+		result.isSelectable = true
 		result.store(data: newval)
 		result.set(selectionCallback:{
 			(_ section: Int, _ item: Int) -> Void in
 			NSLog("selected section=\(section), item=\(item)")
 		})
-		result.isSelectable = true
 		return result
 	}
 

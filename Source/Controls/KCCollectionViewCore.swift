@@ -50,7 +50,8 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var mMaxItemSize		 = CGSize.zero
 	private var mTotalItemNum		 = 0
 	private var mHeaderFont			 = CNFont.boldSystemFont(ofSize: CNFont.systemFontSize)
-	private var mSelectionCallback: SelectionCallback? = nil
+	private var mSelectionCallback: 	SelectionCallback? = nil
+	private var mIsSelectable		= false
 	private var mIsDragSupported		= false
 
 	private var collectionView: KCCollectionViewBase {
@@ -69,6 +70,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		KCView.setAutolayoutMode(views: [self, colview])
 		colview.dataSource = self
 		colview.delegate   = self
+		self.isSelectable  = false
 
 		#if os(OSX)
 			let bdl = Bundle(for: KCCollectionViewCore.self)
@@ -160,17 +162,12 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	}
 
 	public var isSelectable: Bool {
-		get {
-			#if os(OSX)
-				return collectionView.isSelectable
-			#else
-				return collectionView.allowsSelection
-			#endif
-		}
+		get         { return mIsSelectable }
 		set(newval) {
+			mIsSelectable = newval
 			#if os(OSX)
 				collectionView.isSelectable            = newval
-				collectionView.allowsEmptySelection    = false
+				collectionView.allowsEmptySelection    = true
 				collectionView.allowsMultipleSelection = false
 			#else
 				collectionView.allowsSelection         = newval
@@ -461,16 +458,6 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	 * Delegate
 	 */
 	#if os(OSX)
-	public func collectionView(_ collectionView: KCCollectionViewBase, shouldSelectItemsAt indexPaths: Set<IndexPath>) -> Set<IndexPath> {
-		return indexPaths
-	}
-	#else
-	public func collectionView(_ collectionView: KCCollectionViewBase, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-		return false
-	}
-	#endif
-
-	#if os(OSX)
 	public func collectionView(_ collectionView: KCCollectionViewBase, didSelectItemsAt indexPaths: Set<IndexPath>) {
 		if let path = indexPaths.first {
 			didSelect(itemAt: path)
@@ -482,15 +469,11 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	}
 	#endif
 
-	#if os(iOS)
-	public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-		return true
+	private func didSelect(itemAt indexPath: IndexPath){
+		if let cbfunc = mSelectionCallback {
+			cbfunc(indexPath.section, indexPath.item)
+		}
 	}
-
-	public func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-		return false
-	}
-	#endif
 
 	#if os(OSX)
 	public func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
@@ -505,12 +488,6 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		return view
 	}
 	#endif
-
-	private func didSelect(itemAt indexPath: IndexPath){
-		if let cbfunc = mSelectionCallback {
-			cbfunc(indexPath.section, indexPath.item)
-		}
-	}
 
 	/*
 	 * Drag

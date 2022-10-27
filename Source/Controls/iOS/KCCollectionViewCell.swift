@@ -19,17 +19,14 @@ public class KCCollectionViewCell: UICollectionViewCell
 
 	public override func awakeFromNib() {
 		super.awakeFromNib()
-		// Initialization code
 
-		/* Set unhilited background color */
-		let whiteView = UIView(frame: bounds)
-		whiteView.backgroundColor = .white
-		self.backgroundView = whiteView
+		let nrmview = UIView(frame: bounds)
+		nrmview.backgroundColor = CNColor.clear
+		self.backgroundView = nrmview
 
-		/* Set hilited background color */
-		let blueView = UIView(frame: bounds)
-		blueView.backgroundColor = .cyan
-		self.selectedBackgroundView = blueView
+		let selview = UIView(frame: bounds)
+		selview.backgroundColor = CNColor.cyan
+		self.selectedBackgroundView = selview
 	}
 
 	public func set(item itm: Item) {
@@ -60,9 +57,6 @@ public class KCCollectionViewCell: UICollectionViewCell
 			return false
 		}
 	}
-
-	private var mIsHilighted: Bool		= false
-	private var mBackgroundColor: UIColor? 	= nil
 
 	public override func prepareForReuse() {
 		mImageURL	 = nil

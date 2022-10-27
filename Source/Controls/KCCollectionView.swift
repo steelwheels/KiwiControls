@@ -65,7 +65,7 @@ open class KCCollectionView: KCInterfaceView
 	}
 
 	public var isSelectable: Bool {
-		get         { return coreView.isSelectable }
+		get         { return coreView.isSelectable   }
 		set(newval) { coreView.isSelectable = newval }
 	}
 

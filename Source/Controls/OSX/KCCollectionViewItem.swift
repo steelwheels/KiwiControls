@@ -46,16 +46,19 @@ public class KCCollectionViewItem: NSCollectionViewItem
 	}
 
 	public override func viewWillAppear() {
-		setBackgroundColor(hasColor: isSelected)
 		super.viewWillAppear()
 	}
 
 	public override var isSelected: Bool {
 		didSet {
-			setBackgroundColor(hasColor: isSelected)
+			if let layer = self.view.layer {
+				let newcol = self.isSelected ? CNColor.cyan : CNColor.clear
+				layer.backgroundColor = newcol.cgColor
+			}
 		}
 	}
 
+	/*
 	private func setBackgroundColor(hasColor hascol: Bool){
 		if let layer = self.view.layer {
 			let bgcolor: CNColor
@@ -69,5 +72,5 @@ public class KCCollectionViewItem: NSCollectionViewItem
 		} else {
 			CNLog(logLevel: .error, message: "No layer", atFunction: #function, inFile: #file)
 		}
-	}
+	}*/
 }
