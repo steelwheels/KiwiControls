@@ -215,11 +215,7 @@ public class KCStepperCore: KCCoreView
 			fieldwidth   = totalwidth / 2.0
 		}
 		let fieldsize   = CGSize(width: fieldwidth,   height: newsize.height)
-		#if os(OSX)
-			mTextField.setFrameSize(fieldsize)
-		#else
-			mTextField.setFrameSize(size: fieldsize)
-		#endif
+		mTextField.setFrame(size: fieldsize)
 	}
 
 	#if os(OSX)

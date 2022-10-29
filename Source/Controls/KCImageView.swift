@@ -61,10 +61,6 @@ open class KCImageView: KCInterfaceView
 		set(newval) { coreView.scale = newval }
 	}
 
-	public func adjustContentSize() {
-		coreView.adjustContentSize()
-	}
-
 	open override func accept(visitor vis: KCViewVisitor){
 		vis.visit(imageView: self)
 	}

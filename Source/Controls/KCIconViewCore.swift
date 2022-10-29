@@ -120,7 +120,7 @@ open class KCIconViewCore : KCCoreView
 		let sclsize = CGSize(width:  mOriginalImageSize.width  * mScale,
 				     height: mOriginalImageSize.height * mScale)
 		if let img = self.image {
-			let _ = img.resize(sclsize)
+			self.image = img.resized(to: sclsize)
 		}
 		let imgsize = mImageButton.intrinsicContentSize
 		/* Get label size */
@@ -142,8 +142,8 @@ open class KCIconViewCore : KCCoreView
 			mImageButton.setFrameSize(imgsize)
 			mLabelView.setFrameSize(labsize)
 		#else
-			mImageButton.setFrameSize(size: imgsize)
-			mLabelView.setFrameSize(size: labsize)
+			mImageButton.setFrame(size: imgsize)
+			mLabelView.setFrame(size: labsize)
 		#endif
 	}
 

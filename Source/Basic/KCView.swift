@@ -44,6 +44,16 @@ private func convertCoodinate(sourcePoint p: CGPoint, bounds b: CGRect) -> CGPoi
 
 extension KCViewBase
 {
+	public func setFrame(size sz: CGSize) {
+		self.frame.size  = sz
+		self.bounds.size = sz
+	}
+
+	open func setFrame(origin newpt: CGPoint) {
+		self.frame.origin  = newpt
+		self.bounds.origin = newpt
+	}
+
 	public func rootView() -> KCRootView? {
 		var curview: KCViewBase = self
 		while true {
@@ -146,13 +156,6 @@ extension KCViewBase
 
 	}
 
-	#if os(iOS)
-	public func setFrameSize(size sz: CGSize) {
-		self.frame.size  = sz
-		self.bounds.size = sz
-	}
-	#endif
-
 	public func setExpansionPriorities(priorities prival: ExpansionPriorities) {
 		setContentHuggingPriority(prival.holizontalHugging.toValue(), for: .horizontal)
 		setContentCompressionResistancePriority(prival.holizontalCompression.toValue(), for: .horizontal)
@@ -183,6 +186,18 @@ extension KCViewBase
 
 open class KCView : KCViewBase
 {
+	#if os(iOS)
+	public func setFrameSize(_ sz: CGSize) {
+		self.frame.size  = sz
+		self.bounds.size = sz
+	}
+
+	open func setFrameOrigin(_ newpt: CGPoint) {
+		self.frame.origin  = newpt
+		self.bounds.origin = newpt
+	}
+	#endif
+	
 	public static var noIntrinsicValue: CGFloat {
 		get {
 			#if os(OSX)
@@ -347,12 +362,6 @@ open class KCView : KCViewBase
 			self.setNeedsDisplay()
 		#endif
 	}
-
-	#if os(iOS)
-	open func setFrameSize(_ newsize: CGSize) {
-		self.frame.size = newsize
-	}
-	#endif
 
 	open override var intrinsicContentSize: CGSize {
 		get {

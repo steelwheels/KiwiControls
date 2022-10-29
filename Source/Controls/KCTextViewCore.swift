@@ -501,7 +501,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 			let txtsize  = CGSize(width: max(newsize.width - barwidth, 0), height: newsize.height)
 			mTextView.setFrameSize(txtsize)
 		#else
-			mTextView.setFrameSize(size: newsize)
+			mTextView.setFrame(size: newsize)
 		#endif
 		/* Update terminal size info */
 		updateTerminalSize()

@@ -141,8 +141,8 @@ public class KCCheckBoxCore: KCCoreView
 				labelwidth  = totalwidth / 2.0
 				switchwidth = totalwidth / 2.0
 			}
-			mSwitch.setFrameSize(size: CGSize(width: switchwidth, height: newsize.height))
-			mLabel.setFrameSize(size: CGSize(width: labelwidth, height: newsize.height))
+			mSwitch.setFrame(size: CGSize(width: switchwidth, height: newsize.height))
+			mLabel.setFrame(size: CGSize(width: labelwidth, height: newsize.height))
 		#endif
 	}
 

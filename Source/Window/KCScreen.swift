@@ -60,6 +60,5 @@ public class KCScreen
 		}
 		return result
 	}
-
-	
 }
+

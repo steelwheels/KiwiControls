@@ -20,7 +20,6 @@ open class KCImageViewCore : KCCoreView
 	@IBOutlet weak var mImageView: UIImageView!
 	#endif
 
-	private var mOriginalImage:	CNImage? = nil
 	private var mScale:		CGFloat  = 1.0
 	private let mMinimumSize:	CGSize   = CGSize(width: 10.0, height: 10.0)
 
@@ -30,37 +29,48 @@ open class KCImageViewCore : KCCoreView
 		#if os(OSX)
 			mImageView.imageScaling = .scaleProportionallyUpOrDown
 		#else
-			mImageView.contentMode = .scaleAspectFit
+			mImageView.contentMode  = .scaleAspectFit
 		#endif
 	}
 
 
 	public var image: CNImage? {
-		get { return mOriginalImage }
+		get {
+			return mImageView.image
+		}
 		set(val){
-			mOriginalImage = val
-			setupImage()
+			if let img = val {
+				mImageView.image = img
+				setupImage(image: img, scale: mScale)
+			} else {
+				mImageView.image = nil
+			}
 		}
 	}
 
 	public var scale: CGFloat {
-		get { return mScale }
+		get {
+			return mScale
+		}
 		set(val){
 			mScale = val
-			setupImage()
+			setupImage(image: mImageView.image, scale: mScale)
 		}
 	}
 
-	private func setupImage(){
+	private func setupImage(image imgp: CNImage?, scale scl: CGFloat){
 		let newsize: CGSize
-		if let orgimg = mOriginalImage {
-			newsize = CGSize(width: orgimg.size.width * mScale, height: orgimg.size.height * mScale)
+		if let orgimg = imgp {
+			newsize = CGSize(width: orgimg.size.width * scl, height: orgimg.size.height * scl)
 			mImageView.image = orgimg
 		} else {
 			newsize = mMinimumSize
 			mImageView.image = nil
 		}
 		setFrameSize(newsize)
+		#if os(iOS)
+		mImageView.center = CGPoint(x: self.frame.width / 2.0, y: self.frame.height / 2.0)
+		#endif
 		self.invalidateIntrinsicContentSize()
 	}
 
@@ -73,47 +83,25 @@ open class KCImageViewCore : KCCoreView
 	}}
 
 	#if os(OSX)
-	open override var fittingSize: CGSize {
-		get { return adjustSize(currentSize: self.imageSize, targetSize: self.frame.size) }
-	}
+	open override var fittingSize: CGSize { get {
+		if let img = mImageView.image {
+			return img.size
+		} else {
+			return mMinimumSize
+		}
+	}}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		let result = adjustSize(currentSize: self.imageSize, targetSize: size)
-		return result
+		if let img = mImageView.image {
+			return img.size.resizeWithKeepingAscpect(inSize: size)
+		} else {
+			return mMinimumSize
+		}
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
 		get { return self.imageSize }
-	}
-
-	public func adjustContentSize() {
-		if let img = mOriginalImage {
-			let newsize = adjustSize(currentSize: img.size, targetSize: self.frame.size)
-			mImageView.image = img.resize(newsize)
-		}
-	}
-
-	private func adjustSize(currentSize cursize: CGSize, targetSize targsize: CGSize) -> CGSize {
-		guard cursize.width > 0.0 && cursize.height > 0.0 else {
-			return mMinimumSize
-		}
-		guard targsize.width > 0.0 && targsize.height > 0.0 else {
-			return mMinimumSize
-		}
-		guard !(cursize == targsize) else {
-			return cursize // needless to resize
-		}
-		let newsize: CGSize
-		let ratio = cursize.width / cursize.height
-		if ratio >= 1.0 {
-			/* cursize.width >= cursize.height */
-			newsize = CGSize(width: targsize.width, height: targsize.width / ratio)
-		} else {
-			/* cursize.width <  cursize.height */
-			newsize = CGSize(width: targsize.height * ratio, height: targsize.height)
-		}
-		return newsize
 	}
 }
 

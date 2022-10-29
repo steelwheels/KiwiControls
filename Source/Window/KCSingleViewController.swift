@@ -77,6 +77,22 @@ open class KCSingleViewController: KCPlaneViewController
 		}
 	}
 
+	#if os(OSX)
+	open override func viewDidLayout() {
+		super.viewDidLayout()
+		doViewDidLayout()
+	}
+	#else
+	open override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		doViewDidLayout()
+	}
+	#endif
+
+	private func doViewDidLayout() {
+		//super.dumpView(console: self.globalConsole)
+	}
+
 	open override func parentSize() -> CGSize? {
 		if let parctrl = mParentController {
 			return parctrl.view.frame.size

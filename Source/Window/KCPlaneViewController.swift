@@ -191,6 +191,13 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		#endif
 	}
 
+	public func dumpView(console cons: CNConsole){
+		if let root = mRootView {
+			let dumper = KCViewDumper()
+			dumper.dump(view: root, console: cons)
+		}
+	}
+
 	#if os(iOS)
 	public var contentsBounds: CGRect? { get {
 		if let screen = KCScreen.shared.contentBounds {

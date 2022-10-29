@@ -115,14 +115,19 @@ open class KCCoreView: KCView
 	public override func setFrameSize(_ newsize: CGSize) {
 		if mIsSingleView {
 			if let core = mCoreView {
-				#if os(OSX)
-					core.setFrameSize(newsize)
-				#else
-					core.setFrameSize(size: newsize)
-				#endif
+				core.setFrame(size: newsize)
 			}
 		}
 		super.setFrameSize(newsize)
+	}
+
+	public override func setFrameOrigin(_ newpt: CGPoint) {
+		if mIsSingleView {
+			if let core = mCoreView {
+				core.setFrame(origin: newpt)
+			}
+		}
+		super.setFrameOrigin(newpt)
 	}
 
 	#if os(OSX)

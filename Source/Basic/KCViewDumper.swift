@@ -86,8 +86,8 @@ public class KCViewDumper: KCViewVisitor
 	open override func visit(collectionView view: KCCollectionView){
 		visit(coreView: view)
 
-		let secnum = view.numberOfSections
-		mSection.add(text: CNTextLine(string: "{sec-num: \(secnum) }"))
+		mSection.add(text: CNTextLine(string: "{sec-num: \(view.numberOfSections) }"))
+		mSection.add(text: CNTextLine(string: "{col-num: \(view.numberOfColumuns) }"))
 	}
 
 	open override func visit(navigationBar view: KCNavigationBar) {
@@ -147,7 +147,11 @@ public class KCViewDumper: KCViewVisitor
 		visit(coreView: view)
 		let fsection = CNTextSection()
 		fsection.header = "image {" ; fsection.footer = "}"
-		fsection.add(text: CNTextLine(string: "size:\(view.frame.size.description))"))
+		if let img = view.image {
+			fsection.add(text: CNTextLine(string: "size:\(img.size.description))"))
+		} else {
+			fsection.add(text: CNTextLine(string: "nil"))
+		}
 		mSection.add(text: fsection)
 	}
 

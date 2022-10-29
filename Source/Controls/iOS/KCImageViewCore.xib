@@ -13,13 +13,18 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbk-au-HzV">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nbk-au-HzV">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
-                    <autoresizingMask key="autoresizingMask"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="qe4-7p-55p"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nbk-au-HzV" firstAttribute="leading" secondItem="qe4-7p-55p" secondAttribute="leading" id="8K2-sS-6EP"/>
+                <constraint firstItem="nbk-au-HzV" firstAttribute="bottom" secondItem="qe4-7p-55p" secondAttribute="bottom" id="ASY-DF-BhY"/>
+                <constraint firstItem="nbk-au-HzV" firstAttribute="top" secondItem="qe4-7p-55p" secondAttribute="top" id="Lkd-qH-HLv"/>
+                <constraint firstItem="nbk-au-HzV" firstAttribute="trailing" secondItem="qe4-7p-55p" secondAttribute="trailing" id="tHB-oM-eb0"/>
+            </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

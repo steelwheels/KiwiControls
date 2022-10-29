@@ -44,12 +44,13 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	@IBOutlet weak var iosCollectionView: UICollectionView!
 	#endif
 
-	private var mCollectionData		 = CNCollection()
-	private var mNumberOfColumns		 = 2
-	private var mLoadedItemNum		 = 0
-	private var mMaxItemSize		 = CGSize.zero
-	private var mTotalItemNum		 = 0
-	private var mHeaderFont			 = CNFont.boldSystemFont(ofSize: CNFont.systemFontSize)
+	private var mCollectionData		= CNCollection()
+	private var mNumberOfColumns		= 2
+	private var mLoadedItemNum		= 0
+	private var mLimitItemWidth		= CGFloat(0.0)
+	private var mMaxItemSize		= CGSize.zero
+	private var mTotalItemNum		= 0
+	private var mHeaderFont			= CNFont.boldSystemFont(ofSize: CNFont.systemFontSize)
 	private var mSelectionCallback: 	SelectionCallback? = nil
 	private var mIsSelectable		= false
 	private var mIsDragSupported		= false
@@ -70,7 +71,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		KCView.setAutolayoutMode(views: [self, colview])
 		colview.dataSource = self
 		colview.delegate   = self
-		self.isSelectable  = false
+		self.isSelectable  = true
 
 		#if os(OSX)
 			let bdl = Bundle(for: KCCollectionViewCore.self)
@@ -101,12 +102,28 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		mTotalItemNum   = dat.totalCount()
 
 		updateHeaderSize(collection: dat)
+		updateLimitItemSize()
 		updateMaxItemSize()
 
 		collectionView.reloadData()
 		//self.selectItem(indexPath: IndexPath(item: 0, section: 0))
 		self.invalidateIntrinsicContentSize()
 		self.requireLayout()
+	}
+
+	private func updateLimitItemSize() {
+		if let screen = KCScreen.shared.contentBounds {
+			let colnum = CGFloat(mNumberOfColumns)
+			let limwidth: CGFloat
+			if colnum > 1 {
+				limwidth = (screen.width - (self.minimumInteritemSpacing * colnum)) / colnum
+			} else {
+				limwidth = screen.width
+			}
+			mLimitItemWidth  = limwidth
+		} else {
+			CNLog(logLevel: .error, message: "No screen information", atFunction: #function, inFile: #file)
+		}
 	}
 
 	private func updateMaxItemSize() {
@@ -119,8 +136,14 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 					switch item {
 					case .image(let url):
 						if let img = CNImage(contentsOf: url) {
-							result.width  = max(result.width, img.size.width)
-							result.height = max(result.height, img.size.height)
+							let imgsize: CGSize
+							if img.size.width > mLimitItemWidth {
+								imgsize = img.size.resizeWithKeepingAscpect(inWidth: mLimitItemWidth)
+							} else {
+								imgsize = img.size
+							}
+							result.width  = max(result.width,  imgsize.width)
+							result.height = max(result.height, imgsize.height)
 						} else {
 							CNLog(logLevel: .error, message: "Failed to load image from \(url.path)", atFunction: #function, inFile: #file)
 						}
@@ -346,40 +369,38 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		super.setFrameSize(newsize)
 	}
 
-	public override var intrinsicContentSize: CGSize {
-		get {
-			let colnum = mNumberOfColumns
+	public override var intrinsicContentSize: CGSize { get {
+		let colnum = mNumberOfColumns
 
-			let dovert: Bool
-			switch self.axis {
-			case .horizontal:	dovert = false
-			case .vertical:		dovert = true
-			@unknown default:	dovert = true
-			}
-
-			let secinset = self.sectionInset
-			let hdrsize  = self.headerReferenceSize
-			let ftrsize  = self.footerReferenceSize
-
-			var result = CGSize.zero
-			for sec in 0..<mCollectionData.sectionCount {
-				let itemnum = mCollectionData.itemCount(inSection: sec)
-				let rownum  = (itemnum + colnum - 1) / colnum
-				let width   = mMaxItemSize.width  * CGFloat(colnum)
-					      + CGFloat(colnum + 1) * self.minimumInteritemSpacing
-				let height  = mMaxItemSize.height * CGFloat(rownum)
-					      + CGFloat(rownum + 1) * self.minimumLineSpacing
-				let secsize = CGSize(width: width, height: height)
-
-				let expsize0 = CNUnionSize(sizeA: secsize,  sizeB: hdrsize, doVertical: true, spacing: 0.0)
-				let expsize1 = CNUnionSize(sizeA: expsize0, sizeB: ftrsize, doVertical: true, spacing: 0.0)
-				let expsize2 = CNExpandSize(size: expsize1, byInsets: secinset)
-
-				result = CNUnionSize(sizeA: result, sizeB: expsize2, doVertical: dovert, spacing: 0.0)
-			}
-			return result
+		let dovert: Bool
+		switch self.axis {
+		case .horizontal:	dovert = false
+		case .vertical:		dovert = true
+		@unknown default:	dovert = true
 		}
-	}
+
+		let secinset = self.sectionInset
+		let hdrsize  = self.headerReferenceSize
+		let ftrsize  = self.footerReferenceSize
+
+		var result = CGSize.zero
+		for sec in 0..<mCollectionData.sectionCount {
+			let itemnum = mCollectionData.itemCount(inSection: sec)
+			let rownum  = (itemnum + colnum - 1) / colnum
+			let width   = mMaxItemSize.width  * CGFloat(colnum)
+				      + CGFloat(colnum + 1) * self.minimumInteritemSpacing
+			let height  = mMaxItemSize.height * CGFloat(rownum)
+				      + CGFloat(rownum + 1) * self.minimumLineSpacing
+			let secsize = CGSize(width: width, height: height)
+
+			let expsize0 = CNUnionSize(sizeA: secsize,  sizeB: hdrsize, doVertical: true, spacing: 0.0)
+			let expsize1 = CNUnionSize(sizeA: expsize0, sizeB: ftrsize, doVertical: true, spacing: 0.0)
+			let expsize2 = CNExpandSize(size: expsize1, byInsets: secinset)
+
+			result = CNUnionSize(sizeA: result, sizeB: expsize2, doVertical: dovert, spacing: 0.0)
+		}
+		return result
+	}}
 
 	public func set(selectionCallback cbfunc: @escaping SelectionCallback) {
 		mSelectionCallback = cbfunc
@@ -406,9 +427,10 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		var didset = false
 		if let item = mCollectionData.value(section: indexPath.section, item: indexPath.item) {
 			if let v = view as? KCCollectionViewItem {
-				let img      = allocateImage(type: item)
-				v.image      = img
-				mMaxItemSize = CNMaxSize(sizeA: mMaxItemSize, sizeB: img.size)
+				let img = allocateImage(type: item)
+				if let newimg = v.set(image: img, in: mLimitItemWidth) {
+					mMaxItemSize = CNMaxSize(sizeA: mMaxItemSize, sizeB: newimg.size)
+				}
 				didset = true
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected item type: \(view.description)", atFunction: #function, inFile: #file)
@@ -431,7 +453,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	public func collectionView(_ collectionView: KCCollectionViewBase, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemIdentifier, for: indexPath)
 		if let vcell = cell as? KCCollectionViewCell, let item = mCollectionData.value(section: indexPath.section, item: indexPath.item) {
-			vcell.set(item: item)
+			let _ = vcell.set(item: item, in: mLimitItemWidth)
 		}
 		return cell
 	}

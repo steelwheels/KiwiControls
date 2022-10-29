@@ -25,14 +25,23 @@ public class KCCollectionViewItem: NSCollectionViewItem
 		self.textField = mTextField
 	}
 
-	public var image: CNImage? {
-		get         { return mImageData }
-		set(newimg) {
-			mImageData = newimg
-			if let img = newimg, let view = self.imageView {
-				view.image = img
-			}
+	public var image: CNImage? { get {
+		return mImageData
+	}}
+
+	public func set(image img: CNImage, in width: CGFloat) -> CNImage? {
+		let newsize: CGSize
+		if img.size.width > width {
+			newsize = img.size.resizeWithKeepingAscpect(inWidth: width)
+		} else {
+			newsize = img.size
 		}
+		let newimg = img.resized(to: newsize)
+		mImageData = newimg
+		if let view = self.imageView {
+			view.image = newimg
+		}
+		return newimg
 	}
 
 	public override func loadView() {

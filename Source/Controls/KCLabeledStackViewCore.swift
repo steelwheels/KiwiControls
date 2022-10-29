@@ -64,11 +64,8 @@ open class KCLabeledStackViewCore : KCCoreView
 
 		/* Decide label size */
 		let newlabsize = CGSize(width: newsize.width, height: LabelHeight)
-		#if os(OSX)
-			self.labelView.setFrameSize(newlabsize)
-		#else
-			self.labelView.setFrameSize(size: newlabsize)
-		#endif
+		self.labelView.setFrameSize(newlabsize)
+
 
 		/* Decide content size */
 		let contwidth: CGFloat
@@ -87,7 +84,7 @@ open class KCLabeledStackViewCore : KCCoreView
 		#if os(OSX)
 			mStack.setFrameSize(contsize)
 		#else
-			mStack.setFrameSize(size: contsize)
+			mStack.setFrameSize(contsize)
 		#endif
 	}
 

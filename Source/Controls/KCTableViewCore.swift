@@ -583,10 +583,6 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 		#endif
 	}
 
-	public override func setFrameSize(_ newsize: CGSize) {
-		super.setFrameSize(newsize)
-	}
-
 	public override var intrinsicContentSize: CGSize {
 		#if os(OSX)
 		let size: CGSize = calcContentSize()
