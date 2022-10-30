@@ -21,6 +21,10 @@ public class KCLayouter
 		CNLog(logLevel: .detail, message: "[Layout] Decide distribution")
 		let distdecider = KCDistributionDecider()
 		view.accept(visitor: distdecider)
+
+		CNLog(logLevel: .detail, message: "[Layout] Check layout")
+		let checker = KCLayoutChecker()
+		view.accept(visitor: checker)
 	}
 }
 

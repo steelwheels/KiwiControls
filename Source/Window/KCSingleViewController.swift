@@ -90,7 +90,9 @@ open class KCSingleViewController: KCPlaneViewController
 	#endif
 
 	private func doViewDidLayout() {
-		//super.dumpView(console: self.globalConsole)
+		#if false
+			super.dumpView(console: self.globalConsole)
+		#endif // false
 	}
 
 	open override func parentSize() -> CGSize? {
