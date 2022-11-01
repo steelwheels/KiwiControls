@@ -37,13 +37,13 @@ import Foundation
 		mLoaderFunction = ldr
 	}
 
-	public func openPicker(UTIs utis: Array<String>) {
+	public func openPicker(URL url: URL) {
 		/* Open document picker */
 		let picker: UIDocumentPickerViewController
 		if let p = mPickerView {
 			picker = p
 		} else {
-			picker = UIDocumentPickerViewController()
+			picker = UIDocumentPickerViewController(urls: [url], in: .open)
 			mPickerView = picker
 		}
 		picker.delegate			= self

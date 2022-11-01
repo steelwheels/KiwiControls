@@ -28,25 +28,25 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private var mViewType	: ViewType
-	private var mURLLabel	: KCTextField?	= nil
+	private var mURLLabel	: KCTextEdit?	= nil
 
-	public init(viewType type: ViewType, parentViewController parent: KCMultiViewController, console cons: CNLogConsole, doVerbose doverb: Bool) {
+	public init(viewType type: ViewType, parentViewController parent: KCMultiViewController) {
 		mViewType = type
-		super.init(parentViewController: parent, logConsole: cons, doVerbose: doverb)
+		super.init(parentViewController: parent)
 	}
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public override func loadViewContext(rootView root: KCRootView) -> KCSize {
-		let dmyrect   = KCRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+	public override func loadContext() -> KCView? {
+		let dmyrect   = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
 
-		let label0    = KCTextField(frame: dmyrect)
+		let label0    = KCTextEdit(frame: dmyrect)
 		label0.text   = mViewType.description
 
 		let button0   = KCButton(frame: dmyrect)
-		button0.title = "OK"
+		button0.value = .text("OK")
 
 		switch mViewType {
 		case .firstView:
@@ -68,7 +68,7 @@ public class SingleViewController: KCSingleViewController
 		box0.distribution	= .fill // .fillEqually
 		box0.addArrangedSubViews(subViews: [label0, button0])
 
-		let label1 = KCTextField(frame: dmyrect)
+		let label1 = KCTextEdit(frame: dmyrect)
 		label1.text = "<No URL>"
 		mURLLabel = label1
 
@@ -78,19 +78,19 @@ public class SingleViewController: KCSingleViewController
 		box1.distribution	= .fill
 		box1.addArrangedSubViews(subViews: [box0, label1])
 
-		root.setup(childView: box1)
-		return box1.fittingSize
+		return box1
 	}
 
 	private var mPicker: KCDocumentPickerViewController? = nil
 
 	private func selectInputURL() {
-		log(type: .Flow, string: "selctInputFile", file: #file, line: #line, function: #function)
+		CNLog(logLevel: .error, message: "selctInputFile", atFunction: #function, inFile: #file)
 
-		guard let parent = parentController else {
-			log(type: .Error, string: "No parent controller", file: #file, line: #line, function: #function)
-			return
-		}
+		let picker = KCDocumentPickerViewController(parentViewController: super.parentController)
+		let url    = URL(fileURLWithPath: NSHomeDirectory())
+		picker.openPicker(URL: url)
+
+		/*
 		#if true
 			parent.selectViewFile(title: "Select application", fileExtensions: ["ambpkg"], loaderFunction: {
 				(_ url: URL) -> String? in
@@ -110,7 +110,7 @@ public class SingleViewController: KCSingleViewController
 				mPicker = selview
 			}
 			selview.openPicker(UTIs: utis)
-		#endif
+		#endif*/
 	}
 
 	public override func viewWillAppear(_ animated: Bool) {
