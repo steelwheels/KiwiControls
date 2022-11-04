@@ -36,15 +36,23 @@ public class KCLayoutChecker : KCViewVisitor
 		if let win = root.window {
 			mLimitSize = win.contentMaxSize
 		} else {
-			CNLog(logLevel: .error, message: "Failed to get limit window size", atFunction: #function, inFile: #file)
-			return false
+			if let bounds = KCScreen.shared.contentBounds {
+				mLimitSize = bounds.size
+			} else {
+				CNLog(logLevel: .error, message: "Failed to get limit window size", atFunction: #function, inFile: #file)
+				return false
+			}
 		}
 		#else
 		if let bounds = KCScreen.shared.contentBounds {
 			mLimitSize = bounds.size
 		} else {
-			CNLog(logLevel: .error, message: "Failed to get limit screen size", atFunction: #function, inFile: #file)
-			return false
+			if let bounds = KCScreen.shared.contentBounds {
+				mLimitSize = bounds.size
+			} else {
+				CNLog(logLevel: .error, message: "Failed to get limit screen size", atFunction: #function, inFile: #file)
+				return false
+			}
 		}
 		#endif
 		return true
