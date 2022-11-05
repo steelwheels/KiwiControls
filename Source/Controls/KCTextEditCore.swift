@@ -142,19 +142,20 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 		}
 	}
 
-	public var number: NSNumber {
+	public var number: NSNumber? {
 		get {
 			if let val = Double(self.text) {
 				return NSNumber(value: val)
 			} else {
-				CNLog(logLevel: .error, message: "Failed to decode current number", atFunction: #function, inFile: #file)
-				return NSNumber(booleanLiteral: false)
+				return nil
 			}
 		}
 		set(newval){
-			setFormat(isNumber: true, isBold: mIsBold, isEditable: self.isEditable, decimalPlaces: mDecimalPlaces)
-			setNumber(number: newval, decimalPlaces: self.decimalPlaces)
-			mCurrentValue = .numberValue(newval)
+			if let num = newval {
+				setFormat(isNumber: true, isBold: mIsBold, isEditable: self.isEditable, decimalPlaces: mDecimalPlaces)
+				setNumber(number: num, decimalPlaces: self.decimalPlaces)
+				mCurrentValue = .numberValue(num)
+			}
 		}
 	}
 

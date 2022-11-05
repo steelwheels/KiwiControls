@@ -90,7 +90,7 @@ open class KCTextEdit : KCInterfaceView
 		set(newval){ coreView.text = newval }
 	}
 
-	public var number: NSNumber {
+	public var number: NSNumber? {
 		get { return coreView.number }
 		set(newval){ coreView.number = newval }
 	}
