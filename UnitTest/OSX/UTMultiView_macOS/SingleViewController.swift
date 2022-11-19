@@ -142,7 +142,7 @@ public class SingleViewController: KCSingleViewController
 		if let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png", subdirectory: nil, forClass: SingleViewController.self) {
 			CNLog(logLevel: .detail, message: "URL of Icon: \(imgurl.path)")
 			icon.image = CNImage.init(contentsOfFile: imgurl.path)
-			icon.size  = .normal
+			icon.size  = .regular
 			icon.buttonPressedCallback = {
 				() -> Void in
 				CNLog(logLevel: .detail, message: "Icon pressed")

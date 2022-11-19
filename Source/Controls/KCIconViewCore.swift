@@ -22,15 +22,9 @@ public class KCIconButtonCell: NSButtonCell {
 
 open class KCIconViewCore : KCCoreView
 {
-	public enum Size {
-		case small
-		case normal
-		case big
-	}
-
 	static let SmallSizeValue	: CGFloat =  32.0
-	static let NormalSizeValue	: CGFloat =  64.0
-	static let BigSizeValue		: CGFloat = 129.0
+	static let RegularSizeValue	: CGFloat =  64.0
+	static let LargeSizeValue	: CGFloat = 129.0
 
 	public var buttonPressedCallback: (() -> Void)? = nil
 
@@ -42,7 +36,7 @@ open class KCIconViewCore : KCCoreView
 	@IBOutlet weak var mLabelView: UILabel!
 	#endif
 
-	private var mSize: Size		= .normal
+	private var mSize: CNIconSize		= .regular
 
 	public func setup(frame frm: CGRect){
 		super.setup(isSingleView: false, coreView: mImageButton)
@@ -119,7 +113,7 @@ open class KCIconViewCore : KCCoreView
 		}
 	}
 
-	public var size: Size {
+	public var size: CNIconSize {
 		get	     { return mSize    }
 		set(newsize) { mSize = newsize }
 	}
@@ -157,14 +151,14 @@ open class KCIconViewCore : KCCoreView
 	private func adjustSize(in sz: CGSize) -> CGSize {
 		if sz.width <= KCIconViewCore.SmallSizeValue || sz.height <= KCIconViewCore.SmallSizeValue {
 			return adjustSize(sizeType: .small)
-		} else if sz.width <= KCIconViewCore.NormalSizeValue || sz.height <= KCIconViewCore.NormalSizeValue {
-			return adjustSize(sizeType: .normal)
+		} else if sz.width <= KCIconViewCore.RegularSizeValue || sz.height <= KCIconViewCore.RegularSizeValue {
+			return adjustSize(sizeType: .regular)
 		} else {
-			return adjustSize(sizeType: .big)
+			return adjustSize(sizeType: .large)
 		}
 	}
 
-	private func adjustSize(sizeType styp: Size) -> CGSize {
+	private func adjustSize(sizeType styp: CNIconSize) -> CGSize {
 		let targsize = sizeToValue(size: styp)
 		let spacing  = CNPreference.shared.windowPreference.spacing
 		
@@ -212,12 +206,15 @@ open class KCIconViewCore : KCCoreView
 		}
 	}
 
-	private func sizeToValue(size sz: Size) -> CGSize {
+	private func sizeToValue(size sz: CNIconSize) -> CGSize {
 		let val: CGFloat
 		switch sz {
 		case .small:	val = KCIconViewCore.SmallSizeValue
-		case .normal:	val = KCIconViewCore.NormalSizeValue
-		case .big:	val = KCIconViewCore.BigSizeValue
+		case .regular:	val = KCIconViewCore.RegularSizeValue
+		case .large:	val = KCIconViewCore.LargeSizeValue
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown icon size", atFunction: #function, inFile: #file)
+			val = KCIconViewCore.RegularSizeValue
 		}
 		return CGSize(width: val, height: val)
 	}

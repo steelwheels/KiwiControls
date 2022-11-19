@@ -14,9 +14,6 @@ import CoconutData
 
 open class KCIconView: KCInterfaceView
 {
-	public typealias Size = KCIconViewCore.Size
-
-
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -69,7 +66,7 @@ open class KCIconView: KCInterfaceView
 		set(newstr)	{ coreView.title = newstr	}
 	}
 
-	public var size: Size {
+	public var size: CNIconSize {
 		get		{ return coreView.size 		}
 		set(newsize)	{ coreView.size = newsize	}
 	}

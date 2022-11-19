@@ -195,13 +195,16 @@ open class KCDrawingView: KCStackView
 			case .mover:
 				item = .image(CNSymbol.shared.URLOfSymbol(type: .handRaised))
 			case .path(let dofill):
-				item = .image(CNSymbol.shared.URLOfSymbol(type: .pencil(dofill)))
+				let symtype = CNSymbol.SymbolType.pencil(doFill: dofill)
+				item = .image(CNSymbol.shared.URLOfSymbol(type: symtype))
 			case .rect(let dofill, let hasround):
-				item = .image(CNSymbol.shared.URLOfSymbol(type: .rectangle(dofill, hasround)))
+				let symtype = CNSymbol.SymbolType.rect(doFill: dofill, doRound:hasround)
+				item = .image(CNSymbol.shared.URLOfSymbol(type: symtype))
 			case .string:
 				item = .image(CNSymbol.shared.URLOfSymbol(type: .characterA))
 			case .oval(let dofill):
-				item = .image(CNSymbol.shared.URLOfSymbol(type: .oval(dofill)))
+				let symtype = CNSymbol.SymbolType.oval(doFill: dofill)
+				item = .image(CNSymbol.shared.URLOfSymbol(type: symtype))
 			}
 			images.append(item)
 		}
