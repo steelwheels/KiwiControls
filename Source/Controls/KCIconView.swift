@@ -14,6 +14,9 @@ import CoconutData
 
 open class KCIconView: KCInterfaceView
 {
+	public typealias Size = KCIconViewCore.Size
+
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame) ;
@@ -66,9 +69,9 @@ open class KCIconView: KCInterfaceView
 		set(newstr)	{ coreView.title = newstr	}
 	}
 
-	public var scale: CGFloat {
-		get		{ return coreView.scale 	}
-		set(newscale)	{ coreView.scale = newscale	}
+	public var size: Size {
+		get		{ return coreView.size 		}
+		set(newsize)	{ coreView.size = newsize	}
 	}
 
 	open override func accept(visitor vis: KCViewVisitor){

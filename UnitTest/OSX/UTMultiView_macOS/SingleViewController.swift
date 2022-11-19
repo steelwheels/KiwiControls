@@ -142,7 +142,7 @@ public class SingleViewController: KCSingleViewController
 		if let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png", subdirectory: nil, forClass: SingleViewController.self) {
 			CNLog(logLevel: .detail, message: "URL of Icon: \(imgurl.path)")
 			icon.image = CNImage.init(contentsOfFile: imgurl.path)
-			icon.scale = 0.2
+			icon.size  = .normal
 			icon.buttonPressedCallback = {
 				() -> Void in
 				CNLog(logLevel: .detail, message: "Icon pressed")
@@ -161,10 +161,12 @@ public class SingleViewController: KCSingleViewController
 
 	private func allocatePopupMenu() -> KCPopupMenu {
 		let newmenu = KCPopupMenu()
-		newmenu.addItems(withTitles: ["hello", "good morning"])
+		newmenu.addItem(KCPopupMenu.MenuItem(title: "hello", intValue: 0))
+		newmenu.addItem(KCPopupMenu.MenuItem(title: "good morning", intValue: 1))
 		newmenu.callbackFunction = {
-			(_ index: Int, _ title: String?) -> Void in
-			CNLog(logLevel: .error, message: "PopupMenu: select idx=\(index) title=\(String(describing: title))")
+			(_ val: CNValue) -> Void in
+			CNLog(logLevel: .error, message: "PopupMenu: value=\(val.description)")
+
 		}
 		return newmenu ;
 	}
@@ -203,16 +205,12 @@ public class SingleViewController: KCSingleViewController
 	#endif
 
 	private func doDumpView(message msg: String){
-		if let view = self.rootView {
-			if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .detail) {
-				let cons = CNLogManager.shared.console
-				cons.print(string: msg + "\n")
-				let dumper = KCViewDumper()
-				dumper.dump(view: view, console: cons)
-			}
-		} else {
-			fatalError("No root view")
+		if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .detail) {
+			let cons = CNLogManager.shared.console
+			cons.print(string: msg + "\n")
+			super.dumpView(console: cons)
 		}
+
 	}
 }
 
