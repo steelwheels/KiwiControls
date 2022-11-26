@@ -15,7 +15,6 @@ import CoconutData
 public class KCRadioButton: KCInterfaceView
 {
 	public typealias CallbackFunction = KCRadioButtonCore.CallbackFunction
-	public typealias Status           = KCRadioButtonCore.Status
 
 	#if os(OSX)
 	public override init(frame : NSRect){
@@ -64,14 +63,9 @@ public class KCRadioButton: KCInterfaceView
 		set(newval) { coreView.title = newval }
 	}
 
-	public var state: Bool {
+	public var state: CNButtonState {
 		get         { return coreView.state }
 		set(newval) { coreView.state = newval }
-	}
-
-	public var isEnabled: Bool {
-		get         { return coreView.isEnabled }
-		set(newval) { coreView.isEnabled = newval }
 	}
 
 	public var minLabelWidth: Int {

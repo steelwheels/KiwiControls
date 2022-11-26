@@ -81,7 +81,7 @@ public class SingleViewController: KCSingleViewController
 		imgview0.scale = 0.2
 
 		let radio     = KCRadioButtons()
-		radio.numberOfColumns = 3
+		radio.columnNum = 3
 		radio.setLabels(labels: [
 			KCRadioButtons.Label(title: "a", id: 0),
 			KCRadioButtons.Label(title: "b", id: 1),
