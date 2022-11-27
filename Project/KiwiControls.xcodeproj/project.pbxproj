@@ -163,8 +163,6 @@
 		0544EB96251775E5002DE6A8 /* KCConsoleViewCore.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0544EB86251775E5002DE6A8 /* KCConsoleViewCore.xib */; };
 		0544EB9C25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */; };
 		0544EB9D25177619002DE6A8 /* KCTerminalPreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */; };
-		0544EBA52517764A002DE6A8 /* KCColorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBA22517764A002DE6A8 /* KCColorTable.swift */; };
-		0544EBA62517764A002DE6A8 /* KCColorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBA22517764A002DE6A8 /* KCColorTable.swift */; };
 		0544EBB325177676002DE6A8 /* KCLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */; };
 		0544EBB425177676002DE6A8 /* KCLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */; };
 		0544EBB525177676002DE6A8 /* KCPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EBAB25177676002DE6A8 /* KCPreference.swift */; };
@@ -624,7 +622,6 @@
 		0544EB84251775E5002DE6A8 /* KCCheckBoxCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCCheckBoxCore.xib; sourceTree = "<group>"; };
 		0544EB86251775E5002DE6A8 /* KCConsoleViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCConsoleViewCore.xib; sourceTree = "<group>"; };
 		0544EB9B25177619002DE6A8 /* KCTerminalPreferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCTerminalPreferenceView.swift; sourceTree = "<group>"; };
-		0544EBA22517764A002DE6A8 /* KCColorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCColorTable.swift; sourceTree = "<group>"; };
 		0544EBAA25177676002DE6A8 /* KCLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCLayoutConstraint.swift; sourceTree = "<group>"; };
 		0544EBAB25177676002DE6A8 /* KCPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCPreference.swift; sourceTree = "<group>"; };
 		0544EBAC25177676002DE6A8 /* KCType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KCType.swift; sourceTree = "<group>"; };
@@ -966,7 +963,6 @@
 				0544EBA92517765A002DE6A8 /* Basic */,
 				0544EB9A25177601002DE6A8 /* Combination */,
 				0544EAEE2517758C002DE6A8 /* Controls */,
-				05C3F1B125B04C27000988CA /* Data */,
 				0544EAE825177173002DE6A8 /* Document */,
 				0544EAE22517715A002DE6A8 /* Font */,
 				0544EABB25176FDF002DE6A8 /* Graphics */,
@@ -1328,14 +1324,6 @@
 				05B7505C2539D2440034D8CB /* UTMultiView_macOS.entitlements */,
 			);
 			path = UTMultiView_macOS;
-			sourceTree = "<group>";
-		};
-		05C3F1B125B04C27000988CA /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				0544EBA22517764A002DE6A8 /* KCColorTable.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		05DE140827925E1E0069A432 /* Resource */ = {
@@ -2035,7 +2023,6 @@
 				0544EB18251775A3002DE6A8 /* KCTableViewCore.swift in Sources */,
 				05A39D5B26763423005ED17F /* KCCoreView.swift in Sources */,
 				0544EBB725177676002DE6A8 /* KCType.swift in Sources */,
-				0544EBA52517764A002DE6A8 /* KCColorTable.swift in Sources */,
 				0544EB22251775A3002DE6A8 /* KCContextualMenu.swift in Sources */,
 				0544EB4C251775A3002DE6A8 /* KCImageViewCore.swift in Sources */,
 				0544EAE42517716D002DE6A8 /* KCFontTable.swift in Sources */,
@@ -2086,7 +2073,6 @@
 				05A39D5C26763423005ED17F /* KCCoreView.swift in Sources */,
 				0544EB49251775A3002DE6A8 /* KCColorSelectorCore.swift in Sources */,
 				0581C92F27213B83008E7472 /* KCCollectionViewCell.swift in Sources */,
-				0544EBA62517764A002DE6A8 /* KCColorTable.swift in Sources */,
 				0544EB13251775A3002DE6A8 /* KCPopupMenu.swift in Sources */,
 				0544EB1B251775A3002DE6A8 /* KCImageView.swift in Sources */,
 				05ED4A75269346CE008C8FCE /* KCTableCellView.swift in Sources */,
