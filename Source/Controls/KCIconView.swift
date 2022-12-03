@@ -56,9 +56,9 @@ open class KCIconView: KCInterfaceView
 		set(newcb) { coreView.buttonPressedCallback = newcb	}
 	}
 
-	public var image: CNImage? {
-		get		{ return coreView.image }
-		set(newimg)	{ coreView.image = newimg}
+	public var symbol: CNSymbol {
+		get		{ return coreView.symbol   }
+		set(newsym)	{ coreView.symbol = newsym }
 	}
 
 	public var title: String {
@@ -66,7 +66,7 @@ open class KCIconView: KCInterfaceView
 		set(newstr)	{ coreView.title = newstr	}
 	}
 
-	public var size: CNIconSize {
+	public var size: CNSymbolSize {
 		get		{ return coreView.size 		}
 		set(newsize)	{ coreView.size = newsize	}
 	}

@@ -29,19 +29,13 @@ public class KCCollectionViewItem: NSCollectionViewItem
 		return mImageData
 	}}
 
-	public func set(image img: CNImage, in width: CGFloat) -> CNImage? {
-		let newsize: CGSize
-		if img.size.width > width {
-			newsize = img.size.resizeWithKeepingAscpect(inWidth: width)
-		} else {
-			newsize = img.size
-		}
-		let newimg = img.resized(to: newsize)
-		mImageData = newimg
+	public func set(symbol sym: CNSymbol, size sz: CNSymbolSize) -> CNImage? {
+		let img    = sym.load(size: sz)
+		mImageData = img
 		if let view = self.imageView {
-			view.image = newimg
+			view.image = img
 		}
-		return newimg
+		return img
 	}
 
 	public override func loadView() {

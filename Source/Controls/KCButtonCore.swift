@@ -12,23 +12,9 @@
 #endif
 import CoconutData
 
-public enum KCButtonSymbol {
-	case leftArrow
-	case rightArrow
-
-	public var description: String { get {
-		let result: String
-		switch self {
-		case .leftArrow:	result = "left-arrow"
-		case .rightArrow:	result = "right-arrow"
-		}
-		return result
-	}}
-}
-
 public enum KCButtonValue {
 	case text(String)
-	case symbol(KCButtonSymbol)
+	case symbol(CNSymbol)
 }
 
 public class KCButtonCore: KCCoreView
@@ -78,7 +64,7 @@ public class KCButtonCore: KCCoreView
 					mButton.imagePosition = .noImage
 				#endif
 			case .symbol(let sym):
-				let img = loadSymbol(symbol: sym)
+				let img = sym.load(size: .regular)
 				#if os(OSX)
 					mButton.bezelStyle = .regularSquare
 					mButton.image = img
@@ -89,15 +75,6 @@ public class KCButtonCore: KCCoreView
 			}
 			mButtonValue = newval
 		}
-	}
-
-	private func loadSymbol(symbol sym: KCButtonSymbol) -> CNImage {
-		let type: CNSymbol.SymbolType
-		switch sym {
-		case .leftArrow:	type = .chevronBackward
-		case .rightArrow:	type = .chevronForward
-		}
-		return CNSymbol.shared.loadImage(type: type)
 	}
 
 	public var isEnabled: Bool {

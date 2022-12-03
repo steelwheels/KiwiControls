@@ -188,28 +188,25 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func allocateMainToolImages(mainTools tools: Array<KCVectorToolType>) -> CNCollection {
-		var images: Array<CNCollection.Item> = []
+		var items: Array<CNSymbol> = []
 		for tool in tools {
-			let item: CNCollection.Item
+			let item: CNSymbol
 			switch tool {
 			case .mover:
-				item = .image(CNSymbol.shared.URLOfSymbol(type: .handRaised))
+				item = .handRaised
 			case .path(let dofill):
-				let symtype = CNSymbol.SymbolType.pencil(doFill: dofill)
-				item = .image(CNSymbol.shared.URLOfSymbol(type: symtype))
+				item = CNSymbol.pencil(doFill: dofill)
 			case .rect(let dofill, let hasround):
-				let symtype = CNSymbol.SymbolType.rect(doFill: dofill, doRound:hasround)
-				item = .image(CNSymbol.shared.URLOfSymbol(type: symtype))
+				item = CNSymbol.rectangle(doFill: dofill, hasRound: hasround)
 			case .string:
-				item = .image(CNSymbol.shared.URLOfSymbol(type: .characterA))
+				item = .character
 			case .oval(let dofill):
-				let symtype = CNSymbol.SymbolType.oval(doFill: dofill)
-				item = .image(CNSymbol.shared.URLOfSymbol(type: symtype))
+				item = CNSymbol.oval(doFill: dofill)
 			}
-			images.append(item)
+			items.append(item)
 		}
 		let cdata = CNCollection()
-		cdata.add(header: "", footer: "", items: images)
+		cdata.add(header: "", footer: "", items: items)
 		return cdata
 	}
 
@@ -234,19 +231,13 @@ open class KCDrawingView: KCStackView
 	}
 
 	private func allocateSubToolImages(toolType tool: KCVectorToolType) -> CNCollection {
-		let images: Array<CNCollection.Item>
+		let symbols: Array<CNSymbol>
 		switch tool {
 		case .mover, .path, .rect, .oval, .string:
-			images = [
-				.image(CNSymbol.shared.URLOfSymbol(type: .line1P )),
-				.image(CNSymbol.shared.URLOfSymbol(type: .line2P )),
-				.image(CNSymbol.shared.URLOfSymbol(type: .line4P )),
-				.image(CNSymbol.shared.URLOfSymbol(type: .line8P )),
-				.image(CNSymbol.shared.URLOfSymbol(type: .line16P))
-			]
+			symbols = [.line_1p, .line_2p, .line_4p, .line_8p, .line_16p]
 		}
 		let cdata = CNCollection()
-		cdata.add(header: "", footer: "", items: images)
+		cdata.add(header: "", footer: "", items: symbols)
 		return cdata
 	}
 

@@ -22,10 +22,6 @@ public class KCIconButtonCell: NSButtonCell {
 
 open class KCIconViewCore : KCCoreView
 {
-	static let SmallSizeValue	: CGFloat =  32.0
-	static let RegularSizeValue	: CGFloat =  64.0
-	static let LargeSizeValue	: CGFloat = 129.0
-
 	public var buttonPressedCallback: (() -> Void)? = nil
 
 	#if os(OSX)
@@ -36,13 +32,16 @@ open class KCIconViewCore : KCCoreView
 	@IBOutlet weak var mLabelView: UILabel!
 	#endif
 
-	private var mSize: CNIconSize		= .regular
+	private var mSymbol:	CNSymbol	= .character
+	private var mSize:	CNSymbolSize	= .regular
 
 	public func setup(frame frm: CGRect){
 		super.setup(isSingleView: false, coreView: mImageButton)
 		KCView.setAutolayoutMode(views: [self, mImageButton])
 
-		self.title = "Untitled"
+		self.title  = "Untitled"
+		self.symbol = .character
+
 		#if os(OSX)
 		mImageButton.imageScaling	= .scaleProportionallyUpOrDown
 		mImageButton.imagePosition	= .imageOnly
@@ -69,26 +68,29 @@ open class KCIconViewCore : KCCoreView
 	}
 	#endif
 
-	public var image: CNImage? {
+	public var symbol: CNSymbol {
 		get {
 			#if os(OSX)
-				return mImageButton.image
+				return mSymbol
 			#else
-				return mImageButton.image(for: .normal)
+				return mSymbol
 			#endif
 		}
-		set(newimg)	{
-			guard let img = newimg else {
-				CNLog(logLevel: .error, message: "No image")
-				return
-			}
+		set(newsym)	{
+			let img = newsym.load(size: mSize)
 			#if os(OSX)
 				mImageButton.image = img
 			#else
 				mImageButton.setImage(img, for: .normal)
 			#endif
 			mImageButton.invalidateIntrinsicContentSize()
+			mSymbol = newsym
 		}
+	}
+
+	public var size: CNSymbolSize {
+		get	     { return mSize    }
+		set(newsize) { mSize = newsize }
 	}
 
 	public var title: String {
@@ -113,16 +115,6 @@ open class KCIconViewCore : KCCoreView
 		}
 	}
 
-	public var size: CNIconSize {
-		get	     { return mSize    }
-		set(newsize) { mSize = newsize }
-	}
-
-	open override func setFrameSize(_ newsize: CGSize) {
-		let _ = adjustSize(in: newsize)
-		super.setFrameSize(newsize)
-	}
-
 	public override func invalidateIntrinsicContentSize() {
 		super.invalidateIntrinsicContentSize()
 		// The size of image is NOT invalidated
@@ -134,7 +126,7 @@ open class KCIconViewCore : KCCoreView
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return adjustSize(in: size)
+		return requiredSize()
 	}
 	#endif
 
@@ -146,77 +138,6 @@ open class KCIconViewCore : KCCoreView
 		let btnsize = mImageButton.intrinsicContentSize
 		let labsize = mLabelView.intrinsicContentSize
 		return CNUnionSize(sizeA: btnsize, sizeB: labsize, doVertical: true, spacing: CNPreference.shared.windowPreference.spacing)
-	}
-
-	private func adjustSize(in sz: CGSize) -> CGSize {
-		if sz.width <= KCIconViewCore.SmallSizeValue || sz.height <= KCIconViewCore.SmallSizeValue {
-			return adjustSize(sizeType: .small)
-		} else if sz.width <= KCIconViewCore.RegularSizeValue || sz.height <= KCIconViewCore.RegularSizeValue {
-			return adjustSize(sizeType: .regular)
-		} else {
-			return adjustSize(sizeType: .large)
-		}
-	}
-
-	private func adjustSize(sizeType styp: CNIconSize) -> CGSize {
-		let targsize = sizeToValue(size: styp)
-		let spacing  = CNPreference.shared.windowPreference.spacing
-		
-		/* Get label size */
-		let labsize: CGSize
-		mLabelView.sizeToFit()
-		labsize = mLabelView.frame.size
-		#if os(OSX)
-			mLabelView.setFrameSize(labsize)
-		#else
-			mLabelView.setFrame(size: labsize)
-		#endif
-
-		/* Adjust image size */
-		let imgsize: CGSize
-		if targsize.height > (labsize.height + spacing) {
-			if let img = imageInButton() {
-				let reqsize = CGSize(width: targsize.width, height: targsize.height - (labsize.height + spacing))
-				imgsize = adjustImageSize(image: img, targetSize: reqsize)
-			} else {
-				CNLog(logLevel: .error, message: "No image in icon", atFunction: #function, inFile: #file)
-				imgsize = CGSize.zero
-			}
-		} else {
-			CNLog(logLevel: .error, message: "No space to put image in icon", atFunction: #function, inFile: #file)
-			imgsize = CGSize.zero
-		}
-
-		return CNUnionSize(sizeA: imgsize, sizeB: labsize, doVertical: true, spacing: 0.0)
-	}
-
-	private func adjustImageSize(image img: CNImage, targetSize target: CGSize) -> CGSize {
-		let newsize = img.size.resizeWithKeepingAscpect(inSize: target)
-		if let newimg = img.resized(to: newsize) {
-			setImageToButton(image: newimg)
-			#if os(OSX)
-				mImageButton.setFrameSize(newsize)
-			#else
-				mImageButton.setFrame(size: newsize)
-			#endif
-			return newsize
-		} else {
-			CNLog(logLevel: .error, message: "Failed to resize image", atFunction: #function, inFile: #file)
-			return img.size
-		}
-	}
-
-	private func sizeToValue(size sz: CNIconSize) -> CGSize {
-		let val: CGFloat
-		switch sz {
-		case .small:	val = KCIconViewCore.SmallSizeValue
-		case .regular:	val = KCIconViewCore.RegularSizeValue
-		case .large:	val = KCIconViewCore.LargeSizeValue
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown icon size", atFunction: #function, inFile: #file)
-			val = KCIconViewCore.RegularSizeValue
-		}
-		return CGSize(width: val, height: val)
 	}
 
 	private func imageInButton() -> CNImage? {
