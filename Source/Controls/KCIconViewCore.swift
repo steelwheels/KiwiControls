@@ -69,28 +69,25 @@ open class KCIconViewCore : KCCoreView
 	#endif
 
 	public var symbol: CNSymbol {
-		get {
-			#if os(OSX)
-				return mSymbol
-			#else
-				return mSymbol
-			#endif
-		}
-		set(newsym)	{
-			let img = newsym.load(size: mSize)
-			#if os(OSX)
-				mImageButton.image = img
-			#else
-				mImageButton.setImage(img, for: .normal)
-			#endif
-			mImageButton.invalidateIntrinsicContentSize()
-			mSymbol = newsym
-		}
+		get	     { return mSymbol				 }
+		set(newsym)  { setSymbol(symbol: newsym, size: mSize)	 }
 	}
 
 	public var size: CNSymbolSize {
-		get	     { return mSize    }
-		set(newsize) { mSize = newsize }
+		get	     { return mSize    				 }
+		set(newsize) { setSymbol(symbol: mSymbol, size: newsize) }
+	}
+
+	private func setSymbol(symbol sym: CNSymbol, size sz: CNSymbolSize) {
+		let img = sym.load(size: sz.toSize())
+		#if os(OSX)
+			mImageButton.image = img
+		#else
+			mImageButton.setImage(img, for: .normal)
+		#endif
+		mImageButton.invalidateIntrinsicContentSize()
+		mSymbol = sym
+		mSize   = sz
 	}
 
 	public var title: String {

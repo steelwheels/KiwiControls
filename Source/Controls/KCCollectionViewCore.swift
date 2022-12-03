@@ -432,7 +432,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		var result: NSPasteboardWriting? = nil
 		if mIsDragSupported {
 			if let item = mCollectionData.value(section: index.section, item: index.item) {
-				result   = item.load(size: mMaxItemSize) as NSImage
+				result   = item.load(size: mMaxItemSize.toSize()) as NSImage
 			}
 		}
 		return result

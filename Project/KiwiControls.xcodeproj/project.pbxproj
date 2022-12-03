@@ -871,7 +871,6 @@
 		0518974225176DD300487B45 = {
 			isa = PBXGroup;
 			children = (
-				05CA7A5B29108C580028E049 /* UTPickerView.entitlements */,
 				0544EA6425176E71002DE6A8 /* Source */,
 				0554C8EC26C91F480060BFE9 /* Resource */,
 				05EB004C2518277B00636C82 /* UnitTest */,
@@ -1372,6 +1371,7 @@
 		05F71F4E29100EFD0002072A /* UTPickerView */ = {
 			isa = PBXGroup;
 			children = (
+				05CA7A5B29108C580028E049 /* UTPickerView.entitlements */,
 				05F71F4F29100EFD0002072A /* AppDelegate.swift */,
 				05F71F5129100EFD0002072A /* SceneDelegate.swift */,
 				05F71F79291010B50002072A /* SingleViewController.swift */,
@@ -3993,7 +3993,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = UTPickerView.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "../UnitTest/iOS/UTPickerView/UTPickerView.entitlements ";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -4044,7 +4044,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = UTPickerView.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "../UnitTest/iOS/UTPickerView/UTPickerView.entitlements ";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;

@@ -30,7 +30,7 @@ public class KCCollectionViewItem: NSCollectionViewItem
 	}}
 
 	public func set(symbol sym: CNSymbol, size sz: CNSymbolSize) -> CNImage? {
-		let img    = sym.load(size: sz)
+		let img    = sym.load(size: sz.toSize())
 		mImageData = img
 		if let view = self.imageView {
 			view.image = img

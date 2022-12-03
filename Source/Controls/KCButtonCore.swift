@@ -28,6 +28,7 @@ public class KCButtonCore: KCCoreView
 	public var buttonPressedCallback: (() -> Void)? = nil
 
 	private var mButtonValue:	KCButtonValue = .text("")
+	private var mButtonSize:	CNSymbolSize  = .regular
 
 	public func setup(frame frm: CGRect) -> Void {
 		super.setup(isSingleView: true, coreView: mButton)
@@ -64,7 +65,7 @@ public class KCButtonCore: KCCoreView
 					mButton.imagePosition = .noImage
 				#endif
 			case .symbol(let sym):
-				let img = sym.load(size: .regular)
+				let img = sym.load(size: mButtonSize.toSize())
 				#if os(OSX)
 					mButton.bezelStyle = .regularSquare
 					mButton.image = img
