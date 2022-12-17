@@ -49,7 +49,7 @@ extension KCViewBase
 		self.bounds.size = sz
 	}
 
-	open func setFrame(origin newpt: CGPoint) {
+	public func setFrame(origin newpt: CGPoint) {
 		self.frame.origin  = newpt
 		self.bounds.origin = newpt
 	}
