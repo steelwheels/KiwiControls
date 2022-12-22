@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,8 +13,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="VfZ-qR-Qme">
-                    <rect key="frame" x="0.0" y="32" width="480" height="240"/>
-                    <buttonCell key="cell" type="square" title="Untitled" bezelStyle="shadowlessSquare" imagePosition="above" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="f16-Oj-O0Z" customClass="KCIconButtonCell" customModule="KiwiControls" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="40" width="480" height="232"/>
+                    <buttonCell key="cell" type="square" title="Untitled" bezelStyle="shadowlessSquare" imagePosition="above" alignment="center" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="f16-Oj-O0Z" customClass="KCIconButtonCell" customModule="KiwiControls" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -26,7 +25,7 @@
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DMW-2f-o2x">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="FTh-N6-ErA"/>
+                        <constraint firstAttribute="height" constant="32" id="duk-GG-sFV"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" title="Untitled" drawsBackground="YES" id="lQe-iu-h3x">
                         <font key="font" metaFont="system"/>
@@ -36,19 +35,19 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="VfZ-qR-Qme" secondAttribute="trailing" id="2tw-DG-vyD"/>
-                <constraint firstItem="VfZ-qR-Qme" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="3wE-SH-yW4"/>
-                <constraint firstAttribute="trailing" secondItem="DMW-2f-o2x" secondAttribute="trailing" id="B5q-5N-kzb"/>
-                <constraint firstItem="VfZ-qR-Qme" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Q47-H1-Wr0"/>
-                <constraint firstItem="DMW-2f-o2x" firstAttribute="top" secondItem="VfZ-qR-Qme" secondAttribute="bottom" id="cdr-3R-OPv"/>
-                <constraint firstItem="DMW-2f-o2x" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="h1P-9L-cVd"/>
-                <constraint firstAttribute="bottom" secondItem="DMW-2f-o2x" secondAttribute="bottom" id="lOh-i5-CEC"/>
+                <constraint firstAttribute="trailing" secondItem="VfZ-qR-Qme" secondAttribute="trailing" id="88P-JU-6Qd"/>
+                <constraint firstItem="DMW-2f-o2x" firstAttribute="top" secondItem="VfZ-qR-Qme" secondAttribute="bottom" constant="8" symbolic="YES" id="Ok4-PF-4LS"/>
+                <constraint firstItem="VfZ-qR-Qme" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Snb-ES-fQH"/>
+                <constraint firstItem="VfZ-qR-Qme" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="aEL-HP-Plg"/>
+                <constraint firstAttribute="trailing" secondItem="DMW-2f-o2x" secondAttribute="trailing" id="qbj-ax-H8c"/>
+                <constraint firstAttribute="bottom" secondItem="DMW-2f-o2x" secondAttribute="bottom" id="qno-4f-jMK"/>
+                <constraint firstItem="DMW-2f-o2x" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="uKr-oe-pdw"/>
             </constraints>
             <connections>
                 <outlet property="mImageButton" destination="VfZ-qR-Qme" id="jmj-4L-g7w"/>
                 <outlet property="mLabelView" destination="DMW-2f-o2x" id="COM-lo-k82"/>
             </connections>
-            <point key="canvasLocation" x="-100" y="121"/>
+            <point key="canvasLocation" x="73" y="96"/>
         </customView>
     </objects>
 </document>

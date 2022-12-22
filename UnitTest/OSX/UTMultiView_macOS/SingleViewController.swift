@@ -87,11 +87,9 @@ public class SingleViewController: KCSingleViewController
 			KCRadioButtons.Label(title: "b", id: 1),
 			KCRadioButtons.Label(title: "c", id: 2)
 		])
-		radio.setEnable(enables: [
-			.boolValue(true),
-			.numberValue(NSNumber(booleanLiteral: true)),
-			.boolValue(false)
-		])
+		radio.setEnable(labelId: 0, enable: true)
+		radio.setEnable(labelId: 1, enable: false)
+		radio.setEnable(labelId: 2, enable: false)
 		radio.callback = {
 			(_ index: Int?) -> Void in
 			NSLog("Radio index: \(String(describing: index))")
@@ -139,16 +137,11 @@ public class SingleViewController: KCSingleViewController
 	private func allocateIcon() -> KCIconView {
 		let icon   = KCIconView()
 		icon.title = "Icon Title"
-		if let imgurl = CNFilePath.URLForResourceFile(fileName: "steel-wheels", fileExtension: "png", subdirectory: nil, forClass: SingleViewController.self) {
-			CNLog(logLevel: .detail, message: "URL of Icon: \(imgurl.path)")
-			icon.image = CNImage.init(contentsOfFile: imgurl.path)
-			icon.size  = .regular
-			icon.buttonPressedCallback = {
-				() -> Void in
-				CNLog(logLevel: .detail, message: "Icon pressed")
-			}
-		} else {
-			CNLog(logLevel: .error, message: "Invalid URL of image")
+		icon.symbol = CNSymbol.character
+		icon.size   = .regular
+		icon.buttonPressedCallback = {
+			() -> Void in
+			CNLog(logLevel: .detail, message: "Icon pressed")
 		}
 		return icon
 	}
