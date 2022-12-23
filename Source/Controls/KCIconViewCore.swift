@@ -80,7 +80,7 @@ open class KCIconViewCore : KCCoreView
 	}
 
 	private func setSymbol(symbol sym: CNSymbol, size sz: CNSymbolSize) {
-		let img = sym.load(size: sz.toSize())
+		let img = sym.load(size: sz)
 		#if os(OSX)
 			mImageButton.image = img
 			mImageButton.needsDisplay = true

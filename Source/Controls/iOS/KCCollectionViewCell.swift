@@ -31,7 +31,7 @@ public class KCCollectionViewCell: UICollectionViewCell
 	}}
 
 	public func set(symbol sym: CNSymbol, size sz: CNSymbolSize) -> CNImage {
-		let img = sym.load(size: sz.toSize())
+		let img = sym.load(size: sz)
 		mImage = img
 		return img
 	}

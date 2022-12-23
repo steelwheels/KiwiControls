@@ -43,7 +43,7 @@ import Foundation
 		if let p = mPickerView {
 			picker = p
 		} else {
-			picker = UIDocumentPickerViewController(urls: [url], in: .open)
+			picker = UIDocumentPickerViewController(forExporting: [url])
 			mPickerView = picker
 		}
 		picker.delegate			= self
