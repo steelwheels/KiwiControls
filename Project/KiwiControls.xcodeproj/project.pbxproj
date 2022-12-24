@@ -17,6 +17,8 @@
 		052484B1256A652F001BD219 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052484B0256A652F001BD219 /* StackViewController.swift */; };
 		052E3A4127E0A6B100DC8266 /* dummy-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052E3A2F27E0A68100DC8266 /* dummy-table.json */; };
 		052E3A5127E0A6D800DC8266 /* dummy-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 052E3A2F27E0A68100DC8266 /* dummy-table.json */; };
+		0530F1F629566F1600AD28B4 /* KCLayoutPropagator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530F1F529566F1600AD28B4 /* KCLayoutPropagator.swift */; };
+		0530F1F729566F1600AD28B4 /* KCLayoutPropagator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530F1F529566F1600AD28B4 /* KCLayoutPropagator.swift */; };
 		053A659827927C7300F5A363 /* storage.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05DE142327925FAD0069A432 /* storage.json */; };
 		053D120328DF4FB6006B8F49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D120228DF4FB6006B8F49 /* AppDelegate.swift */; };
 		053D120528DF4FB6006B8F49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D120428DF4FB6006B8F49 /* SceneDelegate.swift */; };
@@ -24,14 +26,6 @@
 		053D120A28DF4FB6006B8F49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053D120828DF4FB6006B8F49 /* Main.storyboard */; };
 		053D120C28DF4FC1006B8F49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053D120B28DF4FC1006B8F49 /* Assets.xcassets */; };
 		053D120F28DF4FC1006B8F49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053D120D28DF4FC1006B8F49 /* LaunchScreen.storyboard */; };
-		053D122428DF511F006B8F49 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
-		053D122528DF5120006B8F49 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		053D122628DF5120006B8F49 /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FCC1D26BB942C006F4A5F /* CoconutDatabase.xcframework */; };
-		053D122728DF5120006B8F49 /* CoconutDatabase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 055FCC1D26BB942C006F4A5F /* CoconutDatabase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		053D122828DF5120006B8F49 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0564519125184C5A006C2430 /* CoconutShell.xcframework */; };
-		053D122928DF5120006B8F49 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0564519125184C5A006C2430 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		053D122A28DF5120006B8F49 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; };
-		053D122B28DF5120006B8F49 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 056451B1251853F8006C2430 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0544EA5025176E06002DE6A8 /* KiwiControls_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA4E25176E06002DE6A8 /* KiwiControls_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0544EA5E25176E23002DE6A8 /* KiwiControls_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0544EA5C25176E23002DE6A8 /* KiwiControls_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0544EA7025176EC6002DE6A8 /* KCPlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544EA6625176EC6002DE6A8 /* KCPlaneViewController.swift */; };
@@ -404,6 +398,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		051549172956F0D400C94957 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		052E3A4027E0A6A100DC8266 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,20 +437,6 @@
 				059C22E027D4A03D00C5D6E1 /* storage2.json in CopyFiles */,
 				053A659827927C7300F5A363 /* storage.json in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		053D122C28DF5120006B8F49 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				053D122928DF5120006B8F49 /* CoconutShell.xcframework in Embed Frameworks */,
-				053D122728DF5120006B8F49 /* CoconutDatabase.xcframework in Embed Frameworks */,
-				053D122528DF5120006B8F49 /* CoconutData.xcframework in Embed Frameworks */,
-				053D122B28DF5120006B8F49 /* KiwiControls.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		05589AE6261213DC00774D41 /* Embed Frameworks */ = {
@@ -529,6 +519,7 @@
 		0524849E256A609A001BD219 /* UTStackView_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTStackView_macOS.entitlements; sourceTree = "<group>"; };
 		052484B0256A652F001BD219 /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		052E3A2F27E0A68100DC8266 /* dummy-table.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "dummy-table.json"; path = "Data/dummy-table.json"; sourceTree = "<group>"; };
+		0530F1F529566F1600AD28B4 /* KCLayoutPropagator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCLayoutPropagator.swift; sourceTree = "<group>"; };
 		053D120028DF4FB6006B8F49 /* UTControl_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTControl_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053D120228DF4FB6006B8F49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053D120428DF4FB6006B8F49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -759,10 +750,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053D122828DF5120006B8F49 /* CoconutShell.xcframework in Frameworks */,
-				053D122628DF5120006B8F49 /* CoconutDatabase.xcframework in Frameworks */,
-				053D122428DF511F006B8F49 /* CoconutData.xcframework in Frameworks */,
-				053D122A28DF5120006B8F49 /* KiwiControls.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,6 +1005,7 @@
 				0544EA9C25176FBE002DE6A8 /* KCLayouter.swift */,
 				05BAEE0B2904CBA10099107B /* KCLayoutChecker.swift */,
 				057B2213270C8D0E00E20CED /* KCLayoutInvalidator.swift */,
+				0530F1F529566F1600AD28B4 /* KCLayoutPropagator.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1458,7 +1446,7 @@
 				053D11FC28DF4FB6006B8F49 /* Sources */,
 				053D11FD28DF4FB6006B8F49 /* Frameworks */,
 				053D11FE28DF4FB6006B8F49 /* Resources */,
-				053D122C28DF5120006B8F49 /* Embed Frameworks */,
+				051549172956F0D400C94957 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1951,6 +1939,7 @@
 			files = (
 				0544EB3A251775A3002DE6A8 /* KCPopupMenuCore.swift in Sources */,
 				0544EB16251775A3002DE6A8 /* KCLabeledStackViewCore.swift in Sources */,
+				0530F1F629566F1600AD28B4 /* KCLayoutPropagator.swift in Sources */,
 				0544EAEA2517718D002DE6A8 /* KCDocument.swift in Sources */,
 				0544EAB525176FBE002DE6A8 /* KCFirstResponderDecider.swift in Sources */,
 				0544EBBD25177676002DE6A8 /* KCViewDumper.swift in Sources */,
@@ -2062,6 +2051,7 @@
 				0544EB1D251775A3002DE6A8 /* KCCheckBoxCore.swift in Sources */,
 				0544EB1F251775A3002DE6A8 /* KCStackViewCore.swift in Sources */,
 				0544EAD725176FF5002DE6A8 /* KCContext.swift in Sources */,
+				0530F1F729566F1600AD28B4 /* KCLayoutPropagator.swift in Sources */,
 				0544EA7125176EC6002DE6A8 /* KCPlaneViewController.swift in Sources */,
 				0544EAB025176FBE002DE6A8 /* KCExpansionAdjuster.swift in Sources */,
 				0544EB21251775A3002DE6A8 /* KCButtonCore.swift in Sources */,
@@ -2504,11 +2494,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTStackView_macOS/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTStackView-macOS";
@@ -2552,11 +2543,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTStackView_macOS/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTStackView-macOS";
@@ -2591,7 +2583,7 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2599,18 +2591,23 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTControl_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTControl-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2639,19 +2636,25 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTControl_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTControl-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3034,12 +3037,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTTerminal/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Library/Frameworks",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTerminal;
@@ -3083,12 +3087,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTTerminal/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Library/Frameworks",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTerminal;
@@ -3136,11 +3141,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTTextView/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTextView;
@@ -3183,11 +3189,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTTextView/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTextView;
@@ -3254,7 +3261,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTTerminal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3322,7 +3329,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTTerminal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3376,11 +3383,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTCollection/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTCollection;
@@ -3423,11 +3431,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTCollection/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTCollection;
@@ -3474,11 +3483,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTTable/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTable;
@@ -3521,11 +3531,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTTable/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTTable;
@@ -3572,12 +3583,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTConsole/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Library/Frameworks",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTConsole;
@@ -3621,12 +3633,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTConsole/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Library/Frameworks",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTConsole;
@@ -3664,6 +3677,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"EXCLUDED_ARCHS[sdk=*]" = x86_64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3674,11 +3688,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphics/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTGraphics;
@@ -3717,15 +3732,17 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				"EXCLUDED_ARCHS[sdk=*]" = x86_64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTGraphics/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTGraphics;
@@ -3800,6 +3817,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTMultiView_macOS/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3878,6 +3896,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../UnitTest/OSX/UTMultiView_macOS/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4051,7 +4070,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTPickerView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4098,7 +4118,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = ../UnitTest/iOS/UTPickerView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

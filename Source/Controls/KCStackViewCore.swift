@@ -263,6 +263,6 @@ open class KCStackViewCore : KCCoreView
 			result = CNUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
 		}
 		CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
-		return result
+		return CNMinSize(sizeA: result, sizeB: self.limitSize)
 	}
 }

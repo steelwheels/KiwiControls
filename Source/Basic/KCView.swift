@@ -333,16 +333,6 @@ open class KCView : KCViewBase
 	}
 
 	/*
-	 * Update area control
-	 */
-	private var areaToBeDisplay = CGRect.zero
-
-	open override func draw(_ dirtyRect: CGRect){
-		super.draw(dirtyRect)
-		areaToBeDisplay = CGRect.zero
-	}
-
-	/*
 	 * layout
 	 */
 	open func requireLayout() {
@@ -361,6 +351,16 @@ open class KCView : KCViewBase
 		#else
 			self.setNeedsDisplay()
 		#endif
+	}
+
+	private var mLimitSize: CGSize = CGSize(width: 100000.0, height: 100000.0)
+
+	public var limitSize: CGSize { get {
+		return mLimitSize
+	}}
+
+	open func setLimitSize(size sz: CGSize) {
+		mLimitSize = sz
 	}
 
 	open override var intrinsicContentSize: CGSize {

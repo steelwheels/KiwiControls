@@ -194,6 +194,13 @@ open class KCInterfaceView: KCView
 	}
 	#endif
 
+	public override func setLimitSize(size sz: CGSize) {
+		super.setLimitSize(size: sz)
+		if let core = mCoreView {
+			core.setLimitSize(size: sz)
+		}
+	}
+
 	open override var intrinsicContentSize: CGSize {
 		get {
 			if let core = mCoreView {

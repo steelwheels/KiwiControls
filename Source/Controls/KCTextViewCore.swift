@@ -545,7 +545,7 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		let termheight = CGFloat(tpref.height) * fontsize.height
 		let barwidth   = scrollBarWidth()
 		let termsize   = CGSize(width: termwidth + barwidth, height: termheight)
-		return termsize
+		return CNMinSize(sizeA: termsize, sizeB: self.limitSize)
 	}
 
 	private func scrollBarWidth() -> CGFloat {

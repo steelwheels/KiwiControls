@@ -620,7 +620,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			if mMinimumVisibleRowCount > 1 {
 				result.height += space.height * CGFloat(mMinimumVisibleRowCount - 1)
 			}
-			return result
+			return CNMinSize(sizeA: result, sizeB: self.limitSize)
 		} else {
 			/* Calc dummy size. The unit size is given from XIB setting */
 			let unitsize = CGSize(width: 124, height: 17)
@@ -629,7 +629,7 @@ open class KCTableViewCore : KCCoreView, KCTableViewDelegate, KCTableViewDataSou
 			if mMinimumVisibleRowCount > 1 {
 				result.height += space.height * CGFloat(mMinimumVisibleRowCount - 1)
 			}
-			return result
+			return CNMinSize(sizeA: result, sizeB: self.limitSize)
 		}
 	}
 	#endif

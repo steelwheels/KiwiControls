@@ -14,48 +14,10 @@ import CoconutData
 
 public class KCLayoutChecker : KCViewVisitor
 {
-	private var mLimitSize: CGSize = CGSize.zero
-	#if os(OSX)
-		private let mLogLevel:  CNConfig.LogLevel	= .warning
-	#else
-		private let mLogLevel:  CNConfig.LogLevel	= .error
-	#endif
-
 	open override func visit(rootView view: KCRootView){
-		guard getLimitSize(rootView: view) else {
-			return
-		}
-
 		let coreview: KCInterfaceView = view.getCoreView()
 		coreview.accept(visitor: self)
 		self.visit(coreView: view)
-	}
-
-	private func getLimitSize(rootView root: KCRootView) -> Bool {
-		#if os(OSX)
-		if let win = root.window {
-			mLimitSize = win.contentMaxSize
-		} else {
-			if let bounds = KCScreen.shared.contentBounds {
-				mLimitSize = bounds.size
-			} else {
-				CNLog(logLevel: .error, message: "Failed to get limit window size", atFunction: #function, inFile: #file)
-				return false
-			}
-		}
-		#else
-		if let bounds = KCScreen.shared.contentBounds {
-			mLimitSize = bounds.size
-		} else {
-			if let bounds = KCScreen.shared.contentBounds {
-				mLimitSize = bounds.size
-			} else {
-				CNLog(logLevel: .error, message: "Failed to get limit screen size", atFunction: #function, inFile: #file)
-				return false
-			}
-		}
-		#endif
-		return true
 	}
 
 	open override func visit(stackView view: KCStackView){
@@ -71,21 +33,20 @@ public class KCLayoutChecker : KCViewVisitor
 	}
 
 	open override func visit(coreView view: KCInterfaceView){
-		/* Do nothing */
+		checkSize(coreView: view)
 	}
 
 	private func checkSize(coreView view: KCInterfaceView) {
 		let csize = view.intrinsicContentSize
-		if csize.width > mLimitSize.width {
-			CNLog(logLevel: mLogLevel,
-			      message: "Contents width over limit size (\(csize.width) > \(mLimitSize.width)): at \(view)",
+		if csize.width > view.limitSize.width {
+			CNLog(logLevel: .error,
+			      message: "Contents width over limit size (\(csize.width) > \(view.limitSize.width)): at \(view)",
 			      atFunction: #function, inFile: #file)
 		}
-		if csize.height > mLimitSize.height {
-			CNLog(logLevel: mLogLevel,
-			      message: "Contents height over limit size (\(csize.height) > \(mLimitSize.height)): at \(view)",
+		if csize.height > view.limitSize.height {
+			CNLog(logLevel: .error,
+			      message: "Contents height over limit size (\(csize.height) > \(view.limitSize.height)): at \(view)",
 			      atFunction: #function, inFile: #file)
 		}
-	}
-}
+	}}
 

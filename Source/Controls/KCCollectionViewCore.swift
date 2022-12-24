@@ -261,7 +261,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var headerReferenceSize: CGSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
-				return layout.headerReferenceSize
+				return CNMinSize(sizeA: layout.headerReferenceSize, sizeB: self.limitSize)
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
 				return CGSize.zero
@@ -279,7 +279,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var footerReferenceSize: CGSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
-				return layout.footerReferenceSize
+				return CNMinSize(sizeA: layout.footerReferenceSize, sizeB: self.limitSize)
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
 				return CGSize.zero
@@ -333,7 +333,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 			result = CNUnionSize(sizeA: result, sizeB: expsize2, doVertical: dovert, spacing: 0.0)
 		}
-		return result
+		return CNMinSize(sizeA: result, sizeB: self.limitSize)
 	}}
 
 	public func set(selectionCallback cbfunc: @escaping SelectionCallback) {

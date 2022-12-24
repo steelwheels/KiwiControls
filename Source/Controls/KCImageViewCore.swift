@@ -76,7 +76,7 @@ open class KCImageViewCore : KCCoreView
 
 	public var imageSize: CGSize { get {
 		if let img = mImageView.image {
-			return img.size
+			return CNMinSize(sizeA: img.size, sizeB: self.limitSize)
 		} else {
 			return mMinimumSize
 		}

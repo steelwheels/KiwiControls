@@ -15,15 +15,15 @@ class SingleViewController: KCSingleViewController
 		let stackview = KCStackView()
 		stackview.axis = .vertical
 
-		let symbol  = CNSymbol.shared
+		let symbol  = CNSymbol.character
 		let imgview = KCImageView()
-		imgview.image = symbol.loadImage(type: .characterA)
+		imgview.image = symbol.load(size: .regular)
 		stackview.addArrangedSubView(subView: imgview)
 
 		let collectdata = CNCollection()
 		collectdata.add(header: "", footer: "", items: [
-			.image(symbol.URLOfSymbol(type: .chevronBackward)),
-			.image(symbol.URLOfSymbol(type: .chevronForward))
+			.chevronBackward,
+			.chevronForward
 		])
 
 		let collectview = KCCollectionView()

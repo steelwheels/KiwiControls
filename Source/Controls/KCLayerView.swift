@@ -295,7 +295,7 @@ open class KCLayerView: KCView, KCLayerDelegate
 	}
 
 	public override var intrinsicContentSize: CGSize {
-		get { return mMinimumSize }
+		get { return  CNMinSize(sizeA: mMinimumSize, sizeB: self.limitSize) }
 	}
 }
 

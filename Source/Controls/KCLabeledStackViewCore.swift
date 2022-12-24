@@ -104,10 +104,10 @@ open class KCLabeledStackViewCore : KCCoreView
 
 	// The constant value for layout is depend on XIB file
 	private func contentSize() -> CGSize {
-		let textsize    = mLabel.intrinsicContentSize
-		let stacksize   = mStack.intrinsicContentSize
-		let result = CNUnionSize(sizeA: textsize, sizeB: stacksize, doVertical: true, spacing: 0.0)
-		return result
+		let textsize  = mLabel.intrinsicContentSize
+		let stacksize = mStack.intrinsicContentSize
+		let usize     = CNUnionSize(sizeA: textsize, sizeB: stacksize, doVertical: true, spacing: 0.0)
+		return CNMinSize(sizeA: usize, sizeB: self.limitSize)
 	}
 
 	public override func invalidateIntrinsicContentSize() {

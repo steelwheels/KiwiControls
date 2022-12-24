@@ -13,7 +13,11 @@ public class KCLayouter
 	public init(){
 	}
 
-	public func layout(rootView view: KCRootView){
+	public func preLayout(rootView view: KCRootView, maxSize maxsz: CGSize){
+		CNLog(logLevel: .detail, message: "[Layout] Preprocessor")
+		let propagator = KCLayoutPropagator(limitSize: maxsz)
+		view.accept(visitor: propagator)
+
 		CNLog(logLevel: .detail, message: "[Layout] Adjust expandability")
 		let adjuster = KCExpansionAdjuster()
 		view.accept(visitor: adjuster)
@@ -25,6 +29,13 @@ public class KCLayouter
 		CNLog(logLevel: .detail, message: "[Layout] Check layout")
 		let checker = KCLayoutChecker()
 		view.accept(visitor: checker)
+	}
+
+	public func postLayout(rootView view: KCRootView, maxSize maxsz: CGSize){
+		#if os(iOS)
+		CNLog(logLevel: .detail, message: "[Layout] Update window size")
+		view.setFrameSize(maxsz)
+		#endif
 	}
 }
 

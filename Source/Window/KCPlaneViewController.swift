@@ -15,23 +15,14 @@ import CoconutData
 open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 {
 	private var mRootView:			KCRootView?
-	#if os(OSX)
-	private var mHasPreferedContentSize:	Bool
-	#endif
 
 	public init(){
 		mRootView		= nil
-		#if os(OSX)
-			mHasPreferedContentSize	= false
-		#endif
 		super.init(nibName: nil, bundle: nil)
 	}
 
 	public required init?(coder: NSCoder) {
 		mRootView		= nil
-		#if os(OSX)
-			mHasPreferedContentSize	= false
-		#endif
 		super.init(coder: coder)
 	}
 
@@ -123,16 +114,13 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 
 	private func doViewWillLayout() {
 		if let root = mRootView {
-			#if os(OSX)
-				adjustWindowSize(rootView: root)
-			#elseif os(iOS)
-				adjustRootViewSize(rootView: root)
-			#endif
+			let maxsize = maxWindowSize()
+			NSLog("maxScreenSize: \(maxsize.description)")
 			if root.hasCoreView {
 				/* Layout components */
-				CNLog(logLevel: .detail, message: "- [Execute Layout] (root-size=\(root.frame.size.description)")
+				CNLog(logLevel: .detail, message: "- [Execute Pre Layout] (root-size=\(root.frame.size.description)")
 				let layouter    = KCLayouter()
-				layouter.layout(rootView: root)
+				layouter.preLayout(rootView: root, maxSize: maxsize)
 			}
 		} else {
 			CNLog(logLevel: .error, message: "No root view")
@@ -140,40 +128,36 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 	}
 
 	#if os(OSX)
-	private func adjustWindowSize(rootView root: KCRootView) {
-		if mHasPreferedContentSize {
-			if let win = root.window {
-				win.setContentSize(self.preferredContentSize)
-			}
+	private func maxWindowSize() -> CGSize {
+		var result: CGSize = CGSize.zero
+		for screen in NSScreen.screens {
+			result = CNMaxSize(sizeA: screen.frame.size, sizeB: result)
 		}
+		return result
 	}
-	#endif // os(OSX)
+	#else
+	private func maxWindowSize() -> CGSize{
+		let bounds = self.contentsBounds
+		return bounds.size
+	}
 
-	#if os(iOS)
-	private func adjustRootViewSize(rootView root: KCRootView) {
-		if let bounds = self.contentsBounds {
-			root.frame.size  = bounds.size
-			root.bounds.size = bounds.size
-			if let child: KCView = root.getCoreView() {
-				child.frame  = root.frame
-				child.bounds = root.bounds
-			} else {
-				CNLog(logLevel: .error, message: "No core view", atFunction: #function, inFile: #file)
-			}
-		}
-	}
+	public var contentsBounds: CGRect { get {
+		let screen = KCScreen.shared.contentBounds
+		let insets = self.safeAreaInset
+		return screen.inset(by: insets)
+	}}
 	#endif // os(iOS)
 
 	private func doViewDidLayout() {
 		/* Keep prefered size */
 		if let root = mRootView {
-			#if os(OSX)
-				self.preferredContentSize = root.frame.size
-				mHasPreferedContentSize   = true
-			#endif
-			CNLog(logLevel: .detail, message: "- [Finalize Layout] (root-size=\(root.frame.size.description)")
-			//let layouter    = KCLayoutFinalizer()
-			//layouter.layout(rootView: root)
+			let maxsize = maxWindowSize()
+			if root.hasCoreView {
+				/* Layout components */
+				CNLog(logLevel: .detail, message: "- [Execute Post Layout] (root-size=\(root.frame.size.description)")
+				let layouter    = KCLayouter()
+				layouter.postLayout(rootView: root, maxSize: maxsize)
+			}
 		} else {
 			CNLog(logLevel: .error, message: "No root view")
 		}
@@ -198,17 +182,6 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 		}
 	}
 
-	#if os(iOS)
-	public var contentsBounds: CGRect? { get {
-		if let screen = KCScreen.shared.contentBounds {
-			let insets = self.safeAreaInset
-			return screen.inset(by: insets)
-		} else {
-			return nil
-		}
-	}}
-	#endif // os(iOS)
-
 	public func notifyControlEvent(viewControlEvent event: KCViewControlEvent) {
 		if let root = mRootView {
 			switch event {
@@ -216,9 +189,6 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 				break
 			case .updateSize(let targview):
 				CNLog(logLevel: .detail, message: "Update window size", atFunction: #function, inFile: #file)
-				#if os(OSX)
-					mHasPreferedContentSize = false
-				#endif
 				let invalidator = KCLayoutInvalidator(target: targview)
 				root.accept(visitor: invalidator)
 				//root.invalidateIntrinsicContentSize()

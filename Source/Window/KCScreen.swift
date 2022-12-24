@@ -25,13 +25,14 @@ public class KCScreen
 		mScale = KCScreen.initScale()
 	}
 
-	/* Area for application unit: pixel*/
-	public var contentBounds: CGRect? {
+	/* Area for application unit: points */
+	public var contentBounds: CGRect {
 		#if os(OSX)
 			if let screen = NSScreen.main {
 				return screen.visibleFrame
 			} else {
-				return nil
+				NSLog("[Error] No Screen")
+				return CGRect(x: 0, y: 0, width: 9999.0, height: 9999.0)
 			}
 		#else
 			return UIScreen.main.bounds
