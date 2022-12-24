@@ -115,7 +115,6 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 	private func doViewWillLayout() {
 		if let root = mRootView {
 			let maxsize = maxWindowSize()
-			NSLog("maxScreenSize: \(maxsize.description)")
 			if root.hasCoreView {
 				/* Layout components */
 				CNLog(logLevel: .detail, message: "- [Execute Pre Layout] (root-size=\(root.frame.size.description)")

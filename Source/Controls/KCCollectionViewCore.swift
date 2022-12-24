@@ -54,15 +54,13 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var mIsSelectable		= false
 	private var mIsDragSupported		= false
 
-	private var collectionView: KCCollectionViewBase {
-		get {
-			#if os(OSX)
-				return osxCollectionView
-			#else
-				return iosCollectionView
-			#endif
-		}
-	}
+	private var collectionView: KCCollectionViewBase { get {
+		#if os(OSX)
+			return osxCollectionView
+		#else
+			return iosCollectionView
+		#endif
+	}}
 
 	public func setup(frame frm: CGRect) -> Void {
 		let colview = collectionView
@@ -151,19 +149,17 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		}
 	}
 
-	public var selectedItems: Set<IndexPath> {
-		get {
-			#if os(OSX)
-				return collectionView.selectionIndexPaths
-			#else
-				if let arr = collectionView.indexPathsForSelectedItems {
-					return Set(arr)
-				} else {
-					return Set()
-				}
-			#endif
-		}
-	}
+	public var selectedItems: Set<IndexPath> { get {
+		#if os(OSX)
+			return collectionView.selectionIndexPaths
+		#else
+			if let arr = collectionView.indexPathsForSelectedItems {
+				return Set(arr)
+			} else {
+				return Set()
+			}
+		#endif
+	}}
 
 	public func selectItem(indexPath path: IndexPath){
 		#if os(OSX)
@@ -382,8 +378,20 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	#else
 	public func collectionView(_ collectionView: KCCollectionViewBase, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemIdentifier, for: indexPath)
+		var didset = false
 		if let vcell = cell as? KCCollectionViewCell, let item = mCollectionData.value(section: indexPath.section, item: indexPath.item) {
 			let _ = vcell.set(symbol: item, size: mSymbolSize)
+			didset = true
+		}
+		if didset {
+			mLoadedItemNum += 1
+			if mLoadedItemNum == mTotalItemNum {
+				self.invalidateIntrinsicContentSize()
+				self.requireLayout()
+				self.notify(viewControlEvent: .updateSize(self))
+			}
+		} else {
+			CNLog(logLevel: .error, message: "Failed to set image: \(indexPath.description)", atFunction: #function, inFile: #file)
 		}
 		return cell
 	}

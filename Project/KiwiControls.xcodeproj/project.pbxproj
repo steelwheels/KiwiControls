@@ -726,6 +726,7 @@
 		05E89ACF27B6395C00840C07 /* KCRadioButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCRadioButtons.swift; sourceTree = "<group>"; };
 		05EB0EC52567EC6A00D28FD2 /* KCTerminalViewCore.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KCTerminalViewCore.xib; sourceTree = "<group>"; };
 		05ED4A73269346CE008C8FCE /* KCTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCTableCellView.swift; sourceTree = "<group>"; };
+		05F6FB93295726AF004E2F09 /* UTControl_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTControl_iOS.entitlements; sourceTree = "<group>"; };
 		05F71F4D29100EFD0002072A /* UTPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F71F4F29100EFD0002072A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05F71F5129100EFD0002072A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -858,6 +859,7 @@
 		0518974225176DD300487B45 = {
 			isa = PBXGroup;
 			children = (
+				05F6FB93295726AF004E2F09 /* UTControl_iOS.entitlements */,
 				0544EA6425176E71002DE6A8 /* Source */,
 				0554C8EC26C91F480060BFE9 /* Resource */,
 				05EB004C2518277B00636C82 /* UnitTest */,
@@ -2577,6 +2579,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = UTControl_iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2630,6 +2633,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = UTControl_iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
