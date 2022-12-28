@@ -406,9 +406,19 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			didSelect(itemAt: path)
 		}
 	}
+
+	public func collectionView(_ collectionView: KCCollectionViewBase, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		let ptsize = mSymbolSize.toPointSize()
+		return CGSize(width: ptsize, height: ptsize)
+	}
 	#else
 	public func collectionView(_ collectionView: KCCollectionViewBase, didSelectItemAt indexPath: IndexPath) {
 		didSelect(itemAt: indexPath)
+	}
+
+	public func collectionView(_ collectionView: KCCollectionViewBase, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		let ptsize = mSymbolSize.toPointSize()
+		return CGSize(width: ptsize, height: ptsize)
 	}
 	#endif
 

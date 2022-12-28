@@ -17,7 +17,7 @@ public class KCTerminalPreferenceView: KCStackView
 	public typealias CallbackFunction = KCColorSelectorCore.CallbackFunction
 
 	#if os(OSX)
-	private var	mHomeDirectoryField:		KCTextEdit?		= nil
+	private var	mDocumentDirectoryField:	KCTextEdit?		= nil
 	private var 	mHomeSelectButton:		KCButton?		= nil
 	private var 	mHomeResetButton:		KCButton?		= nil
 	#endif
@@ -94,8 +94,8 @@ public class KCTerminalPreferenceView: KCStackView
 		let termpref = CNPreference.shared.terminalPreference
 		let userpref = CNPreference.shared.userPreference
 		#if os(OSX)
-		if let field = mHomeDirectoryField {
-			let url		= userpref.homeDirectory
+		if let field = mDocumentDirectoryField {
+			let url		= userpref.documentDirectory
 			field.text	= url.path
 		}
 		#endif
@@ -121,12 +121,12 @@ public class KCTerminalPreferenceView: KCStackView
 				URL.openPanel(title: "Select home directory", type: .Directory, extensions: [], callback: {
 					(_ urlp: URL?) -> Void in
 					if let url = urlp {
-						if let field = self.mHomeDirectoryField {
+						if let field = self.mDocumentDirectoryField {
 							field.text = url.path
 						}
 						/* Add to user preference */
 						let userpref = CNPreference.shared.userPreference
-						userpref.homeDirectory = url
+						userpref.documentDirectory = url
 						/* Add to bookmark */
 						let bookpref = CNPreference.shared.bookmarkPreference
 						bookpref.add(URL: url)
@@ -139,11 +139,11 @@ public class KCTerminalPreferenceView: KCStackView
 				() -> Void in
 				/* Use default home */
 				let url = URL(fileURLWithPath: NSHomeDirectory())
-				if let field = self.mHomeDirectoryField {
+				if let field = self.mDocumentDirectoryField {
 					field.text = url.path
 				}
 				let userpref = CNPreference.shared.userPreference
-				userpref.homeDirectory = url
+				userpref.documentDirectory = url
 				/* Reset bookmark */
 				let bookpref = CNPreference.shared.bookmarkPreference
 				bookpref.clear()
@@ -208,11 +208,11 @@ public class KCTerminalPreferenceView: KCStackView
 
 	#if os(OSX)
 	private func allocateHomeDirectoryView() -> KCLabeledStackView {
-		let pathfield   = KCTextEdit()
-		pathfield.isBold     = false
-		pathfield.isEditable = false
-		pathfield.text       = "No home directory"
-		mHomeDirectoryField  = pathfield
+		let pathfield            = KCTextEdit()
+		pathfield.isBold         = false
+		pathfield.isEditable     = false
+		pathfield.text           = "No home directory"
+		mDocumentDirectoryField  = pathfield
 
 		let selectbutton = KCButton()
 		selectbutton.value = .text("Selet")
