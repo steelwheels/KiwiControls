@@ -248,8 +248,8 @@ public class KCStepperCore: KCCoreView
 		/* Ger stepper size*/
 		let steppersize = stepperButtonSize()
 		let space  = CNPreference.shared.windowPreference.spacing
-		let usize  = CNUnionSize(sizeA: fieldsize, sizeB: steppersize, doVertical: false, spacing: space)
-		return CNMinSize(sizeA: usize, sizeB: self.limitSize)
+		let usize  = CNUnionSize(fieldsize, steppersize, doVertical: false, spacing: space)
+		return CNMinSize(usize, self.limitSize)
 	}
 
 	private func stepperButtonSize() -> CGSize {

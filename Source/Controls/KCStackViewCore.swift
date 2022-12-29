@@ -253,16 +253,18 @@ open class KCStackViewCore : KCCoreView
 		get { return contentsSize() }
 	}
 
-	private func contentsSize() -> CGSize {
+	public override func contentsSize() -> CGSize {
 		let dovert = (axis == .vertical)
 		var result = CGSize(width: 0.0, height: 0.0)
 		let space  = CNPreference.shared.windowPreference.spacing
 		let subviews = arrangedSubviews()
 		for subview in subviews {
 			let size = subview.intrinsicContentSize
-			result = CNUnionSize(sizeA: result, sizeB: size, doVertical: dovert, spacing: space)
+			result = CNUnionSize(result, size, doVertical: dovert, spacing: space)
 		}
+		result.width  += space * 2	// left, right
+		result.height += space * 2	// top. bottom
 		CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
-		return CNMinSize(sizeA: result, sizeB: self.limitSize)
+		return CNMinSize(result, self.limitSize)
 	}
 }

@@ -33,8 +33,8 @@ public class KCLayouter
 
 	public func postLayout(rootView view: KCRootView, maxSize maxsz: CGSize){
 		#if os(iOS)
-		CNLog(logLevel: .detail, message: "[Layout] Update window size")
-		view.setFrameSize(maxsz)
+			CNLog(logLevel: .detail, message: "[Layout] Update window size")
+			view.setFrameSize(maxsz)
 		#endif
 	}
 }

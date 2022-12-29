@@ -115,7 +115,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			let label  = col.header(ofSection: sec)
 			if !label.isEmpty {
 				let labstr = NSAttributedString(string: label, attributes: attrs)
-				result = CNMaxSize(sizeA: result, sizeB: labstr.size())
+				result = CNMaxSize(result, labstr.size())
 			}
 		}
 		self.headerReferenceSize = result
@@ -257,7 +257,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var headerReferenceSize: CGSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
-				return CNMinSize(sizeA: layout.headerReferenceSize, sizeB: self.limitSize)
+				return CNMinSize(layout.headerReferenceSize, self.limitSize)
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
 				return CGSize.zero
@@ -275,7 +275,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 	private var footerReferenceSize: CGSize {
 		get {
 			if let layout = collectionView.collectionViewLayout as? KCCollectionViewFlowLayout {
-				return CNMinSize(sizeA: layout.footerReferenceSize, sizeB: self.limitSize)
+				return CNMinSize(layout.footerReferenceSize, self.limitSize)
 			} else {
 				CNLog(logLevel: .error, message: "Unexpected layout (5-0)", atFunction: #function, inFile: #file)
 				return CGSize.zero
@@ -323,13 +323,13 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 				      + CGFloat(rownum + 1) * self.minimumLineSpacing
 			let secsize = CGSize(width: width, height: height)
 
-			let expsize0 = CNUnionSize(sizeA: secsize,  sizeB: hdrsize, doVertical: true, spacing: 0.0)
-			let expsize1 = CNUnionSize(sizeA: expsize0, sizeB: ftrsize, doVertical: true, spacing: 0.0)
-			let expsize2 = CNExpandSize(size: expsize1, byInsets: secinset)
+			let expsize0 = CNUnionSize(secsize,  hdrsize, doVertical: true, spacing: 0.0)
+			let expsize1 = CNUnionSize(expsize0, ftrsize, doVertical: true, spacing: 0.0)
+			let expsize2 = CNExpandSize(expsize1, byInsets: secinset)
 
-			result = CNUnionSize(sizeA: result, sizeB: expsize2, doVertical: dovert, spacing: 0.0)
+			result = CNUnionSize(result, expsize2, doVertical: dovert, spacing: 0.0)
 		}
-		return CNMinSize(sizeA: result, sizeB: self.limitSize)
+		return CNMinSize(result, self.limitSize)
 	}}
 
 	public func set(selectionCallback cbfunc: @escaping SelectionCallback) {

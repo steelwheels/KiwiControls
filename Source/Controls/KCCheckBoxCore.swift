@@ -165,8 +165,8 @@ public class KCCheckBoxCore: KCCoreView
 			let labelsize  = mLabel.intrinsicContentSize
 			let switchsize = mSwitch.intrinsicContentSize
 			let space      = CNPreference.shared.windowPreference.spacing
-			let usize      = CNUnionSize(sizeA: labelsize, sizeB: switchsize, doVertical: false, spacing: space)
-			return CNMinSize(sizeA: usize, sizeB: self.limitSize)
+			let usize      = CNUnionSize(labelsize, switchsize, doVertical: false, spacing: space)
+			return CNMinSize(usize, self.limitSize)
 		#else
 			return super.intrinsicContentSize
 		#endif

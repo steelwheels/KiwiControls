@@ -90,25 +90,25 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 
 	#if os(OSX)
 	open override func viewDidLayout() {
-		super.viewDidLayout()
 		doViewDidLayout()
+		super.viewDidLayout()
 	}
 	#else
 	open override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
 		doViewDidLayout()
+		super.viewDidLayoutSubviews()
 	}
 	#endif
 
 	#if os(OSX)
 	open override func viewDidAppear() {
-		super.viewDidAppear()
 		doViewDidAppear()
+		super.viewDidAppear()
 	}
 	#else
 	open override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
 		doViewDidAppear()
+		super.viewDidAppear(animated)
 	}
 	#endif
 
@@ -120,6 +120,13 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 				CNLog(logLevel: .detail, message: "- [Execute Pre Layout] (root-size=\(root.frame.size.description)")
 				let layouter    = KCLayouter()
 				layouter.preLayout(rootView: root, maxSize: maxsize)
+
+				/* Resize by the core view */
+				#if os(OSX)
+				if let core: KCView = root.getCoreView() {
+					self.preferredContentSize = core.intrinsicContentSize
+				}
+				#endif
 			}
 		} else {
 			CNLog(logLevel: .error, message: "No root view")
@@ -130,7 +137,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 	private func maxWindowSize() -> CGSize {
 		var result: CGSize = CGSize.zero
 		for screen in NSScreen.screens {
-			result = CNMaxSize(sizeA: screen.frame.size, sizeB: result)
+			result = CNMaxSize(screen.frame.size, result)
 		}
 		return result
 	}
@@ -157,6 +164,7 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 				let layouter    = KCLayouter()
 				layouter.postLayout(rootView: root, maxSize: maxsize)
 			}
+
 		} else {
 			CNLog(logLevel: .error, message: "No root view")
 		}

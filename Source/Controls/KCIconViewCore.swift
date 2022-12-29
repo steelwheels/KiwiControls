@@ -123,7 +123,7 @@ open class KCIconViewCore : KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return requiredSize() }
+		get { return contentsSize() }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -132,7 +132,7 @@ open class KCIconViewCore : KCCoreView
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return requiredSize() }
+		get { return contentsSize() }
 	}
 
 	open override func setFrameSize(_ newsize: CGSize) {
@@ -142,34 +142,38 @@ open class KCIconViewCore : KCCoreView
 
 	private func adjustSize(for tsize: CGSize) -> CGSize {
 		let space    = CNPreference.shared.windowPreference.spacing
-		let targsize = CNShrinkSize(size: tsize, delta: space)
+		var targsize = CNShrinkSize(size: tsize, delta: space)
+		if targsize.height >= space {
+			targsize.height -= space 	// space between image and button
+		}
 
 		/* Adjust label size */
 		let orglabsize = mLabelView.frame.size
 		let newlabsize: CGSize
 		if orglabsize.height <= targsize.height {
 			newlabsize = CGSize(width: targsize.width, height: orglabsize.height)
+			targsize.height -= orglabsize.height
 		} else {
 			newlabsize = CGSize(width: targsize.width, height: targsize.height)
+			targsize.height = 0
 		}
 		mLabelView.setFrame(size: newlabsize)
 
 		/* Adjust button size */
-		let btnheight  = targsize.height - (newlabsize.height + space)
-		let newbtnsize = CGSize(width: targsize.width, height: btnheight)
-		mImageButton.setFrame(size: newbtnsize)
-
-		return CNUnionSize(sizeA: newbtnsize, sizeB: newlabsize, doVertical: true, spacing: CNPreference.shared.windowPreference.spacing)
+		if targsize.height > space {
+			mImageButton.setFrame(size: targsize)
+		}
+		return tsize
 	}
 
-	private func requiredSize() -> CGSize {
-		let btnsize = mSize.toSize() // mImageButton.intrinsicContentSize
+	public override func contentsSize() -> CGSize {
+		let imgsize = mSize.toSize()
 		let labsize = mLabelView.intrinsicContentSize
-		var usize   = CNUnionSize(sizeA: btnsize, sizeB: labsize, doVertical: true, spacing: CNPreference.shared.windowPreference.spacing)
 		let space   = CNPreference.shared.windowPreference.spacing
+		var usize   = CNUnionSize(imgsize, labsize, doVertical: true, spacing: space)
 		usize.width  += space * 2 // left, right
 		usize.height += space * 3 // top, bottom and middle
-		return CNMinSize(sizeA: usize, sizeB: self.limitSize)
+		return CNMinSize(usize, self.limitSize)
 	}
 }
 

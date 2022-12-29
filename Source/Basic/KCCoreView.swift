@@ -112,6 +112,11 @@ open class KCCoreView: KCView
 	}
 	#endif
 
+	open func contentsSize() -> CGSize {
+		NSLog("must be override")
+		return CGSize.zero
+	}
+
 	public override func setFrameSize(_ newsize: CGSize) {
 		if mIsSingleView {
 			if let core = mCoreView {
