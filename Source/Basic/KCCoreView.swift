@@ -167,8 +167,8 @@ open class KCCoreView: KCView
 		}
 	}
 
-	public override func _setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		super._setExpandabilities(priorities: prival)
+	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
+		super.setExpandabilities(priorities: prival)
 		if mIsSingleView {
 			if let core = mCoreView {
 				core._setExpansionPriorities(priorities: prival)

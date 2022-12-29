@@ -20,7 +20,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .high,
 						 verticalHugging: 	.high,
 						 verticalCompression:	.high)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(button view: KCButton){
@@ -28,7 +28,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .low,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(radioButton view: KCRadioButton){
@@ -36,7 +36,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .low,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(checkBox view: KCCheckBox){
@@ -44,7 +44,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .low,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(stepper view: KCStepper){
@@ -52,7 +52,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .low,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(textEdit view: KCTextEdit){
@@ -60,7 +60,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.middle,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(consoleView view: KCConsoleView){
@@ -68,7 +68,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(textView view: KCTextView){
@@ -114,7 +114,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 verticalHugging: 	vhug,
 						 verticalCompression:	vcomp)
 		CNLog(logLevel: .detail, message: "ExpansionPriorities \(hhug.description()) \(hcomp.description()) \(vhug.description()) \(vcomp.description()) at \(#function)")
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(tableView view: KCTableView){
@@ -134,7 +134,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 			}
 		}
 		/* Visit it self */
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(stackView view: KCStackView){
@@ -147,7 +147,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 verticalHugging:       .high,
 						 verticalCompression:   .high)
 		CNLog(logLevel: .detail, message: "Stack: ExpansionPriorities \(exppri.holizontalHugging.description()) \(exppri.holizontalCompression.description()) \(exppri.verticalHugging.description()) \(exppri.verticalCompression.description()) at \(#function)")
-		view._setExpandabilities(priorities: exppri)
+		view.setExpandabilities(priorities: exppri)
 	}
 
 	open override func visit(labeledStackView view: KCLabeledStackView) {
@@ -158,7 +158,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.contentsView.accept(visitor: self)
 
 		/* Property for it self */
-		view._setExpandabilities(priorities: view.contentsView.expansionPriority())
+		view.setExpandabilities(priorities: view.contentsView.expansionPriority())
 	}
 
 	open override func visit(collectionView view: KCCollectionView){
@@ -166,7 +166,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .low,
 						 verticalHugging: 	.high,
 						 verticalCompression:	.low)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(imageView view: KCImageView){
@@ -174,7 +174,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .middle,
 						 verticalHugging: 	.middle,
 						 verticalCompression:	.middle)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(iconView view: KCIconView){
@@ -182,7 +182,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.middle,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(navigationBar view: KCNavigationBar){
@@ -190,7 +190,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .middle,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(colorSelector view: KCColorSelector){
@@ -198,7 +198,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .low,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(popupMenu view: KCPopupMenu){
@@ -206,7 +206,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.fixed,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(bitmapView view: KCBitmapView){
@@ -214,7 +214,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.high,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(graphics2DView view: KCGraphics2DView){
@@ -222,7 +222,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: .fixed,
 						 verticalHugging: 	.high,
 						 verticalCompression:	.fixed)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(vectorGraphics view: KCVectorGraphics) {
@@ -232,7 +232,7 @@ public class KCExpansionAdjuster: KCViewVisitor
 						 holizontalCompression: holiz,
 						 verticalHugging: 	vert,
 						 verticalCompression:	vert)
-		view._setExpandabilities(priorities: prival)
+		view.setExpandabilities(priorities: prival)
 	}
 
 	open override func visit(coreView view: KCInterfaceView){

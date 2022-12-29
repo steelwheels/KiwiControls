@@ -360,7 +360,7 @@ open class KCView : KCViewBase
 		}
 	}
 
-	open func _setExpandabilities(priorities prival: ExpansionPriorities) {
+	open func setExpandabilities(priorities prival: ExpansionPriorities) {
 		_setExpansionPriorities(priorities: prival)
 	}
 
