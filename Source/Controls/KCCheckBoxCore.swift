@@ -178,19 +178,5 @@ public class KCCheckBoxCore: KCCoreView
 			mLabel.invalidateIntrinsicContentSize()
 		#endif
 	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		super.setExpandabilities(priorities: prival)
-		#if os(OSX)
-			mCheckBox.setExpansionPriorities(priorities: prival)
-		#else
-			let fixpri = KCViewBase.ExpansionPriorities(holizontalHugging: .fixed,
-								    holizontalCompression: .fixed,
-								    verticalHugging: .fixed,
-								    verticalCompression: .fixed)
-			mSwitch.setExpansionPriorities(priorities: fixpri)
-			mLabel.setExpansionPriorities(priorities: prival)
-		#endif
-	}
 }
 

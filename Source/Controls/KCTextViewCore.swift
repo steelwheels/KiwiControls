@@ -507,11 +507,6 @@ open class KCTextViewCore : KCCoreView, KCTextViewDelegate, NSTextStorageDelegat
 		updateTerminalSize()
 	}
 
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		super.setExpandabilities(priorities: prival)
-		mTextView.setExpansionPriorities(priorities: prival)
-	}
-
 	/* Delegate of text view */
 	#if os(OSX)
 	public func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {

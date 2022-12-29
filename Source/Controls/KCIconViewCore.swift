@@ -165,18 +165,11 @@ open class KCIconViewCore : KCCoreView
 	private func requiredSize() -> CGSize {
 		let btnsize = mSize.toSize() // mImageButton.intrinsicContentSize
 		let labsize = mLabelView.intrinsicContentSize
-		let usize   = CNUnionSize(sizeA: btnsize, sizeB: labsize, doVertical: true, spacing: CNPreference.shared.windowPreference.spacing)
+		var usize   = CNUnionSize(sizeA: btnsize, sizeB: labsize, doVertical: true, spacing: CNPreference.shared.windowPreference.spacing)
+		let space   = CNPreference.shared.windowPreference.spacing
+		usize.width  += space * 2 // left, right
+		usize.height += space * 3 // top, bottom and middle
 		return CNMinSize(sizeA: usize, sizeB: self.limitSize)
-	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		super.setExpandabilities(priorities: prival)
-		mImageButton.setExpansionPriorities(priorities: prival)
-		let labpri = KCViewBase.ExpansionPriorities(holizontalHugging: prival.holizontalHugging,
-							    holizontalCompression: prival.holizontalCompression,
-							    verticalHugging: .low,
-							    verticalCompression: .low)
-		mLabelView.setExpansionPriorities(priorities: labpri)
 	}
 }
 

@@ -217,11 +217,4 @@ open class KCInterfaceView: KCView
 			core.invalidateIntrinsicContentSize()
 		}
 	}
-
-	open override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		if let core = mCoreView {
-			core.setExpandabilities(priorities: prival)
-		}
-		super.setExpandabilities(priorities: prival)
-	}
 }

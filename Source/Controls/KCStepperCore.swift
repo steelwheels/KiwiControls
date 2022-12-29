@@ -267,21 +267,6 @@ public class KCStepperCore: KCCoreView
 		mTextField.invalidateIntrinsicContentSize()
 	}
 
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		super.setExpandabilities(priorities: prival)
-		let fixedval = KCViewBase.ExpansionPriorities(holizontalHugging: .fixed,
-							      holizontalCompression: .fixed,
-							      verticalHugging: .fixed,
-							      verticalCompression: .fixed)
-		#if os(iOS)
-			mStepper.setExpansionPriorities(priorities: fixedval)
-		#else
-			mDecButton.setExpansionPriorities(priorities: fixedval)
-			mIncButton.setExpansionPriorities(priorities: fixedval)
-		#endif
-		mTextField.setExpansionPriorities(priorities: prival)
-	}
-
 	private func clipValue(value v: Double) -> Double {
 		let result: Double
 		let minv = self.minValue

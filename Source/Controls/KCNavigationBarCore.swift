@@ -192,24 +192,5 @@ open class KCNavigationBarCore: KCCoreView
 		rightBarButton.invalidateIntrinsicContentSize()
 		#endif
 	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		super.setExpandabilities(priorities: prival)
-		#if os(OSX)
-		let lowpri = KCViewBase.ExpansionPriorities(holizontalHugging: 		.low,
-							    holizontalCompression: 	.low,
-							    verticalHugging: 		.low,
-							    verticalCompression: 	.low)
-		super.setExpandabilities(priorities: lowpri)
-
-		let fixedpri = KCViewBase.ExpansionPriorities(holizontalHugging: 	.fixed,
-							      holizontalCompression: 	.fixed,
-							      verticalHugging: 		.fixed,
-							      verticalCompression: 	.fixed)
-		mNavigationItem.setExpansionPriorities(priorities: fixedpri)
-		leftBarButton.setExpansionPriorities(priorities: fixedpri)
-		rightBarButton.setExpansionPriorities(priorities: fixedpri)
-		#endif
-	}
 }
 

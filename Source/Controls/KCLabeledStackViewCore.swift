@@ -115,15 +115,5 @@ open class KCLabeledStackViewCore : KCCoreView
 		mStack.invalidateIntrinsicContentSize()
 		super.invalidateIntrinsicContentSize()
 	}
-
-	public override func setExpandabilities(priorities prival: KCViewBase.ExpansionPriorities) {
-		super.setExpandabilities(priorities: prival)
-		mStack.setExpandabilities(priorities: prival)
-		let txtpri = KCViewBase.ExpansionPriorities(holizontalHugging: prival.holizontalHugging,
-							    holizontalCompression: prival.holizontalCompression,
-							    verticalHugging: .low,
-							    verticalCompression: .low)
-		mLabel.setExpansionPriorities(priorities: txtpri)
-	}
 }
 

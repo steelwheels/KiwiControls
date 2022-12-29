@@ -145,18 +145,9 @@ extension KCViewBase
 			verticalHugging		= vh
 			verticalCompression	= vc
 		}
-
-		public static func union(_ s0: ExpansionPriorities, _ s1: ExpansionPriorities) -> ExpansionPriorities {
-			let hh = ExpansionPriority.union(s0.holizontalHugging, s1.holizontalHugging)
-			let hc = ExpansionPriority.union(s0.holizontalCompression, s1.holizontalCompression)
-			let vh = ExpansionPriority.union(s0.verticalHugging, s1.verticalHugging)
-			let vc = ExpansionPriority.union(s0.verticalCompression, s1.verticalCompression)
-			return ExpansionPriorities(holizontalHugging: hh, holizontalCompression: hc, verticalHugging: vh, verticalCompression: vc)
-		}
-
 	}
 
-	public func setExpansionPriorities(priorities prival: ExpansionPriorities) {
+	public func _setExpansionPriorities(priorities prival: ExpansionPriorities) {
 		setContentHuggingPriority(prival.holizontalHugging.toValue(), for: .horizontal)
 		setContentCompressionResistancePriority(prival.holizontalCompression.toValue(), for: .horizontal)
 
@@ -369,8 +360,8 @@ open class KCView : KCViewBase
 		}
 	}
 
-	open func setExpandabilities(priorities prival: ExpansionPriorities) {
-		setExpansionPriorities(priorities: prival)
+	open func _setExpandabilities(priorities prival: ExpansionPriorities) {
+		_setExpansionPriorities(priorities: prival)
 	}
 
 	public func allocateSubviewLayout(subView sview: KCViewBase){
