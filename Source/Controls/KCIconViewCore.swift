@@ -123,20 +123,30 @@ open class KCIconViewCore : KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return contentsSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return adjustContentsSize(size: size)
+		return CNMinSize(adjustContentsSize(size: size), self.limitSize)
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return contentsSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 
 	open override func setFrameSize(_ newsize: CGSize) {
-		let _ = adjustContentsSize(size: newsize)
+		/* Label size */
+		let orglabsize = mLabelView.frame.size
+		let newlabsize = CGSize(width: newsize.width, height: orglabsize.height)
+		mLabelView.setFrame(size: newlabsize)
+
+		/* button size */
+		let orgbtnsize = mImageButton.frame.size
+		if newsize.height - orgbtnsize.height > 0.0 {
+			let newbtnsize = CGSize(width: newsize.width, height: newsize.height - orglabsize.height)
+			mImageButton.setFrame(size: newbtnsize)
+		}
 		super.setFrameSize(newsize)
 	}
 
@@ -145,25 +155,26 @@ open class KCIconViewCore : KCCoreView
 		let space    = CNPreference.shared.windowPreference.spacing
 		if targsize.height > space {
 			targsize.height -= space
+		} else {
+			CNLog(logLevel: .error, message: "Size underflow", atFunction: #function, inFile: #file)
+			return contentsSize()
 		}
 
 		/* Adjust label size */
 		let orglabsize = mLabelView.frame.size
-		let newlabsize: CGSize
 		if orglabsize.height <= targsize.height {
-			newlabsize = CGSize(width: targsize.width, height: orglabsize.height)
 			targsize.height -= orglabsize.height
 		} else {
-			newlabsize = CGSize(width: targsize.width, height: targsize.height)
 			targsize.height = 0
 		}
-		mLabelView.setFrame(size: newlabsize)
 
 		/* Adjust button size */
 		if targsize.height > space {
-			mImageButton.setFrame(size: targsize)
+			return tsize
+		} else {
+			CNLog(logLevel: .error, message: "Size underflow", atFunction: #function, inFile: #file)
+			return contentsSize()
 		}
-		return tsize
 	}
 
 	public override func contentsSize() -> CGSize {
@@ -171,7 +182,7 @@ open class KCIconViewCore : KCCoreView
 		let labsize = mLabelView.intrinsicContentSize
 		let space   = CNPreference.shared.windowPreference.spacing
 		let usize   = CNUnionSize(imgsize, labsize, doVertical: true, spacing: space)
-		return CNMinSize(usize, self.limitSize)
+		return usize
 	}
 }
 

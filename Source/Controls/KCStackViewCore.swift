@@ -241,11 +241,11 @@ open class KCStackViewCore : KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return contentsSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return contentsSize()
+		return CNMinSize(adjustContentsSize(size: size), self.limitSize)
 	}
 	#endif
 
@@ -268,6 +268,16 @@ open class KCStackViewCore : KCCoreView
 			result.width  += space * 2	// left, right
 		}
 		CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
-		return CNMinSize(result, self.limitSize)
+		return result
+	}
+
+	public override func adjustContentsSize(size sz: CGSize) -> CGSize {
+		let contents = contentsSize()
+		if contents.width <= sz.width && contents.height <= sz.height {
+			return sz
+		} else {
+			CNLog(logLevel: .error, message: "Size underflow", atFunction: #function, inFile: #file)
+			return contents
+		}
 	}
 }

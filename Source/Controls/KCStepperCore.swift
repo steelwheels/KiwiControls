@@ -220,19 +220,19 @@ public class KCStepperCore: KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return contentSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return contentSize()
+		return CNMinSize(adjustContentsSize(size: size), self.limitSize)
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return contentSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 
-	private func contentSize() -> CGSize {
+	public override func contentsSize() -> CGSize {
 		/* Get text field size*/
 		#if os(OSX)
 		let curnum  = mTextField.stringValue.count
@@ -249,7 +249,23 @@ public class KCStepperCore: KCCoreView
 		let steppersize = stepperButtonSize()
 		let space  = CNPreference.shared.windowPreference.spacing
 		let usize  = CNUnionSize(fieldsize, steppersize, doVertical: false, spacing: space)
-		return CNMinSize(usize, self.limitSize)
+		return usize
+	}
+
+	public override func adjustContentsSize(size sz: CGSize) -> CGSize {
+		let steppersize = stepperButtonSize()
+		guard steppersize.width <= sz.width && steppersize.height <= sz.height else {
+			CNLog(logLevel: .error, message: "Size overflow", atFunction: #function, inFile: #file)
+			return contentsSize()
+		}
+		let fieldsize = mTextField.intrinsicContentSize
+		let newsize   = CGSize(width: sz.width - steppersize.width, height: sz.height)
+		if fieldsize.width <= newsize.width && fieldsize.height <= newsize.height {
+			return sz
+		} else {
+			CNLog(logLevel: .error, message: "Size overflow", atFunction: #function, inFile: #file)
+			return contentsSize()
+		}
 	}
 
 	private func stepperButtonSize() -> CGSize {

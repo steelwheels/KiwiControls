@@ -76,16 +76,16 @@ open class KCImageViewCore : KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize { get {
-		return contentsSize()
+		return CNMinSize(contentsSize(), self.limitSize)
 	}}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return adjustContentsSize(size: size)
+		return CNMinSize(adjustContentsSize(size: size), self.limitSize)
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return contentsSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 
 	public var imageSize: CGSize { get {
@@ -93,12 +93,11 @@ open class KCImageViewCore : KCCoreView
 	}}
 
 	public override func contentsSize() -> CGSize {
-		let imgsize  = self.imageSize
-		return CNMinSize(imgsize, self.limitSize)
+		return self.imageSize
 	}
 
 	public override func adjustContentsSize(size tsize: CGSize) -> CGSize {
-		return imageSize.resizeWithKeepingAscpect(inSize: tsize)
+		return self.imageSize.resizeWithKeepingAscpect(inSize: tsize)
 	}
 }
 

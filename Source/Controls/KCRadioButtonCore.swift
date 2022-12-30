@@ -140,31 +140,30 @@ open class KCRadioButtonCore: KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return contentSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return contentSize()
+		return CNMinSize(contentsSize(), self.limitSize)
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return contentSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 
-	private func contentSize() -> CGSize {
-		#if os(OSX)
-			var btnsize = mRadioButton.intrinsicContentSize
-			if let font = mRadioButton.font {
-				btnsize.width  = max(btnsize.width,  font.pointSize * CGFloat(mMinLabelWidth))
-				btnsize.height = max(btnsize.height, font.pointSize * 1.2        )
-			}
-			let space = CNPreference.shared.windowPreference.spacing
-			let usize = CGSize(width:  btnsize.width + space, height: btnsize.height + space)
-			return CNMinSize(usize, self.limitSize)
-		#else
-			return mRadioButton.intrinsicContentSize
-		#endif
+	public override func contentsSize() -> CGSize {
+		return mRadioButton.intrinsicContentSize
+	}
+
+	public override func adjustContentsSize(size sz: CGSize) -> CGSize {
+		let cursize = mRadioButton.intrinsicContentSize
+		if cursize.width <= sz.width && cursize.height <= sz.height {
+			return sz
+		} else {
+			CNLog(logLevel: .error, message: "Size underflow", atFunction: #function, inFile: #file)
+			return cursize
+		}
 	}
 }
 

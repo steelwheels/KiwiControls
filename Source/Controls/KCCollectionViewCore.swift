@@ -300,16 +300,16 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return contentsSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return adjustContentsSize(size: size)
+		return  CNMinSize(adjustContentsSize(size: size), self.limitSize)
 	}
 	#endif
 
 	public override var intrinsicContentSize: CGSize { get {
-		return contentsSize()
+		return CNMinSize(contentsSize(), self.limitSize)
 	}}
 
 	public override func contentsSize() -> CGSize {
@@ -343,7 +343,7 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 
 			result = CNUnionSize(result, expsize2, doVertical: dovert, spacing: 0.0)
 		}
-		return CNMinSize(result, self.limitSize)
+		return result
 	}
 
 	public override func adjustContentsSize(size newsize: CGSize) -> CGSize {

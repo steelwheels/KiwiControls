@@ -133,7 +133,9 @@ public class KCCheckBoxCore: KCCoreView
 
 	open override func setFrameSize(_ newsize: CGSize) {
 		super.setFrameSize(newsize)
-		#if os(iOS)
+		#if os(OSX)
+			mCheckBox.setFrameSize(newsize)
+		#else
 			let totalwidth  = newsize.width
 			var labelwidth  = mLabel.intrinsicContentSize.width
 			var switchwidth = totalwidth - labelwidth
@@ -148,16 +150,16 @@ public class KCCheckBoxCore: KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return contentsSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return adjustContentsSize(size: size)
+		return CNMinSize(adjustContentsSize(size: size), self.limitSize)
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return contentsSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 
 	public override func contentsSize() -> CGSize {
@@ -166,7 +168,7 @@ public class KCCheckBoxCore: KCCoreView
 		let switchsize = mSwitch.intrinsicContentSize
 		let space      = CNPreference.shared.windowPreference.spacing
 		let usize      = CNUnionSize(labelsize, switchsize, doVertical: false, spacing: space)
-		return CNMinSize(usize, self.limitSize)
+		return usize
 		#else
 		return mCheckBox.intrinsicContentSize
 		#endif
@@ -175,10 +177,10 @@ public class KCCheckBoxCore: KCCoreView
 	public override func adjustContentsSize(size sz: CGSize) -> CGSize {
 		let csize = self.contentsSize()
 		if csize.height <= sz.height && csize.width <= sz.width {
-			return csize
-		} else {
-			NSLog("Size underflow")
 			return sz
+		} else {
+			CNLog(logLevel: .error, message: "Size underflow", atFunction: #function, inFile: #file)
+			return csize
 		}
 	}
 

@@ -72,13 +72,13 @@ open class KCLabeledStackViewCore : KCCoreView
 		if newsize.width > LabelHeight {
 			contwidth = newsize.width - LabelHeight
 		} else {
-			contwidth =  0.0
+			contwidth = 0.0
 		}
 		let contheight: CGFloat
 		if newsize.height > LabelHeight {
 			contheight = newsize.height - LabelHeight
 		} else {
-			contheight =  0.0
+			contheight = 0.0
 		}
 		let contsize = CGSize(width: contwidth, height: contheight)
 		#if os(OSX)
@@ -90,24 +90,36 @@ open class KCLabeledStackViewCore : KCCoreView
 
 	#if os(OSX)
 	open override var fittingSize: CGSize {
-		get { return contentSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return contentSize()
+		return CNMinSize(adjustContentsSize(size: size), self.limitSize)
 	}
 	#endif
 
 	open override var intrinsicContentSize: CGSize {
-		get { return contentSize() }
+		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 
 	// The constant value for layout is depend on XIB file
-	private func contentSize() -> CGSize {
+	public override func contentsSize() -> CGSize {
 		let textsize  = mLabel.intrinsicContentSize
 		let stacksize = mStack.intrinsicContentSize
 		let usize     = CNUnionSize(textsize, stacksize, doVertical: true, spacing: 0.0)
-		return CNMinSize(usize, self.limitSize)
+		return usize
+	}
+
+	public override func adjustContentsSize(size sz: CGSize) -> CGSize {
+		let textsize  = mLabel.intrinsicContentSize
+		let stacksize = mStack.intrinsicContentSize
+		let usize     = CNUnionSize(textsize, stacksize, doVertical: true, spacing: 0.0)
+		if usize.width <= sz.width && usize.height <= sz.height {
+			return sz
+		} else {
+			CNLog(logLevel: .error, message: "Size underflow", atFunction: #function, inFile: #file)
+			return usize
+		}
 	}
 
 	public override func invalidateIntrinsicContentSize() {
