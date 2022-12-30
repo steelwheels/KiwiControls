@@ -298,7 +298,21 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 		super.setFrameSize(newsize)
 	}
 
+	#if os(OSX)
+	open override var fittingSize: CGSize {
+		get { return contentsSize() }
+	}
+	#else
+	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+		return adjustContentsSize(size: size)
+	}
+	#endif
+
 	public override var intrinsicContentSize: CGSize { get {
+		return contentsSize()
+	}}
+
+	public override func contentsSize() -> CGSize {
 		let colnum = mNumberOfColumns
 
 		let dovert: Bool
@@ -330,7 +344,15 @@ open class KCCollectionViewCore: KCCoreView, KCCollectionViewDataSourceBase, KCC
 			result = CNUnionSize(result, expsize2, doVertical: dovert, spacing: 0.0)
 		}
 		return CNMinSize(result, self.limitSize)
-	}}
+	}
+
+	public override func adjustContentsSize(size newsize: CGSize) -> CGSize {
+		let maxsize = mSymbolSize.toSize()
+		let maxnum  = mCollectionData.maxItemCount()
+		let colnum: Int = Int(newsize.width / maxsize.width)
+		mNumberOfColumns = min(maxnum, colnum)
+		return contentsSize()
+	}
 
 	public func set(selectionCallback cbfunc: @escaping SelectionCallback) {
 		mSelectionCallback = cbfunc
