@@ -123,8 +123,10 @@ open class KCPlaneViewController: KCViewController, KCViewControlEventReceiver
 
 				/* Resize by the core view */
 				#if os(OSX)
-				if let core: KCView = root.getCoreView() {
-					self.preferredContentSize = core.intrinsicContentSize
+				if let window = root.window, let core: KCView = root.getCoreView() {
+					let coresize = core.intrinsicContentSize
+					self.preferredContentSize = coresize
+					window.setContentSize(coresize)
 				}
 				#endif
 			}

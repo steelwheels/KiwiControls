@@ -24,7 +24,7 @@ public class KCLayoutPropagator : KCViewVisitor
 		let coreview: KCInterfaceView = view.getCoreView()
 		coreview.accept(visitor: self)
 		#if os(iOS)
-			self.visit(coreView: view) // execute iOS only
+			self.visit(coreView: view)
 		#endif
 	}
 

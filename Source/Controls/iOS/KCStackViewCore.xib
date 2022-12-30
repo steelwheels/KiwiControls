@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,16 +12,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="346"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vSI-x3-fgI">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vSI-x3-fgI">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="346"/>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vSI-x3-fgI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="C5n-Sh-cBt"/>
-                <constraint firstAttribute="bottom" secondItem="vSI-x3-fgI" secondAttribute="bottom" id="Efe-vj-kgp"/>
-                <constraint firstItem="vSI-x3-fgI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Gzn-Rh-GpJ"/>
-                <constraint firstAttribute="trailing" secondItem="vSI-x3-fgI" secondAttribute="trailing" id="pCc-gs-cyM"/>
+                <constraint firstAttribute="bottom" secondItem="vSI-x3-fgI" secondAttribute="bottom" id="ARC-8c-xVh"/>
+                <constraint firstAttribute="trailing" secondItem="vSI-x3-fgI" secondAttribute="trailing" id="LYp-rK-1n5"/>
+                <constraint firstItem="vSI-x3-fgI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XlL-Ch-aGl"/>
+                <constraint firstItem="vSI-x3-fgI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eNI-sX-TD6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

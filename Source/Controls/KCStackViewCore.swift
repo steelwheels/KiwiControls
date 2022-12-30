@@ -262,8 +262,11 @@ open class KCStackViewCore : KCCoreView
 			let size = subview.intrinsicContentSize
 			result = CNUnionSize(result, size, doVertical: dovert, spacing: space)
 		}
-		result.width  += space * 2	// left, right
-		result.height += space * 2	// top. bottom
+		if dovert {
+			result.height += space * 2	// top. bottom
+		} else {
+			result.width  += space * 2	// left, right
+		}
 		CNLog(logLevel: .detail, message: "KCStackViewCore: target size \(result.description)")
 		return CNMinSize(result, self.limitSize)
 	}

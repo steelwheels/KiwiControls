@@ -80,7 +80,7 @@ open class KCImageViewCore : KCCoreView
 	}}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return adjustSize(for: size)
+		return adjustContentsSize(size: size)
 	}
 	#endif
 
@@ -93,17 +93,12 @@ open class KCImageViewCore : KCCoreView
 	}}
 
 	public override func contentsSize() -> CGSize {
-		let space    = CNPreference.shared.windowPreference.spacing
 		let imgsize  = self.imageSize
-		let viewsize = CGSize(width: imgsize.width + space*2.0, height: imgsize.height + space*2.0)
-		return CNMinSize(viewsize, self.limitSize)
+		return CNMinSize(imgsize, self.limitSize)
 	}
 
-	private func adjustSize(for size: CGSize) -> CGSize {
-		let space   = CNPreference.shared.windowPreference.spacing
-		let insize  = CNShrinkSize(size: size, delta: space)
-		let newsize = imageSize.resizeWithKeepingAscpect(inSize: insize)
-		return CNExpandSize(newsize, space: space)
+	public override func adjustContentsSize(size tsize: CGSize) -> CGSize {
+		return imageSize.resizeWithKeepingAscpect(inSize: tsize)
 	}
 }
 

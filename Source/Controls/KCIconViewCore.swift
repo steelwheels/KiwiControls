@@ -127,7 +127,7 @@ open class KCIconViewCore : KCCoreView
 	}
 	#else
 	open override func sizeThatFits(_ size: CGSize) -> CGSize {
-		return adjustSize(for: size)
+		return adjustContentsSize(size: size)
 	}
 	#endif
 
@@ -136,15 +136,15 @@ open class KCIconViewCore : KCCoreView
 	}
 
 	open override func setFrameSize(_ newsize: CGSize) {
-		let _ = adjustSize(for: newsize)
+		let _ = adjustContentsSize(size: newsize)
 		super.setFrameSize(newsize)
 	}
 
-	private func adjustSize(for tsize: CGSize) -> CGSize {
+	open override func adjustContentsSize(size tsize: CGSize) -> CGSize {
+		var targsize = tsize
 		let space    = CNPreference.shared.windowPreference.spacing
-		var targsize = CNShrinkSize(size: tsize, delta: space)
-		if targsize.height >= space {
-			targsize.height -= space 	// space between image and button
+		if targsize.height > space {
+			targsize.height -= space
 		}
 
 		/* Adjust label size */
@@ -170,9 +170,7 @@ open class KCIconViewCore : KCCoreView
 		let imgsize = mSize.toSize()
 		let labsize = mLabelView.intrinsicContentSize
 		let space   = CNPreference.shared.windowPreference.spacing
-		var usize   = CNUnionSize(imgsize, labsize, doVertical: true, spacing: space)
-		usize.width  += space * 2 // left, right
-		usize.height += space * 3 // top, bottom and middle
+		let usize   = CNUnionSize(imgsize, labsize, doVertical: true, spacing: space)
 		return CNMinSize(usize, self.limitSize)
 	}
 }
