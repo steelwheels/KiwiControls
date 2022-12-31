@@ -97,8 +97,12 @@ public class SingleViewController: KCSingleViewController
 
 		let edit1  = KCTextEdit()
 		edit1.isEditable = false
-		edit1.text       = "This is label"
+		edit1.text       = "This is text edit"
 
+		let label1  = KCLabelView()
+		label1.isEnabled  = true
+		label1.text       = "This is label"
+ 
 		let gr2d1  = allocateGraphics2DView()
 		let pmenu  = allocatePopupMenu()
 
@@ -106,10 +110,10 @@ public class SingleViewController: KCSingleViewController
 		button1.value = .text("Select Home Directory")
 
 		let box1 = KCStackView()
-		box1.axis		= .horizontal
+		box1.axis		    = .horizontal
 		box1.alignment		= .fill
 		box1.distribution	= .fillProportinally
-		box1.addArrangedSubViews(subViews: [edit1, gr2d1, pmenu, button1])
+		box1.addArrangedSubViews(subViews: [edit1, label1, gr2d1, pmenu, button1])
 
 		let icon1     = allocateIcon()
 		let button2   = KCButton()

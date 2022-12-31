@@ -61,6 +61,10 @@ public class KCViewVisitor
 		visit(coreView: view)
 	}
 
+    open func visit(labelView view: KCLabelView){
+        visit(coreView: view)
+    }
+
 	open func visit(textView view: KCTextView){
 		visit(coreView: view)
 	}

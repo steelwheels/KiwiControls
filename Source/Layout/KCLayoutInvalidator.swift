@@ -127,6 +127,12 @@ public class KCLayoutInvalidator: KCViewVisitor
 		mVisitResult = doinv
 	}
 
+    public override func visit(labelView view: KCLabelView){
+        let doinv = checkTarget(view: view)
+        doInvalidate(view: view, doInvalidate: doinv)
+        mVisitResult = doinv
+    }
+
 	public override func visit(textView view: KCTextView){
 		let doinv = checkTarget(view: view)
 		doInvalidate(view: view, doInvalidate: doinv)

@@ -125,6 +125,14 @@ public class KCViewDumper: KCViewVisitor
 		mSection.add(text: fsection)
 	}
 
+    open override func visit(labelView view: KCLabelView){
+        visit(coreView: view)
+        let fsection = CNTextSection()
+        fsection.header = "label {" ; fsection.footer = "}"
+        fsection.add(text: CNTextLine(string: "label:\(view.text))"))
+        mSection.add(text: fsection)
+    }
+
 	open override func visit(textView view: KCTextView){
 		visit(coreView: view)
 

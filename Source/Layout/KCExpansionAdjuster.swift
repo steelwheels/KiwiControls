@@ -71,6 +71,15 @@ public class KCExpansionAdjuster: KCViewVisitor
 		view.setExpandabilities(priorities: prival)
 	}
 
+    open override func visit(labelView view: KCLabelView){
+        let prival = ExpansionPriorities(
+                        holizontalHugging:      .middle,
+                        holizontalCompression:  .fixed,
+                        verticalHugging:        .middle,
+                        verticalCompression:    .fixed)
+        view.setExpandabilities(priorities: prival)
+    }
+
 	open override func visit(textView view: KCTextView){
 		visitTextView(textView: view)
 	}

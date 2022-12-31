@@ -28,9 +28,9 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	@IBOutlet weak var mTextEdit: UITextField!
 	#endif
 
-	private var 	mIsBold:		Bool 	= false
-	private var 	mDecimalPlaces:		Int	= 0
-	private var 	mMinWidth:		Int     = 40
+	private var 	mIsBold:		    Bool = false
+	private var 	mDecimalPlaces:		Int	 = 0
+	private var 	mMinWidth:		    Int  = 40
 
 	private var	mCurrentValue:		CNValue = CNValue.null
 
@@ -160,27 +160,6 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 	}
 
 	#if os(OSX)
-	open override var intrinsicContentSize: CGSize {
-		get {
-			let curnum  = mTextEdit.stringValue.count
-			let newnum  = max(curnum, mMinWidth)
-			let fitsize = mTextEdit.fittingSize
-
-			let newwidth:  CGFloat
-			let fontsize = self.fontSize(font: mTextEdit.font)
-			newwidth = fontsize.width * CGFloat(newnum)
-
-			mTextEdit.preferredMaxLayoutWidth = newwidth
-			return CGSize(width: newwidth, height: fitsize.height)
-		}
-	}
-	#else
-	open override var intrinsicContentSize: CGSize {
-		get { return mTextEdit.intrinsicContentSize }
-	}
-	#endif
-
-	#if os(OSX)
 	public override var acceptsFirstResponder: Bool { get {
 		return mTextEdit.acceptsFirstResponder
 	}}
@@ -253,6 +232,47 @@ open class KCTextEditCore : KCCoreView, NSTextFieldDelegate
 			mTextEdit.borderStyle = edt ? .bezel : .none
 		#endif
 	}
+
+    open override var intrinsicContentSize: CGSize { get {
+        return CNMinSize(contentsSize(), self.limitSize)
+    }}
+
+    #if os(OSX)
+    open override var fittingSize: CGSize {
+        get { return CNMinSize(contentsSize(), self.limitSize) }
+    }
+    #else
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CNMinSize(adjustContentsSize(size: size), self.limitSize)
+    }
+    #endif
+
+    public override func contentsSize() -> CGSize {
+        #if os(OSX)
+        let curnum  = mTextEdit.stringValue.count
+        let newnum  = max(curnum, mMinWidth)
+        let fitsize = mTextEdit.fittingSize
+
+        let newwidth:  CGFloat
+        let fontsize = self.fontSize(font: mTextEdit.font)
+        newwidth = min(fontsize.width * CGFloat(newnum), self.limitSize.width)
+
+        mTextEdit.preferredMaxLayoutWidth = newwidth
+        return CGSize(width: newwidth, height: fitsize.height)
+        #else
+        return mTextEdit.intrinsicContentSize
+        #endif
+    }
+
+    public override func adjustContentsSize(size sz: CGSize) -> CGSize {
+        let cursize = CNMinSize(self.contentsSize(), self.limitSize)
+        if cursize.width <= sz.width && cursize.height <= sz.height {
+            return sz
+        } else {
+            CNLog(logLevel: .error, message: "Size underflow", atFunction: #function, inFile: #file)
+            return cursize
+        }
+    }
 
 	#if os(OSX)
 	public func controlTextDidEndEditing(_ obj: Notification) {

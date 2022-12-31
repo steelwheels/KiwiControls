@@ -28,6 +28,7 @@ public enum KCViewStructure {
 	case stepper
 	case table
 	case terminalView
+    case label
 	case textEdit
 	case vectorGraphics
 
@@ -153,6 +154,11 @@ public enum KCViewStructure {
 			case .terminalView:	result = true
 			default:		result = false
 			}
+        case .label:
+            switch s0 {
+            case .label:        result = true
+            default:            result = false
+            }
 		case .textEdit:
 			switch s0 {
 			case .textEdit:		result = true
@@ -244,8 +250,12 @@ public class KCViewAnalyzer: KCViewVisitor
 		result = .terminalView
 	}
 
+	public override func visit(labelView view: KCLabelView){
+		result = .label
+	}
+
 	public override func visit(textView view: KCTextView){
-		result = .consoleView
+		result = .textEdit
 	}
 
 	public override func visit(iconView view: KCIconView){

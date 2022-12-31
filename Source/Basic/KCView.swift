@@ -188,7 +188,7 @@ open class KCView : KCViewBase
 		self.bounds.origin = newpt
 	}
 	#endif
-	
+
 	public static var noIntrinsicValue: CGFloat {
 		get {
 			#if os(OSX)
