@@ -87,9 +87,9 @@ public class SingleViewController: KCSingleViewController
 			KCRadioButtons.Label(title: "b", id: 1),
 			KCRadioButtons.Label(title: "c", id: 2)
 		])
-		radio.setEnable(labelId: 0, enable: true)
-		radio.setEnable(labelId: 1, enable: false)
-		radio.setEnable(labelId: 2, enable: false)
+		radio.setState(labelId: 0, state: .on)
+		radio.setState(labelId: 1, state: .off)
+		radio.setState(labelId: 2, state: .off)
 		radio.callback = {
 			(_ index: Int?) -> Void in
 			NSLog("Radio index: \(String(describing: index))")

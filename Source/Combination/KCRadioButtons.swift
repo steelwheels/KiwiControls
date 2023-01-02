@@ -192,29 +192,16 @@ open class KCRadioButtons: KCStackView
 		}
 	}
 
-	public func setEnable(labelId lid: Int, enable enb: Bool) {
+	public func setState(labelId lid: Int, state stat: CNButtonState) {
 		guard let bid = labelIdToButtonId(labelId: lid) else {
 			return
 		}
 		let target = mButtons[bid]
-		switch target.state {
-		case .hidden:
-			break
-		case .disable:
-			if enb {
-				target.state = .off
-				target.requireDisplay()
-			}
-		case .off:
-			target.state = .disable
-			target.requireDisplay()
-		case .on:
-			target.state  = .disable
-			target.requireDisplay()
-			mCurrentIndex = nil
-		@unknown default:
-			CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
+		target.state = stat
+		if stat == .on {
+			mCurrentIndex = bid
 		}
+		target.requireDisplay()
 	}
 
 	private func labelIdToButtonId(labelId lid: Int) -> Int? {

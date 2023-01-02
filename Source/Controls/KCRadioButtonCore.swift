@@ -17,18 +17,24 @@ open class KCRadioButtonCore: KCCoreView
 	public typealias CallbackFunction = (_ buttonid: Int) -> Void
 
 	private var mButtonID: Int? 			 = nil
-	private var mState: CNButtonState		 = .off
+	private var mState: CNButtonState		 = .hidden
 	private var mCallbackFunction: CallbackFunction? = nil
 	private var mMinLabelWidth: Int			 = 8
 
 	#if os(OSX)
 	@IBOutlet weak var mRadioButton: NSButton!
 	#else
-	@IBOutlet weak var mRadioButton: UIButton!
+	@IBOutlet weak var mLabel: UILabel!
+	@IBOutlet weak var mSwitch: UISwitch!
 	#endif
 
 	public func setup(frame frm: CGRect){
-		super.setup(isSingleView: true, coreView: mRadioButton)
+		#if os(OSX)
+		super.setup(isSingleView: false, coreView: mRadioButton)
+		#else
+		super.setup(isSingleView: false, coreView: mSwitch)
+		#endif
+		self.state = .off
 	}
 
 	public var buttonId: Int? {
@@ -41,15 +47,14 @@ open class KCRadioButtonCore: KCCoreView
 			#if os(OSX)
 				return mRadioButton.title
 			#else
-				return mRadioButton.title(for: .normal) ?? ""
+				return mLabel.text ?? ""
 			#endif
 		}
 		set(newval) {
 			#if os(OSX)
 				mRadioButton.title = newval
 			#else
-				mRadioButton.setTitle(newval, for: .normal)
-				mRadioButton.setTitle(newval, for: .selected)
+				mLabel.text = newval
 			#endif
 		}
 	}
@@ -86,13 +91,39 @@ open class KCRadioButtonCore: KCCoreView
 	}
 
 	private var isVisible: Bool {
-		get         { return !mRadioButton.isHidden }
-		set(newval) { mRadioButton.isHidden = !newval }
+		get {
+			#if os(OSX)
+				return !mRadioButton.isHidden
+			#else
+				return !mSwitch.isHidden
+			#endif
+		}
+		set(newval) {
+			#if os(OSX)
+				mRadioButton.isHidden = !newval
+			#else
+				mSwitch.isHidden = !newval
+				mLabel.isHidden  = !newval
+			#endif
+		}
 	}
 
 	private var isEnabled: Bool {
-		get         { return mRadioButton.isEnabled	}
-		set(newval) { mRadioButton.isEnabled = newval	}
+		get         {
+			#if os(OSX)
+				return mRadioButton.isEnabled
+			#else
+				return mSwitch.isEnabled
+			#endif
+		}
+		set(newval) {
+			#if os(OSX)
+				mRadioButton.isEnabled = newval
+			#else
+				mSwitch.isEnabled = newval
+				mLabel.isEnabled = newval
+			#endif
+		}
 	}
 
 	private var isOn: Bool {
@@ -100,14 +131,14 @@ open class KCRadioButtonCore: KCCoreView
 			#if os(OSX)
 				return mRadioButton.state != .off
 			#else
-				return mRadioButton.isHighlighted
+				return mSwitch.state == .selected
 			#endif
 		}
 		set(newval){
 			#if os(OSX)
 				mRadioButton.state = newval ? .on : .off
 			#else
-				mRadioButton.isHighlighted = newval
+				mSwitch.setOn(newval, animated: true)
 			#endif
 		}
 	}
@@ -139,25 +170,32 @@ open class KCRadioButtonCore: KCCoreView
 	}
 
 	#if os(OSX)
-	open override var fittingSize: CGSize {
+	public override var fittingSize: CGSize {
 		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 	#else
-	open override func sizeThatFits(_ size: CGSize) -> CGSize {
+	public override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return CNMinSize(contentsSize(), self.limitSize)
 	}
 	#endif
 
-	open override var intrinsicContentSize: CGSize {
+	public override var intrinsicContentSize: CGSize {
 		get { return CNMinSize(contentsSize(), self.limitSize) }
 	}
 
 	public override func contentsSize() -> CGSize {
-		return mRadioButton.intrinsicContentSize
+		#if os(OSX)
+			return mRadioButton.intrinsicContentSize
+		#else
+			let swsize  = mSwitch.intrinsicContentSize
+			let labsize = mLabel.intrinsicContentSize
+			let space   = CNPreference.shared.windowPreference.spacing
+			return CNUnionSize(swsize, labsize, doVertical: false, spacing: space)
+		#endif
 	}
 
 	public override func adjustContentsSize(size sz: CGSize) -> CGSize {
-		let cursize = mRadioButton.intrinsicContentSize
+		let cursize = self.intrinsicContentSize
 		if cursize.width <= sz.width && cursize.height <= sz.height {
 			return sz
 		} else {

@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+            <connections>
+                <outlet property="mSwitch" destination="TgU-5V-1gq" id="taj-p0-ADf"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KCRadioButtonCore" customModule="KiwiControls" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-4y-7uS">
-                    <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
-                    <state key="normal" title="Button"/>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MhL-L7-eJi">
+                    <rect key="frame" x="6" y="0.0" width="51" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="49" id="TgU-5V-1gq"/>
+                    </constraints>
                     <connections>
-                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="2bH-4c-Si6"/>
-                        <action selector="buttonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="7yO-bq-huT"/>
+                        <action selector="buttonPressed:" destination="iN0-l3-epB" eventType="valueChanged" id="lfz-LX-VN8"/>
                     </connections>
-                </button>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgF-sU-gN2">
+                    <rect key="frame" x="63" y="5" width="97" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vvz-4y-7uS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4gd-mJ-83k"/>
-                <constraint firstItem="vvz-4y-7uS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5eR-Bn-8bt"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="vvz-4y-7uS" secondAttribute="bottom" id="jB1-sN-IGB"/>
-                <constraint firstAttribute="trailing" secondItem="vvz-4y-7uS" secondAttribute="trailing" id="xJR-Gr-dxg"/>
+                <constraint firstItem="MhL-L7-eJi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0H8-Dn-H1V"/>
+                <constraint firstItem="ZgF-sU-gN2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="RnG-yB-yXh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MhL-L7-eJi" secondAttribute="bottom" constant="18" id="VVd-3v-e2K"/>
+                <constraint firstAttribute="trailing" secondItem="ZgF-sU-gN2" secondAttribute="trailing" id="aTX-i0-SVM"/>
+                <constraint firstAttribute="bottom" secondItem="ZgF-sU-gN2" secondAttribute="bottom" constant="4" id="bbi-oo-nqJ"/>
+                <constraint firstItem="ZgF-sU-gN2" firstAttribute="leading" secondItem="MhL-L7-eJi" secondAttribute="trailing" constant="8" symbolic="YES" id="gqQ-nm-Pit"/>
+                <constraint firstItem="MhL-L7-eJi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="xf2-Sz-Czw"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="mRadioButton" destination="vvz-4y-7uS" id="VlE-6e-7aN"/>
+                <outlet property="mLabel" destination="ZgF-sU-gN2" id="CCs-d5-fdX"/>
+                <outlet property="mSwitch" destination="MhL-L7-eJi" id="yQg-wk-3zF"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="96.428571428571431"/>
+            <point key="canvasLocation" x="137.68115942028987" y="64.955357142857139"/>
         </view>
     </objects>
     <resources>

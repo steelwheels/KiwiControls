@@ -8,12 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
-            <connections>
-                <outlet property="mImageButton" destination="JDU-ea-gLY" id="1qM-8J-D6l"/>
-                <outlet property="mLabelView" destination="m8M-aq-s5B" id="q01-O0-Gcd"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="PnB-mV-ZfF" customClass="KCIconViewCore" customModule="KiwiControls" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
@@ -21,14 +16,11 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDU-ea-gLY">
                     <rect key="frame" x="0.0" y="0.0" width="128" height="131"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="49e-b6-P24"/>
-                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8M-aq-s5B">
                     <rect key="frame" x="0.0" y="139" width="128" height="21"/>
                     <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="8fE-FJ-fp1"/>
                         <constraint firstAttribute="height" constant="21" id="dCs-Je-nL4"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -39,17 +31,24 @@
             <viewLayoutGuide key="safeArea" id="DV8-c6-vWv"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="JDU-ea-gLY" firstAttribute="top" secondItem="PnB-mV-ZfF" secondAttribute="top" id="AIu-QK-rCu"/>
-                <constraint firstItem="m8M-aq-s5B" firstAttribute="top" secondItem="JDU-ea-gLY" secondAttribute="bottom" constant="8" symbolic="YES" id="Mqn-Ly-GkC"/>
-                <constraint firstItem="JDU-ea-gLY" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="d5B-Xz-cBs"/>
+                <constraint firstItem="m8M-aq-s5B" firstAttribute="top" secondItem="JDU-ea-gLY" secondAttribute="bottom" constant="8" symbolic="YES" id="02A-gD-3io"/>
+                <constraint firstItem="JDU-ea-gLY" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="3is-CN-hzb"/>
+                <constraint firstItem="m8M-aq-s5B" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="6yt-PD-5ax"/>
+                <constraint firstItem="JDU-ea-gLY" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="Fn2-nW-vBu"/>
+                <constraint firstItem="JDU-ea-gLY" firstAttribute="top" secondItem="PnB-mV-ZfF" secondAttribute="top" id="Uls-dp-6bD"/>
+                <constraint firstItem="m8M-aq-s5B" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="bdy-IR-X2F"/>
                 <constraint firstItem="m8M-aq-s5B" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="f4R-eD-ujd"/>
-                <constraint firstItem="JDU-ea-gLY" firstAttribute="trailing" secondItem="DV8-c6-vWv" secondAttribute="trailing" id="hA0-OG-IT3"/>
                 <constraint firstItem="m8M-aq-s5B" firstAttribute="leading" secondItem="DV8-c6-vWv" secondAttribute="leading" id="kCA-dW-Wmr"/>
                 <constraint firstItem="m8M-aq-s5B" firstAttribute="bottom" secondItem="DV8-c6-vWv" secondAttribute="bottom" id="nUu-Iv-nYe"/>
+                <constraint firstItem="m8M-aq-s5B" firstAttribute="bottom" secondItem="DV8-c6-vWv" secondAttribute="bottom" id="oSf-FK-xTn"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mImageButton" destination="JDU-ea-gLY" id="Lb4-LK-ybB"/>
+                <outlet property="mLabelView" destination="m8M-aq-s5B" id="ehu-u3-Avk"/>
+            </connections>
             <point key="canvasLocation" x="-23.188405797101453" y="-90.401785714285708"/>
         </view>
     </objects>

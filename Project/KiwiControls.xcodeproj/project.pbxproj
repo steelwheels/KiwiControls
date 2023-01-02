@@ -377,13 +377,6 @@
 			remoteGlobalIDString = 05EB004425181E7300636C82;
 			remoteInfo = Install;
 		};
-		05B7AE7A2960296B0076FEBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0518974325176DD300487B45 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0544EA5925176E23002DE6A8;
-			remoteInfo = KiwiControls_iOS;
-		};
 		05CA7A742910C1480028E049 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0518974325176DD300487B45 /* Project object */;
@@ -1483,7 +1476,6 @@
 			);
 			dependencies = (
 				0549749728DFC5B60041AF4F /* PBXTargetDependency */,
-				05B7AE7B2960296B0076FEBC /* PBXTargetDependency */,
 			);
 			name = UTControl_iOS;
 			productName = UTControl_iOS;
@@ -2288,11 +2280,6 @@
 			isa = PBXTargetDependency;
 			target = 05EB004425181E7300636C82 /* Install */;
 			targetProxy = 05B7506F2539DD7D0034D8CB /* PBXContainerItemProxy */;
-		};
-		05B7AE7B2960296B0076FEBC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0544EA5925176E23002DE6A8 /* KiwiControls_iOS */;
-			targetProxy = 05B7AE7A2960296B0076FEBC /* PBXContainerItemProxy */;
 		};
 		05CA7A752910C1480028E049 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

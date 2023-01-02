@@ -19,6 +19,11 @@ class SingleViewController: KCSingleViewController
 		labview.text = "label"
 		stackview.addArrangedSubView(subView: labview)
 
+		let iconview = KCIconView()
+		iconview.symbol = .character
+		iconview.title  = "icon view"
+		stackview.addArrangedSubView(subView: iconview)
+		
 		let symbol  = CNSymbol.character
 		let imgview = KCImageView()
 		imgview.image = symbol.load(size: .regular)
