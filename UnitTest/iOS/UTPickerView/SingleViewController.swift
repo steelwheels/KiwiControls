@@ -28,7 +28,8 @@ public class SingleViewController: KCSingleViewController
 	}
 
 	private var mViewType	: ViewType
-	private var mURLLabel	: KCTextEdit?	= nil
+	private var mURLLabel	: KCTextEdit?				= nil
+	private var mPicker	: KCDocumentPickerViewController?	= nil
 
 	public init(viewType type: ViewType, parentViewController parent: KCMultiViewController) {
 		mViewType = type
@@ -81,13 +82,28 @@ public class SingleViewController: KCSingleViewController
 		return box1
 	}
 
-	private var mPicker: KCDocumentPickerViewController? = nil
-
 	private func selectInputURL() {
 		CNLog(logLevel: .error, message: "selctInputFile", atFunction: #function, inFile: #file)
 
-		let picker = KCDocumentPickerViewController(parentViewController: super.parentController)
-		let url    = URL(fileURLWithPath: NSHomeDirectory())
+		let picker: KCDocumentPickerViewController
+		if let p = mPicker {
+			picker = p
+		} else {
+			let newpicker = KCDocumentPickerViewController(parentViewController: super.parentController)
+			mPicker = newpicker
+			picker  = newpicker
+			
+			picker.setCallbackFunction { (_ urlp: URL?) in
+				NSLog("detect callback")
+				if let url = urlp {
+					self.mURLLabel?.text = url.path
+				} else {
+					self.mURLLabel?.text = "<canceled>"
+				}
+			}
+		}
+
+		let url = URL(fileURLWithPath: CNPreference.shared.userPreference.documentDirectory.path)
 		picker.openPicker(URL: url)
 
 		/*

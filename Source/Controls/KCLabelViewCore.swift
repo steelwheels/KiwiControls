@@ -14,12 +14,12 @@ import CoconutData
 
 open class KCLabelViewCore : KCCoreView, NSTextFieldDelegate
 {
-    #if os(iOS)
-    @IBOutlet weak var mLabel: UILabel!
-    #endif
-    #if os(OSX)
-    @IBOutlet weak var mLabel: NSTextField!
-    #endif
+	#if os(iOS)
+	@IBOutlet weak var mLabel: UILabel!
+	#endif
+	#if os(OSX)
+	@IBOutlet weak var mLabel: NSTextField!
+	#endif
 
     private let mDecimalPlace   = 2
 

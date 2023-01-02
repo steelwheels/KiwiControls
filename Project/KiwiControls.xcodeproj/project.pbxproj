@@ -274,6 +274,10 @@
 		05B750572539D2440034D8CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B750562539D2440034D8CB /* Assets.xcassets */; };
 		05B7505A2539D2440034D8CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B750582539D2440034D8CB /* Main.storyboard */; };
 		05B750672539DCD00034D8CB /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B750642539DCCF0034D8CB /* SingleViewController.swift */; };
+		05B7AE782960296B0076FEBC /* KiwiControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EA5A25176E23002DE6A8 /* KiwiControls.framework */; };
+		05B7AE792960296B0076FEBC /* KiwiControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EA5A25176E23002DE6A8 /* KiwiControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05B7AE7D29602A3C0076FEBC /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; };
+		05B7AE7E29602A3C0076FEBC /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0544EBCA251776E2002DE6A8 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05BAEE0C2904CBA10099107B /* KCLayoutChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAEE0B2904CBA10099107B /* KCLayoutChecker.swift */; };
 		05BAEE0D2904CBA10099107B /* KCLayoutChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAEE0B2904CBA10099107B /* KCLayoutChecker.swift */; };
 		05BDADFD276E261A00729B0E /* KCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BDADFC276E261A00729B0E /* KCCardView.swift */; };
@@ -373,6 +377,13 @@
 			remoteGlobalIDString = 05EB004425181E7300636C82;
 			remoteInfo = Install;
 		};
+		05B7AE7A2960296B0076FEBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0518974325176DD300487B45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0544EA5925176E23002DE6A8;
+			remoteInfo = KiwiControls_iOS;
+		};
 		05CA7A742910C1480028E049 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0518974325176DD300487B45 /* Project object */;
@@ -404,16 +415,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		051549172956F0D400C94957 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		052E3A4027E0A6A100DC8266 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -476,6 +477,18 @@
 			files = (
 				058EBF33264DE52B0031F306 /* KiwiControls.xcframework in Embed Frameworks */,
 				058EBF3C264DE6500031F306 /* CoconutData.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05B7AE7C2960296C0076FEBC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05B7AE792960296B0076FEBC /* KiwiControls.framework in Embed Frameworks */,
+				05B7AE7E29602A3C0076FEBC /* CoconutData.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,6 +774,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B7AE782960296B0076FEBC /* KiwiControls.framework in Frameworks */,
+				05B7AE7D29602A3C0076FEBC /* CoconutData.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1462,12 +1477,13 @@
 				053D11FC28DF4FB6006B8F49 /* Sources */,
 				053D11FD28DF4FB6006B8F49 /* Frameworks */,
 				053D11FE28DF4FB6006B8F49 /* Resources */,
-				051549172956F0D400C94957 /* Embed Frameworks */,
+				05B7AE7C2960296C0076FEBC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				0549749728DFC5B60041AF4F /* PBXTargetDependency */,
+				05B7AE7B2960296B0076FEBC /* PBXTargetDependency */,
 			);
 			name = UTControl_iOS;
 			productName = UTControl_iOS;
@@ -2273,6 +2289,11 @@
 			target = 05EB004425181E7300636C82 /* Install */;
 			targetProxy = 05B7506F2539DD7D0034D8CB /* PBXContainerItemProxy */;
 		};
+		05B7AE7B2960296B0076FEBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0544EA5925176E23002DE6A8 /* KiwiControls_iOS */;
+			targetProxy = 05B7AE7A2960296B0076FEBC /* PBXContainerItemProxy */;
+		};
 		05CA7A752910C1480028E049 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05EB004425181E7300636C82 /* Install */;
@@ -2600,6 +2621,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = UTControl_iOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2625,6 +2647,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTControl-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -2654,6 +2677,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = UTControl_iOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2675,6 +2699,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UTControl-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -4100,12 +4125,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -4148,12 +4177,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UTPickerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

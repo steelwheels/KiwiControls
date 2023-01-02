@@ -9,32 +9,29 @@
 
 import CoconutData
 import UIKit
+import UniformTypeIdentifiers
 import Foundation
 
 @objc public class KCDocumentPickerViewController: NSObject, UIDocumentPickerDelegate
 {
-	public enum LoaderFunction {
-		case none
-		case view(_ loader: (_ url: URL) -> KCSingleViewController?)
-		case url(_ loader: (_ url: URL) -> Void)
-	}
+	public typealias CallbackFunction = (_ url: URL?) -> Void
 
 	private var mParentViewController:	KCMultiViewController
 	private var mPickerView:		UIDocumentPickerViewController?
-	private var mLoaderFunction:		LoaderFunction
+	private var mCallback:			CallbackFunction?
 
 	public init(parentViewController parent: KCMultiViewController) {
 		mParentViewController	= parent
 		mPickerView		= nil
-		mLoaderFunction		= .none
+		mCallback		= nil
 	}
 
 	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	public func setLoaderFunction(loader ldr: LoaderFunction){
-		mLoaderFunction = ldr
+	public func setCallbackFunction(callback cbfunc: @escaping CallbackFunction){
+		mCallback = cbfunc
 	}
 
 	public func openPicker(URL url: URL) {
@@ -43,7 +40,11 @@ import Foundation
 		if let p = mPickerView {
 			picker = p
 		} else {
-			picker = UIDocumentPickerViewController(forExporting: [url])
+			var uttypes: Array<UTType> = [ ]
+			if let pkg = UTType("com.github.steelwheels.jstools.script-package") {
+				uttypes.append(pkg)
+			}
+			picker = UIDocumentPickerViewController(forOpeningContentTypes: uttypes)
 			mPickerView = picker
 		}
 		picker.delegate			= self
@@ -54,23 +55,20 @@ import Foundation
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
 		CNLog(logLevel: .detail, message: "Selected")
-		if urls.count >= 1 {
-			switch mLoaderFunction {
-			case .none:
-				break
-			case .view(let ldrfunc):
-				if let viewctrl = ldrfunc(urls[0]) {
-					let cbfunc: KCMultiViewController.ViewSwitchCallback = { (_ val: CNValue) -> Void in }
-					mParentViewController.pushViewController(viewController: viewctrl, callback: cbfunc)
-				}
-			case .url(let ldrfunc):
-				ldrfunc(urls[0])
-			}
+		if let cbfunc = mCallback {
+			cbfunc(urls.count >= 1 ? urls[0] : nil)
+		} else {
+			CNLog(logLevel: .error, message: "No callback", atFunction: #function, inFile: #file)
 		}
 	}
-
+	
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
 		CNLog(logLevel: .detail, message: "Canceled")
+		if let cbfunc = mCallback {
+			cbfunc(nil)
+		} else {
+			CNLog(logLevel: .error, message: "No callback", atFunction: #function, inFile: #file)
+		}
 	}
 }
 
