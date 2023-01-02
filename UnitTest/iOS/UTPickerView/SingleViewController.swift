@@ -29,7 +29,6 @@ public class SingleViewController: KCSingleViewController
 
 	private var mViewType	: ViewType
 	private var mURLLabel	: KCTextEdit?				= nil
-	private var mPicker	: KCDocumentPickerViewController?	= nil
 
 	public init(viewType type: ViewType, parentViewController parent: KCMultiViewController) {
 		mViewType = type
@@ -85,6 +84,19 @@ public class SingleViewController: KCSingleViewController
 	private func selectInputURL() {
 		CNLog(logLevel: .error, message: "selctInputFile", atFunction: #function, inFile: #file)
 
+		let picker = super.parentController.documentPickerViewController(callback:{
+			(_ urlp: URL?) in
+			if let url = urlp {
+				self.mURLLabel?.text = url.path
+			} else {
+				self.mURLLabel?.text = "<canceled>"
+			}
+		})
+
+		let url = URL(fileURLWithPath: CNPreference.shared.userPreference.documentDirectory.path)
+		picker.openPicker(URL: url)
+
+		/*
 		let picker: KCDocumentPickerViewController
 		if let p = mPicker {
 			picker = p
@@ -92,7 +104,7 @@ public class SingleViewController: KCSingleViewController
 			let newpicker = KCDocumentPickerViewController(parentViewController: super.parentController)
 			mPicker = newpicker
 			picker  = newpicker
-			
+
 			picker.setCallbackFunction { (_ urlp: URL?) in
 				NSLog("detect callback")
 				if let url = urlp {
@@ -105,7 +117,7 @@ public class SingleViewController: KCSingleViewController
 
 		let url = URL(fileURLWithPath: CNPreference.shared.userPreference.documentDirectory.path)
 		picker.openPicker(URL: url)
-
+*/
 		/*
 		#if true
 			parent.selectViewFile(title: "Select application", fileExtensions: ["ambpkg"], loaderFunction: {

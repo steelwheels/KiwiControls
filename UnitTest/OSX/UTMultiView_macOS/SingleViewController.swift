@@ -102,7 +102,7 @@ public class SingleViewController: KCSingleViewController
 		let label1  = KCLabelView()
 		label1.isEnabled  = true
 		label1.text       = "This is label"
- 
+
 		let gr2d1  = allocateGraphics2DView()
 		let pmenu  = allocatePopupMenu()
 

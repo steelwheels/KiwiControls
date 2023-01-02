@@ -61,7 +61,7 @@ import Foundation
 			CNLog(logLevel: .error, message: "No callback", atFunction: #function, inFile: #file)
 		}
 	}
-	
+
 	public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
 		CNLog(logLevel: .detail, message: "Canceled")
 		if let cbfunc = mCallback {

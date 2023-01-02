@@ -18,7 +18,7 @@ class SingleViewController: KCSingleViewController
 		let labview = KCLabelView()
 		labview.text = "label"
 		stackview.addArrangedSubView(subView: labview)
-		
+
 		let symbol  = CNSymbol.character
 		let imgview = KCImageView()
 		imgview.image = symbol.load(size: .regular)
