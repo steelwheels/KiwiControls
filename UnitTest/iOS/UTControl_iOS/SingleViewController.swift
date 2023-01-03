@@ -44,6 +44,21 @@ class SingleViewController: KCSingleViewController
 		})
 		stackview.addArrangedSubView(subView: collectview)
 
+		let radio     = KCRadioButtons()
+		radio.columnNum = 3
+		radio.setLabels(labels: [
+			KCRadioButtons.Label(title: "a", id: 0),
+			KCRadioButtons.Label(title: "b", id: 1),
+			KCRadioButtons.Label(title: "c", id: 2)
+		])
+		radio.setState(labelId: 0, state: .on)
+		radio.setState(labelId: 1, state: .off)
+		radio.setState(labelId: 2, state: .off)
+		radio.callback = {
+			(_ index: Int?) -> Void in
+			NSLog("Radio index: \(String(describing: index))")
+		}
+		stackview.addArrangedSubView(subView: radio)
 
 		let buttonview = KCButton()
 		buttonview.value = .text("Hello")

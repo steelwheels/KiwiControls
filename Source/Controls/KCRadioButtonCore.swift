@@ -24,18 +24,32 @@ open class KCRadioButtonCore: KCCoreView
 	#if os(OSX)
 	@IBOutlet weak var mRadioButton: NSButton!
 	#else
+	@IBOutlet weak var mButton: UIButton!
 	@IBOutlet weak var mLabel: UILabel!
-	@IBOutlet weak var mSwitch: UISwitch!
 	#endif
 
 	public func setup(frame frm: CGRect){
 		#if os(OSX)
 		super.setup(isSingleView: false, coreView: mRadioButton)
 		#else
-		super.setup(isSingleView: false, coreView: mSwitch)
+		super.setup(isSingleView: false, coreView: mButton)
 		#endif
+
+		// Set label images for each status
+		#if os(iOS)
+		setButtonSymbol(symbol: .square,		state: .normal)
+		setButtonSymbol(symbol: .checkmarkSquare,	state: .selected)
+		#endif
+
 		self.state = .off
 	}
+
+	#if os(iOS)
+	private func setButtonSymbol(symbol sym: CNSymbol, state stat: UIControl.State) {
+		mButton.setImage(sym.load(size: .character), for: stat)
+		mButton.setTitle("", for: stat)
+	}
+	#endif
 
 	public var buttonId: Int? {
 		get         { return mButtonID }
@@ -95,14 +109,14 @@ open class KCRadioButtonCore: KCCoreView
 			#if os(OSX)
 				return !mRadioButton.isHidden
 			#else
-				return !mSwitch.isHidden
+				return !mButton.isHidden
 			#endif
 		}
 		set(newval) {
 			#if os(OSX)
 				mRadioButton.isHidden = !newval
 			#else
-				mSwitch.isHidden = !newval
+				mButton.isHidden = !newval
 				mLabel.isHidden  = !newval
 			#endif
 		}
@@ -113,14 +127,14 @@ open class KCRadioButtonCore: KCCoreView
 			#if os(OSX)
 				return mRadioButton.isEnabled
 			#else
-				return mSwitch.isEnabled
+				return mButton.isEnabled
 			#endif
 		}
 		set(newval) {
 			#if os(OSX)
 				mRadioButton.isEnabled = newval
 			#else
-				mSwitch.isEnabled = newval
+				mButton.isEnabled = newval
 				mLabel.isEnabled = newval
 			#endif
 		}
@@ -131,14 +145,14 @@ open class KCRadioButtonCore: KCCoreView
 			#if os(OSX)
 				return mRadioButton.state != .off
 			#else
-				return mSwitch.state == .selected
+				return mButton.state == .selected
 			#endif
 		}
 		set(newval){
 			#if os(OSX)
 				mRadioButton.state = newval ? .on : .off
 			#else
-				mSwitch.setOn(newval, animated: true)
+				mButton.isSelected = newval
 			#endif
 		}
 	}
@@ -158,7 +172,7 @@ open class KCRadioButtonCore: KCCoreView
 		self.pressed()
 	}
 	#else
-	@IBAction func buttonPressed(_ sender: Any) {
+	@IBAction func puttonPressed(_ sender: Any) {
 		self.pressed()
 	}
 	#endif
@@ -187,10 +201,9 @@ open class KCRadioButtonCore: KCCoreView
 		#if os(OSX)
 			return mRadioButton.intrinsicContentSize
 		#else
-			let swsize  = mSwitch.intrinsicContentSize
+			let swsize  = mButton.intrinsicContentSize
 			let labsize = mLabel.intrinsicContentSize
-			let space   = CNPreference.shared.windowPreference.spacing
-			return CNUnionSize(swsize, labsize, doVertical: false, spacing: space)
+		return CNUnionSize(swsize, labsize, doVertical: false, spacing: 0.0)
 		#endif
 	}
 
