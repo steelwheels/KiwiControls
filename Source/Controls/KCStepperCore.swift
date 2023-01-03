@@ -24,10 +24,11 @@ public class KCStepperCore: KCCoreView
 	private var        mCurrentValue:	Double =   0
 	private var 	   mMaxValue:		Double = 100
 	private var 	   mMinValue:		Double =   0
+	private var 	   mStepValue:		Double =   1
 	#endif
 
-	public var minWidth: Int		= 16
-	public var deltaValue: Double		= 1.0
+	private var mMinWidth: CGFloat		= 17.0 * 8
+
 	public var decimalPlaces: Int		= 2
 	public var updateValueCallback: ((_ newvalue: Double) -> Void)? = nil
 
@@ -42,6 +43,7 @@ public class KCStepperCore: KCCoreView
 			mTextField.stringValue = ""
 			mTextField.alignment = .center
 		#endif
+		updateTextField(value: self.currentValue)
 	}
 
 	private func updateTextField(value: Double){
@@ -117,6 +119,23 @@ public class KCStepperCore: KCCoreView
 		}
 	}
 
+	public var stepValue: Double {
+		get {
+			#if os(iOS)
+				return mStepper.stepValue
+			#else
+				return mStepValue
+			#endif
+		}
+		set(newval){
+			#if os(iOS)
+				mStepper.stepValue = newval
+			#else
+				mStepValue = newval
+			#endif
+		}
+	}
+	
 	public var isIncrementable: Bool {
 		get {
 			#if os(iOS)
@@ -178,7 +197,7 @@ public class KCStepperCore: KCCoreView
 	#else
 	@IBAction func decButtonAction(_ sender: Any) {
 		/* Decrement current value */
-		let nextval = clipValue(value: mCurrentValue - deltaValue)
+		let nextval = clipValue(value: mCurrentValue - mStepValue)
 		/* Update values */
 		if nextval != mCurrentValue {
 			updateTextField(value: nextval)
@@ -191,7 +210,7 @@ public class KCStepperCore: KCCoreView
 
 	@IBAction func incButtonAction(_ sender: Any) {
 		/* Increment current value */
-		let nextval = clipValue(value: mCurrentValue + deltaValue)
+		let nextval = clipValue(value: mCurrentValue + mStepValue)
 		/* Update values */
 		if nextval != mCurrentValue {
 			updateTextField(value: nextval)
@@ -234,17 +253,7 @@ public class KCStepperCore: KCCoreView
 
 	public override func contentsSize() -> CGSize {
 		/* Get text field size*/
-		#if os(OSX)
-		let curnum  = mTextField.stringValue.count
-		let newnum  = max(curnum, minWidth)
-		let fitsize = mTextField.fittingSize
-		let newwidth:  CGFloat
-		let fontsize = fontSize(font: mTextField.font)
-		newwidth = fontsize.width * CGFloat(newnum)
-		let fieldsize   = CGSize(width: newwidth, height: fitsize.height)
-		#else
-		let fieldsize   = mTextField.intrinsicContentSize
-		#endif
+		let fieldsize = fieldSize()
 		/* Ger stepper size*/
 		let steppersize = stepperButtonSize()
 		let space  = CNPreference.shared.windowPreference.spacing
@@ -258,8 +267,9 @@ public class KCStepperCore: KCCoreView
 			CNLog(logLevel: .error, message: "Size overflow", atFunction: #function, inFile: #file)
 			return contentsSize()
 		}
-		let fieldsize = mTextField.intrinsicContentSize
-		let newsize   = CGSize(width: sz.width - steppersize.width, height: sz.height)
+		let fieldsize = fieldSize()
+		let newsize   = CGSize(width: sz.width - steppersize.width,
+				       height: sz.height)
 		if fieldsize.width <= newsize.width && fieldsize.height <= newsize.height {
 			return sz
 		} else {
@@ -268,6 +278,14 @@ public class KCStepperCore: KCCoreView
 		}
 	}
 
+	private func fieldSize() -> CGSize {
+		var result = mTextField.intrinsicContentSize
+		if result.width < mMinWidth {
+			result.width = mMinWidth
+		}
+		return result
+	}
+	
 	private func stepperButtonSize() -> CGSize {
 		#if os(iOS)
 			return mStepper.frame.size

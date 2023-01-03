@@ -60,6 +60,14 @@ class SingleViewController: KCSingleViewController
 		}
 		stackview.addArrangedSubView(subView: radio)
 
+		
+		let stepper  = KCStepper()
+		stepper.minValue     = -1.0
+		stepper.maxValue     = +1.0
+		stepper.stepValue    = 0.1
+		stepper.currentValue = 0.0
+		stackview.addArrangedSubView(subView: stepper)
+		
 		let buttonview = KCButton()
 		buttonview.value = .text("Hello")
 		stackview.addArrangedSubView(subView: buttonview)
