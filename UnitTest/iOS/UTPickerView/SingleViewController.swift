@@ -93,7 +93,7 @@ public class SingleViewController: KCSingleViewController
 			}
 		})
 
-		let url = URL(fileURLWithPath: CNPreference.shared.userPreference.documentDirectory.path)
+		let url = FileManager.default.documentDirectory
 		picker.openPicker(URL: url)
 
 		/*
