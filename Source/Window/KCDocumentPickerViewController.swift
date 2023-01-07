@@ -10,6 +10,7 @@
 import CoconutData
 import UIKit
 import UniformTypeIdentifiers
+import MobileCoreServices
 import Foundation
 
 @objc public class KCDocumentPickerViewController: NSObject, UIDocumentPickerDelegate
@@ -40,7 +41,7 @@ import Foundation
 		if let p = mPickerView {
 			picker = p
 		} else {
-			var uttypes: Array<UTType> = [ ]
+			var uttypes: Array<UTType> = [ UTType.folder ]
 			if let pkg = UTType("com.github.steelwheels.jstools.script-package") {
 				uttypes.append(pkg)
 			}
@@ -50,13 +51,24 @@ import Foundation
 		picker.delegate			= self
 		picker.modalPresentationStyle	= .fullScreen
 		picker.allowsMultipleSelection	= false
+		picker.directoryURL 		= url
 		mParentViewController.present(picker, animated: true, completion: nil)
 	}
 
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
 		CNLog(logLevel: .detail, message: "Selected")
 		if let cbfunc = mCallback {
-			cbfunc(urls.count >= 1 ? urls[0] : nil)
+			if let url = urls.first {
+				if url.startAccessingSecurityScopedResource() {
+					cbfunc(url)
+					url.stopAccessingSecurityScopedResource()
+				} else {
+					CNLog(logLevel: .error, message: "Failed to access sequrity resource", atFunction: #function, inFile: #file)
+					cbfunc(nil)
+				}
+			} else {
+				cbfunc(nil)
+			}
 		} else {
 			CNLog(logLevel: .error, message: "No callback", atFunction: #function, inFile: #file)
 		}

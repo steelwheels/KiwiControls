@@ -14,6 +14,8 @@ import CoconutData
 
 open class KCButton: KCInterfaceView
 {
+	public typealias CallbackFunction = KCButtonCore.CallbackFunction
+
 	#if os(OSX)
 	public override init(frame : NSRect){
 		super.init(frame: frame)
@@ -51,7 +53,7 @@ open class KCButton: KCInterfaceView
 		}
 	}
 
-	public var buttonPressedCallback: (() -> Void)? {
+	public var buttonPressedCallback: CallbackFunction? {
 		get { return coreView.buttonPressedCallback }
 		set(callback){ coreView.buttonPressedCallback = callback }
 	}

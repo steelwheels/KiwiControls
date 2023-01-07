@@ -111,16 +111,6 @@ open class KCMultiViewController : KCMultiViewControllerBase, KCWindowDelegate
 	}
 
 	#if os(iOS)
-	/*
-	open func pushDocumentPickerViewController(URL url: URL, callback cbfunc: @escaping ViewSwitchCallback) {
-		/* The current view become background view */
-		if let sview = currentViewController() {
-			sview.viewWillBecomeBackground()
-		}
-		/* Allocate controller */
-		let picker = KCDocumentPickerViewController(parentViewController: self)
-		picker.openPicker(URL: url)
-	}*/
 	private var mPickerView: KCDocumentPickerViewController? = nil
 
 	public func documentPickerViewController(callback cbfunc: @escaping KCDocumentPickerViewController.CallbackFunction) -> KCDocumentPickerViewController {

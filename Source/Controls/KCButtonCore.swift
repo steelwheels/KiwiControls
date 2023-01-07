@@ -19,13 +19,15 @@ public enum KCButtonValue {
 
 public class KCButtonCore: KCCoreView
 {
+	public typealias CallbackFunction = () -> Void
+
 	#if os(iOS)
 	@IBOutlet weak var mButton: UIButton!
 	#else
 	@IBOutlet weak var mButton: KCButtonBody!
 	#endif
 
-	public var buttonPressedCallback: (() -> Void)? = nil
+	public var buttonPressedCallback: CallbackFunction? = nil
 
 	private var mButtonValue:	KCButtonValue = .text("")
 	private var mButtonSize:	CNSymbolSize  = .regular
