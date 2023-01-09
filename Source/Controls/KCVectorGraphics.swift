@@ -368,7 +368,7 @@ open class KCVectorGraphics: KCView
 	 */
 	public func toValue() -> CNValue {
 		let result: Dictionary<String, CNValue> = [
-			"frameSize":	.dictionaryValue(self.frame.size.toValue()),
+			"frameSize":	.interfaceValue(self.frame.size.toValue()),
 			"objects":	.arrayValue(mManager.toValue())
 		]
 		return .dictionaryValue(result)
@@ -387,7 +387,11 @@ open class KCVectorGraphics: KCView
 			CNLog(logLevel: .error, message: "\"frameSize\" property is required", atFunction: #function, inFile: #file)
 			return false
 		}
-		guard let size = CGSize.fromValue(value: sizeval) else {
+		guard let sizeintf = sizeval.toInterface(interfaceName: CGSize.InterfaceName) else {
+			CNLog(logLevel: .error, message: "\"frameSize\" must be interface value", atFunction: #function, inFile: #file)
+			return false
+		}
+		guard let size = CGSize.fromValue(value: sizeintf) else {
 			CNLog(logLevel: .error, message: "Invalid size property", atFunction: #function, inFile: #file)
 			return false
 		}
